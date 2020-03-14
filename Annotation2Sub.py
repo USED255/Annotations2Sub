@@ -59,7 +59,7 @@ class Annotations2Sub():
             #处理位置
                 (x, y, w, h) = map(float, (Time[0].get(i) for i in ('x','y','w','h')))
             #x，y：文本框左上角的坐标
-            # w，h：文本框的宽度和高度
+            # w，h：文本框的宽度和高度 (没空弄)
             except:
                 if not Time:
                     Time = each.find('segment').find('movingRegion').findall('anchoredRegion')
