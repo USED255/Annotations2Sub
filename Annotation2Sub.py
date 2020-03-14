@@ -59,7 +59,7 @@ class Annotations2Sub():
             #处理位置
                 (x, y, w, h) = map(float, (Time[0].get(i) for i in ('x','y','w','h')))
             #x，y：文本框左上角的坐标
-            # w，h：文本框的宽度和高度 (没空弄)
+            # w，h：文本框的宽度和高度 (代实现)
             except:
                 if not Time:
                     Time = each.find('segment').find('movingRegion').findall('anchoredRegion')
@@ -70,14 +70,14 @@ class Annotations2Sub():
                 if each.find('appearance').get('fgColor') is not '0':
                     PrimaryColour = r'&H'+str(hex(int(each.find('appearance').get('fgColor')))).replace('0x','')
                 else:
-                    PrimaryColour = '&H00FFFFFF'
+                    PrimaryColour = '&HFFFFFF'
                 if each.find('appearance').get('bgColor') is not '0':
                     BackColour = r'&H'+str(hex(int(each.find('appearance').get('bgColor')))).replace('0x','')
                 else:
-                    BackColour = '&HAB000000'
+                    BackColour = '&H000000'
             else:
-                PrimaryColour = '&H00FFFFFF'
-                BackColourBackColour = '&HAB000000'
+                PrimaryColour = '&HFFFFFF'
+                BackColourBackColour = '&H000000'
             #提交
             self.event.add(Start=Start,End=End,Name=Name,Text=self.tab_helper(self=self,Text=Text,PrimaryColour=PrimaryColour,BackColour=BackColour,x=x,y=y))
 
