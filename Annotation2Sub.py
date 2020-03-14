@@ -52,33 +52,34 @@ class Annotations2Sub():
             #处理时间
             try:
                 Time = each.find('segment').find('movingRegion').findall('rectRegion')
+                Start = min(Time[0].get('t'), Time[1].get('t'))
+                End = max(Time[0].get('t'), Time[1].get('t'))
+                if "never" in (Start, End):
+                    continue
+            #处理位置
+                (x, y, w, h) = map(float, (Time[0].get(i) for i in ('x','y','w','h')))
+            #x，y：文本框左上角的坐标
+            # w，h：文本框的宽度和高度
             except:
                 if not Time:
                     Time = each.find('segment').find('movingRegion').findall('anchoredRegion')
                 if not Time:
                     continue
-            Start = min(Time[0].get('t'), Time[1].get('t'))
-            End = max(Time[0].get('t'), Time[1].get('t'))
-            if "never" in (Start, End):
-                continue
-            #处理位置
-            x = map(float, (Time[0].get(i) for i in ('x')))
-            y = map(float, (Time[0].get(i) for i in ('y')))
             #处理颜色
             if each.find('appearance') is not None:
                 if each.find('appearance').get('fgColor') is not '0':
-                    PrimaryColour = r'&H'+each.find('appearance').get('fgColor')
+                    PrimaryColour = r'&H'+str(hex(int(each.find('appearance').get('fgColor')))).replace('0x','')
                 else:
                     PrimaryColour = '&H00FFFFFF'
                 if each.find('appearance').get('bgColor') is not '0':
-                    BackColour = r'&H'+each.find('appearance').get('bgColor')
+                    BackColour = r'&H'+str(hex(int(each.find('appearance').get('bgColor')))).replace('0x','')
                 else:
                     BackColour = '&HAB000000'
             else:
                 PrimaryColour = '&H00FFFFFF'
                 BackColourBackColour = '&HAB000000'
             #提交
-            self.event.add(Start=Start,End=End,Text=self.tab_helper(self=self,Text=Text,PrimaryColour=PrimaryColour,BackColour=BackColour,x=x,y=y))
+            self.event.add(Start=Start,End=End,Name=Name,Text=self.tab_helper(self=self,Text=Text,PrimaryColour=PrimaryColour,BackColour=BackColour,x=x,y=y))
 
     class SimpeAssTools(object):
         def save(self,file_name):
@@ -88,7 +89,13 @@ class Annotations2Sub():
                 f.write(self.event.dump())
 
         def tab_helper(self,Text,PrimaryColour=None,BackColour=None,x=None,y=None):
+            pos = "\\pos({},{})".format(str(int(float(x))*10),str(int(float(y))*10))
+            c1 = '\c'+PrimaryColour
+            c2 = '\\3c'+BackColour
+            tab = r'\an7' + pos + c1 +c2
+            Text = "{%s}" % tab + Text
             return Text
+            #{\2c&H2425DA&\pos(208,148)}test
 
         class info(object):
             def __init__(self):
@@ -112,7 +119,7 @@ class Annotations2Sub():
             def dump(self):
                 data = self.HEAD
                 for k, v in self.data.items():
-                    data += k+': '+v+'\n' 
+                    data += str(k)+': '+str(v)+'\n' 
                 return data
 
         class style(object):
@@ -128,8 +135,9 @@ class Annotations2Sub():
                 self.data[Name] = [Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding]
 
             def change(self,Name,Fontname=None,Fontsize=None,PrimaryColour=None,SecondaryColour=None,OutlineColour=None,BackColour=None,Bold=None,Italic=None,Underline=None,StrikeOut=None,ScaleX=None,ScaleY=None,Spacing=None,Angle=None,BorderStyle=None,Outline=None,Shadow=None,Alignment=None,MarginL=None,MarginR=None,MarginV=None,Encoding=None):
-                #self.data[Name] = 'a'
-                pass
+                for i,v in enumerate([Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding]):
+                    if v is not None:
+                        self.data[Name][i] = v
 
             def dump(self):
                 data = self.HEAD
@@ -167,10 +175,10 @@ class Annotations2Sub():
 
 def main():
     parser = argparse.ArgumentParser(description='一个可以把Youtube注释转换成ASS字幕的脚本')
-    parser.add_argument('File',type=str,help='待转换的文件')
-    parser.add_argument('--PlayResX',default=1920,type=int,help='视频宽度,默认是1920')
-    parser.add_argument('--PlayResY',default=1080,type=int,help='视频高度,默认是1080')
-    parser.add_argument('--Zoom',default=1,type=int,help='缩放系数,默认是1')
+    parser.add_argument('File',type=str,help='待转换的文件',)
+    parser.add_argument('--PlayResX=',default=1920,type=int,help='视频宽度,默认是1920',dest='PlayResX')
+    parser.add_argument('--PlayResY=',default=1080,type=int,help='视频高度,默认是1080',dest='PlayResY')
+    parser.add_argument('--Zoom=',default=1,type=float,help='缩放系数,默认是1',dest='Zoom')
     args = parser.parse_args()
     ass = Annotations2Sub(open(args.File,'r',encoding="utf-8").read(),args.File,args.PlayResX,args.PlayResY,args.Zoom)
     print("Done.")
