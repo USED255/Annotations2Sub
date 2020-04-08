@@ -11,6 +11,6 @@
 效果:
 ![效果1](https://www.used255.xyz/uploads/Annotations2Sub_试例/e8kKeUuytqA.png)
 
-![效果2](https://github.com/WRTYis/Annotations2Sub_试例/vnDifjU4HiY.png)
+![效果2](https://www.used255.xyz/uploads/Annotations2Sub_试例/vnDifjU4HiY.png)
 
-[测试用例](https://github.com/WRTYis/Annotations2Sub_试例)
+[测试用例](https://www.used255.xyz/uploads/Annotations2Sub_试例)
