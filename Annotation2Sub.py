@@ -110,7 +110,7 @@ class Annotations2Sub():
         self.xml = xml.etree.ElementTree.fromstring(string)
         self.info.change(Title,PlayResX,PlayResY)
         self.style.change(Name='Default',ScaleX=PlayResX/1280*100*Zoom,ScaleY=PlayResY/720*100*Zoom)
-        self._convert(self.xml,Title=Title,PlayResX=PlayResX,PlayResY=PlayResY,Zoom=Zoom) 
+        self._convert(self.xml) 
 
     def save(self,File):
         with open(File+'.ass', 'w',encoding='utf-8') as f:
