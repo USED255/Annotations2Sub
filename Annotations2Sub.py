@@ -108,7 +108,7 @@ class Annotations2Sub():
         self.style = style()
         self.event = event()
         self.xml = xml.etree.ElementTree.fromstring(string)
-        self.info.change(Title,PlayResX,PlayResY)
+        self.info.change(Title=Title,PlayResX=PlayResX,PlayResY=PlayResY)
         self.style.change(Name='Default',ScaleX=PlayResX/1280*100*Zoom,ScaleY=PlayResY/720*100*Zoom)
         self.Zoom = Zoom
         self._convert(self.xml) 
