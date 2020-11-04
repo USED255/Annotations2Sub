@@ -165,7 +165,7 @@ class Annotations2Sub():
                     BackColour = r'&H000000'
             else:
                 PrimaryColour = r'&HFFFFFF'
-                BackColourBackColour = r'&H000000'
+                BackColour = r'&H000000'
             
             #提交
             self.event.add(Start=Start,End=End,Name=Name,Text=self._tab_helper(Text=Text,PrimaryColour=PrimaryColour,BackColour=BackColour,x=x,y=y,Zoom=self.Zoom))
