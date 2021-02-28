@@ -1,0 +1,27 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Annotations2Sub i18n\n"
+"POT-Creation-Date: 2021-02-28 15:44+0800\n"
+"PO-Revision-Date: 2021-02-28 15:56+0800\n"
+"Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
+"Language-Team: wrtyis@outlook.com\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: Annotations2Sub.py\n"
+
+#: Annotations2Sub.py:195
+msgid "抱歉这个脚本还不能支持 {} 样式. ({})"
+msgstr "Sorry,this script can't handle {} style yet. ({})"
+
+#: Annotations2Sub.py:241
+msgid "一个可以把Youtube注释转换成ASS字幕的脚本"
+msgstr "A script that converts Youtube Annotations into .ASS subtitles"
+
+#: Annotations2Sub.py:242
+msgid "待转换的文件"
+msgstr "The file to be converted"
