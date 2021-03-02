@@ -6,12 +6,12 @@ __authors__  = (
  )
 
 __license__ = 'GPLv3'
-__version__ = '0.0.3'
+__version__ = '0.0.4'
 
 """
 参考:
 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
-
+https://github.com/afrmtbl/AnnotationsRestored
 
 """
 
@@ -27,6 +27,7 @@ https://github.com/afrmtbl/AnnotationsRestored
 
 """
 
+import urllib.request 
 import gettext
 import argparse
 import xml.etree.ElementTree
@@ -38,8 +39,16 @@ try:
     t.install()
 except:
     _ = gettext.gettext
-else:
-    pass
+
+def DownloadForInvidious(id:str) -> str:
+    domain = 'invidiou.site'
+    api = '/api/v1/annotations/'
+    url = 'https://' + domain + api + id
+    file = "invidious_{}.xml".format(id)
+    print(_("正在从 {} 下载注释文件".format(url)))
+    urllib.request.urlretrieve(url,file)
+    print(_("下载完成"))
+    return file
 
 class AssTools():
     def __init__(self) -> None:
@@ -252,8 +261,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=_('一个可以把Youtube注释转换成ASS字幕的脚本'))
     parser.add_argument('File',type=str,nargs='+',help=_('待转换的文件'))
     parser.add_argument('-l','--libassHack',action='store_true',help=_('针对libass修正'))
+    parser.add_argument('-d','--download-for-invidious',action='store_true',help=_('尝试从invidious下载注释文件'))
     args = parser.parse_args()
     for File in args.File:
+        if args.download_for_invidious is True:
+            File = DownloadForInvidious(id=File)
         ass = Annotations2Sub(string=open(File,'r',encoding="utf-8").read(),Title=File,libassHack=args.libassHack)
         ass.Save(File=File)
         ass.Close()

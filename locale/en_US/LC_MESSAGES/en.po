@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Annotations2Sub i18n\n"
-"POT-Creation-Date: 2021-03-02 11:15+0800\n"
-"PO-Revision-Date: 2021-03-02 11:15+0800\n"
+"POT-Creation-Date: 2021-03-02 16:51+0800\n"
+"PO-Revision-Date: 2021-03-02 17:13+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: wrtyis@outlook.com\n"
 "Language: en\n"
@@ -14,22 +14,34 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: Annotations2Sub.py:138
+#: Annotations2Sub.py:48
+msgid "正在从 {} 下载注释文件"
+msgstr "Downloading from {}"
+
+#: Annotations2Sub.py:50
+msgid "下载完成"
+msgstr "Download completed."
+
+#: Annotations2Sub.py:147
 msgid "保存于 \"{}.ass\""
 msgstr "Save in \"{}.ass\""
 
-#: Annotations2Sub.py:212
+#: Annotations2Sub.py:221
 msgid "抱歉这个脚本还不能支持 {} 样式. ({})"
 msgstr "Sorry,this script can't handle {} style yet. ({})"
 
-#: Annotations2Sub.py:252
+#: Annotations2Sub.py:261
 msgid "一个可以把Youtube注释转换成ASS字幕的脚本"
 msgstr "A script that converts Youtube Annotations into .ASS subtitles"
 
-#: Annotations2Sub.py:253
+#: Annotations2Sub.py:262
 msgid "待转换的文件"
 msgstr "The file to be converted"
 
-#: Annotations2Sub.py:254
+#: Annotations2Sub.py:263
 msgid "针对libass修正"
 msgstr "Fixes for libass"
+
+#: Annotations2Sub.py:264
+msgid "尝试从invidious下载注释文件"
+msgstr "Try downloading the ‪‪annotations file from invidious"
