@@ -22,6 +22,11 @@ https://github.com/afrmtbl/AnnotationsRestored
 
 """
 
+""" 
+本脚本启发自 https://github.com/nirbheek/youtube-ass ,您仍然可以从本脚本找到他的痕迹。
+
+"""
+
 import gettext
 import argparse
 import xml.etree.ElementTree
@@ -114,9 +119,10 @@ class AssTools():
             return data
 
 class Annotations2Sub():
-    def __init__(self,string:str,Title:str='默认文件') -> None:
+    def __init__(self,string:str,Title:str='默认文件',libassHack:bool=False) -> None:
         self.asstools = AssTools()
         self.xml = xml.etree.ElementTree.fromstring(string)
+        self.libassHack = libassHack
         self.asstools.info.add(k='Title',v=Title)
         self.asstools.info.add(k='PlayResX',v='100')
         self.asstools.info.add(k='PlayResY',v='100')
@@ -129,7 +135,7 @@ class Annotations2Sub():
             f.write(self.asstools.info.dump())
             f.write(self.asstools.style.dump())
             f.write(self.asstools.event.dump())
-            print("Save in \"{}.ass\"".format(File))
+            print(_("保存于 \"{}.ass\"".format(File)))
 
     def Close(self) -> None:
         del self
@@ -170,8 +176,8 @@ class Annotations2Sub():
                 fgColor = r'&HFFFFFF&'
                 bgColor = r'&H000000&'
             else:
-                fgColor = r'&H'+str(hex(int(each.find('appearance').get('fgColor')))).replace('0x','').zfill(6)+r'&'
-                bgColor = r'&H'+str(hex(int(each.find('appearance').get('bgColor')))).replace('0x','').zfill(6)+r'&'
+                fgColor = r'&H'+str(hex(int(each.find('appearance').get('fgColor')))).replace('0x','').zfill(6).upper()+r'&'
+                bgColor = r'&H'+str(hex(int(each.find('appearance').get('bgColor')))).replace('0x','').zfill(6).upper()+r'&'
 
             #提取文本大小
             fontsize = each.find('appearance').get('textSize')
@@ -189,6 +195,8 @@ class Annotations2Sub():
             FullyTransparent = r'&HFF&'
             if style == 'popup':
                 Name += r'_popup'
+                if self.libassHack == True:
+                    w = str(float(w)*1.776)
                 TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h)
                 TextBox = r'{\p1}'+ TextBox +r'{\p0}'
                 TextBox=self._tab_helper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=fontsize,PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
@@ -206,9 +214,9 @@ class Annotations2Sub():
     def _tab_helper(self,Text:Optional[str]='',PrimaryColour:Optional[str]=None,SecondaryColour:Optional[str]=None,BorderColor:Optional[str]=None,ShadowColor:Optional[str]=None,PosX:Optional[float]=None,PosY:Optional[float]=None,fontsize:Optional[str]=None,PrimaryAlpha:Optional[str]=None,SecondaryAlpha:Optional[str]=None,BorderAlpha:Optional[str]=None,ShadowAlpha:Optional[str]=None,p:Optional[str]=None) ->str:
         _tab = ''
         if (PosX,PosY) is not None:
-            _pos = "\\pos({},{})".format(PosX,PosY)
             _an = r'\an7'
-            _tab += _pos + _an
+            _pos = "\\pos({},{})".format(PosX,PosY)
+            _tab += _an + _pos 
         if PrimaryColour is not None:
             _c = r'\c' + PrimaryColour
             _tab += _c
@@ -243,8 +251,9 @@ class Annotations2Sub():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=_('一个可以把Youtube注释转换成ASS字幕的脚本'))
     parser.add_argument('File',type=str,nargs='+',help=_('待转换的文件'))
+    parser.add_argument('-l','--libassHack',action='store_true',help=_('针对libass修正'))
     args = parser.parse_args()
     for File in args.File:
-        ass = Annotations2Sub(string=open(File,'r',encoding="utf-8").read(),Title=File)
+        ass = Annotations2Sub(string=open(File,'r',encoding="utf-8").read(),Title=File,libassHack=args.libassHack)
         ass.Save(File=File)
         ass.Close()
