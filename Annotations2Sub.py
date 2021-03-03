@@ -27,6 +27,9 @@ https://github.com/afrmtbl/AnnotationsRestored
 
 """
 
+import os
+import re
+import json
 import urllib.request 
 import gettext
 import argparse
@@ -40,15 +43,49 @@ try:
 except:
     _ = gettext.gettext
 
-def DownloadForInvidious(id:str) -> str:
-    domain = 'invidiou.site'
+def DownloadForInvidious(id:str,invidious_domain:str='invidiou.site') -> str:
     api = '/api/v1/annotations/'
-    url = 'https://' + domain + api + id
+    url = 'https://' + invidious_domain + api + id
     file = "invidious_{}.xml".format(id)
     print(_("正在从 {} 下载注释文件".format(url)))
     urllib.request.urlretrieve(url,file)
     print(_("下载完成"))
     return file
+
+def PreviewVideo(id:str,file:str,invidious_domain:str='invidiou.site'):
+    api = '/api/v1/videos/'
+    url = 'https://' + invidious_domain + api + id
+    sub = file
+    r = urllib.request.Request(url)
+    with urllib.request.urlopen(r) as f:
+        data = json.loads(f.read().decode('utf-8'))
+    audios = []
+    videos = []
+    for i in data.get('adaptiveFormats'):
+        if re.match('audio', i.get('type')) is not None:
+            audios.append(i)
+        if re.match('video', i.get('type')) is not None:
+            videos.append(i)
+    audios.sort(key=lambda x:int(x.get('bitrate')),reverse=True)
+    videos.sort(key=lambda x:int(x.get('bitrate')),reverse=True)
+    audio = audios[0].get('url')
+    video = videos[0].get('url')
+    cmd = r'mpv "{}" --audio-file="{}" --sub-file="{}"'.format(video,audio,file)
+    os.system(cmd)
+    
+
+def GenerateVideo(id:str,file:str,invidious_domain:str='invidiou.site'):
+    api = '/api/v1/videos/'
+    url = 'https://' + invidious_domain + api + id
+    sub = file
+
+class AnnotationsStruct():
+    def __init__(self):
+        pass
+
+class EventStruct():
+    def __init__(self):
+        pass
 
 class AssTools():
     def __init__(self) -> None:
@@ -139,17 +176,18 @@ class Annotations2Sub():
         self._convert()
         self.asstools.event.data.sort(key=lambda x:x[1])
 
-    def Save(self,File) -> None:
+    def Save(self,File) -> str:
         with open(File + '.ass', 'w', encoding='utf-8') as f:
             f.write(self.asstools.info.dump())
             f.write(self.asstools.style.dump())
             f.write(self.asstools.event.dump())
             print(_("保存于 \"{}.ass\"".format(File)))
-
-    def Close(self) -> None:
-        del self
+            return File + '.ass'
 
     def _convert(self) -> None:
+        class a():
+            def __init__(self):
+                self.a=''
         for each in self.xml.find('annotations').findall('annotation'):
 
             #提取 annotation id
@@ -158,17 +196,24 @@ class Annotations2Sub():
             #提取时间
             #h:mm:ss.ms
             _Segment = each.find('segment').find('movingRegion').findall('rectRegion')
-            if _Segment is None:
+            if len(_Segment) == 0:
                 _Segment = each.find('segment').find('movingRegion').findall('anchoredRegion')
-            if _Segment is None:
+            if len(_Segment) == 0:
                 Start = '0:00:00.00'
                 End = '0:00:00.00'
-            if _Segment is not None:
-                Start =datetime.strftime(datetime.strptime(min(_Segment[0].get('t'), _Segment[1].get('t')),"%M:%S.%f"),"%H:%M:%S.%f")[:-4]
-                End = datetime.strftime(datetime.strptime(max(_Segment[0].get('t'), _Segment[1].get('t')),"%M:%S.%f"),"%H:%M:%S.%f")[:-4]
+            if len(_Segment) != 0:
+                Start = min(_Segment[0].get('t'), _Segment[1].get('t'))
+                End = max(_Segment[0].get('t'), _Segment[1].get('t'))
             if "never" in (Start, End):
                 Start = '0:00:00.00'
                 End = '999:00:00.00'
+            else:
+                try:
+                    Start =datetime.strftime(datetime.strptime(Start,"%H:%M:%S.%f"),"%H:%M:%S.%f")[:-4]
+                    End = datetime.strftime(datetime.strptime(End,"%H:%M:%S.%f"),"%H:%M:%S.%f")[:-4]
+                except:
+                    Start =datetime.strftime(datetime.strptime(Start,"%M:%S.%f"),"%H:%M:%S.%f")[:-4]
+                    End = datetime.strftime(datetime.strptime(End,"%M:%S.%f"),"%H:%M:%S.%f")[:-4]
 
             #提取样式
             style = each.get('style')
@@ -180,22 +225,25 @@ class Annotations2Sub():
             else:
                 Text = ''
             
-            #提取颜色
-            if each.find('appearance') == None:
+
+            if each.find('appearance') is None:
                 fgColor = r'&HFFFFFF&'
                 bgColor = r'&H000000&'
             else:
-                fgColor = r'&H'+str(hex(int(each.find('appearance').get('fgColor')))).replace('0x','').zfill(6).upper()+r'&'
-                bgColor = r'&H'+str(hex(int(each.find('appearance').get('bgColor')))).replace('0x','').zfill(6).upper()+r'&'
+                fontsize = each.find('appearance').get('textSize')
+                if each.find('appearance').get('bgAlpha') is None:
+                    bgAlpha = None
+                else:
+                    bgAlpha = r'&H'+str(hex(int((1-float(each.find('appearance').get('bgAlpha')))*255))).replace('0x','')+r'&'
+                if each.find('appearance').get('fgColor') == None:
+                    fgColor = r'&HFFFFFF&'
+                else:
+                    fgColor = r'&H'+str(hex(int(each.find('appearance').get('fgColor')))).replace('0x','').zfill(6).upper()+r'&'
+                if each.find('appearance').get('bgColor') == None:
+                    bgColor = r'&H000000&'
+                else:
+                    bgColor = r'&H'+str(hex(int(each.find('appearance').get('bgColor')))).replace('0x','').zfill(6).upper()+r'&'
 
-            #提取文本大小
-            fontsize = each.find('appearance').get('textSize')
-
-
-            #提取透明度
-            bgAlpha = r'&H'+str(hex(int((1-float(each.find('appearance').get('bgAlpha')))*255))).replace('0x','')+r'&'
-
-            #处理文本框
             '''
                 x,y: 文本框左上角的坐标
                 w,h: 文本框的宽度和高度
@@ -259,13 +307,25 @@ class Annotations2Sub():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=_('一个可以把Youtube注释转换成ASS字幕的脚本'))
-    parser.add_argument('File',type=str,nargs='+',help=_('待转换的文件'))
+    parser.add_argument('File',type=str,nargs='+',metavar='File or ID',help=_('待转换的文件'))
     parser.add_argument('-l','--libassHack',action='store_true',help=_('针对libass修正'))
     parser.add_argument('-d','--download-for-invidious',action='store_true',help=_('尝试从invidious下载注释文件'))
+    parser.add_argument('-i','--invidious-domain',default='invidiou.site', metavar='invidious.domain',help=_('指定invidious域名'))
+    parser.add_argument('-p','--preview-video',action='store_true',help=_('预览视频(需要mpv)'))
+#    parser.add_argument('-g','--generate-video',action='store_true',help=_('生成视频(需要FFmpeg)'))
     args = parser.parse_args()
     for File in args.File:
-        if args.download_for_invidious is True:
-            File = DownloadForInvidious(id=File)
+        #if args.download_for_invidious or args.preview_video or args.generate_video is True:
+        if args.download_for_invidious or args.preview_video is True:
+            Id = File
+            File = DownloadForInvidious(id=Id,invidious_domain=args.invidious_domain)
+        #if args.preview_video or args.generate_video is True:
+        if args.preview_video is True:
+            args.libassHack = True
         ass = Annotations2Sub(string=open(File,'r',encoding="utf-8").read(),Title=File,libassHack=args.libassHack)
-        ass.Save(File=File)
-        ass.Close()
+        File = ass.Save(File=File)
+        del ass
+        if args.preview_video is True:
+            PreviewVideo(id=Id,file=File,invidious_domain=args.invidious_domain)
+#        if args.generate_video is True:
+#            GenerateVideo(id=Id,file=File,invidious_domain=args.invidious_domain)
