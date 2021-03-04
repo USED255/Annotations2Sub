@@ -22,6 +22,7 @@ optional arguments:
   -i invidious.domain, --invidious-domain invidious.domain
                         Specify invidious domain
   -p, --preview-video   Preview video(need ffplay or mpv)
+  -g, --generate-video  Generate video (need FFmpeg)
 
 ```
 
@@ -41,5 +42,5 @@ TODO:
 * <del>Download for invidious</del>
 * Rewrite _convert()
 * <del>Preview video</del>
-* Generate video
+* <del>Generate video</del>
 * Other style 

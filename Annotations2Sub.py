@@ -78,6 +78,22 @@ def GenerateVideo(id:str,file:str,invidious_domain:str='invidiou.site'):
     api = '/api/v1/videos/'
     url = 'https://' + invidious_domain + api + id
     sub = file
+    r = urllib.request.Request(url)
+    with urllib.request.urlopen(r) as f:
+        data = json.loads(f.read().decode('utf-8'))
+    audios = []
+    videos = []
+    for i in data.get('adaptiveFormats'):
+        if re.match('audio', i.get('type')) is not None:
+            audios.append(i)
+        if re.match('video', i.get('type')) is not None:
+            videos.append(i)
+    audios.sort(key=lambda x:int(x.get('bitrate')),reverse=True)
+    videos.sort(key=lambda x:int(x.get('bitrate')),reverse=True)
+    audio = audios[0].get('url')
+    video = videos[0].get('url')
+    cmd = r'ffmpeg -i "{}" -i "{}" -vf "ass={}" "{}.mp4"'.format(video,audio,file,id)
+    os.system(cmd)
 
 class AnnotationsStruct():
     def __init__(self):
@@ -312,20 +328,18 @@ if __name__ == "__main__":
     parser.add_argument('-d','--download-for-invidious',action='store_true',help=_('尝试从invidious下载注释文件'))
     parser.add_argument('-i','--invidious-domain',default='invidiou.site', metavar='invidious.domain',help=_('指定invidious域名'))
     parser.add_argument('-p','--preview-video',action='store_true',help=_('预览视频(需要mpv)'))
-#    parser.add_argument('-g','--generate-video',action='store_true',help=_('生成视频(需要FFmpeg)'))
+    parser.add_argument('-g','--generate-video',action='store_true',help=_('生成视频(需要FFmpeg)'))
     args = parser.parse_args()
     for File in args.File:
-        #if args.download_for_invidious or args.preview_video or args.generate_video is True:
-        if args.download_for_invidious or args.preview_video is True:
+        if args.download_for_invidious or args.preview_video or args.generate_video is True:
             Id = File
             File = DownloadForInvidious(id=Id,invidious_domain=args.invidious_domain)
-        #if args.preview_video or args.generate_video is True:
-        if args.preview_video is True:
+        if args.preview_video or args.generate_video is True:
             args.libassHack = True
         ass = Annotations2Sub(string=open(File,'r',encoding="utf-8").read(),Title=File,libassHack=args.libassHack)
         File = ass.Save(File=File)
         del ass
         if args.preview_video is True:
             PreviewVideo(id=Id,file=File,invidious_domain=args.invidious_domain)
-#        if args.generate_video is True:
-#            GenerateVideo(id=Id,file=File,invidious_domain=args.invidious_domain)
+        if args.generate_video is True:
+            GenerateVideo(id=Id,file=File,invidious_domain=args.invidious_domain)
