@@ -6,7 +6,7 @@ __authors__  = (
  )
 
 __license__ = 'GPLv3'
-__version__ = '0.0.5'
+__version__ = '0.0.6'
 
 """
 参考:
@@ -23,7 +23,8 @@ https://github.com/afrmtbl/AnnotationsRestored
 """
 
 """ 
-本脚本启发自 https://github.com/nirbheek/youtube-ass ,您仍然可以从本脚本找到他的痕迹。
+本脚本启发自:
+https://github.com/nirbheek/youtube-ass ,https://github.com/afrmtbl/annotations-converter 您仍然可以从本脚本找到他们的痕迹。
 
 """
 
@@ -41,7 +42,18 @@ try:
     t = gettext.translation(domain='en', localedir='locale',languages=['en_US'])
     t.install()
 except:
+    print("\033[0;33;40m\tWarning! locale not found, i18n Not loaded\033[0m")
     _ = gettext.gettext
+
+if hex(os.sys.hexversion) < 0x03060000:
+    print(_("\033[0;31;40m\t我需要大于3.6的Python!\033[0m"))
+    exit(1)
+
+class Default():
+    pass
+
+class NotApplicable():
+    pass
 
 def DownloadForInvidious(id:str,invidious_domain:str='invidiou.site') -> str:
     api = '/api/v1/annotations/'
@@ -71,6 +83,7 @@ def PreviewVideo(id:str,file:str,invidious_domain:str='invidiou.site'):
     audio = audios[0].get('url')
     video = videos[0].get('url')
     cmd = r'mpv "{}" --audio-file="{}" --sub-file="{}"'.format(video,audio,file)
+    print(cmd)
     os.system(cmd)
     
 
@@ -95,10 +108,10 @@ def GenerateVideo(id:str,file:str,invidious_domain:str='invidiou.site'):
     cmd = r'ffmpeg -i "{}" -i "{}" -vf "ass={}" "{}.mp4"'.format(video,audio,file,id)
     os.system(cmd)
 
-class AnnotationsStruct():
+class Annotation():
     def __init__(self):
         #id: 字符串格式的注释id
-        self.id:Optional[str] = None
+        self.id:str = ''
 
         # bgc：十进制格式的注释背景颜色。
         self.bgc:Optional[int] = None
@@ -144,51 +157,9 @@ class AnnotationsStruct():
         
         # sy：语音气泡点位置y，以视频高度的百分比表示。
         self.sy:Optional[float] = None 
-    
-    def Convert(self,each):
-        _each = each
-        self.id = _each.get('id')
 
-        _appearance = _each.find('appearance')
-        self.bgc = _appearance.get('bgColor')
-        self.bgo = _appearance.get('bgAlpha')
-        self.fgc = _appearance.get('fgColor')
-        self.txsz = _appearance.get('textSize')
-
-        _Segment = _each.find('segment').find('movingRegion').findall('rectRegion')
-        self.x = _Segment[0].get('x')
-        self.y = _Segment[0].get('y')
-        self.w = _Segment[0].get('w')
-        self.h = _Segment[0].get('h')
-        self.ts = min(_Segment[0].get('t'), _Segment[1].get('t'))
-        self.te = max(_Segment[0].get('t'), _Segment[1].get('t'))
-
-        self.tp = _each.get('type')
-        self.s = _each.get('style')
-        self.t = _each.find('TEXT')
-
-        self.sx = _Segment.find('sx')
-        self.sy = _Segment.find('sy')
-
-        del _each
-        del _appearance
-        del _Segment
-
-    def if_default(self):
-        if self.bgc is None:
-            self.bgc = 255255255
-        if self.bgo is None:
-            self.bgo = 0.80
-        if self.fgc is None:
-            self.fgc = 0
-        if self.txsz is None:
-            self.txsz = 3.15
-
-class EventStruct():
-    def __init__(self,AssTools,AnnotationsStruct):
-        self.asstools = AssTools
-        self.annotations = AnnotationsStruct
-        
+class EventHelper():
+    def __init__(self):
         # Layer: 大数值的图层会覆盖在小数值的图层上面
         self.Layer:Optional[int] = None
         
@@ -219,27 +190,81 @@ class EventStruct():
         # Text: 字幕文本
         self.Text:Optional[str] = None
     
-    def Convert(self):
-        annotations = self.annotations
-        self.Start = annotations.ts
-        self.End = annotations.te
-        self.Name = annotations.id
-        self.Text = annotations.t
+    def Convert(self,AnnotationsStruct):
+        self.Start = AnnotationsStruct.ts
+        self.End = AnnotationsStruct.te
+        self.Name = AnnotationsStruct.id
+        self.Text = AnnotationsStruct.t
     
-    def Commit(self):
-        self.asstools.event.add(Layer=self.Layer,Start=self.Start,End=self.End,Style=self.Style,Name=self.Name,MarginL=self.MarginL,MarginR=self.MarginR,MarginV=self.MarginV,Effect=self.Effect,Text=self.Text)
+    def Commit(self,AnnotationsTools):
+        AnnotationsTools.event.add(Layer=self.Layer,Start=self.Start,End=self.End,Style=self.Style,Name=self.Name,MarginL=self.MarginL,MarginR=self.MarginR,MarginV=self.MarginV,Effect=self.Effect,Text=self.Text)
 
 class AnnotationsTools():
-    def __init__(self,file) -> None:
+    def __init__(self,File) -> None:
         annotations=[]
         string=open(File,'r',encoding="utf-8").read()
         xml = xml.etree.ElementTree.fromstring(string)
         del string
         for each in xml.find('annotations').findall('annotation'):
-            annotations.append(AnnotationsStruct.Convert(each))
+            annotations.append(self._parser(each))
             del each
         del xml
+    def Parser(self,each):
+        _each = each
+        self.id = _each.get('id')
 
+        _appearance = _each.find('appearance')
+        self.bgc = _appearance.get('bgColor')
+        self.bgo = _appearance.get('bgAlpha')
+        self.fgc = _appearance.get('fgColor')
+        self.txsz = _appearance.get('textSize')
+
+        _Segment = _each.find('segment').find('movingRegion').findall('rectRegion')
+        self.x = _Segment[0].get('x')
+        self.y = _Segment[0].get('y')
+        self.w = _Segment[0].get('w')
+        self.h = _Segment[0].get('h')
+        self.ts = min(_Segment[0].get('t'), _Segment[1].get('t'))
+        self.te = max(_Segment[0].get('t'), _Segment[1].get('t'))
+
+        self.tp = _each.get('type')
+        self.s = _each.get('style')
+        self.t = _each.find('TEXT')
+
+        self.sx = _Segment.find('sx')
+        self.sy = _Segment.find('sy')
+
+        del _each
+        del _appearance
+        del _Segment
+
+    def _parser(each) -> dict:
+        pass
+
+    def _get_attributes(self):
+        pass
+
+    def _get_text(self):
+        pass
+
+    def _get_action(self):
+        pass
+
+    def _get_background_shape(self):
+        pass
+
+    def _get_appearance(self):
+        pass
+
+    def if_default(self):
+        if self.bgc is None:
+            self.bgc = 255255255
+        if self.bgo is None:
+            self.bgo = 0.80
+        if self.fgc is None:
+            self.fgc = 0
+        if self.txsz is None:
+            self.txsz = 3.15
 
 class AssTools():
     def __init__(self) -> None:
@@ -436,7 +461,7 @@ class Annotations2Sub():
             else:
                 print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
 
-    def _tab_helper(self,Text:Optional[str]='',PrimaryColour:Optional[str]=None,SecondaryColour:Optional[str]=None,BorderColor:Optional[str]=None,ShadowColor:Optional[str]=None,PosX:Optional[float]=None,PosY:Optional[float]=None,fontsize:Optional[str]=None,PrimaryAlpha:Optional[str]=None,SecondaryAlpha:Optional[str]=None,BorderAlpha:Optional[str]=None,ShadowAlpha:Optional[str]=None,p:Optional[str]=None) ->str:
+    def _tab_helper(self,Text:str='',PrimaryColour:Optional[str]=None,SecondaryColour:Optional[str]=None,BorderColor:Optional[str]=None,ShadowColor:Optional[str]=None,PosX:Optional[float]=None,PosY:Optional[float]=None,fontsize:Optional[str]=None,PrimaryAlpha:Optional[str]=None,SecondaryAlpha:Optional[str]=None,BorderAlpha:Optional[str]=None,ShadowAlpha:Optional[str]=None,p:Optional[str]=None) ->str:
         _tab = ''
         if (PosX,PosY) is not None:
             _an = r'\an7'
