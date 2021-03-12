@@ -147,19 +147,17 @@ def _annotations_to_event(annotation:dict) ->EventHelper() :
     event.Text = annotation.t
     return event
 
-class AnnotationsTools():
-    def __init__(self,File:str) -> None:
-        self.annotations=[]
+def AnnotationsParser(File:str) -> list:
+    def _main(File:str) -> list:
+        annotations=[]
         string=open(File,'r',encoding="utf-8").read()
-        xml_dom = xml.etree.ElementTree.fromstring(string)
-        del string
-        for each in xml_dom.find('annotations').findall('annotation'):
-            self.annotations.append(self._parser(each))
-            del each
-        del xml_dom
+        _xml = xml.etree.ElementTree.fromstring(string)
+        for each in _xml.find('annotations').findall('annotation'):
+            annotations.append(_parser(each))
+        return annotations
     
-    def _parser(self,each):
-        annotation = {
+    def _parser(each):
+        annotation_ = {
         #id: 字符串格式的注释id
         "id":None,
 
@@ -208,33 +206,163 @@ class AnnotationsTools():
         # sy：语音气泡点位置y，以视频高度的百分比表示。
         "sy":None
         }
-        
+        base = each
+        attributes = _get_appearance(base)
+        if (attributes.type is None) or (attributes.type == "pause"):
+            return None
+        text = _get_text(base)
+        action = _get_action(base)
+        backgroundShape = _get_background_shape(base)
+        if backgroundShape is None:
+            return None
+        timeStart = backgroundShape.time.Range.start
+        timeEnd = backgroundShape.timeRange.end
+        if (timeStart is None) or (timeEnd is None):
+            return None
+        appearance = _get_appearance(base)
+        annotation = {
+            # possible values: text, highlight, pause, branding
+            "type": attributes.type,
+            # x, y, width, and height as percent of video size
+            "x": backgroundShape.x,
+            "y": backgroundShape.y,
+            "width": backgroundShape.width,
+            "height": backgroundShape.height,
+            # what time the annotation is shown in seconds
+            "timeStart":timeStart,
+            "timeEnd":timeEnd
+        }
         return annotation
     
-    def _get_attributes(self):
+    def _get_attributes(base):
+        attributes = {}
+        attributes.type = base.get("type")
+        attributes.style = base.get("style")
+        return attributes
+    
+    def _get_text(base):
+        textElement = base.find("TEXT")
+        if textElement is not None:
+            return textElement
+    
+    def _get_action(base):
+        actionElement = base.find("action")
+        if actionElement is None:
+            return None
+        typeAttr = base.get("type")
+        urlElement = actionElement.find("url")[0]
+        if urlElement is None:
+            return None
+        actionUrlTarget = urlElement.get("target")
+        href = urlElement.get("value")
+        return href
+        #if re.match(href,"https://www.youtube.com/") is not None: 
+        #    url = href
+        #    srcVid = url.searchParams.get("src_vid")
+        #    toVid = url.searchParams.get("v")
+        #    return _link_or_time_stamp(url, srcVid, toVid, actionUrlTarget)
+        
+    
+
+    
+    def _get_background_shape(base):
+        movingRegion = base.find("movingRegion")[0]
+        if movingRegion is None:
+            return None
+        regionType = movingRegion.get("type")
+
+        regions = movingRegion.find("{}Region".format(regionType))
+        timeRange = _extract_region_time(regions)
+
+        shape = {
+            "type": regionType,
+            "x": _parse_float(regions[0].find("x"), 10),
+            "y": _parse_float(regions[0].find("y"), 10),
+            "width": _parse_float(regions[0].find("w"), 10),
+            "height": _parse_float(regions[0].find("h"), 10),
+            "timeRange":timeRange
+        }
+
+        sx = regions[0].find("sx")
+        sy = regions[0].find("sy")
+
+        if (sx) :
+            shape.sx = _parse_float(sx, 10)
+        if (sy) :
+            shape.sy = _parse_float(sy, 10)
+
+        return shape
+    
+    def _get_appearance(base):
+        appearanceElement = base.find("appearance")[0]
+        styles = _default()
+        if (appearanceElement):
+            bgOpacity = appearanceElement.get("bgAlpha")
+            bgColor = appearanceElement.get("bgColor")
+            fgColor = appearanceElement.get("fgColor")
+            textSize = appearanceElement.get("textSize")
+            # not yet sure what to do with effects 
+            # effects = appearanceElement.getAttribute("effects")
+
+            # 0.00 to 1.00
+            if (bgOpacity) :
+                styles.bgOpacity = _parse_float(bgOpacity, 10)
+            # 0 to 256 ** 3
+            if (bgColor) :
+                styles.bgColor = _parse_int(bgColor, 10)
+            if (fgColor) :
+                styles.fgColor = _parse_int(fgColor, 10)
+            # 0.00 to 100.00?
+            if (textSize) :
+                styles.textSize = _parse_float(textSize, 10)
+        
+
+        return styles
+
+    def _link_or_time_stamp():
         pass
     
-    def _get_text(self):
-        pass
+    def _extract_region_time(regions):
+        timeStart = regions[0].get("t");
+        timeStart = _hms_to_seconds(timeStart);
+
+        timeEnd = regions[regions.length - 1].getAttribute("t");
+        timeEnd = _hms_to_seconds(timeEnd);
+
+        return { 'start': timeStart, 'end': timeEnd }
+    def _parse_float(i):
+        return float(i)
+    def _parse_int(i):
+        return int(i)
+    def _hms_to_seconds(hms):
+        p = hms.split(":");
+        s = 0;
+        m = 1;
+
+        while p.length > 0 :
+            s += m * _parse_float(p.pop(), 10);
+            m *= 60;
+        
+        return s;
+    def _time_string_to_seconds(time):
+        seconds = 0
+
+        h = time.split("h")
+        #m = (h[1] || time).split("m")
+        #s = (m[1] || time).split("s")
+
+        #if h[0] && h.length == 2 :
+        #    seconds += parseInt(h[0], 10) * 60 * 60
+        #if m[0] && m.length == 2 :
+        #    seconds += parseInt(m[0], 10) * 60
+        #if s[0] && s.length == 2 :
+        #    seconds += parseInt(s[0], 10)
+
+        return seconds
+    def _default():
+        return {}
     
-    def _get_action(self):
-        pass
-    
-    def _get_background_shape(self):
-        pass
-    
-    def _get_appearance(self):
-        pass
-    
-    def if_default(self):
-        if self.bgc is None:
-            self.bgc = 255255255
-        if self.bgo is None:
-            self.bgo = 0.80
-        if self.fgc is None:
-            self.fgc = 0
-        if self.txsz is None:
-            self.txsz = 3.15
+    return _main(File=File)
 
 class AssTools():
     def __init__(self) -> None:
@@ -321,7 +449,6 @@ class AssTools():
 class Annotations2Sub():
     def __init__(self,File:str,Title:str='默认文件',libassHack:bool=False) -> None:
         self.asstools = AssTools()
-        self.annotationstools = AnnotationsTools(File=File)
         self.libassHack = libassHack
         self.asstools.info.add(k='Title',v=Title)
         self.asstools.info.add(k='PlayResX',v='100')
@@ -330,7 +457,7 @@ class Annotations2Sub():
         if libassHack is True:
             self.asstools.info.note+='libassHack=True\n'
         self._convert(File=File)
-        #self._convert_()
+        #self._convert_(File=File)
         self.asstools.event.data.sort(key=lambda x:x[1])
     
     def Save(self,File) -> str:
@@ -339,9 +466,11 @@ class Annotations2Sub():
             print(_("保存于 \"{}.ass\"".format(File)))
             return File + '.ass'
     
-    def _convert_(self) -> None:
-        for each in self.annotationstools.annotations:
-            event = EventHelper(each)
+    def _convert_(self,File:str) -> None:
+        for annotation in AnnotationsParser(File=File):
+            event = _annotations_to_event(annotation)
+            if annotation.s == 'popup':
+                pass
             
     
     def _convert(self,File) -> None:
