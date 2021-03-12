@@ -6,7 +6,7 @@ __authors__  = (
  )
 
 __license__ = 'GPLv3'
-__version__ = '0.0.4'
+__version__ = '0.0.5'
 
 """
 参考:
@@ -23,7 +23,8 @@ https://github.com/afrmtbl/AnnotationsRestored
 """
 
 """ 
-本脚本启发自 https://github.com/nirbheek/youtube-ass ,您仍然可以从本脚本找到他的痕迹。
+本脚本启发自:
+https://github.com/nirbheek/youtube-ass ,https://github.com/afrmtbl/annotations-converter 您仍然可以从本脚本找到他们的痕迹。
 
 """
 
@@ -41,21 +42,25 @@ try:
     t = gettext.translation(domain='en', localedir='locale',languages=['en_US'])
     t.install()
 except:
+    print("\033[0;33;40m\tWarning! locale not found, i18n Not loaded\033[0m")
     _ = gettext.gettext
 
-def DownloadForInvidious(id:str,invidious_domain:str='invidiou.site') -> str:
+if hex(os.sys.hexversion) < hex(0x03060000):
+    print(_("\033[0;31;40m\t我需要大于3.6的Python!\033[0m"))
+    exit(1)
+
+def _download_for_invidious(id:str,invidious_domain:str='invidiou.site') -> str:
     api = '/api/v1/annotations/'
     url = 'https://' + invidious_domain + api + id
-    file = "invidious_{}.xml".format(id)
+    file = "{}.xml".format(id)
     print(_("正在从 {} 下载注释文件".format(url)))
     urllib.request.urlretrieve(url,file)
     print(_("下载完成"))
     return file
 
-def PreviewVideo(id:str,file:str,invidious_domain:str='invidiou.site'):
+def _preview_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None:
     api = '/api/v1/videos/'
     url = 'https://' + invidious_domain + api + id
-    sub = file
     r = urllib.request.Request(url)
     with urllib.request.urlopen(r) as f:
         data = json.loads(f.read().decode('utf-8'))
@@ -71,13 +76,12 @@ def PreviewVideo(id:str,file:str,invidious_domain:str='invidiou.site'):
     audio = audios[0].get('url')
     video = videos[0].get('url')
     cmd = r'mpv "{}" --audio-file="{}" --sub-file="{}"'.format(video,audio,file)
+    print(cmd)
     os.system(cmd)
-    
 
-def GenerateVideo(id:str,file:str,invidious_domain:str='invidiou.site'):
+def _generate_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None:
     api = '/api/v1/videos/'
     url = 'https://' + invidious_domain + api + id
-    sub = file
     r = urllib.request.Request(url)
     with urllib.request.urlopen(r) as f:
         data = json.loads(f.read().decode('utf-8'))
@@ -93,21 +97,22 @@ def GenerateVideo(id:str,file:str,invidious_domain:str='invidiou.site'):
     audio = audios[0].get('url')
     video = videos[0].get('url')
     cmd = r'ffmpeg -i "{}" -i "{}" -vf "ass={}" "{}.mp4"'.format(video,audio,file,id)
+    print(cmd)
     os.system(cmd)
-
-class AnnotationsStruct():
-    def __init__(self):
-        pass
-
-class EventStruct():
-    def __init__(self):
-        pass
 
 class AssTools():
     def __init__(self) -> None:
         self.info = self._info()
         self.style = self._style()
         self.event = self._event()
+    
+    def dump(self) -> str:
+        data = ''
+        data += self.info.dump()
+        data += self.style.dump()
+        data += self.event.dump()
+        return data
+
     class _info(object):
         def __init__(self) -> None:
             self.HEAD = "[Script Info]\n"
@@ -116,99 +121,94 @@ class AssTools():
             self.data={
                 'Title':'Default File',
                 'ScriptType':'v4.00+'}
-
+        
         def add(self,k:str,v:str) -> None:
             self.data[k]=v
-
+        
         def dump(self) -> str:
             data = ''
             data += self.HEAD
             data += self.note
             for k, v in self.data.items():
                 data += str(k)+': '+str(v)+'\n'
+            data += '\n'
             return data
 
     class _style(object):
         def __init__(self) -> None:
-            self.HEAD = "\n"\
-                        "[V4+ Styles]\n"\
+            self.HEAD = "[V4+ Styles]\n"\
                         "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n"
             self.data = {}
             self.add(Name='Default')
-
+        
         def add(self,Name:str,Fontname:str='Arial',Fontsize:str=20,PrimaryColour:str='&H00FFFFFF',SecondaryColour:str='&H000000FF',OutlineColour:str='&H00000000',BackColour:str='&H00000000',Bold:int=0,Italic:int=0,Underline:int=0,StrikeOut:int=0,ScaleX:int=100,ScaleY:int=100,Spacing:int=0,Angle:int=0,BorderStyle:int=1,Outline:int=2,Shadow:int=2,Alignment:int=2,MarginL:int=10,MarginR:int=10,MarginV:int=10,Encoding:int=1) -> None:
-            self.data[Name] = [Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding]
-
+            self.data[Name] = self._check([Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding])
+        
         def change(self,Name,Fontname:Optional[str]=None,Fontsize:Optional[str]=None,PrimaryColour:Optional[str]=None,SecondaryColour:Optional[str]=None,OutlineColour:Optional[str]=None,BackColour:Optional[str]=None,Bold:Optional[int]=None,Italic:Optional[int]=None,Underline:Optional[int]=None,StrikeOut:Optional[int]=None,ScaleX:Optional[int]=None,ScaleY:Optional[int]=None,Spacing:Optional[int]=None,Angle:Optional[int]=None,BorderStyle:Optional[int]=None,Outline:Optional[int]=None,Shadow:Optional[int]=None,Alignment:Optional[int]=None,MarginL:Optional[int]=None,MarginR:Optional[int]=None,MarginV:Optional[int]=None,Encoding:Optional[int]=None) -> None:
-            for i,v in enumerate([Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding]):
+            for i,v in enumerate(self._check([Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding])):
                 if v is not None:
                     self.data[Name][i] = v
-
-        def dump(self) -> str:
+        
+        def dump(self) ->str:
             data = ''
             data += self.HEAD
-            for k, v in self.data.items():
-                data += 'Style: ' + str(k) +','
-                for i,d in enumerate(v):
-                    if i == 21:
-                        data += str(d)
-                    else:
-                        data += str(d) + ','
-                data +=  '\n'
+            for Name, Style in self.data.items():
+                data += 'Style: {},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}\n'.format(Name, *Style)
+            data += '\n'
             return data
+        
+        def _check(self,style:list) -> list:
+            return style
 
     class _event(object):
         def __init__(self) -> None:
-            self.HEAD = "\n"\
-                        "[Events]\n"\
+            self.HEAD = "[Events]\n"\
                         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
             self.data = []
-
-        def add(self,Layer:str=0, Start:str='0:00:00.00', End:str='0:00:00.00', Style:str='Default', Name:str='', MarginL:str=0, MarginR:str=0, MarginV:str=0, Effect:str='',Text:str='') -> None:
-            self.data.append([Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text])
-
-        def dump(self) -> str:
+        
+        def add(self,EventType:str='Dialogue',Layer:int=0, Start:str='0:00:00.00', End:str='0:00:00.00', Style:str='Default', Name:str='', MarginL:int=0, MarginR:int=0, MarginV:int=0, Effect:str='',Text:str='') -> None:
+            # EventType: Dialogue, Comment, Picture, Sound, Movie, Command 
+            self.data.append(self._check([EventType,Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text]))
+        
+        def dump(self) ->str:
             data = ''
             data += self.HEAD
-            for v in self.data:
-                data += 'Dialogue: '
-                for i,d in enumerate(v):
-                    if i == 9:
-                        data += str(d)
-                    else:
-                        data += str(d) + ','
-                data +='\n'
+            for event in self.data:
+                data += '{}: {},{},{},{},{},{},{},{},{},{}\n'.format(*event)
+            data += '\n'
             return data
+        
+        def _check(self,event:list) -> list:
+            
+            return event
 
 class Annotations2Sub():
-    def __init__(self,string:str,Title:str='默认文件',libassHack:bool=False) -> None:
+    def __init__(self,File:str,Title:str='默认文件',libassHack:bool=False) -> None:
         self.asstools = AssTools()
-        self.xml = xml.etree.ElementTree.fromstring(string)
         self.libassHack = libassHack
         self.asstools.info.add(k='Title',v=Title)
         self.asstools.info.add(k='PlayResX',v='100')
         self.asstools.info.add(k='PlayResY',v='100')
         self.asstools.style.change(Name='Default',Fontname='Microsoft YaHei UI')
-        self._convert()
+        if libassHack is True:
+            self.asstools.info.note+='libassHack=True\n'
+        self._convert(File=File)
         self.asstools.event.data.sort(key=lambda x:x[1])
-
+    
     def Save(self,File) -> str:
         with open(File + '.ass', 'w', encoding='utf-8') as f:
-            f.write(self.asstools.info.dump())
-            f.write(self.asstools.style.dump())
-            f.write(self.asstools.event.dump())
+            f.write(self.asstools.dump())
             print(_("保存于 \"{}.ass\"".format(File)))
             return File + '.ass'
-
-    def _convert(self) -> None:
-        class a():
-            def __init__(self):
-                self.a=''
-        for each in self.xml.find('annotations').findall('annotation'):
-
+    
+    def _convert(self,File) -> None:
+        string=open(File,'r',encoding="utf-8").read()
+        _xml = xml.etree.ElementTree.fromstring(string)
+        for each in _xml.find('annotations').findall('annotation'):
+            
             #提取 annotation id
             Name = each.get('id')
-
+            
             #提取时间
             #h:mm:ss.ms
             _Segment = each.find('segment').find('movingRegion').findall('rectRegion')
@@ -230,10 +230,10 @@ class Annotations2Sub():
                 except:
                     Start =datetime.strftime(datetime.strptime(Start,"%M:%S.%f"),"%H:%M:%S.%f")[:-4]
                     End = datetime.strftime(datetime.strptime(End,"%M:%S.%f"),"%H:%M:%S.%f")[:-4]
-
+            
             #提取样式
             style = each.get('style')
-
+            
             #提取文本
             Text = each.find('TEXT')
             if Text is not  None:
@@ -241,7 +241,7 @@ class Annotations2Sub():
             else:
                 Text = ''
             
-
+            
             if each.find('appearance') is None:
                 fgColor = r'&HFFFFFF&'
                 bgColor = r'&H000000&'
@@ -259,7 +259,7 @@ class Annotations2Sub():
                     bgColor = r'&H000000&'
                 else:
                     bgColor = r'&H'+str(hex(int(each.find('appearance').get('bgColor')))).replace('0x','').zfill(6).upper()+r'&'
-
+            
             '''
                 x,y: 文本框左上角的坐标
                 w,h: 文本框的宽度和高度
@@ -283,8 +283,8 @@ class Annotations2Sub():
                 self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
             else:
                 print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
-
-    def _tab_helper(self,Text:Optional[str]='',PrimaryColour:Optional[str]=None,SecondaryColour:Optional[str]=None,BorderColor:Optional[str]=None,ShadowColor:Optional[str]=None,PosX:Optional[float]=None,PosY:Optional[float]=None,fontsize:Optional[str]=None,PrimaryAlpha:Optional[str]=None,SecondaryAlpha:Optional[str]=None,BorderAlpha:Optional[str]=None,ShadowAlpha:Optional[str]=None,p:Optional[str]=None) ->str:
+    
+    def _tab_helper(self,Text:str='',PrimaryColour:Optional[str]=None,SecondaryColour:Optional[str]=None,BorderColor:Optional[str]=None,ShadowColor:Optional[str]=None,PosX:Optional[float]=None,PosY:Optional[float]=None,fontsize:Optional[str]=None,PrimaryAlpha:Optional[str]=None,SecondaryAlpha:Optional[str]=None,BorderAlpha:Optional[str]=None,ShadowAlpha:Optional[str]=None,p:Optional[str]=None) ->str:
         _tab = ''
         if (PosX,PosY) is not None:
             _an = r'\an7'
@@ -330,16 +330,17 @@ if __name__ == "__main__":
     parser.add_argument('-p','--preview-video',action='store_true',help=_('预览视频(需要mpv)'))
     parser.add_argument('-g','--generate-video',action='store_true',help=_('生成视频(需要FFmpeg)'))
     args = parser.parse_args()
+    libassHack = args.libassHack
     for File in args.File:
         if args.download_for_invidious or args.preview_video or args.generate_video is True:
             Id = File
-            File = DownloadForInvidious(id=Id,invidious_domain=args.invidious_domain)
+            File = _download_for_invidious(id=Id,invidious_domain=args.invidious_domain)
         if args.preview_video or args.generate_video is True:
-            args.libassHack = True
-        ass = Annotations2Sub(string=open(File,'r',encoding="utf-8").read(),Title=File,libassHack=args.libassHack)
+            libassHack = True
+        ass = Annotations2Sub(File=File,Title=File,libassHack=libassHack)
         File = ass.Save(File=File)
         del ass
         if args.preview_video is True:
-            PreviewVideo(id=Id,file=File,invidious_domain=args.invidious_domain)
+            _preview_video(id=Id,file=File,invidious_domain=args.invidious_domain)
         if args.generate_video is True:
-            GenerateVideo(id=Id,file=File,invidious_domain=args.invidious_domain)
+            _generate_video(id=Id,file=File,invidious_domain=args.invidious_domain)

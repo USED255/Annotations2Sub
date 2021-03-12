@@ -26,6 +26,20 @@ optional arguments:
 
 ```
 
+---
+
+Example:
+
+[Before](https://www.youtube.com/watch?v=e8kKeUuytqA)
+
+```
+python .\Annotations2Sub.py -g e8kKeUuytqA
+```
+
+[After](https://www.bilibili.com/video/BV1Ff4y1t7Dj?p=4)
+
+---
+
 [试例](https://www.used255.xyz/uploads/Annotations2Sub_试例)
 
 ---
@@ -36,11 +50,10 @@ TODO:
 * <del>title style </del>
 * speech style 
 * highlightText style
-* None style
 * <del>libass hack</del>
 * <del>i18n</del>
 * <del>Download for invidious</del>
-* Rewrite _convert()
+* Refactor
 * <del>Preview video</del>
 * <del>Generate video</del>
 * Other style 
