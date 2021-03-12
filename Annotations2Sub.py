@@ -45,7 +45,7 @@ except:
     print("\033[0;33;40m\tWarning! locale not found, i18n Not loaded\033[0m")
     _ = gettext.gettext
 
-if hex(os.sys.hexversion) < 0x03060000:
+if hex(os.sys.hexversion) < hex(0x03060000):
     print(_("\033[0;31;40m\t我需要大于3.6的Python!\033[0m"))
     exit(1)
 
@@ -136,7 +136,7 @@ class EventHelper():
         # Text: 字幕文本
         self.Text:Optional[str] = None
     
-    def Commit(self,asstools:AssTools()) -> None:
+    def Commit(self,asstools:object) -> None:
         asstools.event.add(EventType=self.EventType,Layer=self.Layer,Start=self.Start,End=self.End,Style=self.Style,Name=self.Name,MarginL=self.MarginL,MarginR=self.MarginR,MarginV=self.MarginV,Effect=self.Effect,Text=self.Text)
 
 def _annotations_to_event(annotation:dict) ->EventHelper() :
@@ -151,12 +151,12 @@ class AnnotationsTools():
     def __init__(self,File:str) -> None:
         self.annotations=[]
         string=open(File,'r',encoding="utf-8").read()
-        xml = xml.etree.ElementTree.fromstring(string)
+        xml_dom = xml.etree.ElementTree.fromstring(string)
         del string
-        for each in xml.find('annotations').findall('annotation'):
+        for each in xml_dom.find('annotations').findall('annotation'):
             self.annotations.append(self._parser(each))
             del each
-        del xml
+        del xml_dom
     
     def _parser(self,each):
         annotation = {
@@ -267,12 +267,12 @@ class AssTools():
             data += self.note
             for k, v in self.data.items():
                 data += str(k)+': '+str(v)+'\n'
+            data += '\n'
             return data
 
     class _style(object):
         def __init__(self) -> None:
-            self.HEAD = "\n"\
-                        "[V4+ Styles]\n"\
+            self.HEAD = "[V4+ Styles]\n"\
                         "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n"
             self.data = {}
             self.add(Name='Default')
@@ -289,32 +289,33 @@ class AssTools():
             data = ''
             data += self.HEAD
             for Name, Style in self.data.items():
-                data += 'Style: {},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}'.format(Name, Style)
+                data += 'Style: {},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}\n'.format(Name, *Style)
+            data += '\n'
             return data
         
-        def _check(style:list) -> list:
+        def _check(self,style:list) -> list:
             return style
 
     class _event(object):
         def __init__(self) -> None:
-            self.HEAD = "\n"\
-                        "[Events]\n"\
+            self.HEAD = "[Events]\n"\
                         "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
             self.data = []
         
-        def add(self,EventType,Layer:int=0, Start:str='0:00:00.00', End:str='0:00:00.00', Style:str='Default', Name:str='', MarginL:int=0, MarginR:int=0, MarginV:int=0, Effect:str='',Text:str='') -> None:
+        def add(self,EventType:str='Dialogue',Layer:int=0, Start:str='0:00:00.00', End:str='0:00:00.00', Style:str='Default', Name:str='', MarginL:int=0, MarginR:int=0, MarginV:int=0, Effect:str='',Text:str='') -> None:
             # EventType: Dialogue, Comment, Picture, Sound, Movie, Command 
             self.data.append(self._check([EventType,Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text]))
         
         def dump(self) ->str:
             data = ''
             data += self.HEAD
-            for event in self.data.items():
-                data += '{}: {},{},{},{},{},{},{},{},{},{}'.format(event)
+            for event in self.data:
+                data += '{}: {},{},{},{},{},{},{},{},{},{}\n'.format(*event)
+            data += '\n'
             return data
         
-        def _check(event:list) -> list:
-
+        def _check(self,event:list) -> list:
+            
             return event
 
 class Annotations2Sub():
@@ -328,7 +329,8 @@ class Annotations2Sub():
         self.asstools.style.change(Name='Default',Fontname='Microsoft YaHei UI')
         if libassHack is True:
             self.asstools.info.note+='libassHack=True\n'
-        self._convert()
+        self._convert(File=File)
+        #self._convert_()
         self.asstools.event.data.sort(key=lambda x:x[1])
     
     def Save(self,File) -> str:
@@ -337,18 +339,19 @@ class Annotations2Sub():
             print(_("保存于 \"{}.ass\"".format(File)))
             return File + '.ass'
     
-    def _convert(self) -> None:
+    def _convert_(self) -> None:
         for each in self.annotationstools.annotations:
             event = EventHelper(each)
             
-
-    def _convert_(self) -> None:
-
-        for each in self.xml.find('annotations').findall('annotation'):
-
+    
+    def _convert(self,File) -> None:
+        string=open(File,'r',encoding="utf-8").read()
+        _xml = xml.etree.ElementTree.fromstring(string)
+        for each in _xml.find('annotations').findall('annotation'):
+            
             #提取 annotation id
             Name = each.get('id')
-
+            
             #提取时间
             #h:mm:ss.ms
             _Segment = each.find('segment').find('movingRegion').findall('rectRegion')
@@ -370,10 +373,10 @@ class Annotations2Sub():
                 except:
                     Start =datetime.strftime(datetime.strptime(Start,"%M:%S.%f"),"%H:%M:%S.%f")[:-4]
                     End = datetime.strftime(datetime.strptime(End,"%M:%S.%f"),"%H:%M:%S.%f")[:-4]
-
+            
             #提取样式
             style = each.get('style')
-
+            
             #提取文本
             Text = each.find('TEXT')
             if Text is not  None:
@@ -381,7 +384,7 @@ class Annotations2Sub():
             else:
                 Text = ''
             
-
+            
             if each.find('appearance') is None:
                 fgColor = r'&HFFFFFF&'
                 bgColor = r'&H000000&'
@@ -399,7 +402,7 @@ class Annotations2Sub():
                     bgColor = r'&H000000&'
                 else:
                     bgColor = r'&H'+str(hex(int(each.find('appearance').get('bgColor')))).replace('0x','').zfill(6).upper()+r'&'
-
+            
             '''
                 x,y: 文本框左上角的坐标
                 w,h: 文本框的宽度和高度
