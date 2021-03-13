@@ -21,7 +21,7 @@ optional arguments:
                         Try downloading the ‪‪annotations file from invidious
   -i invidious.domain, --invidious-domain invidious.domain
                         Specify invidious domain
-  -p, --preview-video   Preview video(need ffplay or mpv)
+  -p, --preview-video   Preview video(need mpv)
   -g, --generate-video  Generate video (need FFmpeg)
 
 ```
