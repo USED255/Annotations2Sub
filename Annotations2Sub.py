@@ -157,211 +157,58 @@ def AnnotationsParser(File:str) -> list:
         return annotations
     
     def _parser(each):
-        annotation_ = {
+        annotation = {
         #id: 字符串格式的注释id
-        "id":None,
+        "id":each.get('id'),
 
-        # bgc：十进制格式的注释背景颜色。
-        "bgc":None,
+        # bgColor: 十进制格式的注释背景颜色。
+        "bgColor":None,
         
-        # bgo：背景的不透明度（以十进制表示）（范围为0到1，包括0和1）。
-        "bgo":None,
+        # bgOpacity: 背景的不透明度（以十进制表示）（范围为0到1, 包括0和1）。
+        "bgOpacity":None,
         
-        # fgc：十进制格式的注释前景色。
-        "fgc":None,
+        # fgColor: 十进制格式的注释前景色。
+        "fgColor":None,
         
-        # txsz：文字大小占影片高度的百分比。
-        "txsz":None,
+        # textSize: 文字大小占影片高度的百分比。
+        "textSize":None,
         
-        # x：注释的x坐标，以视频宽度的百分比表示。
-        "x":None,
+        # x: 注释的x坐标, 以视频宽度的百分比表示。
+        "x":backgroundShape.x,
         
-        # y：注释的y坐标，以视频高度的百分比表示。
-        "y":None,
+        # y: 注释的y坐标, 以视频高度的百分比表示。
+        "y":backgroundShape.y,
         
-        # w：注释的宽度，以视频宽度的百分比表示。
-        "w":None,
+        # w: 注释的宽度, 以视频宽度的百分比表示。
+        "width":backgroundShape.width,
         
-        # h：注释的高度，以视频高度的百分比表示。
-        "h":None,
+        # height: 注释的高度, 以视频高度的百分比表示。
+        "height":backgroundShape.height,
         
-        # ts：注释的开始时间（以秒为单位）在屏幕上显示。
-        "ts":None,
+        # timeStart: 注释的开始时间（以秒为单位）在屏幕上显示。
+        "timeStart":backgroundShape.time.Range.start,
         
-        # te：注释在屏幕上显示的时间结束（以秒为单位）。
-        "te":None,
+        # timeEnd: 注释在屏幕上显示的时间结束（以秒为单位）。
+        "timeEnd":backgroundShape.timeRange.end,
         
-        # tp：注释的类型。可能的值包括text和pause。
-        "tp":None,
+        # type: 注释的类型。可能的值包括text和pause。
+        "type":each.get('type'),
         
-        # s：注释的样式。可能的值包括speech，popup，highlightText，anchored，和branding。
-        "s ":None,
+        # style: 注释的样式。可能的值包括speech, popup, highlightText, anchored, 和branding。
+        "style ":None,
         
-        # t：注释的文本。
-        "t":None,
+        # text: 注释的文本。
+        "text":each.get(each),
         
-        # sx：语音气泡点位置x，以视频宽度的百分比表示。
+        # sx: 语音气泡点位置x, 以视频宽度的百分比表示。
         "sx":None,
         
-        # sy：语音气泡点位置y，以视频高度的百分比表示。
+        # sy: 语音气泡点位置y, 以视频高度的百分比表示。
         "sy":None
         }
-        base = each
-        attributes = _get_appearance(base)
-        if (attributes.type is None) or (attributes.type == "pause"):
-            return None
-        text = _get_text(base)
-        action = _get_action(base)
-        backgroundShape = _get_background_shape(base)
-        if backgroundShape is None:
-            return None
-        timeStart = backgroundShape.time.Range.start
-        timeEnd = backgroundShape.timeRange.end
-        if (timeStart is None) or (timeEnd is None):
-            return None
-        appearance = _get_appearance(base)
-        annotation = {
-            # possible values: text, highlight, pause, branding
-            "type": attributes.type,
-            # x, y, width, and height as percent of video size
-            "x": backgroundShape.x,
-            "y": backgroundShape.y,
-            "width": backgroundShape.width,
-            "height": backgroundShape.height,
-            # what time the annotation is shown in seconds
-            "timeStart":timeStart,
-            "timeEnd":timeEnd
-        }
+
         return annotation
-    
-    def _get_attributes(base):
-        attributes = {}
-        attributes.type = base.get("type")
-        attributes.style = base.get("style")
-        return attributes
-    
-    def _get_text(base):
-        textElement = base.find("TEXT")
-        if textElement is not None:
-            return textElement
-    
-    def _get_action(base):
-        actionElement = base.find("action")
-        if actionElement is None:
-            return None
-        typeAttr = base.get("type")
-        urlElement = actionElement.find("url")[0]
-        if urlElement is None:
-            return None
-        actionUrlTarget = urlElement.get("target")
-        href = urlElement.get("value")
-        return href
-        #if re.match(href,"https://www.youtube.com/") is not None: 
-        #    url = href
-        #    srcVid = url.searchParams.get("src_vid")
-        #    toVid = url.searchParams.get("v")
-        #    return _link_or_time_stamp(url, srcVid, toVid, actionUrlTarget)
-        
-    
 
-    
-    def _get_background_shape(base):
-        movingRegion = base.find("movingRegion")[0]
-        if movingRegion is None:
-            return None
-        regionType = movingRegion.get("type")
-
-        regions = movingRegion.find("{}Region".format(regionType))
-        timeRange = _extract_region_time(regions)
-
-        shape = {
-            "type": regionType,
-            "x": _parse_float(regions[0].find("x"), 10),
-            "y": _parse_float(regions[0].find("y"), 10),
-            "width": _parse_float(regions[0].find("w"), 10),
-            "height": _parse_float(regions[0].find("h"), 10),
-            "timeRange":timeRange
-        }
-
-        sx = regions[0].find("sx")
-        sy = regions[0].find("sy")
-
-        if (sx) :
-            shape.sx = _parse_float(sx, 10)
-        if (sy) :
-            shape.sy = _parse_float(sy, 10)
-
-        return shape
-    
-    def _get_appearance(base):
-        appearanceElement = base.find("appearance")[0]
-        styles = _default()
-        if (appearanceElement):
-            bgOpacity = appearanceElement.get("bgAlpha")
-            bgColor = appearanceElement.get("bgColor")
-            fgColor = appearanceElement.get("fgColor")
-            textSize = appearanceElement.get("textSize")
-            # not yet sure what to do with effects 
-            # effects = appearanceElement.getAttribute("effects")
-
-            # 0.00 to 1.00
-            if (bgOpacity) :
-                styles.bgOpacity = _parse_float(bgOpacity, 10)
-            # 0 to 256 ** 3
-            if (bgColor) :
-                styles.bgColor = _parse_int(bgColor, 10)
-            if (fgColor) :
-                styles.fgColor = _parse_int(fgColor, 10)
-            # 0.00 to 100.00?
-            if (textSize) :
-                styles.textSize = _parse_float(textSize, 10)
-        
-
-        return styles
-
-    def _link_or_time_stamp():
-        pass
-    
-    def _extract_region_time(regions):
-        timeStart = regions[0].get("t");
-        timeStart = _hms_to_seconds(timeStart);
-
-        timeEnd = regions[regions.length - 1].getAttribute("t");
-        timeEnd = _hms_to_seconds(timeEnd);
-
-        return { 'start': timeStart, 'end': timeEnd }
-    def _parse_float(i):
-        return float(i)
-    def _parse_int(i):
-        return int(i)
-    def _hms_to_seconds(hms):
-        p = hms.split(":");
-        s = 0;
-        m = 1;
-
-        while p.length > 0 :
-            s += m * _parse_float(p.pop(), 10);
-            m *= 60;
-        
-        return s;
-    def _time_string_to_seconds(time):
-        seconds = 0
-
-        h = time.split("h")
-        #m = (h[1] || time).split("m")
-        #s = (m[1] || time).split("s")
-
-        #if h[0] && h.length == 2 :
-        #    seconds += parseInt(h[0], 10) * 60 * 60
-        #if m[0] && m.length == 2 :
-        #    seconds += parseInt(m[0], 10) * 60
-        #if s[0] && s.length == 2 :
-        #    seconds += parseInt(s[0], 10)
-
-        return seconds
-    def _default():
-        return {}
-    
     return _main(File=File)
 
 class AssTools():
@@ -457,7 +304,6 @@ class Annotations2Sub():
         if libassHack is True:
             self.asstools.info.note+='libassHack=True\n'
         self._convert(File=File)
-        #self._convert_(File=File)
         self.asstools.event.data.sort(key=lambda x:x[1])
     
     def Save(self,File) -> str:
@@ -467,11 +313,50 @@ class Annotations2Sub():
             return File + '.ass'
     
     def _convert_(self,File:str) -> None:
+        FullyTransparent = r'&HFF&'
         for annotation in AnnotationsParser(File=File):
+            bgColor = annotation.bgColor
+            bgOpacity = annotation.bgOpacity
+            fgColor = annotation.fgColor
+            textSize = annotation.textSize
+            x = annotation.x
+            y = annotation.u
+            width = annotation.width
+            height = annotation.height
+            type = annotation.type
+            style = annotation.style
+            sx = annotation.sx
+            sy = annotation.sy
             event = _annotations_to_event(annotation)
-            if annotation.s == 'popup':
+            if type == None:
                 pass
-            
+            elif type == 'pause':
+                pass
+            elif style == 'speech':
+                pass
+            elif style == 'popup':
+                event.Name += '_popup'
+                event.Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x,PosY=y,fontsize=fontsize,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+                event.Commit()
+                event.Name += '_textbox'
+                if self.libassHack == True:
+                    width = str(float(width)*1.776)
+                TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(width,height)
+                TextBox = r'{\p1}'+ TextBox +r'{\p0}'
+                event.Text=self._tab_helper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=fontsize,PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+                event.Commit()
+            elif style == 'highlightText':
+                pass
+            elif style == 'anchored':
+                pass
+            elif style == 'branding':
+                pass
+            elif style == 'title':
+                event.Name +=r'_title'
+                textSize = str(float(textSize)/4)
+                event.Text= self._tab_helper(Text=event.Text,PrimaryColour=fgColor,PosX=x,PosY=y,fontsize=textSize,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+                self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
+
     
     def _convert(self,File) -> None:
         string=open(File,'r',encoding="utf-8").read()
