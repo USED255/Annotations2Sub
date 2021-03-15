@@ -99,53 +99,8 @@ def _generate_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None
     audio = audios[0].get('url')
     video = videos[0].get('url')
     cmd = r'ffmpeg -i "{}" -i "{}" -vf "ass={}" "{}.mp4"'.format(video,audio,file,id)
+    print(cmd)
     os.system(cmd)
-
-class EventHelper():
-    def __init__(self) ->None:
-        # EventType: 事件类型
-        self.EventType:Optional[str] = None
-        
-        # Layer: 大数值的图层会覆盖在小数值的图层上面
-        self.Layer:Optional[int] = None
-        
-        # Start: 事件的开始时间
-        self.Start:Optional[str] = None
-        
-        # End: 事件的结束时间
-        self.End:Optional[str] = None
-        
-        # Style: 样式名
-        self.Style:Optional[str] = None
-        
-        # Name: 角色名
-        self.Name:Optional[str] = None
-        
-        # MarginL: 左边距覆写
-        self.MarginL:Optional[int] = None
-        
-        # MarginR: 右边距覆写
-        self.MarginR:Optional[int] = None
-        
-        # MarginV: 垂直边距覆写
-        self.MarginV:Optional[int] = None
-        
-        # Effect: 过渡效果
-        self.Effect:Optional[str] = None
-        
-        # Text: 字幕文本
-        self.Text:Optional[str] = None
-    
-    def Commit(self,asstools:object) -> None:
-        asstools.event.add(EventType=self.EventType,Layer=self.Layer,Start=self.Start,End=self.End,Style=self.Style,Name=self.Name,MarginL=self.MarginL,MarginR=self.MarginR,MarginV=self.MarginV,Effect=self.Effect,Text=self.Text)
-
-def _annotations_to_event(annotation:dict) ->EventHelper() :
-    event = EventHelper()
-    event.Start = annotation.ts
-    event.End = annotation.te
-    event.Name = annotation.id
-    event.Text = annotation.t
-    return event
 
 def AnnotationsParser(File:str) -> list:
     def _main(File:str) -> list:
@@ -157,10 +112,39 @@ def AnnotationsParser(File:str) -> list:
         return annotations
     
     def _parser(each):
+        type = each.get('type')
+        if type is None or type is 'pause':
+            return None
+        
+        _appearance = each.find('_appearance')
+        if _appearance is None:
+            return None
+        
+        _segment = each.find('segment').find('movingRegion').findall('rectRegion')
+        if len(_segment) == 0:
+            __segment = each.find('segment').find('movingRegion').findall('anchoredRegion')
+        if len(_segment) == 0:
+            return None
+        
+        id = each.get('id')
+        style = each.get('style')
+        Text = each.find('TEXT')
+        textSize = _appearance.get('textSize')
+        bgAlpha = _appearance.get('bgAlpha')
+        fgColor = _appearance.get('fgColor')
+        bgColor = _appearance.get('bgColor')
+        
+        x = float(_segment[0].get('x'))
+        y = float(_segment[0].get('y'))
+        w = float(_segment[0].get('w'))
+        h = float(_segment[0].get('h'))
+        sx = float(_segment[0].get('sx'))
+        sy = float(_segment[0].get('sy'))
+        
         annotation = {
         #id: 字符串格式的注释id
         "id":each.get('id'),
-
+        
         # bgColor: 十进制格式的注释背景颜色。
         "bgColor":None,
         
@@ -174,22 +158,22 @@ def AnnotationsParser(File:str) -> list:
         "textSize":None,
         
         # x: 注释的x坐标, 以视频宽度的百分比表示。
-        "x":backgroundShape.x,
+        "x":None,
         
         # y: 注释的y坐标, 以视频高度的百分比表示。
-        "y":backgroundShape.y,
+        "y":None,
         
         # w: 注释的宽度, 以视频宽度的百分比表示。
-        "width":backgroundShape.width,
+        "width":None,
         
         # height: 注释的高度, 以视频高度的百分比表示。
-        "height":backgroundShape.height,
+        "height":None,
         
         # timeStart: 注释的开始时间（以秒为单位）在屏幕上显示。
-        "timeStart":backgroundShape.time.Range.start,
+        "timeStart":None,
         
         # timeEnd: 注释在屏幕上显示的时间结束（以秒为单位）。
-        "timeEnd":backgroundShape.timeRange.end,
+        "timeEnd":None,
         
         # type: 注释的类型。可能的值包括text和pause。
         "type":each.get('type'),
@@ -212,6 +196,9 @@ def AnnotationsParser(File:str) -> list:
     return _main(File=File)
 
 class AssTools():
+    class FormatError(Exception):
+        pass
+    
     def __init__(self) -> None:
         self.info = self._info()
         self.style = self._style()
@@ -269,6 +256,8 @@ class AssTools():
             return data
         
         def _check(self,style:list) -> list:
+            if None:
+                raise FormatError('')
             return style
 
     class _event(object):
@@ -290,8 +279,111 @@ class AssTools():
             return data
         
         def _check(self,event:list) -> list:
-            
+            if None:
+                raise FormatError('')
             return event
+
+class TabHelper():
+    def __init__(self) -> None:
+        self.Text=''
+        self.PrimaryColour=''
+        self.SecondaryColour=''
+        self.BorderColor=''
+        self.ShadowColor=''
+        self.PosX=0.0
+        self.PosY=0.0
+        self.fontsize=0.0
+        self.PrimaryAlpha=''
+        self.SecondaryAlpha=''
+        self.BorderAlpha=''
+        self.ShadowAlpha=''
+    
+    def Generate(self) -> str:
+        _tab = ''
+        if (self.PosX,self.PosY) is not None:
+            _an = r'\an7'
+            _pos = "\\pos({},{})".format(self.PosX,self.PosY)
+            _tab += _an + _pos 
+        if self.PrimaryColour is not None:
+            _c = r'\c' + self.PrimaryColour
+            _tab += _c
+        if self.SecondaryColour is not None:
+            _2c = r'\2c' + self.SecondaryColour
+            _tab += _2c
+        if self.BorderColor is not None:
+            _3c = r'\3c' + self.BorderColor
+            _tab += _3c
+        if self.ShadowColor is not None:
+            _4c = r'\4c' + self.ShadowColor
+            _tab += _4c
+        if self.fontsize is not None:
+            _fs = r'\fs' + self.fontsize
+            _tab += _fs
+        if self.PrimaryAlpha is not None:
+            _1a = r'\1a' + self.PrimaryAlpha
+            _tab += _1a
+        if self.SecondaryAlpha is not None:
+            _2a = r'\2a' + self.SecondaryAlpha
+            _tab += _2a
+        if self.BorderAlpha is not None:
+            _3a = r'\3a' + self.BorderAlpha
+            _tab += _3a
+        if self.ShadowAlpha is not None:
+            _4a = r'\4a' + self.ShadowAlpha
+            _tab += _4a
+        _text = r'{' + _tab + r'}' + self.Text
+        return _text
+
+
+def _annotation_to_tab(annotation:dict) -> TabHelper():
+    return TabHelper()
+
+class EventHelper():
+    def __init__(self,asstools:AssTools()) ->None:
+        self.asstools = asstools
+        # EventType: 事件类型
+        self.EventType:Optional[str] = None
+        
+        # Layer: 大数值的图层会覆盖在小数值的图层上面
+        self.Layer:Optional[int] = None
+        
+        # Start: 事件的开始时间
+        self.Start:Optional[str] = None
+        
+        # End: 事件的结束时间
+        self.End:Optional[str] = None
+        
+        # Style: 样式名
+        self.Style:Optional[str] = None
+        
+        # Name: 角色名
+        self.Name:Optional[str] = None
+        
+        # MarginL: 左边距覆写
+        self.MarginL:Optional[int] = None
+        
+        # MarginR: 右边距覆写
+        self.MarginR:Optional[int] = None
+        
+        # MarginV: 垂直边距覆写
+        self.MarginV:Optional[int] = None
+        
+        # Effect: 过渡效果
+        self.Effect:Optional[str] = None
+        
+        # Text: 字幕文本
+        self.Text:Optional[str] = None
+    
+    def Commit(self) -> None:
+        self.asstools.event.add(EventType=self.EventType,Layer=self.Layer,Start=self.Start,End=self.End,Style=self.Style,Name=self.Name,MarginL=self.MarginL,MarginR=self.MarginR,MarginV=self.MarginV,Effect=self.Effect,Text=self.Text)
+
+def _annotation_to_event(annotation:dict) ->EventHelper() :
+    event = EventHelper()
+    event.Start = annotation.ts
+    event.End = annotation.te
+    event.Name = annotation.id
+    event.Text = annotation.t
+    return event
 
 class Annotations2Sub():
     def __init__(self,File:str,Title:str='默认文件',libassHack:bool=False) -> None:
@@ -313,50 +405,11 @@ class Annotations2Sub():
             return File + '.ass'
     
     def _convert_(self,File:str) -> None:
-        FullyTransparent = r'&HFF&'
         for annotation in AnnotationsParser(File=File):
-            bgColor = annotation.bgColor
-            bgOpacity = annotation.bgOpacity
-            fgColor = annotation.fgColor
-            textSize = annotation.textSize
-            x = annotation.x
-            y = annotation.u
-            width = annotation.width
-            height = annotation.height
-            type = annotation.type
-            style = annotation.style
-            sx = annotation.sx
-            sy = annotation.sy
-            event = _annotations_to_event(annotation)
-            if type == None:
+            event = _annotation_to_event(annotation=annotation)
+            tab = _annotation_to_tab(annotation=annotation)
+            if annotation.style == 'popup':
                 pass
-            elif type == 'pause':
-                pass
-            elif style == 'speech':
-                pass
-            elif style == 'popup':
-                event.Name += '_popup'
-                event.Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x,PosY=y,fontsize=fontsize,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
-                event.Commit()
-                event.Name += '_textbox'
-                if self.libassHack == True:
-                    width = str(float(width)*1.776)
-                TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(width,height)
-                TextBox = r'{\p1}'+ TextBox +r'{\p0}'
-                event.Text=self._tab_helper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=fontsize,PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
-                event.Commit()
-            elif style == 'highlightText':
-                pass
-            elif style == 'anchored':
-                pass
-            elif style == 'branding':
-                pass
-            elif style == 'title':
-                event.Name +=r'_title'
-                textSize = str(float(textSize)/4)
-                event.Text= self._tab_helper(Text=event.Text,PrimaryColour=fgColor,PosX=x,PosY=y,fontsize=textSize,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
-                self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
-
     
     def _convert(self,File) -> None:
         string=open(File,'r',encoding="utf-8").read()
