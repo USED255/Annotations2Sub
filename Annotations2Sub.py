@@ -397,7 +397,7 @@ class Annotations2Sub():
             print(_("保存于 \"{}.ass\"".format(File)))
             return File + '.ass'
     
-    def _convert_(self,File:str) -> None:
+    def _convert(self,File:str) -> None:
         for annotation in AnnotationsParser(File=File):
             event = _annotation_to_event(annotation=annotation)
             tab = _annotation_to_tab(annotation=annotation)
@@ -417,90 +417,14 @@ class Annotations2Sub():
                 tab.PrimaryAlpha = colour.bgAlpha
                 event.Text = tab.Generate()
                 event.Commit()
+            elif annotation.style == 'title':
+                event.Name += r'_title'
+                tab.fontsize = tab.fontsize/4
+                event.Text = tab.Generate()
+                event.Commit()
+            else:
+                print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(annotation.style,event.Name))
 
-    def _convert(self,File) -> None:
-        string=open(File,'r',encoding="utf-8").read()
-        _xml = xml.etree.ElementTree.fromstring(string)
-        for each in _xml.find('annotations').findall('annotation'):
-            
-            #提取 annotation id
-            Name = each.get('id')
-            
-            #提取时间
-            #h:mm:ss.ms
-            _Segment = each.find('segment').find('movingRegion').findall('rectRegion')
-            if len(_Segment) == 0:
-                _Segment = each.find('segment').find('movingRegion').findall('anchoredRegion')
-            if len(_Segment) == 0:
-                Start = '0:00:00.00'
-                End = '0:00:00.00'
-            if len(_Segment) != 0:
-                Start = min(_Segment[0].get('t'), _Segment[1].get('t'))
-                End = max(_Segment[0].get('t'), _Segment[1].get('t'))
-            if "never" in (Start, End):
-                Start = '0:00:00.00'
-                End = '999:00:00.00'
-            else:
-                try:
-                    Start =datetime.strftime(datetime.strptime(Start,"%H:%M:%S.%f"),"%H:%M:%S.%f")[:-4]
-                    End = datetime.strftime(datetime.strptime(End,"%H:%M:%S.%f"),"%H:%M:%S.%f")[:-4]
-                except:
-                    Start =datetime.strftime(datetime.strptime(Start,"%M:%S.%f"),"%H:%M:%S.%f")[:-4]
-                    End = datetime.strftime(datetime.strptime(End,"%M:%S.%f"),"%H:%M:%S.%f")[:-4]
-            
-            #提取样式
-            style = each.get('style')
-            
-            #提取文本
-            Text = each.find('TEXT')
-            if Text is not  None:
-                Text = Text.text.replace('\n',r'\N')
-            else:
-                Text = ''
-            
-            
-            if each.find('appearance') is None:
-                fgColor = r'&HFFFFFF&'
-                bgColor = r'&H000000&'
-            else:
-                fontsize = each.find('appearance').get('textSize')
-                if each.find('appearance').get('bgAlpha') is None:
-                    bgAlpha = None
-                else:
-                    bgAlpha = r'&H'+str(hex(int((1-float(each.find('appearance').get('bgAlpha')))*255))).replace('0x','')+r'&'
-                if each.find('appearance').get('fgColor') == None:
-                    fgColor = r'&HFFFFFF&'
-                else:
-                    fgColor = r'&H'+str(hex(int(each.find('appearance').get('fgColor')))).replace('0x','').zfill(6).upper()+r'&'
-                if each.find('appearance').get('bgColor') == None:
-                    bgColor = r'&H000000&'
-                else:
-                    bgColor = r'&H'+str(hex(int(each.find('appearance').get('bgColor')))).replace('0x','').zfill(6).upper()+r'&'
-            
-            '''
-                x,y: 文本框左上角的坐标
-                w,h: 文本框的宽度和高度
-            '''
-            (x, y, w, h) = map(float,(_Segment[0].get(i) for i in ('x','y','w','h')))
-            FullyTransparent = r'&HFF&'
-            if style == 'popup':
-                Name += r'_popup'
-                if self.libassHack == True:
-                    w = str(float(w)*1.776)
-                TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h)
-                TextBox = r'{\p1}'+ TextBox +r'{\p0}'
-                TextBox=self._tab_helper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=fontsize,PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
-                self.asstools.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
-                Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x,PosY=y+4,fontsize=fontsize,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
-                self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
-            elif style == 'title':
-                Name +=r'_title'
-                fontsize = str(float(fontsize)/4)
-                Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x,PosY=y,fontsize=fontsize,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
-                self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
-            else:
-                print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
-    
     def _tab_helper(self,Text:str='',PrimaryColour:Optional[str]=None,SecondaryColour:Optional[str]=None,BorderColor:Optional[str]=None,ShadowColor:Optional[str]=None,PosX:Optional[float]=None,PosY:Optional[float]=None,fontsize:Optional[str]=None,PrimaryAlpha:Optional[str]=None,SecondaryAlpha:Optional[str]=None,BorderAlpha:Optional[str]=None,ShadowAlpha:Optional[str]=None,p:Optional[str]=None) ->str:
         _tab = ''
         if (PosX,PosY) is not None:
