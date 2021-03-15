@@ -108,10 +108,12 @@ def AnnotationsParser(File:str) -> list:
         string=open(File,'r',encoding="utf-8").read()
         _xml = xml.etree.ElementTree.fromstring(string)
         for each in _xml.find('annotations').findall('annotation'):
-            annotations.append(_parser(each))
+            annotation = _parser(each)
+            if annotation is not None:
+                annotations.append(annotation)
         return annotations
     
-    def _parser(each):
+    def _parser(each) -> dict:
         type = each.get('type')
         if type is None or type is 'pause':
             return None
@@ -126,73 +128,54 @@ def AnnotationsParser(File:str) -> list:
         if len(_segment) == 0:
             return None
         
-        id = each.get('id')
-        style = each.get('style')
-        Text = each.find('TEXT')
-        textSize = _appearance.get('textSize')
-        bgAlpha = _appearance.get('bgAlpha')
-        fgColor = _appearance.get('fgColor')
-        bgColor = _appearance.get('bgColor')
+        Start = min(_segment[0].get('t'), _segment[1].get('t'))
+        End = max(_segment[0].get('t'), _segment[1].get('t'))
+        try:
+            Start =datetime.strptime(Start,"%H:%M:%S.%f")
+            End = datetime.strptime(End,"%H:%M:%S.%f")
+        except:
+            Start =datetime.strptime(Start,"%M:%S.%f")
+            End = datetime.strptime(End,"%M:%S.%f")
         
-        x = float(_segment[0].get('x'))
-        y = float(_segment[0].get('y'))
-        w = float(_segment[0].get('w'))
-        h = float(_segment[0].get('h'))
-        sx = float(_segment[0].get('sx'))
-        sy = float(_segment[0].get('sy'))
+        return {
+        # type: 字符串格式的注释类型, 可能的值包括text和pause
+        'type' : type,
+        # id: 字符串格式的注释id
+        'id' : each.get('id'),
+        # style: 字符串格式的注释样式, 可能的值包括title, speech, popup, highlightText, anchored, 和branding
+        'style' : each.get('style'),
+        # Text: 字符串格式的注释文本
+        'Text' : each.find('TEXT'),
         
-        annotation = {
-        #id: 字符串格式的注释id
-        "id":each.get('id'),
         
-        # bgColor: 十进制格式的注释背景颜色。
-        "bgColor":None,
+        # Start: 整数格式的一秒为单位的注释的开始时间
+        "Start":Start,
+        # End: 整数格式的一秒为单位的注释的结束时间
+        "End":End,
         
-        # bgOpacity: 背景的不透明度（以十进制表示）（范围为0到1, 包括0和1）。
-        "bgOpacity":None,
+        # textSize: 浮点数格式的文字大小占影片高度的百分比。
+        'textSize' : _appearance.get('textSize'),
+        # bgAlpha: 浮点数格式的背景透明度, 范围从0到1
+        'bgAlpha' : _appearance.get('bgAlpha'),
+        # fgColor: 整数格式的十进制的注释前景色 RGB颜色 0-255
+        'fgColor' : _appearance.get('fgColor'),
+        # bgColor: 整数格式的十进制的注释背景色 RGB颜色 0-255
+        'bgColor' : _appearance.get('bgColor'),
         
-        # fgColor: 十进制格式的注释前景色。
-        "fgColor":None,
-        
-        # textSize: 文字大小占影片高度的百分比。
-        "textSize":None,
-        
-        # x: 注释的x坐标, 以视频宽度的百分比表示。
-        "x":None,
-        
-        # y: 注释的y坐标, 以视频高度的百分比表示。
-        "y":None,
-        
-        # w: 注释的宽度, 以视频宽度的百分比表示。
-        "width":None,
-        
-        # height: 注释的高度, 以视频高度的百分比表示。
-        "height":None,
-        
-        # timeStart: 注释的开始时间（以秒为单位）在屏幕上显示。
-        "timeStart":None,
-        
-        # timeEnd: 注释在屏幕上显示的时间结束（以秒为单位）。
-        "timeEnd":None,
-        
-        # type: 注释的类型。可能的值包括text和pause。
-        "type":each.get('type'),
-        
-        # style: 注释的样式。可能的值包括speech, popup, highlightText, anchored, 和branding。
-        "style ":None,
-        
-        # text: 注释的文本。
-        "text":each.get(each),
-        
-        # sx: 语音气泡点位置x, 以视频宽度的百分比表示。
-        "sx":None,
-        
-        # sy: 语音气泡点位置y, 以视频高度的百分比表示。
-        "sy":None
+        # x: 浮点数格式的注释的x坐标, 以视频宽度的百分比表示
+        'x' : float(_segment[0].get('x')),
+        # y: 浮点数格式的注释的y坐标, 以视频宽度的百分比表示
+        'y' : float(_segment[0].get('y')),
+        # w: 浮点数格式的注释的宽度, 以视频宽度的百分比表示
+        'w' : float(_segment[0].get('w')),
+        # h: 浮点数格式的注释的高度, 以视频高度的百分比表示
+        'h' : float(_segment[0].get('h')),
+        # sx: 浮点数格式的语音气泡点x轴位置, 以视频宽度的百分比表示
+        'sx' : float(_segment[0].get('sx')),
+        # sy: 浮点数格式的语音气泡点y轴位置, 以视频高度的百分比表示
+        'sy' : float(_segment[0].get('sy'))
         }
-
-        return annotation
-
+    
     return _main(File=File)
 
 class AssTools():
@@ -336,7 +319,26 @@ class TabHelper():
 
 
 def _annotation_to_tab(annotation:dict) -> TabHelper():
-    return TabHelper()
+    tabhelper = TabHelper()
+    FullyTransparent = r'&HFF&'
+    Text = annotation.Text
+    if Text is not  None:
+        Text = Text.text.replace('\n',r'\N')
+    else:
+        Text = ''
+    tabhelper.Text=Text
+    tabhelper.PrimaryColour=r'&H'+str(hex(int(annotation.fgColor))).replace('0x','').zfill(6).upper()+r'&'
+    tabhelper.SecondaryColour=FullyTransparent
+    tabhelper.BorderColor=FullyTransparent
+    tabhelper.ShadowColor=r'&H'+str(hex(int(annotation.bgColor))).replace('0x','').zfill(6).upper()+r'&'
+    tabhelper.PosX=0.0
+    tabhelper.PosY=0.0
+    tabhelper.fontsize=0.0
+    tabhelper.PrimaryAlpha=''
+    tabhelper.SecondaryAlpha=''
+    tabhelper.BorderAlpha=''
+    tabhelper.ShadowAlpha=''
+    return tabhelper
 
 class EventHelper():
     def __init__(self,asstools:AssTools()) ->None:
@@ -379,10 +381,15 @@ class EventHelper():
 
 def _annotation_to_event(annotation:dict) ->EventHelper() :
     event = EventHelper()
-    event.Start = annotation.ts
-    event.End = annotation.te
+    event.Start = datetime.strftime(annotation.Start,"%H:%M:%S.%f")[:-4]
+    event.End = datetime.strftime(annotation.End,"%H:%M:%S.%f")[:-4]
     event.Name = annotation.id
-    event.Text = annotation.t
+    Text = annotation.Text
+    if Text is not  None:
+        Text = Text.text.replace('\n',r'\N')
+    else:
+        Text = ''
+    event.Text = Text
     return event
 
 class Annotations2Sub():
