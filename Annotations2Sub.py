@@ -61,7 +61,6 @@ def _download_for_invidious(id:str,invidious_domain:str='invidiou.site') -> str:
 def _preview_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None:
     api = '/api/v1/videos/'
     url = 'https://' + invidious_domain + api + id
-    sub = file
     r = urllib.request.Request(url)
     with urllib.request.urlopen(r) as f:
         data = json.loads(f.read().decode('utf-8'))
@@ -83,7 +82,6 @@ def _preview_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None:
 def _generate_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None:
     api = '/api/v1/videos/'
     url = 'https://' + invidious_domain + api + id
-    sub = file
     r = urllib.request.Request(url)
     with urllib.request.urlopen(r) as f:
         data = json.loads(f.read().decode('utf-8'))
@@ -320,59 +318,53 @@ class TabHelper():
 
 def _annotation_to_tab(annotation:dict) -> TabHelper():
     tabhelper = TabHelper()
-    FullyTransparent = r'&HFF&'
-    Text = annotation.Text
-    if Text is not  None:
-        Text = Text.text.replace('\n',r'\N')
-    else:
-        Text = ''
-    tabhelper.Text=Text
-    tabhelper.PrimaryColour=r'&H'+str(hex(int(annotation.fgColor))).replace('0x','').zfill(6).upper()+r'&'
-    tabhelper.SecondaryColour=FullyTransparent
-    tabhelper.BorderColor=FullyTransparent
-    tabhelper.ShadowColor=r'&H'+str(hex(int(annotation.bgColor))).replace('0x','').zfill(6).upper()+r'&'
-    tabhelper.PosX=0.0
-    tabhelper.PosY=0.0
-    tabhelper.fontsize=0.0
-    tabhelper.PrimaryAlpha=''
-    tabhelper.SecondaryAlpha=''
-    tabhelper.BorderAlpha=''
-    tabhelper.ShadowAlpha=''
+    tabhelper.PosX=annotation.x
+    tabhelper.PosY=annotation.y
+    tabhelper.fontsize=annotation.textSize
+    tabhelper.PrimaryAlpha=r'&HFF&'
+    tabhelper.SecondaryAlpha=r'&HFF&'
+    tabhelper.BorderAlpha=r'&HFF&'
+    tabhelper.ShadowAlpha=r'&HFF&'
     return tabhelper
+
+def _colour_helper(annotation:dict) ->dict:
+    return {
+        'bgAlpha':r'&H'+str(hex(int((1-float(annotation.bgAlpha *255))))).replace('0x','')+r'&',
+        'fgColor': r'&H'+str(hex(int(annotation.fgColor))).replace('0x','').zfill(6).upper()+r'&',
+        'bgColor': r'&H'+str(hex(int(annotation.bgColor))).replace('0x','').zfill(6).upper()+r'&',
+        'FullyTransparent': r'&HFF&'
+        }
+
+def _text_helper(annotation:dict) ->dict:
+    if annotation.Text is not  None:
+        return annotation.Text.text.replace('\n',r'\N')
+    else:
+        return None
 
 class EventHelper():
     def __init__(self,asstools:AssTools()) ->None:
         self.asstools = asstools
+
         # EventType: 事件类型
         self.EventType:Optional[str] = None
-        
         # Layer: 大数值的图层会覆盖在小数值的图层上面
         self.Layer:Optional[int] = None
-        
         # Start: 事件的开始时间
         self.Start:Optional[str] = None
-        
         # End: 事件的结束时间
         self.End:Optional[str] = None
-        
         # Style: 样式名
         self.Style:Optional[str] = None
-        
         # Name: 角色名
         self.Name:Optional[str] = None
-        
         # MarginL: 左边距覆写
         self.MarginL:Optional[int] = None
-        
         # MarginR: 右边距覆写
         self.MarginR:Optional[int] = None
-        
         # MarginV: 垂直边距覆写
         self.MarginV:Optional[int] = None
-        
         # Effect: 过渡效果
         self.Effect:Optional[str] = None
-        
         # Text: 字幕文本
         self.Text:Optional[str] = None
     
@@ -384,12 +376,6 @@ def _annotation_to_event(annotation:dict) ->EventHelper() :
     event.Start = datetime.strftime(annotation.Start,"%H:%M:%S.%f")[:-4]
     event.End = datetime.strftime(annotation.End,"%H:%M:%S.%f")[:-4]
     event.Name = annotation.id
-    Text = annotation.Text
-    if Text is not  None:
-        Text = Text.text.replace('\n',r'\N')
-    else:
-        Text = ''
-    event.Text = Text
     return event
 
 class Annotations2Sub():
@@ -416,8 +402,22 @@ class Annotations2Sub():
             event = _annotation_to_event(annotation=annotation)
             tab = _annotation_to_tab(annotation=annotation)
             if annotation.style == 'popup':
-                pass
-    
+                event.Name += r'_popup'
+                tab.Text = _text_helper(annotation=annotation)
+                event.Text = tab.Generate()
+                event.Commit()
+                event.Name += r'_TextBox'
+                if self.libassHack == True:
+                    annotation.w = annotation.w  *1.776
+                TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(annotation.w,annotation.h)
+                TextBox = r'{\p1}'+ TextBox +r'{\p0}'
+                colour = _colour_helper()
+                tab.Text = TextBox
+                tab.PrimaryColour = colour.bgColor
+                tab.PrimaryAlpha = colour.bgAlpha
+                event.Text = tab.Generate()
+                event.Commit()
+
     def _convert(self,File) -> None:
         string=open(File,'r',encoding="utf-8").read()
         _xml = xml.etree.ElementTree.fromstring(string)
