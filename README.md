@@ -42,17 +42,10 @@ python .\Annotations2Sub.py -g e8kKeUuytqA
 
 ---
 
-TODO:
+## 失败的重构分支 
 
-* <del>popup style </del>
-* <del>title style </del>
-* speech style 
-* highlightText style
-* None style
-* <del>libass hack</del>
-* <del>i18n</del>
-* <del>Download for invidious</del>
-* Refactor
-* <del>Preview video</del>
-* <del>Generate video</del>
-* Other style 
+本次重构没有让编程更美好
+
+## Failed refactoring branch 
+
+This refactoring did not make programming better 
