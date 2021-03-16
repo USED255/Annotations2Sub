@@ -53,7 +53,6 @@ TODO:
 * <del>libass hack</del>
 * <del>i18n</del>
 * <del>Download for invidious</del>
-* Refactor
 * <del>Preview video</del>
 * <del>Generate video</del>
 * Other style 
