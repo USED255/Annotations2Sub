@@ -29,6 +29,11 @@ https://github.com/nirbheek/youtube-ass ,https://github.com/afrmtbl/annotations-
 """
 
 import os
+
+if hex(os.sys.hexversion) < hex(0x03060000):
+    print("\033[0;31;40m\tpython version must be >=3.6\033[0m")
+    exit(1)
+
 import re
 import json
 import urllib.request 
@@ -44,10 +49,6 @@ try:
 except:
     print("\033[0;33;40m\tWarning! locale not found, i18n Not loaded\033[0m")
     _ = gettext.gettext
-
-if hex(os.sys.hexversion) < hex(0x03060000):
-    print(_("\033[0;31;40m\t我需要大于3.6的Python!\033[0m"))
-    exit(1)
 
 def _download_for_invidious(id:str,invidious_domain:str='invidiou.site') -> str:
     api = '/api/v1/annotations/'
@@ -142,10 +143,10 @@ class AssTools():
             self.add(Name='Default')
         
         def add(self,Name:str,Fontname:str='Arial',Fontsize:str=20,PrimaryColour:str='&H00FFFFFF',SecondaryColour:str='&H000000FF',OutlineColour:str='&H00000000',BackColour:str='&H00000000',Bold:int=0,Italic:int=0,Underline:int=0,StrikeOut:int=0,ScaleX:int=100,ScaleY:int=100,Spacing:int=0,Angle:int=0,BorderStyle:int=1,Outline:int=2,Shadow:int=2,Alignment:int=2,MarginL:int=10,MarginR:int=10,MarginV:int=10,Encoding:int=1) -> None:
-            self.data[Name] = self._check([Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding])
+            self.data[Name] = [Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding]
         
         def change(self,Name,Fontname:Optional[str]=None,Fontsize:Optional[str]=None,PrimaryColour:Optional[str]=None,SecondaryColour:Optional[str]=None,OutlineColour:Optional[str]=None,BackColour:Optional[str]=None,Bold:Optional[int]=None,Italic:Optional[int]=None,Underline:Optional[int]=None,StrikeOut:Optional[int]=None,ScaleX:Optional[int]=None,ScaleY:Optional[int]=None,Spacing:Optional[int]=None,Angle:Optional[int]=None,BorderStyle:Optional[int]=None,Outline:Optional[int]=None,Shadow:Optional[int]=None,Alignment:Optional[int]=None,MarginL:Optional[int]=None,MarginR:Optional[int]=None,MarginV:Optional[int]=None,Encoding:Optional[int]=None) -> None:
-            for i,v in enumerate(self._check([Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding])):
+            for i,v in enumerate([Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding]):
                 if v is not None:
                     self.data[Name][i] = v
         
@@ -156,9 +157,6 @@ class AssTools():
                 data += 'Style: {},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}\n'.format(Name, *Style)
             data += '\n'
             return data
-        
-        def _check(self,style:list) -> list:
-            return style
 
     class _event(object):
         def __init__(self) -> None:
@@ -168,7 +166,7 @@ class AssTools():
         
         def add(self,EventType:str='Dialogue',Layer:int=0, Start:str='0:00:00.00', End:str='0:00:00.00', Style:str='Default', Name:str='', MarginL:int=0, MarginR:int=0, MarginV:int=0, Effect:str='',Text:str='') -> None:
             # EventType: Dialogue, Comment, Picture, Sound, Movie, Command 
-            self.data.append(self._check([EventType,Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text]))
+            self.data.append([EventType,Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text])
         
         def dump(self) ->str:
             data = ''
@@ -177,10 +175,6 @@ class AssTools():
                 data += '{}: {},{},{},{},{},{},{},{},{},{}\n'.format(*event)
             data += '\n'
             return data
-        
-        def _check(self,event:list) -> list:
-            
-            return event
 
 class Annotations2Sub():
     def __init__(self,File:str,Title:str='默认文件',libassHack:bool=False) -> None:
@@ -194,6 +188,8 @@ class Annotations2Sub():
             self.asstools.info.note+='libassHack=True\n'
         self._convert(File=File)
         self.asstools.event.data.sort(key=lambda x:x[1])
+        if len(self.asstools.event.data) == 0:
+            print('\033[0;33;40m\t{}\033[0m'.format(_('警告, 没有注释被转换!')))
     
     def Save(self,File) -> str:
         with open(File + '.ass', 'w', encoding='utf-8') as f:
@@ -269,16 +265,16 @@ class Annotations2Sub():
             if style == 'popup':
                 Name += r'_popup'
                 if self.libassHack == True:
-                    w = str(float(w)*1.776)
+                    w = str(round(float(w)*1.776),3)
                 TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h)
                 TextBox = r'{\p1}'+ TextBox +r'{\p0}'
-                TextBox=self._tab_helper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=fontsize,PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+                TextBox=self._tab_helper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
                 self.asstools.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
-                Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x,PosY=y+4,fontsize=fontsize,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+                Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x,PosY=y+4,fontsize=str(round(float(fontsize),3)),SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
                 self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
             elif style == 'title':
                 Name +=r'_title'
-                fontsize = str(float(fontsize)/4)
+                fontsize = str(round(float(fontsize)/4,3))
                 Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x,PosY=y,fontsize=fontsize,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
                 self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
             else:
