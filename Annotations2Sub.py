@@ -187,7 +187,7 @@ class Annotations2Sub():
         if libassHack is True:
             self.asstools.info.note+='libassHack=True\n'
         self._convert(File=File)
-        self.asstools.event.data.sort(key=lambda x:x[1])
+        self.asstools.event.data.sort(key=lambda x:x[2])
         if len(self.asstools.event.data) == 0:
             print('\033[0;33;40m\t{}\033[0m'.format(_('警告, 没有注释被转换!')))
     
@@ -237,24 +237,32 @@ class Annotations2Sub():
             else:
                 Text = ''
             
+            def _bgr2rgb(BGR:str) -> str:
+                B=BGR[0:2]
+                G=BGR[2:4]
+                R=BGR[4:6]
+                RGB = R+G+B
+                return RGB
             
             if each.find('appearance') is None:
-                fgColor = r'&HFFFFFF&'
-                bgColor = r'&H000000&'
+                fgColor = r'&H000000&'
+                bgColor = r'&HFFFFFF&'
             else:
                 fontsize = each.find('appearance').get('textSize')
+                if fontsize is None:
+                    fontsize = 3.15
                 if each.find('appearance').get('bgAlpha') is None:
-                    bgAlpha = None
+                    bgAlpha = str(0.2)
                 else:
                     bgAlpha = r'&H'+str(hex(int((1-float(each.find('appearance').get('bgAlpha')))*255))).replace('0x','')+r'&'
                 if each.find('appearance').get('fgColor') == None:
-                    fgColor = r'&HFFFFFF&'
+                    fgColor = r'&H000000&'
                 else:
-                    fgColor = r'&H'+str(hex(int(each.find('appearance').get('fgColor')))).replace('0x','').zfill(6).upper()+r'&'
+                    fgColor = r'&H'+_bgr2rgb(str(hex(int(each.find('appearance').get('fgColor')))).replace('0x','').zfill(6).upper())+r'&'
                 if each.find('appearance').get('bgColor') == None:
-                    bgColor = r'&H000000&'
+                    bgColor = r'&HFFFFFF&'
                 else:
-                    bgColor = r'&H'+str(hex(int(each.find('appearance').get('bgColor')))).replace('0x','').zfill(6).upper()+r'&'
+                    bgColor = r'&H'+_bgr2rgb(str(hex(int(each.find('appearance').get('bgColor')))).replace('0x','').zfill(6).upper())+r'&'
             
             '''
                 x,y: 文本框左上角的坐标
@@ -276,6 +284,34 @@ class Annotations2Sub():
                 Name +=r'_title'
                 fontsize = str(round(float(fontsize)/4,3))
                 Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x,PosY=y,fontsize=fontsize,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+                self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
+            elif style == 'speech':
+                Name +=r'_speech'
+                if self.libassHack == True:
+                    w = str(round(float(w)*1.776),3)
+                TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h)
+                sx = float(_Segment[0].get('sx'))
+                sy = float(_Segment[0].get('sy'))
+                tx = x + w
+                ty = y + h
+                if ty < sy:
+                    sw = sx - w
+                    sh = sy - h
+                    if sx > tx/2:
+                        TextBox = "m 0 0 l {0} 0 l {0} {1} l {4} {5} l l {2} {3} l l {6} {7} l 0 {1} ".format(w,h,sw,sh,round(w/2-w*0.35,3),h,round(w/2-w*0.3,3),h)
+                    elif sx <tx/2:
+                        TextBox = "m 0 0 l {0} 0 l {0} {1} l {4} {5} l l {2} {3} l l {6} {7} l 0 {1} ".format(w,h,sw,sh,round(w/2-w*0.35,3),h,round(w/2-w*0.3,3),h)
+                elif ty > sy:
+                    sw = sx - w
+                    sh = sy - h
+                    if sx >tx/2:
+                        TextBox = "m 0 0 l {4} {5} l l {2} {3} l l {6} {7} l {0} 0 l {0} {1} l 0 {1} ".format(w,h,sw,sh,round(w/2-w*0.65,3),h,round(w/2-w*0.7,3),h)
+                    elif sx < tx/2:
+                        TextBox = "m 0 0 l {4} {5} l l {2} {3} l l {6} {7} l {0} 0 l {0} {1} l 0 {1} ".format(w,h,sw,sh,round(w/2-w*0.65,3),h,round(w/2-w*0.7,3),h)
+                TextBox = r'{\p1}'+ TextBox +r'{\p0}'
+                TextBox=self._tab_helper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+                self.asstools.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
+                Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x,PosY=y+4,fontsize=str(round(float(fontsize),3)),SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
                 self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
             else:
                 print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
