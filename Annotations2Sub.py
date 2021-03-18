@@ -31,7 +31,6 @@ https://github.com/nirbheek/youtube-ass ,https://github.com/afrmtbl/annotations-
 import os
 import re
 import json
-import copy
 import urllib.request 
 import gettext
 import argparse
@@ -440,13 +439,7 @@ class Annotations2Sub():
             event = _annotation_to_event(annotation=annotation,asstools=self.asstools)
             tab = _annotation_to_tab(annotation=annotation)
             if annotation.style == 'popup':
-                event.Name += r'_popup'
-                tab.Text = _text_helper(annotation=annotation)
-                event.Text = tab.Generate()
-                t = copy.deepcopy(event)
-                t.asstools=self.asstools
-                #event.Commit()
-                event.Name += r'_TextBox'
+                event.Name += r'_popup_TextBox'
                 if self.libassHack == True:
                     annotation.w = annotation.w  *1.776
                 TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(annotation.w,annotation.h)
@@ -457,8 +450,11 @@ class Annotations2Sub():
                 tab.PrimaryAlpha = colour.bgAlpha
                 event.Text = tab.Generate()
                 event.Commit()
-                #
-                t.Commit()
+                event.Name = annotation.id
+                event.Name += r'_popup'
+                tab.Text = _text_helper(annotation=annotation)
+                event.Text = tab.Generate()
+                event.Commit()
             elif annotation.style == 'title':
                 event.Name += r'_title'
                 tab.Text = _text_helper(annotation=annotation)
