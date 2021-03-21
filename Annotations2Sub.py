@@ -102,7 +102,7 @@ def _generate_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None
 
 class Annotations():
     def __init__(self):
-        ## type: 字符串格式的注释类型, 可能的值包括text和pause
+        ## type: 字符串格式的注释类型, 可能的值包括text,pause和highlightText
         self.type = None
         # id: 字符串格式的注释id
         self.id = None
