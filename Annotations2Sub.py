@@ -178,18 +178,22 @@ class AssTools():
 
 class Annotations2Sub():
     def __init__(self,File:str,Title:str='默认文件',libassHack:bool=False) -> None:
+        self.resolution = None
         self.asstools = AssTools()
         self.libassHack = libassHack
         self.asstools.info.add(k='Title',v=Title)
         self.asstools.info.add(k='PlayResX',v='100')
         self.asstools.info.add(k='PlayResY',v='100')
+        if self.resolution is not None:
+            self.asstools.info.add(k='PlayResX',v='self.resolution.x')
+            self.asstools.info.add(k='PlayResY',v='self.resolution.y')
         self.asstools.style.change(Name='Default',Fontname='Microsoft YaHei UI')
         if libassHack is True:
             self.asstools.info.note+='libassHack=True\n'
         self._convert(File=File)
         self.asstools.event.data.sort(key=lambda x:x[2])
         if len(self.asstools.event.data) == 0:
-            print('\033[0;33;40m\t{}\033[0m'.format(_('警告, 没有注释被转换!')))
+            print('\033[0;33;40m{}\033[0m'.format(_('警告, 没有注释被转换!')))
     
     def Save(self,File) -> str:
         with open(File + '.ass', 'w', encoding='utf-8') as f:
@@ -269,6 +273,14 @@ class Annotations2Sub():
                 w,h: 文本框的宽度和高度
             '''
             (x, y, w, h) = map(float,(_Segment[0].get(i) for i in ('x','y','w','h')))
+            w = round(w,3)
+            h = round(h,3)
+            if self.resolution is not None:
+                fontsize = float(fontsize) * self.resolution.x /100
+                x = x * self.resolution.y /100
+                y = y * self.resolution.x /100
+                w = w * self.resolution.y /100
+                h = h * self.resolution.x /100
             FullyTransparent = r'&HFF&'
             if style == 'popup':
                 Name += r'_popup'
@@ -278,7 +290,7 @@ class Annotations2Sub():
                 TextBox = r'{\p1}'+ TextBox +r'{\p0}'
                 TextBox=self._tab_helper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
                 self.asstools.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
-                Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x,PosY=y+4,fontsize=str(round(float(fontsize),3)),SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+                Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x+1,PosY=y+1,fontsize=str(round(float(fontsize),3)),SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
                 self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
             elif style == 'title':
                 Name +=r'_title'
@@ -289,30 +301,51 @@ class Annotations2Sub():
                 Name +=r'_speech'
                 if self.libassHack == True:
                     w = str(round(float(w)*1.776),3)
-                TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h)
+                # 气泡x
                 sx = float(_Segment[0].get('sx'))
+                # 气泡y
                 sy = float(_Segment[0].get('sy'))
+                # 文本框左上角x
+                x = x
+                # 文本框左上角y
+                y = y
+                # 文本框右下角x
                 tx = x + w
+                # 文本框右下角y
                 ty = y + h
-                if ty < sy:
-                    sw = sx - w
-                    sh = sy - h
-                    if sx > tx/2:
-                        TextBox = "m 0 0 l {0} 0 l {0} {1} l {4} {5} l l {2} {3} l l {6} {7} l 0 {1} ".format(w,h,sw,sh,round(w/2-w*0.35,3),h,round(w/2-w*0.3,3),h)
-                    elif sx <tx/2:
-                        TextBox = "m 0 0 l {0} 0 l {0} {1} l {4} {5} l l {2} {3} l l {6} {7} l 0 {1} ".format(w,h,sw,sh,round(w/2-w*0.35,3),h,round(w/2-w*0.3,3),h)
-                elif ty > sy:
-                    sw = sx - w
-                    sh = sy - h
-                    if sx >tx/2:
-                        TextBox = "m 0 0 l {4} {5} l l {2} {3} l l {6} {7} l {0} 0 l {0} {1} l 0 {1} ".format(w,h,sw,sh,round(w/2-w*0.65,3),h,round(w/2-w*0.7,3),h)
-                    elif sx < tx/2:
-                        TextBox = "m 0 0 l {4} {5} l l {2} {3} l l {6} {7} l {0} 0 l {0} {1} l 0 {1} ".format(w,h,sw,sh,round(w/2-w*0.65,3),h,round(w/2-w*0.7,3),h)
+                # 气泡框控制点x
+                sw = round(sx - x,3)
+                # 气泡框控制点y
+                sh = round(sy - y,3)
+                # 右左
+                if sx > x+w/2:
+                    c1 = round(w/2-w*0.3,3)
+                    c2 = round(w/2-w*0.4,3)
+                else:
+                    c1 = round(w/2-w*0.7,3)
+                    c2 = round(w/2-w*0.6,3)
+                # 下上
+                if sy > ty:
+                    TextBox = "m 0 0 l {0} 0 l {0} {1} l {4} {1} l {2} {3} l {5} {1} l 0 {1} ".format(w,h,sw,sh,c1,c2)
+                else:
+                    TextBox = "m 0 0 l {4} 0 l {2} {3} l {5} 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h,sw,sh,c1,c2)
                 TextBox = r'{\p1}'+ TextBox +r'{\p0}'
                 TextBox=self._tab_helper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
                 self.asstools.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
-                Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x,PosY=y+4,fontsize=str(round(float(fontsize),3)),SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+                Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x+1,PosY=y+1,fontsize=str(round(float(fontsize),3)),SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
                 self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
+            elif style == 'highlightText':
+                Name += r'_highlightText'
+                if self.libassHack == True:
+                    w = str(round(float(w)*1.776),3)
+                TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h)
+                TextBox = r'{\p1}'+ TextBox +r'{\p0}'
+                TextBox=self._tab_helper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+                self.asstools.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
+                Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x+1,PosY=y+1,fontsize=str(round(float(fontsize),3)),SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+                self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
+            elif style == None:
+                pass
             else:
                 print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
     
@@ -357,6 +390,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=_('一个可以把Youtube注释转换成ASS字幕的脚本'))
     parser.add_argument('File',type=str,nargs='+',metavar='File or ID',help=_('待转换的文件'))
     parser.add_argument('-l','--libassHack',action='store_true',help=_('针对libass修正'))
+    #parser.add_argument('-r','--reset-resolution',help=_('重设分辨率'))
     parser.add_argument('-d','--download-for-invidious',action='store_true',help=_('尝试从invidious下载注释文件'))
     parser.add_argument('-i','--invidious-domain',default='invidiou.site', metavar='invidious.domain',help=_('指定invidious域名'))
     parser.add_argument('-p','--preview-video',action='store_true',help=_('预览视频(需要mpv)'))
