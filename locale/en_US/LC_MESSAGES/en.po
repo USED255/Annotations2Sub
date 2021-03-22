@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Annotations2Sub i18n\n"
-"POT-Creation-Date: 2021-03-18 09:24+0800\n"
-"PO-Revision-Date: 2021-03-18 09:25+0800\n"
+"POT-Creation-Date: 2021-03-22 19:40+0800\n"
+"PO-Revision-Date: 2021-03-22 19:41+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: wrtyis@outlook.com\n"
 "Language: en\n"
@@ -22,42 +22,54 @@ msgstr "Downloading from {}"
 msgid "下载完成"
 msgstr "Download completed."
 
-#: Annotations2Sub.py:192
+#: Annotations2Sub.py:180
+msgid "默认文件"
+msgstr "Default file"
+
+#: Annotations2Sub.py:196
 msgid "警告, 没有注释被转换!"
 msgstr "Warning, no Annotation are converted!"
 
-#: Annotations2Sub.py:197
+#: Annotations2Sub.py:201
 msgid "保存于 \"{}.ass\""
 msgstr "Save in \"{}.ass\""
 
-#: Annotations2Sub.py:281
+#: Annotations2Sub.py:349
 msgid "抱歉这个脚本还不能支持 {} 样式. ({})"
 msgstr "Sorry,this script can't handle {} style yet. ({})"
 
-#: Annotations2Sub.py:321
+#: Annotations2Sub.py:389
 msgid "一个可以把Youtube注释转换成ASS字幕的脚本"
 msgstr "A script that converts Youtube Annotations into .ASS subtitles"
 
-#: Annotations2Sub.py:322
+#: Annotations2Sub.py:390
 msgid "待转换的文件"
 msgstr "The file to be converted"
 
-#: Annotations2Sub.py:323
+#: Annotations2Sub.py:391
 msgid "针对libass修正"
 msgstr "Fixes for libass"
 
-#: Annotations2Sub.py:324
+#: Annotations2Sub.py:392
+msgid "重设分辨率X"
+msgstr "Reset resolution X"
+
+#: Annotations2Sub.py:393
+msgid "重设分辨率Y"
+msgstr "Reset resolution Y"
+
+#: Annotations2Sub.py:394
 msgid "尝试从invidious下载注释文件"
 msgstr "Try downloading the ‪‪annotations file from invidious"
 
-#: Annotations2Sub.py:325
+#: Annotations2Sub.py:395
 msgid "指定invidious域名"
 msgstr "Specify invidious domain"
 
-#: Annotations2Sub.py:326
+#: Annotations2Sub.py:396
 msgid "预览视频(需要mpv)"
 msgstr "Preview video(need mpv)"
 
-#: Annotations2Sub.py:327
+#: Annotations2Sub.py:397
 msgid "生成视频(需要FFmpeg)"
 msgstr "Generate video (need FFmpeg)"

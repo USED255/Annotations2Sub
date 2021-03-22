@@ -6,7 +6,7 @@ __authors__  = (
  )
 
 __license__ = 'GPLv3'
-__version__ = '0.0.5'
+__version__ = '0.0.6'
 
 """
 参考:
@@ -24,14 +24,14 @@ https://github.com/afrmtbl/AnnotationsRestored
 
 """ 
 本脚本启发自:
-https://github.com/nirbheek/youtube-ass ,https://github.com/afrmtbl/annotations-converter 您仍然可以从本脚本找到他们的痕迹。
+https://github.com/nirbheek/youtube-ass 您仍然可以从本脚本找到他的痕迹。
 
 """
 
 import os
 
 if hex(os.sys.hexversion) < hex(0x03060000):
-    print("\033[0;31;40m\tpython version must be >=3.6\033[0m")
+    print("\033[0;31;40mpython version must be >=3.6\033[0m")
     exit(1)
 
 import re
@@ -47,7 +47,7 @@ try:
     t = gettext.translation(domain='en', localedir='locale',languages=['en_US'])
     t.install()
 except:
-    print("\033[0;33;40m\tWarning! locale not found, i18n Not loaded\033[0m")
+    print("\033[0;33;40Warning! locale not found, i18n Not loaded\033[0m")
     _ = gettext.gettext
 
 def _download_for_invidious(id:str,invidious_domain:str='invidiou.site') -> str:
@@ -177,16 +177,16 @@ class AssTools():
             return data
 
 class Annotations2Sub():
-    def __init__(self,File:str,Title:str='默认文件',libassHack:bool=False) -> None:
-        self.resolution = None
-        self.asstools = AssTools()
+    def __init__(self,File:str,Title:str=_('默认文件'),libassHack:bool=False,resolution_x:int=100,resolution_y:int=100) -> None:
+        self.resolution_x = resolution_x
+        self.resolution_y = resolution_y
         self.libassHack = libassHack
+        if resolution_x != 100 or resolution_y != 100:
+            self.libassHack = False
+        self.asstools = AssTools()
         self.asstools.info.add(k='Title',v=Title)
-        self.asstools.info.add(k='PlayResX',v='100')
-        self.asstools.info.add(k='PlayResY',v='100')
-        if self.resolution is not None:
-            self.asstools.info.add(k='PlayResX',v='self.resolution.x')
-            self.asstools.info.add(k='PlayResY',v='self.resolution.y')
+        self.asstools.info.add(k='PlayResX',v=resolution_x)
+        self.asstools.info.add(k='PlayResY',v=resolution_y)
         self.asstools.style.change(Name='Default',Fontname='Microsoft YaHei UI')
         if libassHack is True:
             self.asstools.info.note+='libassHack=True\n'
@@ -203,8 +203,8 @@ class Annotations2Sub():
     
     def _convert(self,File) -> None:
         string=open(File,'r',encoding="utf-8").read()
-        _xml = xml.etree.ElementTree.fromstring(string)
-        for each in _xml.find('annotations').findall('annotation'):
+        tree = xml.etree.ElementTree.fromstring(string)
+        for each in tree.find('annotations').findall('annotation'):
             
             #提取 annotation id
             Name = each.get('id')
@@ -275,17 +275,16 @@ class Annotations2Sub():
             (x, y, w, h) = map(float,(_Segment[0].get(i) for i in ('x','y','w','h')))
             w = round(w,3)
             h = round(h,3)
-            if self.resolution is not None:
-                fontsize = float(fontsize) * self.resolution.x /100
-                x = x * self.resolution.y /100
-                y = y * self.resolution.x /100
-                w = w * self.resolution.y /100
-                h = h * self.resolution.x /100
+            fontsize = float(fontsize) * self.resolution_y /100
+            x = x * self.resolution_x /100
+            y = y * self.resolution_y /100
+            w = w * self.resolution_x /100
+            h = h * self.resolution_y /100
             FullyTransparent = r'&HFF&'
             if style == 'popup':
                 Name += r'_popup'
                 if self.libassHack == True:
-                    w = str(round(float(w)*1.776),3)
+                    w = str(round(float(w)*1.776,3))
                 TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h)
                 TextBox = r'{\p1}'+ TextBox +r'{\p0}'
                 TextBox=self._tab_helper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
@@ -390,7 +389,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=_('一个可以把Youtube注释转换成ASS字幕的脚本'))
     parser.add_argument('File',type=str,nargs='+',metavar='File or ID',help=_('待转换的文件'))
     parser.add_argument('-l','--libassHack',action='store_true',help=_('针对libass修正'))
-    #parser.add_argument('-r','--reset-resolution',help=_('重设分辨率'))
+    parser.add_argument('-x','--reset-resolution-x',default=100,type=int,metavar=1920,help=_('重设分辨率X'))
+    parser.add_argument('-y','--reset-resolution-y',default=100,type=int,metavar=1080,help=_('重设分辨率Y'))
     parser.add_argument('-d','--download-for-invidious',action='store_true',help=_('尝试从invidious下载注释文件'))
     parser.add_argument('-i','--invidious-domain',default='invidiou.site', metavar='invidious.domain',help=_('指定invidious域名'))
     parser.add_argument('-p','--preview-video',action='store_true',help=_('预览视频(需要mpv)'))
@@ -403,7 +403,7 @@ if __name__ == "__main__":
             File = _download_for_invidious(id=Id,invidious_domain=args.invidious_domain)
         if args.preview_video or args.generate_video is True:
             libassHack = True
-        ass = Annotations2Sub(File=File,Title=File,libassHack=libassHack)
+        ass = Annotations2Sub(File=File,Title=File,libassHack=libassHack,resolution_x=args.reset_resolution_x,resolution_y=args.reset_resolution_y)
         File = ass.Save(File=File)
         del ass
         if args.preview_video is True:

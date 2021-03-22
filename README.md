@@ -7,7 +7,7 @@ A script that can convert Youtube Annotation into .ASS subtitles files
 ---
 
 ```
-usage: Annotations2Sub.py [-h] [-l] [-d] [-i invidious.domain] [-p] [-g] File or ID [File or ID ...]
+usage: Annotations2Sub.py [-h] [-l] [-x 1920] [-y 1080] [-d] [-i invidious.domain] [-p] [-g] File or ID [File or ID ...]
 
 A script that converts Youtube Annotations into .ASS subtitles
 
@@ -17,6 +17,10 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   -l, --libassHack      Fixes for libass
+  -x 1920, --reset-resolution-x 1920
+                        Reset resolution X
+  -y 1080, --reset-resolution-y 1080
+                        Reset resolution Y
   -d, --download-for-invidious
                         Try downloading the ‪‪annotations file from invidious
   -i invidious.domain, --invidious-domain invidious.domain
@@ -48,11 +52,14 @@ TODO:
 
 * <del>popup style </del>
 * <del>title style </del>
-* speech style 
-* highlightText style
+* <del>speech style </del>
+* <del>highlightText style</del>
 * <del>libass hack</del>
 * <del>i18n</del>
 * <del>Download for invidious</del>
 * <del>Preview video</del>
 * <del>Generate video</del>
-* Other style 
+* popup 行为
+* speech 行为
+* highlightText 行为
+* Make Perfect
