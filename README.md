@@ -6,7 +6,7 @@ A script that can convert Youtube Annotation into .ASS subtitles files
 
 ---
 
-```
+```man
 usage: Annotations2Sub.py [-h] [-l] [-x 1920] [-y 1080] [-d] [-i invidious.domain] [-p] [-g] File or ID [File or ID ...]
 
 A script that converts Youtube Annotations into .ASS subtitles
@@ -36,7 +36,7 @@ Example:
 
 [Before](https://www.youtube.com/watch?v=e8kKeUuytqA)
 
-```
+```bash
 python .\Annotations2Sub.py -g e8kKeUuytqA
 ```
 
@@ -50,15 +50,15 @@ python .\Annotations2Sub.py -g e8kKeUuytqA
 
 TODO:
 
-* <del>popup style </del>
-* <del>title style </del>
-* <del>speech style </del>
-* <del>highlightText style</del>
-* <del>libass hack</del>
-* <del>i18n</del>
-* <del>Download for invidious</del>
-* <del>Preview video</del>
-* <del>Generate video</del>
+* ~~popup style~~
+* ~~title style~~
+* ~~speech style~~
+* ~~highlightText style~~
+* ~~libass hack~~
+* ~~i18n~~
+* ~~Download for invidious~~
+* ~~Preview video~~
+* ~~Generate video~~
 * popup 行为
 * speech 行为
 * highlightText 行为
