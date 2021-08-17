@@ -240,6 +240,11 @@ class Annotations2Sub():
                 Text = Text.text.replace('\n',r'\N')
             else:
                 Text = ''
+            TextB = Text.replace(r'{',r'\{')
+            TextB = TextB.replace(r'}',r'\}')
+            if Text != TextB:
+                print('\033[0;33;40m{}\033[0m'.format(_('警告, 花括号转义只能在libass上工作!({})'.format(Name))))
+                Text = TextB
             
             def _bgr2rgb(BGR:str) -> str:
                 B=BGR[0:2]
