@@ -47,7 +47,7 @@ def _download_for_invidious(id:str,invidious_domain:str='invidiou.site') -> str:
     api = '/api/v1/annotations/'
     url = 'https://' + invidious_domain + api + id
     file = "{}.xml".format(id)
-    print(_("正在从 {} 下载注释文件".format(url)))
+    print(_("正在从 {} 下载注释文件").format(url))
     urllib.request.urlretrieve(url,file)
     print(_("下载完成"))
     return file
@@ -260,7 +260,7 @@ def Convert(string:str,title='默认文件',resolution_y=100,resolution_x=100,li
         TextB = TextB.replace(r'}',r'\}')
         if Text != TextB:
             if libass_hack == False:
-                print('\033[0;33;40m{}\033[0m'.format(_('警告, 花括号转义只能在libass上工作!({})'.format(Name))))
+                print('\033[0;33;40m{}\033[0m'.format(_('警告, 花括号转义只能在libass上工作!({})').format(Name)))
             Text = TextB
         
         def _bgr2rgb(BGR:str) -> str:
@@ -415,7 +415,7 @@ class Annotations2Sub():
     def Save(self,file) -> str:
         with open(file + '.ass', 'w', encoding='utf-8') as f:
             f.write(self.sub.dump())
-            print(_("保存于 \"{}.ass\"".format(file)))
+            print(_("保存于 \"{}.ass\"").format(file))
             return file + '.ass'
 
 if __name__ == "__main__":
