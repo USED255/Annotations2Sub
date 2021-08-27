@@ -37,11 +37,17 @@ import json
 import urllib.request 
 import gettext
 import argparse
+import traceback
 import xml.etree.ElementTree
 from datetime import datetime
 from typing import Optional
 
 _ = gettext.gettext
+
+#应该用无衬线字体,但是好像不能方便的使用字体家族..
+font = 'Microsoft YaHei UI'
+#invidious实例很容失效,我应该考虑去掉invidious
+invidious = 'ytb.trom.tf'
 
 def _download_for_invidious(id:str,invidious_domain:str='invidiou.site') -> str:
     api = '/api/v1/annotations/'
@@ -71,7 +77,9 @@ def _preview_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None:
     video = videos[0].get('url')
     cmd = r'mpv "{}" --audio-file="{}" --sub-file="{}"'.format(video,audio,file)
     print(cmd)
-    os.system(cmd)
+    exit_code = os.system(cmd)
+    if exit_code != 0:
+        print('\033[0;33;40m{}\033[0m'.format('exit with {}'.format(exit_code)))
 
 def _generate_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None:
     api = '/api/v1/videos/'
@@ -92,7 +100,9 @@ def _generate_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None
     video = videos[0].get('url')
     cmd = r'ffmpeg -i "{}" -i "{}" -vf "ass={}" "{}.mp4"'.format(video,audio,file,id)
     print(cmd)
-    os.system(cmd)
+    exit_code = os.system(cmd)
+    if exit_code != 0:
+        print('\033[0;33;40m{}\033[0m'.format('exit with {}'.format(exit_code)))
 
 class Sub():
     def __init__(self) -> None:
@@ -207,18 +217,23 @@ def TabHelper(Text:str='',PrimaryColour:Optional[str]=None,SecondaryColour:Optio
     #{\2c&H2425DA&\pos(208,148)}test
 
 
-def Convert(string:str,title='默认文件',resolution_y=100,resolution_x=100,libass_hack=False) -> Sub:
+def Convert(string:str,title=_('默认文件'),resolution_y=100,resolution_x=100,font=font,libass_hack=False) -> Sub:
     sub = Sub()
     sub.info.add(k='Title',v=title)
     sub.info.add(k='PlayResX',v=resolution_x)
     sub.info.add(k='PlayResY',v=resolution_y)
     if resolution_x != 100 or resolution_y != 100:
         libass_hack = False
-    sub.style.change(Name='Default',Fontname='Microsoft YaHei UI')
+    sub.style.change(Name='Default',Fontname=font)
     if libass_hack is True:
         sub.info.note+='libass_hack=True\n'
+    try:
+        tree = xml.etree.ElementTree.fromstring(string)
+    except:
+        traceback.print_exc()
+        print('\033[0;33;40m{}\033[0m'.format(_('也许您选错文件了?')))
+        exit(1)
     
-    tree = xml.etree.ElementTree.fromstring(string)
     for each in tree.find('annotations').findall('annotation'):
         
         #提取 annotation id
@@ -348,12 +363,14 @@ def Convert(string:str,title='默认文件',resolution_y=100,resolution_x=100,li
             sub.event.add(Start=Start,End=End,Name=Name,Text=Text)
 
         elif style == 'speech':
-            Name +=r'_speech'
+            #太难了
+            print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
+            Name +=r'_speech_NOTSUPPORT'
             if libass_hack == True:
                 w = str(round(float(w)*1.776),3)
-            # 气泡x
+            # 气泡锚点x
             sx = float(_Segment[0].get('sx'))
-            # 气泡y
+            # 气泡锚点y
             sy = float(_Segment[0].get('sy'))
             # 文本框左上角x
             x = x
@@ -363,22 +380,45 @@ def Convert(string:str,title='默认文件',resolution_y=100,resolution_x=100,li
             tx = x + w
             # 文本框右下角y
             ty = y + h
-            # 气泡框控制点x
+            # 锚点x控制点w
             sw = round(sx - x,3)
-            # 气泡框控制点y
+            # 锚点y控制点h
             sh = round(sy - y,3)
-            # 右左
+            # ..
             if sx > x+w/2:
-                c1 = round(w/2-w*0.3,3)
-                c2 = round(w/2-w*0.4,3)
+                #开口
+                cw1 = round(w/2-w*0.3,3)
+                #入口
+                cw2 = round(w/2-w*0.4,3)
             else:
-                c1 = round(w/2-w*0.7,3)
-                c2 = round(w/2-w*0.6,3)
-            # 下上
+                cw1 = round(w/2-w*0.7,3)
+                cw2 = round(w/2-w*0.6,3)
+            if sy > x+h/2:
+                #开口
+                ch1 = round(h/2-h*0.3,3)
+                #入口
+                ch2 = round(h/2-h*0.4,3)
+            else:
+                ch1 = round(h/2-h*0.7,3)
+                ch2 = round(h/2-h*0.6,3)
+            # 锚点在气泡下方
             if sy > ty:
-                TextBox = "m 0 0 l {0} 0 l {0} {1} l {4} {1} l {2} {3} l {5} {1} l 0 {1} ".format(w,h,sw,sh,c1,c2)
+                #          起点    横      竖        开口      锚点       入口      关闭           0 1 2  3  4   5
+                TextBox = "m 0 0 l {0} 0 l {0} {1} l {4} {1} l {2} {3} l {5} {1} l 0 {1} ".format(w,h,sw,sh,cw1,cw2)
+            # 锚点在气泡上方
+            elif sy < y:
+                #          起点    开口    锚点      入口     竖      横        关闭
+                TextBox = "m 0 0 l {4} 0 l {2} {3} l {5} 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h,sw,sh,cw1,cw2)
+            #左
+            elif sy > y and sx > x+w/2:
+                #          起点     横      竖        横        开口     锚点     入口    关闭           0 1 2  3  4   5
+                TextBox = "m 0 0 l {0} 0 l {0} {1} l {1} {1} l 0 {4} l {2} {3} l 0 {5} l 0 {1}".format(w,h,sw,sh,ch1,ch2)
+            #右
+            elif sy > y and sx < x+w/2:
+                #          起点     横      开口       锚点       入口     横    关闭           0 1 2  3  4   5
+                TextBox = "m 0 0 l {0} 0 l {0} {4} l {2} {3} l {0} {5} l {1} 0 l 0 {1}".format(w,h,sw,sh,ch1,ch2)
             else:
-                TextBox = "m 0 0 l {4} 0 l {2} {3} l {5} 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h,sw,sh,c1,c2)
+                print('?')
             TextBox = r'{\p1}'+ TextBox +r'{\p0}'
             TextBox=TabHelper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
             sub.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
@@ -408,9 +448,9 @@ def Convert(string:str,title='默认文件',resolution_y=100,resolution_x=100,li
     return sub
 
 class Annotations2Sub():
-    def __init__(self,file:str,title:str=_('默认文件'),libass_hack:bool=False,resolution_x:int=100,resolution_y:int=100) -> None:
+    def __init__(self,file:str,title:str=_('默认文件'),resolution_x:int=100,resolution_y:int=100,font=font,libass_hack:bool=False) -> None:
         string=open(file,'r',encoding="utf-8").read()
-        self.sub = Convert(string=string,title=title,resolution_x=resolution_x,resolution_y=resolution_y,libass_hack=libass_hack)
+        self.sub = Convert(string=string,title=title,resolution_x=resolution_x,resolution_y=resolution_y,font=font,libass_hack=libass_hack)
 
     def Save(self,file) -> str:
         with open(file + '.ass', 'w', encoding='utf-8') as f:
@@ -424,19 +464,20 @@ if __name__ == "__main__":
     parser.add_argument('-l','--use-libass',action='store_true',help=_('针对libass修正'))
     parser.add_argument('-x','--reset-resolution-x',default=100,type=int,metavar=100,help=_('重设分辨率X'))
     parser.add_argument('-y','--reset-resolution-y',default=100,type=int,metavar=100,help=_('重设分辨率Y'))
+    parser.add_argument('-f','--font',default=font,type=str,metavar=font,help=_('指定字体'))
     parser.add_argument('-d','--download-for-invidious',action='store_true',help=_('尝试从invidious下载注释文件'))
-    parser.add_argument('-i','--invidious-domain',default='invidiou.site', metavar='invidious.domain',help=_('指定invidious域名'))
+    parser.add_argument('-i','--invidious-domain',default=invidious, metavar='invidious.domain',help=_('指定invidious域名'))
     parser.add_argument('-p','--preview-video',action='store_true',help=_('预览视频(需要mpv)'))
     parser.add_argument('-g','--generate-video',action='store_true',help=_('生成视频(需要FFmpeg)'))
     args = parser.parse_args()
-    libassHack = args.use_libass
+    libass_hack = args.use_libass
     for File in args.File:
         if args.download_for_invidious or args.preview_video or args.generate_video is True:
             Id = File
             File = _download_for_invidious(id=Id,invidious_domain=args.invidious_domain)
         if args.preview_video or args.generate_video is True:
-            libassHack = True
-        ass = Annotations2Sub(file=File,title=File,libass_hack=libassHack,resolution_x=args.reset_resolution_x,resolution_y=args.reset_resolution_y)
+            libass_hack = True
+        ass = Annotations2Sub(file=File,title=File,resolution_x=args.reset_resolution_x,resolution_y=args.reset_resolution_y,font=font,libass_hack=libass_hack)
         File = ass.Save(file=File)
         del ass
         if args.preview_video is True:
