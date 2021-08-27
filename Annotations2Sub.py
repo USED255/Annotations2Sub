@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-__authors__  = (
-    'wrtyis@outlook.com'
- )
-
+# Annotations2Sub
+__authors__ = 'wrtyis@outlook.com'
 __license__ = 'GPLv3'
-__version__ = '0.0.6'
+__version__ = '0.0.7'
 
 """
 参考:
@@ -31,7 +29,7 @@ https://github.com/nirbheek/youtube-ass 您仍然可以从本脚本找到他的�
 import os
 
 if hex(os.sys.hexversion) < hex(0x03060000):
-    print("\033[0;31;40mpython version must be >=3.6\033[0m")
+    print("This script does not work on Python versions lower than 3.6")
     exit(1)
 
 import re
@@ -43,12 +41,7 @@ import xml.etree.ElementTree
 from datetime import datetime
 from typing import Optional
 
-try:
-    t = gettext.translation(domain='en', localedir='locale',languages=['en_US'])
-    t.install()
-except:
-    print("\033[0;33;40Warning! locale not found, i18n Not loaded\033[0m")
-    _ = gettext.gettext
+_ = gettext.gettext
 
 def _download_for_invidious(id:str,invidious_domain:str='invidiou.site') -> str:
     api = '/api/v1/annotations/'
@@ -101,7 +94,7 @@ def _generate_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None
     print(cmd)
     os.system(cmd)
 
-class AssTools():
+class Sub():
     def __init__(self) -> None:
         self.info = self._info()
         self.style = self._style()
@@ -176,240 +169,275 @@ class AssTools():
             data += '\n'
             return data
 
-class Annotations2Sub():
-    def __init__(self,File:str,Title:str=_('默认文件'),libassHack:bool=False,resolution_x:int=100,resolution_y:int=100) -> None:
-        self.resolution_x = resolution_x
-        self.resolution_y = resolution_y
-        self.libassHack = libassHack
-        if resolution_x != 100 or resolution_y != 100:
-            self.libassHack = False
-        self.asstools = AssTools()
-        self.asstools.info.add(k='Title',v=Title)
-        self.asstools.info.add(k='PlayResX',v=resolution_x)
-        self.asstools.info.add(k='PlayResY',v=resolution_y)
-        self.asstools.style.change(Name='Default',Fontname='Microsoft YaHei UI')
-        if libassHack is True:
-            self.asstools.info.note+='libassHack=True\n'
-        self._convert(File=File)
-        self.asstools.event.data.sort(key=lambda x:x[2])
-        if len(self.asstools.event.data) == 0:
-            print('\033[0;33;40m{}\033[0m'.format(_('警告, 没有注释被转换!')))
+def TabHelper(Text:str='',PrimaryColour:Optional[str]=None,SecondaryColour:Optional[str]=None,BorderColor:Optional[str]=None,ShadowColor:Optional[str]=None,PosX:Optional[float]=None,PosY:Optional[float]=None,fontsize:Optional[str]=None,PrimaryAlpha:Optional[str]=None,SecondaryAlpha:Optional[str]=None,BorderAlpha:Optional[str]=None,ShadowAlpha:Optional[str]=None,p:Optional[str]=None) ->str:
+    _tab = ''
+    if (PosX,PosY) is not None:
+        _an = r'\an7'
+        _pos = "\\pos({},{})".format(PosX,PosY)
+        _tab += _an + _pos 
+    if PrimaryColour is not None:
+        _c = r'\c' + PrimaryColour
+        _tab += _c
+    if SecondaryColour is not None:
+        _2c = r'\2c' + SecondaryColour
+        _tab += _2c
+    if BorderColor is not None:
+        _3c = r'\3c' + BorderColor
+        _tab += _3c
+    if ShadowColor is not None:
+        _4c = r'\4c' + ShadowColor
+        _tab += _4c
+    if fontsize is not None:
+        _fs = r'\fs' + fontsize
+        _tab += _fs
+    if PrimaryAlpha is not None:
+        _1a = r'\1a' + PrimaryAlpha
+        _tab += _1a
+    if SecondaryAlpha is not None:
+        _2a = r'\2a' + SecondaryAlpha
+        _tab += _2a
+    if BorderAlpha is not None:
+        _3a = r'\3a' + BorderAlpha
+        _tab += _3a
+    if ShadowAlpha is not None:
+        _4a = r'\4a' + ShadowAlpha
+        _tab += _4a
+    _text = r'{' + _tab + r'}' + Text
+    return _text
+    #{\2c&H2425DA&\pos(208,148)}test
+
+
+def Convert(string:str,title='默认文件',resolution_y=100,resolution_x=100,libass_hack=False) -> Sub:
+    sub = Sub()
+    sub.info.add(k='Title',v=title)
+    sub.info.add(k='PlayResX',v=resolution_x)
+    sub.info.add(k='PlayResY',v=resolution_y)
+    if resolution_x != 100 or resolution_y != 100:
+        libass_hack = False
+    sub.style.change(Name='Default',Fontname='Microsoft YaHei UI')
+    if libass_hack is True:
+        sub.info.note+='libass_hack=True\n'
     
-    def Save(self,File) -> str:
-        with open(File + '.ass', 'w', encoding='utf-8') as f:
-            f.write(self.asstools.dump())
-            print(_("保存于 \"{}.ass\"".format(File)))
-            return File + '.ass'
-    
-    def _convert(self,File) -> None:
-        string=open(File,'r',encoding="utf-8").read()
-        tree = xml.etree.ElementTree.fromstring(string)
-        for each in tree.find('annotations').findall('annotation'):
-            
-            #提取 annotation id
-            Name = each.get('id')
-            
-            #提取时间
-            #h:mm:ss.ms
-            _Segment = each.find('segment').find('movingRegion').findall('rectRegion')
-            if len(_Segment) == 0:
-                _Segment = each.find('segment').find('movingRegion').findall('anchoredRegion')
-            if len(_Segment) == 0:
-                Start = '0:00:00.00'
-                End = '0:00:00.00'
-            if len(_Segment) != 0:
-                Start = min(_Segment[0].get('t'), _Segment[1].get('t'))
-                End = max(_Segment[0].get('t'), _Segment[1].get('t'))
-            if "never" in (Start, End):
-                Start = '0:00:00.00'
-                End = '999:00:00.00'
-            else:
-                try:
-                    Start =datetime.strftime(datetime.strptime(Start,"%H:%M:%S.%f"),"%H:%M:%S.%f")[:-4]
-                    End = datetime.strftime(datetime.strptime(End,"%H:%M:%S.%f"),"%H:%M:%S.%f")[:-4]
-                except:
-                    Start =datetime.strftime(datetime.strptime(Start,"%M:%S.%f"),"%H:%M:%S.%f")[:-4]
-                    End = datetime.strftime(datetime.strptime(End,"%M:%S.%f"),"%H:%M:%S.%f")[:-4]
-            
-            #提取样式
-            style = each.get('style')
-            
-            #提取文本
-            Text = each.find('TEXT')
-            if Text is not  None:
-                Text = Text.text.replace('\n',r'\N')
-            else:
-                Text = ''
-            TextB = Text.replace(r'{',r'\{')
-            TextB = TextB.replace(r'}',r'\}')
-            if Text != TextB:
+    tree = xml.etree.ElementTree.fromstring(string)
+    for each in tree.find('annotations').findall('annotation'):
+        
+        #提取 annotation id
+        Name = each.get('id')
+        
+        #提取时间
+        #h:mm:ss.ms
+        _Segment = each.find('segment').find('movingRegion').findall('rectRegion')
+        if len(_Segment) == 0:
+            _Segment = each.find('segment').find('movingRegion').findall('anchoredRegion')
+        if len(_Segment) == 0:
+            Start = '0:00:00.00'
+            End = '0:00:00.00'
+        if len(_Segment) != 0:
+            Start = min(_Segment[0].get('t'), _Segment[1].get('t'))
+            End = max(_Segment[0].get('t'), _Segment[1].get('t'))
+        if not "never" in (Start, End):
+            try:
+                Start =datetime.strftime(datetime.strptime(Start,"%H:%M:%S.%f"),"%H:%M:%S.%f")[:-4]
+                End = datetime.strftime(datetime.strptime(End,"%H:%M:%S.%f"),"%H:%M:%S.%f")[:-4]
+            except:
+                Start =datetime.strftime(datetime.strptime(Start,"%M:%S.%f"),"%H:%M:%S.%f")[:-4]
+                End = datetime.strftime(datetime.strptime(End,"%M:%S.%f"),"%H:%M:%S.%f")[:-4]
+        if "never" in (Start, End):
+            Start = '0:00:00.00'
+            End = '999:00:00.00'
+
+        #提取样式
+        style = each.get('style')
+        
+        #提取文本
+        Text = each.find('TEXT')
+        if Text is not  None:
+            Text = Text.text.replace('\n',r'\N')
+        else:
+            Text = ''
+        TextB = Text
+        TextB = TextB.replace(r'{',r'\{')
+        TextB = TextB.replace(r'}',r'\}')
+        if Text != TextB:
+            if libass_hack == False:
                 print('\033[0;33;40m{}\033[0m'.format(_('警告, 花括号转义只能在libass上工作!({})'.format(Name))))
-                Text = TextB
-            
-            def _bgr2rgb(BGR:str) -> str:
-                B=BGR[0:2]
-                G=BGR[2:4]
-                R=BGR[4:6]
-                RGB = R+G+B
-                return RGB
-            
-            if each.find('appearance') is None:
-                fgColor = r'&H000000&'
-                bgColor = r'&HFFFFFF&'
+            Text = TextB
+        
+        def _bgr2rgb(BGR:str) -> str:
+            B=BGR[0:2]
+            G=BGR[2:4]
+            R=BGR[4:6]
+            RGB = R+G+B
+            return RGB
+        
+        def _convert_color(s0:str) -> str:
+            # return r'&H'+_bgr2rgb(str(hex(int(s))).replace('0x','').zfill(6).upper())+r'&'
+            if s0 == None:
+                return
+            s1 = int(s0)
+            s2 = hex(s1)
+            s3 = str(s2)
+            s4 = s3.replace('0x','').zfill(6).upper()
+            s5 = _bgr2rgb(s4)
+            s6 = r'&H{}&'.format(s5)
+            return s6
+
+        def _convert_alpha(s0:str) -> str:
+            # return r'&H'+str(hex(int((1-float(s))*255))).replace('0x','')+r'&'
+            if s0 == None:
+                return
+            s1 = float(s0)
+            s2 = 1 - s1
+            s3 = s2 *255
+            s4 = int(s3)
+            s5 = hex(s4)
+            s6 = str(s5)
+            s7 = s6.replace('0x','').upper()
+            s8 = r'&H{}&'.format(s7)
+            return s8
+        
+        _Appearance = each.find('appearance')
+
+        if _Appearance is not None:
+            fontsize = _Appearance.get('textSize')
+            bgAlpha = _convert_alpha(_Appearance.get('bgAlpha'))
+            fgColor = _convert_color(_Appearance.get('fgColor'))
+            bgColor = _convert_color(_Appearance.get('bgColor'))
+        
+        if fgColor is None:
+            fgColor = r'&H000000&'
+        if bgColor is None:
+            bgColor = r'&HFFFFFF&'
+        if bgAlpha is None:
+            bgAlpha = r'&HCC&'
+        if fontsize is None:
+            fontsize = 3.15
+
+        '''
+            x,y: 文本框左上角的坐标
+            w,h: 文本框的宽度和高度
+        '''
+        (x, y, w, h) = map(float,(_Segment[0].get(i) for i in ('x','y','w','h')))
+        w = round(w,3)
+        h = round(h,3)
+        fontsize = float(fontsize) * resolution_y /100
+        x = x * resolution_x /100
+        y = y * resolution_y /100
+        w = w * resolution_x /100
+        h = h * resolution_y /100
+        FullyTransparent = r'&HFF&'
+
+        #按样式生成代码
+        if style == 'popup':
+            Name += r'_popup'
+            #vsfilter与libass行为不一致
+            if libass_hack == True:
+                w = str(round(float(w)*1.776,3))
+            TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h)
+            TextBox = r'{\p1}'+ TextBox +r'{\p0}'
+            TextBox=TabHelper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+            sub.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
+            Text= TabHelper(Text=Text,PrimaryColour=fgColor,PosX=x+1,PosY=y+1,fontsize=str(round(float(fontsize),3)),SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+            sub.event.add(Start=Start,End=End,Name=Name,Text=Text)
+
+        elif style == 'title':
+            Name +=r'_title'
+            #除以4,要不然大得离谱
+            fontsize = str(round(float(fontsize)/4,3))
+            Text= TabHelper(Text=Text,PrimaryColour=fgColor,PosX=x,PosY=y,fontsize=fontsize,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+            sub.event.add(Start=Start,End=End,Name=Name,Text=Text)
+
+        elif style == 'speech':
+            Name +=r'_speech'
+            if libass_hack == True:
+                w = str(round(float(w)*1.776),3)
+            # 气泡x
+            sx = float(_Segment[0].get('sx'))
+            # 气泡y
+            sy = float(_Segment[0].get('sy'))
+            # 文本框左上角x
+            x = x
+            # 文本框左上角y
+            y = y
+            # 文本框右下角x
+            tx = x + w
+            # 文本框右下角y
+            ty = y + h
+            # 气泡框控制点x
+            sw = round(sx - x,3)
+            # 气泡框控制点y
+            sh = round(sy - y,3)
+            # 右左
+            if sx > x+w/2:
+                c1 = round(w/2-w*0.3,3)
+                c2 = round(w/2-w*0.4,3)
             else:
-                fontsize = each.find('appearance').get('textSize')
-                if fontsize is None:
-                    fontsize = 3.15
-                if each.find('appearance').get('bgAlpha') is None:
-                    bgAlpha = str(0.2)
-                else:
-                    bgAlpha = r'&H'+str(hex(int((1-float(each.find('appearance').get('bgAlpha')))*255))).replace('0x','')+r'&'
-                if each.find('appearance').get('fgColor') == None:
-                    fgColor = r'&H000000&'
-                else:
-                    fgColor = r'&H'+_bgr2rgb(str(hex(int(each.find('appearance').get('fgColor')))).replace('0x','').zfill(6).upper())+r'&'
-                if each.find('appearance').get('bgColor') == None:
-                    bgColor = r'&HFFFFFF&'
-                else:
-                    bgColor = r'&H'+_bgr2rgb(str(hex(int(each.find('appearance').get('bgColor')))).replace('0x','').zfill(6).upper())+r'&'
-            
-            '''
-                x,y: 文本框左上角的坐标
-                w,h: 文本框的宽度和高度
-            '''
-            (x, y, w, h) = map(float,(_Segment[0].get(i) for i in ('x','y','w','h')))
-            w = round(w,3)
-            h = round(h,3)
-            fontsize = float(fontsize) * self.resolution_y /100
-            x = x * self.resolution_x /100
-            y = y * self.resolution_y /100
-            w = w * self.resolution_x /100
-            h = h * self.resolution_y /100
-            FullyTransparent = r'&HFF&'
-            if style == 'popup':
-                Name += r'_popup'
-                if self.libassHack == True:
-                    w = str(round(float(w)*1.776,3))
-                TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h)
-                TextBox = r'{\p1}'+ TextBox +r'{\p0}'
-                TextBox=self._tab_helper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
-                self.asstools.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
-                Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x+1,PosY=y+1,fontsize=str(round(float(fontsize),3)),SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
-                self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
-            elif style == 'title':
-                Name +=r'_title'
-                fontsize = str(round(float(fontsize)/4,3))
-                Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x,PosY=y,fontsize=fontsize,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
-                self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
-            elif style == 'speech':
-                Name +=r'_speech'
-                if self.libassHack == True:
-                    w = str(round(float(w)*1.776),3)
-                # 气泡x
-                sx = float(_Segment[0].get('sx'))
-                # 气泡y
-                sy = float(_Segment[0].get('sy'))
-                # 文本框左上角x
-                x = x
-                # 文本框左上角y
-                y = y
-                # 文本框右下角x
-                tx = x + w
-                # 文本框右下角y
-                ty = y + h
-                # 气泡框控制点x
-                sw = round(sx - x,3)
-                # 气泡框控制点y
-                sh = round(sy - y,3)
-                # 右左
-                if sx > x+w/2:
-                    c1 = round(w/2-w*0.3,3)
-                    c2 = round(w/2-w*0.4,3)
-                else:
-                    c1 = round(w/2-w*0.7,3)
-                    c2 = round(w/2-w*0.6,3)
-                # 下上
-                if sy > ty:
-                    TextBox = "m 0 0 l {0} 0 l {0} {1} l {4} {1} l {2} {3} l {5} {1} l 0 {1} ".format(w,h,sw,sh,c1,c2)
-                else:
-                    TextBox = "m 0 0 l {4} 0 l {2} {3} l {5} 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h,sw,sh,c1,c2)
-                TextBox = r'{\p1}'+ TextBox +r'{\p0}'
-                TextBox=self._tab_helper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
-                self.asstools.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
-                Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x+1,PosY=y+1,fontsize=str(round(float(fontsize),3)),SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
-                self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
-            elif style == 'highlightText':
-                Name += r'_highlightText'
-                if self.libassHack == True:
-                    w = str(round(float(w)*1.776),3)
-                TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h)
-                TextBox = r'{\p1}'+ TextBox +r'{\p0}'
-                TextBox=self._tab_helper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
-                self.asstools.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
-                Text= self._tab_helper(Text=Text,PrimaryColour=fgColor,PosX=x+1,PosY=y+1,fontsize=str(round(float(fontsize),3)),SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
-                self.asstools.event.add(Start=Start,End=End,Name=Name,Text=Text)
-            elif style == None:
-                pass
+                c1 = round(w/2-w*0.7,3)
+                c2 = round(w/2-w*0.6,3)
+            # 下上
+            if sy > ty:
+                TextBox = "m 0 0 l {0} 0 l {0} {1} l {4} {1} l {2} {3} l {5} {1} l 0 {1} ".format(w,h,sw,sh,c1,c2)
             else:
-                print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
-    
-    def _tab_helper(self,Text:str='',PrimaryColour:Optional[str]=None,SecondaryColour:Optional[str]=None,BorderColor:Optional[str]=None,ShadowColor:Optional[str]=None,PosX:Optional[float]=None,PosY:Optional[float]=None,fontsize:Optional[str]=None,PrimaryAlpha:Optional[str]=None,SecondaryAlpha:Optional[str]=None,BorderAlpha:Optional[str]=None,ShadowAlpha:Optional[str]=None,p:Optional[str]=None) ->str:
-        _tab = ''
-        if (PosX,PosY) is not None:
-            _an = r'\an7'
-            _pos = "\\pos({},{})".format(PosX,PosY)
-            _tab += _an + _pos 
-        if PrimaryColour is not None:
-            _c = r'\c' + PrimaryColour
-            _tab += _c
-        if SecondaryColour is not None:
-            _2c = r'\2c' + SecondaryColour
-            _tab += _2c
-        if BorderColor is not None:
-            _3c = r'\3c' + BorderColor
-            _tab += _3c
-        if ShadowColor is not None:
-            _4c = r'\4c' + ShadowColor
-            _tab += _4c
-        if fontsize is not None:
-            _fs = r'\fs' + fontsize
-            _tab += _fs
-        if PrimaryAlpha is not None:
-            _1a = r'\1a' + PrimaryAlpha
-            _tab += _1a
-        if SecondaryAlpha is not None:
-            _2a = r'\2a' + SecondaryAlpha
-            _tab += _2a
-        if BorderAlpha is not None:
-            _3a = r'\3a' + BorderAlpha
-            _tab += _3a
-        if ShadowAlpha is not None:
-            _4a = r'\4a' + ShadowAlpha
-            _tab += _4a
-        _text = r'{' + _tab + r'}' + Text
-        return _text
-        #{\2c&H2425DA&\pos(208,148)}test
+                TextBox = "m 0 0 l {4} 0 l {2} {3} l {5} 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h,sw,sh,c1,c2)
+            TextBox = r'{\p1}'+ TextBox +r'{\p0}'
+            TextBox=TabHelper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+            sub.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
+            Text= TabHelper(Text=Text,PrimaryColour=fgColor,PosX=x+1,PosY=y+1,fontsize=str(round(float(fontsize),3)),SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+            sub.event.add(Start=Start,End=End,Name=Name,Text=Text)
+
+        elif style == 'highlightText':
+            Name += r'_highlightText'
+            if libass_hack == True:
+                w = str(round(float(w)*1.776),3)
+            TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h)
+            TextBox = r'{\p1}'+ TextBox +r'{\p0}'
+            TextBox=TabHelper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+            sub.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
+            Text= TabHelper(Text=Text,PrimaryColour=fgColor,PosX=x+1,PosY=y+1,fontsize=str(round(float(fontsize),3)),SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
+            sub.event.add(Start=Start,End=End,Name=Name,Text=Text)
+
+        elif style == None:
+            pass
+
+        else:
+            print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
+        
+    sub.event.data.sort(key=lambda x:x[2])
+    if len(sub.event.data) == 0:
+        print('\033[0;33;40m{}\033[0m'.format(_('警告, 没有注释被转换!')))
+    return sub
+
+class Annotations2Sub():
+    def __init__(self,file:str,title:str=_('默认文件'),libass_hack:bool=False,resolution_x:int=100,resolution_y:int=100) -> None:
+        string=open(file,'r',encoding="utf-8").read()
+        self.sub = Convert(string=string,title=title,resolution_x=resolution_x,resolution_y=resolution_y,libass_hack=libass_hack)
+
+    def Save(self,file) -> str:
+        with open(file + '.ass', 'w', encoding='utf-8') as f:
+            f.write(self.sub.dump())
+            print(_("保存于 \"{}.ass\"".format(file)))
+            return file + '.ass'
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=_('一个可以把Youtube注释转换成ASS字幕的脚本'))
     parser.add_argument('File',type=str,nargs='+',metavar='File or ID',help=_('待转换的文件'))
-    parser.add_argument('-l','--libassHack',action='store_true',help=_('针对libass修正'))
-    parser.add_argument('-x','--reset-resolution-x',default=100,type=int,metavar=1920,help=_('重设分辨率X'))
-    parser.add_argument('-y','--reset-resolution-y',default=100,type=int,metavar=1080,help=_('重设分辨率Y'))
+    parser.add_argument('-l','--use-libass',action='store_true',help=_('针对libass修正'))
+    parser.add_argument('-x','--reset-resolution-x',default=100,type=int,metavar=100,help=_('重设分辨率X'))
+    parser.add_argument('-y','--reset-resolution-y',default=100,type=int,metavar=100,help=_('重设分辨率Y'))
     parser.add_argument('-d','--download-for-invidious',action='store_true',help=_('尝试从invidious下载注释文件'))
     parser.add_argument('-i','--invidious-domain',default='invidiou.site', metavar='invidious.domain',help=_('指定invidious域名'))
     parser.add_argument('-p','--preview-video',action='store_true',help=_('预览视频(需要mpv)'))
     parser.add_argument('-g','--generate-video',action='store_true',help=_('生成视频(需要FFmpeg)'))
     args = parser.parse_args()
-    libassHack = args.libassHack
+    libassHack = args.use_libass
     for File in args.File:
         if args.download_for_invidious or args.preview_video or args.generate_video is True:
             Id = File
             File = _download_for_invidious(id=Id,invidious_domain=args.invidious_domain)
         if args.preview_video or args.generate_video is True:
             libassHack = True
-        ass = Annotations2Sub(File=File,Title=File,libassHack=libassHack,resolution_x=args.reset_resolution_x,resolution_y=args.reset_resolution_y)
-        File = ass.Save(File=File)
+        ass = Annotations2Sub(file=File,title=File,libass_hack=libassHack,resolution_x=args.reset_resolution_x,resolution_y=args.reset_resolution_y)
+        File = ass.Save(file=File)
         del ass
         if args.preview_video is True:
             _preview_video(id=Id,file=File,invidious_domain=args.invidious_domain)
