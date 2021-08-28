@@ -16,8 +16,7 @@ https://github.com/afrmtbl/AnnotationsRestored
 """ 
 鸣谢:
 https://archive.org/details/youtubeannotations
-https://github.com/afrmtbl/AnnotationsRestored
-
+https://github.com/iv-org/invidious
 """
 
 """ 
