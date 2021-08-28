@@ -4,7 +4,7 @@
 # Annotations2Sub
 __authors__ = 'wrtyis@outlook.com'
 __license__ = 'GPLv3'
-__version__ = '0.0.7'
+__version__ = '0.0.8'
 
 """
 参考:
@@ -34,7 +34,8 @@ if hex(os.sys.hexversion) < hex(0x03060000):
 import re
 import json
 import glob
-import urllib.request 
+import urllib.request
+import urllib.error
 import gettext
 import argparse
 import traceback
@@ -58,14 +59,37 @@ def _check_network(url:str='https://google.com/',timeout:float=3.0) -> bool:
         return False
     return True
 
-def _download_for_invidious(video_id:str,invidious_domain:str='invidiou.site') -> str:
-    api = '/api/v1/annotations/'
-    url = 'https://' + invidious_domain + api + video_id
-    file = "{}.xml".format(video_id)
+def _download_for_archive(video_id:str) -> str:
+    # 参考自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
+    ARCHIVE_URL = r'https://archive.org'
+    CHARS_SAFE = r'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
+
+    m = re.match(r'[a-zA-Z0-9_-]{11}',video_id) 
+    if m != None:
+        videoId = m.group()
+    else:
+        return
+    
+    index = CHARS_SAFE.index(videoId[0]).__str__().rjust(2,'0')
+
+    if index == '62':
+        index = '64'
+        videoId.replace(r'^-','A')
+    
+    file = r'{}/{}.xml'.format(videoId[0:3],videoId)
+    url = ARCHIVE_URL + "/download/youtubeannotations_{}/{}.tar/{}".format(index,videoId[0:2],file)
+
     print(_("正在从 {} 下载注释文件").format(url))
-    urllib.request.urlretrieve(url,file)
+    try:
+        u_annotations = urllib.request.urlopen(url)
+    except urllib.error.HTTPError as e:
+        return
+    annotations = u_annotations.read().decode('utf-8')
+    save_file = "{}.xml".format(video_id)
+    with open(save_file, 'w', encoding='utf-8') as f:
+        f.write(annotations)
     print(_("下载完成"))
-    return file
+    return save_file
 
 def _preview_video(video_id:str,file:str,invidious_domain:str='invidiou.site') ->None:
     api = '/api/v1/videos/'
@@ -474,14 +498,14 @@ if __name__ == "__main__":
     parser.add_argument('-x','--reset-resolution-x',default=100,type=int,metavar=100,help=_('重设分辨率X'))
     parser.add_argument('-y','--reset-resolution-y',default=100,type=int,metavar=100,help=_('重设分辨率Y'))
     parser.add_argument('-f','--font',default=font,type=str,metavar=font,help=_('指定字体'))
-    parser.add_argument('-d','--download-for-invidious',action='store_true',help=_('尝试从invidious下载注释文件'))
+    parser.add_argument('-d','--download-for-archive',action='store_true',help=_('尝试从 Internet Archive 下载注释文件'))
     parser.add_argument('-i','--invidious-domain',default=invidious, metavar='invidious.domain',help=_('指定invidious域名'))
     parser.add_argument('-p','--preview-video',action='store_true',help=_('预览视频(需要mpv)'))
     parser.add_argument('-g','--generate-video',action='store_true',help=_('生成视频(需要FFmpeg)'))
     args = parser.parse_args()
     libass_hack = args.use_libass
 
-    if args.download_for_invidious or args.preview_video or args.generate_video is True:
+    if args.download_for_archive or args.preview_video or args.generate_video is True:
         videoIds = []
         for videoId in args.File:
             m = re.match(r'[a-zA-Z0-9_-]{11}',videoId) 
@@ -491,14 +515,16 @@ if __name__ == "__main__":
                 videoIds.append(selected_videoId)
             else:
                 print(yellow_text.format('无效的videoId: {}'.format(videoId)))
-        if _check_network() is not True:
+        if _check_network(timeout=1.0) is not True:
             print(yellow_text.format(_('您好像无法访问Google🤔')))
         if args.preview_video or args.generate_video is True:
             libass_hack = True
         if len(videoIds) == 0:
             print(yellow_text.format(_('没有文件要转换')))
         for videoId in videoIds:
-            File = _download_for_invidious(video_id=videoId,invidious_domain=args.invidious_domain)
+            File = _download_for_archive(video_id=videoId)
+            if File == None:
+                print(yellow_text.format(_('{} 没有注释').format(videoId)))
             ass = Annotations2Sub(file=File,title=File,resolution_x=args.reset_resolution_x,resolution_y=args.reset_resolution_y,font=font,libass_hack=libass_hack)
             File = ass.Save(file=File)
             del ass
@@ -507,7 +533,7 @@ if __name__ == "__main__":
             if args.generate_video is True:
                 _generate_video(video_id=videoId,file=File,invidious_domain=args.invidious_domain)
 
-    if (args.download_for_invidious or args.preview_video or args.generate_video) is not True:
+    if (args.download_for_archive or args.preview_video or args.generate_video) is not True:
         Files = []
         for File in args.File:
             for i in glob.iglob(File):
