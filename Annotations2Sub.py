@@ -49,6 +49,13 @@ font = 'Microsoft YaHei UI'
 #invidious实例很容失效,我应该考虑去掉invidious
 invidious = 'ytb.trom.tf'
 
+def _check_network(url:str='https://google.com/',timeout:float=3.0) -> bool:
+    try:
+        urllib.request.urlopen(url=url, timeout=timeout)
+    except:
+        return False
+    return True
+
 def _download_for_invidious(id:str,invidious_domain:str='invidiou.site') -> str:
     api = '/api/v1/annotations/'
     url = 'https://' + invidious_domain + api + id
@@ -473,6 +480,8 @@ if __name__ == "__main__":
     libass_hack = args.use_libass
     for File in args.File:
         if args.download_for_invidious or args.preview_video or args.generate_video is True:
+            if _check_network() is not True:
+                print('\033[0;33;40m{}\033[0m'.format(_('您好像无法访问Google🤔')))
             Id = File
             File = _download_for_invidious(id=Id,invidious_domain=args.invidious_domain)
         if args.preview_video or args.generate_video is True:
