@@ -1,6 +1,6 @@
 # Annotations2Sub
 
-一个可以把Youtube注释转换成ASS字幕文件的脚本
+一个可以把 Youtube 注释转换成 ASS 字幕文件的脚本
 
 A script that can convert Youtube Annotation into .ASS subtitles files
 
@@ -16,11 +16,12 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -l, --libassHack      Fixes for libass
-  -x 1920, --reset-resolution-x 1920
+  -l, --use-libass      Fixes for libass
+  -x 100, --reset-resolution-x 100
                         Reset resolution X
-  -y 1080, --reset-resolution-y 1080
+  -y 100, --reset-resolution-y 100
                         Reset resolution Y
+  -f, --font            Specify font 
   -d, --download-for-invidious
                         Try downloading the ‪‪annotations file from invidious
   -i invidious.domain, --invidious-domain invidious.domain
@@ -37,29 +38,20 @@ Example:
 [Before](https://www.youtube.com/watch?v=e8kKeUuytqA)
 
 ```bash
-python .\Annotations2Sub.py -g e8kKeUuytqA
+python3 .\Annotations2Sub.py -g e8kKeUuytqA
 ```
 
 [After](https://www.bilibili.com/video/BV1Ff4y1t7Dj?p=4)
 
 ---
 
-[试例](https://www.used255.xyz/uploads/Annotations2Sub_试例)
+<details>
+  <summary><mark><font color=darkred>TODO</font></mark></summary>
 
----
+- g-0i6MOh7n0
 
-TODO:
+- 29-q7YnyUmY
 
-* ~~popup style~~
-* ~~title style~~
-* ~~speech style~~
-* ~~highlightText style~~
-* ~~libass hack~~
-* ~~i18n~~
-* ~~Download for invidious~~
-* ~~Preview video~~
-* ~~Generate video~~
-* popup 行为
-* speech 行为
-* highlightText 行为
-* Make Perfect
+- 去除 invidious
+
+</details>
