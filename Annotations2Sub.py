@@ -41,7 +41,7 @@ import argparse
 import traceback
 import xml.etree.ElementTree
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Union
 
 _ = gettext.gettext
 
@@ -67,8 +67,6 @@ def _download_for_archive(video_id:str) -> str:
     m = re.match(r'[a-zA-Z0-9_-]{11}',video_id) 
     if m != None:
         videoId = m.group()
-    else:
-        return
     
     index = CHARS_SAFE.index(videoId[0]).__str__().rjust(2,'0')
 
@@ -80,11 +78,9 @@ def _download_for_archive(video_id:str) -> str:
     url = ARCHIVE_URL + "/download/youtubeannotations_{}/{}.tar/{}".format(index,videoId[0:2],file)
 
     print(_("正在从 {} 下载注释文件").format(url))
-    try:
-        u_annotations = urllib.request.urlopen(url)
-    except urllib.error.HTTPError as e:
+    annotations = urllib.request.urlopen(url).read().decode('utf-8')
+    if annotations == '':
         return
-    annotations = u_annotations.read().decode('utf-8')
     save_file = "{}.xml".format(video_id)
     with open(save_file, 'w', encoding='utf-8') as f:
         f.write(annotations)
@@ -249,6 +245,15 @@ def TabHelper(Text:str='',PrimaryColour:Optional[str]=None,SecondaryColour:Optio
     return _text
     #{\2c&H2425DA&\pos(208,148)}test
 
+class DrawHelper():
+    def __init__(self) -> None:
+        self.d = 'm 0 0 l'
+    
+    def add_point(self,x:Union[int,float],y:Union[int,float]) -> None:
+        self.d += ' {} {} l'.format(x,y)
+
+    def dump(self) -> str:
+        return self.d
 
 def Convert(string:str,title=_('默认文件'),resolution_y=100,resolution_x=100,font=font,libass_hack=False) -> Sub:
     sub = Sub()
@@ -409,42 +414,110 @@ def Convert(string:str,title=_('默认文件'),resolution_y=100,resolution_x=100
             # 文本框右下角y
             ty = y + h
             # 锚点x控制点w
-            sw = round(sx - x,3)
+            bubble_anchor_x = round(sx - x,3)
             # 锚点y控制点h
-            sh = round(sy - y,3)
+            bubble_anchor_y = round(sy - y,3)
+            # .
+            class _speech_helper():
+                def __init__(self,d:DrawHelper,w,h,bubble_anchor_x,bubble_anchor_y) -> None:
+                    self.d = d
+                    self.w = w
+                    self.h = h
+                    self.bubble_anchor_x = bubble_anchor_x
+                    self.bubble_anchor_y = bubble_anchor_y
+                def 右上角(self):
+                    self.d.add_point(self.w,0)
+                def 右下角(self):
+                    self.d.add_point(self.w,self.h)
+                def 左下角(self):
+                    self.d.add_point(0,self.h)
+                def 气泡锚点(self):
+                    self.d.add_point(self.bubble_anchor_x,self.bubble_anchor_y)
             # ..
             if sx > x+w/2:
                 #开口
-                cw1 = round(w/2-w*0.3,3)
+                bubble_open_x = round(w/2-w*0.2,3)
                 #入口
-                cw2 = round(w/2-w*0.4,3)
+                bubble_close_x = round(w/2-w*0.4,3)
             else:
-                cw1 = round(w/2-w*0.7,3)
-                cw2 = round(w/2-w*0.6,3)
+                bubble_open_x = round(w/2-w*0.8,3)
+                bubble_close_x = round(w/2-w*0.6,3)
             if sy > x+h/2:
                 #开口
-                ch1 = round(h/2-h*0.3,3)
+                bubble_open_y = round(h/2-h*0.2,3)
                 #入口
-                ch2 = round(h/2-h*0.4,3)
+                bubble_close_y = round(h/2-h*0.4,3)
             else:
-                ch1 = round(h/2-h*0.7,3)
-                ch2 = round(h/2-h*0.6,3)
+                bubble_open_y = round(h/2-h*0.8,3)
+                bubble_close_y = round(h/2-h*0.6,3)
             # 锚点在气泡下方
             if sy > ty:
-                #          起点    横      竖        开口      锚点       入口      关闭           0 1 2  3  4   5
-                TextBox = "m 0 0 l {0} 0 l {0} {1} l {4} {1} l {2} {3} l {5} {1} l 0 {1} ".format(w,h,sw,sh,cw1,cw2)
+                d = DrawHelper()
+                s = _speech_helper(d,w,h,bubble_anchor_x,bubble_anchor_y)
+                #
+                s.右上角()
+                #
+                s.右下角()
+                #气泡开口
+                d.add_point(bubble_open_x,h)
+                #
+                s.气泡锚点()
+                #气泡闭口
+                d.add_point(bubble_close_x,h)
+                #
+                s.左下角()
+                TextBox = d.dump()
             # 锚点在气泡上方
             elif sy < y:
-                #          起点    开口    锚点      入口     竖      横        关闭
-                TextBox = "m 0 0 l {4} 0 l {2} {3} l {5} 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h,sw,sh,cw1,cw2)
+                d = DrawHelper()
+                s = _speech_helper(d,w,h,bubble_anchor_x,bubble_anchor_y)
+                #气泡开口
+                d.add_point(bubble_open_x,0)
+                #
+                s.气泡锚点()
+                #气泡闭口
+                d.add_point(bubble_close_x,0)
+                #
+                s.右上角()
+                #
+                s.右下角()
+                #
+                s.左下角()
+                TextBox = d.dump()
             #左
             elif sy > y and sx > x+w/2:
-                #          起点     横      竖        横        开口     锚点     入口    关闭           0 1 2  3  4   5
-                TextBox = "m 0 0 l {0} 0 l {0} {1} l {1} {1} l 0 {4} l {2} {3} l 0 {5} l 0 {1}".format(w,h,sw,sh,ch1,ch2)
+                d = DrawHelper()
+                s = _speech_helper(d,w,h,bubble_anchor_x,bubble_anchor_y)
+                #
+                s.右上角()
+                #
+                s.右下角()
+                #
+                s.左下角()
+                #气泡开口
+                d.add_point(0,bubble_open_y)
+                #
+                s.气泡锚点()
+                #气泡闭口
+                d.add_point(0,bubble_close_y)
+                TextBox = d.dump()
             #右
             elif sy > y and sx < x+w/2:
-                #          起点     横      开口       锚点       入口     横    关闭           0 1 2  3  4   5
-                TextBox = "m 0 0 l {0} 0 l {0} {4} l {2} {3} l {0} {5} l {1} 0 l 0 {1}".format(w,h,sw,sh,ch1,ch2)
+                d = DrawHelper()
+                s = _speech_helper(d,w,h,bubble_anchor_x,bubble_anchor_y)
+                #
+                s.右上角()
+                #气泡开口
+                d.add_point(w,bubble_open_y)
+                #
+                s.气泡锚点()
+                #气泡闭口
+                d.add_point(w,bubble_close_y)
+                #
+                s.右下角()
+                #
+                s.左下角()
+                TextBox = d.dump()
             else:
                 # print(yellow_text.format(_('?({})').format(Name)))
                 pass
@@ -455,7 +528,9 @@ def Convert(string:str,title=_('默认文件'),resolution_y=100,resolution_x=100
             sub.event.add(Start=Start,End=End,Name=Name,Text=Text)
 
         elif style == 'highlightText':
-            Name += r'_highlightText'
+            #我需要样本
+            print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
+            Name += r'_highlightText_NOTSUPPORT'
             if libass_hack == True:
                 w = str(round(float(w)*1.776),3)
             TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h)
