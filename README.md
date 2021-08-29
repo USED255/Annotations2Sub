@@ -2,7 +2,7 @@
 
 一个可以把 Youtube 注释转换成 ASS 字幕文件的脚本
 
-A script that can convert Youtube Annotation into .ASS subtitles files
+A script that can convert Youtube Annotation into ASS(Sub Station Alpha V4) subtitles files
 
 ---
 

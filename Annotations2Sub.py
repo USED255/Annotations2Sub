@@ -4,7 +4,7 @@
 # Annotations2Sub
 __authors__ = 'wrtyis@outlook.com'
 __license__ = 'GPLv3'
-__version__ = '0.0.7'
+__version__ = '0.0.8'
 
 """
 参考:
@@ -16,8 +16,7 @@ https://github.com/afrmtbl/AnnotationsRestored
 """ 
 鸣谢:
 https://archive.org/details/youtubeannotations
-https://github.com/afrmtbl/AnnotationsRestored
-
+https://github.com/iv-org/invidious
 """
 
 """ 
@@ -34,13 +33,15 @@ if hex(os.sys.hexversion) < hex(0x03060000):
 
 import re
 import json
-import urllib.request 
+import glob
+import urllib.request
+import urllib.error
 import gettext
 import argparse
 import traceback
 import xml.etree.ElementTree
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Union
 
 _ = gettext.gettext
 
@@ -48,6 +49,8 @@ _ = gettext.gettext
 font = 'Microsoft YaHei UI'
 #invidious实例很容失效,我应该考虑去掉invidious
 invidious = 'ytb.trom.tf'
+#黄底文字模板
+yellow_text = '\033[0;33;40m{}\033[0m'
 
 def _check_network(url:str='https://google.com/',timeout:float=3.0) -> bool:
     try:
@@ -56,18 +59,37 @@ def _check_network(url:str='https://google.com/',timeout:float=3.0) -> bool:
         return False
     return True
 
-def _download_for_invidious(id:str,invidious_domain:str='invidiou.site') -> str:
-    api = '/api/v1/annotations/'
-    url = 'https://' + invidious_domain + api + id
-    file = "{}.xml".format(id)
-    print(_("正在从 {} 下载注释文件").format(url))
-    urllib.request.urlretrieve(url,file)
-    print(_("下载完成"))
-    return file
+def _download_for_archive(video_id:str) -> str:
+    # 参考自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
+    ARCHIVE_URL = r'https://archive.org'
+    CHARS_SAFE = r'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
 
-def _preview_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None:
+    m = re.match(r'[a-zA-Z0-9_-]{11}',video_id) 
+    if m != None:
+        videoId = m.group()
+    
+    index = CHARS_SAFE.index(videoId[0]).__str__().rjust(2,'0')
+
+    if index == '62':
+        index = '64'
+        videoId.replace(r'^-','A')
+    
+    file = r'{}/{}.xml'.format(videoId[0:3],videoId)
+    url = ARCHIVE_URL + "/download/youtubeannotations_{}/{}.tar/{}".format(index,videoId[0:2],file)
+
+    print(_("正在从 {} 下载注释文件").format(url))
+    annotations = urllib.request.urlopen(url).read().decode('utf-8')
+    if annotations == '':
+        return
+    save_file = "{}.xml".format(video_id)
+    with open(save_file, 'w', encoding='utf-8') as f:
+        f.write(annotations)
+    print(_("下载完成"))
+    return save_file
+
+def _preview_video(video_id:str,file:str,invidious_domain:str='invidiou.site') ->None:
     api = '/api/v1/videos/'
-    url = 'https://' + invidious_domain + api + id
+    url = 'https://' + invidious_domain + api + video_id
     r = urllib.request.Request(url)
     with urllib.request.urlopen(r) as f:
         data = json.loads(f.read().decode('utf-8'))
@@ -86,11 +108,11 @@ def _preview_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None:
     print(cmd)
     exit_code = os.system(cmd)
     if exit_code != 0:
-        print('\033[0;33;40m{}\033[0m'.format('exit with {}'.format(exit_code)))
+        print(yellow_text.format('exit with {}'.format(exit_code)))
 
-def _generate_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None:
+def _generate_video(video_id:str,file:str,invidious_domain:str='invidiou.site') ->None:
     api = '/api/v1/videos/'
-    url = 'https://' + invidious_domain + api + id
+    url = 'https://' + invidious_domain + api + video_id
     r = urllib.request.Request(url)
     with urllib.request.urlopen(r) as f:
         data = json.loads(f.read().decode('utf-8'))
@@ -105,11 +127,11 @@ def _generate_video(id:str,file:str,invidious_domain:str='invidiou.site') ->None
     videos.sort(key=lambda x:int(x.get('bitrate')),reverse=True)
     audio = audios[0].get('url')
     video = videos[0].get('url')
-    cmd = r'ffmpeg -i "{}" -i "{}" -vf "ass={}" "{}.mp4"'.format(video,audio,file,id)
+    cmd = r'ffmpeg -i "{}" -i "{}" -vf "ass={}" "{}.mp4"'.format(video,audio,file,video_id)
     print(cmd)
     exit_code = os.system(cmd)
     if exit_code != 0:
-        print('\033[0;33;40m{}\033[0m'.format('exit with {}'.format(exit_code)))
+        print(yellow_text.format('exit with {}'.format(exit_code)))
 
 class Sub():
     def __init__(self) -> None:
@@ -223,6 +245,15 @@ def TabHelper(Text:str='',PrimaryColour:Optional[str]=None,SecondaryColour:Optio
     return _text
     #{\2c&H2425DA&\pos(208,148)}test
 
+class DrawHelper():
+    def __init__(self) -> None:
+        self.d = 'm 0 0 l'
+    
+    def add_point(self,x:Union[int,float],y:Union[int,float]) -> None:
+        self.d += ' {} {} l'.format(x,y)
+
+    def dump(self) -> str:
+        return self.d
 
 def Convert(string:str,title=_('默认文件'),resolution_y=100,resolution_x=100,font=font,libass_hack=False) -> Sub:
     sub = Sub()
@@ -234,13 +265,8 @@ def Convert(string:str,title=_('默认文件'),resolution_y=100,resolution_x=100
     sub.style.change(Name='Default',Fontname=font)
     if libass_hack is True:
         sub.info.note+='libass_hack=True\n'
-    try:
-        tree = xml.etree.ElementTree.fromstring(string)
-    except:
-        traceback.print_exc()
-        print('\033[0;33;40m{}\033[0m'.format(_('也许您选错文件了?')))
-        exit(1)
-    
+
+    tree = xml.etree.ElementTree.fromstring(string)
     for each in tree.find('annotations').findall('annotation'):
         
         #提取 annotation id
@@ -282,7 +308,7 @@ def Convert(string:str,title=_('默认文件'),resolution_y=100,resolution_x=100
         TextB = TextB.replace(r'}',r'\}')
         if Text != TextB:
             if libass_hack == False:
-                print('\033[0;33;40m{}\033[0m'.format(_('警告, 花括号转义只能在libass上工作!({})').format(Name)))
+                print(yellow_text.format(_('警告, 花括号转义只能在libass上工作!({})').format(Name)))
             Text = TextB
         
         def _bgr2rgb(BGR:str) -> str:
@@ -388,44 +414,113 @@ def Convert(string:str,title=_('默认文件'),resolution_y=100,resolution_x=100
             # 文本框右下角y
             ty = y + h
             # 锚点x控制点w
-            sw = round(sx - x,3)
+            bubble_anchor_x = round(sx - x,3)
             # 锚点y控制点h
-            sh = round(sy - y,3)
+            bubble_anchor_y = round(sy - y,3)
+            # .
+            class _speech_helper():
+                def __init__(self,d:DrawHelper,w,h,bubble_anchor_x,bubble_anchor_y) -> None:
+                    self.d = d
+                    self.w = w
+                    self.h = h
+                    self.bubble_anchor_x = bubble_anchor_x
+                    self.bubble_anchor_y = bubble_anchor_y
+                def 右上角(self):
+                    self.d.add_point(self.w,0)
+                def 右下角(self):
+                    self.d.add_point(self.w,self.h)
+                def 左下角(self):
+                    self.d.add_point(0,self.h)
+                def 气泡锚点(self):
+                    self.d.add_point(self.bubble_anchor_x,self.bubble_anchor_y)
             # ..
             if sx > x+w/2:
                 #开口
-                cw1 = round(w/2-w*0.3,3)
+                bubble_open_x = round(w/2-w*0.2,3)
                 #入口
-                cw2 = round(w/2-w*0.4,3)
+                bubble_close_x = round(w/2-w*0.4,3)
             else:
-                cw1 = round(w/2-w*0.7,3)
-                cw2 = round(w/2-w*0.6,3)
+                bubble_open_x = round(w/2-w*0.8,3)
+                bubble_close_x = round(w/2-w*0.6,3)
             if sy > x+h/2:
                 #开口
-                ch1 = round(h/2-h*0.3,3)
+                bubble_open_y = round(h/2-h*0.2,3)
                 #入口
-                ch2 = round(h/2-h*0.4,3)
+                bubble_close_y = round(h/2-h*0.4,3)
             else:
-                ch1 = round(h/2-h*0.7,3)
-                ch2 = round(h/2-h*0.6,3)
+                bubble_open_y = round(h/2-h*0.8,3)
+                bubble_close_y = round(h/2-h*0.6,3)
             # 锚点在气泡下方
             if sy > ty:
-                #          起点    横      竖        开口      锚点       入口      关闭           0 1 2  3  4   5
-                TextBox = "m 0 0 l {0} 0 l {0} {1} l {4} {1} l {2} {3} l {5} {1} l 0 {1} ".format(w,h,sw,sh,cw1,cw2)
+                d = DrawHelper()
+                s = _speech_helper(d,w,h,bubble_anchor_x,bubble_anchor_y)
+                #
+                s.右上角()
+                #
+                s.右下角()
+                #气泡开口
+                d.add_point(bubble_open_x,h)
+                #
+                s.气泡锚点()
+                #气泡闭口
+                d.add_point(bubble_close_x,h)
+                #
+                s.左下角()
+                TextBox = d.dump()
             # 锚点在气泡上方
             elif sy < y:
-                #          起点    开口    锚点      入口     竖      横        关闭
-                TextBox = "m 0 0 l {4} 0 l {2} {3} l {5} 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h,sw,sh,cw1,cw2)
+                d = DrawHelper()
+                s = _speech_helper(d,w,h,bubble_anchor_x,bubble_anchor_y)
+                #气泡开口
+                d.add_point(bubble_open_x,0)
+                #
+                s.气泡锚点()
+                #气泡闭口
+                d.add_point(bubble_close_x,0)
+                #
+                s.右上角()
+                #
+                s.右下角()
+                #
+                s.左下角()
+                TextBox = d.dump()
             #左
             elif sy > y and sx > x+w/2:
-                #          起点     横      竖        横        开口     锚点     入口    关闭           0 1 2  3  4   5
-                TextBox = "m 0 0 l {0} 0 l {0} {1} l {1} {1} l 0 {4} l {2} {3} l 0 {5} l 0 {1}".format(w,h,sw,sh,ch1,ch2)
+                d = DrawHelper()
+                s = _speech_helper(d,w,h,bubble_anchor_x,bubble_anchor_y)
+                #
+                s.右上角()
+                #
+                s.右下角()
+                #
+                s.左下角()
+                #气泡开口
+                d.add_point(0,bubble_open_y)
+                #
+                s.气泡锚点()
+                #气泡闭口
+                d.add_point(0,bubble_close_y)
+                TextBox = d.dump()
             #右
             elif sy > y and sx < x+w/2:
-                #          起点     横      开口       锚点       入口     横    关闭           0 1 2  3  4   5
-                TextBox = "m 0 0 l {0} 0 l {0} {4} l {2} {3} l {0} {5} l {1} 0 l 0 {1}".format(w,h,sw,sh,ch1,ch2)
+                d = DrawHelper()
+                s = _speech_helper(d,w,h,bubble_anchor_x,bubble_anchor_y)
+                #
+                s.右上角()
+                #气泡开口
+                d.add_point(w,bubble_open_y)
+                #
+                s.气泡锚点()
+                #气泡闭口
+                d.add_point(w,bubble_close_y)
+                #
+                s.右下角()
+                #
+                s.左下角()
+                TextBox = d.dump()
             else:
-                print('?')
+                # print(yellow_text.format(_('?({})').format(Name)))
+                pass
             TextBox = r'{\p1}'+ TextBox +r'{\p0}'
             TextBox=TabHelper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
             sub.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
@@ -433,7 +528,9 @@ def Convert(string:str,title=_('默认文件'),resolution_y=100,resolution_x=100
             sub.event.add(Start=Start,End=End,Name=Name,Text=Text)
 
         elif style == 'highlightText':
-            Name += r'_highlightText'
+            #我需要样本
+            print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
+            Name += r'_highlightText_NOTSUPPORT'
             if libass_hack == True:
                 w = str(round(float(w)*1.776),3)
             TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h)
@@ -451,13 +548,17 @@ def Convert(string:str,title=_('默认文件'),resolution_y=100,resolution_x=100
         
     sub.event.data.sort(key=lambda x:x[2])
     if len(sub.event.data) == 0:
-        print('\033[0;33;40m{}\033[0m'.format(_('警告, 没有注释被转换!')))
+        print(yellow_text.format(_('警告, 没有注释被转换!')))
     return sub
 
 class Annotations2Sub():
     def __init__(self,file:str,title:str=_('默认文件'),resolution_x:int=100,resolution_y:int=100,font=font,libass_hack:bool=False) -> None:
         string=open(file,'r',encoding="utf-8").read()
-        self.sub = Convert(string=string,title=title,resolution_x=resolution_x,resolution_y=resolution_y,font=font,libass_hack=libass_hack)
+        try:
+            self.sub = Convert(string=string,title=title,resolution_x=resolution_x,resolution_y=resolution_y,font=font,libass_hack=libass_hack)
+        except xml.etree.ElementTree.ParseError: 
+            traceback.print_exc()
+            print(yellow_text.format(_('也许选错文件了?')))
 
     def Save(self,file) -> str:
         with open(file + '.ass', 'w', encoding='utf-8') as f:
@@ -467,29 +568,58 @@ class Annotations2Sub():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=_('一个可以把Youtube注释转换成ASS字幕的脚本'))
-    parser.add_argument('File',type=str,nargs='+',metavar='File or ID',help=_('待转换的文件'))
+    parser.add_argument('File',type=str,nargs='+',metavar='File or videoId',help=_('待转换的文件'))
     parser.add_argument('-l','--use-libass',action='store_true',help=_('针对libass修正'))
     parser.add_argument('-x','--reset-resolution-x',default=100,type=int,metavar=100,help=_('重设分辨率X'))
     parser.add_argument('-y','--reset-resolution-y',default=100,type=int,metavar=100,help=_('重设分辨率Y'))
     parser.add_argument('-f','--font',default=font,type=str,metavar=font,help=_('指定字体'))
-    parser.add_argument('-d','--download-for-invidious',action='store_true',help=_('尝试从invidious下载注释文件'))
+    parser.add_argument('-d','--download-for-archive',action='store_true',help=_('尝试从 Internet Archive 下载注释文件'))
     parser.add_argument('-i','--invidious-domain',default=invidious, metavar='invidious.domain',help=_('指定invidious域名'))
     parser.add_argument('-p','--preview-video',action='store_true',help=_('预览视频(需要mpv)'))
     parser.add_argument('-g','--generate-video',action='store_true',help=_('生成视频(需要FFmpeg)'))
     args = parser.parse_args()
     libass_hack = args.use_libass
-    for File in args.File:
-        if args.download_for_invidious or args.preview_video or args.generate_video is True:
-            if _check_network() is not True:
-                print('\033[0;33;40m{}\033[0m'.format(_('您好像无法访问Google🤔')))
-            Id = File
-            File = _download_for_invidious(id=Id,invidious_domain=args.invidious_domain)
+
+    if args.download_for_archive or args.preview_video or args.generate_video is True:
+        videoIds = []
+        for videoId in args.File:
+            m = re.match(r'[a-zA-Z0-9_-]{11}',videoId) 
+            if m != None:
+                selected_videoId = m.group()
+                print(_('选中{}').format(selected_videoId))
+                videoIds.append(selected_videoId)
+            else:
+                print(yellow_text.format('无效的videoId: {}'.format(videoId)))
+        if _check_network(timeout=1.0) is not True:
+            print(yellow_text.format(_('您好像无法访问Google🤔')))
         if args.preview_video or args.generate_video is True:
             libass_hack = True
-        ass = Annotations2Sub(file=File,title=File,resolution_x=args.reset_resolution_x,resolution_y=args.reset_resolution_y,font=font,libass_hack=libass_hack)
-        File = ass.Save(file=File)
-        del ass
-        if args.preview_video is True:
-            _preview_video(id=Id,file=File,invidious_domain=args.invidious_domain)
-        if args.generate_video is True:
-            _generate_video(id=Id,file=File,invidious_domain=args.invidious_domain)
+        if len(videoIds) == 0:
+            print(yellow_text.format(_('没有文件要转换')))
+        for videoId in videoIds:
+            File = _download_for_archive(video_id=videoId)
+            if File == None:
+                print(yellow_text.format(_('{} 没有注释').format(videoId)))
+            ass = Annotations2Sub(file=File,title=File,resolution_x=args.reset_resolution_x,resolution_y=args.reset_resolution_y,font=font,libass_hack=libass_hack)
+            File = ass.Save(file=File)
+            del ass
+            if args.preview_video is True:
+                _preview_video(video_id=videoId,file=File,invidious_domain=args.invidious_domain)
+            if args.generate_video is True:
+                _generate_video(video_id=videoId,file=File,invidious_domain=args.invidious_domain)
+
+    if (args.download_for_archive or args.preview_video or args.generate_video) is not True:
+        Files = []
+        for File in args.File:
+            for i in glob.iglob(File):
+                if os.path.exists(i):
+                    print(_('选中{}').format(i))
+                    Files.append(i)
+                else:
+                    print(_('文件不存在({})').format(i))
+        if len(Files) == 0:
+            print(yellow_text.format(_('没有文件要转换')))
+        for File in Files:
+            ass = Annotations2Sub(file=File,title=File,resolution_x=args.reset_resolution_x,resolution_y=args.reset_resolution_y,font=font,libass_hack=libass_hack)
+            File = ass.Save(file=File)
+            del ass
