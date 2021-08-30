@@ -87,7 +87,7 @@ def _download_for_archive(video_id:str) -> str:
     print(_("下载完成"))
     return save_file
 
-def _preview_video(video_id:str,file:str,invidious_domain:str='invidiou.site') ->None:
+def _get_video_for_invidiou(video_id:str,invidious_domain:str=invidious):
     api = '/api/v1/videos/'
     url = 'https://' + invidious_domain + api + video_id
     r = urllib.request.Request(url)
@@ -104,6 +104,10 @@ def _preview_video(video_id:str,file:str,invidious_domain:str='invidiou.site') -
     videos.sort(key=lambda x:int(x.get('bitrate')),reverse=True)
     audio = audios[0].get('url')
     video = videos[0].get('url')
+    return {'audio':audio,'video':video}
+
+def _preview_video(video_id:str,file:str,invidious_domain:str=invidious) ->None:
+    audio,video = _get_video_for_invidiou(video_id,invidious_domain).values()
     cmd = r'mpv "{}" --audio-file="{}" --sub-file="{}"'.format(video,audio,file)
     print(cmd)
     exit_code = os.system(cmd)
@@ -111,22 +115,7 @@ def _preview_video(video_id:str,file:str,invidious_domain:str='invidiou.site') -
         print(yellow_text.format('exit with {}'.format(exit_code)))
 
 def _generate_video(video_id:str,file:str,invidious_domain:str='invidiou.site') ->None:
-    api = '/api/v1/videos/'
-    url = 'https://' + invidious_domain + api + video_id
-    r = urllib.request.Request(url)
-    with urllib.request.urlopen(r) as f:
-        data = json.loads(f.read().decode('utf-8'))
-    audios = []
-    videos = []
-    for i in data.get('adaptiveFormats'):
-        if re.match('audio', i.get('type')) is not None:
-            audios.append(i)
-        if re.match('video', i.get('type')) is not None:
-            videos.append(i)
-    audios.sort(key=lambda x:int(x.get('bitrate')),reverse=True)
-    videos.sort(key=lambda x:int(x.get('bitrate')),reverse=True)
-    audio = audios[0].get('url')
-    video = videos[0].get('url')
+    audio,video = _get_video_for_invidiou(video_id,invidious_domain).values()
     cmd = r'ffmpeg -i "{}" -i "{}" -vf "ass={}" "{}.mp4"'.format(video,audio,file,video_id)
     print(cmd)
     exit_code = os.system(cmd)
@@ -400,15 +389,15 @@ def Convert(string:str,title=_('默认文件'),resolution_y=100,resolution_x=100
             print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
             Name +=r'_speech_NOTSUPPORT'
             if libass_hack == True:
-                w = str(round(float(w)*1.776),3)
+                w = round(float(w)*1.776,3)
             # 气泡锚点x
             sx = float(_Segment[0].get('sx'))
             # 气泡锚点y
             sy = float(_Segment[0].get('sy'))
             # 文本框左上角x
-            x = x
+            x = float(x)
             # 文本框左上角y
-            y = y
+            y = float(y)
             # 文本框右下角x
             tx = x + w
             # 文本框右下角y
@@ -532,7 +521,7 @@ def Convert(string:str,title=_('默认文件'),resolution_y=100,resolution_x=100
             print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
             Name += r'_highlightText_NOTSUPPORT'
             if libass_hack == True:
-                w = str(round(float(w)*1.776),3)
+                w = round(float(w)*1.776,3)
             TextBox = "m 0 0 l {0} 0 l {0} {1} l 0 {1} ".format(w,h)
             TextBox = r'{\p1}'+ TextBox +r'{\p0}'
             TextBox=TabHelper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
