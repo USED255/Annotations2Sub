@@ -21,7 +21,7 @@ optional arguments:
                         Reset resolution X
   -y 100, --reset-resolution-y 100
                         Reset resolution Y
-  -f, --font            Specify font 
+  -f, --font            Specify font
   -d, --download-for-invidious
                         Try downloading the ‪‪annotations file from invidious
   -i invidious.domain, --invidious-domain invidious.domain
@@ -34,6 +34,10 @@ optional arguments:
 ---
 
 Example:
+
+```bash
+wget https://github.com/USED255/Annotations2Sub/raw/master/Annotations2Sub.py 
+```
 
 [Before](https://www.youtube.com/watch?v=e8kKeUuytqA)
 
