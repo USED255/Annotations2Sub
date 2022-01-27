@@ -49,7 +49,7 @@ _ = gettext.gettext
 #应该用无衬线字体,但是好像不能方便的使用字体家族..
 font = 'Microsoft YaHei UI'
 #invidious实例很容失效,我应该考虑去掉invidious
-invidious = 'ytb.trom.tf'
+invidious = 'vid.puffyan.us'
 #黄底文字模板
 yellow_text = '\033[0;33;40m{}\033[0m'
 
@@ -130,6 +130,14 @@ def _generate_video(video_id:str,file:str,invidious_domain:str='invidiou.site') 
     exit_code = os.system(cmd)
     if exit_code != 0:
         print(yellow_text.format('exit with {}'.format(exit_code)))
+
+class ConvertParameter():
+    def __init__(self) -> None:
+        self.title:str=_('默认文件')
+        self.resolution_x:int=100
+        self.resolution_y:int=100
+        self.font=font
+        self.libass_hack:bool=False
 
 class Sub():
     def __init__(self) -> None:
@@ -253,7 +261,12 @@ class DrawHelper():
     def dump(self) -> str:
         return self.d
 
-def Convert(string:str,title=_('默认文件'),resolution_y=100,resolution_x=100,font=font,libass_hack=False) -> Sub:
+def Convert(string:str,convert_parameter:ConvertParameter) -> Sub:
+    title=convert_parameter.title
+    resolution_x=convert_parameter.resolution_x
+    resolution_y=convert_parameter.resolution_y
+    font=convert_parameter.font
+    libass_hack=convert_parameter.libass_hack
     sub = Sub()
     sub.info.add(k='Title',v=title)
     sub.info.add(k='PlayResX',v=resolution_x)
@@ -550,10 +563,10 @@ def Convert(string:str,title=_('默认文件'),resolution_y=100,resolution_x=100
     return sub
 
 class Annotations2Sub():
-    def __init__(self,file:str,title:str=_('默认文件'),resolution_x:int=100,resolution_y:int=100,font=font,libass_hack:bool=False) -> None:
+    def __init__(self,file:str,convert_parameter:ConvertParameter) -> None:
         string=open(file,'r',encoding="utf-8").read()
         try:
-            self.sub = Convert(string=string,title=title,resolution_x=resolution_x,resolution_y=resolution_y,font=font,libass_hack=libass_hack)
+            self.sub = Convert(string=string,convert_parameter=convert_parameter)
         except xml.etree.ElementTree.ParseError: 
             traceback.print_exc()
             print(yellow_text.format(_('也许选错文件了?')))
@@ -578,7 +591,12 @@ if __name__ == "__main__":
     args = parser.parse_args()
     libass_hack = args.use_libass
 
-    if args.download_for_archive or args.preview_video or args.generate_video is True:
+    convert_parameter = ConvertParameter()
+    convert_parameter.resolution_x=args.reset_resolution_x
+    convert_parameter.resolution_y=args.reset_resolution_y
+    convert_parameter.font=args.font
+
+    if (args.download_for_archive or args.preview_video or args.generate_video) is True:
         videoIds = []
         for videoId in args.File:
             m = re.match(r'[a-zA-Z0-9_-]{11}',videoId) 
@@ -597,9 +615,11 @@ if __name__ == "__main__":
             File = _download_for_archive(video_id=videoId)
             if File == None:
                 print(yellow_text.format(_('{} 没有注释').format(videoId)))
-            ass = Annotations2Sub(file=File,title=File,resolution_x=args.reset_resolution_x,resolution_y=args.reset_resolution_y,font=font,libass_hack=libass_hack)
-            File = ass.Save(file=File)
-            del ass
+            convert_parameter.title=File
+            convert_parameter.libass_hack=libass_hack
+            sub = Annotations2Sub(file=File,convert_parameter=convert_parameter)
+            File = sub.Save(file=File)
+            del sub
             if args.preview_video is True:
                 _preview_video(video_id=videoId,file=File,invidious_domain=args.invidious_domain)
             if args.generate_video is True:
@@ -617,6 +637,8 @@ if __name__ == "__main__":
         if len(Files) == 0:
             print(yellow_text.format(_('没有文件要转换')))
         for File in Files:
-            ass = Annotations2Sub(file=File,title=File,resolution_x=args.reset_resolution_x,resolution_y=args.reset_resolution_y,font=font,libass_hack=libass_hack)
-            File = ass.Save(file=File)
-            del ass
+            convert_parameter.title=File
+            convert_parameter.libass_hack=libass_hack
+            sub = Annotations2Sub(file=File,convert_parameter=convert_parameter)
+            File = sub.Save(file=File)
+            del sub
