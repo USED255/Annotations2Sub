@@ -48,8 +48,43 @@ _ = gettext.gettext
 
 #应该用无衬线字体,但是好像不能方便的使用字体家族..
 font = 'Microsoft YaHei UI'
-#黄底文字模板
-yellow_text = '\033[0;33;40m{}\033[0m'
+
+def normal_text(s:str) -> str:
+    return s
+
+def yellow_text(s:str) -> str:
+    return '\033[0;33;40m{}\033[0m'.format(s)
+
+def red_text(s:str) -> str:
+    return '\031[0;31;40m{}\031[0m'.format(s)
+
+def PriI(s,*args: object) -> None:
+    _text = normal_text
+    if args == ():
+        print(_text(_(s)))
+        return
+    print(_text(_(s).format(*args)))
+
+def PriW(s,*args: object) -> None:
+    _text = yellow_text
+    if args == ():
+        print(_text(_(s)))
+        return
+    print(_text(_(s).format(*args)))
+
+def PriW(s,*args: object) -> None:
+    _text = yellow_text
+    if args == ():
+        print(_text(_(s)))
+        return
+    print(_text(_(s).format(*args)))
+
+def PriE(s,*args: object) -> None:
+    _text = red_text
+    if args == ():
+        print(_text(_(s)))
+        return
+    print(_text(_(s).format(*args)))
 
 def _check_url(url:str='https://google.com/',timeout:float=3.0) -> bool:
     try:
@@ -59,14 +94,14 @@ def _check_url(url:str='https://google.com/',timeout:float=3.0) -> bool:
     return True
 
 def _check_network():
-    if _check_url(timeout=1.0) is not True:
-        print(yellow_text.format(_('您好像无法访问Google🤔')))
+    if _check_url() is not True:
+        PriW("您好像无法访问Google🤔")
 
 def check_network():
     check_thread = threading.Thread(target=_check_network)
     check_thread.start()
 
-def _download_for_archive(video_id:str) -> str:
+def download_annotations_for_archive(video_id:str) -> str:
     # 参考自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
     ARCHIVE_URL = r'https://archive.org'
     CHARS_SAFE = r'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'
@@ -84,14 +119,14 @@ def _download_for_archive(video_id:str) -> str:
     file = r'{}/{}.xml'.format(videoId[0:3],videoId)
     url = ARCHIVE_URL + "/download/youtubeannotations_{}/{}.tar/{}".format(index,videoId[0:2],file)
 
-    print(_("正在从 {} 下载注释文件").format(url))
+    PriI("正在从 {} 下载注释文件",url)
     annotations = urllib.request.urlopen(url).read().decode('utf-8')
     if annotations == '':
         return
     save_file = "{}.xml".format(video_id)
     with open(save_file, 'w', encoding='utf-8') as f:
         f.write(annotations)
-    print(_("下载完成"))
+    PriI("下载完成")
     return save_file
 
 def _get_video_for_youtube(video_id:str) -> list :
@@ -178,18 +213,18 @@ def _get_video(video_id:str):
 def _preview_video(video_id:str,file:str) ->None:
     audio,video = _get_video(video_id).values()
     cmd = r'mpv "{}" --audio-file="{}" --sub-file="{}"'.format(video,audio,file)
-    print(cmd)
+    PriI(cmd)
     exit_code = os.system(cmd)
     if exit_code != 0:
-        print(yellow_text.format('exit with {}'.format(exit_code)))
+        PriW("exit with {}",exit_code)
 
 def _generate_video(video_id:str,file:str,) ->None:
     audio,video = _get_video(video_id).values()
     cmd = r'ffmpeg -i "{}" -i "{}" -vf "ass={}" "{}.mp4"'.format(video,audio,file,video_id)
-    print(cmd)
+    PriI(cmd)
     exit_code = os.system(cmd)
     if exit_code != 0:
-        print(yellow_text.format('exit with {}'.format(exit_code)))
+        PriW("exit with {}",exit_code)
 
 class ConvertParameter():
     def __init__(self) -> None:
@@ -379,7 +414,7 @@ def Convert(string:str,convert_parameter:ConvertParameter) -> Sub:
         TextB = TextB.replace(r'}',r'\}')
         if Text != TextB:
             if libass_hack == False:
-                print(yellow_text.format(_('警告, 花括号转义只能在libass上工作!({})').format(Name)))
+                PriW("警告, 花括号转义只能在libass上工作!({})",Name)
             Text = TextB
         
         def _bgr2rgb(BGR:str) -> str:
@@ -468,7 +503,7 @@ def Convert(string:str,convert_parameter:ConvertParameter) -> Sub:
 
         elif style == 'speech':
             #太难了
-            print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
+            PriI("抱歉这个脚本还不能支持 {} 样式. ({})",style,Name)
             Name +=r'_speech_NOTSUPPORT'
             if libass_hack == True:
                 w = round(float(w)*1.776,3)
@@ -590,8 +625,7 @@ def Convert(string:str,convert_parameter:ConvertParameter) -> Sub:
                 s.左下角()
                 TextBox = d.dump()
             else:
-                # print(yellow_text.format(_('?({})').format(Name)))
-                pass
+                PriW("? ({})",Name)
             TextBox = r'{\p1}'+ TextBox +r'{\p0}'
             TextBox=TabHelper(Text=TextBox,PrimaryColour=bgColor,PosX=x,PosY=y,fontsize=str(round(float(fontsize),3)),PrimaryAlpha=bgAlpha,SecondaryAlpha=FullyTransparent,BorderAlpha=FullyTransparent,ShadowAlpha=FullyTransparent)
             sub.event.add(Start=Start,End=End,Name=Name+r'_TextBox',Text=TextBox)
@@ -600,7 +634,7 @@ def Convert(string:str,convert_parameter:ConvertParameter) -> Sub:
 
         elif style == 'highlightText':
             #我需要样本
-            print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
+            PriI("抱歉这个脚本还不能支持 {} 样式. ({})",style,Name)
             Name += r'_highlightText_NOTSUPPORT'
             if libass_hack == True:
                 w = round(float(w)*1.776,3)
@@ -615,11 +649,11 @@ def Convert(string:str,convert_parameter:ConvertParameter) -> Sub:
             pass
 
         else:
-            print(_("抱歉这个脚本还不能支持 {} 样式. ({})").format(style,Name))
+            PriI("抱歉这个脚本还不能支持 {} 样式. ({})",style,Name)
         
     sub.event.data.sort(key=lambda x:x[2])
     if len(sub.event.data) == 0:
-        print(yellow_text.format(_('警告, 没有注释被转换!')))
+        PriW("警告, 没有注释被转换!")
     return sub
 
 class Annotations2Sub():
@@ -629,12 +663,12 @@ class Annotations2Sub():
             self.sub = Convert(string=string,convert_parameter=convert_parameter)
         except xml.etree.ElementTree.ParseError: 
             traceback.print_exc()
-            print(yellow_text.format(_('也许选错文件了?')))
+            PriW("也许选错文件了?")
 
     def Save(self,file) -> str:
         with open(file + '.ass', 'w', encoding='utf-8') as f:
             f.write(self.sub.dump())
-            print(_("保存于 \"{}.ass\"").format(file))
+            PriI("保存于 \"{}.ass\"",file)
             return file + '.ass'
 
 if __name__ == "__main__":
@@ -661,19 +695,19 @@ if __name__ == "__main__":
             m = re.match(r'[a-zA-Z0-9_-]{11}',videoId) 
             if m != None:
                 selected_videoId = m.group()
-                print(_('选中{}').format(selected_videoId))
+                PriI("选中{}",selected_videoId)
                 videoIds.append(selected_videoId)
             else:
-                print(yellow_text.format('无效的videoId: {}'.format(videoId)))
+                PriW("无效的videoId: {}",videoId)
         check_network()
         if args.preview_video or args.generate_video is True:
             libass_hack = True
         if len(videoIds) == 0:
-            print(yellow_text.format(_('没有文件要转换')))
+            PriW("没有文件要转换")
         for videoId in videoIds:
-            File = _download_for_archive(video_id=videoId)
+            File = download_annotations_for_archive(video_id=videoId)
             if File == None:
-                print(yellow_text.format(_('{} 没有注释').format(videoId)))
+                PriW("{} 没有注释",videoId)
             convert_parameter.title=File
             convert_parameter.libass_hack=libass_hack
             sub = Annotations2Sub(file=File,convert_parameter=convert_parameter)
@@ -689,12 +723,12 @@ if __name__ == "__main__":
         for File in args.File:
             for i in glob.iglob(File):
                 if os.path.exists(i):
-                    print(_('选中{}').format(i))
+                    PriI("选中{}",i)
                     Files.append(i)
                 else:
-                    print(_('文件不存在({})').format(i))
+                    PriI("文件不存在({})",i)
         if len(Files) == 0:
-            print(yellow_text.format(_('没有文件要转换')))
+            PriW("没有文件要转换")
         for File in Files:
             convert_parameter.title=File
             convert_parameter.libass_hack=libass_hack
