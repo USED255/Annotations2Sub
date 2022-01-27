@@ -10,13 +10,13 @@ __version__ = '0.0.8'
 参考:
 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 https://github.com/afrmtbl/AnnotationsRestored
+https://github.com/iv-org/invidious
 
 """
 
 """ 
 鸣谢:
 https://archive.org/details/youtubeannotations
-https://github.com/iv-org/invidious
 """
 
 """ 
@@ -48,8 +48,6 @@ _ = gettext.gettext
 
 #应该用无衬线字体,但是好像不能方便的使用字体家族..
 font = 'Microsoft YaHei UI'
-#invidious实例很容失效,我应该考虑去掉invidious
-invidious = 'vid.puffyan.us'
 #黄底文字模板
 yellow_text = '\033[0;33;40m{}\033[0m'
 
@@ -96,18 +94,80 @@ def _download_for_archive(video_id:str) -> str:
     print(_("下载完成"))
     return save_file
 
-def _get_video_for_invidiou(video_id:str,invidious_domain:str=invidious):
-    api = '/api/v1/videos/'
-    url = 'https://' + invidious_domain + api + video_id
-    r = urllib.request.Request(url)
-    with urllib.request.urlopen(r) as f:
-        data = json.loads(f.read().decode('utf-8'))
+def _get_video_for_youtube(video_id:str) -> list :
+    url = 'https://www.youtube.com/youtubei/v1/player?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8'
+
+    req = urllib.request.Request(url)
+
+    req.add_header('authority', 'www.youtube.com' )
+    req.add_header('sec-ch-ua', '" Not;A Brand";v="99", "Google Chrome";v="97", "Chromium";v="97"' )
+    req.add_header('x-origin', 'https://www.youtube.com' )
+    req.add_header('sec-ch-ua-mobile', '?0' )
+    req.add_header('content-type', 'application/json' )
+    req.add_header('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36' )
+    req.add_header('x-youtube-client-name', '56' )
+    req.add_header('x-youtube-client-version', '1.20220125.01.00' )
+    req.add_header('x-goog-authuser', '0' )
+    req.add_header('sec-ch-ua-platform', '"Windows"' )
+    req.add_header('accept', '*/*' )
+    req.add_header('origin', 'https://www.youtube.com' )
+    req.add_header('sec-fetch-site', 'same-origin' )
+    req.add_header('sec-fetch-mode', 'cors' )
+    req.add_header('sec-fetch-dest', 'empty' )
+    req.add_header('accept-language', 'en' )
+
+    body_s = r"""{
+        "videoId": "M7lc1UVf-VE",
+        "context": {
+            "client": {
+                "deviceMake": "",
+                "deviceModel": "",
+                "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36,gzip(gfe)",
+                "clientName": "WEB_EMBEDDED_PLAYER",
+                "clientVersion": "1.20220125.01.00",
+                "osName": "Windows",
+                "osVersion": "10.0",
+                "platform": "DESKTOP",
+                "clientFormFactor": "UNKNOWN_FORM_FACTOR",
+                "browserName": "Chrome",
+                "browserVersion": "97.0.4692.99",
+                "screenWidthPoints": 720,
+                "screenHeightPoints": 406,
+                "screenPixelDensity": 1,
+                "screenDensityFloat": 1.25,
+                "utcOffsetMinutes": 480,
+                "userInterfaceTheme": "USER_INTERFACE_THEME_LIGHT",
+                "connectionType": "CONN_CELLULAR_4G",
+                "timeZone": "UTC",
+                "playerType": "UNIPLAYER",
+                "tvAppInfo": {
+                    "livingRoomAppMode": "LIVING_ROOM_APP_MODE_UNSPECIFIED"
+                },
+                "clientScreen": "EMBED"
+            },
+            "request": {
+                "useSsl": true,
+                "internalExperimentFlags": [],
+                "consistencyTokenJars": []
+            }
+        }
+    }"""
+
+    body = json.loads(body_s)
+    body['videoId'] = video_id
+
+    res = json.loads(urllib.request.urlopen(req, data=json.dumps(body).encode('utf-8')).read().decode('utf-8'))
+
+    return res['streamingData']['adaptiveFormats']
+
+def _get_video(video_id:str):
+    data = _get_video_for_youtube(video_id)
     audios = []
     videos = []
-    for i in data.get('adaptiveFormats'):
-        if re.match('audio', i.get('type')) is not None:
+    for i in data:
+        if re.match('audio', i.get('mimeType')) is not None:
             audios.append(i)
-        if re.match('video', i.get('type')) is not None:
+        if re.match('video', i.get('mimeType')) is not None:
             videos.append(i)
     audios.sort(key=lambda x:int(x.get('bitrate')),reverse=True)
     videos.sort(key=lambda x:int(x.get('bitrate')),reverse=True)
@@ -115,16 +175,16 @@ def _get_video_for_invidiou(video_id:str,invidious_domain:str=invidious):
     video = videos[0].get('url')
     return {'audio':audio,'video':video}
 
-def _preview_video(video_id:str,file:str,invidious_domain:str=invidious) ->None:
-    audio,video = _get_video_for_invidiou(video_id,invidious_domain).values()
+def _preview_video(video_id:str,file:str) ->None:
+    audio,video = _get_video(video_id).values()
     cmd = r'mpv "{}" --audio-file="{}" --sub-file="{}"'.format(video,audio,file)
     print(cmd)
     exit_code = os.system(cmd)
     if exit_code != 0:
         print(yellow_text.format('exit with {}'.format(exit_code)))
 
-def _generate_video(video_id:str,file:str,invidious_domain:str='invidiou.site') ->None:
-    audio,video = _get_video_for_invidiou(video_id,invidious_domain).values()
+def _generate_video(video_id:str,file:str,) ->None:
+    audio,video = _get_video(video_id).values()
     cmd = r'ffmpeg -i "{}" -i "{}" -vf "ass={}" "{}.mp4"'.format(video,audio,file,video_id)
     print(cmd)
     exit_code = os.system(cmd)
@@ -585,7 +645,6 @@ if __name__ == "__main__":
     parser.add_argument('-y','--reset-resolution-y',default=100,type=int,metavar=100,help=_('重设分辨率Y'))
     parser.add_argument('-f','--font',default=font,type=str,metavar=font,help=_('指定字体'))
     parser.add_argument('-d','--download-for-archive',action='store_true',help=_('尝试从 Internet Archive 下载注释文件'))
-    parser.add_argument('-i','--invidious-domain',default=invidious, metavar='invidious.domain',help=_('指定invidious域名'))
     parser.add_argument('-p','--preview-video',action='store_true',help=_('预览视频(需要mpv)'))
     parser.add_argument('-g','--generate-video',action='store_true',help=_('生成视频(需要FFmpeg)'))
     args = parser.parse_args()
@@ -621,9 +680,9 @@ if __name__ == "__main__":
             File = sub.Save(file=File)
             del sub
             if args.preview_video is True:
-                _preview_video(video_id=videoId,file=File,invidious_domain=args.invidious_domain)
+                _preview_video(video_id=videoId,file=File)
             if args.generate_video is True:
-                _generate_video(video_id=videoId,file=File,invidious_domain=args.invidious_domain)
+                _generate_video(video_id=videoId,file=File)
 
     if (args.download_for_archive or args.preview_video or args.generate_video) is not True:
         Files = []
