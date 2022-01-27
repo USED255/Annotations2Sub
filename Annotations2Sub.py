@@ -39,6 +39,7 @@ import urllib.error
 import gettext
 import argparse
 import traceback
+import threading
 import xml.etree.ElementTree
 from datetime import datetime
 from typing import Optional, Union
@@ -52,12 +53,20 @@ invidious = 'ytb.trom.tf'
 #黄底文字模板
 yellow_text = '\033[0;33;40m{}\033[0m'
 
-def _check_network(url:str='https://google.com/',timeout:float=3.0) -> bool:
+def _check_url(url:str='https://google.com/',timeout:float=3.0) -> bool:
     try:
         urllib.request.urlopen(url=url, timeout=timeout)
     except:
         return False
     return True
+
+def _check_network():
+    if _check_url(timeout=1.0) is not True:
+        print(yellow_text.format(_('您好像无法访问Google🤔')))
+
+def check_network():
+    check_thread = threading.Thread(target=_check_network)
+    check_thread.start()
 
 def _download_for_archive(video_id:str) -> str:
     # 参考自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
@@ -579,8 +588,7 @@ if __name__ == "__main__":
                 videoIds.append(selected_videoId)
             else:
                 print(yellow_text.format('无效的videoId: {}'.format(videoId)))
-        if _check_network(timeout=1.0) is not True:
-            print(yellow_text.format(_('您好像无法访问Google🤔')))
+        check_network()
         if args.preview_video or args.generate_video is True:
             libass_hack = True
         if len(videoIds) == 0:
