@@ -42,7 +42,7 @@ from datetime import datetime
 from typing import Optional, Union
 
 try:
-    translate = gettext.translation('Annotations2Sub', 'translations')
+    translate = gettext.translation("Annotations2Sub", "translations")
     _ = translate.gettext
 except:
     print("加载翻译文件失败")
@@ -222,6 +222,15 @@ def _get_video_for_youtube(video_id: str) -> list:
     except:
         pass
     return res["streamingData"]["adaptiveFormats"]
+
+
+def _generate_video_from_invidious_domain(
+    video_id: str, file: str, invidious_domain: str = "invidiou.site"
+) -> list:
+    url = "https://" + invidious_domain + "/api/v1/videos/" + video_id
+    r = urllib.request.Request(url)
+    with urllib.request.urlopen(r) as f:
+        return json.loads(f.read().decode("utf-8"))["adaptiveFormats"]
 
 
 def _get_video(video_id: str):
@@ -1026,6 +1035,7 @@ def main():
             sub = Annotations2Sub(file=File, convert_parameter=convert_parameter)
             File = sub.Save(file=File)
             del sub
+
 
 if __name__ == "__main__":
     main()
