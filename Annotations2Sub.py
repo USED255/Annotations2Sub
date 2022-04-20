@@ -931,7 +931,7 @@ class Annotations2Sub:
             return file + ".ass"
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description=_("一个可以把Youtube注释转换成ASS字幕的脚本"))
     parser.add_argument(
         "File", type=str, nargs="+", metavar="File or videoId", help=_("待转换的文件")
@@ -1023,3 +1023,6 @@ if __name__ == "__main__":
             sub = Annotations2Sub(file=File, convert_parameter=convert_parameter)
             File = sub.Save(file=File)
             del sub
+
+if __name__ == "__main__":
+    main()
