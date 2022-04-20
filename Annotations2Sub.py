@@ -4,7 +4,7 @@
 # Annotations2Sub
 __authors__ = "wrtyis@outlook.com"
 __license__ = "GPLv3"
-__version__ = "0.0.8"
+__version__ = "0.1.0"
 """
 参考:
 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
@@ -18,15 +18,16 @@ https://archive.org/details/youtubeannotations
 """
 """ 
 本脚本启发自:
-https://github.com/nirbheek/youtube-ass 您仍然可以从本脚本找到他的痕迹。
+https://github.com/nirbheek/youtube-ass
 
 """
 
 import os
 
 if hex(os.sys.hexversion) < hex(0x03060000):
-    print("This script does not work on Python versions lower than 3.6")
+    print("您的Python版本太低了，请升级到3.6.0或更高版本")
     exit(1)
+
 import re
 import json
 import glob
