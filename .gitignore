@@ -6,3 +6,5 @@ __pycache__
 *.mkv
 *.mp4
 *.lnk
+Annotations2Sub.egg-info
+dist
