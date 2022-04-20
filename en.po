@@ -1,0 +1,55 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2022-04-20 10:10+0800\n"
+"PO-Revision-Date: 2022-04-20 10:12+0800\n"
+"Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: Annotations2Sub.py\n"
+
+#: Annotations2Sub.py:263
+msgid "默认文件"
+msgstr "Default file"
+
+#: Annotations2Sub.py:933
+msgid "一个可以把Youtube注释转换成ASS字幕的脚本"
+msgstr "A script that converts Youtube Annotations into .ASS subtitles"
+
+#: Annotations2Sub.py:935
+msgid "待转换的文件"
+msgstr "The file to be converted"
+
+#: Annotations2Sub.py:937
+msgid "针对libass修正"
+msgstr "Fixes for libass"
+
+#: Annotations2Sub.py:944
+msgid "重设分辨率X"
+msgstr "Reset resolution X"
+
+#: Annotations2Sub.py:952
+msgid "重设分辨率Y"
+msgstr "Reset resolution Y"
+
+#: Annotations2Sub.py:955
+msgid "指定字体"
+msgstr "Specifies the font"
+
+#: Annotations2Sub.py:961
+msgid "尝试从 Internet Archive 下载注释文件"
+msgstr "Try downloading the Annotations file from the Internet Archive"
+
+#: Annotations2Sub.py:964
+msgid "预览视频(需要mpv)"
+msgstr "Preview video(need mpv)"
+
+#: Annotations2Sub.py:967
+msgid "生成视频(需要FFmpeg)"
+msgstr "Generate video (need FFmpeg)"
