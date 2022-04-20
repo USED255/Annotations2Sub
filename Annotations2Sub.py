@@ -41,8 +41,13 @@ import xml.etree.ElementTree
 from datetime import datetime
 from typing import Optional, Union
 
-translate = gettext.translation('Annotations2Sub', 'translations', fallback=True)
-_ = translate.gettext
+translate = gettext.translation('Annotations2Sub', 'translations')
+
+try:
+    _ = translate.gettext
+except:
+    print("加载翻译文件失败")
+    _ = gettext.gettext
 
 # 应该用无衬线字体,但是好像不能方便的使用字体家族..
 font = "Microsoft YaHei UI"
