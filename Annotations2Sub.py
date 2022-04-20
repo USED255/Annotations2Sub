@@ -25,7 +25,7 @@ https://github.com/nirbheek/youtube-ass
 import os
 
 if hex(os.sys.hexversion) < hex(0x03060000):
-    print("您的Python版本太低了，请升级到3.6.0或更高版本")
+    print(_("您的Python版本太低了，请升级到3.6.0或更高版本"))
     exit(1)
 
 import re
