@@ -41,9 +41,8 @@ import xml.etree.ElementTree
 from datetime import datetime
 from typing import Optional, Union
 
-translate = gettext.translation('Annotations2Sub', 'translations')
-
 try:
+    translate = gettext.translation('Annotations2Sub', 'translations')
     _ = translate.gettext
 except:
     print("加载翻译文件失败")
