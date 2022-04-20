@@ -41,8 +41,7 @@ import xml.etree.ElementTree
 from datetime import datetime
 from typing import Optional, Union
 
-localedir = '.'
-translate = gettext.translation('Annotations2Sub', localedir, fallback=True)
+translate = gettext.translation('Annotations2Sub', 'translations', fallback=True)
 _ = translate.gettext
 
 # 应该用无衬线字体,但是好像不能方便的使用字体家族..
