@@ -4,24 +4,23 @@
 """
 Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字幕文件的脚本
 
-                                                                        Convert
-                                           xml.                         XmlTree
-                                           etree.                       To
-┌────────────────┐            ┌────────┐   ElementTree.   ┌─────────┐   Annotation
-│                │   read()   │        │   fromstring()   │         │   StructureList()
-│ Annotation.xml │ ─────────► │ String │ ───────────────► │ Element │ ──────────────────┐
-│                │            │        │                  │         │                   │
-└────────────────┘            └────────┘                  └─────────┘                   │
-                                                                                        ▼
-                                                                               ┌──────────────────┐
-                                                                               │                  │
-                                                                               │ List[Annotation] │
-                                                                               │                  │
-                                                  Convert                      └──────────────────┘
-                                                  AnnotationStructureList
-┌────────────────┐             ┌─────────────┐    To                                    │
-│                │   finally   │             │    EventStructureList()                  │
-│ Annotation.ass │ ◄────────── │ List[Event] │ ◄────────────────────────────────────────┘
+                                           xml.
+                                           etree.
+┌────────────────┐            ┌────────┐   ElementTree.   ┌─────────┐
+│                │   read()   │        │   fromstring()   │         │   Parse()
+│ Annotation.xml │ ─────────► │ String │ ───────────────► │ Element │ ────────────┐
+│                │            │        │                  │         │             │
+└────────────────┘            └────────┘                  └─────────┘             │
+                                                                                  ▼
+                                                                         ┌──────────────────┐
+                                                                         │                  │
+                                                                         │ List[Annotation] │
+                                                                         │                  │
+                                                                         └──────────────────┘
+
+┌────────────────┐             ┌─────────────┐                                    │
+│                │   finally   │             │             Convert()              │
+│ Annotation.ass │ ◄────────── │ List[Event] │ ◄──────────────────────────────────┘
 │                │             │             │
 └────────────────┘             └─────────────┘
 
