@@ -83,15 +83,15 @@ def ConvertXmlTreeToAnnotationStructureList(tree: Element) -> List[Annotation]:
 
     def ParseAnnotationColor(annotation_color_str: str) -> Color:
         """
-        bgColor="4210330" -> Color(red=42, green=103, blue=30)
+        bgColor="4210330" -> Color(red=154, green=62, blue=64)
         """
         s0 = annotation_color_str
         if s0 == None:
             raise Exception("color is None")
         s1 = int(s0)
         r = s1 & 255
-        b = s1 >> 16
         g = (s1 >> 8) & 255
+        b = s1 >> 16
         s2 = Color(red=r, green=g, blue=b)
         return s2
 
