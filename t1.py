@@ -3,10 +3,10 @@
 
 import datetime
 from typing import List, Literal, Optional
-import xml.etree.ElementTree
+import defusedxml.ElementTree as ET
 
 
-class ColorStructure(object):
+class Color(object):
     def __init__(
         self,
         red: int = 0,
@@ -18,7 +18,7 @@ class ColorStructure(object):
         self.blue = blue
 
 
-class AlphaStructure(object):
+class Alpha(object):
     def __init__(
         self,
         alpha: int = 0,
@@ -26,7 +26,7 @@ class AlphaStructure(object):
         self.alpha = alpha
 
 
-class AnnotationStructure(object):
+class Annotation(object):
     def __init__(self):
         self.id: str = ""
         self.type: Literal["text", "highlight", "pause", "branding"] = ""
@@ -40,9 +40,9 @@ class AnnotationStructure(object):
         self.height: Optional[float] = 0.0
         self.sx: Optional[float] = 0.0
         self.sy: Optional[float] = 0.0
-        self.bgOpacity: Optional[AlphaStructure] = AlphaStructure()
-        self.bgColor: Optional[ColorStructure] = ColorStructure()
-        self.fgColor: Optional[ColorStructure] = ColorStructure()
+        self.bgOpacity: Optional[Alpha] = Alpha()
+        self.bgColor: Optional[Color] = Color()
+        self.fgColor: Optional[Color] = Color()
         self.textSize: Optional[float] = 0.0
         # self.actionType: Optional[str] = ''
         # self.actionUrl: Optional[str] = ''
@@ -50,10 +50,8 @@ class AnnotationStructure(object):
         # self.actionSeconds: Optional[float] = 0.0
 
 
-def XmlTreeToAnnotationStructureList(
-    xml_tree: xml.etree.ElementTree.Element,
-) -> List[AnnotationStructure]:
-    def ConvertAlpha(annotation_alpha_str: str) -> AlphaStructure:
+def XmlTreeToAnnotationStructureList(xml_tree: ET) -> List[Annotation]:
+    def ConvertAlpha(annotation_alpha_str: str) -> Alpha:
         s0 = annotation_alpha_str
         if s0 == None:
             raise Exception("alpha is None")
@@ -61,10 +59,10 @@ def XmlTreeToAnnotationStructureList(
         s2 = 1 - s1
         s3 = s2 * 255
         s4 = int(s3)
-        s5 = AlphaStructure(alpha=s4)
+        s5 = Alpha(alpha=s4)
         return s5
 
-    def ConvertColor(annotation_color_str: str) -> ColorStructure:
+    def ConvertColor(annotation_color_str: str) -> Color:
         s0 = annotation_color_str
         if s0 == None:
             raise Exception("color is None")
@@ -72,21 +70,21 @@ def XmlTreeToAnnotationStructureList(
         r = s1 >> 16
         g = (s1 >> 8) & 0xFF
         b = s1 & 0xFF
-        s2 = ColorStructure(red=r, green=g, blue=b)
+        s2 = Color(red=r, green=g, blue=b)
         return s2
 
-    def White() -> ColorStructure:
-        return ColorStructure(red=255, green=255, blue=255)
+    def White() -> Color:
+        return Color(red=255, green=255, blue=255)
 
-    def Black() -> ColorStructure:
-        return ColorStructure(red=0, green=0, blue=0)
+    def Black() -> Color:
+        return Color(red=0, green=0, blue=0)
 
-    def DefaultTransparency() -> AlphaStructure:
-        return AlphaStructure(alpha=204)
+    def DefaultTransparency() -> Alpha:
+        return Alpha(alpha=204)
 
-    annotations: List[AnnotationStructure] = []
+    annotations: List[Annotation] = []
     for each in xml_tree:
-        annotation = AnnotationStructure()
+        annotation = Annotation()
         annotation.id = each.get("id")
         annotation.type = each.get("type")
         annotation.style = each.get("style")
