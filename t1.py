@@ -3,7 +3,7 @@
 
 import datetime
 from typing import List, Literal, Optional
-import defusedxml.ElementTree as ET
+import xml.etree.ElementTree as etree
 
 
 class Color(object):
@@ -29,7 +29,7 @@ class Alpha(object):
 class Annotation(object):
     def __init__(self):
         self.id: str = ""
-        self.type: Literal["text", "highlight", "pause", "branding"] = ""
+        self.type: Literal["text", "highlight", "branding"] = ""
         self.style: Literal["popup", "title", "speech"] = ""
         self.text: Optional[str] = ""
         self.timeStart: datetime.datetime = datetime.datetime()
@@ -50,7 +50,7 @@ class Annotation(object):
         # self.actionSeconds: Optional[float] = 0.0
 
 
-def XmlTreeToAnnotationStructureList(xml_tree: ET) -> List[Annotation]:
+def XmlTreeToAnnotationStructureList(tree: etree.Element) -> List[Annotation]:
     def ConvertAlpha(annotation_alpha_str: str) -> Alpha:
         s0 = annotation_alpha_str
         if s0 == None:
@@ -82,19 +82,25 @@ def XmlTreeToAnnotationStructureList(xml_tree: ET) -> List[Annotation]:
     def DefaultTransparency() -> Alpha:
         return Alpha(alpha=204)
 
-    def ParseAnnotation(each) -> Optional[Annotation]:
+    def ParseAnnotation(each: etree.Element) -> Optional[Annotation]:
         annotation = Annotation()
         annotation.id = each.get("id")
-        annotation.type = each.get("type")
+        type = each.attrib("type")
+        if type is None or type == "pause":
+            return None
+        annotation.type = type
         annotation.style = each.get("style")
         annotation.text = each.find("TEXT")
+        if len(each.find("segment").find("movingRegion")) == 0:
+            return None
         _Segment = each.find("segment").find("movingRegion").findall("rectRegion")
         if len(_Segment) == 0:
             _Segment = (
                 each.find("segment").find("movingRegion").findall("anchoredRegion")
             )
         if len(_Segment) == 0:
-            pass
+            if annotation.style != "highlightText":
+                return None
         if len(_Segment) != 0:
             Start = min(_Segment[0].get("t"), _Segment[1].get("t"))
             End = max(_Segment[0].get("t"), _Segment[1].get("t"))
@@ -114,32 +120,32 @@ def XmlTreeToAnnotationStructureList(xml_tree: ET) -> List[Annotation]:
         annotation.sx = float(_Segment[0].get("sx"))
         annotation.sy = float(_Segment[0].get("sy"))
         Appearance = each.find("appearance")
-        if Appearance is not None:
+        if Appearance != None:
             bgAlpha = Appearance.get("bgAlpha")
             bgColor = Appearance.get("bgColor")
             fgColor = Appearance.get("fgColor")
             textSize = Appearance.get("textSize")
-        if bgAlpha is not None:
+        if bgAlpha != None:
             annotation.bgOpacity = ConvertAlpha(bgAlpha)
-        if bgAlpha is None:
+        if bgAlpha == None:
             annotation.bgOpacity = DefaultTransparency()
-        if bgColor is not None:
+        if bgColor != None:
             annotation.bgColor = ConvertColor(bgColor)
-        if bgColor is None:
+        if bgColor == None:
             annotation.bgColor = White()
-        if fgColor is not None:
+        if fgColor != None:
             annotation.fgColor = ConvertColor(fgColor)
-        if fgColor is None:
+        if fgColor == None:
             annotation.fgColor = Black()
-        if textSize is not None:
+        if textSize != None:
             annotation.textSize = float(textSize)
-        if textSize is None:
+        if textSize == None:
             annotation.textSize = 3.15
         return annotation
 
     annotations: List[Annotation] = []
-    for each in xml_tree:
+    for each in tree.find("annotations").findall("annotation"):
         annotation = ParseAnnotation(each)
-        if annotation is not None:
+        if annotation != None:
             annotations.append(annotation)
     return annotations
