@@ -30,7 +30,7 @@ class Annotation(object):
     def __init__(self):
         self.id: str = ""
         self.type: Literal["text", "highlight", "branding"] = ""
-        self.style: Literal["popup", "title", "speech"] = ""
+        self.style: Literal["popup", "title", "speech", "highlightText", ] = ""
         self.text: Optional[str] = ""
         self.timeStart: datetime.datetime = datetime.datetime()
         self.timeEnd: datetime.datetime = datetime.datetime()
@@ -48,7 +48,7 @@ class Annotation(object):
         # self.actionUrl: Optional[str] = ''
         # self.actionUrlTarget: Optional[str] = ''
         # self.actionSeconds: Optional[float] = 0.0
-
+        # self.highlightId: Optional[str] = ''
 
 def XmlTreeToAnnotationStructureList(tree: etree.Element) -> List[Annotation]:
     def ConvertAlpha(annotation_alpha_str: str) -> Alpha:
@@ -85,7 +85,7 @@ def XmlTreeToAnnotationStructureList(tree: etree.Element) -> List[Annotation]:
     def ParseAnnotation(each: etree.Element) -> Optional[Annotation]:
         annotation = Annotation()
         annotation.id = each.get("id")
-        type = each.attrib("type")
+        type = each.get("type")
         if type is None or type == "pause":
             return None
         annotation.type = type
