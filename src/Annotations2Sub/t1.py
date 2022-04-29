@@ -89,9 +89,9 @@ def ConvertXmlTreeToAnnotationStructureList(tree: Element) -> List[Annotation]:
         if s0 == None:
             raise Exception("color is None")
         s1 = int(s0)
-        r = s1 >> 16
-        g = (s1 >> 8) & 0xFF
-        b = s1 & 0xFF
+        r = s1 & 255
+        b = s1 >> 16
+        g = (s1 >> 8) & 255
         s2 = Color(red=r, green=g, blue=b)
         return s2
 
