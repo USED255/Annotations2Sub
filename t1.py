@@ -82,8 +82,7 @@ def XmlTreeToAnnotationStructureList(xml_tree: ET) -> List[Annotation]:
     def DefaultTransparency() -> Alpha:
         return Alpha(alpha=204)
 
-    annotations: List[Annotation] = []
-    for each in xml_tree:
+    def ParseAnnotation(each) -> Optional[Annotation]:
         annotation = Annotation()
         annotation.id = each.get("id")
         annotation.type = each.get("type")
@@ -136,6 +135,11 @@ def XmlTreeToAnnotationStructureList(xml_tree: ET) -> List[Annotation]:
             annotation.textSize = float(textSize)
         if textSize is None:
             annotation.textSize = 3.15
+        return annotation
 
-        annotations.append(annotation)
+    annotations: List[Annotation] = []
+    for each in xml_tree:
+        annotation = ParseAnnotation(each)
+        if annotation is not None:
+            annotations.append(annotation)
     return annotations
