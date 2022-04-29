@@ -32,8 +32,8 @@ class Annotation(object):
         self.type: Literal["text", "highlight", "pause", "branding"] = ""
         self.style: Literal["popup", "title", "speech"] = ""
         self.text: Optional[str] = ""
-        self.start: datetime.datetime = datetime.datetime()
-        self.end: datetime.datetime = datetime.datetime()
+        self.timeStart: datetime.datetime = datetime.datetime()
+        self.timeEnd: datetime.datetime = datetime.datetime()
         self.x: Optional[float] = 0.0
         self.y: Optional[float] = 0.0
         self.width: Optional[float] = 0.0
@@ -100,14 +100,14 @@ def XmlTreeToAnnotationStructureList(xml_tree: ET) -> List[Annotation]:
             Start = min(_Segment[0].get("t"), _Segment[1].get("t"))
             End = max(_Segment[0].get("t"), _Segment[1].get("t"))
         if "never" in (Start, End):
-            annotation.end = datetime.strptime("999", "%H")
+            annotation.timeEnd = datetime.strptime("999", "%H")
         if not "never" in (Start, End):
             try:
-                annotation.start = datetime.strptime(Start, "%H:%M:%S.%f")
-                annotation.end = datetime.strptime(End, "%H:%M:%S.%f")
+                annotation.timeStart = datetime.strptime(Start, "%H:%M:%S.%f")
+                annotation.timeEnd = datetime.strptime(End, "%H:%M:%S.%f")
             except:
-                annotation.start = datetime.strptime(Start, "%M:%S.%f")
-                annotation.end = datetime.strptime(End, "%M:%S.%f")
+                annotation.timeStart = datetime.strptime(Start, "%M:%S.%f")
+                annotation.timeEnd = datetime.strptime(End, "%M:%S.%f")
         annotation.x = float(_Segment[0].get("x"))
         annotation.y = float(_Segment[0].get("y"))
         annotation.width = float(_Segment[0].get("w"))
