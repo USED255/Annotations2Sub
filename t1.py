@@ -116,10 +116,10 @@ def XmlTreeToAnnotationStructureList(xml_tree: ET) -> List[Annotation]:
         annotation.sy = float(_Segment[0].get("sy"))
         Appearance = each.find("appearance")
         if Appearance is not None:
-            fontsize = Appearance.get("textSize")
             bgAlpha = Appearance.get("bgAlpha")
-            fgColor = Appearance.get("fgColor")
             bgColor = Appearance.get("bgColor")
+            fgColor = Appearance.get("fgColor")
+            textSize = Appearance.get("textSize")
         if bgAlpha is not None:
             annotation.bgOpacity = ConvertAlpha(bgAlpha)
         if bgAlpha is None:
@@ -132,9 +132,9 @@ def XmlTreeToAnnotationStructureList(xml_tree: ET) -> List[Annotation]:
             annotation.fgColor = ConvertColor(fgColor)
         if fgColor is None:
             annotation.fgColor = Black()
-        if fontsize is not None:
-            annotation.textSize = float(fontsize)
-        if fontsize is None:
+        if textSize is not None:
+            annotation.textSize = float(textSize)
+        if textSize is None:
             annotation.textSize = 3.15
 
         annotations.append(annotation)
