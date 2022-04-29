@@ -66,7 +66,7 @@ class Annotation(object):
         # self.highlightId: Optional[str] = ''
 
 
-def XmlTreeToAnnotationStructureList(tree: etree.Element) -> List[Annotation]:
+def ConvertXmlTreeToAnnotationStructureList(tree: etree.Element) -> List[Annotation]:
     def ParseAnnotationAlpha(annotation_alpha_str: str) -> Alpha:
         """
         解析 Annotation 的透明度
@@ -117,7 +117,7 @@ def XmlTreeToAnnotationStructureList(tree: etree.Element) -> List[Annotation]:
         if type is None or type == "pause":
             # Sub 无法实现 "pause", 跳过
             return None
-        
+
         annotation.type = type
 
         annotation.style = each.get("style")
@@ -127,19 +127,19 @@ def XmlTreeToAnnotationStructureList(tree: etree.Element) -> List[Annotation]:
         if len(each.find("segment").find("movingRegion")) == 0:
             # 跳过没有内容的 Annotation
             return None
-        
+
         Segment = each.find("segment").find("movingRegion").findall("rectRegion")
         if len(Segment) == 0:
             Segment = (
                 each.find("segment").find("movingRegion").findall("anchoredRegion")
             )
-        
+
         if len(Segment) == 0:
             if annotation.style != "highlightText":
                 # 抄自 https://github.com/isaackd/annotationlib/blob/master/src/parser/index.js 第121行
                 # "highlightText" 是一直显示在屏幕上的, 不应没有时间
                 return None
-        
+
         if len(Segment) != 0:
             Start = min(Segment[0].get("t"), Segment[1].get("t"))
             End = max(Segment[0].get("t"), Segment[1].get("t"))
@@ -163,28 +163,28 @@ def XmlTreeToAnnotationStructureList(tree: etree.Element) -> List[Annotation]:
         annotation.sy = float(Segment[0].get("sy"))
 
         Appearance = each.find("appearance")
-        
+
         if Appearance != None:
             bgAlpha = Appearance.get("bgAlpha")
             bgColor = Appearance.get("bgColor")
             fgColor = Appearance.get("fgColor")
             textSize = Appearance.get("textSize")
-        
+
         if bgAlpha != None:
             annotation.bgOpacity = ParseAnnotationAlpha(bgAlpha)
         else:
             annotation.bgOpacity = DefaultTransparency()
-        
+
         if bgColor != None:
             annotation.bgColor = ParseAnnotationColor(bgColor)
         else:
             annotation.bgColor = White()
-        
+
         if fgColor != None:
             annotation.fgColor = ParseAnnotationColor(fgColor)
         else:
             annotation.fgColor = Black()
-        
+
         if textSize != None:
             annotation.textSize = float(textSize)
         else:
@@ -197,4 +197,5 @@ def XmlTreeToAnnotationStructureList(tree: etree.Element) -> List[Annotation]:
         annotation = ParseAnnotation(each)
         if annotation != None:
             annotations.append(annotation)
+
     return annotations
