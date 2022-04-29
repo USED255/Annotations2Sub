@@ -4,6 +4,7 @@
 import datetime
 from typing import List, Literal, Optional
 from  xml.etree.ElementTree import Element
+from . import *
 
 class Color(object):
     """以 0-255 的整数表示颜色值, 不提供序列化方法"""
