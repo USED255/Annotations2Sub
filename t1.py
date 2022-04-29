@@ -30,7 +30,12 @@ class Annotation(object):
     def __init__(self):
         self.id: str = ""
         self.type: Literal["text", "highlight", "branding"] = ""
-        self.style: Literal["popup", "title", "speech", "highlightText", ] = ""
+        self.style: Literal[
+            "popup",
+            "title",
+            "speech",
+            "highlightText",
+        ] = ""
         self.text: Optional[str] = ""
         self.timeStart: datetime.datetime = datetime.datetime()
         self.timeEnd: datetime.datetime = datetime.datetime()
@@ -49,6 +54,7 @@ class Annotation(object):
         # self.actionUrlTarget: Optional[str] = ''
         # self.actionSeconds: Optional[float] = 0.0
         # self.highlightId: Optional[str] = ''
+
 
 def XmlTreeToAnnotationStructureList(tree: etree.Element) -> List[Annotation]:
     def ConvertAlpha(annotation_alpha_str: str) -> Alpha:
@@ -84,13 +90,18 @@ def XmlTreeToAnnotationStructureList(tree: etree.Element) -> List[Annotation]:
 
     def ParseAnnotation(each: etree.Element) -> Optional[Annotation]:
         annotation = Annotation()
+
         annotation.id = each.get("id")
+
         type = each.get("type")
         if type is None or type == "pause":
             return None
         annotation.type = type
+
         annotation.style = each.get("style")
+
         annotation.text = each.find("TEXT")
+
         if len(each.find("segment").find("movingRegion")) == 0:
             return None
         _Segment = each.find("segment").find("movingRegion").findall("rectRegion")
@@ -113,12 +124,14 @@ def XmlTreeToAnnotationStructureList(tree: etree.Element) -> List[Annotation]:
             except:
                 annotation.timeStart = datetime.strptime(Start, "%M:%S.%f")
                 annotation.timeEnd = datetime.strptime(End, "%M:%S.%f")
+
         annotation.x = float(_Segment[0].get("x"))
         annotation.y = float(_Segment[0].get("y"))
         annotation.width = float(_Segment[0].get("w"))
         annotation.height = float(_Segment[0].get("h"))
         annotation.sx = float(_Segment[0].get("sx"))
         annotation.sy = float(_Segment[0].get("sy"))
+
         Appearance = each.find("appearance")
         if Appearance != None:
             bgAlpha = Appearance.get("bgAlpha")
@@ -141,6 +154,7 @@ def XmlTreeToAnnotationStructureList(tree: etree.Element) -> List[Annotation]:
             annotation.textSize = float(textSize)
         if textSize == None:
             annotation.textSize = 3.15
+
         return annotation
 
     annotations: List[Annotation] = []
