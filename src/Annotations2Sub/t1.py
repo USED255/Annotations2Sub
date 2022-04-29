@@ -66,7 +66,8 @@ class Annotation(object):
         # self.highlightId: Optional[str] = ''
 
 
-def ConvertXmlTreeToAnnotationStructureList(tree: Element) -> List[Annotation]:
+def Parse(tree: Element) -> List[Annotation]:
+    """XML 树转换为 Annotation 结构列表"""
     def ParseAnnotationAlpha(annotation_alpha_str: str) -> Alpha:
         """
         解析 Annotation 的透明度
