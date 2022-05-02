@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import copy
-import datetime
+from datetime import datetime
 from typing import List, Optional
 from xml.etree.ElementTree import Element
 
@@ -148,9 +148,9 @@ def Parse(tree: Element) -> List[Annotation]:
     return annotations
 
 
-def Convert(annotation: Annotation, libass: bool) -> List[Event]:
+def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
     events = []
-    for each in annotation:
+    for each in annotations:
         event = Event()
 
         event.Start = each.timeStart
