@@ -47,5 +47,5 @@ class Draw:
     def Dump(self) -> str:
         s = ""
         for i in self.draw:
-            s = s + "{} {} {} ".format(i.m, i.x, i.y)
+            s = s + "{} {} {} ".format(i.command, i.x, i.y)
         return s
