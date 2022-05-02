@@ -3,12 +3,16 @@
 
 import datetime
 from typing import List, Optional
-from  xml.etree.ElementTree import Element
-from . import *
+from xml.etree.ElementTree import Element
+
+from Annotations2Sub.Annotation import Annotation
+from Annotations2Sub.Color import Alpha, Color
+from Annotations2Sub.Sub import Draw, Event, Point
 
 
 def Parse(tree: Element) -> List[Annotation]:
     """XML 树转换为 Annotation 结构列表"""
+
     def ParseAnnotationAlpha(annotation_alpha_str: str) -> Alpha:
         """
         解析 Annotation 的透明度
@@ -141,3 +145,46 @@ def Parse(tree: Element) -> List[Annotation]:
             annotations.append(annotation)
 
     return annotations
+
+
+def Convert(annotation: Annotation, libass: bool) -> List[Event]:
+    events = []
+    for each in annotation:
+        event = Event()
+
+        event.Start = each.timeStart
+        event.End = each.timeEnd
+        event.Name = each.id
+
+        text = each.text
+        text = text.replace("\n", r"\N")
+        if libass:
+            text = text.replace(r"{", r"\{")
+            text = text.replace(r"}", r"\}")
+        event.Text = text
+
+        if each.style == "popup":
+            event.Name = event.Name + "_popup"
+
+            width = each.width
+            if libass:
+                width = width * 1.776
+            width = round(width, 3)
+
+            d = Draw()
+            d.Add(Point(0, 0, "m"))
+            d.Add(Point(width, 0, "l"))
+            d.Add(Point(width, each.height, "l"))
+            d.Add(Point(0, each.height, "l"))
+            d_str = d.Dump()
+            text_box = r"{\p1}" + d_str + r"{\p0}"
+            pass
+
+        elif each.style == "title":
+            pass
+        elif each.style == "speech":
+            pass
+        elif each.style == "highlightText":
+            pass
+
+    return events

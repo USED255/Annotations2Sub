@@ -47,8 +47,10 @@ Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字�
 
 from . import *
 
+
 def main():
     pass
+
 
 if __name__ == "__main__":
     main()

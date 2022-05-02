@@ -40,5 +40,3 @@ class Annotation(object):
         # self.actionUrlTarget: Optional[str] = ''
         # self.actionSeconds: Optional[float] = 0.0
         # self.highlightId: Optional[str] = ''
-
-

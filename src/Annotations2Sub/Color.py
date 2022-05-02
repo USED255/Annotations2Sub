@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
 class Color(object):
     """以 0-255 的整数表示颜色值, 不提供序列化方法"""
 
