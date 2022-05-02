@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import copy
 import datetime
 from typing import List, Optional
 from xml.etree.ElementTree import Element
@@ -165,7 +166,11 @@ def Convert(annotation: Annotation, libass: bool) -> List[Event]:
 
         if each.style == "popup":
             event.Name = event.Name + "_popup"
+            # todo
+            #
+            events.append(event)
 
+            event = copy.copy(event)
             width = each.width
             if libass:
                 width = width * 1.776
@@ -177,8 +182,12 @@ def Convert(annotation: Annotation, libass: bool) -> List[Event]:
             d.Add(Point(width, each.height, "l"))
             d.Add(Point(0, each.height, "l"))
             d_str = d.Dump()
-            text_box = r"{\p1}" + d_str + r"{\p0}"
-            pass
+            box = r"{\p1}" + d_str + r"{\p0}"
+            # todo
+            #
+            event.Text = box
+            event.Name = event.Name + "_box"
+            events.append(event)
 
         elif each.style == "title":
             pass
