@@ -6,8 +6,12 @@ A script that can convert Youtube Annotation into ASS(Sub Station Alpha V4) subt
 
 ---
 
+```bash
+pip install Annotations2Sub
+```
+
 ```man
-usage: Annotations2Sub.py [-h] [-l] [-x 100] [-y 100] [-f Microsoft YaHei UI] [-d] [-i invidious.domain] [-p] [-g] 
+usage: Annotations2Sub.py [-h] [-l] [-x 100] [-y 100] [-f Microsoft YaHei UI] [-d] [-i invidious-instances.domain] [-p] [-g] 
                           File or videoId [File or videoId ...]
 
 A script that converts Youtube Annotations into ASS(Sub Station Alpha V4) subtitles file
@@ -17,34 +21,28 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -l, --use-libass      Fixes for libass
+  -l, --use-libass      fixes for libass
   -x 100, --reset-resolution-x 100
-                        Reset resolution X
+                        reset resolution X
   -y 100, --reset-resolution-y 100
-                        Reset resolution Y
+                        reset resolution Y
   -f Microsoft YaHei UI, --font Microsoft YaHei UI 
-                        Specify font
+                        specify font
   -d, --download-for-archive
                         Try downloading the annotations file from Internet Archive
-  -i invidious.domain, --invidious-domain invidious.domain
-                        Specify invidious domain
-  -p, --preview-video   Preview video(need mpv)
-  -g, --generate-video  Generate video (need FFmpeg)
+  -i invidious-instances.domain, --invidious-domain invidious-instances.domain
+                        Specify invidious instances
+  -p, --preview-video   preview video, need mpv and specify invidious domain
+  -g, --generate-video  generate video, need FFmpeg specify invidious domain
 
 ```
-
----
 
 Example:
-
-```bash
-wget https://github.com/USED255/Annotations2Sub/raw/master/Annotations2Sub.py 
-```
 
 [Before](https://www.youtube.com/watch?v=HqSzHYxVKws)
 
 ```bash
-python .\Annotations2Sub.py -g HqSzHYxVKws
+Annotations2Sub.py -g HqSzHYxVKws
 ```
 
 [After](https://www.bilibili.com/video/BV1Ff4y1t7Dj)
