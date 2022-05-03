@@ -1,18 +1,19 @@
 # Annotations2Sub
 
-一个可以把 Youtube 注释转换成 ASS 字幕文件的脚本
+一个可以把 Youtube 注释转换成 ASS(Sub Station Alpha V4) 字幕文件的脚本
 
 A script that can convert Youtube Annotation into ASS(Sub Station Alpha V4) subtitles files
 
 ---
 
 ```man
-usage: Annotations2Sub.py [-h] [-l] [-x 1920] [-y 1080] [-d] [-i invidious.domain] [-p] [-g] File or ID [File or ID ...]
+usage: Annotations2Sub.py [-h] [-l] [-x 100] [-y 100] [-f Microsoft YaHei UI] [-d] [-i invidious.domain] [-p] [-g] 
+                          File or videoId [File or videoId ...]
 
-A script that converts Youtube Annotations into .ASS subtitles
+A script that converts Youtube Annotations into ASS(Sub Station Alpha V4) subtitles file
 
 positional arguments:
-  File or ID            The file to be converted
+  File or videoId       The file to be converted
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -21,9 +22,10 @@ optional arguments:
                         Reset resolution X
   -y 100, --reset-resolution-y 100
                         Reset resolution Y
-  -f, --font            Specify font
-  -d, --download-for-invidious
-                        Try downloading the ‪‪annotations file from invidious
+  -f Microsoft YaHei UI, --font Microsoft YaHei UI 
+                        Specify font
+  -d, --download-for-archive
+                        Try downloading the annotations file from Internet Archive
   -i invidious.domain, --invidious-domain invidious.domain
                         Specify invidious domain
   -p, --preview-video   Preview video(need mpv)
@@ -39,23 +41,12 @@ Example:
 wget https://github.com/USED255/Annotations2Sub/raw/master/Annotations2Sub.py 
 ```
 
-[Before](https://www.youtube.com/watch?v=e8kKeUuytqA)
+[Before](https://www.youtube.com/watch?v=HqSzHYxVKws)
 
 ```bash
-python3 .\Annotations2Sub.py -g e8kKeUuytqA
+python .\Annotations2Sub.py -g HqSzHYxVKws
 ```
 
-[After](https://www.bilibili.com/video/BV1Ff4y1t7Dj?p=4)
+[After](https://www.bilibili.com/video/BV1Ff4y1t7Dj)
 
 ---
-
-<details>
-  <summary><mark><font color=darkred>TODO</font></mark></summary>
-
-- g-0i6MOh7n0
-
-- 29-q7YnyUmY
-
-- 去除 invidious
-
-</details>
