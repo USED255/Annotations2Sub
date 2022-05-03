@@ -58,8 +58,8 @@ def Parse(tree: Element) -> List[Annotation]:
         raise TypeError
 
     def ParseAnnotation(each: Element) -> Optional[Annotation]:
-        # 致谢 https://github.com/nirbheek/youtube-ass
-        # 致谢 https://github.com/isaackd/annotationlib
+        # 致谢: https://github.com/nirbheek/youtube-ass
+        # 致谢: https://github.com/isaackd/annotationlib
         annotation = Annotation()
 
         annotation.id = MakeSureStr(each.get("id"))
@@ -163,12 +163,16 @@ def Parse(tree: Element) -> List[Annotation]:
 
 
 def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
+    """将 Annotation 列表转换为 Event 列表"""
+
     def MakeSureFloat(a: Optional[float]) -> float:
         if isinstance(a, float):
             return float(a)
         raise TypeError
 
     def ConvertAnnotation(each: Annotation) -> List[Event]:
+        # 致谢: https://github.com/nirbheek/youtube-ass
+        # 致谢: https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
         events = []
         event = Event()
 
