@@ -3,12 +3,17 @@
 
 import copy
 from datetime import datetime
+import gettext
+import re
 from typing import List, Optional
 from xml.etree.ElementTree import Element
 
 from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, Event, Point
+
+translate = gettext.translation("Annotations2Sub", "translations")
+_ = translate.gettext
 
 
 def Parse(tree: Element) -> List[Annotation]:
@@ -170,6 +175,18 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
             return float(a)
         raise TypeError
 
+    def ConvertColor(color: Color) -> str:
+        return (
+            "&H"
+            + hex(color.red).replace("0x", "").upper()
+            + hex(color.green).replace("0x", "").upper()
+            + hex(color.blue).replace("0x", "").upper()
+            + "&"
+        )
+
+    def ConvertAlpha(alpha: Alpha) -> str:
+        return "&H" + hex(alpha.alpha).replace("0x", "").upper() + "&"
+
     def ConvertAnnotation(each: Annotation) -> List[Event]:
         # 致谢: https://github.com/nirbheek/youtube-ass
         # 致谢: https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
@@ -192,11 +209,20 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
 
         if each.style == "popup":
             event.Name = event.Name + "_popup"
-            # todo
-            #
+
+            tag = ""
+            tag += r"\an7" + r"\pos({},{})".format(
+                MakeSureFloat(each.x), MakeSureFloat(each.y)
+            )
+            tag += r"\fs" + each.textSize
+            tag += r"\c" + ConvertColor(each.fgColor)
+            tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
+            tag = "{" + tag + "}"
+            event.Text = tag + event.Text
             events.append(event)
 
             event = copy.copy(event)
+
             width = MakeSureFloat(each.width)
             if libass:
                 # 针对 libass 的 hack
@@ -210,18 +236,28 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
             d.Add(Point(0, each.height, "l"))
             d_str = d.Dump()
             box = r"{\p1}" + d_str + r"{\p0}"
-            # todo
-            #
-            event.Text = box
+
+            tag = ""
+            tag += r"\an7" + r"\pos({},{})".format(
+                MakeSureFloat(each.x), MakeSureFloat(each.y)
+            )
+            tag += r"\fs" + each.textSize
+            tag += r"\c" + ConvertColor(each.fgColor)
+            tag += r"\1a" + ConvertAlpha(each.bgOpacity)
+            tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
+            tag = "{" + tag + "}"
+
+            event.Text = tag + box
             event.Name = event.Name + "_box"
             events.append(event)
 
         elif each.style == "title":
             pass
-        elif each.style == "speech":
-            pass
         elif each.style == "highlightText":
             pass
+
+        else:
+            print(_("抱歉这个脚本还不支持 {} 样式. ({})").format(each.style, each.id))
 
         return events
 
