@@ -168,8 +168,8 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
             return float(a)
         raise TypeError
 
-    events = []
-    for each in annotations:
+    def ConvertAnnotation(each: Annotation) -> List[Event]:
+        events = []
         event = Event()
 
         event.Start = each.timeStart
@@ -216,5 +216,11 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
             pass
         elif each.style == "highlightText":
             pass
+
+        return events
+
+    events = []
+    for each in annotations:
+        events.extend(ConvertAnnotation(each))
 
     return events
