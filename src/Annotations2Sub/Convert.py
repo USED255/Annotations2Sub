@@ -3,7 +3,7 @@
 
 import copy
 from datetime import datetime
-from typing import List, Optional
+from typing import List, Optional, cast
 from xml.etree.ElementTree import Element
 
 from Annotations2Sub.Annotation import Annotation
@@ -52,33 +52,37 @@ def Parse(tree: Element) -> List[Annotation]:
     def DefaultTransparency() -> Alpha:
         return Alpha(alpha=204)
 
+    def MakeSureStr(s: Optional[str]) -> str:
+        if isinstance(s, str):
+            return str(s)
+        raise TypeError
+
     def ParseAnnotation(each: Element) -> Optional[Annotation]:
         # 致谢 https://github.com/nirbheek/youtube-ass
         # 致谢 https://github.com/isaackd/annotationlib
         annotation = Annotation()
 
-        annotation.id = each.get("id")
+        annotation.id = MakeSureStr(each.get("id"))
 
         type = each.get("type")
-
-        if type is None or type == "pause":
-            # Sub 无法实现 "pause", 跳过
+        if type not in ("text", "highlight", "branding"):
             return None
+        annotation.type = type  # type: ignore
 
-        annotation.type = type
+        annotation.style = each.get("style")  # type: ignore
 
-        annotation.style = each.get("style")
+        text = each.find("TEXT")
+        if text is not None:
+            annotation.text = MakeSureStr(text.text)
 
-        annotation.text = each.find("TEXT")
-
-        if len(each.find("segment").find("movingRegion")) == 0:
+        if len(each.find("segment").find("movingRegion")) == 0:  # type: ignore
             # 跳过没有内容的 Annotation
             return None
 
-        Segment = each.find("segment").find("movingRegion").findall("rectRegion")
+        Segment = each.find("segment").find("movingRegion").findall("rectRegion")  # type: ignore
         if len(Segment) == 0:
             Segment = (
-                each.find("segment").find("movingRegion").findall("anchoredRegion")
+                each.find("segment").find("movingRegion").findall("anchoredRegion")  # type: ignore
             )
 
         if len(Segment) == 0:
@@ -88,8 +92,10 @@ def Parse(tree: Element) -> List[Annotation]:
                 return None
 
         if len(Segment) != 0:
-            Start = min(Segment[0].get("t"), Segment[1].get("t"))
-            End = max(Segment[0].get("t"), Segment[1].get("t"))
+            t1 = MakeSureStr(Segment[0].get("t"))
+            t2 = MakeSureStr(Segment[1].get("t"))
+            Start = min(t1, t2)
+            End = max(t1, t2)
 
         if "never" in (Start, End):
             # 跳过不显示的 Annotation
@@ -102,20 +108,28 @@ def Parse(tree: Element) -> List[Annotation]:
             annotation.timeStart = datetime.strptime(Start, "%M:%S.%f")
             annotation.timeEnd = datetime.strptime(End, "%M:%S.%f")
 
-        annotation.x = float(Segment[0].get("x"))
-        annotation.y = float(Segment[0].get("y"))
-        annotation.width = float(Segment[0].get("w"))
-        annotation.height = float(Segment[0].get("h"))
-        annotation.sx = float(Segment[0].get("sx"))
-        annotation.sy = float(Segment[0].get("sy"))
+        annotation.x = float(MakeSureStr(Segment[0].get("x")))
+        annotation.y = float(MakeSureStr(Segment[0].get("y")))
+
+        def a(a) -> Optional[float]:
+            if a is None:
+                return None
+            if isinstance(a, str):
+                return float(a)
+            raise TypeError
+
+        annotation.width = a(Segment[0].get("w"))
+        annotation.height = a(Segment[0].get("h"))
+        annotation.sx = a(Segment[0].get("sx"))
+        annotation.sy = a(Segment[0].get("sy"))
 
         Appearance = each.find("appearance")
 
         if Appearance != None:
-            bgAlpha = Appearance.get("bgAlpha")
-            bgColor = Appearance.get("bgColor")
-            fgColor = Appearance.get("fgColor")
-            textSize = Appearance.get("textSize")
+            bgAlpha = MakeSureStr(Appearance.get("bgAlpha"))  # type: ignore
+            bgColor = MakeSureStr(Appearance.get("bgColor"))  # type: ignore
+            fgColor = MakeSureStr(Appearance.get("fgColor"))  # type: ignore
+            textSize = MakeSureStr(Appearance.get("textSize"))  # type: ignore
 
         if bgAlpha != None:
             annotation.bgOpacity = ParseAnnotationAlpha(bgAlpha)
@@ -140,15 +154,20 @@ def Parse(tree: Element) -> List[Annotation]:
         return annotation
 
     annotations: List[Annotation] = []
-    for each in tree.find("annotations").findall("annotation"):
+    for each in tree.find("annotations").findall("annotation"):  # type: ignore
         annotation = ParseAnnotation(each)
         if annotation != None:
-            annotations.append(annotation)
+            annotations.append(annotation)  # type: ignore
 
     return annotations
 
 
 def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
+    def MakeSureFloat(a: Optional[float]) -> float:
+        if isinstance(a, float):
+            return float(a)
+        raise TypeError
+
     events = []
     for each in annotations:
         event = Event()
@@ -158,6 +177,8 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
         event.Name = each.id
 
         text = each.text
+        if text is None:
+            text = ""
         text = text.replace("\n", r"\N")
         if libass:
             text = text.replace(r"{", r"\{")
@@ -171,7 +192,7 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
             events.append(event)
 
             event = copy.copy(event)
-            width = each.width
+            width = MakeSureFloat(each.width)
             if libass:
                 width = width * 1.776
             width = round(width, 3)

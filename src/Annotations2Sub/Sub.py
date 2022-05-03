@@ -30,7 +30,7 @@ class Event:
 
 
 class Point:
-    def __init__(self,x=0,y=0,command="m"):
+    def __init__(self, x=0, y=0, command="m"):
         self.x: int = x
         self.y: int = y
         # 进列出需要的命令

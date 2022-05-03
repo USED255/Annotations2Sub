@@ -27,11 +27,11 @@ class Annotation(object):
         self.timeEnd: datetime.datetime = datetime.datetime()
         self.x: float = 0.0
         self.y: float = 0.0
-        self.width: float = 0.0
-        self.height: float = 0.0
+        self.width: Optional[float] = 0.0
+        self.height: Optional[float] = 0.0
         # sx, sy 是气泡锚点
-        self.sx: float = 0.0
-        self.sy: float = 0.0
+        self.sx: Optional[float] = 0.0
+        self.sy: Optional[float] = 0.0
         self.bgOpacity: Alpha = Alpha()
         self.bgColor: Color = Color()
         self.fgColor: Color = Color()
