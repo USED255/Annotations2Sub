@@ -3,7 +3,7 @@
 
 import copy
 from datetime import datetime
-from typing import List, Optional, cast
+from typing import List, Optional
 from xml.etree.ElementTree import Element
 
 from Annotations2Sub.Annotation import Annotation
