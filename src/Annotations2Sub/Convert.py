@@ -185,6 +185,7 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
             text = ""
         text = text.replace("\n", r"\N")
         if libass:
+            # 仅 libass 支持大括号转义
             text = text.replace(r"{", r"\{")
             text = text.replace(r"}", r"\}")
         event.Text = text
@@ -198,6 +199,7 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
             event = copy.copy(event)
             width = MakeSureFloat(each.width)
             if libass:
+                # 针对 libass 的 hack
                 width = width * 1.776
             width = round(width, 3)
 

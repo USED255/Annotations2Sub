@@ -7,10 +7,11 @@ https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 
 import datetime
 from typing import List, Literal
-from . import *
 
 
 class Event:
+    """Sub 的 Event 结构"""
+
     def __init__(self):
 
         # 仅列出了需要的 Format
@@ -21,7 +22,7 @@ class Event:
         self.End: datetime.datetime = datetime.datetime()
         self.Style: str = ("Default",)
         self.Name: str = ("",)
-        # MarginL, MarginR, MarginV, Effect 均没有使用
+        # MarginL, MarginR, MarginV, Effect 在本项目中均没有使用
         self.MarginL: int = (0,)
         self.MarginR: int = (0,)
         self.MarginV: int = (0,)
@@ -30,10 +31,12 @@ class Event:
 
 
 class Point:
+    """绘图命令"""
+
     def __init__(self, x=0, y=0, command="m"):
         self.x: int = x
         self.y: int = y
-        # 进列出需要的命令
+        # 仅列出需要的命令
         self.command: Literal["m", "l"] = command
 
 
