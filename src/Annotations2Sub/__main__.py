@@ -48,9 +48,9 @@ Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字�
 
 import argparse
 import gettext
-import xml.etree.ElementTree
-from Annotations2Sub.Annotation import Parse
+import defusedxml.ElementTree  # type: ignore
 
+from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
 
@@ -73,7 +73,7 @@ def main():
     args = parser.parse_args()
     file = args.File[0]
     string = open(file, "r", encoding="utf-8").read()
-    tree = xml.etree.ElementTree.fromstring(string)
+    tree = defusedxml.ElementTree.fromstring(string)
     annotations = Parse(tree)
     events = Convert(annotations)
     sub = Sub()
