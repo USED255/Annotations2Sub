@@ -182,9 +182,9 @@ def Convert(annotations: List[Annotation], libass: bool = False) -> List[Event]:
             event.Name += "_popup"
 
             tag = ""
-            tag += r"\an7" + r"\pos({},{})".format(x, y)
+            tag += r"\an7" + r"\pos({},{})".format(x + 1, y + 1)
             tag += r"\fs{}".format(textSize)
-            tag += r"\c{}" + fgColor
+            tag += r"\c" + fgColor
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
             tag = "{" + tag + "}"
             event.Text = tag + event.Text
@@ -201,7 +201,7 @@ def Convert(annotations: List[Annotation], libass: bool = False) -> List[Event]:
             box = r"{\p1}" + d_str + r"{\p0}"
 
             tag = ""
-            tag += r"\an7" + r"\pos({},{})".format(x + 1, y + 1)
+            tag += r"\an7" + r"\pos({},{})".format(x, y)
             tag += r"\fs{}".format(textSize)
             tag += r"\c" + bgColor
             tag += r"\1a" + bgOpacity
@@ -227,7 +227,7 @@ def Convert(annotations: List[Annotation], libass: bool = False) -> List[Event]:
             tag += r"\fs{}".format(textSize)
             tag += r"\c" + fgColor
             tag += r"\1a" + bgOpacity
-            tag += r"\b1"
+            #tag += r"\b1"
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
             tag = "{" + tag + "}"
 
