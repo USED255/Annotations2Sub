@@ -73,6 +73,7 @@ def main():
     sub.info.info["PlayResX"] = 100
     sub.info.info["PlayResY"] = 100
     sub.events.events.sort(key=lambda event: event.Start)
+    sub.styles.styles["Default"].Fontname = "Microsoft YaHei"
     s = sub.Dump()
     with open(file + ".ass", "w", encoding="utf-8") as f:
         f.write(s)
