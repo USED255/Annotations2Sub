@@ -72,7 +72,6 @@ def Convert(annotations: List[Annotation], libass: bool = False) -> List[Event]:
             tag += r"\an7" + r"\pos({},{})".format(x, y)
             tag += r"\fs" + str(textSize)
             tag += r"\c" + fgColor
-            tag += r"\1a" + bgOpacity
             tag += r"\b500"
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
             tag = "{" + tag + "}"
@@ -112,8 +111,8 @@ def Convert(annotations: List[Annotation], libass: bool = False) -> List[Event]:
         event.Layer = 1
 
         if each.style == "popup":
-            events.append(popup_box(copy.copy(event)))
             events.append(popup(copy.copy(event)))
+            events.append(popup_box(copy.copy(event)))
         elif each.style == "title":
             events.append(title(copy.copy(event)))
         else:
