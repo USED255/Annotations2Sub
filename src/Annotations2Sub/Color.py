@@ -24,3 +24,9 @@ class Alpha(object):
         alpha: int = 0,
     ):
         self.alpha = alpha
+
+
+class Rgba(object):
+    def __init__(self, color: Color = Color(), alpha: Alpha = Alpha()):
+        self.color = color
+        self.alpha = alpha

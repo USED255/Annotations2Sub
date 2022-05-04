@@ -155,16 +155,10 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
     """将 Annotation 列表转换为 Event 列表"""
 
     def ConvertColor(color: Color) -> str:
-        return (
-            "&H"
-            + hex(color.red).replace("0x", "").upper()
-            + hex(color.green).replace("0x", "").upper()
-            + hex(color.blue).replace("0x", "").upper()
-            + "&"
-        )
+        return "&H{:02X}{:02X}{:02X}&".format(color.red, color.green, color.blue)
 
     def ConvertAlpha(alpha: Alpha) -> str:
-        return "&H" + hex(alpha.alpha).replace("0x", "").upper() + "&"
+        return "&H{:02X}&".format(alpha.alpha)
 
     def ConvertAnnotation(each: Annotation) -> List[Event]:
         # 致谢: https://github.com/nirbheek/youtube-ass
@@ -230,6 +224,7 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
             tag += r"\fs" + textSize
             tag += r"\c" + fgColor
             tag += r"\1a" + bgOpacity
+            tag += r"\b1"
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
             tag = "{" + tag + "}"
 
