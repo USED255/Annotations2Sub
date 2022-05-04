@@ -45,11 +45,32 @@ Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字�
 
 """
 
-from . import *
+
+import argparse
+import gettext
+import xml.etree.ElementTree
+
+from Annotations2Sub.Convert import Convert, Parse
+from Annotations2Sub.Sub import Sub
+
+_ = gettext.gettext
 
 
 def main():
-    pass
+    parser = argparse.ArgumentParser(description=_("一个可以把Youtube注释转换成ASS字幕的脚本"))
+    parser.add_argument(
+        "File", type=str, nargs="+", metavar="File or videoId", help=_("待转换的文件")
+    )
+    args = parser.parse_args()
+    string = open(args.File, "r", encoding="utf-8").read()
+    tree = xml.etree.ElementTree.fromstring(string)
+    annotations = Parse(tree)
+    events = Convert(annotations)
+    sub = Sub()
+    sub.events.events.extend(events)
+    s = sub.Dump()
+    with open(args.File + ".ass", "w", encoding="utf-8") as f:
+        f.write(s)
 
 
 if __name__ == "__main__":
