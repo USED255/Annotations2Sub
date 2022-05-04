@@ -173,6 +173,7 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
             y = round(each.y, 3)
             textSize = round(each.textSize, 3)
             fgColor = ConvertColor(each.fgColor)
+            bgColor = ConvertAlpha(each.bgColor)
             bgOpacity = ConvertAlpha(each.bgOpacity)
             width = round(each.width)
             height = round(each.height)
@@ -181,7 +182,7 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
                 # 针对 libass 的 hack
                 width = width * 1.776
             width = round(width, 3)
-            event.Name = event.Name + "_popup"
+            event.Name += "_popup"
 
             tag = ""
             tag += r"\an7" + r"\pos({},{})".format(x, y)
@@ -205,13 +206,33 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
             tag = ""
             tag += r"\an7" + r"\pos({},{})".format(x + 1, y + 1)
             tag += r"\fs" + textSize
-            tag += r"\c" + fgColor
+            tag += r"\c" + bgColor
             tag += r"\1a" + bgOpacity
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
             tag = "{" + tag + "}"
 
             event.Text = tag + box
             event.Name = event.Name + "_box"
+            events.append(event)
+
+        def title():
+            x = round(each.x, 3)
+            y = round(each.y, 3)
+            # 很明显 title 字体大小是用 DPI 72 计算的
+            textSize = round(each.textSize / 4, 3)
+            fgColor = ConvertColor(each.fgColor)
+            bgOpacity = ConvertAlpha(each.bgOpacity)
+
+            event.Name += "_title"
+            tag = ""
+            tag += r"\an7" + r"\pos({},{})".format(x, y)
+            tag += r"\fs" + textSize
+            tag += r"\c" + fgColor
+            tag += r"\1a" + bgOpacity
+            tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
+            tag = "{" + tag + "}"
+
+            event.Text = tag + event.Text
             events.append(event)
 
         events: List[Event] = []
@@ -232,9 +253,7 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
         if each.style == "popup":
             popup()
         elif each.style == "title":
-            pass
-        elif each.style == "highlightText":
-            pass
+            title()
         else:
             print(_("抱歉这个脚本还不支持 {} 样式. ({})").format(each.style, each.id))
 
