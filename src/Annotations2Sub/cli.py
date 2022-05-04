@@ -8,6 +8,14 @@ from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
 
+import gettext
+import os
+
+translate = gettext.translation(
+    "Annotations2Sub", os.path.split(os.path.realpath(__file__))[0] + "/locales/"
+)
+_ = translate.gettext
+
 
 def main():
     parser = argparse.ArgumentParser(

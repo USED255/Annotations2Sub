@@ -8,6 +8,15 @@ from xml.etree.ElementTree import Element
 from Annotations2Sub.Color import Alpha, Color
 
 
+import gettext
+import os
+
+translate = gettext.translation(
+    "Annotations2Sub", os.path.split(os.path.realpath(__file__))[0] + "/locales/"
+)
+_ = translate.gettext
+
+
 class Annotation(object):
     # 致谢 https://github.com/isaackd/annotationlib
     """Annotation 结构"""

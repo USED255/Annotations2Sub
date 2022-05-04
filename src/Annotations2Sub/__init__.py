@@ -44,8 +44,3 @@ Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字�
 在之后, 脚本逐步完善, 完成了 https://www.bilibili.com/video/BV1Ff4y1t7Dj
 
 """
-
-import gettext
-
-translate = gettext.translation("Annotations2Sub", "locales")
-_ = translate.gettext

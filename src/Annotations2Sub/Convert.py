@@ -8,6 +8,14 @@ from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, Event, Point
 
+import gettext
+import os
+
+translate = gettext.translation(
+    "Annotations2Sub", os.path.split(os.path.realpath(__file__))[0] + "/locales/"
+)
+_ = translate.gettext
+
 
 def Convert(annotations: List[Annotation], libass: bool = False) -> List[Event]:
     """将 Annotation 列表转换为 Event 列表"""
