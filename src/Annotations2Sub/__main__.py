@@ -49,8 +49,9 @@ Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字�
 import argparse
 import gettext
 import xml.etree.ElementTree
+from Annotations2Sub.Annotation import Parse
 
-from Annotations2Sub.Convert import Convert, Parse
+from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
 
 _ = gettext.gettext

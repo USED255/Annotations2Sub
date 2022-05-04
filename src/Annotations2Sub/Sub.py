@@ -159,7 +159,7 @@ class Sub:
 
         def Dump(self) -> str:
             def ConvertTime(t: datetime.datetime) -> str:
-                return t.strftime("%H:%M:%S.%f")
+                return t.strftime("%H:%M:%S.%f")[:-4]
 
             s = ""
             s += "[Events]" + "\n"
