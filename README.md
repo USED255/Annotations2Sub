@@ -11,21 +11,24 @@ pip install Annotations2Sub
 ```
 
 ```man
-usage: Annotations2Sub.py [-h] [-l] [-x 100] [-y 100] [-f Microsoft YaHei UI] [-d] [-i invidious-instances.domain] [-p] [-g] 
+usage: Annotations2Sub.py [-h] [-l] [-x 100] [-y 100] [-f Microsoft YaHei] [-d]
+                          [-i invidious-instances.domain] [-p] [-g] [-u] [-v] [-V]
                           File or videoId [File or videoId ...]
 
 A script that converts Youtube Annotations into ASS(Sub Station Alpha V4) subtitles file
 
 positional arguments:
-  File or videoId       The file to be converted
+  File or videoId       Multiple files that need to be converted or
+                        videoId's that need to be previewed or generated
+                        for Youtube videos
 
 optional arguments:
   -h, --help            show this help message and exit
   -l, --use-libass      fixes for libass
-  -x 100, --reset-resolution-x 100
-                        reset resolution X
-  -y 100, --reset-resolution-y 100
-                        reset resolution Y
+  -x 100, --transform-resolution-x 100
+                        transform resolution X
+  -y 100, --transform-resolution-y 100
+                        transform resolution Y
   -f Microsoft YaHei UI, --font Microsoft YaHei UI 
                         specify font
   -d, --download-for-archive
@@ -33,8 +36,10 @@ optional arguments:
   -i invidious-instances.domain, --invidious-domain invidious-instances.domain
                         Specify invidious instances
   -p, --preview-video   preview video, need mpv and specify invidious domain
-  -g, --generate-video  generate video, need FFmpeg specify invidious domain
-
+  -g, --generate-video  generate video, need FFmpeg and specify invidious domain
+  -u, --unstable        unstable function
+  -v, --version         show version
+  -V, --verbose         show a lot messages
 ```
 
 Example:
