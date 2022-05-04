@@ -105,7 +105,7 @@ class Sub:
             s += "[Script Info]" + "\n"
             s += self.note
             for k, v in self.info.items():
-                s += "{}:{}\n".format(k, v)
+                s += "{}: {}\n".format(k, v)
             s += "\n"
             return s
 
