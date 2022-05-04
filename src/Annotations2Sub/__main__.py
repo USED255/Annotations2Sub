@@ -62,14 +62,15 @@ def main():
         "File", type=str, nargs="+", metavar="File or videoId", help=_("待转换的文件")
     )
     args = parser.parse_args()
-    string = open(args.File, "r", encoding="utf-8").read()
+    file = args.File[0]
+    string = open(file, "r", encoding="utf-8").read()
     tree = xml.etree.ElementTree.fromstring(string)
     annotations = Parse(tree)
     events = Convert(annotations)
     sub = Sub()
     sub.events.events.extend(events)
     s = sub.Dump()
-    with open(args.File + ".ass", "w", encoding="utf-8") as f:
+    with open(file + ".ass", "w", encoding="utf-8") as f:
         f.write(s)
 
 

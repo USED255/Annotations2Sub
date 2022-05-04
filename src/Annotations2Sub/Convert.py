@@ -11,8 +11,9 @@ from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, Event, Point
 
-translate = gettext.translation("Annotations2Sub", "translations")
-_ = translate.gettext
+# translate = gettext.translation("Annotations2Sub", "translations")
+# _ = translate.gettext
+_ = gettext.gettext
 
 
 def Parse(tree: Element) -> List[Annotation]:
@@ -151,7 +152,7 @@ def Parse(tree: Element) -> List[Annotation]:
     return annotations
 
 
-def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
+def Convert(annotations: List[Annotation], libass: bool = False) -> List[Event]:
     """将 Annotation 列表转换为 Event 列表"""
 
     def ConvertColor(color: Color) -> str:
@@ -164,11 +165,12 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
         # 致谢: https://github.com/nirbheek/youtube-ass
         # 致谢: https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
         def popup():
+            nonlocal event
             x = round(each.x, 3)
             y = round(each.y, 3)
             textSize = round(each.textSize, 3)
             fgColor = ConvertColor(each.fgColor)
-            bgColor = ConvertAlpha(each.bgColor)
+            bgColor = ConvertColor(each.bgColor)
             bgOpacity = ConvertAlpha(each.bgOpacity)
             width = round(each.width)
             height = round(each.height)
@@ -181,8 +183,8 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
 
             tag = ""
             tag += r"\an7" + r"\pos({},{})".format(x, y)
-            tag += r"\fs" + textSize
-            tag += r"\c" + fgColor
+            tag += r"\fs{}".format(textSize)
+            tag += r"\c{}" + fgColor
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
             tag = "{" + tag + "}"
             event.Text = tag + event.Text
@@ -200,7 +202,7 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
 
             tag = ""
             tag += r"\an7" + r"\pos({},{})".format(x + 1, y + 1)
-            tag += r"\fs" + textSize
+            tag += r"\fs{}".format(textSize)
             tag += r"\c" + bgColor
             tag += r"\1a" + bgOpacity
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
@@ -211,6 +213,7 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
             events.append(event)
 
         def title():
+            nonlocal event
             x = round(each.x, 3)
             y = round(each.y, 3)
             # 很明显 title 字体大小是用 DPI 72 计算的
@@ -221,7 +224,7 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
             event.Name += "_title"
             tag = ""
             tag += r"\an7" + r"\pos({},{})".format(x, y)
-            tag += r"\fs" + textSize
+            tag += r"\fs{}".format(textSize)
             tag += r"\c" + fgColor
             tag += r"\1a" + bgOpacity
             tag += r"\b1"

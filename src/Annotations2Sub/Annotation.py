@@ -2,10 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import datetime
-from typing import Literal, Optional
+from typing import Literal
 
 from Annotations2Sub.Color import Alpha, Color
-from . import *
 
 
 class Annotation(object):
@@ -24,8 +23,8 @@ class Annotation(object):
             "highlightText",
         ] = ""
         self.text: str = ""
-        self.timeStart: datetime.datetime = datetime.datetime()
-        self.timeEnd: datetime.datetime = datetime.datetime()
+        self.timeStart: datetime.datetime = datetime.datetime.strptime("0", "%S")
+        self.timeEnd: datetime.datetime = datetime.datetime.strptime("0", "%S")
         self.x: float = 0.0
         self.y: float = 0.0
         self.width: float = 0.0
