@@ -61,6 +61,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
         type = each.get("type")
         if type not in ("text", "highlight", "branding"):
+            print(_("本脚本暂不支持{}类型. ()").format(type, annotation.id))
             return None
         annotation.type = MakeSureStr(type)  # type: ignore
 
@@ -255,7 +256,7 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
         elif each.style == "title":
             title()
         else:
-            print(_("抱歉这个脚本还不支持 {} 样式. ({})").format(each.style, each.id))
+            print(_("本脚本暂不支持 {} 样式. ({})").format(each.style, each.id))
 
         return events
 
