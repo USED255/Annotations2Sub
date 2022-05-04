@@ -2,9 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import copy
-from datetime import datetime
+import datetime
 import gettext
-import re
 from typing import List, Optional
 from xml.etree.ElementTree import Element
 
@@ -48,15 +47,6 @@ def Parse(tree: Element) -> List[Annotation]:
         s2 = Color(red=r, green=g, blue=b)
         return s2
 
-    def White() -> Color:
-        return Color(red=255, green=255, blue=255)
-
-    def Black() -> Color:
-        return Color(red=0, green=0, blue=0)
-
-    def DefaultTransparency() -> Alpha:
-        return Alpha(alpha=204)
-
     def MakeSureStr(s: Optional[str]) -> str:
         if isinstance(s, str):
             return str(s)
@@ -72,12 +62,14 @@ def Parse(tree: Element) -> List[Annotation]:
         type = each.get("type")
         if type not in ("text", "highlight", "branding"):
             return None
-        annotation.type = type  # type: ignore
+        annotation.type = MakeSureStr(type)  # type: ignore
 
         annotation.style = each.get("style")  # type: ignore
 
         text = each.find("TEXT")
-        if text is not None:
+        if text is None:
+            annotation.text = ""
+        else:
             annotation.text = MakeSureStr(text.text)
 
         if len(each.find("segment").find("movingRegion")) == 0:  # type: ignore
@@ -107,54 +99,45 @@ def Parse(tree: Element) -> List[Annotation]:
             return None
 
         try:
-            annotation.timeStart = datetime.strptime(Start, "%H:%M:%S.%f")
-            annotation.timeEnd = datetime.strptime(End, "%H:%M:%S.%f")
+            annotation.timeStart = datetime.datetime.strptime(Start, "%H:%M:%S.%f")
+            annotation.timeEnd = datetime.datetime.strptime(End, "%H:%M:%S.%f")
         except:
-            annotation.timeStart = datetime.strptime(Start, "%M:%S.%f")
-            annotation.timeEnd = datetime.strptime(End, "%M:%S.%f")
+            annotation.timeStart = datetime.datetime.strptime(Start, "%M:%S.%f")
+            annotation.timeEnd = datetime.datetime.strptime(End, "%M:%S.%f")
 
         annotation.x = float(MakeSureStr(Segment[0].get("x")))
         annotation.y = float(MakeSureStr(Segment[0].get("y")))
 
-        def a(a) -> Optional[float]:
-            if a is None:
-                return None
-            if isinstance(a, str):
-                return float(a)
-            raise TypeError
+        w = Segment[0].get("w")
+        h = Segment[0].get("h")
+        sx = Segment[0].get("sx")
+        sy = Segment[0].get("sy")
 
-        annotation.width = a(Segment[0].get("w"))
-        annotation.height = a(Segment[0].get("h"))
-        annotation.sx = a(Segment[0].get("sx"))
-        annotation.sy = a(Segment[0].get("sy"))
+        if w is not None:
+            annotation.width = float(MakeSureStr(w))
+        if h is not None:
+            annotation.height = float(MakeSureStr(h))
+        if sx is not None:
+            annotation.sx = float(MakeSureStr(sx))
+        if sy is not None:
+            annotation.sy = float(MakeSureStr(sy))
 
         Appearance = each.find("appearance")
 
         if Appearance != None:
-            bgAlpha = MakeSureStr(Appearance.get("bgAlpha"))  # type: ignore
-            bgColor = MakeSureStr(Appearance.get("bgColor"))  # type: ignore
-            fgColor = MakeSureStr(Appearance.get("fgColor"))  # type: ignore
-            textSize = MakeSureStr(Appearance.get("textSize"))  # type: ignore
+            bgAlpha = Appearance.get("bgAlpha")  # type: ignore
+            bgColor = Appearance.get("bgColor")  # type: ignore
+            fgColor = Appearance.get("fgColor")  # type: ignore
+            textSize = Appearance.get("textSize")  # type: ignore
 
         if bgAlpha != None:
-            annotation.bgOpacity = ParseAnnotationAlpha(bgAlpha)
-        else:
-            annotation.bgOpacity = DefaultTransparency()
-
+            annotation.bgOpacity = ParseAnnotationAlpha(MakeSureStr(bgAlpha))
         if bgColor != None:
-            annotation.bgColor = ParseAnnotationColor(bgColor)
-        else:
-            annotation.bgColor = White()
-
+            annotation.bgColor = ParseAnnotationColor(MakeSureStr(bgColor))
         if fgColor != None:
-            annotation.fgColor = ParseAnnotationColor(fgColor)
-        else:
-            annotation.fgColor = Black()
-
+            annotation.fgColor = ParseAnnotationColor(MakeSureStr(fgColor))
         if textSize != None:
-            annotation.textSize = float(textSize)
-        else:
-            annotation.textSize = 3.15
+            annotation.textSize = float(MakeSureStr(textSize))
 
         return annotation
 
@@ -169,11 +152,6 @@ def Parse(tree: Element) -> List[Annotation]:
 
 def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
     """将 Annotation 列表转换为 Event 列表"""
-
-    def MakeSureFloat(a: Optional[float]) -> float:
-        if isinstance(a, float):
-            return float(a)
-        raise TypeError
 
     def ConvertColor(color: Color) -> str:
         return (
@@ -190,7 +168,53 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
     def ConvertAnnotation(each: Annotation) -> List[Event]:
         # 致谢: https://github.com/nirbheek/youtube-ass
         # 致谢: https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
-        events = []
+        def popup():
+            x = round(each.x, 3)
+            y = round(each.y, 3)
+            textSize = round(each.textSize, 3)
+            fgColor = ConvertColor(each.fgColor)
+            bgOpacity = ConvertAlpha(each.bgOpacity)
+            width = round(each.width)
+            height = round(each.height)
+
+            if libass:
+                # 针对 libass 的 hack
+                width = width * 1.776
+            width = round(width, 3)
+            event.Name = event.Name + "_popup"
+
+            tag = ""
+            tag += r"\an7" + r"\pos({},{})".format(x, y)
+            tag += r"\fs" + textSize
+            tag += r"\c" + fgColor
+            tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
+            tag = "{" + tag + "}"
+            event.Text = tag + event.Text
+            events.append(event)
+
+            event = copy.copy(event)
+
+            d = Draw()
+            d.Add(Point(0, 0, "m"))
+            d.Add(Point(width, 0, "l"))
+            d.Add(Point(width, height, "l"))
+            d.Add(Point(0, height, "l"))
+            d_str = d.Dump()
+            box = r"{\p1}" + d_str + r"{\p0}"
+
+            tag = ""
+            tag += r"\an7" + r"\pos({},{})".format(x + 1, y + 1)
+            tag += r"\fs" + textSize
+            tag += r"\c" + fgColor
+            tag += r"\1a" + bgOpacity
+            tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
+            tag = "{" + tag + "}"
+
+            event.Text = tag + box
+            event.Name = event.Name + "_box"
+            events.append(event)
+
+        events: List[Event] = []
         event = Event()
 
         event.Start = each.timeStart
@@ -198,8 +222,6 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
         event.Name = each.id
 
         text = each.text
-        if text is None:
-            text = ""
         text = text.replace("\n", r"\N")
         if libass:
             # 仅 libass 支持大括号转义
@@ -208,54 +230,11 @@ def Convert(annotations: List[Annotation], libass: bool) -> List[Event]:
         event.Text = text
 
         if each.style == "popup":
-            event.Name = event.Name + "_popup"
-
-            tag = ""
-            tag += r"\an7" + r"\pos({},{})".format(
-                MakeSureFloat(each.x), MakeSureFloat(each.y)
-            )
-            tag += r"\fs" + each.textSize
-            tag += r"\c" + ConvertColor(each.fgColor)
-            tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
-            tag = "{" + tag + "}"
-            event.Text = tag + event.Text
-            events.append(event)
-
-            event = copy.copy(event)
-
-            width = MakeSureFloat(each.width)
-            if libass:
-                # 针对 libass 的 hack
-                width = width * 1.776
-            width = round(width, 3)
-
-            d = Draw()
-            d.Add(Point(0, 0, "m"))
-            d.Add(Point(width, 0, "l"))
-            d.Add(Point(width, each.height, "l"))
-            d.Add(Point(0, each.height, "l"))
-            d_str = d.Dump()
-            box = r"{\p1}" + d_str + r"{\p0}"
-
-            tag = ""
-            tag += r"\an7" + r"\pos({},{})".format(
-                MakeSureFloat(each.x), MakeSureFloat(each.y)
-            )
-            tag += r"\fs" + each.textSize
-            tag += r"\c" + ConvertColor(each.fgColor)
-            tag += r"\1a" + ConvertAlpha(each.bgOpacity)
-            tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
-            tag = "{" + tag + "}"
-
-            event.Text = tag + box
-            event.Name = event.Name + "_box"
-            events.append(event)
-
+            popup()
         elif each.style == "title":
             pass
         elif each.style == "highlightText":
             pass
-
         else:
             print(_("抱歉这个脚本还不支持 {} 样式. ({})").format(each.style, each.id))
 

@@ -15,19 +15,19 @@ class Event:
     def __init__(self):
 
         # 仅列出了需要的 Format
-        self.Format: Literal["Dialogue"] = ("Dialogue",)
+        self.Format: Literal["Dialogue"] = "Dialogue"
         # Aegisub 没有 Marked ,所以我们也没有
-        self.Layer: int = (0,)
+        self.Layer: int = 0
         self.Start: datetime.datetime = datetime.datetime()
         self.End: datetime.datetime = datetime.datetime()
-        self.Style: str = ("Default",)
-        self.Name: str = ("",)
+        self.Style: str = "Default"
+        self.Name: str = ""
         # MarginL, MarginR, MarginV, Effect 在本项目中均没有使用
-        self.MarginL: int = (0,)
-        self.MarginR: int = (0,)
-        self.MarginV: int = (0,)
-        self.Effect: str = ("",)
-        self.Text: str = ("",)
+        self.MarginL: int = 0
+        self.MarginR: int = 0
+        self.MarginV: int = 0
+        self.Effect: str = ""
+        self.Text: str = ""
 
 
 class Point:
@@ -52,3 +52,7 @@ class Draw:
         for i in self.draw:
             s = s + "{} {} {} ".format(i.command, i.x, i.y)
         return s
+
+
+def ConvertTime(t: datetime.datetime) -> str:
+    return t.strftime("%H:%M:%S.%f")
