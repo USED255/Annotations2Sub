@@ -4,7 +4,6 @@
 import datetime
 import gettext
 from typing import Literal, List, Optional
-import datetime
 from xml.etree.ElementTree import Element
 
 from Annotations2Sub.Color import Alpha, Color

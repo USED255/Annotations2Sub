@@ -60,9 +60,15 @@ _ = gettext.gettext
 
 
 def main():
-    parser = argparse.ArgumentParser(description=_("一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)文件的脚本"))
+    parser = argparse.ArgumentParser(
+        description=_("一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)文件的脚本")
+    )
     parser.add_argument(
-        "File", type=str, nargs="+", metavar=_("文件 或 视频ID"), help=_("多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId")
+        "File",
+        type=str,
+        nargs="+",
+        metavar=_("文件 或 视频ID"),
+        help=_("多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId"),
     )
     args = parser.parse_args()
     file = args.File[0]
