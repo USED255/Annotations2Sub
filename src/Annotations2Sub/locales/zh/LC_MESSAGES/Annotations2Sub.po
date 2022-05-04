@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2022-05-04 23:43+0800\n"
+"PO-Revision-Date: 2022-05-04 23:43+0800\n"
+"Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
+"Language-Team: \n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: Annotation.py:93
+msgid "本脚本暂不支持{}类型. ()"
+msgstr "本脚本暂不支持{}类型. ()"
+
+#: Convert.py:119
+msgid "本脚本暂不支持 {} 样式. ({})"
+msgstr "本脚本暂不支持 {} 样式. ({})"
+
+#: __main__.py:64
+msgid "一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)文件的脚本"
+msgstr "一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)文件的脚本"
+
+#: __main__.py:70
+msgid "文件 或 视频ID"
+msgstr "文件 或 视频ID"
+
+#: __main__.py:71
+msgid "多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId"
+msgstr "多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId"

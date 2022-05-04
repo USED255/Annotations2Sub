@@ -54,9 +54,9 @@ from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
 
-# translate = gettext.translation("Annotations2Sub", "translations")
-# _ = translate.gettext
-_ = gettext.gettext
+translate = gettext.translation("Annotations2Sub", "locales")
+_ = translate.gettext
+# _ = gettext.gettext
 
 
 def main():

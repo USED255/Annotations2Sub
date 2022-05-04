@@ -8,9 +8,9 @@ from xml.etree.ElementTree import Element
 
 from Annotations2Sub.Color import Alpha, Color
 
-# translate = gettext.translation("Annotations2Sub", "translations")
-# _ = translate.gettext
-_ = gettext.gettext
+translate = gettext.translation("Annotations2Sub", "locales")
+_ = translate.gettext
+# _ = gettext.gettext
 
 
 class Annotation(object):

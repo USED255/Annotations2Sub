@@ -9,9 +9,9 @@ from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, Event, Point
 
-# translate = gettext.translation("Annotations2Sub", "translations")
-# _ = translate.gettext
-_ = gettext.gettext
+translate = gettext.translation("Annotations2Sub", "locales")
+_ = translate.gettext
+# _ = gettext.gettext
 
 
 def Convert(annotations: List[Annotation], libass: bool = False) -> List[Event]:
