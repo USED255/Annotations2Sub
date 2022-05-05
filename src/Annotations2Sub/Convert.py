@@ -7,16 +7,7 @@ from typing import List
 from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, Event, Point
-
-import gettext
-import os
-
-locales = os.path.join(os.path.split(os.path.realpath(__file__))[0], "locales")
-translate = gettext.translation(
-    "Annotations2Sub",
-    locales,
-)
-_ = translate.gettext
+from Annotations2Sub.locales import _
 
 
 def Convert(annotations: List[Annotation], libass: bool = False) -> List[Event]:
