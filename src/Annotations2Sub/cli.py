@@ -12,7 +12,8 @@ import gettext
 import os
 
 translate = gettext.translation(
-    "Annotations2Sub", os.path.split(os.path.realpath(__file__))[0] + "/locales/"
+    "Annotations2Sub",
+    os.path.join(os.path.split(os.path.realpath(__file__))[0], "locales"),
 )
 _ = translate.gettext
 
