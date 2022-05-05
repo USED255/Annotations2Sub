@@ -11,9 +11,10 @@ from Annotations2Sub.Sub import Sub
 import gettext
 import os
 
+locales = os.path.join(os.path.split(os.path.realpath(__file__))[0], "locales")
 translate = gettext.translation(
     "Annotations2Sub",
-    os.path.join(os.path.split(os.path.realpath(__file__))[0], "locales"),
+    locales,
 )
 _ = translate.gettext
 
