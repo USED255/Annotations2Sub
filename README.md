@@ -24,7 +24,7 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -l, --use-libass      fixes for libass
+  -l, --embrace-libass  embrace libass's quirks
   -x 100, --transform-resolution-x 100
                         transform resolution X
   -y 100, --transform-resolution-y 100
@@ -37,7 +37,7 @@ optional arguments:
                         Specify invidious instances
   -p, --preview-video   preview video, need mpv and specify invidious domain
   -g, --generate-video  generate video, need FFmpeg and specify invidious domain
-  -u, --unstable        unstable function
+  -u, --unstable        unstable function, like speech and highlightText
   -v, --version         show version
   -V, --verbose         show a lot messages
 ```
