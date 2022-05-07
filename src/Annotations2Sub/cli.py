@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+import os
 import defusedxml.ElementTree  # type: ignore
 
 from Annotations2Sub.Annotation import Parse
@@ -9,6 +10,11 @@ from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
 from Annotations2Sub.locale import _
 
+def YellowText(s: str) -> str :
+    return "\033[33m" + s + "\033[0m"
+
+def RedText(s: str) -> str :
+    return "\033[31m" + s + "\033[0m"
 
 def main():
     parser = argparse.ArgumentParser(
@@ -22,7 +28,7 @@ def main():
         help=_("多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId"),
     )
     parser.add_argument(
-        "-l", "--embrace-libass", action="store_true", help=_("拥抱 libass 的怪癖和特性")
+        "-l", "--embrace-libass", action="store_true", help=_("拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter")
     )
     parser.add_argument(
         "-x",
@@ -44,9 +50,16 @@ def main():
         "-f", "--font", default="Microsoft YaHei", type=str, metavar="Microsoft YaHei", help=_("指定字体")
     )
     parser.add_argument(
-        "-o", "--output", default=".", type=str, metavar="File", help=_("指定转换后文件的文件名和路径")
+        "-o", "--output-path", default=None, type=str, metavar="文件", help=_("指定转换后文件的输出路径, 不指定此选项会转换后的文件输出至与被转换文件同一目录")
     )
     args = parser.parse_args()
+
+    if args.output_path is None:
+        output_path = os.path.abspath(args.output_path)
+        if os.path.isfile(output_path):
+            print(RedText(_("转换后文件的输出路径应该指定一个文件夹, 而不是文件")))
+            exit(1)
+        
     file = args.queue[0]
     string = open(file, "r", encoding="utf-8").read()
     tree = defusedxml.ElementTree.fromstring(string)
@@ -64,5 +77,8 @@ def main():
     sub.events.events.sort(key=lambda event: event.Start)
     sub.styles.styles["Default"].Fontname = args.font
     s = sub.Dump()
-    with open(file + ".ass", "w", encoding="utf-8") as f:
+
+    fileName =  os.path.basename(file) + ".ass"
+    output = os.path.join(args.output_path,fileName)
+    with open(output, "w", encoding="utf-8") as f:
         f.write(s)
