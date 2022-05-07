@@ -24,7 +24,8 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -l, --embrace-libass  embrace libass's quirks and features
+  -l, --embrace-libass  embrace libass's quirks and features, and not specifying
+                        this option will adapt to xy-vsfilter
   -x 100, --transform-resolution-x 100
                         transform resolution X
   -y 100, --transform-resolution-y 100
@@ -32,7 +33,9 @@ optional arguments:
   -f Microsoft YaHei UI, --font Microsoft YaHei UI 
                         specify font
   -o File, --output File
-                        specify the file name and path of the converted file
+                        specify the output path of the converted file,
+                        not specifying this option will output the converted
+                        file to the same directory as the converted file
   -d, --download-for-archive
                         Try downloading the annotations file from Internet Archive
   -i invidious-instances.domain, --invidious-domain invidious-instances.domain
