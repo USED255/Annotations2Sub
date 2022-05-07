@@ -21,12 +21,17 @@ def main():
         metavar=_("文件 或 视频ID"),
         help=_("多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId"),
     )
+
+    parser.add_argument(
+        "-l", "--embrace-libass", action="store_true", help=_("拥抱 libass 的怪癖")
+    )
+
     args = parser.parse_args()
     file = args.File[0]
     string = open(file, "r", encoding="utf-8").read()
     tree = defusedxml.ElementTree.fromstring(string)
     annotations = Parse(tree)
-    events = Convert(annotations)
+    events = Convert(annotations,args.embrace_libass)
     sub = Sub()
     sub.events.events.extend(events)
     sub.info.info["PlayResX"] = 100
