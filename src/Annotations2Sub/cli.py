@@ -20,6 +20,28 @@ def RedText(s: str) -> str:
 
 
 def main():
+    def convert():
+        with open(filePath, "r", encoding="utf-8") as f:
+            string = f.read()
+        tree = defusedxml.ElementTree.fromstring(string)
+        annotations = Parse(tree)
+        events = Convert(
+            annotations,
+            args.embrace_libass,
+            args.transform_resolution_x,
+            args.transform_resolution_y,
+        )
+        events.sort(key=lambda event: event.Start)
+        sub = Sub()
+        sub.events.events.extend(events)
+        sub.info.info["PlayResX"] = args.transform_resolution_x
+        sub.info.info["PlayResY"] = args.transform_resolution_y
+        sub.styles.styles["Default"].Fontname = args.font
+        subString = sub.Dump()
+        
+        with open(output, "w", encoding="utf-8") as f:
+            f.write(subString)
+    
     parser = argparse.ArgumentParser(
         description=_("一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)文件的脚本")
     )
@@ -80,25 +102,8 @@ def main():
         if os.path.isfile(filePath) == False:
             print(RedText(_("{} 不是一个文件").format(filePath)))
             exit(1)
-        with open(filePath, "r", encoding="utf-8") as f:
-            string = f.read()
-        tree = defusedxml.ElementTree.fromstring(string)
-        annotations = Parse(tree)
-        events = Convert(
-            annotations,
-            args.embrace_libass,
-            args.transform_resolution_x,
-            args.transform_resolution_y,
-        )
-        events.sort(key=lambda event: event.Start)
-        sub = Sub()
-        sub.events.events.extend(events)
-        sub.info.info["PlayResX"] = args.transform_resolution_x
-        sub.info.info["PlayResY"] = args.transform_resolution_y
-        sub.styles.styles["Default"].Fontname = args.font
-        subString = sub.Dump()
-
-        fileName = os.path.basename(filePath) + ".ass"
-        output = os.path.join(args.output_path, fileName)
-        with open(output, "w", encoding="utf-8") as f:
-            f.write(subString)
+        output = filePath + ".ass"
+        if args.output_path != None:
+            fileName = os.path.basename(filePath) + ".ass"
+            output = os.path.join(args.output_path, fileName)
+        convert()
