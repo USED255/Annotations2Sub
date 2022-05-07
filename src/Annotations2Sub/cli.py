@@ -15,7 +15,7 @@ def main():
         description=_("一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)文件的脚本")
     )
     parser.add_argument(
-        "File",
+        "queue",
         type=str,
         nargs="+",
         metavar=_("文件 或 视频ID"),
@@ -43,8 +43,11 @@ def main():
     parser.add_argument(
         "-f", "--font", default="Microsoft YaHei", type=str, metavar="Microsoft YaHei", help=_("指定字体")
     )
+    parser.add_argument(
+        "-o", "--output", default=".", type=str, metavar="File", help=_("指定转换后文件的文件名和路径")
+    )
     args = parser.parse_args()
-    file = args.File[0]
+    file = args.queue[0]
     string = open(file, "r", encoding="utf-8").read()
     tree = defusedxml.ElementTree.fromstring(string)
     annotations = Parse(tree)
