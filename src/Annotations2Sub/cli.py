@@ -22,7 +22,7 @@ def main():
         help=_("多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId"),
     )
     parser.add_argument(
-        "-l", "--embrace-libass", action="store_true", help=_("拥抱 libass 的怪癖")
+        "-l", "--embrace-libass", action="store_true", help=_("拥抱 libass 的怪癖和特性")
     )
     parser.add_argument(
         "-x",

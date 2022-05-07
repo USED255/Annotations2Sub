@@ -86,7 +86,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
         type = each.get("type")
         if type not in ("text", "highlight", "branding"):
-            print(_("本脚本暂不支持{}类型. ()").format(type, annotation.id))
+            print(_("不支持{}类型. ()").format(type, annotation.id))
             return None
         annotation.type = MakeSureStr(type)  # type: ignore
 

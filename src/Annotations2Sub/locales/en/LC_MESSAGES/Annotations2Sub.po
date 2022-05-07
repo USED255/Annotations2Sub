@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-05-07 20:58+0800\n"
-"PO-Revision-Date: 2022-05-07 21:00+0800\n"
+"POT-Creation-Date: 2022-05-07 21:17+0800\n"
+"PO-Revision-Date: 2022-05-07 21:19+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -15,12 +15,12 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: Annotation.py:89
-msgid "本脚本暂不支持{}类型. ()"
-msgstr "This script does not currently support {} types. ()"
+msgid "不支持{}类型. ()"
+msgstr "The {} type is not supported. ()"
 
 #: Convert.py:122
-msgid "本脚本暂不支持 {} 样式. ({})"
-msgstr "This script does not currently support {} styles. ({})"
+msgid "不支持 {} 样式. ({})"
+msgstr "The {} styles is not supported. ()"
 
 #: cli.py:15
 msgid "一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)文件的脚本"
@@ -39,8 +39,8 @@ msgstr ""
 "previewed or generated for Youtube videos"
 
 #: cli.py:25
-msgid "拥抱 libass 的怪癖"
-msgstr "embrace libass's quirks"
+msgid "拥抱 libass 的怪癖和特性"
+msgstr "embrace libass's quirks and features"
 
 #: cli.py:33
 msgid "变换分辨率X"

@@ -119,7 +119,7 @@ def Convert(
         elif each.style == "title":
             events.append(title(copy.copy(event)))
         else:
-            print(_("本脚本暂不支持 {} 样式. ({})").format(each.style, each.id))
+            print(_("不支持 {} 样式. ({})").format(each.style, each.id))
 
         return events
 

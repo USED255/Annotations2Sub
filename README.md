@@ -24,7 +24,7 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -l, --embrace-libass  embrace libass's quirks
+  -l, --embrace-libass  embrace libass's quirks and features
   -x 100, --transform-resolution-x 100
                         transform resolution X
   -y 100, --transform-resolution-y 100
