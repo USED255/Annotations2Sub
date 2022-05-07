@@ -3,6 +3,7 @@
 
 import argparse
 import os
+import traceback
 import defusedxml.ElementTree  # type: ignore
 
 from Annotations2Sub.Annotation import Parse
@@ -17,7 +18,6 @@ def YellowText(s: str) -> str:
 
 def RedText(s: str) -> str:
     return "\033[31m" + s + "\033[0m"
-
 
 def main():
     def convert():
@@ -98,10 +98,20 @@ def main():
             print(RedText(_("转换后文件的输出路径应该指定一个文件夹, 而不是文件")))
             exit(1)
 
+    filePaths = []
     for filePath in args.queue:
         if os.path.isfile(filePath) == False:
             print(RedText(_("{} 不是一个文件").format(filePath)))
             exit(1)
+        try:
+            defusedxml.ElementTree.parse(filePath)
+        except:
+            print(RedText(_("{} 不是一个有效的 XML 文件").format(filePath)))
+            print(traceback.format_exc())
+            exit(1)
+        filePaths.append(filePath)
+    
+    for filePath in filePaths:
         output = filePath + ".ass"
         if args.output_path != None:
             fileName = os.path.basename(filePath) + ".ass"
