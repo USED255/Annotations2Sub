@@ -21,21 +21,40 @@ def main():
         metavar=_("文件 或 视频ID"),
         help=_("多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId"),
     )
-
     parser.add_argument(
         "-l", "--embrace-libass", action="store_true", help=_("拥抱 libass 的怪癖")
     )
-
+    parser.add_argument(
+        "-x",
+        "--transform-resolution-x",
+        default=100,
+        type=int,
+        metavar=100,
+        help=_("变换分辨率X"),
+    )
+    parser.add_argument(
+        "-y",
+        "--transform-resolution-y",
+        default=100,
+        type=int,
+        metavar=100,
+        help=_("变换分辨率Y"),
+    )
     args = parser.parse_args()
     file = args.File[0]
     string = open(file, "r", encoding="utf-8").read()
     tree = defusedxml.ElementTree.fromstring(string)
     annotations = Parse(tree)
-    events = Convert(annotations,args.embrace_libass)
+    events = Convert(
+        annotations,
+        args.embrace_libass,
+        args.transform_resolution_x,
+        args.transform_resolution_y,
+    )
     sub = Sub()
     sub.events.events.extend(events)
-    sub.info.info["PlayResX"] = 100
-    sub.info.info["PlayResY"] = 100
+    sub.info.info["PlayResX"] = args.transform_resolution_x
+    sub.info.info["PlayResY"] = args.transform_resolution_y
     sub.events.events.sort(key=lambda event: event.Start)
     sub.styles.styles["Default"].Fontname = "Microsoft YaHei"
     s = sub.Dump()

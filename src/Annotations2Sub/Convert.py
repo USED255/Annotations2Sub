@@ -10,7 +10,12 @@ from Annotations2Sub.Sub import Draw, Event, Point
 from Annotations2Sub.locale import _
 
 
-def Convert(annotations: List[Annotation], libass: bool = False) -> List[Event]:
+def Convert(
+    annotations: List[Annotation],
+    libass: bool = False,
+    resolutionX: int = 100,
+    resolutionY: int = 100,
+) -> List[Event]:
     """将 Annotation 列表转换为 Event 列表"""
 
     def ConvertColor(color: Color) -> str:
@@ -90,16 +95,18 @@ def Convert(annotations: List[Annotation], libass: bool = False) -> List[Event]:
             text = text.replace(r"}", r"\}")
         event.Text = text
 
-        x = round(each.x, 3)
-        y = round(each.y, 3)
-        textSize = round(each.textSize, 3)
+        transformCoefficientX = resolutionX / 100
+        transformCoefficientY = resolutionY / 100
+        x = round(each.x * transformCoefficientX, 3)
+        y = round(each.y * transformCoefficientY, 3)
+        textSize = round(each.textSize * transformCoefficientX, 3)
         fgColor = ConvertColor(each.fgColor)
         bgColor = ConvertColor(each.bgColor)
         bgOpacity = ConvertAlpha(each.bgOpacity)
-        width = round(each.width, 3)
-        height = round(each.height, 3)
+        width = round(each.width * transformCoefficientX, 3)
+        height = round(each.height * transformCoefficientY, 3)
 
-        if libass:
+        if libass and resolutionX == 100 and resolutionY == 100:
             # 针对 libass 的 hack
             width = width * 1.776
         width = round(width, 3)
