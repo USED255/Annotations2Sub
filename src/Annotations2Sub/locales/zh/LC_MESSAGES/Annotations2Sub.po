@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-05-07 21:16+0800\n"
-"PO-Revision-Date: 2022-05-07 21:17+0800\n"
+"POT-Creation-Date: 2022-05-07 23:43+0800\n"
+"PO-Revision-Date: 2022-05-07 23:43+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -22,30 +22,66 @@ msgstr "不支持{}类型. ()"
 msgid "不支持 {} 样式. ({})"
 msgstr "不支持 {} 样式. ({})"
 
-#: cli.py:15
-msgid "一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)文件的脚本"
-msgstr "一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)文件的脚本"
+#: cli.py:46
+msgid ""
+"一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)"
+"文件的脚本"
+msgstr ""
+"一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)"
+"文件的脚本"
 
-#: cli.py:21
+#: cli.py:52
 msgid "文件 或 视频ID"
 msgstr "文件 或 视频ID"
 
-#: cli.py:22
-msgid "多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId"
-msgstr "多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId"
+#: cli.py:53
+msgid ""
+"多个需要转换的文件或者是需要预览或生成 Youtube 视频的 "
+"videoId"
+msgstr ""
+"多个需要转换的文件或者是需要预览或生成 Youtube 视频的 "
+"videoId"
 
-#: cli.py:25
-msgid "拥抱 libass 的怪癖和特性"
-msgstr "拥抱 libass 的怪癖和特性"
+#: cli.py:59
+msgid ""
+"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-"
+"vsfilter"
+msgstr ""
+"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-"
+"vsfilter"
 
-#: cli.py:33
+#: cli.py:67
 msgid "变换分辨率X"
 msgstr "变换分辨率X"
 
-#: cli.py:41
+#: cli.py:75
 msgid "变换分辨率Y"
 msgstr "变换分辨率Y"
 
-#: cli.py:44
+#: cli.py:83
 msgid "指定字体"
 msgstr "指定字体"
+
+#: cli.py:91
+msgid ""
+"指定转换后文件的输出路径, 不指定此选项会转换后的文件输出"
+"至与被转换文件同一目录"
+msgstr ""
+"指定转换后文件的输出路径, 不指定此选项会转换后的文件输出"
+"至与被转换文件同一目录"
+
+#: cli.py:98
+msgid "转换后文件的输出路径应该指定一个文件夹, 而不是文件"
+msgstr ""
+"转换后文件的输出路径应该指定一个文件夹, 而不是文件"
+
+#: cli.py:104
+msgid "{} 不是一个文件"
+msgstr "{} 不是一个文件"
+
+#: cli.py:109
+msgid "{} 不是一个有效的 XML 文件"
+msgstr "{} 不是一个有效的 XML 文件"
+
+#~ msgid "拥抱 libass 的怪癖和特性"
+#~ msgstr "拥抱 libass 的怪癖和特性"

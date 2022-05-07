@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-05-07 21:17+0800\n"
-"PO-Revision-Date: 2022-05-07 21:19+0800\n"
+"POT-Creation-Date: 2022-05-07 23:43+0800\n"
+"PO-Revision-Date: 2022-05-07 23:43+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -22,34 +22,60 @@ msgstr "The {} type is not supported. ()"
 msgid "不支持 {} 样式. ({})"
 msgstr "The {} styles is not supported. ()"
 
-#: cli.py:15
+#: cli.py:46
 msgid "一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)文件的脚本"
 msgstr ""
 "A script that converts Youtube Annotations into ASS(Sub Station Alpha V4) "
 "subtitles file"
 
-#: cli.py:21
+#: cli.py:52
 msgid "文件 或 视频ID"
 msgstr "File or videoId"
 
-#: cli.py:22
+#: cli.py:53
 msgid "多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId"
 msgstr ""
 "Multiple files that need to be converted or videoId's that need to be "
 "previewed or generated for Youtube videos"
 
-#: cli.py:25
-msgid "拥抱 libass 的怪癖和特性"
-msgstr "embrace libass's quirks and features"
+#: cli.py:59
+msgid "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
+msgstr ""
+"embrace libass's quirks and features, and not specifying this option will "
+"adapt to xy-vsfilter"
 
-#: cli.py:33
+#: cli.py:67
 msgid "变换分辨率X"
 msgstr "transform resolution X"
 
-#: cli.py:41
+#: cli.py:75
 msgid "变换分辨率Y"
 msgstr "transform resolution Y"
 
-#: cli.py:44
+#: cli.py:83
 msgid "指定字体"
 msgstr "specify font"
+
+#: cli.py:91
+msgid ""
+"指定转换后文件的输出路径, 不指定此选项会转换后的文件输出至与被转换文件同一"
+"目录"
+msgstr ""
+"specify the output path of the converted file, not specifying this option "
+"will output the converted file to the same directory as the converted file"
+
+#: cli.py:98
+msgid "转换后文件的输出路径应该指定一个文件夹, 而不是文件"
+msgstr ""
+"The output path of the converted file should specify a folder, not file"
+
+#: cli.py:104
+msgid "{} 不是一个文件"
+msgstr "{} is not a file"
+
+#: cli.py:109
+msgid "{} 不是一个有效的 XML 文件"
+msgstr "{} is not a valid XML file"
+
+#~ msgid "拥抱 libass 的怪癖和特性"
+#~ msgstr "embrace libass's quirks and features"
