@@ -11,4 +11,4 @@ translate = gettext.translation(
     locales,
     languages=["zh", "en"],
 )
-translate.install()
+_ = translate.gettext
