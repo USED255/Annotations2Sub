@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-05-04 23:43+0800\n"
-"PO-Revision-Date: 2022-05-04 23:43+0800\n"
+"POT-Creation-Date: 2022-05-07 21:00+0800\n"
+"PO-Revision-Date: 2022-05-07 21:00+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -14,22 +14,38 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: Annotation.py:93
+#: Annotation.py:89
 msgid "本脚本暂不支持{}类型. ()"
 msgstr "本脚本暂不支持{}类型. ()"
 
-#: Convert.py:119
+#: Convert.py:122
 msgid "本脚本暂不支持 {} 样式. ({})"
 msgstr "本脚本暂不支持 {} 样式. ({})"
 
-#: __main__.py:64
+#: cli.py:15
 msgid "一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)文件的脚本"
 msgstr "一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)文件的脚本"
 
-#: __main__.py:70
+#: cli.py:21
 msgid "文件 或 视频ID"
 msgstr "文件 或 视频ID"
 
-#: __main__.py:71
+#: cli.py:22
 msgid "多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId"
 msgstr "多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId"
+
+#: cli.py:25
+msgid "拥抱 libass 的怪癖"
+msgstr "拥抱 libass 的怪癖"
+
+#: cli.py:33
+msgid "变换分辨率X"
+msgstr "变换分辨率X"
+
+#: cli.py:41
+msgid "变换分辨率Y"
+msgstr "变换分辨率Y"
+
+#: cli.py:44
+msgid "指定字体"
+msgstr "指定字体"

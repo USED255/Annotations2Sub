@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-05-04 23:44+0800\n"
-"PO-Revision-Date: 2022-05-04 23:47+0800\n"
+"POT-Creation-Date: 2022-05-07 20:58+0800\n"
+"PO-Revision-Date: 2022-05-07 21:00+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -14,22 +14,42 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: Annotation.py:93
+#: Annotation.py:89
 msgid "本脚本暂不支持{}类型. ()"
 msgstr "This script does not currently support {} types. ()"
 
-#: Convert.py:119
+#: Convert.py:122
 msgid "本脚本暂不支持 {} 样式. ({})"
 msgstr "This script does not currently support {} styles. ({})"
 
-#: __main__.py:64
+#: cli.py:15
 msgid "一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)文件的脚本"
-msgstr "A script that converts Youtube Annotations into ASS(Sub Station Alpha V4) subtitles file"
+msgstr ""
+"A script that converts Youtube Annotations into ASS(Sub Station Alpha V4) "
+"subtitles file"
 
-#: __main__.py:70
+#: cli.py:21
 msgid "文件 或 视频ID"
 msgstr "File or videoId"
 
-#: __main__.py:71
+#: cli.py:22
 msgid "多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId"
-msgstr "Multiple files that need to be converted or videoId's that need to be previewed or generated for Youtube videos"
+msgstr ""
+"Multiple files that need to be converted or videoId's that need to be "
+"previewed or generated for Youtube videos"
+
+#: cli.py:25
+msgid "拥抱 libass 的怪癖"
+msgstr "embrace libass's quirks"
+
+#: cli.py:33
+msgid "变换分辨率X"
+msgstr "transform resolution X"
+
+#: cli.py:41
+msgid "变换分辨率Y"
+msgstr "transform resolution Y"
+
+#: cli.py:44
+msgid "指定字体"
+msgstr "specify font"
