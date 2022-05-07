@@ -40,6 +40,9 @@ def main():
         metavar=100,
         help=_("变换分辨率Y"),
     )
+    parser.add_argument(
+        "-f", "--font", default="Microsoft YaHei", type=str, metavar="Microsoft YaHei", help=_("指定字体")
+    )
     args = parser.parse_args()
     file = args.File[0]
     string = open(file, "r", encoding="utf-8").read()
@@ -56,7 +59,7 @@ def main():
     sub.info.info["PlayResX"] = args.transform_resolution_x
     sub.info.info["PlayResY"] = args.transform_resolution_y
     sub.events.events.sort(key=lambda event: event.Start)
-    sub.styles.styles["Default"].Fontname = "Microsoft YaHei"
+    sub.styles.styles["Default"].Fontname = args.font
     s = sub.Dump()
     with open(file + ".ass", "w", encoding="utf-8") as f:
         f.write(s)
