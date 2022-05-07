@@ -7,7 +7,7 @@ import defusedxml.ElementTree  # type: ignore
 from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
-from Annotations2Sub.locales import _
+from Annotations2Sub.locale import _
 
 
 def main():
