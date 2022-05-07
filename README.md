@@ -31,6 +31,8 @@ optional arguments:
                         transform resolution Y
   -f Microsoft YaHei UI, --font Microsoft YaHei UI 
                         specify font
+  -o File, --output File
+                        specify the file name and path of the output file
   -d, --download-for-archive
                         Try downloading the annotations file from Internet Archive
   -i invidious-instances.domain, --invidious-domain invidious-instances.domain

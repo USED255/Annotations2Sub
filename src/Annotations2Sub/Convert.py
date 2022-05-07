@@ -64,14 +64,14 @@ def Convert(
             return event
 
         def title(event: Event) -> Event:
-            # 很明显 title 字体大小是用 DPI 72 计算的
-            textSize = round(each.textSize / 4, 3)
+            # 很明显 title 字体大小是用 DPI 计算的
+            _textSize = round(textSize / 4, 3)
 
             event.Name += "_title"
 
             tag = ""
             tag += r"\an7" + r"\pos({},{})".format(x, y)
-            tag += r"\fs" + str(textSize)
+            tag += r"\fs" + str(_textSize)
             tag += r"\c" + fgColor
             tag += r"\b500"
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
@@ -99,7 +99,7 @@ def Convert(
         transformCoefficientY = resolutionY / 100
         x = round(each.x * transformCoefficientX, 3)
         y = round(each.y * transformCoefficientY, 3)
-        textSize = round(each.textSize * transformCoefficientX, 3)
+        textSize = round(each.textSize * transformCoefficientY, 3)
         fgColor = ConvertColor(each.fgColor)
         bgColor = ConvertColor(each.bgColor)
         bgOpacity = ConvertAlpha(each.bgOpacity)
