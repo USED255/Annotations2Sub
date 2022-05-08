@@ -10,7 +10,7 @@ A script that can convert Youtube Annotation into ASS(Sub Station Alpha V4) subt
 pip install Annotations2Sub
 ```
 
-```man
+```help
 usage: Annotations2Sub.py [-h] [-l] [-x 100] [-y 100] [-f Microsoft YaHei] [-d]
                           [-i invidious-instances.domain] [-p] [-g] [-u] [-v] [-V]
                           File or videoId [File or videoId ...]
