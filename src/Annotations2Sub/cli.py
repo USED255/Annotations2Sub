@@ -43,14 +43,14 @@ def main():
             f.write(subString)
     
     parser = argparse.ArgumentParser(
-        description=_("一个可以把Youtube注释转换成ASS字幕(Sub Station Alpha V4)文件的脚本")
+        description=_("一个可以把 Youtube Annotations 转换成 ASS 字幕(Sub Station Alpha V4)文件的脚本")
     )
     parser.add_argument(
         "queue",
         type=str,
         nargs="+",
-        metavar=_("文件 或 视频ID"),
-        help=_("多个需要转换的文件或者是需要预览或生成 Youtube 视频的 videoId"),
+        metavar=_("文件 或 videoId"),
+        help=_("多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从Internet Archive 下载 Annotations 文件 Youtube 视频的 videoId"),
     )
     parser.add_argument(
         "-l",
@@ -77,9 +77,9 @@ def main():
     parser.add_argument(
         "-f",
         "--font",
-        default="Microsoft YaHei",
+        default=_("Microsoft YaHei"),
         type=str,
-        metavar="Microsoft YaHei",
+        metavar=_("Microsoft YaHei"),
         help=_("指定字体"),
     )
     parser.add_argument(
@@ -87,8 +87,8 @@ def main():
         "--output-path",
         default=None,
         type=str,
-        metavar="文件",
-        help=_("指定转换后文件的输出路径, 不指定此选项会转换后的文件输出至与被转换文件同一目录"),
+        metavar=_("文件夹"),
+        help=_("指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目录"),
     )
     args = parser.parse_args()
 

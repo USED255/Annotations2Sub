@@ -18,9 +18,9 @@ usage: Annotations2Sub.py [-h] [-l] [-x 100] [-y 100] [-f Microsoft YaHei] [-d]
 A script that converts Youtube Annotations into ASS(Sub Station Alpha V4) subtitles file
 
 positional arguments:
-  File or videoId       Multiple files that need to be converted or
-                        videoId's that need to be previewed or generated
-                        for Youtube videos
+  File or videoId       File path of multiple files to be converted, or multiple
+                        Youtube videoId to be previewed, generated, Annotations file 
+                        downloaded from Internet Archive
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -30,7 +30,7 @@ optional arguments:
                         transform resolution X
   -y 100, --transform-resolution-y 100
                         transform resolution Y
-  -f Microsoft YaHei UI, --font Microsoft YaHei UI 
+  -f Arial, --font Arial
                         specify font
   -o File, --output File
                         specify the output path of the converted file,
