@@ -49,7 +49,7 @@ def Parse(tree: Element) -> List[Annotation]:
         bgAlpha="0.600000023842" -> Alpha(alpha=102)
         """
         s0 = annotation_alpha_str
-        if s0 == None:
+        if s0 is None:
             raise Exception("alpha is None")
         s1 = float(s0)
         s2 = 1 - s1
@@ -63,7 +63,7 @@ def Parse(tree: Element) -> List[Annotation]:
         bgColor="4210330" -> Color(red=154, green=62, blue=64)
         """
         s0 = annotation_color_str
-        if s0 == None:
+        if s0 is None:
             raise Exception("color is None")
         s1 = int(s0)
         r = s1 & 255
@@ -139,13 +139,13 @@ def Parse(tree: Element) -> List[Annotation]:
         sx = Segment[0].get("sx")
         sy = Segment[0].get("sy")
 
-        if w is not None:
+        if w != None:
             annotation.width = float(MakeSureStr(w))
-        if h is not None:
+        if h != None:
             annotation.height = float(MakeSureStr(h))
-        if sx is not None:
+        if sx != None:
             annotation.sx = float(MakeSureStr(sx))
-        if sy is not None:
+        if sy != None:
             annotation.sy = float(MakeSureStr(sy))
 
         Appearance = each.find("appearance")
