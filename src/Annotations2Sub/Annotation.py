@@ -43,34 +43,30 @@ class Annotation(object):
 def Parse(tree: Element) -> List[Annotation]:
     """XML 树转换为 Annotation 结构列表"""
 
-    def ParseAnnotationAlpha(annotation_alpha_str: str) -> Alpha:
+    def ParseAnnotationAlpha(s: str) -> Alpha:
         """
         解析 Annotation 的透明度
         bgAlpha="0.600000023842" -> Alpha(alpha=102)
         """
-        s0 = annotation_alpha_str
-        if s0 is None:
+        if s is None:
             raise Exception("alpha is None")
-        s1 = float(s0)
+        s1 = float(s)
         s2 = 1 - s1
         s3 = s2 * 255
         s4 = int(s3)
-        s5 = Alpha(alpha=s4)
-        return s5
+        return Alpha(alpha=s4)
 
-    def ParseAnnotationColor(annotation_color_str: str) -> Color:
+    def ParseAnnotationColor(s: str) -> Color:
         """
         bgColor="4210330" -> Color(red=154, green=62, blue=64)
         """
-        s0 = annotation_color_str
-        if s0 is None:
+        if s is None:
             raise Exception("color is None")
-        s1 = int(s0)
+        s1 = int(s)
         r = s1 & 255
         g = (s1 >> 8) & 255
         b = s1 >> 16
-        s2 = Color(red=r, green=g, blue=b)
-        return s2
+        return Color(red=r, green=g, blue=b)
 
     def MakeSureStr(s: Optional[str]) -> str:
         if isinstance(s, str):

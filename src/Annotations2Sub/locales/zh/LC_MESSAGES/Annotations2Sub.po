@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-05-08 19:18+0800\n"
-"PO-Revision-Date: 2022-05-08 19:18+0800\n"
+"POT-Creation-Date: 2022-05-09 12:16+0800\n"
+"PO-Revision-Date: 2022-05-09 12:17+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: Annotation.py:89
+#: Annotation.py:85
 msgid "不支持{}类型. ()"
 msgstr "不支持{}类型. ()"
 
@@ -22,71 +22,101 @@ msgstr "不支持{}类型. ()"
 msgid "不支持 {} 样式. ({})"
 msgstr "不支持 {} 样式. ({})"
 
+#: cli.py:41
+msgid "保存于: {}"
+msgstr "保存于: {}"
+
 #: cli.py:46
-msgid ""
-"一个可以把 Youtube Annotations 转换成 ASS 字幕(Sub Station "
-"Alpha V4)文件的脚本"
-msgstr ""
-"一个可以把 Youtube Annotations 转换成 ASS 字幕(Sub Station "
-"Alpha V4)文件的脚本"
+msgid "您好像无法访问 Google 🤔"
+msgstr "您好像无法访问 Google 🤔"
+
+#: cli.py:47
+msgid "请检查您的网络连接"
+msgstr "请检查您的网络连接"
 
 #: cli.py:52
+msgid ""
+"一个可以把 Youtube Annotations 转换成 ASS 字幕(Sub "
+"Station Alpha V4)文件的脚本"
+msgstr ""
+"一个可以把 Youtube Annotations 转换成 ASS 字幕(Sub "
+"Station Alpha V4)文件的脚本"
+
+#: cli.py:58
 msgid "文件 或 videoId"
 msgstr "文件 或 videoId"
 
-#: cli.py:53
+#: cli.py:60
 msgid ""
-"多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从"
-"Internet Archive 下载 Annotations 文件 Youtube 视频的 videoId"
+"多个需要转换的文件的文件路径, 或者是多个需要预览, 生"
+"成, 从Internet Archive 下载 Annotations 文件 Youtube "
+"视频的 videoId"
 msgstr ""
-"多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从"
-"Internet Archive 下载 Annotations 文件 Youtube 视频的 videoId"
-
-#: cli.py:59
-msgid ""
-"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
-msgstr ""
-"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
+"多个需要转换的文件的文件路径, 或者是多个需要预览, 生"
+"成, 从Internet Archive 下载 Annotations 文件 Youtube "
+"视频的 videoId"
 
 #: cli.py:67
+msgid ""
+"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-"
+"vsfilter"
+msgstr ""
+"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-"
+"vsfilter"
+
+#: cli.py:75
 msgid "变换分辨率X"
 msgstr "变换分辨率X"
 
-#: cli.py:75
+#: cli.py:83
 msgid "变换分辨率Y"
 msgstr "变换分辨率Y"
 
-#: cli.py:80 cli.py:82
+#: cli.py:88 cli.py:90
 msgid "Microsoft YaHei"
 msgstr "Microsoft YaHei"
 
-#: cli.py:83
+#: cli.py:91
 msgid "指定字体"
 msgstr "指定字体"
 
-#: cli.py:90
+#: cli.py:98
 msgid "文件夹"
 msgstr "文件夹"
 
-#: cli.py:91
+#: cli.py:99
 msgid ""
-"指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被"
-"转换文件同一目录"
+"指定转换后文件的输出路径, 不指定此选项转换后的文件会输"
+"出至与被转换文件同一目录"
 msgstr ""
-"指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被"
-"转换文件同一目录"
+"指定转换后文件的输出路径, 不指定此选项转换后的文件会输"
+"出至与被转换文件同一目录"
 
-#: cli.py:98
-msgid "转换后文件的输出路径应该指定一个文件夹, 而不是文件"
-msgstr "转换后文件的输出路径应该指定一个文件夹, 而不是文件"
+#: cli.py:105
+msgid "尝试从 Internet Archive 下载 Annotations 文件"
+msgstr "尝试从 Internet Archive 下载 Annotations 文件"
 
-#: cli.py:104
+#: cli.py:113
+msgid ""
+"转换后文件的输出路径应该指定一个文件夹, 而不是文件"
+msgstr ""
+"转换后文件的输出路径应该指定一个文件夹, 而不是文件"
+
+#: cli.py:118
 msgid "{} 不是一个文件"
 msgstr "{} 不是一个文件"
 
-#: cli.py:109
+#: cli.py:123
 msgid "{} 不是一个有效的 XML 文件"
 msgstr "{} 不是一个有效的 XML 文件"
+
+#: cli.py:140
+msgid "下载 {}"
+msgstr "下载 {}"
+
+#: cli.py:143
+msgid "{} 可能没有 Annotations"
+msgstr "{} 可能没有 Annotations"
 
 #~ msgid "拥抱 libass 的怪癖和特性"
 #~ msgstr "拥抱 libass 的怪癖和特性"
