@@ -2,8 +2,12 @@
 # -*- coding: utf-8 -*-
 
 
+import json
+import os
 import re
 import urllib.request
+
+from black import Any
 
 
 def YellowText(s: str) -> str:
@@ -43,3 +47,44 @@ def AnnotationsForArchive(videoId: str) -> str:
     return (
         f"{ARCHIVE_URL}/download/youtubeannotations_{index}/{videoId[0:2]}.tar/{file}"
     )
+
+
+def VideoForInvidiou(videoId: str, invidious_domain: str):
+    api = "/api/v1/videos/"
+    url = f"https://{invidious_domain}{api}{videoId}"
+    string = urllib.request.urlopen(url).read().decode("utf-8")
+    data = json.loads(string)
+    audios = []
+    videos = []
+    for i in data.get("adaptiveFormats"):
+        if re.match("audio", i.get("type")) is not None:
+            audios.append(i)
+        if re.match("video", i.get("type")) is not None:
+            videos.append(i)
+    audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
+    videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
+    return {"audios": audios, "videos": videos}
+
+
+def PreviewVideo(videoId: str, file: str, invidious_domain):
+    data = VideoForInvidiou(videoId, invidious_domain)
+    video = data["videos"][0]
+    audio = data["audios"][0]
+    cmd = r'mpv "{}" --audio-file="{}" --sub-file="{}"'.format(video, audio, file)
+    print(cmd)
+    exit_code = os.system(cmd)
+    if exit_code != 0:
+        print(YellowText("exit with {}".format(exit_code)))
+
+
+def GenerateVideo(videoId: str, file: str, invidious_domain: str = "invidiou.site"):
+    data = VideoForInvidiou(videoId, invidious_domain)
+    video = data["videos"][0]
+    audio = data["audios"][0]
+    cmd = r'ffmpeg -i "{}" -i "{}" -vf "ass={}" "{}.mp4"'.format(
+        video, audio, file, videoId
+    )
+    print(cmd)
+    exit_code = os.system(cmd)
+    if exit_code != 0:
+        print(YellowText("exit with {}".format(exit_code)))

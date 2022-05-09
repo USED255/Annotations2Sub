@@ -41,6 +41,7 @@ Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字�
 参照 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 实现了一个简单的 Sub Station Alpha 格式生成器
 使用 "样式覆写代码" 实现了定位和颜色
 之后(a64995 庆祝一下), 使用了 "绘图模式" 实现了 "popup" 样式
-在之后, 脚本逐步完善, 完成了 https://www.bilibili.com/video/BV1Ff4y1t7Dj
+在 https://invidious.io/ 和 FFmpeg 的帮助下, 实现了简单的视频预览
+再之后, 脚本逐步完善, 完成了 https://www.bilibili.com/video/BV1Ff4y1t7Dj
 
 """
