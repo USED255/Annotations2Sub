@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-05-10 19:21+0800\n"
-"PO-Revision-Date: 2022-05-10 19:21+0800\n"
+"POT-Creation-Date: 2022-05-10 20:47+0800\n"
+"PO-Revision-Date: 2022-05-10 20:47+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -18,11 +18,11 @@ msgstr ""
 msgid "不支持{}类型. ()"
 msgstr "The {} type is not supported. ()"
 
-#: Convert.py:122
+#: Convert.py:142
 msgid "不支持 {} 样式. ({})"
 msgstr "The {} styles is not supported. ()"
 
-#: cli.py:21
+#: cli.py:28
 msgid ""
 "一个可以把 Youtube Annotations 转换成 ASS 字幕(Sub Station Alpha V4)文件的脚"
 "本"
@@ -30,11 +30,11 @@ msgstr ""
 "A script that converts Youtube Annotations into ASS(Sub Station Alpha V4) "
 "subtitles file"
 
-#: cli.py:27
+#: cli.py:34
 msgid "文件 或 videoId"
 msgstr "File or videoId"
 
-#: cli.py:29
+#: cli.py:36
 msgid ""
 "多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从Internet Archive 下"
 "载 Annotations 文件 Youtube 视频的 videoId"
@@ -42,33 +42,33 @@ msgstr ""
 "File path of multiple files to be converted, or multiple Youtube videoId to "
 "be previewed, generated, Annotations file downloaded from Internet Archive"
 
-#: cli.py:36
+#: cli.py:43
 msgid "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
 msgstr ""
 "Embrace libass's quirks and features, not specifying this option will adapt "
 "to xy-vsfilter"
 
-#: cli.py:44
+#: cli.py:51
 msgid "变换分辨率X"
 msgstr "Transform resolution X"
 
-#: cli.py:52
+#: cli.py:59
 msgid "变换分辨率Y"
 msgstr "Transform resolution Y"
 
-#: cli.py:57 cli.py:59
+#: cli.py:64 cli.py:66
 msgid "Microsoft YaHei"
 msgstr "Arial"
 
-#: cli.py:60
+#: cli.py:67
 msgid "指定字体"
 msgstr "Specify font"
 
-#: cli.py:66
+#: cli.py:73
 msgid "文件夹"
 msgstr "Folder"
 
-#: cli.py:67
+#: cli.py:74
 msgid ""
 "指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目"
 "录"
@@ -76,59 +76,65 @@ msgstr ""
 "Specify the output path of the converted file, not specifying this option "
 "the converted file will be output to the same directory as the converted file"
 
-#: cli.py:73
+#: cli.py:80
 msgid "尝试从 Internet Archive 下载 Annotations 文件"
 msgstr "Try downloading the Annotations file from the Internet Archive"
 
-#: cli.py:79
+#: cli.py:86
 msgid "指定 invidious 实例(https://redirect.invidious.io/)"
 msgstr "Specify invidious instances (https://redirect.invidious.io/)"
 
-#: cli.py:85
+#: cli.py:92
 msgid "预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"
 msgstr ""
 "Preview video, need mpv(https://mpv.io/) and specify invidious instances"
 
-#: cli.py:91
+#: cli.py:98
 msgid "生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例)"
 msgstr ""
 "Generate video, need FFmpeg(https://ffmpeg.org/) and specify invidious "
 "instances"
 
-#: cli.py:99
+#: cli.py:104
+msgid "启用不稳定功能, 如 speech 样式, highlightText 样式, 会出现一些问题"
+msgstr ""
+"Enabling Unstable function, such as speech style, highlightText style, can "
+"cause some problems"
+
+#: cli.py:112
 msgid "转换后文件的输出路径应该指定一个文件夹, 而不是文件"
 msgstr ""
 "The output path of the converted file should specify a folder, not file"
 
-#: cli.py:104
+#: cli.py:120
 msgid "请指定一个 invidious 实例"
 msgstr "Please specify an invidious instance"
 
-#: cli.py:112
+#: cli.py:128
 msgid "{} 不是一个文件"
 msgstr "{} is not a file"
 
-#: cli.py:117
+#: cli.py:133
 msgid "{} 不是一个有效的 XML 文件"
 msgstr "{} is not a valid XML file"
 
-#: cli.py:125
+#: cli.py:142
 msgid "您好像无法访问 Google 🤔"
 msgstr "You can't seem to access Google 🤔"
 
-#: cli.py:138
+#: cli.py:156
 msgid "下载 {}"
 msgstr "Downloading {}"
 
-#: cli.py:141
+#: cli.py:159
 msgid "{} 可能没有 Annotations"
 msgstr "{} May not have Annotations"
 
-#: cli.py:174
+#: cli.py:191
 msgid "保存于: {}"
 msgstr "Saved in: {}"
 
-#: tools.py:51
+#: tools.py:52
 msgid "获取 {}"
 msgstr "Get {}"
 

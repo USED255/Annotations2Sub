@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+from enum import Flag
 import os
 import re
 import traceback
@@ -96,6 +97,12 @@ def main():
         action="store_true",
         help=_("生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例)"),
     )
+    # parser.add_argument(
+    #     "-u",
+    #     "--unstable",
+    #     action="store_true",
+    #     help=_("启用不稳定功能, 如 speech 样式, highlightText 样式, 会出现一些问题"),
+    # )
     args = parser.parse_args()
 
     filePaths = []
@@ -104,6 +111,9 @@ def main():
         if os.path.isfile(args.output_path):
             print(RedText(_("转换后文件的输出路径应该指定一个文件夹, 而不是文件")))
             exit(1)
+
+    # if args.unstable:
+    #     Flag.unstable = True
 
     if args.preview_video or args.generate_video:
         if args.invidious_instances is None:
@@ -176,7 +186,6 @@ def main():
         sub.info.info["PlayResY"] = args.transform_resolution_y
         sub.styles.styles["Default"].Fontname = args.font
         subString = sub.Dump()
-
         with open(output, "w", encoding="utf-8") as f:
             f.write(subString)
         print(_("保存于: {}").format(output))

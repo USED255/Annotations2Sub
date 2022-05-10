@@ -86,7 +86,10 @@ def Parse(tree: Element) -> List[Annotation]:
             return None
         annotation.type = MakeSureStr(type)  # type: ignore
 
-        annotation.style = each.get("style")  # type: ignore
+        style = each.get("style")
+        if style is None:
+            return None
+        annotation.style = style  # type: ignore
 
         text = each.find("TEXT")
         if text is None:
@@ -152,14 +155,14 @@ def Parse(tree: Element) -> List[Annotation]:
             fgColor = Appearance.get("fgColor")  # type: ignore
             textSize = Appearance.get("textSize")  # type: ignore
 
-        if bgAlpha != None:
-            annotation.bgOpacity = ParseAnnotationAlpha(MakeSureStr(bgAlpha))
-        if bgColor != None:
-            annotation.bgColor = ParseAnnotationColor(MakeSureStr(bgColor))
-        if fgColor != None:
-            annotation.fgColor = ParseAnnotationColor(MakeSureStr(fgColor))
-        if textSize != None:
-            annotation.textSize = float(MakeSureStr(textSize))
+            if bgAlpha != None:
+                annotation.bgOpacity = ParseAnnotationAlpha(MakeSureStr(bgAlpha))
+            if bgColor != None:
+                annotation.bgColor = ParseAnnotationColor(MakeSureStr(bgColor))
+            if fgColor != None:
+                annotation.fgColor = ParseAnnotationColor(MakeSureStr(fgColor))
+            if textSize != None:
+                annotation.textSize = float(MakeSureStr(textSize))
 
         return annotation
 

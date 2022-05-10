@@ -7,6 +7,7 @@ from typing import List
 from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, Event, Point
+from Annotations2Sub.cli import Flag
 from Annotations2Sub.locale import _
 
 
@@ -27,9 +28,7 @@ def Convert(
     def ConvertAnnotation(each: Annotation) -> List[Event]:
         # 致谢: https://github.com/nirbheek/youtube-ass
         # 致谢: https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
-        def popup(event: Event) -> Event:
-            event.Name += "_popup"
-
+        def Text(event: Event) -> Event:
             tag = ""
             tag += r"\an7" + r"\pos({},{})".format(x + 1, y + 1)
             tag += r"\fs" + str(textSize)
@@ -40,8 +39,7 @@ def Convert(
             event.Text = tag + event.Text
             return event
 
-        def popup_box(event: Event) -> Event:
-            event.Name = event.Name + "_popup_box"
+        def Box(event: Event) -> Event:
             event.Layer = 0
 
             d = Draw()
@@ -63,22 +61,39 @@ def Convert(
             event.Text = tag + box
             return event
 
+        def popup_text(event: Event) -> Event:
+            event.Name += "_popup"
+
+            return Text(event)
+
+        def popup_box(event: Event) -> Event:
+            event.Name = event.Name + "_popup_box"
+
+            return Box(event)
+
         def title(event: Event) -> Event:
             # 很明显 title 字体大小是用 DPI 计算的
-            _textSize = round(textSize / 4, 3)
+            nonlocal textSize  # type: ignore
+            textSize = round(textSize / 4, 3)
 
             event.Name += "_title"
 
-            tag = ""
-            tag += r"\an7" + r"\pos({},{})".format(x, y)
-            tag += r"\fs" + str(_textSize)
-            tag += r"\c" + fgColor
-            tag += r"\b500"
-            tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
-            tag = "{" + tag + "}"
+            return Text(event)
 
-            event.Text = tag + event.Text
-            return event
+        def highlightText_text(event: Event) -> Event:
+            event.Name += "_highlightText"
+
+            return Text(event)
+
+        def highlightText_box(event: Event) -> Event:
+            event.Name = event.Name + "highlightText_box"
+
+            return Box(event)
+
+        def speech_text(event: Event) -> Event:
+            event.Name += "_speech"
+
+            return Text(event)
 
         events: List[Event] = []
         event = Event()
@@ -114,10 +129,15 @@ def Convert(
         event.Layer = 1
 
         if each.style == "popup":
-            events.append(popup(copy.copy(event)))
+            events.append(popup_text(copy.copy(event)))
             events.append(popup_box(copy.copy(event)))
         elif each.style == "title":
             events.append(title(copy.copy(event)))
+        # elif each.style == "highlightText" and Flag.unstable:
+        #     events.append(highlightText_text(copy.copy(event)))
+        #     events.append(highlightText_box(copy.copy(event)))
+        # elif each.style == "speech" and Flag.unstable:
+        #     events.append(speech_text(copy.copy(event)))
         else:
             print(_("不支持 {} 样式. ({})").format(each.style, each.id))
 

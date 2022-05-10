@@ -40,9 +40,12 @@ optional arguments:
                         Try downloading the annotations file from Internet Archive
   -i invidious-instances.domain, --invidious-instances invidious-instances.domain
                         Specify invidious instances (https://redirect.invidious.io/)
-  -p, --preview-video   Preview video, need mpv(https://mpv.io/) and specify invidious instances
-  -g, --generate-video  Penerate video, need FFmpeg(https://ffmpeg.org/) and specify invidious instances
-  -u, --unstable        Unstable function, like speech and highlightText
+  -p, --preview-video   Preview video, need mpv(https://mpv.io/) and 
+                        specify invidious instances
+  -g, --generate-video  Generate video, need FFmpeg(https://ffmpeg.org/) and 
+                        specify invidious instances
+  -u, --unstable        Enabling Unstable function, such as speech style, 
+                        highlightText style, can cause some problems
   -v, --version         Show version
   -V, --verbose         Show a lot messages
 ```
