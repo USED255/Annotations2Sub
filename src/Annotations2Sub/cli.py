@@ -13,7 +13,13 @@ from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
 from Annotations2Sub.locale import _
-from Annotations2Sub.tools import AnnotationsForArchive, CheckUrl, RedText, VideoForInvidiou, YellowText
+from Annotations2Sub.tools import (
+    AnnotationsForArchive,
+    CheckUrl,
+    RedText,
+    VideoForInvidiou,
+    YellowText,
+)
 
 
 def main():
@@ -120,11 +126,13 @@ def main():
             filePaths.append(filePath)
 
     if args.download_for_archive:
+
         def CheckNetwork():
             if CheckUrl() is False:
                 print(YellowText(_("您好像无法访问 Google 🤔")))
-        _thread.start_new_thread (CheckNetwork,())
-        
+
+        _thread.start_new_thread(CheckNetwork, ())
+
         videoIds = []
         for videoId in args.queue:
             if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
@@ -150,7 +158,7 @@ def main():
         if args.output_path != None:
             fileName = os.path.basename(filePath) + ".ass"
             output = os.path.join(args.output_path, fileName)
-        
+
         with open(filePath, "r", encoding="utf-8") as f:
             string = f.read()
         tree = defusedxml.ElementTree.fromstring(string)
@@ -177,7 +185,7 @@ def main():
     if args.preview_video:
         for output in outputs:
             video, audio = VideoForInvidiou(videoId, args.invidious_instances)
-            cmd = fr'mpv "{video}" --audio-file="{audio}" --sub-file="{output}"'
+            cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{output}"'
             print(cmd)
             exit_code = os.system(cmd)
             if exit_code != 0:
@@ -186,7 +194,7 @@ def main():
     if args.generate_video:
         for output in outputs:
             video, audio = VideoForInvidiou(videoId, args.invidious_instances)
-            cmd = fr'ffmpeg -i "{video}" -i "{audio}" -vf "ass={output}" {output}.mp4'
+            cmd = rf'ffmpeg -i "{video}" -i "{audio}" -vf "ass={output}" {output}.mp4'
             print(cmd)
             exit_code = os.system(cmd)
             if exit_code != 0:

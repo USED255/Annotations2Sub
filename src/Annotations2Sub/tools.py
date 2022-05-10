@@ -7,6 +7,7 @@ import urllib.request
 
 from Annotations2Sub.locale import _
 
+
 def YellowText(s: str) -> str:
     return "\033[33m" + s + "\033[0m"
 
@@ -60,4 +61,4 @@ def VideoForInvidiou(videoId: str, invidious_domain: str):
             audios.append(i)
     videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
     audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-    return videos[0]["url"], audios[0]["url"] 
+    return videos[0]["url"], audios[0]["url"]
