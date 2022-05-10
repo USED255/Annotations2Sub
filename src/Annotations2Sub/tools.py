@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-
 import json
-import os
 import re
 import urllib.request
 
-from black import Any
-
+from Annotations2Sub.locale import _
 
 def YellowText(s: str) -> str:
     return "\033[33m" + s + "\033[0m"
@@ -27,7 +24,7 @@ def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
 
 
 def AnnotationsForArchive(videoId: str) -> str:
-    # 参考自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
+    # 移植自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
     ARCHIVE_URL = "https://archive.org"
     CHARS_SAFE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
 
@@ -50,41 +47,17 @@ def AnnotationsForArchive(videoId: str) -> str:
 
 
 def VideoForInvidiou(videoId: str, invidious_domain: str):
-    api = "/api/v1/videos/"
-    url = f"https://{invidious_domain}{api}{videoId}"
+    url = f"https://{invidious_domain}/api/v1/videos/{videoId}"
+    print(_("获取 {}").format(url))
     string = urllib.request.urlopen(url).read().decode("utf-8")
     data = json.loads(string)
-    audios = []
     videos = []
+    audios = []
     for i in data.get("adaptiveFormats"):
-        if re.match("audio", i.get("type")) is not None:
-            audios.append(i)
         if re.match("video", i.get("type")) is not None:
             videos.append(i)
-    audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
+        if re.match("audio", i.get("type")) is not None:
+            audios.append(i)
     videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-    return {"audios": audios, "videos": videos}
-
-
-def PreviewVideo(videoId: str, file: str, invidious_domain):
-    data = VideoForInvidiou(videoId, invidious_domain)
-    video = data["videos"][0]
-    audio = data["audios"][0]
-    cmd = r'mpv "{}" --audio-file="{}" --sub-file="{}"'.format(video, audio, file)
-    print(cmd)
-    exit_code = os.system(cmd)
-    if exit_code != 0:
-        print(YellowText("exit with {}".format(exit_code)))
-
-
-def GenerateVideo(videoId: str, file: str, invidious_domain: str = "invidiou.site"):
-    data = VideoForInvidiou(videoId, invidious_domain)
-    video = data["videos"][0]
-    audio = data["audios"][0]
-    cmd = r'ffmpeg -i "{}" -i "{}" -vf "ass={}" "{}.mp4"'.format(
-        video, audio, file, videoId
-    )
-    print(cmd)
-    exit_code = os.system(cmd)
-    if exit_code != 0:
-        print(YellowText("exit with {}".format(exit_code)))
+    audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
+    return videos[0]["url"], audios[0]["url"] 

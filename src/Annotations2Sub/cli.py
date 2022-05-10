@@ -2,52 +2,21 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-import asyncio
 import os
 import re
 import traceback
 import urllib.request
 import defusedxml.ElementTree  # type: ignore
+import _thread
 
 from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
 from Annotations2Sub.locale import _
-from Annotations2Sub.tools import AnnotationsForArchive, CheckUrl, RedText, YellowText
+from Annotations2Sub.tools import AnnotationsForArchive, CheckUrl, RedText, VideoForInvidiou, YellowText
 
 
 def main():
-    def convert():
-        with open(filePath, "r", encoding="utf-8") as f:
-            string = f.read()
-        tree = defusedxml.ElementTree.fromstring(string)
-        annotations = Parse(tree)
-        events = Convert(
-            annotations,
-            args.embrace_libass,
-            args.transform_resolution_x,
-            args.transform_resolution_y,
-        )
-        events.sort(key=lambda event: event.Start)
-        sub = Sub()
-        sub.events.events.extend(events)
-        sub.info.info["PlayResX"] = args.transform_resolution_x
-        sub.info.info["PlayResY"] = args.transform_resolution_y
-        sub.styles.styles["Default"].Fontname = args.font
-        subString = sub.Dump()
-
-        with open(output, "w", encoding="utf-8") as f:
-            f.write(subString)
-        print(_("保存于: {}").format(output))
-
-    def CheckNetwork():
-        async def checkNetwork():
-            if CheckUrl() is False:
-                print(YellowText(_("您好像无法访问 Google 🤔")))
-                print(YellowText(_("请检查您的网络连接")))
-
-        asyncio.run(checkNetwork())
-
     parser = argparse.ArgumentParser(
         description=_("一个可以把 Youtube Annotations 转换成 ASS 字幕(Sub Station Alpha V4)文件的脚本")
     )
@@ -93,7 +62,6 @@ def main():
     parser.add_argument(
         "-o",
         "--output-path",
-        default=None,
         type=str,
         metavar=_("文件夹"),
         help=_("指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目录"),
@@ -104,6 +72,24 @@ def main():
         action="store_true",
         help=_("尝试从 Internet Archive 下载 Annotations 文件"),
     )
+    parser.add_argument(
+        "-i",
+        "--invidious-instances",
+        metavar="invidious.domain",
+        help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
+    )
+    parser.add_argument(
+        "-p",
+        "--preview-video",
+        action="store_true",
+        help=_("预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"),
+    )
+    parser.add_argument(
+        "-g",
+        "--generate-video",
+        action="store_true",
+        help=_("生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例)"),
+    )
     args = parser.parse_args()
 
     filePaths = []
@@ -112,6 +98,14 @@ def main():
         if os.path.isfile(args.output_path):
             print(RedText(_("转换后文件的输出路径应该指定一个文件夹, 而不是文件")))
             exit(1)
+
+    if args.preview_video or args.generate_video:
+        if args.invidious_instances is None:
+            print(RedText(_("请指定一个 invidious 实例")))
+            exit(1)
+        args.download_for_archive = True
+        args.embrace_libass = True
+
     if args.download_for_archive is False:
         for filePath in args.queue:
             if os.path.isfile(filePath) is False:
@@ -126,7 +120,11 @@ def main():
             filePaths.append(filePath)
 
     if args.download_for_archive:
-        CheckNetwork()
+        def CheckNetwork():
+            if CheckUrl() is False:
+                print(YellowText(_("您好像无法访问 Google 🤔")))
+        _thread.start_new_thread (CheckNetwork,())
+        
         videoIds = []
         for videoId in args.queue:
             if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
@@ -146,9 +144,50 @@ def main():
                 f.write(string)
             filePaths.append(filePath)
 
+    outputs = []
     for filePath in filePaths:
         output = filePath + ".ass"
         if args.output_path != None:
             fileName = os.path.basename(filePath) + ".ass"
             output = os.path.join(args.output_path, fileName)
-        convert()
+        
+        with open(filePath, "r", encoding="utf-8") as f:
+            string = f.read()
+        tree = defusedxml.ElementTree.fromstring(string)
+        annotations = Parse(tree)
+        events = Convert(
+            annotations,
+            args.embrace_libass,
+            args.transform_resolution_x,
+            args.transform_resolution_y,
+        )
+        events.sort(key=lambda event: event.Start)
+        sub = Sub()
+        sub.events.events.extend(events)
+        sub.info.info["PlayResX"] = args.transform_resolution_x
+        sub.info.info["PlayResY"] = args.transform_resolution_y
+        sub.styles.styles["Default"].Fontname = args.font
+        subString = sub.Dump()
+
+        with open(output, "w", encoding="utf-8") as f:
+            f.write(subString)
+        print(_("保存于: {}").format(output))
+        outputs.append(output)
+
+    if args.preview_video:
+        for output in outputs:
+            video, audio = VideoForInvidiou(videoId, args.invidious_instances)
+            cmd = fr'mpv "{video}" --audio-file="{audio}" --sub-file="{output}"'
+            print(cmd)
+            exit_code = os.system(cmd)
+            if exit_code != 0:
+                print(YellowText("exit with {}".format(exit_code)))
+
+    if args.generate_video:
+        for output in outputs:
+            video, audio = VideoForInvidiou(videoId, args.invidious_instances)
+            cmd = fr'ffmpeg -i "{video}" -i "{audio}" -vf "ass={output}" {output}.mp4'
+            print(cmd)
+            exit_code = os.system(cmd)
+            if exit_code != 0:
+                print(YellowText("exit with {}".format(exit_code)))

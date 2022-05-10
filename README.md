@@ -23,28 +23,28 @@ positional arguments:
                         downloaded from Internet Archive
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -l, --embrace-libass  embrace libass's quirks and features, and not specifying
-                        this option will adapt to xy-vsfilter
+  -h, --help            Show this help message and exit
+  -l, --embrace-libass  Embrace libass's quirks and features, and not specifying
+                        This option will adapt to xy-vsfilter
   -x 100, --transform-resolution-x 100
-                        transform resolution X
+                        Transform resolution X
   -y 100, --transform-resolution-y 100
-                        transform resolution Y
+                        Transform resolution Y
   -f Arial, --font Arial
-                        specify font
+                        Specify font
   -o File, --output File
-                        specify the output path of the converted file,
+                        Specify the output path of the converted file,
                         not specifying this option will output the converted
                         file to the same directory as the converted file
   -d, --download-for-archive
                         Try downloading the annotations file from Internet Archive
-  -i invidious-instances.domain, --invidious-domain invidious-instances.domain
-                        Specify invidious instances
-  -p, --preview-video   preview video, need mpv and specify invidious domain
-  -g, --generate-video  generate video, need FFmpeg and specify invidious domain
-  -u, --unstable        unstable function, like speech and highlightText
-  -v, --version         show version
-  -V, --verbose         show a lot messages
+  -i invidious-instances.domain, --invidious-instances invidious-instances.domain
+                        Specify invidious instances (https://redirect.invidious.io/)
+  -p, --preview-video   Preview video, need mpv(https://mpv.io/) and specify invidious instances
+  -g, --generate-video  Penerate video, need FFmpeg(https://ffmpeg.org/) and specify invidious instances
+  -u, --unstable        Unstable function, like speech and highlightText
+  -v, --version         Show version
+  -V, --verbose         Show a lot messages
 ```
 
 Example:
