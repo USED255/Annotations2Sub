@@ -20,7 +20,7 @@ Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字�
                                                                          │                  │
                                                                          └──────────────────┘
 
-┌────────────────┐            ┌────────┐            ┌─────────────┐               │
+┌────────────────┐            ┌────────┐  Sub.      ┌─────────────┐               │
 │                │  finally   │        │  Dump()    │             │  Convert()    │
 │ Annotation.ass │ ◄───────── │ String │ ◄───────── │ List[Event] │ ◄─────────────┘
 │                │            │        │            │             │
@@ -31,7 +31,8 @@ Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字�
 我当即破口大骂谷歌.
 但我直觉告诉我应该有人存档,
 还真的有! 鸣谢: https://archive.org/details/youtubeannotations
-我想将其转换为我熟悉的 Sub Station Alpha 字幕, 我在搜索引擎查找我需要的东西, 找到了 https://github.com/nirbheek/youtube-ass (致谢)
+我想将其转换为我熟悉的 Sub Station Alpha 字幕, 我在搜索引擎查找我需要的东西, 
+找到了 https://github.com/nirbheek/youtube-ass (致谢)
 但是他并不好用, 压根就没法用
 我改呀改, 这时我其实并不会编程, 但是我会谷歌, 让他可以运行也算是没有花费太长的时间.
 但是效果并不能让人满意, 没有颜色, 只有字幕, 很不满意
@@ -45,6 +46,20 @@ Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字�
 之后(a64995 庆祝一下), 使用了 "绘图模式" 实现了 "popup" 样式
 在 https://invidious.io/ 和 FFmpeg 的帮助下, 实现了简单的视频预览
 再之后, 脚本逐步完善, 完成了 https://www.bilibili.com/video/BV1Ff4y1t7Dj
+
+---
+
+作为我的第一个代码, 我一直想让其趋于完美.
+首先想的是参考 https://github.com/isaackd/annotationlib (致谢), 将 Annotation 抽成一个简单的结构, 
+与脚本生成器(转换器)解耦, 结果并没有让事情变简单.
+
+之后还尝试过实现 speech 样式, 把事情弄得一团糟
+尝试过扔掉 invidious , 发现我简直像个shaberhu
+只好作罢, 上学去了.
+
+自从 2022 年新年开始我已经半年呆在家里了, 我有了时间一直折腾代码, 我决定再次挑战这个目标.
+
+---
 
 """
 version = __version__
