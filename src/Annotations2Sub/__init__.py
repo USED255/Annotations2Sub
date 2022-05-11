@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+__version__ = "0.1.33"
+
 """
 Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字幕文件的脚本
 
@@ -45,3 +47,4 @@ Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字�
 再之后, 脚本逐步完善, 完成了 https://www.bilibili.com/video/BV1Ff4y1t7Dj
 
 """
+version = __version__

@@ -9,6 +9,7 @@ import urllib.request
 import defusedxml.ElementTree  # type: ignore
 import _thread
 
+from Annotations2Sub import version
 from Annotations2Sub.flag import Flags
 from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
@@ -103,9 +104,19 @@ def main():
         action="store_true",
         help=_("启用不稳定功能, 如 speech 样式, highlightText 样式, 会出现一些问题"),
     )
+    parser.add_argument(
+        "-v",
+        "--version",
+        action="store_true",
+        help=_("显示版本号"),
+    )
     args = parser.parse_args()
 
     filePaths = []
+
+    if args.version:
+        print(_("Annotations2Sub v{version}").format(version=version))
+        return
 
     if args.output_path != None:
         if os.path.isfile(args.output_path):
