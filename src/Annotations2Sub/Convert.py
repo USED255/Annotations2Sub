@@ -95,6 +95,86 @@ def Convert(
 
             return Text(event)
 
+        def speech_box(event: Event) -> Event:
+            event.Name += "_speech_box"
+            event.Layer = 0
+
+            tag = ""
+            tag += r"\an7" + r"\pos({},{})".format(x, y)
+            tag += r"\fs" + str(textSize)
+            tag += r"\c" + bgColor
+            tag += r"\1a" + bgOpacity
+            tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
+            tag = "{" + tag + "}"
+
+            d = Draw()
+            d.Add(Point(0, 0, "m"))
+            d.Add(Point(width, 0, "l"))
+            d.Add(Point(width, height, "l"))
+            d.Add(Point(0, height, "l"))
+
+            """
+
+    ┌────────────────────────────────────────────────►x
+    │(0,0)
+    │   ┌────────────────────────────────┬───────►
+    │   │(x,y)                           │  height,0
+    │   │0,0                             │
+    │   │                    x3        x4│
+    │   ├───────────────────x─────────x──┘  height,width
+    │   │0,width             xx      x
+    │   │                     xx    x
+    │   │                       xx x
+    │   │                        xx
+    │   │                        (sx,sy)
+    │   │                        sx1,sy2
+    │   ▼
+    ▼
+    y
+
+            """
+
+            sx1 = sx - x
+            sy1 = sy - y
+
+            if sx < x + width / 2:
+                x1 = width * 0.2
+                x2 = width * 0.4
+            elif sx > x + width / 2:
+                x1 = width * 0.8
+                x2 = width * 0.6
+            else:
+                x1 = width * 0.2
+                x2 = width * 0.4
+
+            if sy < y:
+                y1 = 0
+                x3 = min(x1, x2)
+                x4 = max(x1, x2)
+                d.draw.insert(1, Point(x3, y1, "l"))
+                d.draw.insert(2, Point(sx1, sy1, "l"))
+                d.draw.insert(3, Point(x4, y1, "l"))
+            elif sy > y:
+                y1 = height
+                x3 = max(x1, x2)
+                x4 = min(x1, x2)
+                d.draw.insert(3, Point(x3, y1, "l"))
+                d.draw.insert(4, Point(sx1, sy1, "l"))
+                d.draw.insert(5, Point(x4, y1, "l"))
+            else:
+                y1 = 0
+                x3 = min(x1, x2)
+                x4 = max(x1, x2)
+                d.draw.insert(1, Point(x3, y1, "l"))
+                d.draw.insert(2, Point(sx1, sy1, "l"))
+                d.draw.insert(3, Point(x4, y1, "l"))
+
+            box = d.Dump()
+            box = r"{\p1}" + box + r"{\p0}"
+
+            event.Text = tag + box
+            return event
+
         events: List[Event] = []
         event = Event()
 
@@ -120,10 +200,13 @@ def Convert(
         bgOpacity = ConvertAlpha(each.bgOpacity)
         width = round(each.width * transformCoefficientX, 3)
         height = round(each.height * transformCoefficientY, 3)
+        sx = round(each.sx * transformCoefficientX, 3)
+        sy = round(each.sy * transformCoefficientY, 3)
 
         if libass and resolutionX == 100 and resolutionY == 100:
             # 针对 libass 的 hack
             width = width * 1.776
+            sy = sy * 1.776
         width = round(width, 3)
 
         event.Layer = 1
@@ -136,8 +219,9 @@ def Convert(
         elif each.style == "highlightText" and Flags.unstable:
             events.append(highlightText_text(copy.copy(event)))
             events.append(highlightText_box(copy.copy(event)))
-        elif each.style == "speech" and Flags.unstable:
+        elif each.style == "speech":
             events.append(speech_text(copy.copy(event)))
+            events.append(speech_box(copy.copy(event)))
         else:
             print(_("不支持 {} 样式. ({})").format(each.style, each.id))
 

@@ -73,6 +73,7 @@ class Draw:
         self.draw: List[Point] = []
 
     def Add(self, point: Point):
+        assert isinstance(point, Point)
         self.draw.append(point)
 
     def Dump(self) -> str:
