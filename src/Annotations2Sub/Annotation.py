@@ -2,7 +2,13 @@
 # -*- coding: utf-8 -*-
 
 import datetime
-from typing import Literal, List, Optional
+from typing import List, Optional
+
+try:
+    from typing import Literal # type: ignore
+except:
+    pass
+
 from xml.etree.ElementTree import Element
 
 from Annotations2Sub.Color import Alpha, Color

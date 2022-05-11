@@ -6,10 +6,10 @@ https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 """
 
 import datetime
-from typing import Any, Dict, List
+from typing import Dict, List
 
 try:
-    from typing import Literal
+    from typing import Literal # type: ignore
 except:
     pass
 
