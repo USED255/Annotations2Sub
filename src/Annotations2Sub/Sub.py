@@ -11,7 +11,7 @@ from typing import Any, Dict, List
 try:
     from typing import Literal
 except:
-    Literal = Any  # type: ignore
+    pass
 
 from Annotations2Sub.Color import Alpha, Color, Rgba
 
