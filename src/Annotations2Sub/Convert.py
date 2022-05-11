@@ -42,6 +42,13 @@ def Convert(
         def Box(event: Event) -> Event:
             event.Layer = 0
 
+            tag = ""
+            tag += r"\an7" + r"\pos({},{})".format(x, y)
+            tag += r"\c" + bgColor
+            tag += r"\1a" + bgOpacity
+            tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
+            tag = "{" + tag + "}"
+
             d = Draw()
             d.Add(Point(0, 0, "m"))
             d.Add(Point(width, 0, "l"))
@@ -50,19 +57,11 @@ def Convert(
             box = d.Dump()
             box = r"{\p1}" + box + r"{\p0}"
 
-            tag = ""
-            tag += r"\an7" + r"\pos({},{})".format(x, y)
-            tag += r"\fs" + str(textSize)
-            tag += r"\c" + bgColor
-            tag += r"\1a" + bgOpacity
-            tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
-            tag = "{" + tag + "}"
-
             event.Text = tag + box
             return event
 
         def popup_text(event: Event) -> Event:
-            event.Name += "_popup"
+            event.Name += "_popup_text"
 
             return Text(event)
 
@@ -81,7 +80,7 @@ def Convert(
             return Text(event)
 
         def highlightText_text(event: Event) -> Event:
-            event.Name += "_highlightText"
+            event.Name += "_highlightText_text"
 
             return Text(event)
 
@@ -91,84 +90,42 @@ def Convert(
             return Box(event)
 
         def speech_text(event: Event) -> Event:
-            event.Name += "_speech"
+            event.Name += "_speech_text"
 
             return Text(event)
 
         def speech_box(event: Event) -> Event:
-            event.Name += "_speech_box"
+            event.Name += "_a"
+            return Box(event)
+
+        def speech_box_2(event: Event) -> Event:
+            event.Name += "_a_b"
             event.Layer = 0
 
             tag = ""
-            tag += r"\an7" + r"\pos({},{})".format(x, y)
-            tag += r"\fs" + str(textSize)
+            tag += r"\an7" + r"\pos({},{})".format(sx, sy)
             tag += r"\c" + bgColor
             tag += r"\1a" + bgOpacity
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
             tag = "{" + tag + "}"
 
+            x1 = x - sx
+            x2 = x - sx
+            if sx < x + width / 2:
+                x1 = x1 + width * 0.2
+                x2 = x2 + width * 0.4
+            else:
+                x1 = x1 + width * 0.8
+                x2 = x2 + width * 0.6
+
+            y1 = y - sy
+            if sy > y:
+                y1 = y1 + height
+
             d = Draw()
             d.Add(Point(0, 0, "m"))
-            d.Add(Point(width, 0, "l"))
-            d.Add(Point(width, height, "l"))
-            d.Add(Point(0, height, "l"))
-
-            """
-
-    ┌────────────────────────────────────────────────►x
-    │(0,0)
-    │   ┌────────────────────────────────┬───────►
-    │   │(x,y)                           │  height,0
-    │   │0,0                             │
-    │   │                    x3        x4│
-    │   ├───────────────────x─────────x──┘  height,width
-    │   │0,width             xx      x
-    │   │                     xx    x
-    │   │                       xx x
-    │   │                        xx
-    │   │                        (sx,sy)
-    │   │                        sx1,sy2
-    │   ▼
-    ▼
-    y
-
-            """
-
-            sx1 = sx - x
-            sy1 = sy - y
-
-            if sx < x + width / 2:
-                x1 = width * 0.2
-                x2 = width * 0.4
-            elif sx > x + width / 2:
-                x1 = width * 0.8
-                x2 = width * 0.6
-            else:
-                x1 = width * 0.2
-                x2 = width * 0.4
-
-            if sy < y:
-                y1 = float(0)
-                x3 = min(x1, x2)
-                x4 = max(x1, x2)
-                d.draw.insert(1, Point(x3, y1, "l"))
-                d.draw.insert(2, Point(sx1, sy1, "l"))
-                d.draw.insert(3, Point(x4, y1, "l"))
-            elif sy > y:
-                y1 = height
-                x3 = max(x1, x2)
-                x4 = min(x1, x2)
-                d.draw.insert(3, Point(x3, y1, "l"))
-                d.draw.insert(4, Point(sx1, sy1, "l"))
-                d.draw.insert(5, Point(x4, y1, "l"))
-            else:
-                y1 = 0
-                x3 = min(x1, x2)
-                x4 = max(x1, x2)
-                d.draw.insert(1, Point(x3, y1, "l"))
-                d.draw.insert(2, Point(sx1, sy1, "l"))
-                d.draw.insert(3, Point(x4, y1, "l"))
-
+            d.Add(Point(x1, y1, "l"))
+            d.Add(Point(x2, y1, "l"))
             box = d.Dump()
             box = r"{\p1}" + box + r"{\p0}"
 
@@ -222,6 +179,7 @@ def Convert(
         elif each.style == "speech":
             events.append(speech_text(copy.copy(event)))
             events.append(speech_box(copy.copy(event)))
+            events.append(speech_box_2(copy.copy(event)))
         else:
             print(_("不支持 {} 样式. ({})").format(each.style, each.id))
 
