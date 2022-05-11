@@ -148,7 +148,7 @@ def Convert(
                 x2 = width * 0.4
 
             if sy < y:
-                y1 = 0
+                y1 = float(0)
                 x3 = min(x1, x2)
                 x4 = max(x1, x2)
                 d.draw.insert(1, Point(x3, y1, "l"))
