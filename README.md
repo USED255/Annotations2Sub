@@ -44,8 +44,7 @@ optional arguments:
                         specify invidious instances
   -g, --generate-video  Generate video, need FFmpeg(https://ffmpeg.org/) and 
                         specify invidious instances
-  -u, --unstable        Enabling Unstable function, such as speech style, 
-                        highlightText style, can cause some problems
+  -u, --unstable        Enabling Unstable function, can cause some problems
   -v, --version         Show version
   -V, --verbose         Show more messages
 ```

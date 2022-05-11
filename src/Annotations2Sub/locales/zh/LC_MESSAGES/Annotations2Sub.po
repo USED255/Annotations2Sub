@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-05-11 13:58+0800\n"
-"PO-Revision-Date: 2022-05-11 13:58+0800\n"
+"POT-Creation-Date: 2022-05-11 18:21+0800\n"
+"PO-Revision-Date: 2022-05-11 18:22+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "不支持{}类型. ()"
 msgstr "不支持{}类型. ()"
 
-#: Convert.py:142
+#: Convert.py:226
 msgid "不支持 {} 样式. ({})"
 msgstr "不支持 {} 样式. ({})"
 
@@ -107,12 +107,8 @@ msgstr ""
 "invidious 实例)"
 
 #: cli.py:105
-msgid ""
-"启用不稳定功能, 如 speech 样式, highlightText 样式, 会"
-"出现一些问题"
-msgstr ""
-"启用不稳定功能, 如 speech 样式, highlightText 样式, 会"
-"出现一些问题"
+msgid "启用不稳定功能, 会出现一些问题"
+msgstr "启用不稳定功能, 会出现一些问题"
 
 #: cli.py:111
 msgid "显示版本号"

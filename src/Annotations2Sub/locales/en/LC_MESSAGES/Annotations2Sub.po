@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-05-11 13:58+0800\n"
-"PO-Revision-Date: 2022-05-11 13:59+0800\n"
+"POT-Creation-Date: 2022-05-11 18:21+0800\n"
+"PO-Revision-Date: 2022-05-11 18:22+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "不支持{}类型. ()"
 msgstr "The {} type is not supported. ()"
 
-#: Convert.py:142
+#: Convert.py:226
 msgid "不支持 {} 样式. ({})"
 msgstr "The {} styles is not supported. ()"
 
@@ -96,10 +96,8 @@ msgstr ""
 "instances"
 
 #: cli.py:105
-msgid "启用不稳定功能, 如 speech 样式, highlightText 样式, 会出现一些问题"
-msgstr ""
-"Enabling Unstable function, such as speech style, highlightText style, can "
-"cause some problems"
+msgid "启用不稳定功能, 会出现一些问题"
+msgstr "Enabling Unstable function, can cause some problems"
 
 #: cli.py:111
 msgid "显示版本号"

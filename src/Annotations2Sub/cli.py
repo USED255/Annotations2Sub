@@ -102,7 +102,7 @@ def main():
         "-u",
         "--unstable",
         action="store_true",
-        help=_("启用不稳定功能, 如 speech 样式, highlightText 样式, 会出现一些问题"),
+        help=_("启用不稳定功能, 会出现一些问题"),
     )
     parser.add_argument(
         "-v",
