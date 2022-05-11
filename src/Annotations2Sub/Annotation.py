@@ -61,17 +61,18 @@ class Annotation(object):
         # 按我的喜好我想将其写为 bgAlpha
         self.bgOpacity: Alpha = Alpha(alpha=204)
         # 如果不是 Annotation, 我都不知道颜色值可以用十进制表达
-        # 类似于 bgOpacity , 开始我也不知道这玩耶是 BGR ,是视频出来效果不对才知道 
+        # 类似于 bgOpacity , 开始我也不知道这玩耶是 BGR ,是视频出来效果不对才知道
         # 一个结构化的颜色显然比奇怪的颜色值容易理解得多
         self.bgColor: Color = Color(red=255, green=255, blue=255)
         self.fgColor: Color = Color(red=0, green=0, blue=0)
         # 注意的是, textSize 是个"百分比",而在 title 样式中才是熟悉的 "字体大小"
         self.textSize: float = 3.15
-        # 这里相比 annotationlib 少了 
+        # 这里相比 annotationlib 少了
         #     actionType
         #     actionUrl
         #     actionUrlTarget
         #     actionSeconds
+
 
 def Parse(tree: Element) -> List[Annotation]:
     """将 XML 树转换为 List[Annotation]"""
@@ -130,7 +131,7 @@ def Parse(tree: Element) -> List[Annotation]:
         annotation.type = MakeSureStr(type)  # type: ignore
 
         style = each.get("style")
-        # 
+        #
         if style is None:
             return None
         annotation.style = style  # type: ignore
