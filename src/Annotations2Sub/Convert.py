@@ -7,8 +7,8 @@ from typing import List
 from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, Event, Point
-from Annotations2Sub.cli import Flag
 from Annotations2Sub.locale import _
+from Annotations2Sub.flag import Flags
 
 
 def Convert(
@@ -133,11 +133,11 @@ def Convert(
             events.append(popup_box(copy.copy(event)))
         elif each.style == "title":
             events.append(title(copy.copy(event)))
-        # elif each.style == "highlightText" and Flag.unstable:
-        #     events.append(highlightText_text(copy.copy(event)))
-        #     events.append(highlightText_box(copy.copy(event)))
-        # elif each.style == "speech" and Flag.unstable:
-        #     events.append(speech_text(copy.copy(event)))
+        elif each.style == "highlightText" and Flags.unstable:
+            events.append(highlightText_text(copy.copy(event)))
+            events.append(highlightText_box(copy.copy(event)))
+        elif each.style == "speech" and Flags.unstable:
+            events.append(speech_text(copy.copy(event)))
         else:
             print(_("不支持 {} 样式. ({})").format(each.style, each.id))
 
