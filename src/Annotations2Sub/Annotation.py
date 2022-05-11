@@ -5,7 +5,7 @@ import datetime
 from typing import List, Optional
 
 try:
-    from typing import Literal # type: ignore
+    from typing import Literal  # type: ignore
 except:
     pass
 

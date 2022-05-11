@@ -9,7 +9,7 @@ import datetime
 from typing import Dict, List
 
 try:
-    from typing import Literal # type: ignore
+    from typing import Literal  # type: ignore
 except:
     pass
 
