@@ -109,8 +109,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
         if len(Segment) == 0:
             if annotation.style != "highlightText":
-                # 抄自 https://github.com/isaackd/annotationlib/blob/master/src/parser/index.js 第121行
-                # "highlightText" 是一直显示在屏幕上的, 不应没有时间
+                # 抄自 https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L121
                 return None
 
         if len(Segment) != 0:
