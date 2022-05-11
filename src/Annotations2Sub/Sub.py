@@ -6,7 +6,7 @@ https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 """
 
 import datetime
-from typing import Dict, List, Literal
+from typing import Dict, List
 
 try:
     from typing import Literal
