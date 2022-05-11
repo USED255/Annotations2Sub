@@ -6,12 +6,12 @@ https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 """
 
 import datetime
-from typing import Dict, List
+from typing import Any, Dict, List
 
 try:
     from typing import Literal
 except:
-    Literal = str
+    Literal = Any
 
 from Annotations2Sub.Color import Alpha, Color, Rgba
 
