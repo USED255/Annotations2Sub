@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-__version__ = "0.1.33"
+__version__ = "0.1.34"
 
 """
 Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字幕文件的脚本
