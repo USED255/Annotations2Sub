@@ -8,6 +8,11 @@ https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 import datetime
 from typing import Dict, List, Literal
 
+try:
+    from typing import Literal
+except:
+    Literal = str
+
 from Annotations2Sub.Color import Alpha, Color, Rgba
 
 
