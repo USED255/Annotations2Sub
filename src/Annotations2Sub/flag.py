@@ -7,4 +7,5 @@ class Flag:
         self.unstable = False
         self.verbose = False
 
+
 Flags = Flag()
