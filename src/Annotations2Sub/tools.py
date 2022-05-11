@@ -5,7 +5,7 @@ import json
 import re
 import urllib.request
 
-from Annotations2Sub.locale import _
+from Annotations2Sub.internationalization import _
 
 
 def YellowText(s: str) -> str:

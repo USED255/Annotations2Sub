@@ -6,7 +6,7 @@ from typing import Literal, List, Optional
 from xml.etree.ElementTree import Element
 
 from Annotations2Sub.Color import Alpha, Color
-from Annotations2Sub.locale import _
+from Annotations2Sub.internationalization import _
 
 
 class Annotation(object):

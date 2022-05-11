@@ -47,7 +47,7 @@ optional arguments:
   -u, --unstable        Enabling Unstable function, such as speech style, 
                         highlightText style, can cause some problems
   -v, --version         Show version
-  -V, --verbose         Show a lot messages
+  -V, --verbose         Show more messages
 ```
 
 Example:

@@ -7,7 +7,7 @@ from typing import List
 from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, Event, Point
-from Annotations2Sub.locale import _
+from Annotations2Sub.internationalization import _
 from Annotations2Sub.flag import Flags
 
 

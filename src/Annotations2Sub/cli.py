@@ -14,7 +14,7 @@ from Annotations2Sub.flag import Flags
 from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
-from Annotations2Sub.locale import _
+from Annotations2Sub.internationalization import _
 from Annotations2Sub.tools import (
     AnnotationsForArchive,
     CheckUrl,
@@ -110,6 +110,12 @@ def main():
         action="store_true",
         help=_("显示版本号"),
     )
+    parser.add_argument(
+        "-V",
+        "--verbose",
+        action="store_true",
+        help=_("显示更多些消息"),
+    )
     args = parser.parse_args()
 
     filePaths = []
@@ -118,13 +124,16 @@ def main():
         print(_("Annotations2Sub v{version}").format(version=version))
         return
 
+    if args.unstable:
+        Flags.unstable = True
+
+    if args.verbose:
+        Flags.verbose = True
+
     if args.output_path != None:
         if os.path.isfile(args.output_path):
             print(RedText(_("转换后文件的输出路径应该指定一个文件夹, 而不是文件")))
             exit(1)
-
-    if args.unstable:
-        Flags.unstable = True
 
     if args.preview_video or args.generate_video:
         if args.invidious_instances is None:
@@ -206,16 +215,20 @@ def main():
         for output in outputs:
             video, audio = VideoForInvidiou(videoId, args.invidious_instances)
             cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{output}"'
-            print(cmd)
+            if Flags.verbose:
+                print(cmd)
             exit_code = os.system(cmd)
-            if exit_code != 0:
-                print(YellowText("exit with {}".format(exit_code)))
+            if Flags.verbose:
+                if exit_code != 0:
+                    print(YellowText("exit with {}".format(exit_code)))
 
     if args.generate_video:
         for output in outputs:
             video, audio = VideoForInvidiou(videoId, args.invidious_instances)
             cmd = rf'ffmpeg -i "{video}" -i "{audio}" -vf "ass={output}" {output}.mp4'
-            print(cmd)
+            if Flags.verbose:
+                print(cmd)
             exit_code = os.system(cmd)
-            if exit_code != 0:
-                print(YellowText("exit with {}".format(exit_code)))
+            if Flags.verbose:
+                if exit_code != 0:
+                    print(YellowText("exit with {}".format(exit_code)))

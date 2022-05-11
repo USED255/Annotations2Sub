@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-05-10 20:47+0800\n"
-"PO-Revision-Date: 2022-05-10 20:47+0800\n"
+"POT-Creation-Date: 2022-05-11 13:58+0800\n"
+"PO-Revision-Date: 2022-05-11 13:58+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -22,119 +22,142 @@ msgstr "不支持{}类型. ()"
 msgid "不支持 {} 样式. ({})"
 msgstr "不支持 {} 样式. ({})"
 
-#: cli.py:28
+#: cli.py:29
 msgid ""
-"一个可以把 Youtube Annotations 转换成 ASS 字幕(Sub Station "
-"Alpha V4)文件的脚本"
+"一个可以把 Youtube Annotations 转换成 ASS 字幕(Sub "
+"Station Alpha V4)文件的脚本"
 msgstr ""
-"一个可以把 Youtube Annotations 转换成 ASS 字幕(Sub Station "
-"Alpha V4)文件的脚本"
+"一个可以把 Youtube Annotations 转换成 ASS 字幕(Sub "
+"Station Alpha V4)文件的脚本"
 
-#: cli.py:34
+#: cli.py:35
 msgid "文件 或 videoId"
 msgstr "文件 或 videoId"
 
-#: cli.py:36
+#: cli.py:37
 msgid ""
-"多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从"
-"Internet Archive 下载 Annotations 文件 Youtube 视频的 videoId"
+"多个需要转换的文件的文件路径, 或者是多个需要预览, 生"
+"成, 从Internet Archive 下载 Annotations 文件 Youtube "
+"视频的 videoId"
 msgstr ""
-"多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从"
-"Internet Archive 下载 Annotations 文件 Youtube 视频的 videoId"
+"多个需要转换的文件的文件路径, 或者是多个需要预览, 生"
+"成, 从Internet Archive 下载 Annotations 文件 Youtube "
+"视频的 videoId"
 
-#: cli.py:43
+#: cli.py:44
 msgid ""
-"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
+"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-"
+"vsfilter"
 msgstr ""
-"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
+"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-"
+"vsfilter"
 
-#: cli.py:51
+#: cli.py:52
 msgid "变换分辨率X"
 msgstr "变换分辨率X"
 
-#: cli.py:59
+#: cli.py:60
 msgid "变换分辨率Y"
 msgstr "变换分辨率Y"
 
-#: cli.py:64 cli.py:66
+#: cli.py:65 cli.py:67
 msgid "Microsoft YaHei"
 msgstr "Microsoft YaHei"
 
-#: cli.py:67
+#: cli.py:68
 msgid "指定字体"
 msgstr "指定字体"
 
-#: cli.py:73
+#: cli.py:74
 msgid "文件夹"
 msgstr "文件夹"
 
-#: cli.py:74
+#: cli.py:75
 msgid ""
-"指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被"
-"转换文件同一目录"
+"指定转换后文件的输出路径, 不指定此选项转换后的文件会输"
+"出至与被转换文件同一目录"
 msgstr ""
-"指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被"
-"转换文件同一目录"
+"指定转换后文件的输出路径, 不指定此选项转换后的文件会输"
+"出至与被转换文件同一目录"
 
-#: cli.py:80
+#: cli.py:81
 msgid "尝试从 Internet Archive 下载 Annotations 文件"
 msgstr "尝试从 Internet Archive 下载 Annotations 文件"
 
-#: cli.py:86
-msgid "指定 invidious 实例(https://redirect.invidious.io/)"
-msgstr "指定 invidious 实例(https://redirect.invidious.io/)"
-
-#: cli.py:92
+#: cli.py:87
 msgid ""
-"预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"
+"指定 invidious 实例(https://redirect.invidious.io/)"
 msgstr ""
-"预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"
+"指定 invidious 实例(https://redirect.invidious.io/)"
 
-#: cli.py:98
+#: cli.py:93
 msgid ""
-"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实"
-"例)"
+"预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious "
+"实例"
 msgstr ""
-"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实"
-"例)"
+"预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious "
+"实例"
 
-#: cli.py:104
+#: cli.py:99
 msgid ""
-"启用不稳定功能, 如 speech 样式, highlightText 样式, 会出现一些"
-"问题"
+"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 "
+"invidious 实例)"
 msgstr ""
-"启用不稳定功能, 如 speech 样式, highlightText 样式, 会出现一些"
-"问题"
+"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 "
+"invidious 实例)"
 
-#: cli.py:112
-msgid "转换后文件的输出路径应该指定一个文件夹, 而不是文件"
-msgstr "转换后文件的输出路径应该指定一个文件夹, 而不是文件"
+#: cli.py:105
+msgid ""
+"启用不稳定功能, 如 speech 样式, highlightText 样式, 会"
+"出现一些问题"
+msgstr ""
+"启用不稳定功能, 如 speech 样式, highlightText 样式, 会"
+"出现一些问题"
 
-#: cli.py:120
+#: cli.py:111
+msgid "显示版本号"
+msgstr "显示版本号"
+
+#: cli.py:117
+msgid "显示更多些消息"
+msgstr "显示更多些消息"
+
+#: cli.py:124
+#, python-brace-format
+msgid "Annotations2Sub v{version}"
+msgstr "Annotations2Sub v{version}"
+
+#: cli.py:135
+msgid ""
+"转换后文件的输出路径应该指定一个文件夹, 而不是文件"
+msgstr ""
+"转换后文件的输出路径应该指定一个文件夹, 而不是文件"
+
+#: cli.py:140
 msgid "请指定一个 invidious 实例"
 msgstr "请指定一个 invidious 实例"
 
-#: cli.py:128
+#: cli.py:148
 msgid "{} 不是一个文件"
 msgstr "{} 不是一个文件"
 
-#: cli.py:133
+#: cli.py:153
 msgid "{} 不是一个有效的 XML 文件"
 msgstr "{} 不是一个有效的 XML 文件"
 
-#: cli.py:142
+#: cli.py:162
 msgid "您好像无法访问 Google 🤔"
 msgstr "您好像无法访问 Google 🤔"
 
-#: cli.py:156
+#: cli.py:176
 msgid "下载 {}"
 msgstr "下载 {}"
 
-#: cli.py:159
+#: cli.py:179
 msgid "{} 可能没有 Annotations"
 msgstr "{} 可能没有 Annotations"
 
-#: cli.py:191
+#: cli.py:211
 msgid "保存于: {}"
 msgstr "保存于: {}"
 
