@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-05-12 16:42+0800\n"
-"PO-Revision-Date: 2022-05-12 16:42+0800\n"
+"POT-Creation-Date: 2022-05-12 17:27+0800\n"
+"PO-Revision-Date: 2022-05-12 17:27+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -164,11 +164,19 @@ msgstr "Downloading {}"
 msgid "{} 可能没有 Annotation"
 msgstr "{} May not have Annotation"
 
-#: cli.py:209
+#: cli.py:197
+msgid ""
+"--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使用 --transform-"
+"resolution-x --transform-resolution-y, 以确保效果."
+msgstr ""
+"--embrace-libass Note that if your video is not 16:9, please use --transform-"
+"resolution-x --transform-resolution-y, to ensure the effect."
+
+#: cli.py:220
 msgid "{} 没有注释被转换"
 msgstr "{} No Annotation are converted"
 
-#: cli.py:220
+#: cli.py:231
 msgid "保存于: {}"
 msgstr "Saved in: {}"
 

@@ -188,6 +188,17 @@ def main():
                 f.write(string)
             filePaths.append(filePath)
 
+    if args.embrace_libass and (
+        args.transform_resolution_x == 100 or args.transform_resolution_y == 100
+    ):
+        print(
+            YellowText(
+                _(
+                    "--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使用 --transform-resolution-x --transform-resolution-y, 以确保效果."
+                )
+            )
+        )
+
     outputs = []
     for filePath in filePaths:
         output = filePath + ".ass"

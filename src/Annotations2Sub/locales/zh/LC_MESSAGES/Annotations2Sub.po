@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-05-12 16:42+0800\n"
-"PO-Revision-Date: 2022-05-12 16:42+0800\n"
+"POT-Creation-Date: 2022-05-12 17:27+0800\n"
+"PO-Revision-Date: 2022-05-12 17:27+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -90,11 +90,11 @@ msgstr "文件夹"
 
 #: cli.py:75
 msgid ""
-"指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被"
-"转换文件同一目录"
+"指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至"
+"与被转换文件同一目录"
 msgstr ""
-"指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被"
-"转换文件同一目录"
+"指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至"
+"与被转换文件同一目录"
 
 #: cli.py:81
 msgid "尝试从 Internet Archive 下载注释文件"
@@ -112,11 +112,11 @@ msgstr ""
 
 #: cli.py:99
 msgid ""
-"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实"
-"例)"
+"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 "
+"invidious 实例)"
 msgstr ""
-"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实"
-"例)"
+"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 "
+"invidious 实例)"
 
 #: cli.py:105
 msgid "启用不稳定功能, 会出现一些问题"
@@ -167,11 +167,21 @@ msgstr "下载 {}"
 msgid "{} 可能没有 Annotation"
 msgstr "{} 可能没有 Annotation"
 
-#: cli.py:209
+#: cli.py:197
+msgid ""
+"--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使用 "
+"--transform-resolution-x --transform-resolution-y, 以确保"
+"效果."
+msgstr ""
+"--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使用 "
+"--transform-resolution-x --transform-resolution-y, 以确保"
+"效果."
+
+#: cli.py:220
 msgid "{} 没有注释被转换"
 msgstr "{} 没有注释被转换"
 
-#: cli.py:220
+#: cli.py:231
 msgid "保存于: {}"
 msgstr "保存于: {}"
 
