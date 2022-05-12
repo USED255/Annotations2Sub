@@ -211,12 +211,12 @@ def Parse(tree: Element) -> List[Annotation]:
                 print(_("{} 不显示, 跳过").format(annotation.id))
             return None
 
-        # 其实这些字符串可以直接在 SSA 上用的, 但是不知道为什么之前(f20f9f fixbugs)来回转换了两次
+        # 其实这些字符串可以直接在 SSA 上用的, 但是不知道为什么之前来回转换了两次
         # 那些代码已经是两年前写的了
         # 我也忘了
         try:
             annotation.timeStart = datetime.datetime.strptime(Start, "%H:%M:%S.%f")
-            # 在这之前(f20f9f fixbugs)我会在这里 ↓ 加两个空格与上面对齐, 但是 black 好像不太喜欢
+            # 在这之前我会在这里 ↓ 加两个空格与上面对齐, 但是 black 好像不太喜欢
             annotation.timeEnd = datetime.datetime.strptime(End, "%H:%M:%S.%f")
         except:
             annotation.timeStart = datetime.datetime.strptime(Start, "%M:%S.%f")
@@ -231,7 +231,7 @@ def Parse(tree: Element) -> List[Annotation]:
         sx = Segment[0].get("sx")
         sy = Segment[0].get("sy")
 
-        # 在之前(f20f9f fixbugs) 用的是 if x is not None:, 其他人用的是 if x:
+        # 在之前用的是 if x is not None:, 其他人有用 if x:
         # 我觉得 if x: 用在布尔值上比较好
         # is not 就算了
         # 所以用了 if x != None:

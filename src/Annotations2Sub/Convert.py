@@ -6,8 +6,8 @@ from typing import List
 
 # 在重写本项目前, 我写了一些 Go 的代码
 # 依照在 Go 中的经验把一个脚本拆成若干个模块
-# 并上传到 PyPi
-# 但是单个脚本还是有用的所以我会将这些代码再复制一遍成单个脚本脚本
+# 并上传到 PyPI
+# 但是单个脚本还是有用的所以我会将这些代码再复制一遍成一个单个脚本
 from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, Event, DrawCommand
@@ -32,9 +32,7 @@ def Convert(
         """将 Alpha 转换为 SSA 的透明度表示"""
 
         # 据 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 所说
-        # 00 为全见，FF 为全透明
-        # Alpha 255 是不透明
-        # 所以倒过来
+        # SSA 的透明度 00 为全见，FF 为全透明
         return "&H{:02X}&".format(255 - alpha.alpha)
 
     def ConvertAnnotation(each: Annotation) -> List[Event]:
@@ -48,7 +46,7 @@ def Convert(
 
             # Annotation 无非就是文本, 框, 或者是一个点击按钮和动图(爆论)
             # 之前我用了一个巨大的函数生成标签(样式复写代码), 但其实还不如直接写更好
-            # 倒是发现把生成文本和生成框单独抽出来才对劲
+            # 倒是发现把生成文本和生成框单独抽出来才得劲
             tag = ""
             # 样式复写代码, ASS 标签, 特效标签, Aegisub 特效标签
             # ! 带引号的是从 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 粘过来的 !
@@ -59,7 +57,7 @@ def Convert(
             # "\pos(<x>,<y>)"
             # "将字幕定位在坐标点 <x>,<y>。"
             # 就是坐标
-            # 顺便一提 SSA 和 Annotation 坐标系一致, y 向下, 左手取向
+            # 顺便一提 SSA 和 Annotation 坐标系一致, y 向下(左手取向)
             tag += r"\an7" + r"\pos({},{})".format(x + 1, y + 1)
             # "\fs<字体尺寸>"
             # "<字体尺寸> 是一个数字，指定了字体的点的尺寸。"
@@ -70,7 +68,7 @@ def Convert(
             # "\[<颜色序号>]c[&][H]<BBGGRR>[&]"
             # "<BBGGRR> 是一个十六进制的 RGB 值，但颜色顺序相反，前导的 0 可以省略。"
             # "<颜色序号> 可选值为 1、2、3 和 4，分别对应单独设置 PrimaryColour、SecondaryColour、OutlineColor 和 BackColour"
-            # PrimaryColour 填充颜色, SecondaryColour 卡拉OK 变色, OutlineColor 边框颜色, BackColour 阴影颜色
+            # PrimaryColour 填充颜色, SecondaryColour 卡拉OK变色, OutlineColor 边框颜色, BackColour 阴影颜色
             # 这里省略了一段
             # "其中的 & 和 H 按规范应该是要有的，但是如果没有也能正常解析。"
             tag += r"\c" + DumpColor(each.fgColor)
@@ -100,7 +98,7 @@ def Convert(
             tag = "{" + tag + "}"
 
             # 在之前这里我直接拼接字符串, 做的还没有全民核酸检测好
-            # 现在画四个点闭合一个框
+            # 现在画四个点直接闭合一个框
             d = Draw()
             # "所有绘图都应由 m <x> <y> 命令开头"
             # "所有没闭合的图形会被自动地在起点和终点之间添加直线来闭合。"
@@ -133,7 +131,7 @@ def Convert(
         def title(event: Event) -> Event:
             """生成 title 样式的 Event"""
 
-            # 很明显 title 字体大小和其他的不一样
+            # 很明显 title 的字体大小和其他的不一样
             # 很像是我们熟悉的 "字体大小"
             # 但好像又不是
             # / 4 也是试出来的
@@ -252,7 +250,7 @@ def Convert(
             # 我也不知道 libass 咋回事
             # 1.776 是试出来的
             # 而且仅适用于 16:9 分辨率
-            # 不要指望我在 libass 开 issues
+            # 不要指望我在 libass 开 issue
             # 毕竟不知道还有多少脚本依赖于这个怪癖
             width = width * 1.776
             sy = sy * 1.776
@@ -287,8 +285,7 @@ def Convert(
     events = []
     for each in annotations:
         # 一个 Annotations 可能会需要多个 Event 来表达.
-        # each 这个习惯来源于 youtube-ass
-        # 看起来比 i 要好一些
+        # each 这个习惯来源于 youtube-ass, 看起来比 i 要好一些
         events.extend(ConvertAnnotation(each))
 
     return events
