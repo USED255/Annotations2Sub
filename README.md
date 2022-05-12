@@ -4,6 +4,9 @@
 
 A script that can convert Youtube Annotation into ASS(Sub Station Alpha V4) subtitles files
 
+![](https://img.shields.io/pypi/pyversions/Annotations2Sub)
+![](https://img.shields.io/pypi/l/Annotations2Sub?color=1)
+
 ---
 
 ```bash
