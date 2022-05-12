@@ -18,7 +18,7 @@ usage: Annotations2Sub.py [-h] [-l] [-x 100] [-y 100] [-f Microsoft YaHei] [-d]
                           [-i invidious-instances.domain] [-p] [-g] [-u] [-v] [-V]
                           File or videoId [File or videoId ...]
 
-A script that converts Youtube Annotations into ASS(Sub Station Alpha V4) subtitles file
+A script that converts Youtube Annotations into ASS(Advanced SubStation Alpha) subtitles file
 
 positional arguments:
   File or videoId       File path of multiple files to be converted, or multiple

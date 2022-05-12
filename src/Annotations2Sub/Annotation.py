@@ -33,7 +33,7 @@ class Annotation(object):
     def __init__(self):
         # 这里仅列出了需要的结构
         # 如 highlightId action 等没有列出
-        # SSA(Sub Station Alpha) 并不能实现交互, 所以处理 action 没有意义
+        # SSA(Sub Station Alpha)(ASS)(Advanced SubStation Alpha) 并不能实现交互, 所以处理 action 没有意义
         self.id: str = ""
         # 这里仅列出需要的 type 和 style, 且 Literal 仅做提醒作用
         self.type: Literal["text", "highlight", "branding"] = ""
@@ -59,6 +59,7 @@ class Annotation(object):
         self.sx: float = 0.0
         self.sy: float = 0.0
         # Annotation 用一个小数表示透明度, 不过我其实到现在都不知道哪个是透明哪个是不透明, 等我拿到测试用例着吧
+        # 但是按照 annotationlib 给的名字猜测应该是 1 是不透明
         # 按我的喜好我想将其写为 bgAlpha
         self.bgOpacity: Alpha = Alpha(alpha=204)
         # 如果不是 Annotation, 我都不知道颜色值可以用十进制表达
@@ -77,6 +78,10 @@ class Annotation(object):
 
 def Parse(tree: Element) -> List[Annotation]:
     """将 XML 树转换为 List[Annotation]"""
+
+    # Annotation 文件是一个 XML 文件
+    # 详细结构可以看看 /test/xml.test
+
     # 在在此之前(f20f9f fixbugs) XML 树就直接转换为 Event 了
     # 代码随着时间推移变得很糟
     # 幸好当初没傻到直接吐出来字符串
@@ -92,11 +97,8 @@ def Parse(tree: Element) -> List[Annotation]:
         """
         if s is None:
             raise Exception("alpha is None")
-        s1 = float(s)
-        s2 = 1 - s1
-        s3 = s2 * 255
-        s4 = int(s3)
-        return Alpha(alpha=s4)
+        s1 = float(s) * 255
+        return Alpha(alpha=int(s1))
 
     def ParseAnnotationColor(s: str) -> Color:
         """

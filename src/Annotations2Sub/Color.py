@@ -17,7 +17,7 @@ class Color(object):
 
 
 class Alpha(object):
-    """以 0-255 的整数表示透明度, 不提供序列化方法"""
+    """以 0-255 的整数表示透明度, 255 是不透明, 不提供序列化方法"""
 
     def __init__(
         self,
