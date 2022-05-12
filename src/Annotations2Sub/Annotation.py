@@ -76,6 +76,13 @@ class Annotation(object):
 
 def Parse(tree: Element) -> List[Annotation]:
     """将 XML 树转换为 List[Annotation]"""
+    # 在在此之前(f20f9f fixbugs) XML 树就直接转换为 Event 了
+    # 代码随着时间推移变得很糟
+    # 幸好当初没傻到直接吐出来字符串
+
+    # 在这之前我还想过从树到 Event 是一个完美的管线
+    # 然后遇到了 None 和 多个 Event
+    # 还是吐出来一个 List 比较好
 
     def ParseAnnotationAlpha(s: str) -> Alpha:
         """
@@ -125,36 +132,53 @@ def Parse(tree: Element) -> List[Annotation]:
         # branding 我不知道是啥
         # pause 应该不能实现,
         # 我相信字幕滤镜不会闲的蛋疼实现暂停功能
+        # 而且 annotationlib 也不处理 pause
+        # annotationlib 也不处理空的 type
+        # 但是我还没有遇到过
         if type not in ("text", "highlight", "branding"):
             print(_("不支持{}类型. ()").format(type, annotation.id))
+            # 我不知道显式的 return None 有什么用
+            # 但是 annotationlib 是这样做的
+            # 我也学学
             return None
+        # 类型检查可以避免些低级错误, 提升体验, 虽然在 Python 上有些瓦店房化
         annotation.type = MakeSureStr(type)  # type: ignore
 
         style = each.get("style")
-        #
+        # 根据经验, 空的 style 没有内容
         if style is None:
             return None
         annotation.style = style  # type: ignore
 
         text = each.find("TEXT")
+        # 根据经验, 空的 TEXT 只是没有文本, 不是没有内容
         if text is None:
             annotation.text = ""
         else:
             annotation.text = MakeSureStr(text.text)
 
         if len(each.find("segment").find("movingRegion")) == 0:  # type: ignore
+            # 学习 annotationlib
+            # https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L117
             # 跳过没有内容的 Annotation
+            # 之前(f20f9f fixbugs)学的是 youtube-ass(https://github.com/nirbheek/youtube-ass)
+            # 只是简单地把时间置零
             return None
 
         Segment = each.find("segment").find("movingRegion").findall("rectRegion")  # type: ignore
         if len(Segment) == 0:
-            Segment = (
-                each.find("segment").find("movingRegion").findall("anchoredRegion")  # type: ignore
-            )
+            # 在这之前(bdb655 更新), 这里有个莫名其妙的包了个括号
+            # 我把整个代码注释一遍原因之一就是为了发现这些问题
+            # 而且这些代码其实是经验堆积成的, 我希望丰富的注释可以帮助路人理解这些代码是怎么来的
+            Segment = each.find("segment").find("movingRegion").findall("anchoredRegion")  # type: ignore
 
         if len(Segment) == 0:
             if annotation.style != "highlightText":
                 # 抄自 https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L121
+                # 不过我现在没见过 highlightText
+                # 不理解为什么 highlightText 可以没有时间
+                # 我选择相信别人的经验
+                # 毕竟我也没咋看过 Youtube
                 return None
 
         if len(Segment) != 0:
@@ -165,10 +189,16 @@ def Parse(tree: Element) -> List[Annotation]:
 
         if "never" in (Start, End):
             # 跳过不显示的 Annotation
+            # 之前(f20f9f fixbugs)不会英语, 理解成了相反的意思
+            # 哈哈
             return None
 
+        # 其实这些字符串可以直接在 SSA 上用的, 但是不知道为什么之前(f20f9f fixbugs)来回转换了两次
+        # 那些代码已经是两年前写的了
+        # 我也忘了
         try:
             annotation.timeStart = datetime.datetime.strptime(Start, "%H:%M:%S.%f")
+            # 在这之前(f20f9f fixbugs)我会在这里 ↓ 加两个空格与上面对齐, 但是 black 好像不太喜欢
             annotation.timeEnd = datetime.datetime.strptime(End, "%H:%M:%S.%f")
         except:
             annotation.timeStart = datetime.datetime.strptime(Start, "%M:%S.%f")
@@ -177,11 +207,16 @@ def Parse(tree: Element) -> List[Annotation]:
         annotation.x = float(MakeSureStr(Segment[0].get("x")))
         annotation.y = float(MakeSureStr(Segment[0].get("y")))
 
+        # 我猜应该没有多个 Segment 
         w = Segment[0].get("w")
         h = Segment[0].get("h")
         sx = Segment[0].get("sx")
         sy = Segment[0].get("sy")
 
+        # 在之前(f20f9f fixbugs) 用的是 if x is not None:, 其他人用的是 if x:
+        # 我觉得 if x: 用在布尔值上比较好
+        # is not 就算了
+        # 所以用了 if x != None:
         if w != None:
             annotation.width = float(MakeSureStr(w))
         if h != None:
@@ -193,6 +228,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
         Appearance = each.find("appearance")
 
+        # 如果没有 Appearance 下面这些都是有默认值的
         if Appearance != None:
             bgAlpha = Appearance.get("bgAlpha")  # type: ignore
             bgColor = Appearance.get("bgColor")  # type: ignore
@@ -211,9 +247,11 @@ def Parse(tree: Element) -> List[Annotation]:
         return annotation
 
     annotations: List[Annotation] = []
+    # 下面这行代码先从 youtube-ass 传到之前的 Annotations2Sub, 再从之前的 Annotations2Sub 传到这里
     for each in tree.find("annotations").findall("annotation"):  # type: ignore
         annotation = ParseAnnotation(each)
         if annotation != None:
+            # 我想这个类型检查真是奇怪, 但是我也不知道该怎么做
             annotations.append(annotation)  # type: ignore
 
     return annotations
