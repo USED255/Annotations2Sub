@@ -18,11 +18,11 @@ except:
 
 
 class Annotation(object):
+    """Annotation 结构"""
     # 致谢 https://github.com/isaackd/annotationlib
     # 这其实是 annotationlib "简易结构" 的一个移植
     # 命名遵循了其实现, 并没有按我的喜好更改
     # 将 Annotation 抽成了简单的结构确实让事情变得简单了很多
-    """Annotation 结构"""
 
     # 随着 Google 关闭 Annotation,
     # Annotation 已成黑盒
@@ -58,10 +58,12 @@ class Annotation(object):
         # sx, sy 是 speech 样式的气泡锚点
         self.sx: float = 0.0
         self.sy: float = 0.0
+        # bgOpacity / bgAlpha 其实就是注释(Annotation)文本后面那个框的透明度, bgColor 同理
         # Annotation 用一个小数表示透明度, 不过我其实到现在都不知道哪个是透明哪个是不透明, 等我拿到测试用例着吧
         # 但是按照 annotationlib 给的名字猜测应该是 1 是不透明
         # 按我的喜好我想将其写为 bgAlpha
         self.bgOpacity: Alpha = Alpha(alpha=204)
+        # fgColor 就是注释文本的颜色
         # 如果不是 Annotation, 我都不知道颜色值可以用十进制表达
         # 类似于 bgOpacity , 开始我也不知道这玩耶是 BGR ,是视频出来效果不对才知道
         # 一个结构化的颜色显然比奇怪的颜色值容易理解得多
@@ -115,12 +117,14 @@ def Parse(tree: Element) -> List[Annotation]:
         return Color(red=r, green=g, blue=b)
 
     def MakeSureStr(s: Optional[str]) -> str:
+        """确保输入的是字符串"""
         # 这个是用来应付类型注释了, 我觉得在输入确定的环境里做类型检查没有必要
         if isinstance(s, str):
             return str(s)
         raise TypeError
 
     def ParseAnnotation(each: Element) -> Optional[Annotation]:
+        """解析 Annotation"""
         # 致谢: https://github.com/nirbheek/youtube-ass
         # 致谢: https://github.com/isaackd/annotationlib
         annotation = Annotation()

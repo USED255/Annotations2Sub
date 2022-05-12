@@ -11,6 +11,12 @@ class Color(object):
         green: int = 0,
         blue: int = 0,
     ):
+        if red > 255:
+            raise ValueError("red must be 0-255")
+        if green > 255:
+            raise ValueError("green must be 0-255")
+        if blue > 255:
+            raise ValueError("blue must be 0-255")
         self.red = red
         self.green = green
         self.blue = blue
@@ -23,6 +29,8 @@ class Alpha(object):
         self,
         alpha: int = 0,
     ):
+        if alpha > 255:
+            raise ValueError("alpha must be 0-255")
         self.alpha = alpha
 
 

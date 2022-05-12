@@ -25,9 +25,11 @@ def Convert(
     """将 List[Annotation] 列表转换为List[Event]"""
 
     def DumpColor(color: Color) -> str:
+        """将 Color 转换为 SSA 的颜色表示"""
         return "&H{:02X}{:02X}{:02X}&".format(color.red, color.green, color.blue)
 
     def DumpAlpha(alpha: Alpha) -> str:
+        """将 Alpha 转换为 SSA 的透明度表示"""
         # 据 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 所说
         # 00 为全见，FF 为全透明
         # Alpha 255 是不透明
@@ -35,10 +37,12 @@ def Convert(
         return "&H{:02X}&".format(255 - alpha.alpha)
 
     def ConvertAnnotation(each: Annotation) -> List[Event]:
+        """将 Annotation 转换为 List[Event]"""
         # 致谢: https://github.com/nirbheek/youtube-ass
         # 致谢: https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 
         def Text(event: Event) -> Event:
+            """生成 Annotation 文本的 Event"""
             # Annotation 无非就是文本, 框, 或者是一个点击按钮和动图(爆论)
             # 之前我用了一个巨大的函数生成标签(样式复写代码), 但其实还不如直接写更好
             # 倒是发现把生成文本和生成框单独抽出来才对劲
@@ -63,6 +67,7 @@ def Convert(
             # "\[<颜色序号>]c[&][H]<BBGGRR>[&]"
             # "<BBGGRR> 是一个十六进制的 RGB 值，但颜色顺序相反，前导的 0 可以省略。"
             # "<颜色序号> 可选值为 1、2、3 和 4，分别对应单独设置 PrimaryColour、SecondaryColour、OutlineColor 和 BackColour"
+            # PrimaryColour 填充颜色, SecondaryColour 卡拉OK 变色, OutlineColor 边框颜色, BackColour 阴影颜色
             # 这里省略了一段
             # "其中的 & 和 H 按规范应该是要有的，但是如果没有也能正常解析。"
             tag += r"\c" + DumpColor(each.fgColor)
@@ -70,7 +75,7 @@ def Convert(
             # "<AA> 是一个十六进制的透明度数值，00 为全见，FF 为全透明。"
             # "<颜色序号> 含义同上，但这里不能省略。写法举例：\1a&H80&、\2a&H80、\3a80、\4a&H80&。"
             # "其中的 & 和 H 按规范应该是要有的，但是如果没有也能正常解析。"
-            # PrimaryColour 填充颜色, SecondaryColour 卡拉OK 变色, OutlineColor 边框颜色, BackColour 阴影颜色
+            # Annotation 文本好像没有透明度, 这个很符合直觉
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
             # 现在加个括号就成了
             tag = "{" + tag + "}"
@@ -80,8 +85,10 @@ def Convert(
             return event
 
         def Box(event: Event) -> Event:
+            """生成 Annotation 文本框的 Event"""
             event.Layer = 0
 
+            # 没什么太大的变化
             tag = ""
             tag += r"\an7" + r"\pos({},{})".format(x, y)
             tag += r"\c" + DumpColor(each.bgColor)
