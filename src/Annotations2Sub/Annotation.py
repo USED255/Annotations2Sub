@@ -207,7 +207,7 @@ def Parse(tree: Element) -> List[Annotation]:
         annotation.x = float(MakeSureStr(Segment[0].get("x")))
         annotation.y = float(MakeSureStr(Segment[0].get("y")))
 
-        # 我猜应该没有多个 Segment 
+        # 我猜应该没有多个 Segment
         w = Segment[0].get("w")
         h = Segment[0].get("h")
         sx = Segment[0].get("sx")
