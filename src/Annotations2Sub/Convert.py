@@ -96,6 +96,7 @@ def Convert(
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
             tag = "{" + tag + "}"
 
+            # 在之前这里我直接拼接字符串, 做的还没有全民核酸检测好
             d = Draw()
             d.Add(DrawCommand(0, 0, "m"))
             d.Add(DrawCommand(width, 0, "l"))

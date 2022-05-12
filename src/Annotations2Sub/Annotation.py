@@ -19,6 +19,7 @@ except:
 
 class Annotation(object):
     """Annotation 结构"""
+
     # 致谢 https://github.com/isaackd/annotationlib
     # 这其实是 annotationlib "简易结构" 的一个移植
     # 命名遵循了其实现, 并没有按我的喜好更改
