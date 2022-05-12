@@ -125,7 +125,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
         annotation.id = MakeSureStr(each.get("id"))
 
-        type = each.get("type")
+        _type = each.get("type")
         # 依照
         # https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L129
         # 所说
@@ -136,14 +136,14 @@ def Parse(tree: Element) -> List[Annotation]:
         # 而且 annotationlib 也不处理 pause
         # annotationlib 也不处理空的 type
         # 但是我还没有遇到过
-        if type not in ("text", "highlight", "branding"):
-            print(_("不支持{}类型 ({})").format(type, annotation.id))
+        if _type not in ("text", "highlight", "branding"):
+            print(_("不支持{}类型 ({})").format(_type, annotation.id))
             # 我不知道显式的 return None 有什么用
             # 但是 annotationlib 是这样做的
             # 我也学学
             return None
         # 类型检查可以避免些低级错误, 提升体验, 虽然在 Python 上有些瓦店房化
-        annotation.type = MakeSureStr(type)  # type: ignore
+        annotation.type = MakeSureStr(_type)  # type: ignore
 
         style = each.get("style")
         # 根据经验, ,没有 style 也就没有内容
