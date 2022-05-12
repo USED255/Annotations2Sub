@@ -30,6 +30,7 @@ def Convert(
 
     def DumpAlpha(alpha: Alpha) -> str:
         """将 Alpha 转换为 SSA 的透明度表示"""
+
         # 据 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 所说
         # 00 为全见，FF 为全透明
         # Alpha 255 是不透明
@@ -38,11 +39,13 @@ def Convert(
 
     def ConvertAnnotation(each: Annotation) -> List[Event]:
         """将 Annotation 转换为 List[Event]"""
+
         # 致谢: https://github.com/nirbheek/youtube-ass
         # 致谢: https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 
         def Text(event: Event) -> Event:
             """生成 Annotation 文本的 Event"""
+
             # Annotation 无非就是文本, 框, 或者是一个点击按钮和动图(爆论)
             # 之前我用了一个巨大的函数生成标签(样式复写代码), 但其实还不如直接写更好
             # 倒是发现把生成文本和生成框单独抽出来才对劲
@@ -97,29 +100,43 @@ def Convert(
             tag = "{" + tag + "}"
 
             # 在之前这里我直接拼接字符串, 做的还没有全民核酸检测好
+            # 现在画四个点闭合一个框
             d = Draw()
+            # "所有绘图都应由 m <x> <y> 命令开头"
+            # "所有没闭合的图形会被自动地在起点和终点之间添加直线来闭合。"
+            # "如果一个对话行中的多个图形有重叠，重叠部分会进行异或运算。"
             d.Add(DrawCommand(0, 0, "m"))
             d.Add(DrawCommand(width, 0, "l"))
             d.Add(DrawCommand(width, height, "l"))
             d.Add(DrawCommand(0, height, "l"))
             box = d.Dump()
+            # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
             box = r"{\p1}" + box + r"{\p0}"
 
             event.Text = tag + box
             return event
 
         def popup_text(event: Event) -> Event:
+            """生成 popup 样式的文本 Event"""
+
+            # 就是加个名字而已
             event.Name += "_popup_text"
 
             return Text(event)
 
         def popup_box(event: Event) -> Event:
+            """生成 popup 样式的框 Event"""
             event.Name = event.Name + "_popup_box"
 
             return Box(event)
 
         def title(event: Event) -> Event:
-            # 很明显 title 字体大小是用 DPI 计算的
+            """生成 title 样式的 Event"""
+
+            # 很明显 title 字体大小和其他的不一样
+            # 很像是我们熟悉的 "字体大小"
+            # 但好像又不是
+            # / 4 也是试出来的
             nonlocal textSize  # type: ignore
             textSize = round(textSize / 4, 3)
 
@@ -128,26 +145,32 @@ def Convert(
             return Text(event)
 
         def highlightText_text(event: Event) -> Event:
+            """生成 highlightText 样式的文本 Event"""
             event.Name += "_highlightText_text"
 
             return Text(event)
 
         def highlightText_box(event: Event) -> Event:
+            """生成 highlightText 样式的框 Event"""
             event.Name = event.Name + "highlightText_box"
 
             return Box(event)
 
         def speech_text(event: Event) -> Event:
+            """生成 speech 样式的文本 Event"""
             event.Name += "_speech_text"
 
             return Text(event)
 
         def speech_box(event: Event) -> Event:
-            event.Name += "_a"
+            """生成 speech 样式的框 Event"""
+            event.Name += "_speech_box"
+
             return Box(event)
 
         def speech_box_2(event: Event) -> Event:
-            event.Name += "_a_b"
+            """生成 speech 样式的第二个框 Event"""
+            event.Name += "_speech_box_2"
             event.Layer = 0
 
             tag = ""
@@ -156,7 +179,13 @@ def Convert(
             tag += r"\1a" + DumpAlpha(each.bgOpacity)
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
             tag = "{" + tag + "}"
+            # 到这里和 Box 没啥差别
 
+            # 从这里开始不一样了
+            # 开始只是按部就班的画一个气泡框
+            # 之后我想可以拆成一个普通的方框和一个三角形
+            # 这可以直接使用 Box, 气泡锚点定位也可以直接使用 /pos
+            # 绘图变得更简单, 一共三个点
             x1 = x - sx
             x2 = x - sx
             if sx < x + width / 2:

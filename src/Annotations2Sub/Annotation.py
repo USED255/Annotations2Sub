@@ -119,6 +119,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
     def MakeSureStr(s: Optional[str]) -> str:
         """确保输入的是字符串"""
+
         # 这个是用来应付类型注释了, 我觉得在输入确定的环境里做类型检查没有必要
         if isinstance(s, str):
             return str(s)
@@ -126,6 +127,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
     def ParseAnnotation(each: Element) -> Optional[Annotation]:
         """解析 Annotation"""
+
         # 致谢: https://github.com/nirbheek/youtube-ass
         # 致谢: https://github.com/isaackd/annotationlib
         annotation = Annotation()
