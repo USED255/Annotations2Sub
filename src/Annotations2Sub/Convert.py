@@ -181,7 +181,7 @@ def Convert(
             events.append(speech_box(copy.copy(event)))
             events.append(speech_box_2(copy.copy(event)))
         else:
-            print(_("不支持 {} 样式. ({})").format(each.style, each.id))
+            print(_("不支持 {} 样式 ({})").format(each.style, each.id))
 
         return events
 

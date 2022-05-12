@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-05-11 18:21+0800\n"
-"PO-Revision-Date: 2022-05-11 18:22+0800\n"
+"POT-Creation-Date: 2022-05-12 16:42+0800\n"
+"PO-Revision-Date: 2022-05-12 16:42+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -14,21 +14,41 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: Annotation.py:85
-msgid "不支持{}类型. ()"
-msgstr "不支持{}类型. ()"
+#: Annotation.py:140
+msgid "不支持{}类型 ({})"
+msgstr "不支持{}类型 ({})"
 
-#: Convert.py:226
-msgid "不支持 {} 样式. ({})"
-msgstr "不支持 {} 样式. ({})"
+#: Annotation.py:152
+msgid "{} 没有 style, 跳过"
+msgstr "{} 没有 style, 跳过"
+
+#: Annotation.py:170
+msgid "{} 没有 movingRegion, 跳过"
+msgstr "{} 没有 movingRegion, 跳过"
+
+#: Annotation.py:188
+msgid "{} highlightText 没有时间, 跳过"
+msgstr "{} highlightText 没有时间, 跳过"
+
+#: Annotation.py:202
+msgid "{} 不显示, 跳过"
+msgstr "{} 不显示, 跳过"
+
+#: Convert.py:184
+msgid "不支持 {} 样式 ({})"
+msgstr "不支持 {} 样式 ({})"
+
+#: Sub.py:79
+msgid "此脚本使用 Annotations2Sub 生成"
+msgstr "此脚本使用 Annotations2Sub 生成"
 
 #: cli.py:29
 msgid ""
-"一个可以把 Youtube Annotations 转换成 ASS 字幕(Sub "
-"Station Alpha V4)文件的脚本"
+"一个可以把 Youtube Annotation 转换成 ASS 字幕(Sub Station "
+"Alpha V4)文件的脚本"
 msgstr ""
-"一个可以把 Youtube Annotations 转换成 ASS 字幕(Sub "
-"Station Alpha V4)文件的脚本"
+"一个可以把 Youtube Annotation 转换成 ASS 字幕(Sub Station "
+"Alpha V4)文件的脚本"
 
 #: cli.py:35
 msgid "文件 或 videoId"
@@ -36,21 +56,17 @@ msgstr "文件 或 videoId"
 
 #: cli.py:37
 msgid ""
-"多个需要转换的文件的文件路径, 或者是多个需要预览, 生"
-"成, 从Internet Archive 下载 Annotations 文件 Youtube "
-"视频的 videoId"
+"多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从"
+"Internet Archive 下载注释文件 Youtube 视频的 videoId"
 msgstr ""
-"多个需要转换的文件的文件路径, 或者是多个需要预览, 生"
-"成, 从Internet Archive 下载 Annotations 文件 Youtube "
-"视频的 videoId"
+"多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从"
+"Internet Archive 下载注释文件 Youtube 视频的 videoId"
 
 #: cli.py:44
 msgid ""
-"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-"
-"vsfilter"
+"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
 msgstr ""
-"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-"
-"vsfilter"
+"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
 
 #: cli.py:52
 msgid "变换分辨率X"
@@ -74,37 +90,33 @@ msgstr "文件夹"
 
 #: cli.py:75
 msgid ""
-"指定转换后文件的输出路径, 不指定此选项转换后的文件会输"
-"出至与被转换文件同一目录"
+"指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被"
+"转换文件同一目录"
 msgstr ""
-"指定转换后文件的输出路径, 不指定此选项转换后的文件会输"
-"出至与被转换文件同一目录"
+"指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被"
+"转换文件同一目录"
 
 #: cli.py:81
-msgid "尝试从 Internet Archive 下载 Annotations 文件"
-msgstr "尝试从 Internet Archive 下载 Annotations 文件"
+msgid "尝试从 Internet Archive 下载注释文件"
+msgstr "尝试从 Internet Archive 下载注释文件"
 
 #: cli.py:87
-msgid ""
-"指定 invidious 实例(https://redirect.invidious.io/)"
-msgstr ""
-"指定 invidious 实例(https://redirect.invidious.io/)"
+msgid "指定 invidious 实例(https://redirect.invidious.io/)"
+msgstr "指定 invidious 实例(https://redirect.invidious.io/)"
 
 #: cli.py:93
 msgid ""
-"预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious "
-"实例"
+"预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"
 msgstr ""
-"预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious "
-"实例"
+"预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"
 
 #: cli.py:99
 msgid ""
-"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 "
-"invidious 实例)"
+"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实"
+"例)"
 msgstr ""
-"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 "
-"invidious 实例)"
+"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实"
+"例)"
 
 #: cli.py:105
 msgid "启用不稳定功能, 会出现一些问题"
@@ -124,10 +136,8 @@ msgid "Annotations2Sub v{version}"
 msgstr "Annotations2Sub v{version}"
 
 #: cli.py:135
-msgid ""
-"转换后文件的输出路径应该指定一个文件夹, 而不是文件"
-msgstr ""
-"转换后文件的输出路径应该指定一个文件夹, 而不是文件"
+msgid "转换后文件的输出路径应该指定一个文件夹, 而不是文件"
+msgstr "转换后文件的输出路径应该指定一个文件夹, 而不是文件"
 
 #: cli.py:140
 msgid "请指定一个 invidious 实例"
@@ -137,23 +147,31 @@ msgstr "请指定一个 invidious 实例"
 msgid "{} 不是一个文件"
 msgstr "{} 不是一个文件"
 
-#: cli.py:153
+#: cli.py:156
+msgid "{} 没有 Annotation"
+msgstr "{} 没有 Annotation"
+
+#: cli.py:159
 msgid "{} 不是一个有效的 XML 文件"
 msgstr "{} 不是一个有效的 XML 文件"
 
-#: cli.py:162
+#: cli.py:168
 msgid "您好像无法访问 Google 🤔"
 msgstr "您好像无法访问 Google 🤔"
 
-#: cli.py:176
+#: cli.py:182
 msgid "下载 {}"
 msgstr "下载 {}"
 
-#: cli.py:179
-msgid "{} 可能没有 Annotations"
-msgstr "{} 可能没有 Annotations"
+#: cli.py:185
+msgid "{} 可能没有 Annotation"
+msgstr "{} 可能没有 Annotation"
 
-#: cli.py:211
+#: cli.py:209
+msgid "{} 没有注释被转换"
+msgstr "{} 没有注释被转换"
+
+#: cli.py:220
 msgid "保存于: {}"
 msgstr "保存于: {}"
 
