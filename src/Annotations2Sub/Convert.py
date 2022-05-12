@@ -6,7 +6,7 @@ from typing import List
 
 from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
-from Annotations2Sub.Sub import Draw, Event, Point
+from Annotations2Sub.Sub import Draw, Event, DrawCommand
 from Annotations2Sub.internationalization import _
 from Annotations2Sub.flag import Flags
 
@@ -50,10 +50,10 @@ def Convert(
             tag = "{" + tag + "}"
 
             d = Draw()
-            d.Add(Point(0, 0, "m"))
-            d.Add(Point(width, 0, "l"))
-            d.Add(Point(width, height, "l"))
-            d.Add(Point(0, height, "l"))
+            d.Add(DrawCommand(0, 0, "m"))
+            d.Add(DrawCommand(width, 0, "l"))
+            d.Add(DrawCommand(width, height, "l"))
+            d.Add(DrawCommand(0, height, "l"))
             box = d.Dump()
             box = r"{\p1}" + box + r"{\p0}"
 
@@ -123,9 +123,9 @@ def Convert(
                 y1 = y1 + height
 
             d = Draw()
-            d.Add(Point(0, 0, "m"))
-            d.Add(Point(x1, y1, "l"))
-            d.Add(Point(x2, y1, "l"))
+            d.Add(DrawCommand(0, 0, "m"))
+            d.Add(DrawCommand(x1, y1, "l"))
+            d.Add(DrawCommand(x2, y1, "l"))
             box = d.Dump()
             box = r"{\p1}" + box + r"{\p0}"
 

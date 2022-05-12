@@ -26,7 +26,7 @@ from Annotations2Sub.tools import (
 
 def main():
     parser = argparse.ArgumentParser(
-        description=_("一个可以把 Youtube Annotations 转换成 ASS 字幕(Sub Station Alpha V4)文件的脚本")
+        description=_("一个可以把 Youtube Annotation 转换成 ASS 字幕(Sub Station Alpha V4)文件的脚本")
     )
     parser.add_argument(
         "queue",
@@ -34,7 +34,7 @@ def main():
         nargs="+",
         metavar=_("文件 或 videoId"),
         help=_(
-            "多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从Internet Archive 下载 Annotations 文件 Youtube 视频的 videoId"
+            "多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从Internet Archive 下载注释文件 Youtube 视频的 videoId"
         ),
     )
     parser.add_argument(
@@ -78,7 +78,7 @@ def main():
         "-d",
         "--download-for-archive",
         action="store_true",
-        help=_("尝试从 Internet Archive 下载 Annotations 文件"),
+        help=_("尝试从 Internet Archive 下载注释文件"),
     )
     parser.add_argument(
         "-i",
@@ -148,7 +148,13 @@ def main():
                 print(RedText(_("{} 不是一个文件").format(filePath)))
                 exit(1)
             try:
-                defusedxml.ElementTree.parse(filePath)
+                tree = defusedxml.ElementTree.parse(filePath)
+                count = 0
+                for each in tree.find("annotations").findall("annotation"):
+                    count += 1
+                if count == 0:
+                    print(RedText(_("{} 没有 Annotation").format(filePath)))
+                    exit(1)
             except:
                 print(RedText(_("{} 不是一个有效的 XML 文件").format(filePath)))
                 print(traceback.format_exc())
@@ -176,7 +182,7 @@ def main():
             print(_("下载 {}").format(url))
             string = urllib.request.urlopen(url).read().decode("utf-8")
             if string == "":
-                print(YellowText(_("{} 可能没有 Annotations").format(videoId)))
+                print(YellowText(_("{} 可能没有 Annotation").format(videoId)))
                 continue
             with open(filePath, "w", encoding="utf-8") as f:
                 f.write(string)
@@ -199,12 +205,15 @@ def main():
             args.transform_resolution_x,
             args.transform_resolution_y,
         )
+        if events == []:
+            print(YellowText(_("{} 没有注释被转换").format(filePath)))
         events.sort(key=lambda event: event.Start)
         sub = Sub()
-        sub.events.events.extend(events)
-        sub.info.info["PlayResX"] = args.transform_resolution_x
-        sub.info.info["PlayResY"] = args.transform_resolution_y
-        sub.styles.styles["Default"].Fontname = args.font
+        sub.events.extend(events)
+        sub.info["PlayResX"] = args.transform_resolution_x
+        sub.info["PlayResY"] = args.transform_resolution_y
+        sub.info["Title"] = filePath
+        sub.styles["Default"].Fontname = args.font
         subString = sub.Dump()
         with open(output, "w", encoding="utf-8") as f:
             f.write(subString)
