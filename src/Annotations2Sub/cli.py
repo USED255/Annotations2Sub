@@ -26,7 +26,9 @@ from Annotations2Sub.tools import (
 
 def main():
     parser = argparse.ArgumentParser(
-        description=_("一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced SubStation Alpha)文件的脚本")
+        description=_(
+            "一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced SubStation Alpha)文件的脚本"
+        )
     )
     parser.add_argument(
         "queue",
