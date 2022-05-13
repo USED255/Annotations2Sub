@@ -54,21 +54,18 @@ aaLI3ErnHQg	志方あきこ - EXEC_HARMONIUS/. 中文字幕(Chinese Translation)
 sgeXEwVWnpI	志方あきこ - EXEC_over.METHOD_SUBLIMATION/. ~omness chs ciel sos infel  中文字幕(Chinese Translation)
 R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Translation)
 ---以上是有类似问题的视频，以制表符分隔---
+说实话我不想实现恶心的 CSS 定位
 
 ---
 
 作为我的第一个代码, 我一直想让其趋于完美.
 首先想的是参考 https://github.com/isaackd/annotationlib (致谢), 将 Annotation 抽成一个简单的结构, 
-与脚本生成器(转换器)解耦, 结果并没有让事情变简单.
-
+与脚本生成器(转换器)解耦, 结果并没有让事情变简单. (这是两年前的事了)
 之后还尝试过实现 speech 样式, 把事情弄得一团糟
-尝试过扔掉 invidious , 发现我简直像个shaberhu
+尝试过扔掉 invidious , 发现我简直像个shaberhu (这是一年前的事)
 只好作罢, 上学去了.
-
+...
 自从 2022 年新年开始我已经半年呆在家里了, 我有了时间一直折腾代码, 我决定再次挑战这个目标.
-
----
-
 首先, 我把我按照写 Go 的经验把脚本拆成了模块, 上传到了 PyPI, 并尝试为其编写单元测试
 然后, 我尝试对其进行详尽的注释, 到目前为止看起来不错.
 
