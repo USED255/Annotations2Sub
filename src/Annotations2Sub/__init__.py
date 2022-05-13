@@ -61,5 +61,10 @@ Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字�
 
 ---
 
+首先, 我把我按照写 Go 的经验把脚本拆成了模块, 上传到了 PyPI, 并尝试为其编写单元测试
+然后, 我尝试对其进行详尽的注释, 到目前为止看起来不错.
+
+---
+
 """
 version = __version__
