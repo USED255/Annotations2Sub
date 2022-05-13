@@ -8,18 +8,29 @@ https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 import datetime
 from typing import Dict, List
 
+from Annotations2Sub.Color import Alpha, Color, Rgba
+from Annotations2Sub.internationalization import _
+
+# 兼容 Python3.6, 3.7
+# Python3.6, 3.7 的 typing 没有 Literal
 try:
     from typing import Literal  # type: ignore
 except:
     pass
 
-from Annotations2Sub.Color import Alpha, Color, Rgba
-from Annotations2Sub.internationalization import _
-
 
 class Style:
+    """SSA 的样式结构"""
+
+    # ! 带引号的还是从 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 粘过来的 !
+    # Name 不在这里面, 因为我想用字典实现
     def __init__(self):
+        # "Style 行中的所有设定，除了阴影和边框的类型和深度，都可以被字幕文本中的控制代码所覆写。"
+
+        # "使用的字体名称，区分大小写。"
         self.Fontname: str = "Arial"
+
+        # 一下都用默认值
         self.Fontsize: float = 20
         self.PrimaryColour: Rgba = Rgba(Color(255, 255, 255), Alpha(0))
         self.SecondaryColour: Rgba = Rgba(Color(255, 0, 0), Alpha(0))
@@ -40,6 +51,12 @@ class Style:
         self.MarginL: int = 10
         self.MarginR: int = 10
         self.MarginV: int = 10
+
+        # "它定义了字体的字符集或编码方式。"
+        # "在多语种的 Windows 安装中它可以获取多种语言中的字符。"
+        # "通常 0 为英文，134 为简体中文，136 为繁体中文。"
+        # "当文件是 Unicode 编码时，该字段在解析对话时会起作用。"
+        # 直接抄 Aegisub 置为 1
         self.Encoding: int = 1
 
 
@@ -47,10 +64,12 @@ class Event:
     """Sub 的 Event 结构"""
 
     def __init__(self):
-
-        # 仅列出了需要的 Format
-        self.Format: Literal["Dialogue"] = "Dialogue"
+        # 有 Dialogue, Comment, Picture, Sound, Movie, Command 事件
+        # 但是我们只用到 Dialogue
+        # "这是一个对话事件，即显示一些文本。"
+        self.Type: Literal["Dialogue"] = "Dialogue"
         # Aegisub 没有 Marked ,所以我们也没有
+        # 剩下的读一下 ./Convert.py 吧
         self.Layer: int = 0
         self.Start: datetime.datetime = datetime.datetime.strptime("0", "%S")
         self.End: datetime.datetime = datetime.datetime.strptime("0", "%S")
@@ -65,6 +84,8 @@ class Event:
 
 
 class Sub:
+    """ """
+
     def __init__(self):
         self._info = self.Info()
         self._styles = self.Styles()
@@ -81,11 +102,15 @@ class Sub:
         self.styles["Default"] = Style()
 
     class Info:
+        """ """
+
         def __init__(self):
             self.note: List[str] = []
             self.info: Dict[str, str] = {"ScriptType": "v4.00+"}
 
         def Dump(self) -> str:
+            """ """
+
             s = ""
             s += "[Script Info]" + "\n"
             for i in self.note:
@@ -96,10 +121,14 @@ class Sub:
             return s
 
     class Styles:
+        """ """
+
         def __init__(self):
             self.styles: Dict[str, Style] = {}
 
         def Dump(self) -> str:
+            """ """
+
             def DumpAABBGGRR(rgba: Rgba) -> str:
                 return "&H{:02X}{:02X}{:02X}{:02X}".format(
                     rgba.alpha.alpha, rgba.color.blue, rgba.color.green, rgba.color.red
@@ -140,10 +169,14 @@ class Sub:
             return s
 
     class Events:
+        """ """
+
         def __init__(self):
             self.events: List[Event] = []
 
         def Dump(self) -> str:
+            """ """
+
             def DumpTime(t: datetime.datetime) -> str:
                 return t.strftime("%H:%M:%S.%f")[:-4]
 
@@ -169,6 +202,8 @@ class Sub:
             return s
 
     def Dump(self) -> str:
+        """ """
+
         s = ""
         s += self._info.Dump()
         s += self._styles.Dump()
@@ -177,6 +212,8 @@ class Sub:
 
 
 class DrawCommand:
+    """ """
+
     def __init__(self, x=0, y=0, command="m"):
         self.x: int = x
         self.y: int = y
@@ -185,15 +222,21 @@ class DrawCommand:
 
 
 class Draw:
+    """ """
+
     def __init__(self):
         self.draw: List[DrawCommand] = []
 
     def Add(self, command: DrawCommand):
+        """ """
+
         if isinstance(command, DrawCommand) is False:
             raise TypeError("command must be DrawCommand")
         self.draw.append(command)
 
     def Dump(self) -> str:
+        """ """
+
         s = ""
         for i in self.draw:
             s = s + "{} {} {} ".format(i.command, i.x, i.y)

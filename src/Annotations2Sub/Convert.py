@@ -177,15 +177,19 @@ def Convert(
             tag += r"\1a" + DumpAlpha(each.bgOpacity)
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
             tag = "{" + tag + "}"
-            # 到这里和 Box 没啥差别
 
-            # 从这里开始不一样了
             # 开始只是按部就班的画一个气泡框
             # 之后我想可以拆成一个普通的方框和一个三角形
-            # 这可以直接使用 Box, 气泡锚点定位也可以直接使用 /pos
+            # 这可以直接复用 Box, 气泡锚点定位也可以直接使用 /pos
             # 绘图变得更简单, 一共三个点
+
+            # 图形定位在气泡锚点上, 图形需要画成一个三角形和 Box 拼接成一个气泡框
+            # 原点是 (0,0), 那么如果锚点在框的下方点就应该往上画, 反之赤然
+
+            # 以气泡锚点为原点求相对位置
             x1 = x - sx
             x2 = x - sx
+            # 锚点靠那边就往那边画
             if sx < x + width / 2:
                 x1 = x1 + width * 0.2
                 x2 = x2 + width * 0.4
@@ -193,11 +197,14 @@ def Convert(
                 x1 = x1 + width * 0.8
                 x2 = x2 + width * 0.6
 
+            # 以气泡锚点为原点求相对位置
             y1 = y - sy
+            # 如果锚点在框的下方那么三角的边接的是框的下边, 所以是 y1 + height
             if sy > y:
                 y1 = y1 + height
 
             d = Draw()
+            # 一共三个点, 怎么画都是个三角形
             d.Add(DrawCommand(0, 0, "m"))
             d.Add(DrawCommand(x1, y1, "l"))
             d.Add(DrawCommand(x2, y1, "l"))

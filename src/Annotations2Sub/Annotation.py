@@ -4,13 +4,13 @@
 import datetime
 from typing import List, Optional
 from xml.etree.ElementTree import Element
-from Annotations2Sub.flag import Flags
 
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.internationalization import _
+from Annotations2Sub.flag import Flags
 
-# 兼容 Python3.6
-# Python3.6 的 typing 没有 Literal
+# 兼容 Python3.6, 3.7
+# Python3.6, 3.7 的 typing 没有 Literal
 try:
     from typing import Literal  # type: ignore
 except:
@@ -87,7 +87,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
     # 在在此之前(f20f9f fixbugs) XML 树就直接转换为 Event 了
     # 代码随着时间推移变得很糟
-    # 幸好当初没傻到直接吐出来字符串
+    # 幸好当初没傻到直接吐出来字符串, youtube-ass 就是这么干的
 
     # 在这之前我还想过从树到 Event 是一个完美的管线
     # 然后遇到了 None 和 多个 Event

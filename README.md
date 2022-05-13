@@ -65,10 +65,8 @@ Annotations2Sub.py -g HqSzHYxVKws
 
 ---
 
-如果效果不对, 欢迎 issue, 我很乐意维护此脚本
+如果效果不对, 欢迎 issue
 
-If it doesn't work right, feel free to issue, I'm happy to maintain this script
+If it doesn't work right, feel free to issue
 
 ---
-
-<wrtyis@outlook.com> 2022/5/12
