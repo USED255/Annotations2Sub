@@ -55,6 +55,7 @@ sgeXEwVWnpI	志方あきこ - EXEC_over.METHOD_SUBLIMATION/. ~omness chs ciel so
 R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Translation)
 ---以上是有类似问题的视频，以制表符分隔---
 说实话我不想实现恶心的 CSS 定位
+更何况 annotationlib 都没有正确实现定位
 
 ---
 
