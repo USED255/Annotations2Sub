@@ -46,6 +46,14 @@ Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字�
 之后(a64995 庆祝一下), 使用了 "绘图模式" 实现了 "popup" 样式
 在 https://invidious.io/ 和 FFmpeg 的帮助下, 实现了简单的视频预览
 再之后, 脚本逐步完善, 完成了 https://www.bilibili.com/video/BV1Ff4y1t7Dj
+但是还是有些遗憾
+---以下是有类似问题的视频，以制表符分隔---
+videoId	title
+g-0i6MOh7n0	志方あきこ - ラ・シェール 中文字幕(Chinese Translation)
+aaLI3ErnHQg	志方あきこ - EXEC_HARMONIUS/. 中文字幕(Chinese Translation)
+sgeXEwVWnpI	志方あきこ - EXEC_over.METHOD_SUBLIMATION/. ~omness chs ciel sos infel  中文字幕(Chinese Translation)
+R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Translation)
+---以上是有类似问题的视频，以制表符分隔---
 
 ---
 
