@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
-"""
+"""SSA 相关"""
 
 import datetime
 from typing import Dict, List
@@ -20,7 +18,7 @@ except:
 
 
 class Style:
-    """SSA 的样式结构"""
+    """单个 SSA 样式(Style) 结构"""
 
     # ! 带引号的还是从 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 粘过来的 !
     # Name 不在这里面, 因为我想用字典实现
@@ -61,7 +59,7 @@ class Style:
 
 
 class Event:
-    """Sub 的 Event 结构"""
+    """单个 SSA 事件(Event) 结构"""
 
     def __init__(self):
         # 有 Dialogue, Comment, Picture, Sound, Movie, Command 事件
@@ -84,33 +82,42 @@ class Event:
 
 
 class Sub:
-    """ """
+    """SSA 类"""
 
     def __init__(self):
         self._info = self.Info()
         self._styles = self.Styles()
         self._events = self.Events()
 
+        # 我想让他们直接操作列表或字典
         self.info = self._info.info
         self.note = self._info.note
         self.styles = self._styles.styles
         self.events = self._events.events
 
+        # "标题，对脚本的描述。如果未指定，自动设置为 <untitled>。"
         self.info["Title"] = "Default File"
+        # Aegisub 开头也有着一段
+        # 我也学学
         self.note.append(_("此脚本使用 Annotations2Sub 生成"))
         self.note.append("https://github.com/USED255/Annotations2Sub")
+        # 定义默认样式
         self.styles["Default"] = Style()
 
     class Info:
-        """ """
+        """SSA 的信息(Info) 结构"""
 
         def __init__(self):
+            # 好像流行开头来一段注释的样子
             self.note: List[str] = []
+            # 不言而喻
+            # 详细的读 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
             self.info: Dict[str, str] = {"ScriptType": "v4.00+"}
 
         def Dump(self) -> str:
-            """ """
+            """将 Info 结构转换为字符串"""
 
+            # 只是暴力拼接字符串而已
             s = ""
             s += "[Script Info]" + "\n"
             for i in self.note:
@@ -120,20 +127,23 @@ class Sub:
             s += "\n"
             return s
 
+    # 这次相比之前之前的一个类拆成了单个结构和一个有 Dump 方法的类
     class Styles:
-        """ """
-
         def __init__(self):
             self.styles: Dict[str, Style] = {}
 
         def Dump(self) -> str:
-            """ """
-
             def DumpAABBGGRR(rgba: Rgba) -> str:
+                """转换为 SSA 颜色字符串"""
+
+                # "长整型 BGR（蓝绿红）值，还包含了 alpha 通道信息。"
+                # "该值的十六进制字节顺序为 AABBGGRR。例如，&H00FFFFFF。"
                 return "&H{:02X}{:02X}{:02X}{:02X}".format(
                     rgba.alpha.alpha, rgba.color.blue, rgba.color.green, rgba.color.red
                 )
 
+            # 还是暴力拼接字符串而已
+            # 建议阅读: https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
             s = ""
             s += "[V4+ Styles]" + "\n"
             s += (
@@ -169,17 +179,17 @@ class Sub:
             return s
 
     class Events:
-        """ """
-
         def __init__(self):
             self.events: List[Event] = []
 
         def Dump(self) -> str:
-            """ """
-
             def DumpTime(t: datetime.datetime) -> str:
+                """转换为 SSA 时间字符串"""
+
+                # "格式为 0:00:00:00（小时:分:秒:毫秒）"
                 return t.strftime("%H:%M:%S.%f")[:-4]
 
+            # 建议找个字幕文件看一看
             s = ""
             s += "[Events]" + "\n"
             s += (
@@ -202,8 +212,7 @@ class Sub:
             return s
 
     def Dump(self) -> str:
-        """ """
-
+        """转储为 SSA"""
         s = ""
         s += self._info.Dump()
         s += self._styles.Dump()
@@ -212,31 +221,32 @@ class Sub:
 
 
 class DrawCommand:
-    """ """
+    """单个绘图指令"""
 
     def __init__(self, x=0, y=0, command="m"):
         self.x: int = x
         self.y: int = y
         # 这里仅列出需要的命令
+        # m, n, l, b, s, p, c
         self.command: Literal["m", "l"] = command
 
 
 class Draw:
-    """ """
+    """绘图类"""
 
     def __init__(self):
         self.draw: List[DrawCommand] = []
 
     def Add(self, command: DrawCommand):
-        """ """
-
+        """添加一个绘图指令"""
         if isinstance(command, DrawCommand) is False:
             raise TypeError("command must be DrawCommand")
         self.draw.append(command)
 
     def Dump(self) -> str:
-        """ """
+        """转储为绘图命令"""
 
+        # 建议下一个 Aegiusb 然后打开 ASSDraw3 画画玩玩
         s = ""
         for i in self.draw:
             s = s + "{} {} {} ".format(i.command, i.x, i.y)

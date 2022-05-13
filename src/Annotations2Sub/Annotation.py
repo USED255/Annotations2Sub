@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+"""Annotation 相关"""
+
 import datetime
 from typing import List, Optional
 from xml.etree.ElementTree import Element
