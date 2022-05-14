@@ -15,6 +15,7 @@ def YellowText(s: str) -> str:
 def RedText(s: str) -> str:
     return "\033[31m" + s + "\033[0m"
 
+
 # 如果不生于中国就没有这个函数
 def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
     try:
@@ -49,6 +50,7 @@ def AnnotationsForArchive(videoId: str) -> str:
     return (
         f"{ARCHIVE_URL}/download/youtubeannotations_{index}/{videoId[0:2]}.tar/{file}"
     )
+
 
 # 致谢 https://invidious.io/
 # 我更想使用 Youtube-DL, 但是 Stack Overflow 没有答案

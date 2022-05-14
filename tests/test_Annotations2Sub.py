@@ -21,3 +21,4 @@ def test_Annotations2Sub():
     sub.info["PlayResX"] = "100"
     sub.info["PlayResY"] = "100"
     subString = sub.Dump()
+    # 我希望能有现成轮子检测 SSA 正确性

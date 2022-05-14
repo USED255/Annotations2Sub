@@ -95,6 +95,8 @@ def Parse(tree: Element) -> List[Annotation]:
     # 然后遇到了 None 和 多个 Event
     # 还是吐出来一个 List 比较好
 
+    # 我想测试这些内部函数
+    # 但是无法访问内部函数
     def ParseAnnotationAlpha(s: str) -> Alpha:
         """
         解析 Annotation 的透明度
