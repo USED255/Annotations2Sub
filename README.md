@@ -1,61 +1,72 @@
 # Annotations2Sub
 
-一个可以把 Youtube 注释转换成 ASS 字幕文件的脚本
+一个可以把 Youtube 注释转换成 ASS(Advanced SubStation Alpha) 字幕文件的脚本
 
-A script that can convert Youtube Annotation into ASS(Sub Station Alpha V4) subtitles files
+A script that can convert Youtube Annotation into ASS(Advanced SubStation Alpha) subtitles files
+
+[![License GPLv3](https://img.shields.io/pypi/l/Annotations2Sub?color=1)](https://pypi.org/project/Annotations2Sub/)
+[![Version](https://img.shields.io/pypi/v/Annotations2Sub)](https://pypi.org/project/Annotations2Sub)
+[![Python version](https://img.shields.io/pypi/pyversions/Annotations2Sub)](https://pypi.org/project/Annotations2Sub)
 
 ---
 
-```man
-usage: Annotations2Sub.py [-h] [-l] [-x 1920] [-y 1080] [-d] [-i invidious.domain] [-p] [-g] File or ID [File or ID ...]
+```bash
+pip install Annotations2Sub
+```
 
-A script that converts Youtube Annotations into .ASS subtitles
+```help
+usage: Annotations2Sub.py [-h] [-l] [-x 100] [-y 100] [-f Microsoft YaHei] [-d]
+                          [-i invidious-instances.domain] [-p] [-g] [-u] [-v] [-V]
+                          File or videoId [File or videoId ...]
+
+A script that converts Youtube Annotations into ASS(Advanced SubStation Alpha) subtitles file
 
 positional arguments:
-  File or ID            The file to be converted
+  File or videoId       File path of multiple files to be converted, or multiple
+                        Youtube videoId to be previewed, generated, Annotations file 
+                        downloaded from Internet Archive
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -l, --use-libass      Fixes for libass
-  -x 100, --reset-resolution-x 100
-                        Reset resolution X
-  -y 100, --reset-resolution-y 100
-                        Reset resolution Y
-  -f, --font            Specify font
-  -d, --download-for-invidious
-                        Try downloading the ‪‪annotations file from invidious
-  -i invidious.domain, --invidious-domain invidious.domain
-                        Specify invidious domain
-  -p, --preview-video   Preview video(need mpv)
-  -g, --generate-video  Generate video (need FFmpeg)
-
+  -h, --help            Show this help message and exit
+  -l, --embrace-libass  Embrace libass's quirks and features, and not specifying
+                        This option will adapt to xy-vsfilter
+  -x 100, --transform-resolution-x 100
+                        Transform resolution X
+  -y 100, --transform-resolution-y 100
+                        Transform resolution Y
+  -f Arial, --font Arial
+                        Specify font
+  -o File, --output File
+                        Specify the output path of the converted file,
+                        not specifying this option will output the converted
+                        file to the same directory as the converted file
+  -d, --download-for-archive
+                        Try downloading the annotations file from Internet Archive
+  -i invidious-instances.domain, --invidious-instances invidious-instances.domain
+                        Specify invidious instances (https://redirect.invidious.io/)
+  -p, --preview-video   Preview video, need mpv(https://mpv.io/) and specify invidious instances
+  -g, --generate-video  Generate video, need FFmpeg(https://ffmpeg.org/) and specify invidious instances
+  -u, --unstable        Enabling Unstable function, can cause some problems
+  -v, --version         Show version
+  -V, --verbose         Show more messages
 ```
 
 ---
 
 Example:
 
-```bash
-wget https://github.com/USED255/Annotations2Sub/raw/master/Annotations2Sub.py 
-```
-
-[Before](https://www.youtube.com/watch?v=e8kKeUuytqA)
+[Before](https://www.youtube.com/watch?v=HqSzHYxVKws)
 
 ```bash
-python3 .\Annotations2Sub.py -g e8kKeUuytqA
+Annotations2Sub.py -g HqSzHYxVKws
 ```
 
-[After](https://www.bilibili.com/video/BV1Ff4y1t7Dj?p=4)
+[After](https://www.bilibili.com/video/BV1Ff4y1t7Dj)
 
 ---
 
-<details>
-  <summary><mark><font color=darkred>TODO</font></mark></summary>
+如果效果不对, 欢迎 issue
 
-- g-0i6MOh7n0
+If it doesn't work right, feel free to issue
 
-- 29-q7YnyUmY
-
-- 去除 invidious
-
-</details>
+---

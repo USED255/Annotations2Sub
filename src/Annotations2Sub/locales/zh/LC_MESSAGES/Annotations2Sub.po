@@ -1,0 +1,218 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2022-05-14 21:52+0800\n"
+"PO-Revision-Date: 2022-05-14 21:53+0800\n"
+"Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
+"Language-Team: \n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: Annotation.py:151
+msgid "不支持{}类型 ({})"
+msgstr "不支持{}类型 ({})"
+
+#: Annotation.py:163
+msgid "{} 没有 style, 跳过"
+msgstr "{} 没有 style, 跳过"
+
+#: Annotation.py:181
+msgid "{} 没有 movingRegion, 跳过"
+msgstr "{} 没有 movingRegion, 跳过"
+
+#: Annotation.py:199
+msgid "{} highlightText 没有时间, 跳过"
+msgstr "{} highlightText 没有时间, 跳过"
+
+#: Annotation.py:213
+msgid "{} 不显示, 跳过"
+msgstr "{} 不显示, 跳过"
+
+#: Convert.py:291
+msgid "不支持 {} 样式 ({})"
+msgstr "不支持 {} 样式 ({})"
+
+#: Sub.py:102
+msgid "此脚本使用 Annotations2Sub 生成"
+msgstr "此脚本使用 Annotations2Sub 生成"
+
+#: cli.py:36
+msgid ""
+"一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced "
+"SubStation Alpha)文件的脚本"
+msgstr ""
+"一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced "
+"SubStation Alpha)文件的脚本"
+
+#: cli.py:43
+msgid "文件 或 videoId"
+msgstr "文件 或 videoId"
+
+#: cli.py:45
+msgid ""
+"多个需要转换的文件的文件路径, 或者是多个需要预览, 生"
+"成, 从Internet Archive 下载注释文件 Youtube 视频的 "
+"videoId"
+msgstr ""
+"多个需要转换的文件的文件路径, 或者是多个需要预览, 生"
+"成, 从Internet Archive 下载注释文件 Youtube 视频的 "
+"videoId"
+
+#: cli.py:52
+msgid ""
+"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-"
+"vsfilter"
+msgstr ""
+"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-"
+"vsfilter"
+
+#: cli.py:61
+msgid "变换分辨率X"
+msgstr "变换分辨率X"
+
+#: cli.py:69
+msgid "变换分辨率Y"
+msgstr "变换分辨率Y"
+
+#: cli.py:75 cli.py:77
+msgid "Microsoft YaHei"
+msgstr "Microsoft YaHei"
+
+#: cli.py:78
+msgid "指定字体"
+msgstr "指定字体"
+
+#: cli.py:85
+msgid "文件夹"
+msgstr "文件夹"
+
+#: cli.py:86
+msgid ""
+"指定转换后文件的输出路径, 不指定此选项转换后的文件会输"
+"出至与被转换文件同一目录"
+msgstr ""
+"指定转换后文件的输出路径, 不指定此选项转换后的文件会输"
+"出至与被转换文件同一目录"
+
+#: cli.py:92
+msgid "尝试从 Internet Archive 下载注释文件"
+msgstr "尝试从 Internet Archive 下载注释文件"
+
+#: cli.py:98
+msgid ""
+"指定 invidious 实例(https://redirect.invidious.io/)"
+msgstr ""
+"指定 invidious 实例(https://redirect.invidious.io/)"
+
+#: cli.py:105
+msgid ""
+"预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实"
+"例"
+msgstr ""
+"预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实"
+"例"
+
+#: cli.py:112
+msgid ""
+"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 "
+"invidious 实例)"
+msgstr ""
+"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 "
+"invidious 实例)"
+
+#: cli.py:119
+msgid "启用不稳定功能, 会出现一些问题"
+msgstr "启用不稳定功能, 会出现一些问题"
+
+#: cli.py:125
+msgid "显示版本号"
+msgstr "显示版本号"
+
+#: cli.py:132
+msgid "显示更多些消息"
+msgstr "显示更多些消息"
+
+#: cli.py:139
+#, python-brace-format
+msgid "Annotations2Sub v{version}"
+msgstr "Annotations2Sub v{version}"
+
+#: cli.py:150
+msgid "转换后文件的输出路径应该指定一个文件夹"
+msgstr "转换后文件的输出路径应该指定一个文件夹"
+
+#: cli.py:155
+msgid "请指定一个 invidious 实例"
+msgstr "请指定一个 invidious 实例"
+
+#: cli.py:156
+msgid "你可以在这里找一个:"
+msgstr "你可以在这里找一个:"
+
+#: cli.py:166
+msgid "{} 不是一个文件"
+msgstr "{} 不是一个文件"
+
+#: cli.py:175
+msgid "{} 没有 Annotation"
+msgstr "{} 没有 Annotation"
+
+#: cli.py:178
+msgid "{} 不是一个有效的 XML 文件"
+msgstr "{} 不是一个有效的 XML 文件"
+
+#: cli.py:187
+msgid "您好像无法访问 Google 🤔"
+msgstr "您好像无法访问 Google 🤔"
+
+#: cli.py:195
+msgid "{} 不是一个有效的视频 ID"
+msgstr "{} 不是一个有效的视频 ID"
+
+#: cli.py:205
+msgid "下载 {}"
+msgstr "下载 {}"
+
+#: cli.py:208
+msgid "{} 可能没有 Annotation"
+msgstr "{} 可能没有 Annotation"
+
+#: cli.py:220
+msgid ""
+"--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使"
+"用 --transform-resolution-x --transform-resolution-y, "
+"以确保效果."
+msgstr ""
+"--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使"
+"用 --transform-resolution-x --transform-resolution-y, "
+"以确保效果."
+
+#: cli.py:246
+msgid "{} 没有注释被转换"
+msgstr "{} 没有注释被转换"
+
+#: cli.py:259
+msgid "保存于: {}"
+msgstr "保存于: {}"
+
+#: tools.py:58
+msgid "获取 {}"
+msgstr "获取 {}"
+
+#~ msgid "指定 invidious 实例(域名)"
+#~ msgstr "指定 invidious 实例(域名)"
+
+#~ msgid "请指定 invidious 域名"
+#~ msgstr "请指定 invidious 域名"
+
+#~ msgid "请检查您的网络连接"
+#~ msgstr "请检查您的网络连接"
+
+#~ msgid "拥抱 libass 的怪癖和特性"
+#~ msgstr "拥抱 libass 的怪癖和特性"
