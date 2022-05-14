@@ -63,11 +63,11 @@ class Event:
 
     def __init__(self):
         # 有 Dialogue, Comment, Picture, Sound, Movie, Command 事件
-        # 但是我们只用到 Dialogue
+        # 但是我们只用到了 Dialogue
         # "这是一个对话事件，即显示一些文本。"
         self.Type: Literal["Dialogue"] = "Dialogue"
-        # Aegisub 没有 Marked ,所以我们也没有
-        # 剩下的读一下 ./Convert.py 吧
+        # Aegisub 没有 Marked, 所以我们也没有
+        # 剩下的就读一下 ./Convert.py 吧
         self.Layer: int = 0
         self.Start: datetime.datetime = datetime.datetime.strptime("0", "%S")
         self.End: datetime.datetime = datetime.datetime.strptime("0", "%S")
@@ -97,7 +97,7 @@ class Sub:
 
         # "标题，对脚本的描述。如果未指定，自动设置为 <untitled>。"
         self.info["Title"] = "Default File"
-        # Aegisub 开头也有着一段
+        # Aegisub 开头也有着这一段
         # 我也学学
         self.note.append(_("此脚本使用 Annotations2Sub 生成"))
         self.note.append("https://github.com/USED255/Annotations2Sub")
@@ -127,7 +127,7 @@ class Sub:
             s += "\n"
             return s
 
-    # 这次相比之前之前的一个类拆成了单个结构和一个有 Dump 方法的类
+    # 这次和之前相比把一个类拆成了单个结构和一个有 Dump 方法的类
     class Styles:
         def __init__(self):
             self.styles: Dict[str, Style] = {}

@@ -47,7 +47,7 @@ def AnnotationsForArchive(videoId: str) -> str:
     )
 
 
-def VideoForInvidiou(videoId: str, invidious_domain: str):
+def VideoForInvidious(videoId: str, invidious_domain: str):
     url = f"https://{invidious_domain}/api/v1/videos/{videoId}"
     print(_("获取 {}").format(url))
     string = urllib.request.urlopen(url).read().decode("utf-8")
