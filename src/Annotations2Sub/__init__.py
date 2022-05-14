@@ -26,6 +26,7 @@ Annotations2Sub, 一个能把 Youtube 注释转换成 Sub Station Alpha V4 字�
 │                │            │        │            │             │
 └────────────────┘            └────────┘            └─────────────┘
 
+https://www.youtube.com/channel/UCe4QujtMby3h6dge1eYaPig
 在 2019 年的某一天, 我在 Youtube 听歌, 发现字幕没了.
 从评论区我得知: "從 2019 年 1 月 15 日起，我們將不再對觀眾顯示現有的註解。所有的現有註解都將移除。"
 我当即破口大骂谷歌.

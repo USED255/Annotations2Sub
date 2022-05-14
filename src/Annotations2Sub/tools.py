@@ -15,7 +15,7 @@ def YellowText(s: str) -> str:
 def RedText(s: str) -> str:
     return "\033[31m" + s + "\033[0m"
 
-
+# 如果不生于中国就没有这个函数
 def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
     try:
         urllib.request.urlopen(url=url, timeout=timeout)
@@ -24,8 +24,12 @@ def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
     return True
 
 
+# 移植自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
+# 向 https://archive.org/details/youtubeannotations 致敬
+# 如果你对你的数据在意, 就不要把它们托付给他人
+# Rain Shimotsuki 不仅是个打歌词的, 他更是一位创作者
+# 自己作品消失, 我相信没人愿意看到
 def AnnotationsForArchive(videoId: str) -> str:
-    # 移植自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
     ARCHIVE_URL = "https://archive.org"
     CHARS_SAFE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
 
@@ -46,8 +50,10 @@ def AnnotationsForArchive(videoId: str) -> str:
         f"{ARCHIVE_URL}/download/youtubeannotations_{index}/{videoId[0:2]}.tar/{file}"
     )
 
-
+# 致谢 https://invidious.io/
+# 我更想使用 Youtube-DL, 但是 Stack Overflow 没有答案
 def VideoForInvidious(videoId: str, invidious_domain: str):
+    # https://docs.invidious.io/api/
     url = f"https://{invidious_domain}/api/v1/videos/{videoId}"
     print(_("获取 {}").format(url))
     string = urllib.request.urlopen(url).read().decode("utf-8")
