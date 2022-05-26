@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "python -m Annotations2Sub ../tests/xml.test",
+            "type": "python",
+            "module": "Annotations2Sub",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "cwd": "${workspaceFolder}/src",
+            "args": [
+                "../tests/xml.test"
+            ],
+        }
+    ]
+}
