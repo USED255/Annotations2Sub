@@ -105,7 +105,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
     # 我想测试这些内部函数
     # 毕竟聚沙才成塔 (我好想复读某人名言 [有国才有家 有塔才有沙 盖楼先盖第三层 有你才有你的**] )
-    # 但是无法访问内部函数
+    # 但是无法访问内部函数.
     def ParseAnnotationAlpha(s: str) -> Alpha:
         """
         解析 Annotation 的透明度
