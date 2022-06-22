@@ -246,7 +246,7 @@ class Draw:
     def Dump(self) -> str:
         """转储为绘图命令"""
 
-        # 建议下一个 Aegiusb 然后打开 ASSDraw3 画画玩玩
+        # 建议下一个 Aegisub 然后打开 ASSDraw3 画画玩玩
         s = ""
         for i in self.draw:
             s = s + "{} {} {} ".format(i.command, i.x, i.y)
