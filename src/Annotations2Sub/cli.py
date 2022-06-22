@@ -8,12 +8,12 @@ import os
 import re
 import traceback
 import urllib.request
+import _thread
 
 # 我觉得在输入确定的环境下用不着这玩意
 # 不过打包到了 PyPI 也不用像以前那些忌惮第三方库了
 # 不用白不用
 import defusedxml.ElementTree  # type: ignore
-import _thread
 
 from Annotations2Sub import version
 from Annotations2Sub.flag import Flags
@@ -51,6 +51,7 @@ def main():
         action="store_true",
         help=_("拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"),
     )
+
     # 虽然把分辨率置为 100, 100 字幕滤镜也能正常定位, 但是显然正确的分辨率更惹字幕滤镜喜欢
     parser.add_argument(
         "-x",
@@ -60,6 +61,7 @@ def main():
         metavar=100,
         help=_("变换分辨率X"),
     )
+
     parser.add_argument(
         "-y",
         "--transform-resolution-y",
@@ -68,6 +70,7 @@ def main():
         metavar=100,
         help=_("变换分辨率Y"),
     )
+
     # 应该使用非衬线字体, 但是 SSA 不能方便的指定字体家族, 只得出此下策
     parser.add_argument(
         "-f",
@@ -77,6 +80,7 @@ def main():
         metavar=_("Microsoft YaHei"),
         help=_("指定字体"),
     )
+
     # 其实我觉得这个选项应该没啥用
     parser.add_argument(
         "-o",
@@ -85,6 +89,7 @@ def main():
         metavar=_("文件夹"),
         help=_("指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目录"),
     )
+
     parser.add_argument(
         "-d",
         "--download-for-archive",
@@ -97,6 +102,7 @@ def main():
         metavar="invidious.domain",
         help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
     )
+
     # 就是拼接参数执行 mpv
     parser.add_argument(
         "-p",
@@ -104,6 +110,7 @@ def main():
         action="store_true",
         help=_("预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"),
     )
+
     # 与上面同理
     parser.add_argument(
         "-g",
@@ -111,6 +118,7 @@ def main():
         action="store_true",
         help=_("生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例)"),
     )
+
     # 可能是用来甩锅用的
     parser.add_argument(
         "-u",
@@ -118,12 +126,14 @@ def main():
         action="store_true",
         help=_("启用不稳定功能, 会出现一些问题"),
     )
+
     parser.add_argument(
         "-v",
         "--version",
         action="store_true",
         help=_("显示版本号"),
     )
+
     # 这个好像不是用来调试用的
     parser.add_argument(
         "-V",
@@ -131,6 +141,7 @@ def main():
         action="store_true",
         help=_("显示更多些消息"),
     )
+
     args = parser.parse_args()
 
     filePaths = []
