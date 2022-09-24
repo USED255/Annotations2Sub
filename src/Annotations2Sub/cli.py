@@ -125,6 +125,10 @@ def main():
         "-s", "--output-to-stdout", action="store_true", help=_("输出至标准输出")
     )
 
+    parser.add_argument(
+        "-n", "--no-overwrite-files", action="store_true", help=_("不覆盖文件")
+    )
+
     # 可能是用来甩锅用的
     parser.add_argument(
         "-u",
@@ -162,6 +166,9 @@ def main():
     if args.output_to_stdout:
         if args.output_directory:
             Stderr(RedText(_("--output-to-stdout 与 --output-directory 选项相斥")))
+            exit(1)
+        if args.no_overwrite_files:
+            Stderr(RedText(_("--output-to-stdout 与 --no-overwrite-files 选项相斥")))
             exit(1)
         if args.preview_video or args.generate_video:
             Stderr(
@@ -281,8 +288,13 @@ def main():
         sub.styles["Default"].Fontname = args.font
         subString = sub.Dump()
         if args.output_to_stdout:
+            output = None
             print(subString, file=sys.stdout)
-        if not args.output_to_stdout:
+        if args.no_overwrite_files:
+            if os.path.exists(output):
+                output = None
+                Stderr(YellowText(_("文件已存在, 您选择不覆盖文件, 跳过输出")))
+        if output:
             with open(output, "w", encoding="utf-8") as f:
                 f.write(subString)
             Stderr(_("保存于: {}").format(output))
