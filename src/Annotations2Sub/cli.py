@@ -131,8 +131,9 @@ def main():
     parser.add_argument(
         "-v",
         "--version",
-        action="store_true",
+        action="version",
         help=_("显示版本号"),
+        version = _("Annotations2Sub v{version}").format(version=version)
     )
 
     # 这个好像不是用来调试用的
@@ -146,10 +147,6 @@ def main():
     args = parser.parse_args()
 
     filePaths = []
-
-    if args.version:
-        print(_("Annotations2Sub v{version}").format(version=version))
-        return
 
     if args.unstable:
         Flags.unstable = True
