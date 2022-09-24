@@ -129,6 +129,10 @@ def main():
         "-n", "--no-overwrite-files", action="store_true", help=_("不覆盖文件")
     )
 
+    parser.add_argument(
+        "-k", "--no-keep-intermediate-files", action="store_true", help=_("不保留中间文件")
+    )
+
     # 可能是用来甩锅用的
     parser.add_argument(
         "-u",
@@ -174,6 +178,17 @@ def main():
             Stderr(
                 RedText(
                     _("--output-to-stdout 与 --preview-video 或 --generate-video 选项相斥")
+                )
+            )
+            exit(1)
+
+    if args.no_keep_intermediate_files:
+        if not (args.preview_video or args.generate_video):
+            Stderr(
+                RedText(
+                    _(
+                        "--no-keep-intermediate-files 必须和 --preview-video 或 --generate-video 选项使用"
+                    )
                 )
             )
             exit(1)
@@ -294,6 +309,9 @@ def main():
             if os.path.exists(output):
                 output = None
                 Stderr(YellowText(_("文件已存在, 您选择不覆盖文件, 跳过输出")))
+        if args.no_keep_intermediate_files:
+            os.remove(filePath)
+            Stderr(_("删除 {}").format(filePath))
         if output:
             with open(output, "w", encoding="utf-8") as f:
                 f.write(subString)
@@ -312,6 +330,9 @@ def main():
             if Flags.verbose:
                 if exit_code != 0:
                     Stderr(YellowText("exit with {}".format(exit_code)))
+            if args.no_keep_intermediate_files:
+                os.remove(output)
+                Stderr(_("删除 {}").format(output))
 
     if args.generate_video:
         for output in outputs:
@@ -324,3 +345,6 @@ def main():
             if Flags.verbose:
                 if exit_code != 0:
                     Stderr(YellowText("exit with {}".format(exit_code)))
+            if args.no_keep_intermediate_files:
+                os.remove(output)
+                Stderr(_("删除 {}").format(output))
