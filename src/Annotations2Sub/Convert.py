@@ -15,6 +15,7 @@ from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, Event, DrawCommand
 from Annotations2Sub.internationalization import _
 from Annotations2Sub.flag import Flags
+from Annotations2Sub.tools import Stderr
 
 # 这些代码实际上来自于
 # https://github.com/USED255/Annotations2Sub/blob/f20f9fe90e0e63b005e8120085539817b49c5296/Annotations2Sub.py
@@ -288,7 +289,7 @@ def Convert(
             events.append(speech_box_2(copy.copy(event)))
         else:
             # 传承于 Annotations2Sub™
-            print(_("不支持 {} 样式 ({})").format(each.style, each.id))
+            Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
 
         return events
 
