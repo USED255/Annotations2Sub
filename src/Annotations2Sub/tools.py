@@ -3,6 +3,7 @@
 
 import json
 import re
+import sys
 import urllib.request
 
 from Annotations2Sub.internationalization import _
@@ -14,6 +15,10 @@ def YellowText(s: str) -> str:
 
 def RedText(s: str) -> str:
     return "\033[31m" + s + "\033[0m"
+
+
+def Stderr(s: str):
+    print(s, file=sys.stderr)
 
 
 # 如果不生于中国就没有这个函数
@@ -57,7 +62,7 @@ def AnnotationsForArchive(videoId: str) -> str:
 def VideoForInvidious(videoId: str, invidious_domain: str):
     # https://docs.invidious.io/api/
     url = f"https://{invidious_domain}/api/v1/videos/{videoId}"
-    print(_("获取 {}").format(url))
+    Stderr(_("获取 {}").format(url))
     string = urllib.request.urlopen(url).read().decode("utf-8")
     data = json.loads(string)
     videos = []

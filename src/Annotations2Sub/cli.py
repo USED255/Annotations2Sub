@@ -6,6 +6,7 @@
 import argparse
 import os
 import re
+import sys
 import traceback
 import urllib.request
 import _thread
@@ -27,6 +28,7 @@ from Annotations2Sub.tools import (
     RedText,
     VideoForInvidious,
     YellowText,
+    Stderr,
 )
 
 # 程序入口
@@ -84,7 +86,7 @@ def main():
     # 其实我觉得这个选项应该没啥用
     parser.add_argument(
         "-o",
-        "--output-path",
+        "--output-directory",
         type=str,
         metavar=_("文件夹"),
         help=_("指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目录"),
@@ -116,7 +118,19 @@ def main():
         "-g",
         "--generate-video",
         action="store_true",
-        help=_("生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例)"),
+        help=_("生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例"),
+    )
+
+    parser.add_argument(
+        "-s", "--output-to-stdout", action="store_true", help=_("输出至标准输出")
+    )
+
+    parser.add_argument(
+        "-n", "--no-overwrite-files", action="store_true", help=_("不覆盖文件")
+    )
+
+    parser.add_argument(
+        "-k", "--no-keep-intermediate-files", action="store_true", help=_("不保留中间文件")
     )
 
     # 可能是用来甩锅用的
@@ -130,8 +144,9 @@ def main():
     parser.add_argument(
         "-v",
         "--version",
-        action="store_true",
+        action="version",
         help=_("显示版本号"),
+        version=_("Annotations2Sub v{version}").format(version=version),
     )
 
     # 这个好像不是用来调试用的
@@ -146,25 +161,47 @@ def main():
 
     filePaths = []
 
-    if args.version:
-        print(_("Annotations2Sub v{version}").format(version=version))
-        return
-
     if args.unstable:
         Flags.unstable = True
 
     if args.verbose:
         Flags.verbose = True
 
-    if args.output_path != None:
-        if os.path.isdir(args.output_path) is False:
-            print(RedText(_("转换后文件的输出路径应该指定一个文件夹")))
+    if args.output_to_stdout:
+        if args.output_directory:
+            Stderr(RedText(_("--output-to-stdout 与 --output-directory 选项相斥")))
+            exit(1)
+        if args.no_overwrite_files:
+            Stderr(RedText(_("--output-to-stdout 与 --no-overwrite-files 选项相斥")))
+            exit(1)
+        if args.preview_video or args.generate_video:
+            Stderr(
+                RedText(
+                    _("--output-to-stdout 与 --preview-video 或 --generate-video 选项相斥")
+                )
+            )
+            exit(1)
+
+    if args.no_keep_intermediate_files:
+        if not (args.preview_video or args.generate_video):
+            Stderr(
+                RedText(
+                    _(
+                        "--no-keep-intermediate-files 必须和 --preview-video 或 --generate-video 选项使用"
+                    )
+                )
+            )
+            exit(1)
+
+    if args.output_directory:
+        if os.path.isdir(args.output_directory) is False:
+            Stderr(RedText(_("转换后文件的输出路径应该指定一个文件夹")))
             exit(1)
 
     if args.preview_video or args.generate_video:
         if args.invidious_instances is None:
-            print(RedText(_("请指定一个 invidious 实例")))
-            print(_("你可以在这里找一个:"), "https://redirect.invidious.io/")
+            Stderr(RedText(_("请指定一个 invidious 实例")))
+            Stderr(_("你可以在这里找一个:"), "https://redirect.invidious.io/")
             exit(1)
         args.download_for_archive = True
         args.embrace_libass = True
@@ -174,7 +211,7 @@ def main():
         for filePath in args.queue:
             # 先看看有没有不是文件的
             if os.path.isfile(filePath) is False:
-                print(RedText(_("{} 不是一个文件").format(filePath)))
+                Stderr(RedText(_("{} 不是一个文件").format(filePath)))
                 exit(1)
             # 再看看有没有文件无效的
             try:
@@ -183,11 +220,11 @@ def main():
                 for each in tree.find("annotations").findall("annotation"):
                     count += 1
                 if count == 0:
-                    print(RedText(_("{} 没有 Annotation").format(filePath)))
+                    Stderr(RedText(_("{} 没有 Annotation").format(filePath)))
                     exit(1)
             except:
-                print(RedText(_("{} 不是一个有效的 XML 文件").format(filePath)))
-                print(traceback.format_exc())
+                Stderr(RedText(_("{} 不是一个有效的 XML 文件").format(filePath)))
+                Stderr(traceback.format_exc())
                 exit(1)
             filePaths.append(filePath)
 
@@ -195,7 +232,7 @@ def main():
         # 省的网不好不知道
         def CheckNetwork():
             if CheckUrl() is False:
-                print(YellowText(_("您好像无法访问 Google 🤔")))
+                Stderr(YellowText(_("您好像无法访问 Google 🤔")))
 
         _thread.start_new_thread(CheckNetwork, ())
 
@@ -203,20 +240,20 @@ def main():
         for videoId in args.queue:
             # 还是先查一遍
             if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
-                print(RedText(_("{} 不是一个有效的视频 ID").format(videoId)))
+                Stderr(RedText(_("{} 不是一个有效的视频 ID").format(videoId)))
                 exit(1)
             videoIds.append(videoId)
         for videoId in videoIds:
             filePath = f"{videoId}.xml"
-            if args.output_path != None:
-                filePath = os.path.join(args.output_path, filePath)
+            if args.output_directory != None:
+                filePath = os.path.join(args.output_directory, filePath)
             # 为了显示个 "下载 ", 我把下载从 AnnotationsForArchive 里拆出来了
             # 之前就直接下载了, 但是我还是更喜欢输出确定且可控
             url = AnnotationsForArchive(videoId)
-            print(_("下载 {}").format(url))
+            Stderr(_("下载 {}").format(url))
             string = urllib.request.urlopen(url).read().decode("utf-8")
             if string == "":
-                print(YellowText(_("{} 可能没有 Annotation").format(videoId)))
+                Stderr(YellowText(_("{} 可能没有 Annotation").format(videoId)))
                 continue
             with open(filePath, "w", encoding="utf-8") as f:
                 f.write(string)
@@ -225,7 +262,7 @@ def main():
     if args.embrace_libass and (
         args.transform_resolution_x == 100 or args.transform_resolution_y == 100
     ):
-        print(
+        Stderr(
             YellowText(
                 _(
                     "--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使用 --transform-resolution-x --transform-resolution-y, 以确保效果."
@@ -236,10 +273,10 @@ def main():
     outputs = []
     for filePath in filePaths:
         output = filePath + ".ass"
-        if args.output_path != None:
+        if args.output_directory != None:
             # 把文件名剥离出来
             fileName = os.path.basename(filePath) + ".ass"
-            output = os.path.join(args.output_path, fileName)
+            output = os.path.join(args.output_directory, fileName)
 
         # 从这里开始就是 __init__.py 开头那个流程图
         # 其实这才是核心功能, 其他的都是有的没的
@@ -254,7 +291,7 @@ def main():
             args.transform_resolution_y,
         )
         if events == []:
-            print(YellowText(_("{} 没有注释被转换").format(filePath)))
+            Stderr(YellowText(_("{} 没有注释被转换").format(filePath)))
         # Annotation 是无序的
         # 按时间重新排列字幕(事件), 主要是为了人类可读
         events.sort(key=lambda event: event.Start)
@@ -265,11 +302,22 @@ def main():
         sub.info["Title"] = filePath
         sub.styles["Default"].Fontname = args.font
         subString = sub.Dump()
-        with open(output, "w", encoding="utf-8") as f:
-            f.write(subString)
-        print(_("保存于: {}").format(output))
-        # 为了下面而准备
-        outputs.append(output)
+        if args.output_to_stdout:
+            output = None
+            print(subString, file=sys.stdout)
+        if args.no_overwrite_files:
+            if os.path.exists(output):
+                output = None
+                Stderr(YellowText(_("文件已存在, 您选择不覆盖文件, 跳过输出")))
+        if args.no_keep_intermediate_files:
+            os.remove(filePath)
+            Stderr(_("删除 {}").format(filePath))
+        if output:
+            with open(output, "w", encoding="utf-8") as f:
+                f.write(subString)
+            Stderr(_("保存于: {}").format(output))
+            # 为了下面而准备
+            outputs.append(output)
 
     if args.preview_video:
         for output in outputs:
@@ -277,11 +325,14 @@ def main():
             video, audio = VideoForInvidious(videoId, args.invidious_instances)
             cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{output}"'
             if Flags.verbose:
-                print(cmd)
+                Stderr(cmd)
             exit_code = os.system(cmd)
             if Flags.verbose:
                 if exit_code != 0:
-                    print(YellowText("exit with {}".format(exit_code)))
+                    Stderr(YellowText("exit with {}".format(exit_code)))
+            if args.no_keep_intermediate_files:
+                os.remove(output)
+                Stderr(_("删除 {}").format(output))
 
     if args.generate_video:
         for output in outputs:
@@ -289,8 +340,11 @@ def main():
             video, audio = VideoForInvidious(videoId, args.invidious_instances)
             cmd = rf'ffmpeg -i "{video}" -i "{audio}" -vf "ass={output}" {output}.mp4'
             if Flags.verbose:
-                print(cmd)
+                Stderr(cmd)
             exit_code = os.system(cmd)
             if Flags.verbose:
                 if exit_code != 0:
-                    print(YellowText("exit with {}".format(exit_code)))
+                    Stderr(YellowText("exit with {}".format(exit_code)))
+            if args.no_keep_intermediate_files:
+                os.remove(output)
+                Stderr(_("删除 {}").format(output))

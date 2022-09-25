@@ -16,6 +16,7 @@ from xml.etree.ElementTree import Element
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.internationalization import _
 from Annotations2Sub.flag import Flags
+from Annotations2Sub.tools import Stderr
 
 # 兼容 Python3.6, 3.7
 # Python3.6, 3.7 的 typing 没有 Literal
@@ -159,7 +160,7 @@ def Parse(tree: Element) -> List[Annotation]:
         # annotationlib 也不处理空的 type
         # 但是我还没有遇到过
         if _type not in ("text", "highlight", "branding"):
-            print(_("不支持{}类型 ({})").format(_type, annotation.id))
+            Stderr(_("不支持{}类型 ({})").format(_type, annotation.id))
             # 我不知道显式的 return None 有什么用
             # 但是 annotationlib 是这样做的
             # 我也学学
@@ -171,7 +172,7 @@ def Parse(tree: Element) -> List[Annotation]:
         # 根据经验, ,没有 style 也就没有内容
         if style is None:
             if Flags.verbose:
-                print(_("{} 没有 style, 跳过").format(annotation.id))
+                Stderr(_("{} 没有 style, 跳过").format(annotation.id))
             return None
         annotation.style = style  # type: ignore
 
@@ -189,7 +190,7 @@ def Parse(tree: Element) -> List[Annotation]:
             # 之前(f20f9f fixbugs)学的是 youtube-ass(https://github.com/nirbheek/youtube-ass)
             # 只是简单地把时间置零
             if Flags.verbose:
-                print(_("{} 没有 movingRegion, 跳过").format(annotation.id))
+                Stderr(_("{} 没有 movingRegion, 跳过").format(annotation.id))
             return None
 
         Segment = each.find("segment").find("movingRegion").findall("rectRegion")  # type: ignore
@@ -207,7 +208,7 @@ def Parse(tree: Element) -> List[Annotation]:
                 # 我选择相信别人的经验
                 # 毕竟我也没咋看过 Youtube
                 if Flags.verbose:
-                    print(_("{} highlightText 没有时间, 跳过").format(annotation.id))
+                    Stderr(_("{} highlightText 没有时间, 跳过").format(annotation.id))
                 return None
 
         if len(Segment) != 0:
@@ -221,7 +222,7 @@ def Parse(tree: Element) -> List[Annotation]:
             # 之前(f20f9f fixbugs)不会英语, 理解成了相反的意思
             # 哈哈
             if Flags.verbose:
-                print(_("{} 不显示, 跳过").format(annotation.id))
+                Stderr(_("{} 不显示, 跳过").format(annotation.id))
             return None
 
         # 其实这些字符串可以直接在 SSA 上用的, 但是不知道为什么之前来回转换了两次
