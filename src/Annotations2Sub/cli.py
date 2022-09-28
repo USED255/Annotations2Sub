@@ -206,27 +206,16 @@ def main():
         args.download_for_archive = True
         args.embrace_libass = True
 
-    # 先查一遍
-    if args.download_for_archive is False:
-        for filePath in args.queue:
-            # 先看看有没有不是文件的
-            if os.path.isfile(filePath) is False:
-                Stderr(RedText(_("{} 不是一个文件").format(filePath)))
-                exit(1)
-            # 再看看有没有文件无效的
-            try:
-                tree = defusedxml.ElementTree.parse(filePath)
-                count = 0
-                for each in tree.find("annotations").findall("annotation"):
-                    count += 1
-                if count == 0:
-                    Stderr(RedText(_("{} 没有 Annotation").format(filePath)))
-                    exit(1)
-            except:
-                Stderr(RedText(_("{} 不是一个有效的 XML 文件").format(filePath)))
-                Stderr(traceback.format_exc())
-                exit(1)
-            filePaths.append(filePath)
+    if args.embrace_libass and (
+        args.transform_resolution_x == 100 or args.transform_resolution_y == 100
+    ):
+        Stderr(
+            YellowText(
+                _(
+                    "--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使用 --transform-resolution-x --transform-resolution-y, 以确保效果."
+                )
+            )
+        )
 
     if args.download_for_archive:
         # 省的网不好不知道
@@ -237,6 +226,7 @@ def main():
         _thread.start_new_thread(CheckNetwork, ())
 
         videoIds = []
+        queue = []
         for videoId in args.queue:
             # 还是先查一遍
             if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
@@ -257,18 +247,31 @@ def main():
                 continue
             with open(filePath, "w", encoding="utf-8") as f:
                 f.write(string)
-            filePaths.append(filePath)
+            queue.append(filePath)
 
-    if args.embrace_libass and (
-        args.transform_resolution_x == 100 or args.transform_resolution_y == 100
-    ):
-        Stderr(
-            YellowText(
-                _(
-                    "--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使用 --transform-resolution-x --transform-resolution-y, 以确保效果."
-                )
-            )
-        )
+    if not args.download_for_archive:
+        queue = args.queue
+
+    for filePath in queue:
+        # 先看看有没有不是文件的
+        if os.path.isfile(filePath) is False:
+            Stderr(RedText(_("{} 不是一个文件").format(filePath)))
+            exit(1)
+        # 再看看有没有文件无效的
+        try:
+            tree = defusedxml.ElementTree.parse(filePath)
+        except:
+            Stderr(RedText(_("{} 不是一个有效的 XML 文件").format(filePath)))
+            Stderr(traceback.format_exc())
+            exit(1)
+        # 最后看看是不是空的
+        count = 0
+        for each in tree.find("annotations").findall("annotation"):
+            count += 1
+        if count == 0:
+            Stderr(RedText(_("{} 没有 Annotation").format(filePath)))
+            exit(1)
+        filePaths.append(filePath)
 
     outputs = []
     for filePath in filePaths:
