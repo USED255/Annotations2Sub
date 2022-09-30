@@ -63,7 +63,6 @@ def main():
         metavar=100,
         help=_("变换分辨率X"),
     )
-
     parser.add_argument(
         "-y",
         "--transform-resolution-y",
@@ -121,6 +120,7 @@ def main():
         help=_("生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例"),
     )
 
+    # 与 Unix 工具结合成为了可能
     parser.add_argument(
         "-s", "--output-to-stdout", action="store_true", help=_("输出至标准输出")
     )
@@ -129,6 +129,7 @@ def main():
         "-n", "--no-overwrite-files", action="store_true", help=_("不覆盖文件")
     )
 
+    # 指从 Internet Archive 下载的注释文件
     parser.add_argument(
         "-k", "--no-keep-intermediate-files", action="store_true", help=_("不保留中间文件")
     )
@@ -183,11 +184,11 @@ def main():
             exit(1)
 
     if args.no_keep_intermediate_files:
-        if not (args.preview_video or args.generate_video):
+        if not (args.download_for_archive or args.preview_video or args.generate_video):
             Stderr(
                 RedText(
                     _(
-                        "--no-keep-intermediate-files 必须和 --preview-video 或 --generate-video 选项使用"
+                        "--no-keep-intermediate-files 必须和 --download-for-archive 或 --preview-video 或 --generate-video 选项使用"
                     )
                 )
             )
@@ -228,14 +229,14 @@ def main():
         videoIds = []
         queue = []
         for videoId in args.queue:
-            # 还是先查一遍
+            # 先查一遍
             if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
                 Stderr(RedText(_("{} 不是一个有效的视频 ID").format(videoId)))
                 exit(1)
             videoIds.append(videoId)
         for videoId in videoIds:
             filePath = f"{videoId}.xml"
-            if args.output_directory != None:
+            if args.output_directory:
                 filePath = os.path.join(args.output_directory, filePath)
             # 为了显示个 "下载 ", 我把下载从 AnnotationsForArchive 里拆出来了
             # 之前就直接下载了, 但是我还是更喜欢输出确定且可控
@@ -253,7 +254,7 @@ def main():
         queue = args.queue
 
     for filePath in queue:
-        # 先看看有没有不是文件的
+        # 先看看是不是文件
         if os.path.isfile(filePath) is False:
             Stderr(RedText(_("{} 不是一个文件").format(filePath)))
             exit(1)
@@ -276,9 +277,9 @@ def main():
     outputs = []
     for filePath in filePaths:
         output = filePath + ".ass"
-        if args.output_directory != None:
-            # 把文件名剥离出来
-            fileName = os.path.basename(filePath) + ".ass"
+        if args.output_directory:
+            fileName = os.path.basename(filePath)
+            fileName = fileName + ".ass"
             output = os.path.join(args.output_directory, fileName)
 
         # 从这里开始就是 __init__.py 开头那个流程图

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-__version__ = "0.1.53"
+__version__ = "0.1.55"
 
 """
 Annotations2Sub, 一个能把 Youtube 注释转换成 Advanced SubStation Alpha 字幕文件的脚本
@@ -34,7 +34,7 @@ https://www.youtube.com/channel/UCe4QujtMby3h6dge1eYaPig
 还真的有! 鸣谢: https://archive.org/details/youtubeannotations
 我尝试将其转换为我熟悉的 Advanced SubStation Alpha 字幕, 我在搜索引擎查找呀找, 
 找到了 https://github.com/nirbheek/youtube-ass (致谢)
-但是他并是不好用, 是压根就没法用.
+但是他并不是不好用, 是压根就没法用.
 我改呀改, 但是我其实并不会编程, 但是我会谷歌, 让他可以运行也没有花费太长的时间
 但是他并不让人满意, 没有颜色, 只有字幕, 很不爽.
 我仔细阅读了他的源码, 发现实现很恶心, 竟然用样式来实现定位, 而且并不是目前的事实标准(Aegisub)
@@ -71,9 +71,7 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 首先, 我依照写 Go 的经验将脚本拆成了模块, 编写单元测试, 进行类型检查, 一键格式化
 然后, 尝试将 Annotation 抽成一个简单的结构
 最后, 对其进行详尽的注释, 到目前为止看起来不错.
-
----
-
+...
 差不多完事儿了, 剩下的时间就是维护代码了.
 
 """
