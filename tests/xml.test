@@ -64,12 +64,16 @@
         <annotation id="2" type="text"></annotation>
 
         <annotation id="3" type="text" style="speech">
+            <segment></segment>
+        </annotation>
+
+        <annotation id="4" type="text" style="speech">
             <segment>
                 <movingRegion></movingRegion>
             </segment>
         </annotation>
 
-        <annotation id="4" type="text" style="highlightText">
+        <annotation id="5" type="text" style="highlightText">
             <segment>
                 <movingRegion type="anchored">
                     <rectRegion x="0.00000" y="59.89600" w="10.52000" h="20.19500" t="4:56.700" />
@@ -78,7 +82,7 @@
             </segment>
         </annotation>
 
-        <annotation id="5" type="text" style="highlightText">
+        <annotation id="6" type="text" style="highlightText">
             <segment>
                 <movingRegion type="anchored">
                     <rectRegion x="15.30000" y="45.31300" w="3.95300" h="11.36100" t="never" />
@@ -87,7 +91,7 @@
             </segment>
         </annotation>
 
-        <annotation id="6" type="text" style="1">
+        <annotation id="7" type="text" style="1">
             <segment>
                 <movingRegion type="anchored">
                     <rectRegion x="0.00000" y="59.89600" w="10.52000" h="20.19500" t="4:56.700" />
