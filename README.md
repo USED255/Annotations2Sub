@@ -5,6 +5,8 @@
 A script that can convert Youtube Annotation into ASS(Advanced SubStation Alpha) subtitles files
 
 [![License GPLv3](https://img.shields.io/pypi/l/Annotations2Sub?color=1)](https://pypi.org/project/Annotations2Sub/)
+[![Test](https://github.com/USED255/Annotations2Sub/actions/workflows/test.yml/badge.svg)](https://github.com/USED255/Annotations2Sub/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/USED255/Annotations2Sub/branch/master/graph/badge.svg?token=SSNQNEAXMP)](https://codecov.io/gh/USED255/Annotations2Sub)
 [![Version](https://img.shields.io/pypi/v/Annotations2Sub)](https://pypi.org/project/Annotations2Sub)
 [![Python version](https://img.shields.io/pypi/pyversions/Annotations2Sub)](https://pypi.org/project/Annotations2Sub)
 
@@ -36,7 +38,7 @@ optional arguments:
                         Transform resolution Y
   -f Arial, --font Arial
                         Specify font
-  -o File, --output File
+  -o Folder, --output-directory Folder
                         Specify the output path of the converted file,
                         not specifying this option will output the converted
                         file to the same directory as the converted file
@@ -46,6 +48,12 @@ optional arguments:
                         Specify invidious instances (https://redirect.invidious.io/)
   -p, --preview-video   Preview video, need mpv(https://mpv.io/) and specify invidious instances
   -g, --generate-video  Generate video, need FFmpeg(https://ffmpeg.org/) and specify invidious instances
+  -s, --output-to-stdout
+                        Output to stdout
+  -n, --no-overwrite-files
+                        No file overwriting
+  -k, --no-keep-intermediate-files
+                        No retention of intermediate files
   -u, --unstable        Enabling Unstable function, can cause some problems
   -v, --version         Show version
   -V, --verbose         Show more messages
