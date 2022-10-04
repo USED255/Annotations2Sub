@@ -1,6 +1,7 @@
 __pycache__
 .pytest_cache
 .mypy_cache
+.coverage
 dist
 Annotations2Sub.egg-info
 测试用例/
