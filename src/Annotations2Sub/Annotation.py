@@ -183,7 +183,7 @@ def Parse(tree: Element) -> List[Annotation]:
         else:
             annotation.text = MakeSureStr(text.text)
 
-        if len(each.find("segment").find("movingRegion")) == 0:  # type: ignore
+        if each.find("segment").find("movingRegion") == None:  # type: ignore
             # 学习 annotationlib
             # https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L117
             # 跳过没有内容的 Annotation
@@ -212,8 +212,8 @@ def Parse(tree: Element) -> List[Annotation]:
                 return None
 
         if annotation.style == "highlightText":
-            Start = "99:00:00.00"
-            End = "99:00:00.00"
+            Start = "9:00:00.00"
+            End = "9:00:00.00"
 
         if len(Segment) != 0:
             t1 = MakeSureStr(Segment[0].get("t"))

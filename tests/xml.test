@@ -71,7 +71,10 @@
 
         <annotation id="4" type="text" style="highlightText">
             <segment>
-                <movingRegion></movingRegion>
+                <movingRegion type="anchored">
+                    <rectRegion x="0.00000" y="59.89600" w="10.52000" h="20.19500" t="4:56.700" />
+                    <rectRegion x="0.00000" y="59.89600" w="10.52000" h="20.19500" t="5:01.200" />
+                </movingRegion>
             </segment>
         </annotation>
 
