@@ -208,8 +208,12 @@ def Parse(tree: Element) -> List[Annotation]:
                 # 我选择相信别人的经验
                 # 毕竟我也没咋看过 Youtube
                 if Flags.verbose:
-                    Stderr(_("{} highlightText 没有时间, 跳过").format(annotation.id))
+                    Stderr(_("{} 没有时间, 跳过").format(annotation.id))
                 return None
+
+        if annotation.style == "highlightText":
+            Start = "99:00:00.00"
+            End = "99:00:00.00"
 
         if len(Segment) != 0:
             t1 = MakeSureStr(Segment[0].get("t"))
