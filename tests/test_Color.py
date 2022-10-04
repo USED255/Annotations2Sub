@@ -4,14 +4,16 @@
 import pytest
 from Annotations2Sub.Color import Alpha, Color
 
+
 def test_Alpha():
     with pytest.raises(ValueError):
         Alpha(256)
 
+
 def test_Color():
     with pytest.raises(ValueError):
-        Color(256,0,0)
+        Color(256, 0, 0)
     with pytest.raises(ValueError):
-        Color(0,256,0)
+        Color(0, 256, 0)
     with pytest.raises(ValueError):
-        Color(0,0,256)
+        Color(0, 0, 256)

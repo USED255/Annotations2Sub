@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from Annotations2Sub.tools import AnnotationsForArchive, RedText, YellowText, Stderr
+from Annotations2Sub.tools import AnnotationsForArchive, RedText, YellowText
 
 
 def test_YellowText():
@@ -12,8 +12,6 @@ def test_YellowText():
 def test_RedText():
     assert RedText("Test") == "\033[31mTest\033[0m"
 
-def test_Stderr():
-    Stderr("")
 
 def test_AnnotationsForArchive():
     assert (

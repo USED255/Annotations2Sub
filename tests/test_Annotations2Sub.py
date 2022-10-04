@@ -4,12 +4,14 @@
 import os
 import xml.etree.ElementTree
 
+from Annotations2Sub.flag import Flags
 from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Sub import Sub
 
 
 def test_Annotations2Sub():
+    Flags.verbose = True
     filePath = os.path.join(os.path.dirname(__file__), "xml.test")
     with open(filePath, "r", encoding="utf-8") as f:
         string = f.read()
