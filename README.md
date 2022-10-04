@@ -17,8 +17,8 @@ pip install Annotations2Sub
 ```
 
 ```help
-usage: Annotations2Sub.py [-h] [-l] [-x 100] [-y 100] [-f Microsoft YaHei] [-d]
-                          [-i invidious-instances.domain] [-p] [-g] [-u] [-v] [-V]
+usage: Annotations2Sub.py [-h] [-l] [-x 100] [-y 100] [-f Arial ] [-o Folder] [-d]
+                          [-i invidious.domain] [-p] [-g] [-s] [-n] [-k] [-u] [-v] [-V]
                           File or videoId [File or videoId ...]
 
 A script that converts Youtube Annotations into ASS(Advanced SubStation Alpha) subtitles file
