@@ -211,7 +211,7 @@ def main():
     if args.preview_video or args.generate_video:
         if args.invidious_instances is None:
             Stderr(RedText(_("请指定一个 invidious 实例")))
-            Stderr(_("你可以在这里找一个:"), "https://redirect.invidious.io/")
+            Stderr(_("你可以在这里找一个: https://redirect.invidious.io/"))
             exit(1)
         args.download_for_archive = True
         args.embrace_libass = True
