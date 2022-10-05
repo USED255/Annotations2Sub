@@ -81,27 +81,11 @@ def main():
         metavar=_("Microsoft YaHei"),
         help=_("指定字体"),
     )
-
-    # 其实我觉得这个选项应该没啥用
-    parser.add_argument(
-        "-o",
-        "--output-directory",
-        type=str,
-        metavar=_("文件夹"),
-        help=_("指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目录"),
-    )
-
     parser.add_argument(
         "-d",
         "--download-for-archive",
         action="store_true",
         help=_("尝试从 Internet Archive 下载注释文件"),
-    )
-    parser.add_argument(
-        "-i",
-        "--invidious-instances",
-        metavar="invidious.domain",
-        help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
     )
 
     # 就是拼接参数执行 mpv
@@ -119,12 +103,17 @@ def main():
         action="store_true",
         help=_("生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例"),
     )
+    parser.add_argument(
+        "-i",
+        "--invidious-instances",
+        metavar="invidious.domain",
+        help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
+    )
 
     # 与 Unix 工具结合成为了可能
     parser.add_argument(
         "-s", "--output-to-stdout", action="store_true", help=_("输出至标准输出")
     )
-
     parser.add_argument(
         "-n", "--no-overwrite-files", action="store_true", help=_("不覆盖文件")
     )
@@ -134,6 +123,14 @@ def main():
         "-k", "--no-keep-intermediate-files", action="store_true", help=_("不保留中间文件")
     )
 
+    # 其实我觉得这个选项应该没啥用
+    parser.add_argument(
+        "-o",
+        "--output-directory",
+        type=str,
+        metavar=_("文件夹"),
+        help=_("指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目录"),
+    )
     parser.add_argument(
         "-O", "--output", metavar=_("文件"), default="file.ass", help=_("保存到此文件")
     )
@@ -145,7 +142,6 @@ def main():
         action="store_true",
         help=_("启用不稳定功能, 会出现一些问题"),
     )
-
     parser.add_argument(
         "-v",
         "--version",
