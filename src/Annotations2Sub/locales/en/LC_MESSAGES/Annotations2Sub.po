@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-10-04 22:16+0800\n"
-"PO-Revision-Date: 2022-10-04 22:16+0800\n"
+"POT-Creation-Date: 2022-10-05 20:10+0800\n"
+"PO-Revision-Date: 2022-10-05 20:10+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -84,11 +84,42 @@ msgstr "Arial"
 msgid "指定字体"
 msgstr "Specify font"
 
-#: cli.py:90
+#: cli.py:88
+msgid "尝试从 Internet Archive 下载注释文件"
+msgstr "Try downloading the Annotation file from the Internet Archive"
+
+#: cli.py:96
+msgid "预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"
+msgstr ""
+"Preview video, need mpv(https://mpv.io/) and specify invidious instances"
+
+#: cli.py:104
+msgid "生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例"
+msgstr ""
+"Generate video, need FFmpeg(https://ffmpeg.org/) and specify invidious "
+"instances"
+
+#: cli.py:110
+msgid "指定 invidious 实例(https://redirect.invidious.io/)"
+msgstr "Specify invidious instances (https://redirect.invidious.io/)"
+
+#: cli.py:115
+msgid "输出至标准输出"
+msgstr "Output to stdout"
+
+#: cli.py:118
+msgid "不覆盖文件"
+msgstr "No file overwriting"
+
+#: cli.py:123
+msgid "不保留中间文件"
+msgstr "No retention of intermediate files"
+
+#: cli.py:131
 msgid "文件夹"
 msgstr "Folder"
 
-#: cli.py:91
+#: cli.py:132
 msgid ""
 "指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目"
 "录"
@@ -96,71 +127,56 @@ msgstr ""
 "Specify the output path of the converted file, not specifying this option "
 "the converted file will be output to the same directory as the converted file"
 
-#: cli.py:98
-msgid "尝试从 Internet Archive 下载注释文件"
-msgstr "Try downloading the Annotation file from the Internet Archive"
-
-#: cli.py:104
-msgid "指定 invidious 实例(https://redirect.invidious.io/)"
-msgstr "Specify invidious instances (https://redirect.invidious.io/)"
-
-#: cli.py:112
-msgid "预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"
-msgstr ""
-"Preview video, need mpv(https://mpv.io/) and specify invidious instances"
-
-#: cli.py:120
-msgid "生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例"
-msgstr ""
-"Generate video, need FFmpeg(https://ffmpeg.org/) and specify invidious "
-"instances"
-
-#: cli.py:125
-msgid "输出至标准输出"
-msgstr "Output to stdout"
-
-#: cli.py:129
-msgid "不覆盖文件"
-msgstr "No file overwriting"
+#: cli.py:134
+msgid "文件"
+msgstr "File"
 
 #: cli.py:134
-msgid "不保留中间文件"
-msgstr "No retention of intermediate files"
+msgid "保存到此文件"
+msgstr "Save to this file"
 
-#: cli.py:142
+#: cli.py:136
+msgid "跳过无效文件"
+msgstr "Skip invalid files"
+
+#: cli.py:144
 msgid "启用不稳定功能, 会出现一些问题"
 msgstr "Enabling Unstable function, can cause some problems"
 
-#: cli.py:149
+#: cli.py:150
 msgid "显示版本号"
 msgstr "Show version"
 
-#: cli.py:150
+#: cli.py:151
 #, python-brace-format
 msgid "Annotations2Sub v{version}"
 msgstr "Annotations2Sub v{version}"
 
-#: cli.py:158
+#: cli.py:159
 msgid "显示更多些消息"
 msgstr "Show more messages"
 
-#: cli.py:173
+#: cli.py:174
 msgid "--output-to-stdout 与 --output-directory 选项相斥"
 msgstr ""
 "--output-to-stdout and --output-directory options are mutually exclusive"
 
-#: cli.py:176
+#: cli.py:177
 msgid "--output-to-stdout 与 --no-overwrite-files 选项相斥"
 msgstr ""
 "--output-to-stdout and --no-overwrite-files options are mutually exclusive"
 
-#: cli.py:181
+#: cli.py:180
+msgid "--output-to-stdout 与 --output 选项相斥"
+msgstr "--output-to-stdout and --output options are mutually exclusive"
+
+#: cli.py:185
 msgid "--output-to-stdout 与 --preview-video 或 --generate-video 选项相斥"
 msgstr ""
 "--output-to-stdout and --preview-video or --generate-video options are "
 "mutually exclusive"
 
-#: cli.py:191
+#: cli.py:195
 msgid ""
 "--no-keep-intermediate-files 必须和 --download-for-archive 或 --preview-"
 "video 或 --generate-video 选项使用"
@@ -168,19 +184,27 @@ msgstr ""
 "--no-keep-intermediate-files must be used with the --download-for-archive or "
 "--preview-video or --generate-video options"
 
-#: cli.py:199
+#: cli.py:203
 msgid "转换后文件的输出路径应该指定一个文件夹"
 msgstr "The output path of the converted file should specify a folder"
 
-#: cli.py:204
+#: cli.py:208
+msgid "--output 与 --output--directory 选项相斥"
+msgstr "--output and --output-directory options are mutually exclusive"
+
+#: cli.py:211
+msgid "--output 只能处理一个文件"
+msgstr "--output can only process one file"
+
+#: cli.py:216
 msgid "请指定一个 invidious 实例"
 msgstr "Please specify an invidious instance"
 
-#: cli.py:205
-msgid "你可以在这里找一个:"
-msgstr "You can find one here:"
+#: cli.py:217
+msgid "你可以在这里找一个: https://redirect.invidious.io/"
+msgstr "You can find one here: https://redirect.invidious.io/"
 
-#: cli.py:216
+#: cli.py:228
 msgid ""
 "--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使用 --transform-"
 "resolution-x --transform-resolution-y, 以确保效果."
@@ -188,49 +212,53 @@ msgstr ""
 "--embrace-libass Note that if your video is not 16:9, please use --transform-"
 "resolution-x --transform-resolution-y, to ensure the effect."
 
-#: cli.py:225
+#: cli.py:237
 msgid "您好像无法访问 Google 🤔"
 msgstr "You can't seem to access Google 🤔"
 
-#: cli.py:234
+#: cli.py:246
 msgid "{} 不是一个有效的视频 ID"
 msgstr "{} is not a valid videoId"
 
-#: cli.py:244
+#: cli.py:256
 msgid "下载 {}"
 msgstr "Downloading {}"
 
-#: cli.py:247
+#: cli.py:259
 msgid "{} 可能没有 Annotation"
 msgstr "{} May not have Annotation"
 
-#: cli.py:259
+#: cli.py:271
 msgid "{} 不是一个文件"
 msgstr "{} is not a file"
 
-#: cli.py:265
+#: cli.py:279
 msgid "{} 不是一个有效的 XML 文件"
 msgstr "{} is not a valid XML file"
 
-#: cli.py:273
+#: cli.py:286
+msgid "{} 不是 Annotation 文件"
+msgstr "{} is not an Annotation file"
+
+#: cli.py:292
 msgid "{} 没有 Annotation"
 msgstr "{} May not have Annotation"
 
-#: cli.py:298
+#: cli.py:321
 msgid "{} 没有注释被转换"
 msgstr "{} No Annotation are converted"
 
-#: cli.py:315
+#: cli.py:338
 msgid "文件已存在, 您选择不覆盖文件, 跳过输出"
 msgstr ""
 "The file already exists, you choose not to overwrite the file, skip the "
 "output"
 
-#: cli.py:318 cli.py:339 cli.py:354
+#: cli.py:341 cli.py:362 cli.py:377
 msgid "删除 {}"
 msgstr "Delete {}"
 
-#: cli.py:322
+#: cli.py:345
 msgid "保存于: {}"
 msgstr "Saved in: {}"
 

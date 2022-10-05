@@ -81,27 +81,11 @@ def main():
         metavar=_("Microsoft YaHei"),
         help=_("指定字体"),
     )
-
-    # 其实我觉得这个选项应该没啥用
-    parser.add_argument(
-        "-o",
-        "--output-directory",
-        type=str,
-        metavar=_("文件夹"),
-        help=_("指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目录"),
-    )
-
     parser.add_argument(
         "-d",
         "--download-for-archive",
         action="store_true",
         help=_("尝试从 Internet Archive 下载注释文件"),
-    )
-    parser.add_argument(
-        "-i",
-        "--invidious-instances",
-        metavar="invidious.domain",
-        help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
     )
 
     # 就是拼接参数执行 mpv
@@ -119,19 +103,37 @@ def main():
         action="store_true",
         help=_("生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例"),
     )
+    parser.add_argument(
+        "-i",
+        "--invidious-instances",
+        metavar="invidious.domain",
+        help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
+    )
 
     # 与 Unix 工具结合成为了可能
     parser.add_argument(
         "-s", "--output-to-stdout", action="store_true", help=_("输出至标准输出")
     )
-
     parser.add_argument(
         "-n", "--no-overwrite-files", action="store_true", help=_("不覆盖文件")
     )
 
     # 指从 Internet Archive 下载的注释文件
     parser.add_argument(
-        "-k", "--no-keep-intermediate-files", action="store_true", help=_("不保留中间文件")
+        "-N", "--no-keep-intermediate-files", action="store_true", help=_("不保留中间文件")
+    )
+
+    # 其实我觉得这个选项应该没啥用
+    parser.add_argument(
+        "-o",
+        "--output-directory",
+        type=str,
+        metavar=_("文件夹"),
+        help=_("指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目录"),
+    )
+    parser.add_argument("-O", "--output", type=str, metavar=_("文件"), help=_("保存到此文件"))
+    parser.add_argument(
+        "-S", "--skip-invalid-files", action="store_true", help=_("跳过无效文件")
     )
 
     # 可能是用来甩锅用的
@@ -141,7 +143,6 @@ def main():
         action="store_true",
         help=_("启用不稳定功能, 会出现一些问题"),
     )
-
     parser.add_argument(
         "-v",
         "--version",
@@ -169,11 +170,14 @@ def main():
         Flags.verbose = True
 
     if args.output_to_stdout:
-        if args.output_directory:
+        if args.output_directory is not None:
             Stderr(RedText(_("--output-to-stdout 与 --output-directory 选项相斥")))
             exit(1)
         if args.no_overwrite_files:
             Stderr(RedText(_("--output-to-stdout 与 --no-overwrite-files 选项相斥")))
+            exit(1)
+        if args.output is not None:
+            Stderr(RedText(_("--output-to-stdout 与 --output 选项相斥")))
             exit(1)
         if args.preview_video or args.generate_video:
             Stderr(
@@ -194,15 +198,23 @@ def main():
             )
             exit(1)
 
-    if args.output_directory:
+    if args.output_directory is not None:
         if os.path.isdir(args.output_directory) is False:
             Stderr(RedText(_("转换后文件的输出路径应该指定一个文件夹")))
+            exit(1)
+
+    if args.output is not None:
+        if args.output_directory is not None:
+            Stderr(RedText(_("--output 与 --output--directory 选项相斥")))
+            exit(1)
+        if len(args.queue) > 1:
+            Stderr(RedText(_("--output 只能处理一个文件")))
             exit(1)
 
     if args.preview_video or args.generate_video:
         if args.invidious_instances is None:
             Stderr(RedText(_("请指定一个 invidious 实例")))
-            Stderr(_("你可以在这里找一个:"), "https://redirect.invidious.io/")
+            Stderr(_("你可以在这里找一个: https://redirect.invidious.io/"))
             exit(1)
         args.download_for_archive = True
         args.embrace_libass = True
@@ -236,7 +248,7 @@ def main():
             videoIds.append(videoId)
         for videoId in videoIds:
             filePath = f"{videoId}.xml"
-            if args.output_directory:
+            if args.output_directory is not None:
                 filePath = os.path.join(args.output_directory, filePath)
             # 为了显示个 "下载 ", 我把下载从 AnnotationsForArchive 里拆出来了
             # 之前就直接下载了, 但是我还是更喜欢输出确定且可控
@@ -257,6 +269,8 @@ def main():
         # 先看看是不是文件
         if os.path.isfile(filePath) is False:
             Stderr(RedText(_("{} 不是一个文件").format(filePath)))
+            if args.skip_invalid_files:
+                continue
             exit(1)
         # 再看看有没有文件无效的
         try:
@@ -264,23 +278,32 @@ def main():
         except:
             Stderr(RedText(_("{} 不是一个有效的 XML 文件").format(filePath)))
             Stderr(traceback.format_exc())
+            if args.skip_invalid_files:
+                continue
+            exit(1)
+        # 再看看有没有不是 Annotation 文件的
+        if tree.find("annotations") == None:
+            Stderr(RedText(_("{} 不是 Annotation 文件").format(filePath)))
+            if args.skip_invalid_files:
+                continue
             exit(1)
         # 最后看看是不是空的
-        count = 0
-        for each in tree.find("annotations").findall("annotation"):
-            count += 1
-        if count == 0:
+        if len(tree.find("annotations").findall("annotation")) == 0:
             Stderr(RedText(_("{} 没有 Annotation").format(filePath)))
+            if args.skip_invalid_files:
+                continue
             exit(1)
         filePaths.append(filePath)
 
     outputs = []
     for filePath in filePaths:
         output = filePath + ".ass"
-        if args.output_directory:
+        if args.output_directory is not None:
             fileName = os.path.basename(filePath)
             fileName = fileName + ".ass"
             output = os.path.join(args.output_directory, fileName)
+        if args.output is not None:
+            output = args.output
 
         # 从这里开始就是 __init__.py 开头那个流程图
         # 其实这才是核心功能, 其他的都是有的没的
