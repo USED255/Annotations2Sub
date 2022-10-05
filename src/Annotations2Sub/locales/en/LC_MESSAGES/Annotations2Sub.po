@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-10-05 18:51+0800\n"
-"PO-Revision-Date: 2022-10-05 18:52+0800\n"
+"POT-Creation-Date: 2022-10-05 20:10+0800\n"
+"PO-Revision-Date: 2022-10-05 20:10+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -189,18 +189,22 @@ msgid "转换后文件的输出路径应该指定一个文件夹"
 msgstr "The output path of the converted file should specify a folder"
 
 #: cli.py:208
+msgid "--output 与 --output--directory 选项相斥"
+msgstr "--output and --output-directory options are mutually exclusive"
+
+#: cli.py:211
 msgid "--output 只能处理一个文件"
 msgstr "--output can only process one file"
 
-#: cli.py:213
+#: cli.py:216
 msgid "请指定一个 invidious 实例"
 msgstr "Please specify an invidious instance"
 
-#: cli.py:214
-msgid "你可以在这里找一个:"
-msgstr "You can find one here:"
+#: cli.py:217
+msgid "你可以在这里找一个: https://redirect.invidious.io/"
+msgstr "You can find one here: https://redirect.invidious.io/"
 
-#: cli.py:225
+#: cli.py:228
 msgid ""
 "--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使用 --transform-"
 "resolution-x --transform-resolution-y, 以确保效果."
@@ -208,53 +212,53 @@ msgstr ""
 "--embrace-libass Note that if your video is not 16:9, please use --transform-"
 "resolution-x --transform-resolution-y, to ensure the effect."
 
-#: cli.py:234
+#: cli.py:237
 msgid "您好像无法访问 Google 🤔"
 msgstr "You can't seem to access Google 🤔"
 
-#: cli.py:243
+#: cli.py:246
 msgid "{} 不是一个有效的视频 ID"
 msgstr "{} is not a valid videoId"
 
-#: cli.py:253
+#: cli.py:256
 msgid "下载 {}"
 msgstr "Downloading {}"
 
-#: cli.py:256
+#: cli.py:259
 msgid "{} 可能没有 Annotation"
 msgstr "{} May not have Annotation"
 
-#: cli.py:268
+#: cli.py:271
 msgid "{} 不是一个文件"
 msgstr "{} is not a file"
 
-#: cli.py:276
+#: cli.py:279
 msgid "{} 不是一个有效的 XML 文件"
 msgstr "{} is not a valid XML file"
 
-#: cli.py:283
+#: cli.py:286
 msgid "{} 不是 Annotation 文件"
 msgstr "{} is not an Annotation file"
 
-#: cli.py:289
+#: cli.py:292
 msgid "{} 没有 Annotation"
 msgstr "{} May not have Annotation"
 
-#: cli.py:318
+#: cli.py:321
 msgid "{} 没有注释被转换"
 msgstr "{} No Annotation are converted"
 
-#: cli.py:335
+#: cli.py:338
 msgid "文件已存在, 您选择不覆盖文件, 跳过输出"
 msgstr ""
 "The file already exists, you choose not to overwrite the file, skip the "
 "output"
 
-#: cli.py:338 cli.py:359 cli.py:374
+#: cli.py:341 cli.py:362 cli.py:377
 msgid "删除 {}"
 msgstr "Delete {}"
 
-#: cli.py:342
+#: cli.py:345
 msgid "保存于: {}"
 msgstr "Saved in: {}"
 

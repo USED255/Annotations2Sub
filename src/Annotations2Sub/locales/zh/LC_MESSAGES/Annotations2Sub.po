@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-10-05 18:51+0800\n"
-"PO-Revision-Date: 2022-10-05 18:53+0800\n"
+"POT-Creation-Date: 2022-10-05 20:10+0800\n"
+"PO-Revision-Date: 2022-10-05 20:11+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -44,11 +44,11 @@ msgstr "此脚本使用 Annotations2Sub 生成"
 
 #: cli.py:38
 msgid ""
-"一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced "
-"SubStation Alpha)文件的脚本"
+"一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced SubStation "
+"Alpha)文件的脚本"
 msgstr ""
-"一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced "
-"SubStation Alpha)文件的脚本"
+"一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced SubStation "
+"Alpha)文件的脚本"
 
 #: cli.py:45
 msgid "文件 或 videoId"
@@ -56,17 +56,15 @@ msgstr "文件 或 videoId"
 
 #: cli.py:47
 msgid ""
-"多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从"
-"Internet Archive 下载注释文件 Youtube 视频的 videoId"
+"多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从Internet "
+"Archive 下载注释文件 Youtube 视频的 videoId"
 msgstr ""
-"多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从"
-"Internet Archive 下载注释文件 Youtube 视频的 videoId"
+"多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从Internet "
+"Archive 下载注释文件 Youtube 视频的 videoId"
 
 #: cli.py:54
-msgid ""
-"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
-msgstr ""
-"拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
+msgid "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
+msgstr "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
 
 #: cli.py:64
 msgid "变换分辨率X"
@@ -89,18 +87,14 @@ msgid "尝试从 Internet Archive 下载注释文件"
 msgstr "尝试从 Internet Archive 下载注释文件"
 
 #: cli.py:96
-msgid ""
-"预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"
-msgstr ""
-"预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"
+msgid "预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"
+msgstr "预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"
 
 #: cli.py:104
 msgid ""
-"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious "
-"实例"
+"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例"
 msgstr ""
-"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious "
-"实例"
+"生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例"
 
 #: cli.py:110
 msgid "指定 invidious 实例(https://redirect.invidious.io/)"
@@ -124,11 +118,11 @@ msgstr "文件夹"
 
 #: cli.py:132
 msgid ""
-"指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与"
-"被转换文件同一目录"
+"指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文"
+"件同一目录"
 msgstr ""
-"指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与"
-"被转换文件同一目录"
+"指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文"
+"件同一目录"
 
 #: cli.py:134
 msgid "文件"
@@ -173,37 +167,39 @@ msgstr "--output-to-stdout 与 --output 选项相斥"
 
 #: cli.py:185
 msgid ""
-"--output-to-stdout 与 --preview-video 或 --generate-video 选"
-"项相斥"
+"--output-to-stdout 与 --preview-video 或 --generate-video 选项相斥"
 msgstr ""
-"--output-to-stdout 与 --preview-video 或 --generate-video 选"
-"项相斥"
+"--output-to-stdout 与 --preview-video 或 --generate-video 选项相斥"
 
 #: cli.py:195
 msgid ""
-"--no-keep-intermediate-files 必须和 --download-for-archive "
-"或 --preview-video 或 --generate-video 选项使用"
+"--no-keep-intermediate-files 必须和 --download-for-archive 或 --"
+"preview-video 或 --generate-video 选项使用"
 msgstr ""
-"--no-keep-intermediate-files 必须和 --download-for-archive "
-"或 --preview-video 或 --generate-video 选项使用"
+"--no-keep-intermediate-files 必须和 --download-for-archive 或 --"
+"preview-video 或 --generate-video 选项使用"
 
 #: cli.py:203
 msgid "转换后文件的输出路径应该指定一个文件夹"
 msgstr "转换后文件的输出路径应该指定一个文件夹"
 
 #: cli.py:208
+msgid "--output 与 --output--directory 选项相斥"
+msgstr "--output 与 --output--directory 选项相斥"
+
+#: cli.py:211
 msgid "--output 只能处理一个文件"
 msgstr "--output 只能处理一个文件"
 
-#: cli.py:213
+#: cli.py:216
 msgid "请指定一个 invidious 实例"
 msgstr "请指定一个 invidious 实例"
 
-#: cli.py:214
-msgid "你可以在这里找一个:"
-msgstr "你可以在这里找一个:"
+#: cli.py:217
+msgid "你可以在这里找一个: https://redirect.invidious.io/"
+msgstr "你可以在这里找一个: https://redirect.invidious.io/"
 
-#: cli.py:225
+#: cli.py:228
 msgid ""
 "--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使用 --"
 "transform-resolution-x --transform-resolution-y, 以确保效果."
@@ -211,51 +207,51 @@ msgstr ""
 "--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使用 --"
 "transform-resolution-x --transform-resolution-y, 以确保效果."
 
-#: cli.py:234
+#: cli.py:237
 msgid "您好像无法访问 Google 🤔"
 msgstr "您好像无法访问 Google 🤔"
 
-#: cli.py:243
+#: cli.py:246
 msgid "{} 不是一个有效的视频 ID"
 msgstr "{} 不是一个有效的视频 ID"
 
-#: cli.py:253
+#: cli.py:256
 msgid "下载 {}"
 msgstr "下载 {}"
 
-#: cli.py:256
+#: cli.py:259
 msgid "{} 可能没有 Annotation"
 msgstr "{} 可能没有 Annotation"
 
-#: cli.py:268
+#: cli.py:271
 msgid "{} 不是一个文件"
 msgstr "{} 不是一个文件"
 
-#: cli.py:276
+#: cli.py:279
 msgid "{} 不是一个有效的 XML 文件"
 msgstr "{} 不是一个有效的 XML 文件"
 
-#: cli.py:283
+#: cli.py:286
 msgid "{} 不是 Annotation 文件"
 msgstr "{} 不是 Annotation 文件"
 
-#: cli.py:289
+#: cli.py:292
 msgid "{} 没有 Annotation"
 msgstr "{} 没有 Annotation"
 
-#: cli.py:318
+#: cli.py:321
 msgid "{} 没有注释被转换"
 msgstr "{} 没有注释被转换"
 
-#: cli.py:335
+#: cli.py:338
 msgid "文件已存在, 您选择不覆盖文件, 跳过输出"
 msgstr "文件已存在, 您选择不覆盖文件, 跳过输出"
 
-#: cli.py:338 cli.py:359 cli.py:374
+#: cli.py:341 cli.py:362 cli.py:377
 msgid "删除 {}"
 msgstr "删除 {}"
 
-#: cli.py:342
+#: cli.py:345
 msgid "保存于: {}"
 msgstr "保存于: {}"
 
