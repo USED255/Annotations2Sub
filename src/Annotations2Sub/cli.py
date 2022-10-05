@@ -120,7 +120,7 @@ def main():
 
     # 指从 Internet Archive 下载的注释文件
     parser.add_argument(
-        "-k", "--no-keep-intermediate-files", action="store_true", help=_("不保留中间文件")
+        "-N", "--no-keep-intermediate-files", action="store_true", help=_("不保留中间文件")
     )
 
     # 其实我觉得这个选项应该没啥用
