@@ -38,22 +38,22 @@ optional arguments:
                         Transform resolution Y
   -f Arial, --font Arial
                         Specify font
-  -o Folder, --output-directory Folder
-                        Specify the output path of the converted file,
-                        not specifying this option will output the converted
-                        file to the same directory as the converted file
   -d, --download-for-archive
                         Try downloading the annotations file from Internet Archive
-  -i invidious-instances.domain, --invidious-instances invidious-instances.domain
-                        Specify invidious instances (https://redirect.invidious.io/)
   -p, --preview-video   Preview video, need mpv(https://mpv.io/) and specify invidious instances
   -g, --generate-video  Generate video, need FFmpeg(https://ffmpeg.org/) and specify invidious instances
+  -i invidious-instances.domain, --invidious-instances invidious-instances.domain
+                        Specify invidious instances (https://redirect.invidious.io/)
   -s, --output-to-stdout
                         Output to stdout
   -n, --no-overwrite-files
                         No file overwriting
-  -k, --no-keep-intermediate-files
+  -N, --no-keep-intermediate-files
                         No retention of intermediate files
+  -o Folder, --output-directory Folder
+                        Specify the output path of the converted file,
+                        not specifying this option will output the converted
+                        file to the same directory as the converted file
   -u, --unstable        Enabling Unstable function, can cause some problems
   -v, --version         Show version
   -V, --verbose         Show more messages
