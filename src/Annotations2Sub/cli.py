@@ -134,6 +134,9 @@ def main():
     parser.add_argument(
         "-O", "--output", metavar=_("文件"), default="file.ass", help=_("保存到此文件")
     )
+    parser.add_argument(
+        "-S", "--skip-invalid-files", action="store_true", help=_("跳过无效文件")
+    )
 
     # 可能是用来甩锅用的
     parser.add_argument(
@@ -265,6 +268,8 @@ def main():
         # 先看看是不是文件
         if os.path.isfile(filePath) is False:
             Stderr(RedText(_("{} 不是一个文件").format(filePath)))
+            if args.skip_invalid_files:
+                continue
             exit(1)
         # 再看看有没有文件无效的
         try:
@@ -272,14 +277,20 @@ def main():
         except:
             Stderr(RedText(_("{} 不是一个有效的 XML 文件").format(filePath)))
             Stderr(traceback.format_exc())
+            if args.skip_invalid_files:
+                continue
             exit(1)
         # 再看看有没有不是 Annotation 文件的
         if tree.find("annotations") == None:
             Stderr(RedText(_("{} 不是 Annotation 文件").format(filePath)))
+            if args.skip_invalid_files:
+                continue
             exit(1)
         # 最后看看是不是空的
         if len(tree.find("annotations").findall("annotation")) == 0:
             Stderr(RedText(_("{} 没有 Annotation").format(filePath)))
+            if args.skip_invalid_files:
+                continue
             exit(1)
         filePaths.append(filePath)
 
