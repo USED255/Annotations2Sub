@@ -134,6 +134,10 @@ def main():
         "-k", "--no-keep-intermediate-files", action="store_true", help=_("不保留中间文件")
     )
 
+    parser.add_argument(
+        "-O", "--output", metavar=_("文件"), default="file.ass", help=_("保存到此文件")
+    )
+
     # 可能是用来甩锅用的
     parser.add_argument(
         "-u",
@@ -175,6 +179,9 @@ def main():
         if args.no_overwrite_files:
             Stderr(RedText(_("--output-to-stdout 与 --no-overwrite-files 选项相斥")))
             exit(1)
+        if args.output:
+            Stderr(RedText(_("--output-to-stdout 与 --output 选项相斥")))
+            exit(1)
         if args.preview_video or args.generate_video:
             Stderr(
                 RedText(
@@ -197,6 +204,11 @@ def main():
     if args.output_directory:
         if os.path.isdir(args.output_directory) is False:
             Stderr(RedText(_("转换后文件的输出路径应该指定一个文件夹")))
+            exit(1)
+
+    if args.output:
+        if len(args.queue) > 1:
+            Stderr(RedText(_("--output 只能处理一个文件")))
             exit(1)
 
     if args.preview_video or args.generate_video:
@@ -281,6 +293,8 @@ def main():
             fileName = os.path.basename(filePath)
             fileName = fileName + ".ass"
             output = os.path.join(args.output_directory, fileName)
+        if args.output:
+            output = args.output
 
         # 从这里开始就是 __init__.py 开头那个流程图
         # 其实这才是核心功能, 其他的都是有的没的
