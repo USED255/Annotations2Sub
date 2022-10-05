@@ -204,6 +204,9 @@ def main():
             exit(1)
 
     if args.output:
+        if args.output_directory:
+            Stderr(RedText(_("--output 与 --output--directory 选项相斥")))
+            exit(1)
         if len(args.queue) > 1:
             Stderr(RedText(_("--output 只能处理一个文件")))
             exit(1)
