@@ -131,7 +131,7 @@ def main():
         metavar=_("文件夹"),
         help=_("指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目录"),
     )
-    parser.add_argument("-O", "--output", metavar=_("文件"), help=_("保存到此文件"))
+    parser.add_argument("-O", "--output", type=str, metavar=_("文件"), help=_("保存到此文件"))
     parser.add_argument(
         "-S", "--skip-invalid-files", action="store_true", help=_("跳过无效文件")
     )
@@ -170,13 +170,13 @@ def main():
         Flags.verbose = True
 
     if args.output_to_stdout:
-        if args.output_directory:
+        if args.output_directory is not None:
             Stderr(RedText(_("--output-to-stdout 与 --output-directory 选项相斥")))
             exit(1)
         if args.no_overwrite_files:
             Stderr(RedText(_("--output-to-stdout 与 --no-overwrite-files 选项相斥")))
             exit(1)
-        if args.output:
+        if args.output is not None:
             Stderr(RedText(_("--output-to-stdout 与 --output 选项相斥")))
             exit(1)
         if args.preview_video or args.generate_video:
@@ -198,13 +198,13 @@ def main():
             )
             exit(1)
 
-    if args.output_directory:
+    if args.output_directory is not None:
         if os.path.isdir(args.output_directory) is False:
             Stderr(RedText(_("转换后文件的输出路径应该指定一个文件夹")))
             exit(1)
 
-    if args.output:
-        if args.output_directory:
+    if args.output is not None:
+        if args.output_directory is not None:
             Stderr(RedText(_("--output 与 --output--directory 选项相斥")))
             exit(1)
         if len(args.queue) > 1:
@@ -248,7 +248,7 @@ def main():
             videoIds.append(videoId)
         for videoId in videoIds:
             filePath = f"{videoId}.xml"
-            if args.output_directory:
+            if args.output_directory is not None:
                 filePath = os.path.join(args.output_directory, filePath)
             # 为了显示个 "下载 ", 我把下载从 AnnotationsForArchive 里拆出来了
             # 之前就直接下载了, 但是我还是更喜欢输出确定且可控
@@ -298,11 +298,11 @@ def main():
     outputs = []
     for filePath in filePaths:
         output = filePath + ".ass"
-        if args.output_directory:
+        if args.output_directory is not None:
             fileName = os.path.basename(filePath)
             fileName = fileName + ".ass"
             output = os.path.join(args.output_directory, fileName)
-        if args.output:
+        if args.output is not None:
             output = args.output
 
         # 从这里开始就是 __init__.py 开头那个流程图
