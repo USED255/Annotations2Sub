@@ -273,11 +273,12 @@ def main():
             Stderr(RedText(_("{} 不是一个有效的 XML 文件").format(filePath)))
             Stderr(traceback.format_exc())
             exit(1)
+        # 再看看有没有不是 Annotation 文件的
+        if tree.find("annotations") == None:
+            Stderr(RedText(_("{} 不是 Annotation 文件").format(filePath)))
+            exit(1)
         # 最后看看是不是空的
-        count = 0
-        for each in tree.find("annotations").findall("annotation"):
-            count += 1
-        if count == 0:
+        if len(tree.find("annotations").findall("annotation")) == 0:
             Stderr(RedText(_("{} 没有 Annotation").format(filePath)))
             exit(1)
         filePaths.append(filePath)
