@@ -131,9 +131,7 @@ def main():
         metavar=_("文件夹"),
         help=_("指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目录"),
     )
-    parser.add_argument(
-        "-O", "--output", metavar=_("文件"), default="file.ass", help=_("保存到此文件")
-    )
+    parser.add_argument("-O", "--output", metavar=_("文件"), help=_("保存到此文件"))
     parser.add_argument(
         "-S", "--skip-invalid-files", action="store_true", help=_("跳过无效文件")
     )
