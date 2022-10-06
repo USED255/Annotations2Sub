@@ -31,8 +31,8 @@ from Annotations2Sub.tools import (
     Stderr,
 )
 
-# 程序入口
 def main():
+    """ 程序入口 """
     parser = argparse.ArgumentParser(
         description=_(
             "一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced SubStation Alpha)文件的脚本"
