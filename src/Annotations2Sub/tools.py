@@ -10,23 +10,23 @@ from Annotations2Sub.internationalization import _
 
 
 def YellowText(s: str) -> str:
-    """ 返回黄色文本 """
+    """返回黄色文本"""
     return "\033[33m" + s + "\033[0m"
 
 
 def RedText(s: str) -> str:
-    """ 返回红色文本 """
+    """返回红色文本"""
     return "\033[31m" + s + "\033[0m"
 
 
 def Stderr(s: str):
-    """ 打印到标准错误 """
+    """打印到标准错误"""
     print(s, file=sys.stderr)
 
 
 # 如果不生于中国就没有这个函数
 def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
-    """ 检查网络 """
+    """检查网络"""
     try:
         urllib.request.urlopen(url=url, timeout=timeout)
     except:
@@ -40,7 +40,7 @@ def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
 # Rain Shimotsuki 不仅是个打歌词的, 他更是一位创作者
 # 自己作品消失, 我相信没人愿意看到
 def AnnotationsForArchive(videoId: str) -> str:
-    """ 返回注释在互联网档案馆的网址 """
+    """返回注释在互联网档案馆的网址"""
     ARCHIVE_URL = "https://archive.org"
     CHARS_SAFE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
 
@@ -65,7 +65,7 @@ def AnnotationsForArchive(videoId: str) -> str:
 # 致谢 https://invidious.io/
 # 我更想使用 Youtube-DL, 但是 Stack Overflow 没有答案
 def VideoForInvidious(videoId: str, invidious_domain: str):
-    """ 返回一个视频流和音频流网址"""
+    """返回一个视频流和音频流网址"""
     # https://docs.invidious.io/api/
     url = f"https://{invidious_domain}/api/v1/videos/{videoId}"
     Stderr(_("获取 {}").format(url))
