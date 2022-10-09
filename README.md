@@ -1,8 +1,8 @@
 # Annotations2Sub
 
-一个可以把 Youtube 注释转换成 ASS(Advanced SubStation Alpha) 字幕文件的脚本
+下载和转换 Youtube 注释
 
-A script that can convert Youtube Annotation into ASS(Advanced SubStation Alpha) subtitles files
+Download and convert Youtube Annotation
 
 [![License GPLv3](https://img.shields.io/pypi/l/Annotations2Sub?color=1)](https://pypi.org/project/Annotations2Sub/)
 [![Test](https://github.com/USED255/Annotations2Sub/actions/workflows/test.yml/badge.svg)](https://github.com/USED255/Annotations2Sub/actions/workflows/test.yml)
@@ -65,20 +65,20 @@ optional arguments:
 
 ---
 
-Example:
-
-[Before](https://www.youtube.com/watch?v=HqSzHYxVKws)
+转换注释文件
 
 ```bash
-Annotations2Sub.py -g HqSzHYxVKws
+Annotations2Sub 29-q7YnyUmY.xml
 ```
 
-[After](https://www.bilibili.com/video/BV1Ff4y1t7Dj)
+下载并转换注释文件
 
----
+```bash
+Annotations2Sub -d 29-q7YnyUmY
+```
 
-如果效果不对, 欢迎 issue
+生成视频
 
-If it doesn't work right, feel free to issue
-
----
+```bash
+Annotations2Sub -g 29-q7YnyUmY
+```
