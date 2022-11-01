@@ -6,11 +6,25 @@ on:
   workflow_dispatch:
   push:
     branches: [master]
+    paths:
+      - "**/*.py"
+      - "src/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "setup.cfg"
+      - ".github/workflows/test.yml"
   pull_request:
     branches: [master]
+    paths:
+      - "**/*.py"
+      - "src/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "setup.cfg"
+      - ".github/workflows/test.yml"
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

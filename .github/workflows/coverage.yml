@@ -7,11 +7,25 @@ on:
   workflow_dispatch:
   push:
     branches: [master]
+    paths:
+      - "**/*.py"
+      - "src/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "setup.cfg"
+      - ".github/workflows/coverage.yml"
   pull_request:
     branches: [master]
+    paths:
+      - "**/*.py"
+      - "src/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "setup.cfg"
+      - ".github/workflows/coverage.yml"
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
