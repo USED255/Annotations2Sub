@@ -15,9 +15,23 @@ on:
   workflow_dispatch:
   push:
     branches: [ master ]
+    paths:
+      - "**/*.py"
+      - "src/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "setup.cfg"
+      - ".github/workflows/codeql-analysis.yml"
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ master ]
+    paths:
+      - "**/*.py"
+      - "src/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "setup.cfg"
+      - ".github/workflows/codeql-analysis.yml"
   schedule:
     - cron: '42 16 * * 3'
 
