@@ -3,6 +3,7 @@
 
 name: Test
 on:
+  workflow_dispatch:
   push:
     branches: [master]
   pull_request:
@@ -37,11 +38,11 @@ jobs:
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-      - name: Type check
-        run: mypy src/Annotations2Sub
+      - name: Lint with black
+        run: black . --check
 
-      - name: Format check
-        run: black --check src/Annotations2Sub
+      - name: Type check
+        run: mypy .
 
       - name: Test with pytest
         run: |
