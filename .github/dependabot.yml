@@ -10,3 +10,4 @@ updates:
     schedule:
       # Check for updates to GitHub Actions every weekday
       interval: "weekly"
+    open-pull-requests-limit: 100
