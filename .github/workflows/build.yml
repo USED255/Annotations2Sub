@@ -4,15 +4,6 @@ on:
   workflow_dispatch:
   push:
     tags: ["v*.*.*"]
-    paths:
-      - "pyproject.toml"
-      - "setup.cfg"
-      - ".github/workflows/build.yml"
-  pull_request:
-    paths:
-      - "pyproject.toml"
-      - "setup.cfg"
-      - ".github/workflows/build.yml"
 
 permissions:
   contents: read
@@ -43,7 +34,6 @@ jobs:
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
-        if: github.event_name == "tags"
         with:
           name: ${{github.ref_name}}
           path: dist
