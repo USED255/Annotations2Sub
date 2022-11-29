@@ -1,6 +1,3 @@
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-
 name: Coverage
 
 on:
@@ -10,26 +7,18 @@ on:
       - "**/*.py"
       - "src/**"
       - "tests/**"
-      - "pyproject.toml"
-      - "setup.cfg"
       - ".github/workflows/coverage.yml"
   pull_request:
     paths:
       - "**/*.py"
       - "src/**"
       - "tests/**"
-      - "pyproject.toml"
-      - "setup.cfg"
       - ".github/workflows/coverage.yml"
 
 jobs:
-  test:
-    name: Test
+  coverage:
+    name: Coverage
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.6"]
 
     steps:
       - name: Checkout repository
@@ -37,10 +26,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.6"
 
       - name: Install dependencies
         run: |
