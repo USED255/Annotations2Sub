@@ -35,4 +35,4 @@ jobs:
           pip install build
 
       - name: Build Package
-        run: python -m Build
+        run: python -m build
