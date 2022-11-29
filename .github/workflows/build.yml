@@ -39,4 +39,11 @@ jobs:
           pip install build
 
       - name: Build package
-        run: python -m build
+        run: python -m Build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        if: github.event_name == "tags"
+        with:
+          name: ${{github.ref_name}}
+          path: dist
