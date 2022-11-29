@@ -1,0 +1,38 @@
+name: Test Build
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "pyproject.toml"
+      - "setup.cfg"
+      - ".github/workflows/test-build.yml"
+  pull_request:
+    paths:
+      - "pyproject.toml"
+      - "setup.cfg"
+      - ".github/workflows/test-build.yml"
+
+jobs:
+  build:
+    name: Build Package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+
+      - name: Build Package
+        run: python -m Build
