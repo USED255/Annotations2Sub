@@ -36,7 +36,7 @@ def main():
     """程序入口"""
     parser = argparse.ArgumentParser(
         description=_(
-            "一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced SubStation Alpha)文件的脚本"
+            "下载和转换 Youtube 注释"
         )
     )
     parser.add_argument(
