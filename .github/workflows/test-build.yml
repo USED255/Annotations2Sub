@@ -3,6 +3,8 @@ name: Test Build
 on:
   workflow_dispatch:
   push:
+    branches:
+      - "master"
     paths:
       - "pyproject.toml"
       - "setup.cfg"
