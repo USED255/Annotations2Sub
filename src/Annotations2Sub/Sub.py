@@ -17,7 +17,7 @@ except ImportError:
     class a():
         def __getitem__(self,a):
             return a
-    eval("Literal = a()")
+    exec("Literal = a()")
 
 
 class Style:
