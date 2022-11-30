@@ -7,10 +7,12 @@
 import datetime
 
 # 本脚本函数参数和返回值执行类型检查
-from typing import List, Optional
+from typing import Any, List, Optional
 
 # 解析 XML 时使用的是 defusedxml, 所以这里很安全
 from xml.etree.ElementTree import Element
+
+import urllib.parse
 
 # 本脚本与之前相比最大的变化就是把脚本拆了
 from Annotations2Sub.Color import Alpha, Color
@@ -83,11 +85,17 @@ class Annotation(object):
         self.fgColor: Color = Color(red=0, green=0, blue=0)
         # 需要注意的是, textSize 是个 "百分比", 而在 title 样式中才是熟悉的 "字体大小"
         self.textSize: float = 3.15
-        # TODO
-        self.actionType: str = ""
+        # 以下四个是 annotationlib 的 action 结构
+        self.actionType: Literal["time", "url"] = ""
         self.actionUrl: str = ""
         self.actionUrlTarget: str = ""
         self.actionSeconds: datetime.datetime = datetime.datetime.strptime("0", "%S")
+        self.highlightId: str = ""
+        # 以下是按我喜好写的 action 结构, 作为补充
+        # 这俩是 actionValue 拆解后的结果
+        self.actionSourceVideoId: str = ""
+        """actionSourceVideoId 原来可以这样加注释 TODO"""
+        self.actionTargetVideoId: str = ""
 
 
 def Parse(tree: Element) -> List[Annotation]:
@@ -137,6 +145,12 @@ def Parse(tree: Element) -> List[Annotation]:
         # 这个是用来应付类型注释了, 我觉得在输入确定的环境里做类型检查没有必要
         if isinstance(s, str):
             return str(s)
+        raise TypeError
+
+    def MakeSureElement(e: Any) -> Element:
+        """确保输入的是Element"""
+        if isinstance(e, Element):
+            return e
         raise TypeError
 
     def ParseAnnotation(each: Element) -> Optional[Annotation]:
@@ -212,7 +226,7 @@ def Parse(tree: Element) -> List[Annotation]:
                 return None
 
         if annotation.style == "highlightText":
-            Start = "9:00:00.00"
+            Start = "0:00:00.00"
             End = "9:00:00.00"
 
         if len(Segment) != 0:
@@ -266,10 +280,11 @@ def Parse(tree: Element) -> List[Annotation]:
 
         # 如果没有 Appearance 下面这些都是有默认值的
         if Appearance != None:
-            bgAlpha = Appearance.get("bgAlpha")  # type: ignore
-            bgColor = Appearance.get("bgColor")  # type: ignore
-            fgColor = Appearance.get("fgColor")  # type: ignore
-            textSize = Appearance.get("textSize")  # type: ignore
+            Appearance = MakeSureElement(Appearance)
+            bgAlpha = Appearance.get("bgAlpha")
+            bgColor = Appearance.get("bgColor")
+            fgColor = Appearance.get("fgColor")
+            textSize = Appearance.get("textSize")
 
             if bgAlpha != None:
                 annotation.bgOpacity = ParseAnnotationAlpha(MakeSureStr(bgAlpha))
@@ -279,6 +294,41 @@ def Parse(tree: Element) -> List[Annotation]:
                 annotation.fgColor = ParseAnnotationColor(MakeSureStr(fgColor))
             if textSize != None:
                 annotation.textSize = float(MakeSureStr(textSize))
+
+        Action = each.find("action")
+        if Action != None:
+            Action = MakeSureElement(Action)
+            Url = Action.find("url")
+            if Url != None:
+                Url = MakeSureElement(Url)
+                value = Url.get("value")
+                target = Url.get("target")
+                value = MakeSureStr(value)
+                if value.startswith("https://www.youtube.com/"):
+                    u = urllib.parse.urlparse(value)
+                    params = urllib.parse.parse_qs(u.query)
+                    src_vid = params["src_vid"][0]
+                    v = params["v"][0]
+                    type = "url"
+                    if src_vid == v:
+                        fragment = u.fragment
+                        if fragment.startswith("#t="):
+                            timeString = fragment.split("#t=")[0]
+                            seconds = datetime.datetime.strptime(timeString, "%M:%S.%f")
+                            type = "time"
+                            annotation.actionSeconds = seconds
+            annotation.actionType = type  # type: ignore
+            annotation.actionUrl = MakeSureStr(value)
+            annotation.actionUrlTarget = MakeSureStr(target)
+            annotation.actionSourceVideoId = src_vid
+            annotation.actionTargetVideoId = v
+
+        Trigger = each.find("trigger")
+        if Trigger != None:
+            Trigger = MakeSureElement(Trigger)
+            Condition = Trigger.find("condition")
+            Condition = MakeSureElement(Condition)
+            annotation.highlightId = MakeSureStr(Condition.get("ref"))
 
         return annotation
 
