@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-10-05 20:10+0800\n"
-"PO-Revision-Date: 2022-10-05 20:11+0800\n"
+"POT-Creation-Date: 2022-11-30 11:44+0800\n"
+"PO-Revision-Date: 2022-11-30 11:44+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -42,19 +42,15 @@ msgstr "不支持 {} 样式 ({})"
 msgid "此脚本使用 Annotations2Sub 生成"
 msgstr "此脚本使用 Annotations2Sub 生成"
 
-#: cli.py:38
-msgid ""
-"一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced SubStation "
-"Alpha)文件的脚本"
-msgstr ""
-"一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced SubStation "
-"Alpha)文件的脚本"
+#: cli.py:39
+msgid "下载和转换 Youtube 注释"
+msgstr "下载和转换 Youtube 注释"
 
-#: cli.py:45
+#: cli.py:46
 msgid "文件 或 videoId"
 msgstr "文件 或 videoId"
 
-#: cli.py:47
+#: cli.py:48
 msgid ""
 "多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从Internet "
 "Archive 下载注释文件 Youtube 视频的 videoId"
@@ -62,61 +58,61 @@ msgstr ""
 "多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从Internet "
 "Archive 下载注释文件 Youtube 视频的 videoId"
 
-#: cli.py:54
+#: cli.py:55
 msgid "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
 msgstr "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
 
-#: cli.py:64
+#: cli.py:65
 msgid "变换分辨率X"
 msgstr "变换分辨率X"
 
-#: cli.py:72
+#: cli.py:73
 msgid "变换分辨率Y"
 msgstr "变换分辨率Y"
 
-#: cli.py:79 cli.py:81
+#: cli.py:80 cli.py:82
 msgid "Microsoft YaHei"
 msgstr "Microsoft YaHei"
 
-#: cli.py:82
+#: cli.py:83
 msgid "指定字体"
 msgstr "指定字体"
 
-#: cli.py:88
+#: cli.py:89
 msgid "尝试从 Internet Archive 下载注释文件"
 msgstr "尝试从 Internet Archive 下载注释文件"
 
-#: cli.py:96
+#: cli.py:97
 msgid "预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"
 msgstr "预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"
 
-#: cli.py:104
+#: cli.py:105
 msgid ""
 "生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例"
 msgstr ""
 "生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例"
 
-#: cli.py:110
+#: cli.py:111
 msgid "指定 invidious 实例(https://redirect.invidious.io/)"
 msgstr "指定 invidious 实例(https://redirect.invidious.io/)"
 
-#: cli.py:115
+#: cli.py:116
 msgid "输出至标准输出"
 msgstr "输出至标准输出"
 
-#: cli.py:118
+#: cli.py:119
 msgid "不覆盖文件"
 msgstr "不覆盖文件"
 
-#: cli.py:123
+#: cli.py:124
 msgid "不保留中间文件"
 msgstr "不保留中间文件"
 
-#: cli.py:131
+#: cli.py:132
 msgid "文件夹"
 msgstr "文件夹"
 
-#: cli.py:132
+#: cli.py:133
 msgid ""
 "指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文"
 "件同一目录"
@@ -124,54 +120,54 @@ msgstr ""
 "指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文"
 "件同一目录"
 
-#: cli.py:134
+#: cli.py:135
 msgid "文件"
 msgstr "文件"
 
-#: cli.py:134
+#: cli.py:135
 msgid "保存到此文件"
 msgstr "保存到此文件"
 
-#: cli.py:136
+#: cli.py:137
 msgid "跳过无效文件"
 msgstr "跳过无效文件"
 
-#: cli.py:144
+#: cli.py:145
 msgid "启用不稳定功能, 会出现一些问题"
 msgstr "启用不稳定功能, 会出现一些问题"
 
-#: cli.py:150
+#: cli.py:151
 msgid "显示版本号"
 msgstr "显示版本号"
 
-#: cli.py:151
+#: cli.py:152
 #, python-brace-format
 msgid "Annotations2Sub v{version}"
 msgstr "Annotations2Sub v{version}"
 
-#: cli.py:159
+#: cli.py:160
 msgid "显示更多些消息"
 msgstr "显示更多些消息"
 
-#: cli.py:174
+#: cli.py:175
 msgid "--output-to-stdout 与 --output-directory 选项相斥"
 msgstr "--output-to-stdout 与 --output-directory 选项相斥"
 
-#: cli.py:177
+#: cli.py:178
 msgid "--output-to-stdout 与 --no-overwrite-files 选项相斥"
 msgstr "--output-to-stdout 与 --no-overwrite-files 选项相斥"
 
-#: cli.py:180
+#: cli.py:181
 msgid "--output-to-stdout 与 --output 选项相斥"
 msgstr "--output-to-stdout 与 --output 选项相斥"
 
-#: cli.py:185
+#: cli.py:186
 msgid ""
 "--output-to-stdout 与 --preview-video 或 --generate-video 选项相斥"
 msgstr ""
 "--output-to-stdout 与 --preview-video 或 --generate-video 选项相斥"
 
-#: cli.py:195
+#: cli.py:196
 msgid ""
 "--no-keep-intermediate-files 必须和 --download-for-archive 或 --"
 "preview-video 或 --generate-video 选项使用"
@@ -179,27 +175,27 @@ msgstr ""
 "--no-keep-intermediate-files 必须和 --download-for-archive 或 --"
 "preview-video 或 --generate-video 选项使用"
 
-#: cli.py:203
+#: cli.py:204
 msgid "转换后文件的输出路径应该指定一个文件夹"
 msgstr "转换后文件的输出路径应该指定一个文件夹"
 
-#: cli.py:208
+#: cli.py:209
 msgid "--output 与 --output--directory 选项相斥"
 msgstr "--output 与 --output--directory 选项相斥"
 
-#: cli.py:211
+#: cli.py:212
 msgid "--output 只能处理一个文件"
 msgstr "--output 只能处理一个文件"
 
-#: cli.py:216
+#: cli.py:217
 msgid "请指定一个 invidious 实例"
 msgstr "请指定一个 invidious 实例"
 
-#: cli.py:217
+#: cli.py:218
 msgid "你可以在这里找一个: https://redirect.invidious.io/"
 msgstr "你可以在这里找一个: https://redirect.invidious.io/"
 
-#: cli.py:228
+#: cli.py:229
 msgid ""
 "--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使用 --"
 "transform-resolution-x --transform-resolution-y, 以确保效果."
@@ -207,57 +203,64 @@ msgstr ""
 "--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使用 --"
 "transform-resolution-x --transform-resolution-y, 以确保效果."
 
-#: cli.py:237
+#: cli.py:238
 msgid "您好像无法访问 Google 🤔"
 msgstr "您好像无法访问 Google 🤔"
 
-#: cli.py:246
+#: cli.py:247
 msgid "{} 不是一个有效的视频 ID"
 msgstr "{} 不是一个有效的视频 ID"
 
-#: cli.py:256
+#: cli.py:257
 msgid "下载 {}"
 msgstr "下载 {}"
 
-#: cli.py:259
+#: cli.py:260
 msgid "{} 可能没有 Annotation"
 msgstr "{} 可能没有 Annotation"
 
-#: cli.py:271
+#: cli.py:272
 msgid "{} 不是一个文件"
 msgstr "{} 不是一个文件"
 
-#: cli.py:279
+#: cli.py:280
 msgid "{} 不是一个有效的 XML 文件"
 msgstr "{} 不是一个有效的 XML 文件"
 
-#: cli.py:286
+#: cli.py:287
 msgid "{} 不是 Annotation 文件"
 msgstr "{} 不是 Annotation 文件"
 
-#: cli.py:292
+#: cli.py:293
 msgid "{} 没有 Annotation"
 msgstr "{} 没有 Annotation"
 
-#: cli.py:321
+#: cli.py:322
 msgid "{} 没有注释被转换"
 msgstr "{} 没有注释被转换"
 
-#: cli.py:338
+#: cli.py:339
 msgid "文件已存在, 您选择不覆盖文件, 跳过输出"
 msgstr "文件已存在, 您选择不覆盖文件, 跳过输出"
 
-#: cli.py:341 cli.py:362 cli.py:377
+#: cli.py:342 cli.py:363 cli.py:378
 msgid "删除 {}"
 msgstr "删除 {}"
 
-#: cli.py:345
+#: cli.py:346
 msgid "保存于: {}"
 msgstr "保存于: {}"
 
-#: tools.py:65
+#: tools.py:71
 msgid "获取 {}"
 msgstr "获取 {}"
+
+#~ msgid ""
+#~ "一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced "
+#~ "SubStation Alpha)文件的脚本"
+#~ msgstr ""
+#~ "一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced "
+#~ "SubStation Alpha)文件的脚本"
 
 #~ msgid "指定 invidious 实例(域名)"
 #~ msgstr "指定 invidious 实例(域名)"
