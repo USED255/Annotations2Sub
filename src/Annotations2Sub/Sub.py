@@ -14,7 +14,10 @@ from Annotations2Sub.internationalization import _
 try:
     from typing import Literal  # type: ignore
 except ImportError:
-    from typing import Any as Literal  # type: ignore
+    class a():
+        def __getitem__(self,a):
+            return a
+    eval("Literal = a()")
 
 
 class Style:
