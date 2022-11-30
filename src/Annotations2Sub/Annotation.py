@@ -83,11 +83,11 @@ class Annotation(object):
         self.fgColor: Color = Color(red=0, green=0, blue=0)
         # 需要注意的是, textSize 是个 "百分比", 而在 title 样式中才是熟悉的 "字体大小"
         self.textSize: float = 3.15
-        # 这里相比 annotationlib 少了
-        #     actionType
-        #     actionUrl
-        #     actionUrlTarget
-        #     actionSeconds
+        # TODO
+        self.actionType: str = ""
+        self.actionUrl: str = ""
+        self.actionUrlTarget: str = ""
+        self.actionSeconds: datetime.datetime = datetime.datetime.strptime("0", "%S")
 
 
 def Parse(tree: Element) -> List[Annotation]:
