@@ -312,13 +312,13 @@ def Parse(tree: Element) -> List[Annotation]:
                     params = urllib.parse.parse_qs(u.query)
                     src_vid = params["src_vid"][0]
                     v = params["v"][0]
-                    type = "url"
+                    _type = "url"
                     if src_vid == v:
                         fragment = u.fragment
                         if fragment.startswith("t="):
                             timeString = fragment.split("t=")[1]
                             seconds = datetime.datetime.strptime(timeString, "%Ss")
-                            type = "time"
+                            _type = "time"
                             annotation.actionSeconds = seconds
             annotation.actionType = type  # type: ignore
             annotation.actionUrl = MakeSureStr(value)
