@@ -312,9 +312,9 @@ def Parse(tree: Element) -> List[Annotation]:
                     type = "url"
                     if src_vid == v:
                         fragment = u.fragment
-                        if fragment.startswith("#t="):
-                            timeString = fragment.split("#t=")[0]
-                            seconds = datetime.datetime.strptime(timeString, "%M:%S.%f")
+                        if fragment.startswith("t="):
+                            timeString = fragment.split("t=")[1]
+                            seconds = datetime.datetime.strptime(timeString, "%Ss")
                             type = "time"
                             annotation.actionSeconds = seconds
             annotation.actionType = type  # type: ignore
