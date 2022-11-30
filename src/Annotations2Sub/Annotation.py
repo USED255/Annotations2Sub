@@ -25,7 +25,7 @@ from Annotations2Sub.tools import Stderr
 try:
     from typing import Literal  # type: ignore
 except ImportError:
-    from typing import Any as Literal
+    from typing import Any as Literal  # type: ignore
 
 
 class Annotation(object):

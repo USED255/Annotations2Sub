@@ -14,7 +14,7 @@ from Annotations2Sub.internationalization import _
 try:
     from typing import Literal  # type: ignore
 except ImportError:
-    from typing import Any as Literal
+    from typing import Any as Literal  # type: ignore
 
 
 class Style:
