@@ -12,4 +12,4 @@ def test_Draw_Dump():
     assert draw.Dump() == "m 0 0 l 100 100 "
     with pytest.raises(TypeError):
         draw = Draw()
-        draw.Add(1)
+        draw.Add(1)  # type: ignore

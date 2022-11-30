@@ -8,6 +8,7 @@
         "BBGGRR",
         "cela",
         "ciel",
+        "Codacy",
         "codecov",
         "codeql",
         "Colour",
@@ -28,6 +29,7 @@
         "patrie",
         "pypa",
         "PYPI",
+        "pyproject",
         "pytest",
         "rien",
         "setuptools",
@@ -38,5 +40,6 @@
         "Uuytq",
         "vsfilter",
         "youtubeannotations"
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "basic"
 }

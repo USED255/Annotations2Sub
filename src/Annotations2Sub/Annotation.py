@@ -45,18 +45,19 @@ class Annotation(object):
     def __init__(self):
         # 这里仅列出了需要的结构
         # 如 highlightId action 等没有列出
-        # SSA(Sub Station Alpha)(ASS)(Advanced SubStation Alpha) 并不能实现交互, 所以处理 action 没有意义
+        # SSA(Sub Station Alpha)(ASS)(Advanced SubStation Alpha) 并不能实现交互,
+        # 所以处理 action 没有意义
         # 因为 ASS 不太好看, 所以注释中用 SSA 代替
         self.id: str = ""
         # 这里仅列出需要的 type 和 style, 且 Literal 仅做提醒作用
-        self.type: Literal["text", "highlight", "branding"] = ""
+        self.type: Literal["text", "highlight", "branding"] = "text"
         # 我现在就遇到这四个样式, 不知道还有什么样式
         self.style: Literal[
             "popup",
             "title",
             "speech",
             "highlightText",
-        ] = ""
+        ] = "popup"
         self.text: str = ""
         # 经过上次复杂的时间字符串转换教训, 这次使用了 datetime.datetime
         # 但是其实 Annotation 与 SSA 的时间字符串可以通用
@@ -86,7 +87,7 @@ class Annotation(object):
         # 需要注意的是, textSize 是个 "百分比", 而在 title 样式中才是熟悉的 "字体大小"
         self.textSize: float = 3.15
         # 以下四个是 annotationlib 的 action 结构
-        self.actionType: Literal["time", "url"] = ""
+        self.actionType: Literal["time", "url"] = "time"
         self.actionUrl: str = ""
         self.actionUrlTarget: str = ""
         self.actionSeconds: datetime.datetime = datetime.datetime.strptime("0", "%S")
@@ -225,6 +226,7 @@ def Parse(tree: Element) -> List[Annotation]:
                     Stderr(_("{} 没有时间, 跳过").format(annotation.id))
                 return None
 
+        Start = End = ""
         if annotation.style == "highlightText":
             Start = "0:00:00.00"
             End = "9:00:00.00"
@@ -295,14 +297,15 @@ def Parse(tree: Element) -> List[Annotation]:
             if textSize != None:
                 annotation.textSize = float(MakeSureStr(textSize))
 
+        value = target = src_vid = v = ""
         Action = each.find("action")
         if Action != None:
             Action = MakeSureElement(Action)
             Url = Action.find("url")
             if Url != None:
                 Url = MakeSureElement(Url)
-                value = Url.get("value")
-                target = Url.get("target")
+                value = MakeSureStr(Url.get("value"))
+                target = MakeSureStr(Url.get("target"))
                 value = MakeSureStr(value)
                 if value.startswith("https://www.youtube.com/"):
                     u = urllib.parse.urlparse(value)
