@@ -13,8 +13,8 @@ from Annotations2Sub.internationalization import _
 # Python3.6, 3.7 的 typing 没有 Literal
 try:
     from typing import Literal  # type: ignore
-except:
-    pass
+except ImportError:
+    from typing import Any as Literal
 
 
 class Style:
