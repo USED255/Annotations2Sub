@@ -1,2 +1,9 @@
 [licenses]
 accepted = ["MIT", "MSC", "BSD", "GPL"]
+
+[dependencies]
+ignored=[]
+
+[behavior]
+run_only_on_dependency_modification = true
+do_not_block_pr = false
