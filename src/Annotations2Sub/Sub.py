@@ -14,9 +14,11 @@ from Annotations2Sub.internationalization import _
 try:
     from typing import Literal  # type: ignore
 except ImportError:
-    class a():
-        def __getitem__(self,a):
+
+    class a:
+        def __getitem__(self, a):
             return a
+
     exec("Literal = a()")
 
 
