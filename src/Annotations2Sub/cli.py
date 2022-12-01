@@ -158,7 +158,7 @@ def main():
 
     args = parser.parse_args()
 
-    filePaths = []
+    annotationFiles = []
 
     if args.unstable:
         Flags.unstable = True
@@ -236,7 +236,7 @@ def main():
         _thread.start_new_thread(CheckNetwork, ())
 
         videoIds = []
-        queue: list[str] = []
+        annotationFileQueue: list[str] = []
         for videoId in args.queue:
             # 先查一遍
             if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
@@ -244,9 +244,9 @@ def main():
                 exit(1)
             videoIds.append(videoId)
         for videoId in videoIds:
-            filePath = f"{videoId}.xml"
+            annotationFile = f"{videoId}.xml"
             if args.output_directory is not None:
-                filePath = os.path.join(args.output_directory, filePath)
+                annotationFile = os.path.join(args.output_directory, annotationFile)
             # 为了显示个 "下载 ", 我把下载从 AnnotationsForArchive 里拆出来了
             # 之前就直接下载了, 但是我还是更喜欢输出确定且可控
             url = AnnotationsForArchive(videoId)
@@ -255,57 +255,57 @@ def main():
             if string == "":
                 Stderr(YellowText(_("{} 可能没有 Annotation").format(videoId)))
                 continue
-            with open(filePath, "w", encoding="utf-8") as f:
+            with open(annotationFile, "w", encoding="utf-8") as f:
                 f.write(string)
-            queue.append(filePath)
+            annotationFileQueue.append(annotationFile)
 
     if not args.download_for_archive:
-        queue = args.queue
+        annotationFileQueue = args.queue
 
-    filePaths: list[str] = []
-    for filePath in queue:  # type: ignore
+    annotationFiles: list[str] = []
+    for annotationFile in annotationFileQueue:  # type: ignore
         # 先看看是不是文件
-        if os.path.isfile(filePath) is False:
-            Stderr(RedText(_("{} 不是一个文件").format(filePath)))
+        if os.path.isfile(annotationFile) is False:
+            Stderr(RedText(_("{} 不是一个文件").format(annotationFile)))
             if args.skip_invalid_files:
                 continue
             exit(1)
         # 再看看有没有文件无效的
         try:
-            tree = defusedxml.ElementTree.parse(filePath)
+            tree = defusedxml.ElementTree.parse(annotationFile)
         except:
-            Stderr(RedText(_("{} 不是一个有效的 XML 文件").format(filePath)))
+            Stderr(RedText(_("{} 不是一个有效的 XML 文件").format(annotationFile)))
             Stderr(traceback.format_exc())
             if args.skip_invalid_files:
                 continue
             exit(1)
         # 再看看有没有不是 Annotation 文件的
         if tree.find("annotations") == None:
-            Stderr(RedText(_("{} 不是 Annotation 文件").format(filePath)))
+            Stderr(RedText(_("{} 不是 Annotation 文件").format(annotationFile)))
             if args.skip_invalid_files:
                 continue
             exit(1)
         # 最后看看是不是空的
         if len(tree.find("annotations").findall("annotation")) == 0:
-            Stderr(RedText(_("{} 没有 Annotation").format(filePath)))
+            Stderr(RedText(_("{} 没有 Annotation").format(annotationFile)))
             if args.skip_invalid_files:
                 continue
             exit(1)
-        filePaths.append(filePath)
+        annotationFiles.append(annotationFile)
 
-    outputs: list[str] = []
-    for filePath in filePaths:
-        output = filePath + ".ass"
+    subFiles: list[str] = []
+    for annotationFile in annotationFiles:
+        subFile = annotationFile + ".ass"
         if args.output_directory is not None:
-            fileName = os.path.basename(filePath)
+            fileName = os.path.basename(annotationFile)
             fileName = fileName + ".ass"
-            output = os.path.join(args.output_directory, fileName)
+            subFile = os.path.join(args.output_directory, fileName)
         if args.output is not None:
-            output = args.output
+            subFile = args.output
 
         # 从这里开始就是 __init__.py 开头那个流程图
         # 其实这才是核心功能, 其他的都是有的没的
-        with open(filePath, "r", encoding="utf-8") as f:
+        with open(annotationFile, "r", encoding="utf-8") as f:
             string = f.read()
         tree = defusedxml.ElementTree.fromstring(string)
         annotations = Parse(tree)
@@ -316,7 +316,7 @@ def main():
             args.transform_resolution_y,
         )
         if events == []:
-            Stderr(YellowText(_("{} 没有注释被转换").format(filePath)))
+            Stderr(YellowText(_("{} 没有注释被转换").format(annotationFile)))
         # Annotation 是无序的
         # 按时间重新排列字幕(事件), 主要是为了人类可读
         events.sort(key=lambda event: event.Start)
@@ -324,31 +324,30 @@ def main():
         sub.events.extend(events)
         sub.info["PlayResX"] = args.transform_resolution_x
         sub.info["PlayResY"] = args.transform_resolution_y
-        sub.info["Title"] = filePath
+        sub.info["Title"] = annotationFile
         sub.styles["Default"].Fontname = args.font
         subString = sub.Dump()
         if args.output_to_stdout:
-            output = ""
+            subFile = ""
             print(subString, file=sys.stdout)
         if args.no_overwrite_files:
-            if os.path.exists(output):
-                output = ""
+            if os.path.exists(subFile):
+                subFile = ""
                 Stderr(YellowText(_("文件已存在, 您选择不覆盖文件, 跳过输出")))
         if args.no_keep_intermediate_files:
-            os.remove(filePath)
-            Stderr(_("删除 {}").format(filePath))
-        if output != "":
-            with open(output, "w", encoding="utf-8") as f:
+            os.remove(annotationFile)
+            Stderr(_("删除 {}").format(annotationFile))
+        if subFile != "":
+            with open(subFile, "w", encoding="utf-8") as f:
                 f.write(subString)
-            Stderr(_("保存于: {}").format(output))
-            # 为了下面而准备
-            outputs.append(output)
+            Stderr(_("保存于: {}").format(subFile))
+            subFiles.append(subFile)
 
     if args.preview_video:
-        for output in outputs:
+        for subFile in subFiles:
             # 从 Invidious 获取视频流和音频流, 并塞给 mpv, FFmpeg
             video, audio = VideoForInvidious(videoId, args.invidious_instances)
-            cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{output}"'
+            cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subFile}"'
             if Flags.verbose:
                 Stderr(cmd)
             exit_code = os.system(cmd)
@@ -356,14 +355,13 @@ def main():
                 if exit_code != 0:
                     Stderr(YellowText("exit with {}".format(exit_code)))
             if args.no_keep_intermediate_files:
-                os.remove(output)
-                Stderr(_("删除 {}").format(output))
+                os.remove(subFile)
+                Stderr(_("删除 {}").format(subFile))
 
     if args.generate_video:
-        for output in outputs:
-            # 同理
+        for subFile in subFiles:
             video, audio = VideoForInvidious(videoId, args.invidious_instances)
-            cmd = rf'ffmpeg -i "{video}" -i "{audio}" -vf "ass={output}" {output}.mp4'
+            cmd = rf'ffmpeg -i "{video}" -i "{audio}" -vf "ass={subFile}" {subFile}.mp4'
             if Flags.verbose:
                 Stderr(cmd)
             exit_code = os.system(cmd)
@@ -371,5 +369,5 @@ def main():
                 if exit_code != 0:
                     Stderr(YellowText("exit with {}".format(exit_code)))
             if args.no_keep_intermediate_files:
-                os.remove(output)
-                Stderr(_("删除 {}").format(output))
+                os.remove(subFile)
+                Stderr(_("删除 {}").format(subFile))
