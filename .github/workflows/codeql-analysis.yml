@@ -14,14 +14,8 @@ name: "CodeQL"
 on:
   workflow_dispatch:
   push:
-    paths:
-      - "**/*.py"
-      - "src/**"
-      - "tests/**"
-      - "pyproject.toml"
-      - "setup.cfg"
-      - ".github/workflows/codeql-analysis.yml"
-  pull_request:
+    branches:
+      - "master"
     paths:
       - "**/*.py"
       - "src/**"

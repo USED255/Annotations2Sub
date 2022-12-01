@@ -13,8 +13,13 @@ from Annotations2Sub.internationalization import _
 # Python3.6, 3.7 的 typing 没有 Literal
 try:
     from typing import Literal  # type: ignore
-except:
-    pass
+except ImportError:
+
+    class a:
+        def __getitem__(self, a):
+            return a
+
+    exec("Literal = a()")
 
 
 class Style:
@@ -223,9 +228,9 @@ class Sub:
 class DrawCommand:
     """单个绘图指令"""
 
-    def __init__(self, x=0, y=0, command="m"):
-        self.x: int = x
-        self.y: int = y
+    def __init__(self, x: float = 0, y: float = 0, command: Literal["m", "l"] = "m"):
+        self.x: float = x
+        self.y: float = y
         # 这里仅列出需要的命令
         # m, n, l, b, s, p, c
         self.command: Literal["m", "l"] = command

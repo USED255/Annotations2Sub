@@ -7,10 +7,12 @@
 import datetime
 
 # 本脚本函数参数和返回值执行类型检查
-from typing import List, Optional
+from typing import Any, List, Optional
 
 # 解析 XML 时使用的是 defusedxml, 所以这里很安全
 from xml.etree.ElementTree import Element
+
+import urllib.parse
 
 # 本脚本与之前相比最大的变化就是把脚本拆了
 from Annotations2Sub.Color import Alpha, Color
@@ -22,7 +24,7 @@ from Annotations2Sub.tools import Stderr
 # Python3.6, 3.7 的 typing 没有 Literal
 try:
     from typing import Literal  # type: ignore
-except:
+except ImportError:
     pass
 
 
@@ -43,18 +45,19 @@ class Annotation(object):
     def __init__(self):
         # 这里仅列出了需要的结构
         # 如 highlightId action 等没有列出
-        # SSA(Sub Station Alpha)(ASS)(Advanced SubStation Alpha) 并不能实现交互, 所以处理 action 没有意义
+        # SSA(Sub Station Alpha)(ASS)(Advanced SubStation Alpha) 并不能实现交互,
+        # 所以处理 action 没有意义
         # 因为 ASS 不太好看, 所以注释中用 SSA 代替
         self.id: str = ""
         # 这里仅列出需要的 type 和 style, 且 Literal 仅做提醒作用
-        self.type: Literal["text", "highlight", "branding"] = ""
+        self.type: Literal["text", "highlight", "branding"] = "text"
         # 我现在就遇到这四个样式, 不知道还有什么样式
         self.style: Literal[
             "popup",
             "title",
             "speech",
             "highlightText",
-        ] = ""
+        ] = "popup"
         self.text: str = ""
         # 经过上次复杂的时间字符串转换教训, 这次使用了 datetime.datetime
         # 但是其实 Annotation 与 SSA 的时间字符串可以通用
@@ -83,11 +86,17 @@ class Annotation(object):
         self.fgColor: Color = Color(red=0, green=0, blue=0)
         # 需要注意的是, textSize 是个 "百分比", 而在 title 样式中才是熟悉的 "字体大小"
         self.textSize: float = 3.15
-        # 这里相比 annotationlib 少了
-        #     actionType
-        #     actionUrl
-        #     actionUrlTarget
-        #     actionSeconds
+        # 以下四个是 annotationlib 的 action 结构
+        self.actionType: Literal["time", "url"] = "time"
+        self.actionUrl: str = ""
+        self.actionUrlTarget: str = ""
+        self.actionSeconds: datetime.datetime = datetime.datetime.strptime("0", "%S")
+        self.highlightId: str = ""
+        # 以下是按我喜好写的 action 结构, 作为补充
+        # 这俩是 actionValue 拆解后的结果
+        self.actionSourceVideoId: str = ""
+        """actionSourceVideoId 原来可以这样加注释 TODO"""
+        self.actionTargetVideoId: str = ""
 
 
 def Parse(tree: Element) -> List[Annotation]:
@@ -137,6 +146,12 @@ def Parse(tree: Element) -> List[Annotation]:
         # 这个是用来应付类型注释了, 我觉得在输入确定的环境里做类型检查没有必要
         if isinstance(s, str):
             return str(s)
+        raise TypeError
+
+    def MakeSureElement(e: Any) -> Element:
+        """确保输入的是Element"""
+        if isinstance(e, Element):
+            return e
         raise TypeError
 
     def ParseAnnotation(each: Element) -> Optional[Annotation]:
@@ -211,8 +226,9 @@ def Parse(tree: Element) -> List[Annotation]:
                     Stderr(_("{} 没有时间, 跳过").format(annotation.id))
                 return None
 
+        Start = End = ""
         if annotation.style == "highlightText":
-            Start = "9:00:00.00"
+            Start = "0:00:00.00"
             End = "9:00:00.00"
 
         if len(Segment) != 0:
@@ -266,10 +282,11 @@ def Parse(tree: Element) -> List[Annotation]:
 
         # 如果没有 Appearance 下面这些都是有默认值的
         if Appearance != None:
-            bgAlpha = Appearance.get("bgAlpha")  # type: ignore
-            bgColor = Appearance.get("bgColor")  # type: ignore
-            fgColor = Appearance.get("fgColor")  # type: ignore
-            textSize = Appearance.get("textSize")  # type: ignore
+            Appearance = MakeSureElement(Appearance)
+            bgAlpha = Appearance.get("bgAlpha")
+            bgColor = Appearance.get("bgColor")
+            fgColor = Appearance.get("fgColor")
+            textSize = Appearance.get("textSize")
 
             if bgAlpha != None:
                 annotation.bgOpacity = ParseAnnotationAlpha(MakeSureStr(bgAlpha))
@@ -279,6 +296,42 @@ def Parse(tree: Element) -> List[Annotation]:
                 annotation.fgColor = ParseAnnotationColor(MakeSureStr(fgColor))
             if textSize != None:
                 annotation.textSize = float(MakeSureStr(textSize))
+
+        value = target = src_vid = v = ""
+        Action = each.find("action")
+        if Action != None:
+            Action = MakeSureElement(Action)
+            Url = Action.find("url")
+            if Url != None:
+                Url = MakeSureElement(Url)
+                value = MakeSureStr(Url.get("value"))
+                target = MakeSureStr(Url.get("target"))
+                value = MakeSureStr(value)
+                if value.startswith("https://www.youtube.com/"):
+                    u = urllib.parse.urlparse(value)
+                    params = urllib.parse.parse_qs(u.query)
+                    src_vid = params["src_vid"][0]
+                    v = params["v"][0]
+                    _type = "url"
+                    if src_vid == v:
+                        fragment = u.fragment
+                        if fragment.startswith("t="):
+                            timeString = fragment.split("t=")[1]
+                            seconds = datetime.datetime.strptime(timeString, "%Ss")
+                            _type = "time"
+                            annotation.actionSeconds = seconds
+            annotation.actionType = type  # type: ignore
+            annotation.actionUrl = MakeSureStr(value)
+            annotation.actionUrlTarget = MakeSureStr(target)
+            annotation.actionSourceVideoId = src_vid
+            annotation.actionTargetVideoId = v
+
+        Trigger = each.find("trigger")
+        if Trigger != None:
+            Trigger = MakeSureElement(Trigger)
+            Condition = Trigger.find("condition")
+            Condition = MakeSureElement(Condition)
+            annotation.highlightId = MakeSureStr(Condition.get("ref"))
 
         return annotation
 

@@ -57,7 +57,7 @@ def main():
         "--transform-resolution-x",
         default=100,
         type=int,
-        metavar=100,
+        metavar="100",
         help=_("变换分辨率X"),
     )
     parser.add_argument(
@@ -65,7 +65,7 @@ def main():
         "--transform-resolution-y",
         default=100,
         type=int,
-        metavar=100,
+        metavar="100",
         help=_("变换分辨率Y"),
     )
 
@@ -236,7 +236,7 @@ def main():
         _thread.start_new_thread(CheckNetwork, ())
 
         videoIds = []
-        queue = []
+        queue: list[str] = []
         for videoId in args.queue:
             # 先查一遍
             if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
@@ -262,7 +262,8 @@ def main():
     if not args.download_for_archive:
         queue = args.queue
 
-    for filePath in queue:
+    filePaths: list[str] = []
+    for filePath in queue:  # type: ignore
         # 先看看是不是文件
         if os.path.isfile(filePath) is False:
             Stderr(RedText(_("{} 不是一个文件").format(filePath)))
@@ -292,7 +293,7 @@ def main():
             exit(1)
         filePaths.append(filePath)
 
-    outputs = []
+    outputs: list[str] = []
     for filePath in filePaths:
         output = filePath + ".ass"
         if args.output_directory is not None:
@@ -327,16 +328,16 @@ def main():
         sub.styles["Default"].Fontname = args.font
         subString = sub.Dump()
         if args.output_to_stdout:
-            output = None
+            output = ""
             print(subString, file=sys.stdout)
         if args.no_overwrite_files:
             if os.path.exists(output):
-                output = None
+                output = ""
                 Stderr(YellowText(_("文件已存在, 您选择不覆盖文件, 跳过输出")))
         if args.no_keep_intermediate_files:
             os.remove(filePath)
             Stderr(_("删除 {}").format(filePath))
-        if output:
+        if output != "":
             with open(output, "w", encoding="utf-8") as f:
                 f.write(subString)
             Stderr(_("保存于: {}").format(output))

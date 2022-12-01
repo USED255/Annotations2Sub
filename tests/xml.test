@@ -111,6 +111,47 @@
             </segment>
         </annotation>
 
+        <annotation id="annotation_493976" type="text" style="highlightText" logable="false" itct="">
+            <TEXT>.........................no..............</TEXT>
+            <segment spaceRelative="annotation_117545">
+                <movingRegion type="rect">
+                    <rectRegion x="-30.83300" y="52.22200" w="82.29200" h="11.66700" t="4:56.700" />
+                    <rectRegion x="-30.83300" y="52.22200" w="82.29200" h="11.66700" t="4:56.700" />
+                </movingRegion>
+            </segment>
+            <appearance bgAlpha="0" textSize="3.6107" highlightFontColor="15921906" />
+            <trigger>
+                <condition ref="annotation_117545" state="rollOver" />
+            </trigger>
+        </annotation>
+
+        <annotation id="annotation_487437" type="text" style="popup" log_data="xble=1&amp;link=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DsWJcfSAbI50&amp;a-v=29-q7YnyUmY&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-type=1&amp;a-id=annotation_487437&amp;l-class=1" itct="">
+            <TEXT>My face when Teto never won a match during her stint on Pokemon</TEXT>
+            <segment>
+                <movingRegion type="rect">
+                    <rectRegion x="5.62500" y="34.44400" w="56.87500" h="11.66700" t="0:02:59.5" />
+                    <rectRegion x="5.62500" y="34.44400" w="56.87500" h="11.66700" t="0:06:16.7" />
+                </movingRegion>
+            </segment>
+            <appearance bgAlpha="0.800000011921" bgColor="407700" fgColor="16777215" textSize="3.6107" effects=""></appearance>
+            <action type="openUrl" trigger="click">
+                <url target="current" value="https://www.youtube.com/watch?annotation_id=annotation_487437&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;feature=iv&amp;src_vid=29-q7YnyUmY&amp;v=sWJcfSAbI50" link_class="1" />
+            </action>
+
+        </annotation>        <annotation id="8" type="text" style="popup" log_data="xble=1&amp;link=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DsWJcfSAbI50&amp;a-v=29-q7YnyUmY&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-type=1&amp;a-id=annotation_487437&amp;l-class=1" itct="">
+            <TEXT>My face when Teto never won a match during her stint on Pokemon</TEXT>
+            <segment>
+                <movingRegion type="rect">
+                    <rectRegion x="5.62500" y="34.44400" w="56.87500" h="11.66700" t="0:02:59.5" />
+                    <rectRegion x="5.62500" y="34.44400" w="56.87500" h="11.66700" t="0:06:16.7" />
+                </movingRegion>
+            </segment>
+            <appearance bgAlpha="0.800000011921" bgColor="407700" fgColor="16777215" textSize="3.6107" effects=""></appearance>
+            <action type="openUrl" trigger="click">
+                <url target="current" value="https://www.youtube.com/watch?annotation_id=annotation_487437&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;feature=iv&amp;src_vid=29-q7YnyUmY&amp;v=29-q7YnyUmY#t=38s" link_class="1" />
+            </action>
+        </annotation>
+
     </annotations>
 
 </document>

@@ -65,7 +65,8 @@ def Convert(
             tag += r"\an7" + r"\pos({},{})".format(x + 1, y + 1)
             # "\fs<字体尺寸>"
             # "<字体尺寸> 是一个数字，指定了字体的点的尺寸。"
-            # "注意，这里的字体尺寸并不是字号的大小，\fs20 并不是字体大小（font-size）为 20px，而是指其行高（line-height）为 20px，主要归咎于 VSFilter 使用的 Windows GDI 的字体接口。"
+            # "注意，这里的字体尺寸并不是字号的大小，\fs20 并不是字体大小（font-size）为 20px，
+            # 而是指其行高（line-height）为 20px，主要归咎于 VSFilter 使用的 Windows GDI 的字体接口。"
             # 我没在意这个, 直接用得了
             # 反正效果也没咋差
             tag += r"\fs" + str(textSize)
