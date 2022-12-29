@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import pytest
+
 from Annotations2Sub.Color import Alpha, Color
 
 

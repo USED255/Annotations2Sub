@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import pytest
+
 from Annotations2Sub.Sub import Draw, DrawCommand
 
 

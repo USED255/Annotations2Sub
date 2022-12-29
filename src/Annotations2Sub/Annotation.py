@@ -5,6 +5,7 @@
 
 # 用于处理定时
 import datetime
+import urllib.parse
 
 # 本脚本函数参数和返回值执行类型检查
 from typing import Any, List, Optional
@@ -12,12 +13,10 @@ from typing import Any, List, Optional
 # 解析 XML 时使用的是 defusedxml, 所以这里很安全
 from xml.etree.ElementTree import Element
 
-import urllib.parse
-
 # 本脚本与之前相比最大的变化就是把脚本拆了
 from Annotations2Sub.Color import Alpha, Color
-from Annotations2Sub.internationalization import _
 from Annotations2Sub.flag import Flags
+from Annotations2Sub.internationalization import _
 from Annotations2Sub.tools import Stderr
 
 # 兼容 Python3.6, 3.7

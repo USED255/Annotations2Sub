@@ -12,10 +12,11 @@ from typing import List
 # 但是单个脚本还是有用的所以我会将这些代码再复制一遍成一个单个脚本
 from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
-from Annotations2Sub.Sub import Draw, Event, DrawCommand
-from Annotations2Sub.internationalization import _
 from Annotations2Sub.flag import Flags
+from Annotations2Sub.internationalization import _
+from Annotations2Sub.Sub import Draw, DrawCommand, Event
 from Annotations2Sub.tools import Stderr
+
 
 # 这些代码实际上来自于
 # https://github.com/USED255/Annotations2Sub/blob/f20f9fe90e0e63b005e8120085539817b49c5296/Annotations2Sub.py
@@ -279,7 +280,7 @@ def Convert(
             events.append(popup_box(copy.copy(event)))
         elif each.style == "title":
             events.append(title(copy.copy(event)))
-        elif each.style == "highlightText" and Flags.unstable:
+        elif each.style == "highlightText":
             # 我还没遇到过 highlightText, 所以实现很可能不对
             events.append(highlightText_text(copy.copy(event)))
             events.append(highlightText_box(copy.copy(event)))

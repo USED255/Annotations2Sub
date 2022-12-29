@@ -62,7 +62,6 @@ optional arguments:
                         Save to this file
   -S, --skip-invalid-files
                         Skip invalid files
-  -u, --unstable        Enabling Unstable function, can cause some problems
   -v, --version         Show version
   -V, --verbose         Show more messages
 ```

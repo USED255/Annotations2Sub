@@ -3,13 +3,13 @@
 
 """程序入口"""
 
+import _thread
 import argparse
 import os
 import re
 import sys
 import traceback
 import urllib.request
-import _thread
 
 # 我觉得在输入确定的环境下用不着这玩意
 # 不过打包到了 PyPI 也不用像以前那些忌惮第三方库了
@@ -17,18 +17,18 @@ import _thread
 import defusedxml.ElementTree  # type: ignore
 
 from Annotations2Sub import version
-from Annotations2Sub.flag import Flags
 from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
-from Annotations2Sub.Sub import Sub
+from Annotations2Sub.flag import Flags
 from Annotations2Sub.internationalization import _
+from Annotations2Sub.Sub import Sub
 from Annotations2Sub.tools import (
     AnnotationsForArchive,
     CheckUrl,
     RedText,
+    Stderr,
     VideoForInvidious,
     YellowText,
-    Stderr,
 )
 
 
@@ -40,9 +40,7 @@ def main():
         type=str,
         nargs="+",
         metavar=_("文件 或 videoId"),
-        help=_(
-            "多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从Internet Archive 下载注释文件 Youtube 视频的 videoId"
-        ),
+        help=_("多个需要转换的文件的文件路径或视频ID"),
     )
     parser.add_argument(
         "-l",
@@ -120,25 +118,16 @@ def main():
         "-N", "--no-keep-intermediate-files", action="store_true", help=_("不保留中间文件")
     )
 
-    # 其实我觉得这个选项应该没啥用
     parser.add_argument(
         "-o",
         "--output-directory",
         type=str,
-        metavar=_("文件夹"),
-        help=_("指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目录"),
+        metavar=_("目录"),
+        help=_("指定转换后文件的输出目录"),
     )
     parser.add_argument("-O", "--output", type=str, metavar=_("文件"), help=_("保存到此文件"))
     parser.add_argument(
         "-S", "--skip-invalid-files", action="store_true", help=_("跳过无效文件")
-    )
-
-    # 可能是用来甩锅用的
-    parser.add_argument(
-        "-u",
-        "--unstable",
-        action="store_true",
-        help=_("启用不稳定功能, 会出现一些问题"),
     )
     parser.add_argument(
         "-v",
@@ -148,38 +137,37 @@ def main():
         version=_("Annotations2Sub v{version}").format(version=version),
     )
 
-    # 这个好像不是用来调试用的
+    # 这个不是用来调试用的
     parser.add_argument(
         "-V",
         "--verbose",
         action="store_true",
-        help=_("显示更多些消息"),
+        help=_("显示更多消息"),
     )
 
     args = parser.parse_args()
 
     annotationFiles = []
 
-    if args.unstable:
-        Flags.unstable = True
-
     if args.verbose:
         Flags.verbose = True
 
     if args.output_to_stdout:
         if args.output_directory is not None:
-            Stderr(RedText(_("--output-to-stdout 与 --output-directory 选项相斥")))
+            Stderr(RedText(_("--output-to-stdout 不能与 --output-directory 选项同时使用")))
             exit(1)
         if args.no_overwrite_files:
-            Stderr(RedText(_("--output-to-stdout 与 --no-overwrite-files 选项相斥")))
+            Stderr(RedText(_("--output-to-stdout 不能与 --no-overwrite-files 选项同时使用")))
             exit(1)
         if args.output is not None:
-            Stderr(RedText(_("--output-to-stdout 与 --output 选项相斥")))
+            Stderr(RedText(_("--output-to-stdout 不能与 --output 选项同时使用")))
             exit(1)
         if args.preview_video or args.generate_video:
             Stderr(
                 RedText(
-                    _("--output-to-stdout 与 --preview-video 或 --generate-video 选项相斥")
+                    _(
+                        "--output-to-stdout 不能与 --preview-video 或 --generate-video 选项同时使用"
+                    )
                 )
             )
             exit(1)
@@ -197,12 +185,12 @@ def main():
 
     if args.output_directory is not None:
         if os.path.isdir(args.output_directory) is False:
-            Stderr(RedText(_("转换后文件的输出路径应该指定一个文件夹")))
+            Stderr(RedText(_("转换后文件输出目录应该指定一个文件夹")))
             exit(1)
 
     if args.output is not None:
         if args.output_directory is not None:
-            Stderr(RedText(_("--output 与 --output--directory 选项相斥")))
+            Stderr(RedText(_("--output 不能与 --output--directory 选项同时使用")))
             exit(1)
         if len(args.queue) > 1:
             Stderr(RedText(_("--output 只能处理一个文件")))
@@ -247,8 +235,10 @@ def main():
             annotationFile = f"{videoId}.xml"
             if args.output_directory is not None:
                 annotationFile = os.path.join(args.output_directory, annotationFile)
-            # 为了显示个 "下载 ", 我把下载从 AnnotationsForArchive 里拆出来了
-            # 之前就直接下载了, 但是我还是更喜欢输出确定且可控
+                if args.no_overwrite_files:
+                    if os.path.exists(annotationFile):
+                        Stderr(YellowText(_("文件已存在, 跳过下载 ({})").format(videoId)))
+                        continue
             url = AnnotationsForArchive(videoId)
             Stderr(_("下载 {}").format(url))
             string = urllib.request.urlopen(url).read().decode("utf-8")
@@ -262,6 +252,7 @@ def main():
     if not args.download_for_archive:
         annotationFileQueue = args.queue
 
+    # 检查文件
     annotationFiles: list[str] = []
     for annotationFile in annotationFileQueue:  # type: ignore
         # 先看看是不是文件
@@ -287,12 +278,10 @@ def main():
             exit(1)
         # 最后看看是不是空的
         if len(tree.find("annotations").findall("annotation")) == 0:
-            Stderr(RedText(_("{} 没有 Annotation").format(annotationFile)))
-            if args.skip_invalid_files:
-                continue
-            exit(1)
+            Stderr(YellowText(_("{} 没有 Annotation").format(annotationFile)))
         annotationFiles.append(annotationFile)
 
+    # 转换文件
     subFiles: list[str] = []
     for annotationFile in annotationFiles:
         subFile = annotationFile + ".ass"
@@ -303,8 +292,7 @@ def main():
         if args.output is not None:
             subFile = args.output
 
-        # 从这里开始就是 __init__.py 开头那个流程图
-        # 其实这才是核心功能, 其他的都是有的没的
+        # 这里是 __init__.py 开头那个流程图
         with open(annotationFile, "r", encoding="utf-8") as f:
             string = f.read()
         tree = defusedxml.ElementTree.fromstring(string)
@@ -318,7 +306,7 @@ def main():
         if events == []:
             Stderr(YellowText(_("{} 没有注释被转换").format(annotationFile)))
         # Annotation 是无序的
-        # 按时间重新排列字幕(事件), 主要是为了人类可读
+        # 按时间重新排列字幕事件, 是为了人类可读
         events.sort(key=lambda event: event.Start)
         sub = Sub()
         sub.events.extend(events)
@@ -332,8 +320,8 @@ def main():
             print(subString, file=sys.stdout)
         if args.no_overwrite_files:
             if os.path.exists(subFile):
+                Stderr(YellowText(_("文件已存在, 跳过输出 ({})").format(subFile)))
                 subFile = ""
-                Stderr(YellowText(_("文件已存在, 您选择不覆盖文件, 跳过输出")))
         if args.no_keep_intermediate_files:
             os.remove(annotationFile)
             Stderr(_("删除 {}").format(annotationFile))

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import sys
 import os
+import sys
 
 if __name__ == "__main__":
     # 从 youtube-dl 的 __main__.py 学来的

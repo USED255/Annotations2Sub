@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import pytest
 import urllib.request
+
+import pytest
+
 from Annotations2Sub.tools import (
     AnnotationsForArchive,
-    RedText,
-    YellowText,
     CheckUrl,
+    RedText,
     VideoForInvidious,
+    YellowText,
 )
 
 

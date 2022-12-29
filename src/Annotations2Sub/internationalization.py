@@ -6,7 +6,6 @@
 import gettext
 import os
 
-
 # 配合 __main__.py
 locales = os.path.join(os.path.split(os.path.realpath(__file__))[0], "locales")
 
