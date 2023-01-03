@@ -23,8 +23,6 @@ on:
       - "pyproject.toml"
       - "setup.cfg"
       - ".github/workflows/codeql-analysis.yml"
-  schedule:
-    - cron: "42 16 * * 3"
 
 jobs:
   analyze:
