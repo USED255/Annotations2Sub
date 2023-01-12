@@ -12,7 +12,6 @@ from typing import List
 # 但是单个脚本还是有用的所以我会将这些代码再复制一遍成一个单个脚本
 from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
-from Annotations2Sub.flag import Flags
 from Annotations2Sub.internationalization import _
 from Annotations2Sub.Sub import Draw, DrawCommand, Event
 from Annotations2Sub.tools import Stderr
