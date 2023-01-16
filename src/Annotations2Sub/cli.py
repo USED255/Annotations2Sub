@@ -148,7 +148,8 @@ def main():
     )
 
     args = parser.parse_args()
-
+    if args.download_annotation_only:
+        print(True)
     if args.verbose:
         Flags.verbose = True
 
@@ -162,7 +163,7 @@ def main():
         if args.output is not None:
             Stderr(RedText(_("--output-to-stdout 不能与 --output 选项同时使用")))
             exit(1)
-        if args.download_annotation_only is not None:
+        if args.download_annotation_only:
             Stderr(
                 RedText(_("--output-to-stdout 不能与 --download-annotation-only 选项同时使用"))
             )
@@ -178,7 +179,7 @@ def main():
             exit(1)
 
     if args.no_keep_intermediate_files:
-        if args.download_annotation_only is not None:
+        if args.download_annotation_only:
             Stderr(
                 RedText(
                     _(
