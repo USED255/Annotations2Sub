@@ -82,7 +82,12 @@ def main():
         action="store_true",
         help=_("尝试从 Internet Archive 下载注释文件"),
     )
-
+    parser.add_argument(
+        "-D",
+        "--download-annotation-only",
+        action="store_true",
+        help=_("仅下载注释"),
+    )
     # 就是拼接参数执行 mpv
     parser.add_argument(
         "-p",
@@ -157,6 +162,11 @@ def main():
         if args.output is not None:
             Stderr(RedText(_("--output-to-stdout 不能与 --output 选项同时使用")))
             exit(1)
+        if args.download_annotation_only is not None:
+            Stderr(
+                RedText(_("--output-to-stdout 不能与 --download-annotation-only 选项同时使用"))
+            )
+            exit(1)
         if args.preview_video or args.generate_video:
             Stderr(
                 RedText(
@@ -168,6 +178,15 @@ def main():
             exit(1)
 
     if args.no_keep_intermediate_files:
+        if args.download_annotation_only is not None:
+            Stderr(
+                RedText(
+                    _(
+                        "--no-keep-intermediate-files 不能与 --download-annotation-only 选项同时使用"
+                    )
+                )
+            )
+            exit(1)
         if not (args.download_for_archive or args.preview_video or args.generate_video):
             Stderr(
                 RedText(
@@ -232,17 +251,22 @@ def main():
                 Stderr(RedText(_("{} 不是一个有效的视频 ID").format(videoId)))
 
             annotationFile = f"{videoId}.xml"
+            if args.download_annotation_only and args.output:
+                annotationFile = args.output
             if args.output_directory is not None:
                 annotationFile = os.path.join(args.output_directory, annotationFile)
 
             skipDownload = False
-            if args.no_overwrite_files:
+            if args.no_overwrite_files and os.path.exists(annotationFile):
                 if os.path.exists(annotationFile):
                     Stderr(YellowText(_("文件已存在, 跳过下载 ({})").format(videoId)))
                     skipDownload = True
             if not skipDownload:
                 url = AnnotationsForArchive(videoId)
                 downloadAnnotations(url, annotationFile)
+
+            if args.download_annotation_only:
+                continue
 
         with open(annotationFile, "r", encoding="utf-8") as f:
             annotationsString = f.read()
