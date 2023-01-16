@@ -240,12 +240,6 @@ def main():
 
         _thread.start_new_thread(CheckNetwork, ())
 
-    def downloadAnnotations(url: str, annotationFile: str) -> None:
-        Stderr(_("下载 {}").format(url))
-        string = urllib.request.urlopen(url).read().decode("utf-8")
-        with open(annotationFile, "w", encoding="utf-8") as f:
-            f.write(string)
-
     for Task in args.queue:
         videoId = Task
         annotationFile = Task
@@ -267,7 +261,10 @@ def main():
                     skipDownload = True
             if not skipDownload:
                 url = AnnotationsForArchive(videoId)
-                downloadAnnotations(url, annotationFile)
+                Stderr(_("下载 {}").format(url))
+                string = urllib.request.urlopen(url).read().decode("utf-8")
+                with open(annotationFile, "w", encoding="utf-8") as f:
+                    f.write(string)
 
             if args.download_annotation_only:
                 continue

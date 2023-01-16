@@ -94,8 +94,8 @@ class Annotation(object):
         # 以下是按我喜好写的 action 结构, 作为补充
         # 这俩是 actionValue 拆解后的结果
         self.actionSourceVideoId: str = ""
-        """actionSourceVideoId 原来可以这样加注释 TODO"""
         self.actionTargetVideoId: str = ""
+        """这样加注释在编辑器可能会提升信息"""
 
 
 def Parse(tree: Element) -> List[Annotation]:
