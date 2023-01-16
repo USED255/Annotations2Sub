@@ -229,6 +229,9 @@ def main():
             )
         )
 
+    if args.download_annotation_only:
+        args.download_for_archive = True
+
     if args.download_for_archive:
         # 省的网不好不知道
         def CheckNetwork():
