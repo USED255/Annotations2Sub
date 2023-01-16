@@ -60,8 +60,6 @@ optional arguments:
                         to the same directory as the converted file
   -O File, --output File
                         Save to this file
-  -S, --skip-invalid-files
-                        Skip invalid files
   -v, --version         Show version
   -V, --verbose         Show more messages
 ```

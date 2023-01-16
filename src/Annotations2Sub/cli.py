@@ -127,9 +127,6 @@ def main():
     )
     parser.add_argument("-O", "--output", type=str, metavar=_("文件"), help=_("保存到此文件"))
     parser.add_argument(
-        "-S", "--skip-invalid-files", action="store_true", help=_("跳过无效文件")
-    )
-    parser.add_argument(
         "-v",
         "--version",
         action="version",
@@ -146,8 +143,6 @@ def main():
     )
 
     args = parser.parse_args()
-
-    annotationFiles = []
 
     if args.verbose:
         Flags.verbose = True
@@ -210,7 +205,7 @@ def main():
         Stderr(
             YellowText(
                 _(
-                    "--embrace-libass 需要注意, 如果您的视频不是 16:9, 请使用 --transform-resolution-x --transform-resolution-y, 以确保效果."
+                    "如果您的视频不是 16:9, 请使用 --transform-resolution-x --transform-resolution-y, 以确保效果"
                 )
             )
         )
@@ -223,67 +218,58 @@ def main():
 
         _thread.start_new_thread(CheckNetwork, ())
 
-        videoIds = []
-        annotationFileQueue: list[str] = []
-        for videoId in args.queue:
-            # 先查一遍
+    def downloadAnnotations(url: str, annotationFile: str) -> None:
+        Stderr(_("下载 {}").format(url))
+        string = urllib.request.urlopen(url).read().decode("utf-8")
+        with open(annotationFile, "w", encoding="utf-8") as f:
+            f.write(string)
+
+    for Task in args.queue:
+        videoId = Task
+        annotationFile = Task
+        if args.download_for_archive:
             if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
                 Stderr(RedText(_("{} 不是一个有效的视频 ID").format(videoId)))
-                exit(1)
-            videoIds.append(videoId)
-        for videoId in videoIds:
+
             annotationFile = f"{videoId}.xml"
             if args.output_directory is not None:
                 annotationFile = os.path.join(args.output_directory, annotationFile)
-                if args.no_overwrite_files:
-                    if os.path.exists(annotationFile):
-                        Stderr(YellowText(_("文件已存在, 跳过下载 ({})").format(videoId)))
-                        continue
-            url = AnnotationsForArchive(videoId)
-            Stderr(_("下载 {}").format(url))
-            string = urllib.request.urlopen(url).read().decode("utf-8")
-            if string == "":
-                Stderr(YellowText(_("{} 可能没有 Annotation").format(videoId)))
-                continue
-            with open(annotationFile, "w", encoding="utf-8") as f:
-                f.write(string)
-            annotationFileQueue.append(annotationFile)
 
-    if not args.download_for_archive:
-        annotationFileQueue = args.queue
+            skipDownload = False
+            if args.no_overwrite_files:
+                if os.path.exists(annotationFile):
+                    Stderr(YellowText(_("文件已存在, 跳过下载 ({})").format(videoId)))
+                    skipDownload = True
+            if not skipDownload:
+                url = AnnotationsForArchive(videoId)
+                downloadAnnotations(url, annotationFile)
 
-    # 检查文件
-    annotationFiles: list[str] = []
-    for annotationFile in annotationFileQueue:  # type: ignore
-        # 先看看是不是文件
+        with open(annotationFile, "r", encoding="utf-8") as f:
+            annotationsString = f.read()
+
+        if annotationsString == "":
+            Stderr(YellowText(_("{} 可能没有 Annotation").format(Task)))
+            continue
+
         if os.path.isfile(annotationFile) is False:
             Stderr(RedText(_("{} 不是一个文件").format(annotationFile)))
-            if args.skip_invalid_files:
-                continue
-            exit(1)
-        # 再看看有没有文件无效的
+            continue
+
         try:
             tree = defusedxml.ElementTree.parse(annotationFile)
         except:
             Stderr(RedText(_("{} 不是一个有效的 XML 文件").format(annotationFile)))
-            Stderr(traceback.format_exc())
-            if args.skip_invalid_files:
-                continue
-            exit(1)
-        # 再看看有没有不是 Annotation 文件的
+            if Flags.verbose == True:
+                Stderr(traceback.format_exc())
+            continue
+
         if tree.find("annotations") == None:
             Stderr(RedText(_("{} 不是 Annotation 文件").format(annotationFile)))
-            if args.skip_invalid_files:
-                continue
-            exit(1)
-        # 最后看看是不是空的
+            continue
+
         if len(tree.find("annotations").findall("annotation")) == 0:
             Stderr(YellowText(_("{} 没有 Annotation").format(annotationFile)))
-        annotationFiles.append(annotationFile)
 
-    # 转换文件
-    subFiles: list[str] = []
-    for annotationFile in annotationFiles:
         subFile = annotationFile + ".ass"
         if args.output_directory is not None:
             fileName = os.path.basename(annotationFile)
@@ -329,10 +315,8 @@ def main():
             with open(subFile, "w", encoding="utf-8") as f:
                 f.write(subString)
             Stderr(_("保存于: {}").format(subFile))
-            subFiles.append(subFile)
 
-    if args.preview_video:
-        for subFile in subFiles:
+        if args.preview_video:
             # 从 Invidious 获取视频流和音频流, 并塞给 mpv, FFmpeg
             video, audio = VideoForInvidious(videoId, args.invidious_instances)
             cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subFile}"'
@@ -346,8 +330,7 @@ def main():
                 os.remove(subFile)
                 Stderr(_("删除 {}").format(subFile))
 
-    if args.generate_video:
-        for subFile in subFiles:
+        if args.generate_video:
             video, audio = VideoForInvidious(videoId, args.invidious_instances)
             cmd = rf'ffmpeg -i "{video}" -i "{audio}" -vf "ass={subFile}" {subFile}.mp4'
             if Flags.verbose:
