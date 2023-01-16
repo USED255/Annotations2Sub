@@ -16,8 +16,8 @@ try:
 except ImportError:
 
     class a:
-        def __getitem__(self, a):
-            return a
+        def __getitem__(self, b):
+            return b
 
     exec("Literal = a()")
 

@@ -4,7 +4,7 @@
 """颜色表示"""
 
 
-class Color(object):
+class Color:
     """以 0-255 的整数表示颜色值, 不提供序列化方法"""
 
     def __init__(
@@ -24,7 +24,7 @@ class Color(object):
         self.blue = blue
 
 
-class Alpha(object):
+class Alpha:
     """以 0-255 的整数表示透明度, 255 是不透明, 不提供序列化方法"""
 
     def __init__(
@@ -36,7 +36,7 @@ class Alpha(object):
         self.alpha = alpha
 
 
-class Rgba(object):
+class Rgba:
     def __init__(self, color: Color = Color(), alpha: Alpha = Alpha()):
         self.color = color
         self.alpha = alpha

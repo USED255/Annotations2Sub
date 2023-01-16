@@ -262,7 +262,8 @@ def main():
             if not skipDownload:
                 url = AnnotationsForArchive(videoId)
                 Stderr(_("下载 {}").format(url))
-                string = urllib.request.urlopen(url).read().decode("utf-8")
+                with urllib.request.urlopen(url) as r:
+                    string = r.read().decode("utf-8")
                 with open(annotationFile, "w", encoding="utf-8") as f:
                     f.write(string)
 
@@ -284,7 +285,7 @@ def main():
             tree = defusedxml.ElementTree.parse(annotationFile)
         except:
             Stderr(RedText(_("{} 不是一个有效的 XML 文件").format(annotationFile)))
-            if Flags.verbose == True:
+            if Flags.verbose:
                 Stderr(traceback.format_exc())
             continue
 

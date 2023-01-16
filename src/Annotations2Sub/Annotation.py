@@ -27,7 +27,7 @@ except ImportError:
     pass
 
 
-class Annotation(object):
+class Annotation:
     """Annotation 结构"""
 
     # 致谢 https://github.com/isaackd/annotationlib
