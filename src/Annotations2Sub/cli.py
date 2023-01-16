@@ -148,8 +148,7 @@ def main():
     )
 
     args = parser.parse_args()
-    if args.download_annotation_only:
-        print(True)
+
     if args.verbose:
         Flags.verbose = True
 
@@ -198,17 +197,17 @@ def main():
             )
             exit(1)
 
-    if args.output_directory is not None:
-        if os.path.isdir(args.output_directory) is False:
-            Stderr(RedText(_("转换后文件输出目录应该指定一个文件夹")))
-            exit(1)
-
     if args.output is not None:
         if args.output_directory is not None:
             Stderr(RedText(_("--output 不能与 --output--directory 选项同时使用")))
             exit(1)
         if len(args.queue) > 1:
             Stderr(RedText(_("--output 只能处理一个文件")))
+            exit(1)
+
+    if args.output_directory is not None:
+        if os.path.isdir(args.output_directory) is False:
+            Stderr(RedText(_("转换后文件输出目录应该指定一个文件夹")))
             exit(1)
 
     if args.preview_video or args.generate_video:
@@ -269,15 +268,15 @@ def main():
             if args.download_annotation_only:
                 continue
 
+        if os.path.isfile(annotationFile) is False:
+            Stderr(RedText(_("{} 不是一个文件").format(annotationFile)))
+            continue
+
         with open(annotationFile, "r", encoding="utf-8") as f:
             annotationsString = f.read()
 
         if annotationsString == "":
             Stderr(YellowText(_("{} 可能没有 Annotation").format(Task)))
-            continue
-
-        if os.path.isfile(annotationFile) is False:
-            Stderr(RedText(_("{} 不是一个文件").format(annotationFile)))
             continue
 
         try:
