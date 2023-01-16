@@ -249,6 +249,7 @@ def main():
         if args.download_for_archive:
             if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
                 Stderr(RedText(_("{} 不是一个有效的视频 ID").format(videoId)))
+                continue
 
             annotationFile = f"{videoId}.xml"
             if args.download_annotation_only and args.output:
