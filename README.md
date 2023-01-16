@@ -42,6 +42,8 @@ optional arguments:
                         Specify font
   -d, --download-for-archive
                         Try downloading the annotations file from Internet Archive
+  -D, --download-annotation-only
+                        Download Annotation only
   -p, --preview-video   Preview video, need mpv(https://mpv.io/) and specify 
                         invidious instances
   -g, --generate-video  Generate video, need FFmpeg(https://ffmpeg.org/) and specify
