@@ -6,9 +6,8 @@
 import json
 import re
 import sys
+from typing import Any
 import urllib.request
-
-from Annotations2Sub.internationalization import _
 
 
 def YellowText(s: str) -> str:
@@ -70,8 +69,8 @@ def VideoForInvidious(videoId: str, invidious_domain: str):
     """返回一个视频流和音频流网址"""
     # https://docs.invidious.io/api/
     url = f"https://{invidious_domain}/api/v1/videos/{videoId}"
-    Stderr(_("获取 {}").format(url))
-    string = urllib.request.urlopen(url).read().decode("utf-8")
+    # Stderr(_("获取 {}").format(url))
+    string = urllibWapper(url)
     data = json.loads(string)
     videos = []
     audios = []
@@ -83,3 +82,12 @@ def VideoForInvidious(videoId: str, invidious_domain: str):
     videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
     audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
     return videos[0]["url"], audios[0]["url"]
+
+
+def Dummy(*args, **kwargs) -> Any:
+    pass
+
+
+def urllibWapper(url: str) -> str:
+    with urllib.request.urlopen(url) as r:
+        return r.read().decode("utf-8")

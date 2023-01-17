@@ -4,6 +4,7 @@
 import urllib.request
 
 import pytest
+from Annotations2Sub import tools
 
 from Annotations2Sub.tools import (
     AnnotationsForArchive,
@@ -47,18 +48,12 @@ def test_CheckUrl():
 
 def test_VideoForInvidious():
     string_pseudo_response = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"1"},{"type":"audio","bitrate":1,"url":"2"}]}'
-    byte_pseudo_response = string_pseudo_response.encode("utf-8")
-
-    class MockResponse:
-        @staticmethod
-        def read():
-            return byte_pseudo_response
 
     def mock(*args, **kwargs):
-        return MockResponse()
+        return string_pseudo_response
 
     m = pytest.MonkeyPatch()
-    m.setattr(urllib.request, "urlopen", mock)
+    m.setattr(tools, "urllibWapper", mock)
 
     return_value = VideoForInvidious("1", "2")
     expected_value = ("1", "2")

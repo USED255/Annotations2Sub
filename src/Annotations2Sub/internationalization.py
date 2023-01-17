@@ -8,10 +8,13 @@ import locale
 import os
 import sys
 
+from Annotations2Sub.tools import Dummy
+
 # 配合 __main__.py
 locales = os.path.join(os.path.split(os.path.realpath(__file__))[0], "locales")
 
 try:
+    Dummy()
     # https://stackoverflow.com/a/8377533
     if sys.platform == "win32":
         if os.getenv("LANG") is None:
