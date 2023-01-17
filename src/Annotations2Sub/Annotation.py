@@ -42,11 +42,6 @@ class Annotation:
     # 更何况我没有写过 CSS :-)
 
     def __init__(self):
-        # 这里仅列出了需要的结构
-        # 如 highlightId action 等没有列出
-        # SSA(Sub Station Alpha)(ASS)(Advanced SubStation Alpha) 并不能实现交互,
-        # 所以处理 action 没有意义
-        # 因为 ASS 不太好看, 所以注释中用 SSA 代替
         self.id: str = ""
         # 这里仅列出需要的 type 和 style, 且 Literal 仅做提醒作用
         self.type: Literal["text", "highlight", "branding"] = "text"
@@ -56,6 +51,7 @@ class Annotation:
             "title",
             "speech",
             "highlightText",
+            "anchored",
         ] = "popup"
         self.text: str = ""
         # 经过上次复杂的时间字符串转换教训, 这次使用了 datetime.datetime
@@ -86,6 +82,8 @@ class Annotation:
         # 需要注意的是, textSize 是个 "百分比", 而在 title 样式中才是熟悉的 "字体大小"
         self.textSize: float = 3.15
         # 以下四个是 annotationlib 的 action 结构
+        # SSA(Sub Station Alpha)(ASS)(Advanced SubStation Alpha) 不能实现交互,
+        # 处理 action 没有意义
         self.actionType: Literal["time", "url"] = "time"
         self.actionUrl: str = ""
         self.actionUrlTarget: str = ""
@@ -95,7 +93,6 @@ class Annotation:
         # 这俩是 actionValue 拆解后的结果
         self.actionSourceVideoId: str = ""
         self.actionTargetVideoId: str = ""
-        """这样加注释在编辑器可能会提升信息"""
 
 
 def Parse(tree: Element) -> List[Annotation]:
