@@ -140,7 +140,7 @@ def Convert(
             # 很像是我们熟悉的 "字体大小"
             # 但好像又不是
             # / 4 也是试出来的
-            if resolutionX != 100 and resolutionY != 100:
+            if resolutionX == 100 and resolutionY == 100:
                 nonlocal textSize  # type: ignore
                 textSize = round(textSize / 4, 3)
 
@@ -224,6 +224,18 @@ def Convert(
             event.Text = tag + box
             return event
 
+        def anchored_text(event: Event) -> Event:
+            """生成 anchored 样式的文本 Event"""
+            event.Name += "_anchored_text"
+
+            return Text(event)
+
+        def anchored_box(event: Event) -> Event:
+            """生成 anchored 样式的框 Event"""
+            event.Name += "_anchored_box"
+
+            return Box(event)
+
         events: List[Event] = []
         event = Event()
 
@@ -293,10 +305,10 @@ def Convert(
             events.append(speech_text(copy.copy(event)))
             events.append(speech_box(copy.copy(event)))
             events.append(speech_box_2(copy.copy(event)))
+            # 我没见过 "anchored" 实现不对
         elif each.style == "anchored":
-            events.append(speech_text(copy.copy(event)))
-            events.append(speech_box(copy.copy(event)))
-            events.append(speech_box_2(copy.copy(event)))
+            events.append(anchored_text(copy.copy(event)))
+            events.append(anchored_box(copy.copy(event)))
         else:
             # 传承于 Annotations2Sub™
             Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
