@@ -140,8 +140,9 @@ def Convert(
             # 很像是我们熟悉的 "字体大小"
             # 但好像又不是
             # / 4 也是试出来的
-            nonlocal textSize  # type: ignore
-            textSize = round(textSize / 4, 3)
+            if resolutionX != 100 and resolutionY != 100:
+                nonlocal textSize  # type: ignore
+                textSize = round(textSize / 4, 3)
 
             event.Name += "_title"
 
@@ -207,6 +208,10 @@ def Convert(
             # 如果锚点在框的下方那么三角的边接的是框的下边, 所以是 y1 + height
             if sy > y:
                 y1 = y1 + height
+
+            x1 = round(x1, 3)
+            y1 = round(y1, 3)
+            x2 = round(x2, 3)
 
             d = Draw()
             # 一共三个点, 怎么画都是个三角形
@@ -285,6 +290,10 @@ def Convert(
             events.append(highlightText_box(copy.copy(event)))
         elif each.style == "speech":
             # 上次恶心到我的地方, 这次想到了另一种方法处理掉了
+            events.append(speech_text(copy.copy(event)))
+            events.append(speech_box(copy.copy(event)))
+            events.append(speech_box_2(copy.copy(event)))
+        elif each.style == "anchored":
             events.append(speech_text(copy.copy(event)))
             events.append(speech_box(copy.copy(event)))
             events.append(speech_box_2(copy.copy(event)))

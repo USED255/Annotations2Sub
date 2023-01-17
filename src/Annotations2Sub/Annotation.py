@@ -305,7 +305,6 @@ def Parse(tree: Element) -> List[Annotation]:
                 Url = MakeSureElement(Url)
                 value = MakeSureStr(Url.get("value"))
                 target = MakeSureStr(Url.get("target"))
-                value = MakeSureStr(value)
                 if value.startswith("https://www.youtube.com/"):
                     u = urllib.parse.urlparse(value)
                     params = urllib.parse.parse_qs(u.query)
@@ -319,7 +318,7 @@ def Parse(tree: Element) -> List[Annotation]:
                             seconds = datetime.datetime.strptime(timeString, "%Ss")
                             _type = "time"
                             annotation.actionSeconds = seconds
-            annotation.actionType = type  # type: ignore
+            annotation.actionType = _type  # type: ignore
             annotation.actionUrl = MakeSureStr(value)
             annotation.actionUrlTarget = MakeSureStr(target)
             annotation.actionSourceVideoId = src_vid
@@ -328,8 +327,7 @@ def Parse(tree: Element) -> List[Annotation]:
         Trigger = each.find("trigger")
         if Trigger != None:
             Trigger = MakeSureElement(Trigger)
-            Condition = Trigger.find("condition")
-            Condition = MakeSureElement(Condition)
+            Condition = MakeSureElement(Trigger.find("condition"))
             annotation.highlightId = MakeSureStr(Condition.get("ref"))
 
         return annotation

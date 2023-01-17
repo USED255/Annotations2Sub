@@ -3,8 +3,12 @@
 
     <annotations itct="CAAQwOYBIhMI8aSkrofg3wIVwYFbCh2ZWAznKPgdMgJpdkjmpMnP2N3q79sB">
 
-        <annotation id="annotation_622281" type="text" style="popup" log_data="a-type=1&amp;a-id=annotation_622281&amp;xble=1&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-v=29-q7YnyUmY" itct="CAEQs-UBGP___________wEiEwjxpKSuh-DfAhXBgVsKHZlYDOco-B0yAml2SOakyc_Y3erv2wE">
-            <TEXT>JUMBO BEAAAAAAAAAAAAMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmm</TEXT>
+        <annotation id="annotation_622281" type="text" style="popup"
+            log_data="a-type=1&amp;a-id=annotation_622281&amp;xble=1&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-v=29-q7YnyUmY"
+            itct="CAEQs-UBGP___________wEiEwjxpKSuh-DfAhXBgVsKHZlYDOco-B0yAml2SOakyc_Y3erv2wE">
+            <TEXT>
+                JUMBO
+                BEAAAAAAAAAAAAMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmm</TEXT>
             <segment>
                 <movingRegion type="rect">
                     <rectRegion x="0.55900" y="0.93300" w="99.44100" h="92.53700" t="0:01:58.2" />
@@ -27,18 +31,25 @@
             </trigger>
         </annotation>
 
-        <annotation author="" id="annotation_2200715567" log_data="a-id=annotation_2200715567&amp;ei=hWs9XK_ICd3ogQfQ1KeYAg&amp;a-v=e8kKeUuytqA&amp;a-type=4&amp;xble=1" style="title" type="text">
+        <annotation author="" id="annotation_2200715567"
+            log_data="a-id=annotation_2200715567&amp;ei=hWs9XK_ICd3ogQfQ1KeYAg&amp;a-v=e8kKeUuytqA&amp;a-type=4&amp;xble=1"
+            style="title" type="text">
             <TEXT>世界中的人們</TEXT>
             <segment>
                 <movingRegion type="rect">
-                    <rectRegion d="0" h="7.53900003433" t="0:00.100" w="50.0" x="50.0" y="4.94799995422" />
-                    <rectRegion d="0" h="7.53900003433" t="0:23.200" w="50.0" x="50.0" y="4.94799995422" />
+                    <rectRegion d="0" h="7.53900003433" t="0:00.100" w="50.0" x="50.0"
+                        y="4.94799995422" />
+                    <rectRegion d="0" h="7.53900003433" t="0:23.200" w="50.0" x="50.0"
+                        y="4.94799995422" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="0" fontWeight="bold" highlightFontColor="0" textSize="21.6642" />
+            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects=""
+                fgColor="0" fontWeight="bold" highlightFontColor="0" textSize="21.6642" />
         </annotation>
 
-        <annotation id="annotation_2223401619" type="text" style="popup" log_data="a-id=annotation_2223401619&amp;ei=hWs9XK_ICd3ogQfQ1KeYAg&amp;a-v=e8kKeUuytqA&amp;a-type=1&amp;xble=1" itct="">
+        <annotation id="annotation_2223401619" type="text" style="popup"
+            log_data="a-id=annotation_2223401619&amp;ei=hWs9XK_ICd3ogQfQ1KeYAg&amp;a-v=e8kKeUuytqA&amp;a-type=1&amp;xble=1"
+            itct="">
             <TEXT>1</TEXT>
             <segment>
                 <movingRegion type="rect">
@@ -46,29 +57,44 @@
                     <rectRegion x="15.30000" y="45.31300" w="3.95300" h="11.36100" t="0:23.200" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.600000023842" bgColor="4210330" fgColor="16777215" textSize="4.814266666666667" effects=""></appearance>
+            <appearance bgAlpha="0.600000023842" bgColor="4210330" fgColor="16777215"
+                textSize="4.814266666666667" effects=""></appearance>
         </annotation>
 
-        <annotation author="AcidPoweredChainsaw" id="annotation_855617" itct="CAMQs-UBGP___________wEiEwjxpKSuh-DfAhXBgVsKHZlYDOco-B0yAml2SOakyc_Y3erv2wE" log_data="a-type=2&amp;a-id=annotation_855617&amp;xble=1&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-v=29-q7YnyUmY" style="speech" type="text">
+        <annotation author="AcidPoweredChainsaw" id="annotation_855617"
+            itct="CAMQs-UBGP___________wEiEwjxpKSuh-DfAhXBgVsKHZlYDOco-B0yAml2SOakyc_Y3erv2wE"
+            log_data="a-type=2&amp;a-id=annotation_855617&amp;xble=1&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-v=29-q7YnyUmY"
+            style="speech" type="text">
             <TEXT>DAT VAGUUU</TEXT>
             <segment>
                 <movingRegion type="anchored">
-                    <anchoredRegion d="0" h="8.88899993896" sx="40.4169998169" sy="23.611000061" t="0:01:17.6" w="37.9169998169" x="5.41699981689" y="38.888999939" />
-                    <anchoredRegion d="0" h="8.88899993896" sx="40.4169998169" sy="23.611000061" t="0:01:22.6" w="37.9169998169" x="5.41699981689" y="38.888999939" />
+                    <anchoredRegion d="0" h="8.88899993896" sx="40.4169998169" sy="23.611000061"
+                        t="0:01:17.6" w="37.9169998169" x="5.41699981689" y="38.888999939" />
+                    <anchoredRegion d="0" h="8.88899993896" sx="40.4169998169" sy="23.611000061"
+                        t="0:01:22.6" w="37.9169998169" x="5.41699981689" y="38.888999939" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.800000011921" bgColor="3052840" borderAlpha="0.20000000298" borderColor="0" borderWidth="0" fgColor="16777215" gloss="50" highlightFontColor="3052840" highlightWidth="3" />
+            <appearance bgAlpha="0.800000011921" bgColor="3052840" borderAlpha="0.20000000298"
+                borderColor="0" borderWidth="0" fgColor="16777215" gloss="50"
+                highlightFontColor="3052840" highlightWidth="3" />
         </annotation>
 
-        <annotation author="AcidPoweredChainsaw" id="8" itct="CAMQs-UBGP___________wEiEwjxpKSuh-DfAhXBgVsKHZlYDOco-B0yAml2SOakyc_Y3erv2wE" log_data="a-type=2&amp;a-id=annotation_855617&amp;xble=1&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-v=29-q7YnyUmY" style="speech" type="text">
+        <annotation author="AcidPoweredChainsaw" id="8"
+            itct="CAMQs-UBGP___________wEiEwjxpKSuh-DfAhXBgVsKHZlYDOco-B0yAml2SOakyc_Y3erv2wE"
+            log_data="a-type=2&amp;a-id=annotation_855617&amp;xble=1&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-v=29-q7YnyUmY"
+            style="speech" type="text">
             <TEXT>DAT VAGUUU</TEXT>
             <segment>
                 <movingRegion type="anchored">
-                    <anchoredRegion d="0" h="8.88899993896" sx="40.4169998169" sy="2.611000061" t="0:01:17.6" w="37.9169998169" x="100.41699981689" y="38.888999939" />
-                    <anchoredRegion d="0" h="8.88899993896" sx="40.4169998169" sy="2.611000061" t="0:01:22.6" w="37.9169998169" x="100.41699981689" y="38.888999939" />
+                    <anchoredRegion d="0" h="8.88899993896" sx="40.4169998169" sy="2.611000061"
+                        t="0:01:17.6" w="37.9169998169" x="100.41699981689" y="38.888999939" />
+                    <anchoredRegion d="0" h="8.88899993896" sx="40.4169998169" sy="2.611000061"
+                        t="0:01:22.6" w="37.9169998169" x="100.41699981689" y="38.888999939" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.800000011921" bgColor="3052840" borderAlpha="0.20000000298" borderColor="0" borderWidth="0" fgColor="16777215" gloss="50" highlightFontColor="3052840" highlightWidth="3" />
+            <appearance bgAlpha="0.800000011921" bgColor="3052840" borderAlpha="0.20000000298"
+                borderColor="0" borderWidth="0" fgColor="16777215" gloss="50"
+                highlightFontColor="3052840" highlightWidth="3" />
         </annotation>
 
         <annotation id="1" type="1"></annotation>
@@ -125,7 +151,9 @@
             </trigger>
         </annotation>
 
-        <annotation id="annotation_487437" type="text" style="popup" log_data="xble=1&amp;link=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DsWJcfSAbI50&amp;a-v=29-q7YnyUmY&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-type=1&amp;a-id=annotation_487437&amp;l-class=1" itct="">
+        <annotation id="annotation_487437" type="text" style="popup"
+            log_data="xble=1&amp;link=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DsWJcfSAbI50&amp;a-v=29-q7YnyUmY&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-type=1&amp;a-id=annotation_487437&amp;l-class=1"
+            itct="">
             <TEXT>My face when Teto never won a match during her stint on Pokemon</TEXT>
             <segment>
                 <movingRegion type="rect">
@@ -133,12 +161,18 @@
                     <rectRegion x="5.62500" y="34.44400" w="56.87500" h="11.66700" t="0:06:16.7" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.800000011921" bgColor="407700" fgColor="16777215" textSize="3.6107" effects=""></appearance>
+            <appearance bgAlpha="0.800000011921" bgColor="407700" fgColor="16777215"
+                textSize="3.6107" effects=""></appearance>
             <action type="openUrl" trigger="click">
-                <url target="current" value="https://www.youtube.com/watch?annotation_id=annotation_487437&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;feature=iv&amp;src_vid=29-q7YnyUmY&amp;v=sWJcfSAbI50" link_class="1" />
+                <url target="current"
+                    value="https://www.youtube.com/watch?annotation_id=annotation_487437&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;feature=iv&amp;src_vid=29-q7YnyUmY&amp;v=sWJcfSAbI50"
+                    link_class="1" />
             </action>
 
-        </annotation>        <annotation id="8" type="text" style="popup" log_data="xble=1&amp;link=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DsWJcfSAbI50&amp;a-v=29-q7YnyUmY&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-type=1&amp;a-id=annotation_487437&amp;l-class=1" itct="">
+        </annotation>
+        <annotation id="8" type="text" style="popup"
+            log_data="xble=1&amp;link=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DsWJcfSAbI50&amp;a-v=29-q7YnyUmY&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-type=1&amp;a-id=annotation_487437&amp;l-class=1"
+            itct="">
             <TEXT>My face when Teto never won a match during her stint on Pokemon</TEXT>
             <segment>
                 <movingRegion type="rect">
@@ -146,12 +180,35 @@
                     <rectRegion x="5.62500" y="34.44400" w="56.87500" h="11.66700" t="0:06:16.7" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.800000011921" bgColor="407700" fgColor="16777215" textSize="3.6107" effects=""></appearance>
+            <appearance bgAlpha="0.800000011921" bgColor="407700" fgColor="16777215"
+                textSize="3.6107" effects=""></appearance>
             <action type="openUrl" trigger="click">
-                <url target="current" value="https://www.youtube.com/watch?annotation_id=annotation_487437&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;feature=iv&amp;src_vid=29-q7YnyUmY&amp;v=29-q7YnyUmY#t=38s" link_class="1" />
+                <url target="current"
+                    value="https://www.youtube.com/watch?annotation_id=annotation_487437&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;feature=iv&amp;src_vid=29-q7YnyUmY&amp;v=29-q7YnyUmY#t=38s"
+                    link_class="1" />
             </action>
         </annotation>
+        <annotation id="annotation_1028971653" type="text" style="anchored"
+            log_data="a-type=8&amp;xble=1&amp;ei=5pw1XLGMFJi6hwbA84jgCw&amp;a-id=annotation_1028971653&amp;a-v=c1iCjpxDxz4"
+            itct="CAEQs-UBGP___________wEiEwixl-aKkeDfAhUY3cEKHcA5Arwo-B0yAml2SL6Oj-Lp0aCscw">
+            <TEXT>There you go, you greedy boy.</TEXT>
+            <segment>
+                <movingRegion type="anchored">
+                    <anchoredRegion x="30.62500" y="88.70400" w="42.70800" h="11.31500"
+                        sx="45.2070007324"
+                        sy="102.593002319" t="0:55.680" />
+                    <anchoredRegion x="30.62500" y="88.70400" w="42.70800" h="11.31500"
+                        sx="45.2070007324"
+                        sy="102.593002319" t="0:57.661" />
+                </movingRegion>
+            </segment>
+            <appearance bgAlpha="0.8" bgColor="16777215" fgColor="1710618"
+                textSize="8.424966666666666"
+                effects="">
 
+            </appearance>
+
+        </annotation>
     </annotations>
 
 </document>
