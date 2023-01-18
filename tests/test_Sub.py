@@ -4,13 +4,7 @@
 import os
 import sys
 
-try:
-    import Annotations2Sub
-except:
-    s1 = os.path.dirname(__file__)
-    s2 = os.path.join(s1, "../src")
-    s3 = os.path.abspath(s2)
-    sys.path.append(s3)
+
 import pytest
 
 from Annotations2Sub.Sub import Draw, DrawCommand
