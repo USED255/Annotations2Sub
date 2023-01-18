@@ -92,7 +92,7 @@ def run():
         "-p",
         "--preview-video",
         action="store_true",
-        help=_("预览视频, 需要 mpv(https://mpv.io/) 并指定 invidious 实例"),
+        help=_("预览视频, 需要 mpv(https://mpv.io/)"),
     )
 
     # 与上面同理
@@ -100,7 +100,7 @@ def run():
         "-g",
         "--generate-video",
         action="store_true",
-        help=_("生成视频, 需要 FFmpeg(https://ffmpeg.org/) 并指定 invidious 实例"),
+        help=_("生成视频, 需要 FFmpeg(https://ffmpeg.org/)"),
     )
     parser.add_argument(
         "-i",
@@ -210,10 +210,6 @@ def run():
             exit(1)
 
     if args.preview_video or args.generate_video:
-        if args.invidious_instances is None:
-            Stderr(RedText(_("请指定一个 invidious 实例")))
-            Stderr(_("你可以在这里找一个: https://redirect.invidious.io/"))
-            exit(1)
         args.download_for_archive = True
         args.embrace_libass = True
 

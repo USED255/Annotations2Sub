@@ -26,14 +26,12 @@ usage: Annotations2Sub.py [-h] [-l] [-x 100] [-y 100] [-f Arial ] [-o Folder] [-
 Download and convert Youtube Annotation
 
 positional arguments:
-  File or videoId       File path of multiple files to be converted, or multiple
-                        Youtube videoId to be previewed, generated, Annotations
-                        file downloaded from Internet Archive
+  File or videoId       File path or video ID of multiple files to be convert
 
 optional arguments:
   -h, --help            Show this help message and exit
   -l, --embrace-libass  Embrace libass's quirks and features, and not specifying
-                        This option will adapt to xy-vsfilter
+                        this option will adapt to xy-vsfilter
   -x 100, --transform-resolution-x 100
                         Transform resolution X
   -y 100, --transform-resolution-y 100
@@ -41,25 +39,21 @@ optional arguments:
   -f Arial, --font Arial
                         Specify font
   -d, --download-for-archive
-                        Try downloading the annotations file from Internet Archive
+                        Try to download the Annotations file from Internet Archive
   -D, --download-annotation-only
                         Download Annotation only
-  -p, --preview-video   Preview video, need mpv(https://mpv.io/) and specify 
-                        invidious instances
-  -g, --generate-video  Generate video, need FFmpeg(https://ffmpeg.org/) and specify
-                        invidious instances
+  -p, --preview-video   Preview video, requires mpv(https://mpv.io/)
+  -g, --generate-video  Generate video, requires FFmpeg(https://ffmpeg.org/)
   -i invidious-instances.domain, --invidious-instances invidious-instances.domain
                         Specify invidious instances (https://redirect.invidious.io/)
   -s, --output-to-stdout
                         Output to stdout
   -n, --no-overwrite-files
-                        No file overwriting
+                        Do not overwrite files
   -N, --no-keep-intermediate-files
-                        No retention of intermediate files
-  -o Folder, --output-directory Folder
-                        Specify the output path of the converted file, not
-                        specifying this option will output the converted file
-                        to the same directory as the converted file
+                        Do not keep intermediate files
+  -o directory, --output-directory directory
+                        Specify the output directory for the converted file
   -O File, --output File
                         Save to this file
   -v, --version         Show version
