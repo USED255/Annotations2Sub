@@ -122,13 +122,13 @@ def Convert(
             """生成 popup 样式的文本 Event"""
 
             # 就是加个名字而已
-            event.Name += "_popup_text"
+            event.Name += ",popup,text"
 
             return Text(event)
 
         def popup_box(event: Event) -> Event:
             """生成 popup 样式的框 Event"""
-            event.Name = event.Name + "_popup_box"
+            event.Name = event.Name + ",popup,box"
 
             return Box(event)
 
@@ -143,37 +143,37 @@ def Convert(
                 nonlocal textSize  # type: ignore
                 textSize = round(textSize / 4, 3)
 
-            event.Name += "_title"
+            event.Name += ",title"
 
             return Text(event)
 
         def highlightText_text(event: Event) -> Event:
             """生成 highlightText 样式的文本 Event"""
-            event.Name += "_highlightText_text"
+            event.Name += ",highlightText,text"
 
             return Text(event)
 
         def highlightText_box(event: Event) -> Event:
             """生成 highlightText 样式的框 Event"""
-            event.Name = event.Name + "highlightText_box"
+            event.Name = event.Name + ",highlightText,box"
 
             return Box(event)
 
         def speech_text(event: Event) -> Event:
             """生成 speech 样式的文本 Event"""
-            event.Name += "_speech_text"
+            event.Name += ",speech,text"
 
             return Text(event)
 
         def speech_box(event: Event) -> Event:
             """生成 speech 样式的框 Event"""
-            event.Name += "_speech_box"
+            event.Name += ",speech,box1"
 
             return Box(event)
 
         def speech_box_2(event: Event) -> Event:
             """生成 speech 样式的第二个框 Event"""
-            event.Name += "_speech_box_2"
+            event.Name += ",speech,box2"
             event.Layer = 0
 
             tag = ""
@@ -225,13 +225,13 @@ def Convert(
 
         def anchored_text(event: Event) -> Event:
             """生成 anchored 样式的文本 Event"""
-            event.Name += "_anchored_text"
+            event.Name += ",anchored,text"
 
             return Text(event)
 
         def anchored_box(event: Event) -> Event:
             """生成 anchored 样式的框 Event"""
-            event.Name += "_anchored_box"
+            event.Name += ",anchored,box"
 
             return Box(event)
 
