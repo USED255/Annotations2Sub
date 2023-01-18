@@ -11,7 +11,7 @@ except:
     s2 = os.path.join(s1, "../src")
     s3 = os.path.abspath(s2)
     sys.path.append(s3)
-import os
+
 import xml.etree.ElementTree
 
 from Annotations2Sub.Annotation import Parse

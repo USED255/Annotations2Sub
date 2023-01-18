@@ -3,6 +3,7 @@
 
 """工具类"""
 
+import locale
 import gettext
 import json
 import os
@@ -38,7 +39,7 @@ def internationalization():
         )
         return translate.gettext
     except:
-        print("翻译文件加载失败", file=sys.stderr)
+        Stderr(RedText("翻译文件加载失败"))
         return gettext.gettext
 
 
