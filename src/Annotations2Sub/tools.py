@@ -70,6 +70,23 @@ def MakeSureStr(s: Optional[str]) -> str:
     raise TypeError
 
 
+def urllibWapper(url: str) -> str:
+    with urllib.request.urlopen(url) as r:
+        return r.read().decode("utf-8")
+
+
+def DummyLiteral():
+    class a:
+        def __getitem__(self, b):
+            return b
+
+    return a()
+
+
+def Dummy(*args, **kwargs) -> Any:
+    pass
+
+
 # 如果不生于中国就没有这个函数
 def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
     """检查网络"""
@@ -112,38 +129,32 @@ def AnnotationsForArchive(videoId: str) -> str:
 # 我更想使用 Youtube-DL, 但是 Stack Overflow 没有答案
 def VideoForInvidious(videoId: str, invidious_domain: str = "") -> tuple[str, str]:
     """返回一个视频流和音频流网址"""
-    # https://docs.invidious.io/api/
-    url = f"https://{invidious_domain}/api/v1/videos/{videoId}"
-    Stderr(_("获取 {}").format(url))
-    string = urllibWapper(url)
-    data = json.loads(string)
-    videos = []
-    audios = []
-    for i in data.get("adaptiveFormats"):
-        if re.match("video", i.get("type")) is not None:
-            videos.append(i)
-        if re.match("audio", i.get("type")) is not None:
-            audios.append(i)
-    videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-    audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-    video = MakeSureStr(videos[0]["url"])
-    audio = MakeSureStr(audios[0]["url"])
-
-    return video, audio
-
-
-def urllibWapper(url: str) -> str:
-    with urllib.request.urlopen(url) as r:
-        return r.read().decode("utf-8")
-
-
-def DummyLiteral():
-    class a:
-        def __getitem__(self, b):
-            return b
-
-    return a()
-
-
-def Dummy(*args, **kwargs) -> Any:
-    pass
+    instances = []
+    if invidious_domain == "":
+        instances = json.loads(urllibWapper("https://api.invidious.io/instances.json"))
+        invidious_domain = instances[0][0]
+    count = 0
+    while True:
+        # https://docs.invidious.io/api/
+        url = f"https://{invidious_domain}/api/v1/videos/{videoId}"
+        Stderr(_("获取 {}").format(url))
+        try:
+            data = json.loads(urllibWapper(url))
+        except:
+            if instances:
+                count = count + 1
+                invidious_domain = instances[count][0]
+                continue
+            exit(1)
+        videos = []
+        audios = []
+        for i in data.get("adaptiveFormats"):
+            if re.match("video", i.get("type")) is not None:
+                videos.append(i)
+            if re.match("audio", i.get("type")) is not None:
+                audios.append(i)
+        videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
+        audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
+        video = MakeSureStr(videos[0]["url"])
+        audio = MakeSureStr(audios[0]["url"])
+        return video, audio
