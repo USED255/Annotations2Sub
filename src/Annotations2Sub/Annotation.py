@@ -15,7 +15,7 @@ from xml.etree.ElementTree import Element
 
 # 本脚本与之前相比最大的变化就是把脚本拆了
 from Annotations2Sub.Color import Alpha, Color
-from Annotations2Sub.tools import Stderr, _, Flags
+from Annotations2Sub.tools import Stderr, _, Flags, MakeSureStr
 
 # 兼容 Python3.6, 3.7
 # Python3.6, 3.7 的 typing 没有 Literal
@@ -133,14 +133,6 @@ def Parse(tree: Element) -> List[Annotation]:
         g = (s1 >> 8) & 255
         b = s1 >> 16
         return Color(red=r, green=g, blue=b)
-
-    def MakeSureStr(s: Optional[str]) -> str:
-        """确保输入的是字符串"""
-
-        # 这个是用来应付类型注释了, 我觉得在输入确定的环境里做类型检查没有必要
-        if isinstance(s, str):
-            return str(s)
-        raise TypeError
 
     def MakeSureElement(e: Any) -> Element:
         """确保输入的是Element"""

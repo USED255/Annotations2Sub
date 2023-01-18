@@ -9,7 +9,7 @@ import json
 import os
 import re
 import sys
-from typing import Any
+from typing import Any, Optional
 import urllib.request
 
 
@@ -61,6 +61,15 @@ def Stderr(s: str):
     print(s, file=sys.stderr)
 
 
+def MakeSureStr(s: Optional[str]) -> str:
+    """确保输入的是字符串"""
+
+    # 这个是用来应付类型注释了, 我觉得在输入确定的环境里做类型检查没有必要
+    if isinstance(s, str):
+        return str(s)
+    raise TypeError
+
+
 # 如果不生于中国就没有这个函数
 def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
     """检查网络"""
@@ -101,11 +110,11 @@ def AnnotationsForArchive(videoId: str) -> str:
 
 # 致谢 https://invidious.io/
 # 我更想使用 Youtube-DL, 但是 Stack Overflow 没有答案
-def VideoForInvidious(videoId: str, invidious_domain: str):
+def VideoForInvidious(videoId: str, invidious_domain: str = "") -> tuple[str, str]:
     """返回一个视频流和音频流网址"""
     # https://docs.invidious.io/api/
     url = f"https://{invidious_domain}/api/v1/videos/{videoId}"
-    # Stderr(_("获取 {}").format(url))
+    Stderr(_("获取 {}").format(url))
     string = urllibWapper(url)
     data = json.loads(string)
     videos = []
@@ -117,7 +126,10 @@ def VideoForInvidious(videoId: str, invidious_domain: str):
             audios.append(i)
     videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
     audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-    return videos[0]["url"], audios[0]["url"]
+    video = MakeSureStr(videos[0]["url"])
+    audio = MakeSureStr(audios[0]["url"])
+
+    return video, audio
 
 
 def urllibWapper(url: str) -> str:
