@@ -86,14 +86,9 @@ def test_internationalization2():
 
 
 def test_internationalization3():
-    a = "win32"
-
-    def b():
-        return None
-
     m = pytest.MonkeyPatch()
-    m.setattr(sys, "platform", a)
-    m.setattr(os, "getenv", b)
+    m.setattr(sys, "platform", "win32")
+    m.setattr(os, "getenv", lambda: None)
 
     internationalization()
 
