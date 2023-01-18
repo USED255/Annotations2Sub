@@ -11,6 +11,23 @@
             "args": [
                 "../tests/xml.test"
             ],
+        },
+        {
+            "name": "python -m Annotations2Sub -p 29-q7YnyUmY",
+            "type": "python",
+            "module": "Annotations2Sub",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "cwd": "${workspaceFolder}/src",
+            "env": {
+                "http_proxy": "http://127.0.0.1:7890",
+                "https_proxy": "http://127.0.0.1:7890"
+            },
+            "args": [
+                "-p",
+                "29-q7YnyUmY"
+            ],
         }
     ]
 }

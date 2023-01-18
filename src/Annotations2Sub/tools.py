@@ -129,6 +129,8 @@ def AnnotationsForArchive(videoId: str) -> str:
 # 我更想使用 Youtube-DL, 但是 Stack Overflow 没有答案
 def VideoForInvidious(videoId: str, invidious_domain: str = "") -> tuple:
     """返回一个视频流和音频流网址"""
+    if invidious_domain is None:
+        invidious_domain = ""
     instances = []
     if invidious_domain == "":
         instances = json.loads(urllibWapper("https://api.invidious.io/instances.json"))

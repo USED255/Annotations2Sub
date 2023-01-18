@@ -36,8 +36,8 @@ def run():
     parser = argparse.ArgumentParser(description=_("下载和转换 Youtube 注释"))
     parser.add_argument(
         "queue",
-        type=str,
         nargs="+",
+        type=str,
         metavar=_("文件 或 videoId"),
         help=_("多个需要转换的文件的文件路径或视频ID"),
     )
@@ -105,6 +105,7 @@ def run():
     parser.add_argument(
         "-i",
         "--invidious-instances",
+        type=str,
         metavar="invidious.domain",
         help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
     )
