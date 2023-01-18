@@ -6,7 +6,7 @@ import xml.etree.ElementTree
 
 from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
-from Annotations2Sub.flag import Flags
+from Annotations2Sub.tools import Flags
 from Annotations2Sub.Sub import Sub
 
 

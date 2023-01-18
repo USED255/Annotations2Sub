@@ -14,6 +14,6 @@ if __name__ == "__main__":
     sys.path.append(path)
     path = os.path.abspath(os.path.join(path, os.pardir))
     sys.path.append(path)
-    from Annotations2Sub.cli import main
+    from Annotations2Sub.main import main
 
     main()

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""程序入口"""
 
 import _thread
 import argparse
@@ -19,8 +18,6 @@ import defusedxml.ElementTree  # type: ignore
 from Annotations2Sub import version
 from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
-from Annotations2Sub.flag import Flags
-from Annotations2Sub.internationalization import _
 from Annotations2Sub.Sub import Sub
 from Annotations2Sub.tools import (
     AnnotationsForArchive,
@@ -29,10 +26,12 @@ from Annotations2Sub.tools import (
     Stderr,
     VideoForInvidious,
     YellowText,
+    _,
+    Flags,
 )
 
 
-def main():
+def run():
     """程序入口"""
     parser = argparse.ArgumentParser(description=_("下载和转换 Youtube 注释"))
     parser.add_argument(

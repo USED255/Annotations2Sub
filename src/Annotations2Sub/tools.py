@@ -3,7 +3,9 @@
 
 """工具类"""
 
+import gettext
 import json
+import os
 import re
 import sys
 from typing import Any
@@ -91,3 +93,36 @@ def Dummy(*args, **kwargs) -> Any:
 def urllibWapper(url: str) -> str:
     with urllib.request.urlopen(url) as r:
         return r.read().decode("utf-8")
+
+
+def internationalization():
+    """On n'habite pas un pays, on habite une langue. Une patrie, c'est cela et rien d'autre."""
+    try:
+        # 配合 __main__.py
+        locales = os.path.join(os.path.split(os.path.realpath(__file__))[0], "locales")
+
+        # https://stackoverflow.com/a/8377533
+        if sys.platform == "win32":
+            if os.getenv("LANG") is None:
+                os.environ["LANG"], enc = locale.getdefaultlocale()  # type: ignore
+
+        translate = gettext.translation(
+            "Annotations2Sub",
+            locales,
+        )
+        return translate.gettext
+    except:
+        print("翻译文件加载失败", file=sys.stderr)
+        return gettext.gettext
+
+
+_ = internationalization()
+
+
+class Flag:
+    def __init__(self):
+        self.unstable = False
+        self.verbose = False
+
+
+Flags = Flag()

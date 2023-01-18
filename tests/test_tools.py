@@ -4,6 +4,8 @@
 import urllib.request
 
 import pytest
+import gettext
+
 from Annotations2Sub import tools
 
 from Annotations2Sub.tools import (
@@ -12,6 +14,7 @@ from Annotations2Sub.tools import (
     RedText,
     VideoForInvidious,
     YellowText,
+    internationalization,
 )
 
 
@@ -58,3 +61,13 @@ def test_VideoForInvidious():
     return_value = VideoForInvidious("1", "2")
     expected_value = ("1", "2")
     assert return_value == expected_value
+
+
+def test_internationalization():
+    def a(*args, **kwargs):
+        raise Exception
+
+    m = pytest.MonkeyPatch()
+    m.setattr(gettext, "translation", a)
+
+    internationalization()
