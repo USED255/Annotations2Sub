@@ -14,12 +14,9 @@ from Annotations2Sub.tools import _
 try:
     from typing import Literal  # type: ignore
 except ImportError:
+    from Annotations2Sub.tools import DummyLiteral
 
-    class a:
-        def __getitem__(self, b):
-            return b
-
-    exec("Literal = a()")
+    exec("Literal = DummyLiteral()")
 
 
 class Style:

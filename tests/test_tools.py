@@ -1,6 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
+import sys
+
+try:
+    import Annotations2Sub
+except:
+    s1 = os.path.dirname(__file__)
+    s2 = os.path.join(s1, "../src")
+    s3 = os.path.abspath(s2)
+    sys.path.append(s3)
+
 import urllib.request
 
 import pytest
@@ -11,11 +22,15 @@ from Annotations2Sub import tools
 from Annotations2Sub.tools import (
     AnnotationsForArchive,
     CheckUrl,
+    DummyLiteral,
     RedText,
     VideoForInvidious,
     YellowText,
     internationalization,
+    Dummy,
 )
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 
 def test_YellowText():
@@ -64,6 +79,10 @@ def test_VideoForInvidious():
 
 
 def test_internationalization():
+    internationalization()
+
+
+def test_internationalization2():
     def a(*args, **kwargs):
         raise Exception
 
@@ -71,3 +90,20 @@ def test_internationalization():
     m.setattr(gettext, "translation", a)
 
     internationalization()
+
+
+def test_internationalization3():
+    a = "win32"
+
+    m = pytest.MonkeyPatch()
+    m.setattr(sys, "platform", a)
+
+    internationalization()
+
+
+def test_Dummy():
+    Dummy()
+
+
+def test_DummyLiteral():
+    DummyLiteral()
