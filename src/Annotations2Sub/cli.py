@@ -326,7 +326,7 @@ def run(argv=None):
         sub.events.extend(events)
         sub.info["PlayResX"] = args.transform_resolution_x
         sub.info["PlayResY"] = args.transform_resolution_y
-        sub.info["Title"] = annotationFile
+        sub.info["Title"] = os.path.basename(annotationFile)
         sub.styles["Default"].Fontname = args.font
         subString = sub.Dump()
         if args.output_to_stdout:
