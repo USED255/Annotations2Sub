@@ -32,7 +32,8 @@ test_init.py
 
 
 def test_cli2():
-    argv = [file1, file2, "-V", "-o", "."]
+    s = f'{file1} {file2} -l -x 1920 -y 1080 -f Microsoft -V -o .'
+    argv = s.split(" ")
     code = run(argv)
     assert code == 0
 
