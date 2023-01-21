@@ -15,12 +15,14 @@ file2 = os.path.join(path, "e8kKeUuytqA.xml.test")
 baseline1 = os.path.join(path, "29-q7YnyUmY.xml.ass.test")
 baseline2 = os.path.join(path, "e8kKeUuytqA.xml.ass.test")
 
-def d(file1,file2):
-    with open(file1,"rb") as f:
+
+def d(file1, file2):
+    with open(file1, "rb") as f:
         a = hashlib.sha256(f.read()).digest()
-    with open(file2,"rb") as f:
+    with open(file2, "rb") as f:
         b = hashlib.sha256(f.read()).digest()
     return a == b
+
 
 def test_1():
     t = file1 + ".ass"
