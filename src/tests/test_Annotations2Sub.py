@@ -12,7 +12,6 @@ from Annotations2Sub.tools import Flags
 
 def test_Annotations2Sub():
     Flags.verbose = True
-    Flags.unstable = True
     filePath = os.path.join(os.path.dirname(__file__), "xml.test")
     with open(filePath, "r", encoding="utf-8") as f:
         string = f.read()
