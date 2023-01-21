@@ -30,10 +30,7 @@ def internationalization():
 
         # https://stackoverflow.com/a/8377533
         if sys.platform == "win32":
-            Lang = os.getenv("LANG")
-            if Dummy():
-                Lang = Dummy()
-            if Lang is None:
+            if os.getenv("LANG") is None:
                 os.environ["LANG"], __ = locale.getdefaultlocale()  # type: ignore
 
         translate = gettext.translation(

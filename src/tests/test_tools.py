@@ -82,14 +82,6 @@ def test_internationalization2():
     internationalization()
 
 
-def test_internationalization3():
-    m = pytest.MonkeyPatch()
-    m.setattr(sys, "platform", "win32")
-    m.setattr(tools, "Dummy", lambda *args, **kwargs: None)
-
-    internationalization()
-
-
 def test_Dummy():
     Dummy()
 
