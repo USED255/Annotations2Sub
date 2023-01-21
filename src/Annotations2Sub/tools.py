@@ -30,7 +30,10 @@ def internationalization():
 
         # https://stackoverflow.com/a/8377533
         if sys.platform == "win32":
-            if os.getenv("LANG") is None:
+            Lang = os.getenv("LANG")
+            if Dummy():
+                Lang = Dummy()
+            if Lang is None:
                 os.environ["LANG"], __ = locale.getdefaultlocale()  # type: ignore
 
         translate = gettext.translation(
@@ -41,9 +44,6 @@ def internationalization():
     except:
         Stderr(RedText("翻译文件加载失败"))
         return gettext.gettext
-
-
-_ = internationalization()
 
 
 def YellowText(s: str) -> str:
@@ -160,3 +160,6 @@ def VideoForInvidious(videoId: str, invidious_domain: str = "") -> tuple:
         video = MakeSureStr(videos[0]["url"])
         audio = MakeSureStr(audios[0]["url"])
         return video, audio
+
+
+_ = internationalization()

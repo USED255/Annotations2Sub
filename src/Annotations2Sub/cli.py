@@ -31,8 +31,8 @@ from Annotations2Sub.tools import (
 )
 
 
-def run():
-    """程序入口"""
+def run(argv=None):
+    code = 0
     parser = argparse.ArgumentParser(description=_("下载和转换 Youtube 注释"))
     parser.add_argument(
         "queue",
@@ -147,7 +147,7 @@ def run():
         help=_("显示更多消息"),
     )
 
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     if args.verbose:
         Flags.verbose = True
@@ -155,18 +155,18 @@ def run():
     if args.output_to_stdout:
         if args.output_directory is not None:
             Stderr(RedText(_("--output-to-stdout 不能与 --output-directory 选项同时使用")))
-            exit(1)
+            return 1
         if args.no_overwrite_files:
             Stderr(RedText(_("--output-to-stdout 不能与 --no-overwrite-files 选项同时使用")))
-            exit(1)
+            return 1
         if args.output is not None:
             Stderr(RedText(_("--output-to-stdout 不能与 --output 选项同时使用")))
-            exit(1)
+            return 1
         if args.download_annotation_only:
             Stderr(
                 RedText(_("--output-to-stdout 不能与 --download-annotation-only 选项同时使用"))
             )
-            exit(1)
+            return 1
         if args.preview_video or args.generate_video:
             Stderr(
                 RedText(
@@ -175,7 +175,7 @@ def run():
                     )
                 )
             )
-            exit(1)
+            return 1
 
     if args.no_keep_intermediate_files:
         if args.download_annotation_only:
@@ -186,7 +186,7 @@ def run():
                     )
                 )
             )
-            exit(1)
+            return 1
         if not (args.download_for_archive or args.preview_video or args.generate_video):
             Stderr(
                 RedText(
@@ -195,20 +195,20 @@ def run():
                     )
                 )
             )
-            exit(1)
+            return 1
 
     if args.output is not None:
         if args.output_directory is not None:
             Stderr(RedText(_("--output 不能与 --output--directory 选项同时使用")))
-            exit(1)
+            return 1
         if len(args.queue) > 1:
             Stderr(RedText(_("--output 只能处理一个文件")))
-            exit(1)
+            return 1
 
     if args.output_directory is not None:
         if os.path.isdir(args.output_directory) is False:
             Stderr(RedText(_("转换后文件输出目录应该指定一个文件夹")))
-            exit(1)
+            return 1
 
     if args.preview_video or args.generate_video:
         args.download_for_archive = True
@@ -242,6 +242,7 @@ def run():
         if args.download_for_archive:
             if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
                 Stderr(RedText(_("{} 不是一个有效的视频 ID").format(videoId)))
+                code = 1
                 continue
 
             annotationFile = f"{videoId}.xml"
@@ -264,10 +265,12 @@ def run():
                     f.write(string)
 
             if args.download_annotation_only:
+                code = 1
                 continue
 
         if os.path.isfile(annotationFile) is False:
             Stderr(RedText(_("{} 不是一个文件").format(annotationFile)))
+            code = 1
             continue
 
         with open(annotationFile, "r", encoding="utf-8") as f:
@@ -275,6 +278,7 @@ def run():
 
         if annotationsString == "":
             Stderr(YellowText(_("{} 可能没有 Annotation").format(Task)))
+            code = 1
             continue
 
         try:
@@ -283,10 +287,12 @@ def run():
             Stderr(RedText(_("{} 不是一个有效的 XML 文件").format(annotationFile)))
             if Flags.verbose:
                 Stderr(traceback.format_exc())
+            code = 1
             continue
 
         if tree.find("annotations") == None:
             Stderr(RedText(_("{} 不是 Annotation 文件").format(annotationFile)))
+            code = 1
             continue
 
         if len(tree.find("annotations").findall("annotation")) == 0:
@@ -339,7 +345,6 @@ def run():
             Stderr(_("保存于: {}").format(subFile))
 
         if args.preview_video:
-            # 从 Invidious 获取视频流和音频流, 并塞给 mpv, FFmpeg
             video, audio = VideoForInvidious(videoId, args.invidious_instances)
             cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subFile}"'
             if Flags.verbose:
@@ -364,3 +369,5 @@ def run():
             if args.no_keep_intermediate_files:
                 os.remove(subFile)
                 Stderr(_("删除 {}").format(subFile))
+
+    return code

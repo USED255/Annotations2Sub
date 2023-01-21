@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import sys
 from Annotations2Sub.cli import run
 
+print(__file__)
 
-def main():
-    sys.exit(run())
+
+def test_cli():
+    code = run(["."])
+    assert code == 1
