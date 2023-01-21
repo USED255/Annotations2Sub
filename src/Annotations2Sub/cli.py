@@ -22,12 +22,12 @@ from Annotations2Sub.Sub import Sub
 from Annotations2Sub.tools import (
     AnnotationsForArchive,
     CheckUrl,
+    Flags,
     RedText,
     Stderr,
     VideoForInvidious,
     YellowText,
     _,
-    Flags,
 )
 
 

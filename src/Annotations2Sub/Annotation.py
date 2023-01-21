@@ -15,7 +15,7 @@ from xml.etree.ElementTree import Element
 
 # 本脚本与之前相比最大的变化就是把脚本拆了
 from Annotations2Sub.Color import Alpha, Color
-from Annotations2Sub.tools import Stderr, _, Flags, MakeSureStr
+from Annotations2Sub.tools import Flags, MakeSureStr, Stderr, _
 
 # 兼容 Python3.6, 3.7
 # Python3.6, 3.7 的 typing 没有 Literal

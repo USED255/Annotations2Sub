@@ -1,26 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import gettext
 import os
 import sys
-
-
 import urllib.request
 
 import pytest
-import gettext
 
 from Annotations2Sub import tools
-
 from Annotations2Sub.tools import (
     AnnotationsForArchive,
     CheckUrl,
+    Dummy,
     DummyLiteral,
     RedText,
     VideoForInvidious,
     YellowText,
     internationalization,
-    Dummy,
 )
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))

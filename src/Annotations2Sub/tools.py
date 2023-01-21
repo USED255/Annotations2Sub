@@ -3,14 +3,14 @@
 
 """工具类"""
 
-import locale
 import gettext
 import json
+import locale
 import os
 import re
 import sys
-from typing import Any, Optional
 import urllib.request
+from typing import Any, Optional
 
 
 class flags:
