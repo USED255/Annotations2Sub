@@ -344,9 +344,7 @@ def run(argv=None):
                 f.write(subString)
             Stderr(_("保存于: {}").format(subFile))
 
-        if args.preview_video:
-            video, audio = VideoForInvidious(videoId, args.invidious_instances)
-            cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subFile}"'
+        def d1():
             if Flags.verbose:
                 Stderr(cmd)
             exit_code = os.system(cmd)
@@ -357,17 +355,14 @@ def run(argv=None):
                 os.remove(subFile)
                 Stderr(_("删除 {}").format(subFile))
 
+        if args.preview_video:
+            video, audio = VideoForInvidious(videoId, args.invidious_instances)
+            cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subFile}"'
+            d1()
+
         if args.generate_video:
             video, audio = VideoForInvidious(videoId, args.invidious_instances)
             cmd = rf'ffmpeg -i "{video}" -i "{audio}" -vf "ass={subFile}" {subFile}.mp4'
-            if Flags.verbose:
-                Stderr(cmd)
-            exit_code = os.system(cmd)
-            if Flags.verbose:
-                if exit_code != 0:
-                    Stderr(YellowText("exit with {}".format(exit_code)))
-            if args.no_keep_intermediate_files:
-                os.remove(subFile)
-                Stderr(_("删除 {}").format(subFile))
+            d1()
 
     return code
