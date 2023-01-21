@@ -18,9 +18,9 @@ baseline2 = os.path.join(path, "e8kKeUuytqA.xml.ass.test")
 
 def test_1():
     run([file1])
-    filecmp.cmp(file1 + ".ass", baseline1)
+    assert filecmp.cmp(file1 + ".ass", baseline1)
 
 
 def test_2():
     run([file2])
-    filecmp.cmp(file2 + ".ass", baseline2)
+    assert filecmp.cmp(file2 + ".ass", baseline2)
