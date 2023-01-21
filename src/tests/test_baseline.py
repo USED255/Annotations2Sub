@@ -12,8 +12,8 @@ path = os.path.join(path, "Baseline")
 file1 = os.path.join(path, "29-q7YnyUmY.xml.test")
 file2 = os.path.join(path, "e8kKeUuytqA.xml.test")
 
-baseline1 = os.path.join(path, "29-q7YnyUmY.xml.ass.test")
-baseline2 = os.path.join(path, "e8kKeUuytqA.xml.ass.test")
+baseline1 = os.path.join(path, "29-q7YnyUmY.ass.test")
+baseline2 = os.path.join(path, "e8kKeUuytqA.ass.test")
 
 
 def d(file1, file2):
