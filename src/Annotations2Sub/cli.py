@@ -4,6 +4,7 @@
 
 import _thread
 import argparse
+import json
 import os
 import re
 import sys
@@ -20,18 +21,87 @@ from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
 from Annotations2Sub.tools import (
-    AnnotationsForArchive,
-    CheckUrl,
     Flags,
+    MakeSureStr,
     RedText,
     Stderr,
-    VideoForInvidious,
     YellowText,
     _,
+    urllibWapper,
 )
 
 
 def run(argv=None):
+    def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
+        try:
+            urllib.request.urlopen(url=url, timeout=timeout)
+        except:
+            return False
+        return True
+
+    # 致谢 https://invidious.io/
+    # 我更想使用 Youtube-DL, 但是 Stack Overflow 没有答案
+    def VideoForInvidious(videoId: str, invidious_domain: str = "") -> tuple:
+        """返回一个视频流和音频流网址"""
+        if invidious_domain is None:
+            invidious_domain = ""
+        instances = []
+        if invidious_domain == "":
+            instances = json.loads(
+                urllibWapper("https://api.invidious.io/instances.json")
+            )
+            invidious_domain = instances[0][0]
+        count = 0
+        while True:
+            # https://docs.invidious.io/api/
+            url = f"https://{invidious_domain}/api/v1/videos/{videoId}"
+            Stderr(_("获取 {}").format(url))
+            try:
+                data = json.loads(urllibWapper(url))
+            except:
+                if instances:
+                    count = count + 1
+                    invidious_domain = instances[count][0]
+                    continue
+                exit(1)
+            videos = []
+            audios = []
+            for i in data.get("adaptiveFormats"):
+                if re.match("video", i.get("type")) is not None:
+                    videos.append(i)
+                if re.match("audio", i.get("type")) is not None:
+                    audios.append(i)
+            videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
+            audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
+            video = MakeSureStr(videos[0]["url"])
+            audio = MakeSureStr(audios[0]["url"])
+            return video, audio
+
+    def AnnotationsForArchive(videoId: str) -> str:
+        # 移植自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
+        # 向 https://archive.org/details/youtubeannotations 致敬
+        # 如果你对你的数据在意, 就不要把它们托付给他人
+        # Rain Shimotsuki 不仅是个打歌词的, 他更是一位创作者
+        # 自己作品消失, 我相信没人愿意看到
+        """返回注释在互联网档案馆的网址"""
+        ARCHIVE_URL = "https://archive.org"
+        CHARS_SAFE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+
+        if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
+            raise ValueError("Invalid videoId")
+
+        index = CHARS_SAFE.index(videoId[0]).__str__().rjust(2, "0")
+
+        # IA doesn't handle leading hyphens,
+        # so we use https://archive.org/details/youtubeannotations_64
+        if index == "62":
+            index = "64"
+            videoId.replace("^-", "A")
+
+        file = f"{videoId[0:3]}/{videoId}.xml"
+
+        return f"{ARCHIVE_URL}/download/youtubeannotations_{index}/{videoId[0:2]}.tar/{file}"
+
     code = 0
     parser = argparse.ArgumentParser(description=_("下载和转换 Youtube 注释"))
     parser.add_argument(

@@ -3,7 +3,6 @@
 
 import difflib
 import os
-import pytest
 
 from Annotations2Sub.cli import run
 from Annotations2Sub.tools import RedText, Stderr
