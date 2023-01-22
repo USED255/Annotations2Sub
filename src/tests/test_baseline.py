@@ -3,7 +3,7 @@
 
 import difflib
 import os
-import hashlib
+import pytest
 
 from Annotations2Sub.cli import run
 from Annotations2Sub.tools import RedText, Stderr
@@ -17,6 +17,8 @@ file2 = os.path.join(path1, "e8kKeUuytqA.xml.test")
 baseline1 = os.path.join(path1, "29-q7YnyUmY.ass.test")
 baseline2 = os.path.join(path1, "e8kKeUuytqA.ass.test")
 
+m = pytest.MonkeyPatch()
+m.setenv("LC_ALL","zh_CN")
 
 def d(file1, file2):
     with open(file1, "r", encoding="utf-8") as f:
@@ -35,13 +37,13 @@ def d(file1, file2):
 
 def test_1():
     t = file1 + ".ass"
-    run([file1, "-f", "Microsoft YaHei"])
+    run([file1])
     assert d(t, baseline1)
 
 
 def test_2():
     t = file2 + ".ass"
-    run([file2, "-f", "Microsoft YaHei"])
+    run([file2])
     assert d(t, baseline2)
 
 
