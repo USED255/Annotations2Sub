@@ -17,9 +17,6 @@ file2 = os.path.join(path1, "e8kKeUuytqA.xml.test")
 baseline1 = os.path.join(path1, "29-q7YnyUmY.ass.test")
 baseline2 = os.path.join(path1, "e8kKeUuytqA.ass.test")
 
-m = pytest.MonkeyPatch()
-m.setenv("LC_ALL", "zh_CN")
-
 
 def d(file1, file2):
     with open(file1, "r", encoding="utf-8") as f:
@@ -34,7 +31,8 @@ def d(file1, file2):
             if i.startswith(" "):
                 continue
             d2.append(i)
-        Stderr(RedText(str(d2)))
+        for i in d2:
+            Stderr(RedText(i))
         return False
     return True
 
