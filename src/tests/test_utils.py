@@ -7,7 +7,7 @@ import sys
 
 import pytest
 
-from Annotations2Sub.tools import MakeSureStr, RedText, YellowText, internationalization
+from Annotations2Sub.utils import MakeSureStr, RedText, YellowText, internationalization
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 

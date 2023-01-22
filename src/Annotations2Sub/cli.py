@@ -20,7 +20,7 @@ from Annotations2Sub import version
 from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
-from Annotations2Sub.tools import (
+from Annotations2Sub.utils import (
     Flags,
     MakeSureStr,
     RedText,

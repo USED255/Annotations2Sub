@@ -13,7 +13,7 @@ from typing import List
 from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, DrawCommand, Event
-from Annotations2Sub.tools import Stderr, _
+from Annotations2Sub.utils import Stderr, _
 
 
 # 这些代码实际上来自于

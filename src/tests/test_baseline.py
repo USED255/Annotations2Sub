@@ -5,7 +5,7 @@ import difflib
 import os
 
 from Annotations2Sub.cli import run
-from Annotations2Sub.tools import RedText, Stderr
+from Annotations2Sub.utils import RedText, Stderr
 
 path = os.path.dirname(__file__)
 path1 = os.path.join(path, "Baseline")
