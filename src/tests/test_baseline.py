@@ -23,8 +23,8 @@ def d(file1, file2):
     with open(file2, "r", encoding="utf-8") as f:
         b = f.readlines()
     if a != b:
-        d = difflib.Differ()
-        diff = list(d.compare(a, b))
+        d1 = difflib.Differ()
+        diff = list(d1.compare(a, b))
         d2 = []
         for i in diff:
             if i.startswith(" "):
