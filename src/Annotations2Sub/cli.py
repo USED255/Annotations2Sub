@@ -34,7 +34,8 @@ from Annotations2Sub.utils import (
 def run(argv=None):
     def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
         try:
-            urllib.request.urlopen(url=url, timeout=timeout)
+            with urllib.request.urlopen(url=url, timeout=timeout):
+                pass
         except:
             return False
         return True
@@ -329,8 +330,7 @@ def run(argv=None):
             if not skipDownload:
                 url = AnnotationsForArchive(videoId)
                 Stderr(_("下载 {}").format(url))
-                with urllib.request.urlopen(url) as r:
-                    string = r.read().decode("utf-8")
+                string = urllibWapper(url)
                 with open(annotationFile, "w", encoding="utf-8") as f:
                     f.write(string)
 
