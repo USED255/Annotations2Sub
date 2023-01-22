@@ -18,19 +18,23 @@ baseline1 = os.path.join(path1, "29-q7YnyUmY.ass.test")
 baseline2 = os.path.join(path1, "e8kKeUuytqA.ass.test")
 
 m = pytest.MonkeyPatch()
-m.setenv("LC_ALL","zh_CN")
+m.setenv("LC_ALL", "zh_CN")
+
 
 def d(file1, file2):
     with open(file1, "r", encoding="utf-8") as f:
-        a = f.read()
+        a = f.readlines()
     with open(file2, "r", encoding="utf-8") as f:
-        b = f.read()
-    c = a.splitlines()
-    d = b.splitlines()
-    if c != d:
-        d1 = difflib.Differ()
-        diff = list(d1.compare(c, d))
-        Stderr(RedText(str(diff)))
+        b = f.readlines()
+    if a != b:
+        d = difflib.Differ()
+        diff = list(d.compare(a, b))
+        d2 = []
+        for i in diff:
+            if i.startswith(" "):
+                continue
+            d2.append(i)
+        Stderr(RedText(str(d2)))
         return False
     return True
 
