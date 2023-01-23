@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import os
+import urllib.request
+import pytest
 
+from Annotations2Sub import cli
 from Annotations2Sub.cli import run
 
 path = os.path.dirname(__file__)
@@ -47,3 +50,19 @@ def test_cli2():
         argv = line.split(" ")
         code = run(argv)
         assert code == 0
+
+
+def test_cli3():
+    m = pytest.MonkeyPatch()
+    m.setattr(cli, "urllibWapper", lambda x: "")
+
+    code = run(["-d", "29-q7YnyUmY"])
+    assert code == 1
+
+
+def test_cli4():
+    def b(*args, **kwargs):
+        raise Exception
+
+    m = pytest.MonkeyPatch()
+    m.setattr(urllib.request, "urlopen", b)
