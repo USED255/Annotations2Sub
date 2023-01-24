@@ -72,3 +72,31 @@ def test_cli4():
 
     code = run(["-D", "29-q7YnyUmY"])
     assert code == 0
+
+
+def test_cli5():
+    s1 = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"1"},{"type":"audio","bitrate":1,"url":"2"}]}'
+    s2 = r'["1"]'
+    with open(file1, encoding="utf-8") as f:
+        s3 = f.read()
+
+    def mock(url):
+        if (
+            url
+            == "https://archive.org/download/youtubeannotations_54/29.tar/29-/29-q7YnyUmY.xml"
+        ):
+            return s3
+        if url == "https://api.invidious.io/instances.json":
+            return s2
+        if url == "https://1/api/v1/videos/29-q7YnyUmY":
+            return s1
+
+    m = pytest.MonkeyPatch()
+    m.setattr(cli, "urllibWapper", mock)
+    m.setattr(os, "system", lambda __: None)
+
+    code = run(["-p", "29-q7YnyUmY", "-N"])
+    assert code == 0
+
+    code = run(["-g", "29-q7YnyUmY"])
+    assert code == 0
