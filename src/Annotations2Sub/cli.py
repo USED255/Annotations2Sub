@@ -335,7 +335,6 @@ def run(argv=None):
                     f.write(string)
 
             if args.download_annotation_only:
-                code = 1
                 continue
 
         if os.path.isfile(annotationFile) is False:

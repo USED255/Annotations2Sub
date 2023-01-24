@@ -3,6 +3,7 @@
 
 import os
 import urllib.request
+
 import pytest
 
 from Annotations2Sub import cli
@@ -54,15 +55,20 @@ def test_cli2():
 
 def test_cli3():
     m = pytest.MonkeyPatch()
-    m.setattr(cli, "urllibWapper", lambda x: "")
+    m.setattr(cli, "urllibWapper", lambda __: "")
 
-    code = run(["-d", "29-q7YnyUmY"])
+    code = run(["-d", "00000000000"])
     assert code == 1
 
 
 def test_cli4():
-    def b(*args, **kwargs):
-        raise Exception
-
+    with open(file1, encoding="utf-8") as f:
+        s = f.read()
     m = pytest.MonkeyPatch()
-    m.setattr(urllib.request, "urlopen", b)
+    m.setattr(cli, "urllibWapper", lambda __: s)
+
+    code = run(["-d", "29-q7YnyUmY", "-N", "-n"])
+    assert code == 0
+
+    code = run(["-D", "29-q7YnyUmY"])
+    assert code == 0
