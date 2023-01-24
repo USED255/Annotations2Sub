@@ -79,7 +79,7 @@ def test_cli5():
     with open(file1, encoding="utf-8") as f:
         s3 = f.read()
 
-    def mock(url):
+    def mock(url: str):
         if (
             url
             == "https://archive.org/download/youtubeannotations_54/29.tar/29-/29-q7YnyUmY.xml"
@@ -89,6 +89,7 @@ def test_cli5():
             return s2
         if url == "https://1/api/v1/videos/29-q7YnyUmY":
             return s1
+        raise Exception
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "urllibWapper", mock)
@@ -99,3 +100,6 @@ def test_cli5():
 
     code = run(["-g", "29-q7YnyUmY"])
     assert code == 0
+
+    with pytest.raises(Exception):
+        mock("")

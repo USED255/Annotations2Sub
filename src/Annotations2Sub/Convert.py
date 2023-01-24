@@ -61,7 +61,7 @@ def Convert(
             # 就是坐标
             # 顺便一提 SSA 和 Annotation 坐标系一致, y 向下(左手取向).
             # 这里坐标 +1 主要是为了美观, 我不知道这有没有用
-            tag += r"\an7" + r"\pos({},{})".format(x + 1, y + 1)
+            tag += r"\an7" + rf"\pos({x + 1},{y + 1})"
             # "\fs<字体尺寸>"
             # "<字体尺寸> 是一个数字，指定了字体的点的尺寸。"
             # "注意，这里的字体尺寸并不是字号的大小，\fs20 并不是字体大小（font-size）为 20px，
@@ -95,7 +95,7 @@ def Convert(
 
             # 没什么太大的变化
             tag = ""
-            tag += r"\an7" + r"\pos({},{})".format(x, y)
+            tag += r"\an7" + rf"\pos({x},{y})"
             tag += r"\c" + DumpColor(each.bgColor)
             tag += r"\1a" + DumpAlpha(each.bgOpacity)
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
@@ -177,7 +177,7 @@ def Convert(
             event.Layer = 0
 
             tag = ""
-            tag += r"\an7" + r"\pos({},{})".format(sx, sy)
+            tag += r"\an7" + rf"\pos({sx},{sy})"
             tag += r"\c" + DumpColor(each.bgColor)
             tag += r"\1a" + DumpAlpha(each.bgOpacity)
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"

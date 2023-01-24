@@ -128,7 +128,7 @@ class Sub:
             for i in self.note:
                 s += "; " + i + "\n"
             for k, v in self.info.items():
-                s += "{}: {}\n".format(k, v)
+                s += f"{k}: {v}\n"
             s += "\n"
             return s
 
@@ -254,5 +254,5 @@ class Draw:
         # 建议下一个 Aegisub 然后打开 ASSDraw3 画画玩玩
         s = ""
         for i in self.draw:
-            s = s + "{} {} {} ".format(i.command, i.x, i.y)
+            s = s + f"{i.command} {i.x} {i.y} "
         return s
