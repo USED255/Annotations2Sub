@@ -75,7 +75,7 @@ def test_cli4():
 
 def test_cli5():
     s1 = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"1"},{"type":"audio","bitrate":1,"url":"2"}]}'
-    s2 = r'["1"]'
+    s2 = r'[["1"],["2"]]'
     with open(file1, encoding="utf-8") as f:
         s3 = f.read()
 
@@ -88,7 +88,10 @@ def test_cli5():
         if url == "https://api.invidious.io/instances.json":
             return s2
         if url == "https://1/api/v1/videos/29-q7YnyUmY":
+            return ""
+        if url == "https://2/api/v1/videos/29-q7YnyUmY":
             return s1
+
         raise Exception
 
     m = pytest.MonkeyPatch()
@@ -99,6 +102,15 @@ def test_cli5():
     assert code == 0
 
     code = run(["-g", "29-q7YnyUmY"])
+    assert code == 0
+
+    code = run(["-g", "29-q7YnyUmY", "-n"])
+    assert code == 0
+
+    code = run(["-g", "29-q7YnyUmY", "-o", "."])
+    assert code == 0
+
+    code = run(["-D", "29-q7YnyUmY", "-O", "1.xml"])
     assert code == 0
 
     with pytest.raises(Exception):
