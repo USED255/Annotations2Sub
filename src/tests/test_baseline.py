@@ -17,10 +17,10 @@ baseline1 = os.path.join(path1, "29-q7YnyUmY.ass.test")
 baseline2 = os.path.join(path1, "e8kKeUuytqA.ass.test")
 
 
-def d(file1, file2):
-    with open(file1, "r", encoding="utf-8") as f:
+def d(f1, f2):
+    with open(f1, "r", encoding="utf-8") as f:
         a = f.readlines()
-    with open(file2, "r", encoding="utf-8") as f:
+    with open(f2, "r", encoding="utf-8") as f:
         b = f.readlines()
     if a != b:
         d1 = difflib.Differ()
