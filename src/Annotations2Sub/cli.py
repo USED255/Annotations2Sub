@@ -31,6 +31,10 @@ from Annotations2Sub.utils import (
 )
 
 
+def Dummy(*args, **kwargs):
+    pass
+
+
 def run(argv=None):
     def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
         try:
@@ -102,6 +106,8 @@ def run(argv=None):
         file = f"{videoId[0:3]}/{videoId}.xml"
 
         return f"{ARCHIVE_URL}/download/youtubeannotations_{index}/{videoId[0:2]}.tar/{file}"
+
+    Dummy(CheckUrl)  # type: ignore
 
     code = 0
     parser = argparse.ArgumentParser(description=_("下载和转换 Youtube 注释"))

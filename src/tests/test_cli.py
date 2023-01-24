@@ -115,3 +115,25 @@ def test_cli5():
 
     with pytest.raises(Exception):
         mock("")
+
+
+def test_cli6():
+    import urllib.request
+
+    def a(a1):
+        a1()
+
+    def b(*args, **kwargs):
+        return
+
+    def c(*args, **kwargs):
+        raise Exception
+
+    m = pytest.MonkeyPatch()
+    m.setattr(cli, "Dummy", a)
+    m.setattr(urllib.request, "urlopen", b)
+    with pytest.raises(SystemExit):
+        run([])
+    m.setattr(urllib.request, "urlopen", c)
+    with pytest.raises(SystemExit):
+        run([])
