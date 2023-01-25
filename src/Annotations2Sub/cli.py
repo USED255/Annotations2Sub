@@ -46,7 +46,7 @@ def run(argv=None):
             return False
         return True
 
-    def MediaFromInvidious(videoId: str, instanceDomain: str = "") -> tuple[str, str]:
+    def MediaFromInvidious(videoId: str, instanceDomain: str = "") -> tuple:
         """返回一个视频流和音频流网址"""
         instances = []
         if instanceDomain != "":
@@ -228,42 +228,14 @@ def run(argv=None):
         if args.output_directory is not None:
             Stderr(RedText(_("--output-to-stdout 不能与 --output-directory 选项同时使用")))
             return 1
-        if args.no_overwrite_files:
-            Stderr(RedText(_("--output-to-stdout 不能与 --no-overwrite-files 选项同时使用")))
-            return 1
         if args.output is not None:
             Stderr(RedText(_("--output-to-stdout 不能与 --output 选项同时使用")))
-            return 1
-        if args.download_annotation_only:
-            Stderr(
-                RedText(_("--output-to-stdout 不能与 --download-annotation-only 选项同时使用"))
-            )
             return 1
         if args.preview_video or args.generate_video:
             Stderr(
                 RedText(
                     _(
                         "--output-to-stdout 不能与 --preview-video 或 --generate-video 选项同时使用"
-                    )
-                )
-            )
-            return 1
-
-    if args.no_keep_intermediate_files:
-        if args.download_annotation_only:
-            Stderr(
-                RedText(
-                    _(
-                        "--no-keep-intermediate-files 不能与 --download-annotation-only 选项同时使用"
-                    )
-                )
-            )
-            return 1
-        if not (args.download_for_archive or args.preview_video or args.generate_video):
-            Stderr(
-                RedText(
-                    _(
-                        "--no-keep-intermediate-files 必须和 --download-for-archive 或 --preview-video 或 --generate-video 选项使用"
                     )
                 )
             )
@@ -334,6 +306,9 @@ def run(argv=None):
                 url = AnnotationsFromArchive(videoId)
                 Stderr(_("下载 {}").format(url))
                 string = urllibWapper(url)
+                if args.output_to_stdout:
+                    print(string, file=sys.stdout)
+                    continue
                 with open(annotationFile, "w", encoding="utf-8") as f:
                     f.write(string)
 
@@ -402,8 +377,8 @@ def run(argv=None):
         sub.styles["Default"].Fontname = args.font
         subString = sub.Dump()
         if args.output_to_stdout:
-            subFile = ""
             print(subString, file=sys.stdout)
+            continue
         if args.no_overwrite_files:
             if os.path.exists(subFile):
                 Stderr(YellowText(_("文件已存在, 跳过输出 ({})").format(subFile)))

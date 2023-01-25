@@ -7,6 +7,7 @@ import pytest
 
 from Annotations2Sub import cli
 from Annotations2Sub.cli import run
+from Annotations2Sub.utils import RedText, Stderr
 
 path = os.path.dirname(__file__)
 file1 = os.path.join(path, "Baseline", "29-q7YnyUmY.xml.test")
@@ -18,12 +19,10 @@ file5 = os.path.join(path, "test", "1.ass.test")
 
 def test_cli():
     test = f"""-s {file1} -o {file5}
--s {file1} -n
 -s {file1} -O {file5}
 -s {file1} -D
 -s {file1} -p
 -s {file1} -g
--N {file1}
 -N -D {file1}
 {file1} -o {file5}
 0
@@ -35,6 +34,8 @@ def test_cli():
     for line in test.splitlines():
         argv = line.split(" ")
         code = run(argv)
+        if code != 1:
+            Stderr(RedText(line))
         assert code == 1
 
 
