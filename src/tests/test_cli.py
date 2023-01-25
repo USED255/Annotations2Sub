@@ -139,3 +139,7 @@ def test_cli6():
     m.setattr(urllib.request, "urlopen", c)
     with pytest.raises(SystemExit):
         run([])
+
+
+def test_cli7():
+    pass

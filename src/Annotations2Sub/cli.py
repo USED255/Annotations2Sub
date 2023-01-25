@@ -36,38 +36,33 @@ def Dummy(*args, **kwargs):
 
 
 def run(argv=None):
+    """跑起来🐎🐎🐎"""
+
     def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
+        """检查网络"""
         try:
             urllib.request.urlopen(url=url, timeout=timeout)
         except:
             return False
         return True
 
-    # 致谢 https://invidious.io/
-    # 我更想使用 Youtube-DL, 但是 Stack Overflow 没有答案
-    def VideoForInvidious(videoId: str, invidious_domain: str = "") -> tuple:
+    def MediaFromInvidious(videoId: str, instanceDomain: str = "") -> tuple[str, str]:
         """返回一个视频流和音频流网址"""
-        if invidious_domain is None:
-            invidious_domain = ""
         instances = []
-        if invidious_domain == "":
+        if instanceDomain != "":
+            instances.append([instanceDomain])
+        if instanceDomain == "":
             instances = json.loads(
                 urllibWapper("https://api.invidious.io/instances.json")
             )
-            invidious_domain = instances[0][0]
-        count = 0
-        while True:
-            # https://docs.invidious.io/api/
-            url = f"https://{invidious_domain}/api/v1/videos/{videoId}"
+        for instance in instances:
+            domain = instance[0]
+            url = f"https://{domain}/api/v1/videos/{videoId}"
             Stderr(_("获取 {}").format(url))
             try:
                 data = json.loads(urllibWapper(url))
             except:
-                if instances:
-                    count = count + 1
-                    invidious_domain = instances[count][0]
-                    continue
-                exit(1)
+                continue
             videos = []
             audios = []
             for i in data.get("adaptiveFormats"):
@@ -80,8 +75,9 @@ def run(argv=None):
             video = MakeSureStr(videos[0]["url"])
             audio = MakeSureStr(audios[0]["url"])
             return video, audio
+        raise Exception
 
-    def AnnotationsForArchive(videoId: str) -> str:
+    def AnnotationsFromArchive(videoId: str) -> str:
         # 移植自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
         # 向 https://archive.org/details/youtubeannotations 致敬
         # 如果你对你的数据在意, 就不要把它们托付给他人
@@ -106,7 +102,7 @@ def run(argv=None):
 
         return f"{ARCHIVE_URL}/download/youtubeannotations_{index}/{videoId[0:2]}.tar/{file}"
 
-    Dummy([CheckUrl, AnnotationsForArchive, VideoForInvidious])  # type: ignore
+    Dummy([CheckUrl, AnnotationsFromArchive, MediaFromInvidious])  # type: ignore
 
     code = 0
     parser = argparse.ArgumentParser(description=_("下载和转换 Youtube 注释"))
@@ -289,6 +285,8 @@ def run(argv=None):
     if args.preview_video or args.generate_video:
         args.download_for_archive = True
         args.embrace_libass = True
+        if args.invidious_instances == None:
+            args.invidious_instances = ""
 
     if args.embrace_libass and (
         args.transform_resolution_x == 100 or args.transform_resolution_y == 100
@@ -333,7 +331,7 @@ def run(argv=None):
                     Stderr(YellowText(_("文件已存在, 跳过下载 ({})").format(videoId)))
                     skipDownload = True
             if not skipDownload:
-                url = AnnotationsForArchive(videoId)
+                url = AnnotationsFromArchive(videoId)
                 Stderr(_("下载 {}").format(url))
                 string = urllibWapper(url)
                 with open(annotationFile, "w", encoding="utf-8") as f:
@@ -429,13 +427,15 @@ def run(argv=None):
                 os.remove(subFile)
                 Stderr(_("删除 {}").format(subFile))
 
+        video = audio = ""
+        if args.preview_video or args.generate_video:
+            video, audio = MediaFromInvidious(videoId, args.invidious_instances)
+
         if args.preview_video:
-            video, audio = VideoForInvidious(videoId, args.invidious_instances)
             cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subFile}"'
             d1()
 
         if args.generate_video:
-            video, audio = VideoForInvidious(videoId, args.invidious_instances)
             cmd = rf'ffmpeg -i "{video}" -i "{audio}" -vf "ass={subFile}" {subFile}.mp4'
             d1()
 
