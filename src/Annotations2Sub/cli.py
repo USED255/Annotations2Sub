@@ -381,14 +381,15 @@ def run(argv=None):
         if args.output_to_stdout:
             print(subString, file=sys.stdout)
             continue
+        noSave = False
         if args.no_overwrite_files:
             if os.path.exists(subFile):
                 Stderr(YellowText(_("文件已存在, 跳过输出 ({})").format(subFile)))
-                subFile = ""
+                noSave = True
         if args.no_keep_intermediate_files:
             os.remove(annotationFile)
             Stderr(_("删除 {}").format(annotationFile))
-        if subFile != "":
+        if not noSave:
             with open(subFile, "w", encoding="utf-8") as f:
                 f.write(subString)
             Stderr(_("保存于: {}").format(subFile))
