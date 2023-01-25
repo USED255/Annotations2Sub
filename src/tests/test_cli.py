@@ -121,7 +121,9 @@ def test_cli6():
     import urllib.request
 
     def a(a1):
-        a1()
+        for i in a1:
+            if i.__name__ == "CheckUrl":
+                i()
 
     def b(*args, **kwargs):
         return

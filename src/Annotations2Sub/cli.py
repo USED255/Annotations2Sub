@@ -38,8 +38,7 @@ def Dummy(*args, **kwargs):
 def run(argv=None):
     def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
         try:
-            with urllib.request.urlopen(url=url, timeout=timeout):
-                pass
+            urllib.request.urlopen(url=url, timeout=timeout)
         except:
             return False
         return True
@@ -107,7 +106,7 @@ def run(argv=None):
 
         return f"{ARCHIVE_URL}/download/youtubeannotations_{index}/{videoId[0:2]}.tar/{file}"
 
-    Dummy(CheckUrl)  # type: ignore
+    Dummy([CheckUrl, AnnotationsForArchive, VideoForInvidious])  # type: ignore
 
     code = 0
     parser = argparse.ArgumentParser(description=_("下载和转换 Youtube 注释"))
