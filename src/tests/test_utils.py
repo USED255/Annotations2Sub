@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import _thread
 import gettext
-import http.server
 import os
-import socketserver
 
 import pytest
 
@@ -14,7 +11,6 @@ from Annotations2Sub.utils import (
     RedText,
     YellowText,
     internationalization,
-    urllibWapper,
 )
 
 basePath = os.path.dirname(__file__)
@@ -46,14 +42,3 @@ def test_internationalization2():
     m.setattr(gettext, "translation", a)
 
     internationalization()
-
-
-def test_urllibWapper():
-    Handler = http.server.SimpleHTTPRequestHandler
-
-    def a():
-        with socketserver.TCPServer(("", 10575), Handler) as httpd:
-            httpd.serve_forever()
-
-    _thread.start_new_thread(a, ())
-    urllibWapper("http://127.0.0.1:10575/")
