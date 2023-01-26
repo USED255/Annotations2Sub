@@ -8,7 +8,7 @@
             "justMyCode": false,
         },
         {
-            "name": "python -m Annotations2Sub ../tests/xml.test",
+            "name": "python -m Annotations2Sub ../tests/testCase/annotation.xml.test",
             "type": "python",
             "module": "Annotations2Sub",
             "request": "launch",
@@ -16,7 +16,7 @@
             "justMyCode": false,
             "cwd": "${workspaceFolder}/src",
             "args": [
-                "../tests/xml.test"
+                "../tests/testCase/annotation.xml.test"
             ],
         },
         {
@@ -34,6 +34,18 @@
             "args": [
                 "-p",
                 "29-q7YnyUmY"
+            ],
+        },
+        {
+            "name": "python -m Annotations2Sub XwxBJEzgqWU.xml",
+            "type": "python",
+            "module": "Annotations2Sub",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "cwd": "${workspaceFolder}/src",
+            "args": [
+                "XwxBJEzgqWU.xml"
             ],
         }
     ]

@@ -235,16 +235,29 @@ def Parse(tree: Element) -> List[Annotation]:
                 Stderr(_("{} 不显示, 跳过").format(annotation.id))
             return None
 
-        # 其实这些字符串可以直接在 SSA 上用的, 但是不知道为什么之前来回转换了两次
-        # 那些代码已经是两年前写的了
-        # 我也忘了
-        try:
-            annotation.timeStart = datetime.datetime.strptime(Start, "%H:%M:%S.%f")
-            # 在这之前我会在这里 ↓ 加两个空格与上面对齐, 但是 black 好像不太喜欢
-            annotation.timeEnd = datetime.datetime.strptime(End, "%H:%M:%S.%f")
-        except:
-            annotation.timeStart = datetime.datetime.strptime(Start, "%M:%S.%f")
-            annotation.timeEnd = datetime.datetime.strptime(End, "%M:%S.%f")
+        # # 其实这些字符串可以直接在 SSA 上用的, 但是不知道为什么之前来回转换了两次
+        # # 那些代码已经是两年前写的了
+        # # 我也忘了
+        # try:
+        #     annotation.timeStart = datetime.datetime.strptime(Start, "%H:%M:%S.%f")
+        #     # 在这之前我会在这里 ↓ 加两个空格与上面对齐, 但是 black 好像不太喜欢
+        #     annotation.timeEnd = datetime.datetime.strptime(End, "%H:%M:%S.%f")
+        # except:
+        #     annotation.timeStart = datetime.datetime.strptime(Start, "%M:%S.%f")
+        #     annotation.timeEnd = datetime.datetime.strptime(End, "%M:%S.%f")
+
+        def ParseTime(timeString: str) -> datetime.datetime:
+            colon = timeString.count(":")
+            timeFormat = ""
+            if colon == 2:
+                timeFormat += "%H:"
+            timeFormat += "%M:%S"
+            if "." in timeString:
+                timeFormat += ".%f"
+            return datetime.datetime.strptime(timeString, timeFormat)
+
+        annotation.timeStart = ParseTime(Start)
+        annotation.timeEnd = ParseTime(End)
 
         annotation.x = float(MakeSureStr(Segment[0].get("x")))
         annotation.y = float(MakeSureStr(Segment[0].get("y")))
