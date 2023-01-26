@@ -6,12 +6,7 @@ import os
 
 import pytest
 
-from Annotations2Sub.utils import (
-    MakeSureStr,
-    RedText,
-    YellowText,
-    internationalization,
-)
+from Annotations2Sub.utils import MakeSureStr, RedText, YellowText, internationalization
 
 basePath = os.path.dirname(__file__)
 file1 = os.path.join(basePath, "test", "1.test")
@@ -35,10 +30,10 @@ def test_internationalization():
 
 
 def test_internationalization2():
-    def a(*args, **kwargs):
+    def f(*args, **kwargs):
         raise Exception
 
     m = pytest.MonkeyPatch()
-    m.setattr(gettext, "translation", a)
+    m.setattr(gettext, "translation", f)
 
     internationalization()

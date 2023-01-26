@@ -29,12 +29,12 @@ def test_cli():
 -sg {baseline1File}
 -ND {baseline1File}
 {baseline1File} -o {ssa1}
-0
--d 0
+{baseline1File} {baseline2File} -O 1.ass
+{baseline1File} -o . -O 1.ass
 {emptyXML}
 {ssa1}
-{baseline1File} {baseline2File} -O 1.ass
-{baseline1File} -o . -O 1.ass"""
+0
+-d 0"""
 
     for line in test.splitlines():
         Stderr(line)
@@ -46,11 +46,10 @@ def test_cli():
 def test_cli2():
     """预期成功的命令"""
     test = f"""{baseline1File} {baseline2File} -l -x 1920 -y 1080 -f Microsoft -V -o .
-{baseline1File} -l
 {baseline1File} -O 1.ass
 {baseline1File} -s
-{emptyAnnotations}
-{baseline1File} -n"""
+{baseline1File} -n
+{emptyAnnotations}"""
 
     for line in test.splitlines():
         Stderr(line)
@@ -61,32 +60,33 @@ def test_cli2():
 
 def test_cli3():
     """网络相关"""
-    test = f"""-dNn {Baseline1}
--D {Baseline1}
--pN {Baseline1}
--g {Baseline1}
--gn {Baseline1}
--g {Baseline1} -o .
+    test = f"""-g {Baseline1} -o .
 -D {Baseline1} -O 1.xml
 -g {Baseline1} -i 2
--D {Baseline1} -s"""
-    s1 = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"1"},{"type":"audio","bitrate":1,"url":"2"}]}'
-    s2 = r'[["0",{"api":false}],["1"],["2"]]'
+-D {Baseline1} -s
+-dNn {Baseline1}
+-pN {Baseline1}
+-gn {Baseline1}
+-pg {Baseline1}
+-D {Baseline1}
+-g {Baseline1}"""
+    instancesString = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"1"},{"type":"audio","bitrate":1,"url":"2"}]}'
+    invidiousString = r'[["0",{"api":false}],["1"],["2"]]'
     with open(baseline1File, encoding="utf-8") as f:
-        baseline1str = f.read()
+        baseline1String = f.read()
 
     def mock(url: str):
         if (
             url
             == "https://archive.org/download/youtubeannotations_54/29.tar/29-/29-q7YnyUmY.xml"
         ):
-            return baseline1str
+            return baseline1String
         if url == "https://api.invidious.io/instances.json":
-            return s2
+            return invidiousString
         if url == "https://1/api/v1/videos/29-q7YnyUmY":
             return ""
         if url == "https://2/api/v1/videos/29-q7YnyUmY":
-            return s1
+            return instancesString
 
         raise Exception
 
@@ -116,23 +116,23 @@ def test_cli4():
 
 
 def test_cli5():
-    def a(a1):
-        for i in a1:
+    def f1(x):
+        for i in x:
             if i.__name__ == "CheckUrl":
                 i()
 
-    def b(*args, **kwargs):
+    def f2(*args, **kwargs):
         return
 
-    def c(*args, **kwargs):
+    def f3(*args, **kwargs):
         raise Exception
 
     m = pytest.MonkeyPatch()
-    m.setattr(cli, "Dummy", a)
-    m.setattr(urllib.request, "urlopen", b)
+    m.setattr(cli, "Dummy", f1)
+    m.setattr(urllib.request, "urlopen", f2)
     with pytest.raises(SystemExit):
         run([])
-    m.setattr(urllib.request, "urlopen", c)
+    m.setattr(urllib.request, "urlopen", f3)
     with pytest.raises(SystemExit):
         run([])
 
@@ -140,13 +140,13 @@ def test_cli5():
 
 
 def test_cli6():
-    def a(a1):
-        for i in a1:
+    def f(x):
+        for i in x:
             if i.__name__ == "AnnotationsFromArchive":
                 i("")
 
     m = pytest.MonkeyPatch()
-    m.setattr(cli, "Dummy", a)
+    m.setattr(cli, "Dummy", f)
     with pytest.raises(ValueError):
         run()
 
