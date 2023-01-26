@@ -8,7 +8,7 @@ import locale
 import os
 import sys
 import urllib.request
-from typing import Optional
+from typing import Any
 
 
 class flags:
@@ -56,7 +56,7 @@ def Stderr(s: str):
     print(s, file=sys.stderr)
 
 
-def MakeSureStr(s: Optional[str]) -> str:
+def MakeSureStr(s: Any) -> str:
     """确保输入的是字符串"""
 
     # 这个是用来应付类型注释了, 我觉得在输入确定的环境里做类型检查没有必要

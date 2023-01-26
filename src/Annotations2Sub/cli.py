@@ -288,9 +288,11 @@ def run(argv=None):
         _thread.start_new_thread(CheckNetwork, ())
 
     for Task in args.queue:
-        videoId = Task
+        videoId = MakeSureStr(Task)
         annotationFile = Task
         if args.download_for_archive:
+            if videoId.startswith("\\"):
+                videoId = videoId.removeprefix("\\")
             if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
                 Stderr(RedText(_("{} 不是一个有效的视频 ID").format(videoId)))
                 code = 1
@@ -329,7 +331,7 @@ def run(argv=None):
             annotationsString = f.read()
 
         if annotationsString == "":
-            Stderr(YellowText(_("{} 可能没有 Annotation").format(Task)))
+            Stderr(YellowText(_("{} 可能没有 Annotation").format(videoId)))
             code = 1
             continue
 

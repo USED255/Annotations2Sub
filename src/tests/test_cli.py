@@ -60,43 +60,32 @@ def test_cli2():
 
 
 def test_cli3():
-    """网络相关预期成功的命令"""
+    """网络相关"""
     test = f"""-dNn {Baseline1}
 -D {Baseline1}
-"""
-    with open(baseline1File, encoding="utf-8") as f:
-        baseline = f.read()
-
-    m = pytest.MonkeyPatch()
-    m.setattr(cli, "urllibWapper", lambda __: baseline)
-
-    for line in test.splitlines():
-        Stderr(line)
-        argv = line.split(" ")
-        code = run(argv)
-        assert code == 0
-
-
-def test_cli5():
-    t = f"""-pN {Baseline1}
+-pN {Baseline1}
 -g {Baseline1}
 -gn {Baseline1}
 -g {Baseline1} -o .
 -D {Baseline1} -O 1.xml
 -g {Baseline1} -i 2
 -D {Baseline1} -s"""
-
     s1 = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"1"},{"type":"audio","bitrate":1,"url":"2"}]}'
     s2 = r'[["0",{"api":false}],["1"],["2"]]'
     with open(baseline1File, encoding="utf-8") as f:
-        s3 = f.read()
+        baseline1str = f.read()
 
     def mock(url: str):
         if (
             url
             == "https://archive.org/download/youtubeannotations_54/29.tar/29-/29-q7YnyUmY.xml"
         ):
-            return s3
+            return baseline1str
+        if (
+            url
+            == "https://archive.org/download/youtubeannotations_64/-9.tar/-9-/-9-q7YnyUmY.xml"
+        ):
+            return ""
         if url == "https://api.invidious.io/instances.json":
             return s2
         if url == "https://1/api/v1/videos/29-q7YnyUmY":
@@ -110,7 +99,8 @@ def test_cli5():
     m.setattr(cli, "urllibWapper", mock)
     m.setattr(os, "system", lambda __: None)
 
-    for line in t.splitlines():
+    for line in test.splitlines():
+        Stderr(line)
         argv = line.split(" ")
         code = run(argv)
         assert code == 0
@@ -120,6 +110,12 @@ def test_cli5():
 
     with pytest.raises(Exception):
         mock("")
+
+
+def test_cli4():
+    m = pytest.MonkeyPatch()
+    m.setattr(cli, "urllibWapper", lambda x: "")
+    assert run("""-d \\-9-q7YnyUmY""".split(" ")) == 1
 
 
 def test_cli6():
@@ -142,18 +138,6 @@ def test_cli6():
     m.setattr(urllib.request, "urlopen", c)
     with pytest.raises(SystemExit):
         run([])
-
-
-def test_cli7():
-    def a(a1):
-        for i in a1:
-            if i.__name__ == "AnnotationsFromArchive":
-                i("-9-q7YnyUmY")
-
-    m = pytest.MonkeyPatch()
-    m.setattr(cli, "Dummy", a)
-    with pytest.raises(SystemExit):
-        run()
 
 
 def test_cli8():
