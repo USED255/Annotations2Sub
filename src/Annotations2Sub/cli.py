@@ -56,8 +56,11 @@ def run(argv=None):
                 urllibWapper("https://api.invidious.io/instances.json")
             )
         for instance in instances:
-            if not instance[1]["api"]:
-                continue
+            try:
+                if not instance[1]["api"]:
+                    continue
+            except:
+                pass
             domain = instance[0]
             url = f"https://{domain}/api/v1/videos/{videoId}"
             Stderr(_("获取 {}").format(url))
