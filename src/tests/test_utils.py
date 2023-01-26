@@ -3,13 +3,19 @@
 
 import gettext
 import os
-import sys
 
 import pytest
 
-from Annotations2Sub.utils import MakeSureStr, RedText, YellowText, internationalization
+from Annotations2Sub.utils import (
+    MakeSureStr,
+    RedText,
+    YellowText,
+    internationalization,
+    urllibWapper,
+)
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+basePath = os.path.dirname(__file__)
+file1 = os.path.join(basePath, "test", "1.test")
 
 
 def test_YellowText():
@@ -37,3 +43,18 @@ def test_internationalization2():
     m.setattr(gettext, "translation", a)
 
     internationalization()
+
+
+def test_urllibWapper():
+    def a():
+        import http.server
+        import socketserver
+
+        Handler = http.server.SimpleHTTPRequestHandler
+        with socketserver.TCPServer(("", 10575), Handler) as httpd:
+            httpd.serve_forever()
+
+    import _thread
+
+    _thread.start_new_thread(a, ())
+    urllibWapper("http://127.0.0.1:10575/")

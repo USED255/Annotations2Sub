@@ -106,6 +106,8 @@ def test_cli3():
     with pytest.raises(Exception):
         mock("")
 
+    m.undo()
+
 
 def test_cli4():
     m = pytest.MonkeyPatch()
@@ -134,6 +136,8 @@ def test_cli5():
     with pytest.raises(SystemExit):
         run([])
 
+    m.undo()
+
 
 def test_cli6():
     def a(a1):
@@ -145,3 +149,5 @@ def test_cli6():
     m.setattr(cli, "Dummy", a)
     with pytest.raises(ValueError):
         run()
+
+    m.undo()
