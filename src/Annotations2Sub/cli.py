@@ -57,7 +57,7 @@ def run(argv=None):
             )
         for instance in instances:
             try:
-                if not instance[1]["api"]:
+                if not instance[1]["api"]:  # type: ignore
                     continue
             except:
                 pass
