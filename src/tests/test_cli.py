@@ -81,11 +81,6 @@ def test_cli3():
             == "https://archive.org/download/youtubeannotations_54/29.tar/29-/29-q7YnyUmY.xml"
         ):
             return baseline1str
-        if (
-            url
-            == "https://archive.org/download/youtubeannotations_64/-9.tar/-9-/-9-q7YnyUmY.xml"
-        ):
-            return ""
         if url == "https://api.invidious.io/instances.json":
             return s2
         if url == "https://1/api/v1/videos/29-q7YnyUmY":
