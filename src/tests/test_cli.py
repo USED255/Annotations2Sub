@@ -21,10 +21,10 @@ file5 = os.path.join(path, "test", "1.ass.test")
 def test_cli():
     test = f"""-s {file1} -o {file5}
 -s {file1} -O {file5}
--s {file1} -D
--s {file1} -p
--s {file1} -g
--N -D {file1}
+-sD {file1}
+-sp {file1}
+-sg {file1}
+-ND {file1}
 {file1} -o {file5}
 0
 -d 0
