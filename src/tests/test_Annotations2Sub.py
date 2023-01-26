@@ -9,10 +9,11 @@ from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
 from Annotations2Sub.utils import Flags
 
+filePath = os.path.join(os.path.dirname(__file__), "testCase", "annotation.xml.test")
+
 
 def test_Annotations2Sub():
     Flags.verbose = True
-    filePath = os.path.join(os.path.dirname(__file__), "xml.test")
     with open(filePath, "r", encoding="utf-8") as f:
         string = f.read()
     tree = xml.etree.ElementTree.fromstring(string)
