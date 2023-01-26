@@ -7,49 +7,49 @@ import os
 from Annotations2Sub.cli import run
 from Annotations2Sub.utils import RedText, Stderr
 
-path = os.path.dirname(__file__)
-path1 = os.path.join(path, "Baseline")
+basePath = os.path.dirname(__file__)
+baselinePath = os.path.join(basePath, "Baseline")
 
-file1 = os.path.join(path1, "29-q7YnyUmY.xml.test")
-file2 = os.path.join(path1, "e8kKeUuytqA.xml.test")
+Baseline1 = os.path.join(baselinePath, "29-q7YnyUmY.xml.test")
+Baseline2 = os.path.join(baselinePath, "e8kKeUuytqA.xml.test")
 
-baseline1 = os.path.join(path1, "29-q7YnyUmY.ass.test")
-baseline2 = os.path.join(path1, "e8kKeUuytqA.ass.test")
+baseline1SSA = os.path.join(baselinePath, "29-q7YnyUmY.ass.test")
+baseline2SSA = os.path.join(baselinePath, "e8kKeUuytqA.ass.test")
 
 
-def d(f1, f2):
+def equal(f1, f2):
     with open(f1, "r", encoding="utf-8") as f:
         a = f.readlines()
     with open(f2, "r", encoding="utf-8") as f:
         b = f.readlines()
     if a != b:
-        d1 = difflib.Differ()
-        diff = list(d1.compare(a, b))
-        d2 = []
-        for i in diff:
+        differ = difflib.Differ()
+        diffs = list(differ.compare(a, b))
+        diffList = []
+        for i in diffs:
             if i.startswith(" "):
                 continue
-            d2.append(i)
-        for i in d2:
+            diffList.append(i)
+        for i in diffList:
             Stderr(RedText(i))
         return False
     return True
 
 
-def test_1():
-    t = file1 + ".ass"
-    run([file1])
-    assert d(t, baseline1)
+def test_Baseline1():
+    t = Baseline1 + ".ass"
+    run([Baseline1])
+    assert equal(t, baseline1SSA)
 
 
-def test_2():
-    t = file2 + ".ass"
-    run([file2])
-    assert d(t, baseline2)
+def test_Baseline2():
+    t = Baseline2 + ".ass"
+    run([Baseline2])
+    assert equal(t, baseline2SSA)
 
 
-def test_3():
-    assert not d(
-        os.path.join(path, "test", "1.xml.test"),
-        os.path.join(path, "test", "2.xml.test"),
+def test_equal():
+    assert not equal(
+        os.path.join(basePath, "test", "1.xml.test"),
+        os.path.join(basePath, "test", "2.xml.test"),
     )
