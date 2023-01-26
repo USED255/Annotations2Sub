@@ -36,7 +36,7 @@ msgstr "{} Do not display, skip"
 
 #: Convert.py:313
 msgid "不支持 {} 样式 ({})"
-msgstr "The {} styles is not supported ({})"
+msgstr "The {} style is not supported ({})"
 
 #: Sub.py:107
 msgid "此脚本使用 Annotations2Sub 生成"
@@ -130,7 +130,7 @@ msgstr "Save to this file"
 
 #: cli.py:215
 msgid "显示版本号"
-msgstr "Show version"
+msgstr "Show Version"
 
 #: cli.py:216
 #, python-brace-format
@@ -166,7 +166,7 @@ msgstr "--output can only process one file"
 
 #: cli.py:259
 msgid "转换后文件输出目录应该指定一个文件夹"
-msgstr "The file output directory after conversion should specify a folder"
+msgstr "The output directory of the converted file should specify a folder"
 
 #: cli.py:274
 msgid ""
@@ -186,7 +186,7 @@ msgstr "{} is not a valid videoId"
 
 #: cli.py:310
 msgid "文件已存在, 跳过下载 ({})"
-msgstr "File already exists, skip downloading ({})"
+msgstr "File already exists, skip download ({})"
 
 #: cli.py:314
 msgid "下载 {}"
@@ -210,7 +210,7 @@ msgstr "{} is not an Annotation file"
 
 #: cli.py:353
 msgid "{} 没有 Annotation"
-msgstr "{} May not have Annotation"
+msgstr "{} have no Annotation"
 
 #: cli.py:375
 msgid "{} 没有注释被转换"
@@ -218,7 +218,7 @@ msgstr "{} No Annotation are converted"
 
 #: cli.py:392
 msgid "文件已存在, 跳过输出 ({})"
-msgstr "The file already exists, skip the output"
+msgstr "File already exists, skip output ({})"
 
 #: cli.py:396 cli.py:411
 msgid "删除 {}"
