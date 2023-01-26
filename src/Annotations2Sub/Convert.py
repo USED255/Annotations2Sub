@@ -235,6 +235,14 @@ def Convert(
 
             return Box(event)
 
+        def label_text(event: Event) -> Event:
+            event.Name += ";label;text"
+            return Text(event)
+
+        def label_box(event: Event) -> Event:
+            event.Name += ";label;box"
+            return Box(event)
+
         events: List[Event] = []
         event = Event()
 
@@ -308,6 +316,9 @@ def Convert(
         elif each.style == "anchored":
             events.append(anchored_text(copy.copy(event)))
             events.append(anchored_box(copy.copy(event)))
+        elif each.style == "label":
+            events.append(label_text(copy.copy(event)))
+            events.append(label_box(copy.copy(event)))
         else:
             # 传承于 Annotations2Sub™
             Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
