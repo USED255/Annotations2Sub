@@ -292,7 +292,7 @@ def run(argv=None):
         annotationFile = Task
         if args.download_for_archive:
             if videoId.startswith("\\"):
-                videoId = videoId.removeprefix("\\")
+                videoId = videoId.replace("\\", "", 1)
             if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
                 Stderr(RedText(_("{} 不是一个有效的视频 ID").format(videoId)))
                 code = 1

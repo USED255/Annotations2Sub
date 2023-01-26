@@ -118,7 +118,7 @@ def test_cli4():
     assert run("""-d \\-9-q7YnyUmY""".split(" ")) == 1
 
 
-def test_cli6():
+def test_cli5():
     def a(a1):
         for i in a1:
             if i.__name__ == "CheckUrl":
@@ -140,7 +140,7 @@ def test_cli6():
         run([])
 
 
-def test_cli8():
+def test_cli6():
     def a(a1):
         for i in a1:
             if i.__name__ == "AnnotationsFromArchive":
@@ -150,11 +150,3 @@ def test_cli8():
     m.setattr(cli, "Dummy", a)
     with pytest.raises(ValueError):
         run()
-
-
-# def test_cli10():
-#     m = pytest.MonkeyPatch()
-#     m.setattr(cli, "urllibWapper", lambda __: "")
-
-#     code = run(["-d", "00000000000"])
-#     assert code == 1
