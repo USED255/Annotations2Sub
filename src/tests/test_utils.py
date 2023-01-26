@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import _thread
 import gettext
+import http.server
 import os
+import socketserver
 
 import pytest
 
@@ -46,15 +49,11 @@ def test_internationalization2():
 
 
 def test_urllibWapper():
-    def a():
-        import http.server
-        import socketserver
+    Handler = http.server.SimpleHTTPRequestHandler
 
-        Handler = http.server.SimpleHTTPRequestHandler
+    def a():
         with socketserver.TCPServer(("", 10575), Handler) as httpd:
             httpd.serve_forever()
-
-    import _thread
 
     _thread.start_new_thread(a, ())
     urllibWapper("http://127.0.0.1:10575/")
