@@ -86,15 +86,15 @@ class Annotation:
         # 以下四个是 annotationlib 的 action 结构
         # SSA(Sub Station Alpha)(ASS)(Advanced SubStation Alpha) 不能实现交互,
         # 处理 action 没有意义
-        self.actionType: Literal["time", "url"] = "time"
-        self.actionUrl: str = ""
-        self.actionUrlTarget: str = ""
-        self.actionSeconds: datetime.datetime = datetime.datetime.strptime("0", "%S")
-        self.highlightId: str = ""
-        # 以下是按我喜好写的 action 结构, 作为补充
-        # 这俩是 actionValue 拆解后的结果
-        self.actionSourceVideoId: str = ""
-        self.actionTargetVideoId: str = ""
+        # self.actionType: Literal["time", "url"] = "time"
+        # self.actionUrl: str = ""
+        # self.actionUrlTarget: str = ""
+        # self.actionSeconds: datetime.datetime = datetime.datetime.strptime("0", "%S")
+        # self.highlightId: str = ""
+        # # 以下是按我喜好写的 action 结构, 作为补充
+        # # 这俩是 actionValue 拆解后的结果
+        # self.actionSourceVideoId: str = ""
+        # self.actionTargetVideoId: str = ""
 
 
 def Parse(tree: Element) -> List[Annotation]:
@@ -287,39 +287,39 @@ def Parse(tree: Element) -> List[Annotation]:
             if textSize != None:
                 annotation.textSize = float(MakeSureStr(textSize))
 
-        value = target = src_vid = v = ""
-        Action = each.find("action")
-        if Action != None:
-            Action = MakeSureElement(Action)
-            Url = Action.find("url")
-            if Url != None:
-                Url = MakeSureElement(Url)
-                value = MakeSureStr(Url.get("value"))
-                target = MakeSureStr(Url.get("target"))
-                if value.startswith("https://www.youtube.com/"):
-                    u = urllib.parse.urlparse(value)
-                    params = urllib.parse.parse_qs(u.query)
-                    src_vid = params["src_vid"][0]
-                    v = params["v"][0]
-                    _type = "url"
-                    if src_vid == v:
-                        fragment = u.fragment
-                        if fragment.startswith("t="):
-                            timeString = fragment.split("t=")[1]
-                            seconds = datetime.datetime.strptime(timeString, "%Ss")
-                            _type = "time"
-                            annotation.actionSeconds = seconds
-            annotation.actionType = _type  # type: ignore
-            annotation.actionUrl = MakeSureStr(value)
-            annotation.actionUrlTarget = MakeSureStr(target)
-            annotation.actionSourceVideoId = src_vid
-            annotation.actionTargetVideoId = v
+        # value = target = src_vid = v = ""
+        # Action = each.find("action")
+        # if Action != None:
+        #     Action = MakeSureElement(Action)
+        #     Url = Action.find("url")
+        #     if Url != None:
+        #         Url = MakeSureElement(Url)
+        #         value = MakeSureStr(Url.get("value"))
+        #         target = MakeSureStr(Url.get("target"))
+        #         if value.startswith("https://www.youtube.com/"):
+        #             u = urllib.parse.urlparse(value)
+        #             params = urllib.parse.parse_qs(u.query)
+        #             src_vid = params["src_vid"][0]
+        #             v = params["v"][0]
+        #             _type = "url"
+        #             if src_vid == v:
+        #                 fragment = u.fragment
+        #                 if fragment.startswith("t="):
+        #                     timeString = fragment.split("t=")[1]
+        #                     seconds = datetime.datetime.strptime(timeString, "%Ss")
+        #                     _type = "time"
+        #                     annotation.actionSeconds = seconds
+        #     annotation.actionType = _type  # type: ignore
+        #     annotation.actionUrl = MakeSureStr(value)
+        #     annotation.actionUrlTarget = MakeSureStr(target)
+        #     annotation.actionSourceVideoId = src_vid
+        #     annotation.actionTargetVideoId = v
 
-        Trigger = each.find("trigger")
-        if Trigger != None:
-            Trigger = MakeSureElement(Trigger)
-            Condition = MakeSureElement(Trigger.find("condition"))
-            annotation.highlightId = MakeSureStr(Condition.get("ref"))
+        # Trigger = each.find("trigger")
+        # if Trigger != None:
+        #     Trigger = MakeSureElement(Trigger)
+        #     Condition = MakeSureElement(Trigger.find("condition"))
+        #     annotation.highlightId = MakeSureStr(Condition.get("ref"))
 
         return annotation
 
