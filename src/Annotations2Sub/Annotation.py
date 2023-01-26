@@ -25,6 +25,10 @@ except ImportError:
     pass
 
 
+def Dummy(*args, **kwargs):
+    pass
+
+
 class Annotation:
     """Annotation 结构"""
 
@@ -319,6 +323,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
         return annotation
 
+    Dummy([ParseAnnotationAlpha, ParseAnnotationColor, MakeSureElement])
     annotations: List[Annotation] = []
     # 下面这行代码先从 youtube-ass 传到之前的 Annotations2Sub, 再从之前的 Annotations2Sub 传到这里
     for each in tree.find("annotations").findall("annotation"):  # type: ignore
