@@ -50,6 +50,7 @@ jobs:
 
   full-test:
     name: Test
+    needs: fast-test
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: true
