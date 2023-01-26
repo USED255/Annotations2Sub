@@ -81,10 +81,12 @@ def test_cli5():
 -g {t1}
 -gn {t1}
 -g {t1} -o .
--D {t1} -O 1.xml"""
+-D {t1} -O 1.xml
+-g {t1} -i 2
+-D {t1} -s"""
 
     s1 = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"1"},{"type":"audio","bitrate":1,"url":"2"}]}'
-    s2 = r'[["1"],["2"]]'
+    s2 = r'[["0",{"api":false}],["1"],["2"]]'
     with open(file1, encoding="utf-8") as f:
         s3 = f.read()
 
@@ -113,6 +115,9 @@ def test_cli5():
         assert code == 0
 
     with pytest.raises(Exception):
+        run(f"-g {t1} -i 1".split(" "))
+
+    with pytest.raises(Exception):
         mock("")
 
 
@@ -139,4 +144,24 @@ def test_cli6():
 
 
 def test_cli7():
-    pass
+    def a(a1):
+        for i in a1:
+            if i.__name__ == "AnnotationsFromArchive":
+                i("-9-q7YnyUmY")
+
+    m = pytest.MonkeyPatch()
+    m.setattr(cli, "Dummy", a)
+    with pytest.raises(SystemExit):
+        run()
+
+
+def test_cli8():
+    def a(a1):
+        for i in a1:
+            if i.__name__ == "AnnotationsFromArchive":
+                i("")
+
+    m = pytest.MonkeyPatch()
+    m.setattr(cli, "Dummy", a)
+    with pytest.raises(ValueError):
+        run()
