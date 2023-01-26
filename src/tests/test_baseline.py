@@ -8,7 +8,8 @@ from Annotations2Sub.cli import run
 from Annotations2Sub.utils import RedText, Stderr
 
 basePath = os.path.dirname(__file__)
-baselinePath = os.path.join(basePath, "Baseline")
+testCasePath = os.path.join(basePath, "testCase")
+baselinePath = os.path.join(testCasePath, "Baseline")
 
 Baseline1 = os.path.join(baselinePath, "29-q7YnyUmY.xml.test")
 Baseline2 = os.path.join(baselinePath, "e8kKeUuytqA.xml.test")
@@ -50,6 +51,6 @@ def test_Baseline2():
 
 def test_equal():
     assert not equal(
-        os.path.join(basePath, "test", "1.xml.test"),
-        os.path.join(basePath, "test", "2.xml.test"),
+        os.path.join(testCasePath, "file1.test"),
+        os.path.join(testCasePath, "file2.test"),
     )
