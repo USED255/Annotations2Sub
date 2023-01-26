@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import urllib.request
 
 import pytest
 
@@ -119,8 +120,6 @@ def test_cli5():
 
 
 def test_cli6():
-    import urllib.request
-
     def a(a1):
         for i in a1:
             if i.__name__ == "CheckUrl":
