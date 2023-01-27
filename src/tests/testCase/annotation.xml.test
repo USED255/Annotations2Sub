@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
-
     <annotations itct="CAAQwOYBIhMI8aSkrofg3wIVwYFbCh2ZWAznKPgdMgJpdkjmpMnP2N3q79sB">
 
         <annotation id="annotation_622281" type="text" style="popup"
@@ -168,8 +167,8 @@
                     value="https://www.youtube.com/watch?annotation_id=annotation_487437&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;feature=iv&amp;src_vid=29-q7YnyUmY&amp;v=sWJcfSAbI50"
                     link_class="1" />
             </action>
-
         </annotation>
+
         <annotation id="8" type="text" style="popup"
             log_data="xble=1&amp;link=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DsWJcfSAbI50&amp;a-v=29-q7YnyUmY&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-type=1&amp;a-id=annotation_487437&amp;l-class=1"
             itct="">
@@ -188,6 +187,7 @@
                     link_class="1" />
             </action>
         </annotation>
+
         <annotation id="annotation_1028971653" type="text" style="anchored"
             log_data="a-type=8&amp;xble=1&amp;ei=5pw1XLGMFJi6hwbA84jgCw&amp;a-id=annotation_1028971653&amp;a-v=c1iCjpxDxz4"
             itct="CAEQs-UBGP___________wEiEwixl-aKkeDfAhUY3cEKHcA5Arwo-B0yAml2SL6Oj-Lp0aCscw">
@@ -205,10 +205,26 @@
             <appearance bgAlpha="0.8" bgColor="16777215" fgColor="1710618"
                 textSize="8.424966666666666"
                 effects="">
-
             </appearance>
-
         </annotation>
-    </annotations>
 
+        <annotation author="" id="annotation_2843969679"
+            itct="CAgQs-UBGP___________wEiEwjW0of2q9zfAhUItZwKHUQdDKoo-B0yAml2SPHayuXEwby1Mw"
+            log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_2843969679&amp;xble=1&amp;a-type=9&amp;a-v=M2ryDEyyrXE"
+            style="label" type="text">
+            <TEXT>THIS IS A NORMAL ANNOTATION
+                (Normal Mode)</TEXT>
+            <segment>
+                <movingRegion type="rect">
+                    <rectRegion d="0" h="17.7779998779" t="0:50.520" w="25.0" x="70.5230026245"
+                        y="0.282000005245" />
+                    <rectRegion d="0" h="17.7779998779" t="0:55.060" w="25.0" x="70.5230026245"
+                        y="0.282000005245" />
+                </movingRegion>
+            </segment>
+            <appearance bgAlpha="0.600000023842" bgColor="8148142" effects="textdropshadow"
+                fgColor="16777215" highlightFontColor="16777215" textSize="3.911599999999999" />
+        </annotation>
+
+    </annotations>
 </document>
