@@ -52,9 +52,9 @@ optional arguments:
                         Do not overwrite files
   -N, --no-keep-intermediate-files
                         Do not keep intermediate files
-  -o directory, --output-directory directory
+  -O directory, --output-directory directory
                         Specify the output directory for the converted file
-  -O File, --output File
+  -o File, --output File
                         Save to this file
   -v, --version         Show version
   -V, --verbose         Show more messages

@@ -27,15 +27,15 @@ file1 = os.path.join(testCasePath, "file.ass.test")
 
 def test_cli():
     """预期失败的命令"""
-    test = f"""-s {baseline1File} -o {file1}
--s {baseline1File} -O {file1}
+    test = f"""-s {baseline1File} -O {file1}
+-s {baseline1File} -o {file1}
 -sD {baseline1File}
 -sp {baseline1File}
 -sg {baseline1File}
 -ND {baseline1File}
-{baseline1File} -o {file1}
-{baseline1File} {baseline2File} -O 1.ass
-{baseline1File} -o . -O 1.ass
+{baseline1File} -O {file1}
+{baseline1File} {baseline2File} -o 1.ass
+{baseline1File} -O . -o 1.ass
 {emptyXML}
 {file1}
 0
@@ -50,8 +50,8 @@ def test_cli():
 
 def test_cli2():
     """预期成功的命令"""
-    test = f"""{baseline1File} {baseline2File} -l -x 1920 -y 1080 -f Microsoft -V -o .
-{baseline1File} -O 1.ass
+    test = f"""{baseline1File} {baseline2File} -l -x 1920 -y 1080 -f Microsoft -V -O .
+{baseline1File} -o 1.ass
 {baseline1File} -s
 {baseline1File} -n
 {emptyAnnotations}"""
@@ -65,8 +65,8 @@ def test_cli2():
 
 def test_cli3():
     """网络相关"""
-    test = f"""-g {baseline1VideoId} -o .
--D {baseline1VideoId} -O 1.xml
+    test = f"""-g {baseline1VideoId} -O .
+-D {baseline1VideoId} -o 1.xml
 -g {baseline1VideoId} -i 2
 -D {baseline1VideoId} -s
 -dNn {baseline1VideoId}

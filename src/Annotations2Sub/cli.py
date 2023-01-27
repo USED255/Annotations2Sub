@@ -201,13 +201,13 @@ def run(argv=None):
     )
 
     parser.add_argument(
-        "-o",
+        "-O",
         "--output-directory",
         type=str,
         metavar=_("目录"),
         help=_("指定转换后文件的输出目录"),
     )
-    parser.add_argument("-O", "--output", type=str, metavar=_("文件"), help=_("保存到此文件"))
+    parser.add_argument("-o", "--output", type=str, metavar=_("文件"), help=_("保存到此文件"))
     parser.add_argument(
         "-v",
         "--version",
