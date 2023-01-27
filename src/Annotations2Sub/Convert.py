@@ -252,7 +252,10 @@ def Convert(
         event.End = each.timeEnd
         # Name 置为 "id" 主要为了方便调试, 其次才是辨识
         # 随便一提, Name 在 Aegisub 里是 "说话人"
-        event.Name = each.id
+        if each.author:
+            event.Name += each.author
+            event.Name += ";"
+        event.Name += each.id
 
         text = each.text
         # SSA 用 "\N" 换行

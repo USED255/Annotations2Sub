@@ -95,6 +95,7 @@ class Annotation:
         # # 这俩是 actionValue 拆解后的结果
         # self.actionSourceVideoId: str = ""
         # self.actionTargetVideoId: str = ""
+        self.author: str = ""
 
 
 def Parse(tree: Element) -> List[Annotation]:
@@ -299,6 +300,10 @@ def Parse(tree: Element) -> List[Annotation]:
                 annotation.fgColor = ParseAnnotationColor(MakeSureStr(fgColor))
             if textSize != None:
                 annotation.textSize = float(MakeSureStr(textSize))
+
+        author = each.get("author")
+        if author != None:
+            annotation.author = MakeSureStr(each.get("author"))
 
         # value = target = src_vid = v = ""
         # Action = each.find("action")
