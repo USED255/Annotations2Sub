@@ -36,7 +36,7 @@ def internationalization():
             locales,
         )
         return translate.gettext
-    except:
+    except FileNotFoundError:
         Stderr(RedText("翻译文件加载失败"))
         return gettext.gettext
 

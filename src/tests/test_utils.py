@@ -31,7 +31,7 @@ def test_internationalization():
 
 def test_internationalization2():
     def f(*args, **kwargs):
-        raise Exception
+        raise FileNotFoundError
 
     m = pytest.MonkeyPatch()
     m.setattr(gettext, "translation", f)

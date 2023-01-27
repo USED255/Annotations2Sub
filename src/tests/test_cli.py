@@ -3,6 +3,7 @@
 
 import os
 import urllib.request
+from urllib.error import URLError
 
 import pytest
 
@@ -130,7 +131,7 @@ def test_cli5():
         return
 
     def f3(*args, **kwargs):
-        raise Exception
+        raise URLError("")
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "Dummy", f1)

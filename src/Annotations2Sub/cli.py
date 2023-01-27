@@ -10,6 +10,8 @@ import re
 import sys
 import traceback
 import urllib.request
+from urllib.error import URLError
+from xml.etree.ElementTree import ParseError
 
 # 我觉得在输入确定的环境下用不着这玩意
 # 不过打包到了 PyPI 也不用像以前那些忌惮第三方库了
@@ -42,7 +44,7 @@ def run(argv=None):
         """检查网络"""
         try:
             urllib.request.urlopen(url=url, timeout=timeout)
-        except:
+        except URLError:
             return False
         return True
 
@@ -59,14 +61,14 @@ def run(argv=None):
             try:
                 if not instance[1]["api"]:  # type: ignore
                     continue
-            except:
+            except IndexError:
                 pass
             domain = instance[0]
             url = f"https://{domain}/api/v1/videos/{videoId}"
             Stderr(_("获取 {}").format(url))
             try:
                 data = json.loads(urllibWapper(url))
-            except:
+            except (json.JSONDecodeError, URLError):
                 continue
             videos = []
             audios = []
@@ -337,7 +339,7 @@ def run(argv=None):
 
         try:
             tree = defusedxml.ElementTree.parse(annotationFile)
-        except:
+        except ParseError:
             Stderr(RedText(_("{} 不是一个有效的 XML 文件").format(annotationFile)))
             if Flags.verbose:
                 Stderr(traceback.format_exc())
