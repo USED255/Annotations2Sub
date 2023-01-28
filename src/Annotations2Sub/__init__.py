@@ -75,39 +75,4 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 差不多完事儿了, 剩下的时间就是维护代码了.
 
 """
-from xml.etree.ElementTree import Element
-
-import defusedxml.ElementTree
-
-from Annotations2Sub.Annotation import Parse
-from Annotations2Sub.Convert import Convert
-from Annotations2Sub.Sub import Sub
-
 version = __version__
-
-
-def annotations_to_sub(annotations_file_path: str = "", sub_save_to: str = "") -> None:
-    with open(sub_save_to, "w", encoding="utf-8") as f:
-        f.write(convert_from_file(annotations_file_path))
-
-
-def convert_from_file(annotations_file_path: str = "") -> str:
-    with open(annotations_file_path, "r", encoding="utf-8") as f:
-        return convert_from_string(f.read())
-
-
-def convert_from_string(annotations_string: str = "") -> str:
-    tree = defusedxml.ElementTree.fromstring(annotations_string)
-    return convert_from_et(tree)
-
-
-def convert_from_et(annotations_ElementTree: Element) -> str:
-    tree = annotations_ElementTree
-    annotations = Parse(tree)
-    events = Convert(annotations)
-    events.sort(key=lambda event: event.Start)
-    sub = Sub()
-    sub.events.extend(events)
-    sub.info["PlayResX"] = "100"
-    sub.info["PlayResY"] = "100"
-    return sub.Dump()
