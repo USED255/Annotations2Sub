@@ -24,3 +24,4 @@ def test_Annotations2Sub():
     sub.info["PlayResX"] = "100"
     sub.info["PlayResY"] = "100"
     sub.Dump()
+    Flags.verbose = False

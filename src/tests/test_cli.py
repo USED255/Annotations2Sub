@@ -76,6 +76,7 @@ def test_cli3():
 -pg {baseline1VideoId}
 -D {baseline1VideoId}
 -g {baseline1VideoId}"""
+
     instancesString = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"1"},{"type":"audio","bitrate":1,"url":"2"}]}'
     invidiousString = r'[["0",{"api":false}],["1"],["2"]]'
     with open(baseline1File, encoding="utf-8") as f:
@@ -138,6 +139,7 @@ def test_cli5():
     m.setattr(urllib.request, "urlopen", f2)
     with pytest.raises(SystemExit):
         run([])
+
     m.setattr(urllib.request, "urlopen", f3)
     with pytest.raises(SystemExit):
         run([])

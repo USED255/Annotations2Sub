@@ -11,8 +11,8 @@ basePath = os.path.dirname(__file__)
 testCasePath = os.path.join(basePath, "testCase")
 baselinePath = os.path.join(testCasePath, "Baseline")
 
-Baseline1 = os.path.join(baselinePath, "29-q7YnyUmY.xml.test")
-Baseline2 = os.path.join(baselinePath, "e8kKeUuytqA.xml.test")
+baseline1 = os.path.join(baselinePath, "29-q7YnyUmY.xml.test")
+baseline2 = os.path.join(baselinePath, "e8kKeUuytqA.xml.test")
 
 baseline1SSA = os.path.join(baselinePath, "29-q7YnyUmY.ass.test")
 baseline2SSA = os.path.join(baselinePath, "e8kKeUuytqA.ass.test")
@@ -38,14 +38,14 @@ def equal(f1, f2):
 
 
 def test_Baseline1():
-    t = Baseline1 + ".ass"
-    run([Baseline1])
+    t = baseline1 + ".ass"
+    run([baseline1])
     assert equal(t, baseline1SSA)
 
 
 def test_Baseline2():
-    t = Baseline2 + ".ass"
-    run([Baseline2])
+    t = baseline2 + ".ass"
+    run([baseline2])
     assert equal(t, baseline2SSA)
 
 

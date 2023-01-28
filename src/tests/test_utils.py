@@ -8,9 +8,6 @@ import pytest
 
 from Annotations2Sub.utils import MakeSureStr, RedText, YellowText, internationalization
 
-basePath = os.path.dirname(__file__)
-file1 = os.path.join(basePath, "test", "1.test")
-
 
 def test_YellowText():
     assert YellowText("Test") == "\033[33mTest\033[0m"

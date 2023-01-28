@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+"""Annotations2Sub, 一个能把 Youtube 注释转换成 Advanced SubStation Alpha 字幕文件的脚本"""
+
 __version__ = "2.5.0"
 
 """
-Annotations2Sub, 一个能把 Youtube 注释转换成 Advanced SubStation Alpha 字幕文件的脚本
-
                                             xml.
                                             etree.
 ┌────────────────┐            ┌────────┐    ElementTree.  ┌─────────┐
@@ -44,7 +44,7 @@ https://www.youtube.com/channel/UCe4QujtMby3h6dge1eYaPig
 此项目早期(8e2d8eb 第一个勉强可用的版本)参照 https://github.com/nirbheek/youtube-ass 实现了一个简单的转换器, 
 参照 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 实现了一个简单的 Advanced SubStation Alpha 生成器
 使用 "样式覆写代码" 实现了定位和颜色
-之后(a64995 庆祝一下), 使用 "绘图模式" 实现了 "popup" 样式
+之后(a649956 庆祝一下), 使用 "绘图模式" 实现了 "popup" 样式
 在 https://invidious.io/ 和 FFmpeg 的帮助下, 实现了简单的视频预览
 之后, 脚本逐步完善, 完成了 https://www.bilibili.com/video/BV1Ff4y1t7Dj
 但是还是有些遗憾
@@ -75,4 +75,39 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 差不多完事儿了, 剩下的时间就是维护代码了.
 
 """
+from xml.etree.ElementTree import Element
+
+import defusedxml.ElementTree
+
+from Annotations2Sub.Annotation import Parse
+from Annotations2Sub.Convert import Convert
+from Annotations2Sub.Sub import Sub
+
 version = __version__
+
+
+def annotations_to_sub(annotations_file_path: str = "", sub_save_to: str = "") -> None:
+    with open(sub_save_to, "w", encoding="utf-8") as f:
+        f.write(convert_from_file(annotations_file_path))
+
+
+def convert_from_file(annotations_file_path: str = "") -> str:
+    with open(annotations_file_path, "r", encoding="utf-8") as f:
+        return convert_from_string(f.read())
+
+
+def convert_from_string(annotations_string: str = "") -> str:
+    tree = defusedxml.ElementTree.fromstring(annotations_string)
+    return convert_from_et(tree)
+
+
+def convert_from_et(annotations_ElementTree: Element) -> str:
+    tree = annotations_ElementTree
+    annotations = Parse(tree)
+    events = Convert(annotations)
+    events.sort(key=lambda event: event.Start)
+    sub = Sub()
+    sub.events.extend(events)
+    sub.info["PlayResX"] = "100"
+    sub.info["PlayResY"] = "100"
+    return sub.Dump()
