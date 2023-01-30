@@ -5,7 +5,6 @@ import os
 
 import pytest
 
-from Annotations2Sub.utils import Flags
 
 basePath = os.path.dirname(__file__)
 testCasePath = os.path.join(basePath, "testCase")
@@ -15,5 +14,7 @@ m = pytest.MonkeyPatch()
 m.setenv("LC_ALL", "zh_CN")
 
 m.chdir(garbagePath)
+
+from Annotations2Sub.utils import Flags
 
 Flags.verbose = True
