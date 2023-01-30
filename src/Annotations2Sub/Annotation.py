@@ -5,7 +5,6 @@
 
 # 用于处理定时
 import datetime
-import urllib.parse
 
 # 本脚本函数参数和返回值执行类型检查
 from typing import Any, List, Optional
