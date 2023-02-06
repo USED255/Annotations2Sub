@@ -74,5 +74,11 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 ...
 差不多完事儿了, 剩下的时间就是维护代码了.
 
+---
+- 注释(Annotations): YouTube 的功能
+- SSA(Sub Station Alpha): 字幕格式
+- ASS(Advanced SubStation Alpha): 字幕格式
+- invidious 开源 YouTube 前端
+
 """
 version = __version__
