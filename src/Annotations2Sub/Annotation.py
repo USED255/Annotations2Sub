@@ -7,7 +7,7 @@
 import datetime
 
 # 用于类型检查
-from typing import Any, List, Optional
+from typing import Any, List, Optional, Union
 
 # 解析 XML 时使用的是 defusedxml
 # 这里是为了类型检查
@@ -45,14 +45,17 @@ class Annotation:
     def __init__(self):
         self.id: str = ""
         # 这里仅列出需要的 type 和 style, 且 Literal 仅做提醒作用
-        self.type: Literal["text", "highlight", "branding"] = "text"
+        self.type: Union[Literal["text", "highlight", "branding"], str] = "text"
         # 现在就遇到这几个样式, 不知道还有什么样式
-        self.style: Literal[
-            "popup",
-            "title",
-            "speech",
-            "highlightText",
-            "anchored",
+        self.style: Union[
+            Literal[
+                "popup",
+                "title",
+                "speech",
+                "highlightText",
+                "anchored",
+            ],
+            str,
         ] = "popup"
         self.text: str = ""
         # 经过上次的时间字符串转换教训, 这次使用了 datetime
@@ -160,10 +163,10 @@ def Parse(tree: Element) -> List[Annotation]:
         # 我相信字幕滤镜不会闲的蛋疼实现暂停功能
         # 而且 annotationlib 也不处理 pause
         # annotationlib 也不处理空的 type
-        _type = each.get("type")
-        if _type is None:
+        __type = each.get("type")
+        if __type is None:
             return None
-        _type = MakeSureStr(_type)
+        _type = MakeSureStr(__type)
         if _type not in ("text", "highlight", "branding"):
             Stderr(_("不支持{}类型 ({})").format(_type, _id))
             # 我不知道显式的 return None 有什么用
@@ -180,13 +183,13 @@ def Parse(tree: Element) -> List[Annotation]:
         style = MakeSureStr(style)
 
         text = ""
-        _text = each.find("TEXT")
+        __text = each.find("TEXT")
         # 根据经验, 空的 TEXT 只是没有文本, 不是没有内容
-        if _text is None:
+        if __text is None:
             text = ""
-        if isinstance(_text, Element):
-            __text = _text.text
-            text = MakeSureStr(__text)
+        if isinstance(__text, Element):
+            _text = __text.text
+            text = MakeSureStr(_text)
 
         # 类型检查可以避免些低级错误, 提升编码体验, 虽然在 Python 上有些瓦店房化
         _Segment = each.find("segment").find("movingRegion")  # type: ignore
@@ -241,8 +244,8 @@ def Parse(tree: Element) -> List[Annotation]:
         y = float(MakeSureStr(Segment[0].get("y")))
 
         annotation.id = _id
-        annotation.type = _type  # type: ignore
-        annotation.style = style  # type: ignore
+        annotation.type = _type
+        annotation.style = style
         annotation.text = text
         annotation.timeStart = Start
         annotation.timeEnd = End
