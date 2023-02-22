@@ -9,7 +9,7 @@ from typing import List
 # 在重写本项目前, 我写了一些 Go 的代码
 # 依照在 Go 中的经验把一个脚本拆成若干个模块
 # 并上传到 PyPI
-# 但是单个脚本还是有用的所以我会将这些代码再复制一遍成一个单个脚本
+# 但是单个脚本还是有用的
 from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, DrawCommand, Event
