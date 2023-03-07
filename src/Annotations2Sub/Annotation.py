@@ -43,6 +43,8 @@ class Annotation:
     # 更何况我没有写过 CSS :-)
 
     def __init__(self):
+        # 为什么不使用数据类?
+        # 因为没必要, 我不指望有人使用本脚本进行二次开发
         self.id: str = ""
         # 这里仅列出需要的 type 和 style, 且 Literal 仅做提醒作用
         self.type: Union[Literal["text", "highlight", "branding"], str] = "text"
@@ -71,19 +73,19 @@ class Annotation:
         # sx, sy 是 speech 样式的气泡锚点
         self.sx: float = 0.0
         self.sy: float = 0.0
-        # bgOpacity(bgAlpha) 其实就是注释文本后面那个框的透明度, bgColor 同理
-        # Annotation 用一个小数表示透明度, 不过我其实到现在都不知道哪个是透明哪个是不透明
-        # 但是按照 annotationlib 给的名字猜测应该 1 是不透明
+        # bgOpacity(bgAlpha) 是注释文本后面那个框的不透明度
+        # Annotation 用一个小数表示不透明度
         self.bgOpacity: Alpha = Alpha(alpha=204)
+        # bgColor 是注释文本的不透明度
+        self.bgColor: Color = Color(red=255, green=255, blue=255)
         # fgColor 就是注释文本的颜色
         # 如果不是 Annotation, 我都不知道颜色值可以用十进制表达
         # 类似于 bgOpacity, 开始我也不知道这玩耶是 BGR, 是视频出来效果不对才知道
         # 一个结构化的颜色显然比奇怪的颜色值要容易理解得多
-        self.bgColor: Color = Color(red=255, green=255, blue=255)
         self.fgColor: Color = Color(red=0, green=0, blue=0)
-        # 需要注意的是, textSize 是个 "百分比", 而在 title 样式中才是熟悉的 "字体大小"
+        # textSize 是 "文字在画布的百分比", 而在 title 样式中才是熟悉的 "字体大小"
         self.textSize: float = 3.15
-        # annotationlib 没处理 author, 但我会处理
+        # annotationlib 没处理 author, 我会处理
         self.author: str = ""
         # SSA 不能实现交互,
         # 处理 action 没有意义

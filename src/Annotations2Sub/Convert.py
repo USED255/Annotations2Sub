@@ -9,82 +9,88 @@ from typing import List
 # 在重写本项目前, 我写了一些 Go 的代码
 # 依照在 Go 中的经验把一个脚本拆成若干个模块
 # 并上传到 PyPI
-# 但是单个脚本还是有用的
+# 当然单文件脚本还是有用的
 from Annotations2Sub.Annotation import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, DrawCommand, Event
 from Annotations2Sub.utils import Stderr, _
 
 
-# 这些代码实际上来自于
-# https://github.com/USED255/Annotations2Sub/blob/f20f9fe90e0e63b005e8120085539817b49c5296/Annotations2Sub.py
 def Convert(
     annotations: List[Annotation],
     libass: bool = False,
     resolutionX: int = 100,
     resolutionY: int = 100,
 ) -> List[Event]:
-    """将 List[Annotation] 列表转换为List[Event]"""
+    """转换 Annotations"""
 
     def DumpColor(color: Color) -> str:
         """将 Color 转换为 SSA 的颜色表示"""
         return "&H{:02X}{:02X}{:02X}&".format(color.red, color.green, color.blue)
 
     def DumpAlpha(alpha: Alpha) -> str:
-        """将 Alpha 转换为 SSA 的透明度表示"""
+        """将 Alpha 转换为 SSA 的 Alpha 表示"""
 
         # 据 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 所说
-        # SSA 的透明度 00 为全见，FF 为全透明
+        # SSA 的 Alpha 是透明度, 00 为不透明，FF 为全透明
         return "&H{:02X}&".format(255 - alpha.alpha)
 
     def ConvertAnnotation(each: Annotation) -> List[Event]:
         """将 Annotation 转换为 List[Event]"""
 
-        # 致谢: https://github.com/nirbheek/youtube-ass
-        # 致谢: https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
+        # 致谢: https://github.com/nirbheek/youtube-ass &
+        #       https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 
         def Text(event: Event) -> Event:
             """生成 Annotation 文本的 Event"""
 
-            # Annotation 无非就是文本, 框, 或者是一个点击按钮和动图(爆论)
-            # 之前我用了一个巨大的函数生成标签(样式复写代码), 但其实还不如直接写更好
-            # 倒是发现把生成文本和生成框单独抽出来才得劲
+            # Annotation 无非就是文本, 框, 或者是一个点击按钮和动图
+            # 之前我用了一个函数生成标签, 还不如直接拼接
             tag = ""
-            # 样式复写代码, ASS 标签, 特效标签, Aegisub 特效标签
-            # ! 带引号的是从 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 粘过来的 !
+            # 样式复写代码, ASS 标签, 特效标签, Aegisub 特效标签, 标签
+            # *** 带引号的是从 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 粘过来的 ***
+            # ```
             # "\an<位置>"
             # "<位置> 是一个数字，决定了字幕显示在屏幕上哪个位置。"
+            # ```
             # 默认 SSA 定位会定在文本中间
             # 现在用 \an7 指定在左上角.
+            # ```
             # "\pos(<x>,<y>)"
             # "将字幕定位在坐标点 <x>,<y>。"
+            # ```
             # 就是坐标
             # 顺便一提 SSA 和 Annotation 坐标系一致, y 向下(左手取向).
-            # 这里坐标 +1 主要是为了美观, 我不知道这有没有用
+            # 这里坐标 +1 主要是为了美观, 可能与 Annotation 的行为不一致
             tag += r"\an7" + rf"\pos({x + 1},{y + 1})"
+            # ```
             # "\fs<字体尺寸>"
             # "<字体尺寸> 是一个数字，指定了字体的点的尺寸。"
-            # "注意，这里的字体尺寸并不是字号的大小，\fs20 并不是字体大小（font-size）为 20px，
+            # "注意，这里的字体尺寸并不是字号的大小，\fs20 并不是字体大小（font-size）为 20px，"
             # 而是指其行高（line-height）为 20px，主要归咎于 VSFilter 使用的 Windows GDI 的字体接口。"
-            # 我没在意这个, 直接用得了
+            # ```
+            # 直接用得了
             # 反正效果也没咋差
             tag += r"\fs" + str(textSize)
+            # ```
             # "\[<颜色序号>]c[&][H]<BBGGRR>[&]"
             # "<BBGGRR> 是一个十六进制的 RGB 值，但颜色顺序相反，前导的 0 可以省略。"
             # "<颜色序号> 可选值为 1、2、3 和 4，分别对应单独设置 PrimaryColour、SecondaryColour、OutlineColor 和 BackColour"
             # PrimaryColour 填充颜色, SecondaryColour 卡拉OK变色, OutlineColor 边框颜色, BackColour 阴影颜色
             # 这里省略了一段
             # "其中的 & 和 H 按规范应该是要有的，但是如果没有也能正常解析。"
+            # ```
             tag += r"\c" + DumpColor(each.fgColor)
+            # ```
             # "\<颜色序号>a[&][H]<AA>[&]"
             # "<AA> 是一个十六进制的透明度数值，00 为全见，FF 为全透明。"
             # "<颜色序号> 含义同上，但这里不能省略。写法举例：\1a&H80&、\2a&H80、\3a80、\4a&H80&。"
             # "其中的 & 和 H 按规范应该是要有的，但是如果没有也能正常解析。"
+            # ```
             # Annotation 文本好像没有透明度, 这个很符合直觉
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
             # 现在加个括号就成了
             tag = "{" + tag + "}"
-
             # 直接拼接就可以了
             event.Text = tag + event.Text
             return event
@@ -101,18 +107,17 @@ def Convert(
             tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
             tag = "{" + tag + "}"
 
-            # 在之前这里我直接拼接字符串, 做的还没有全民核酸检测好
+            # 在之前这里我拼接字符串, 做的还没有全民核酸检测好
             # 现在画四个点直接闭合一个框
             d = Draw()
-            # "所有绘图都应由 m <x> <y> 命令开头"
-            # "所有没闭合的图形会被自动地在起点和终点之间添加直线来闭合。"
-            # "如果一个对话行中的多个图形有重叠，重叠部分会进行异或运算。"
             d.Add(DrawCommand(0, 0, "m"))
             d.Add(DrawCommand(width, 0, "l"))
             d.Add(DrawCommand(width, height, "l"))
             d.Add(DrawCommand(0, height, "l"))
             box = d.Dump()
+            # ```
             # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
+            # ```
             box = r"{\p1}" + box + r"{\p0}"
 
             event.Text = tag + box
@@ -121,7 +126,7 @@ def Convert(
         def popup_text(event: Event) -> Event:
             """生成 popup 样式的文本 Event"""
 
-            # 就是加个名字而已
+            # 多加几个字, 便于调试
             event.Name += ";popup;text"
 
             return Text(event)
