@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2023-01-26 17:19+0800\n"
-"PO-Revision-Date: 2023-01-26 17:20+0800\n"
+"POT-Creation-Date: 2023-11-17 21:24+0800\n"
+"PO-Revision-Date: 2023-11-17 21:26+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -10,31 +10,31 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.1\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: Annotation.py:168
+#: Annotation.py:173
 msgid "不支持{}类型 ({})"
 msgstr "不支持{}类型 ({})"
 
-#: Annotation.py:180
+#: Annotation.py:183
 msgid "{} 没有 style, 跳过"
 msgstr "{} 没有 style, 跳过"
 
-#: Annotation.py:198
+#: Annotation.py:205
 msgid "{} 没有 movingRegion, 跳过"
 msgstr "{} 没有 movingRegion, 跳过"
 
-#: Annotation.py:216
+#: Annotation.py:223
 msgid "{} 没有时间, 跳过"
 msgstr "{} 没有时间, 跳过"
 
-#: Annotation.py:235
+#: Annotation.py:236
 msgid "{} 不显示, 跳过"
 msgstr "{} 不显示, 跳过"
 
-#: Convert.py:313
+#: Convert.py:332
 msgid "不支持 {} 样式 ({})"
 msgstr "不支持 {} 样式 ({})"
 
@@ -42,79 +42,75 @@ msgstr "不支持 {} 样式 ({})"
 msgid "此脚本使用 Annotations2Sub 生成"
 msgstr "此脚本使用 Annotations2Sub 生成"
 
-#: cli.py:66
+#: cli.py:69
 msgid "获取 {}"
 msgstr "获取 {}"
 
-#: cli.py:113
+#: cli.py:116
 msgid "下载和转换 Youtube 注释"
 msgstr "下载和转换 Youtube 注释"
 
-#: cli.py:118
+#: cli.py:121
 msgid "文件 或 videoId"
 msgstr "文件 或 videoId"
 
-#: cli.py:119
+#: cli.py:122
 msgid "多个需要转换的文件的文件路径或视频ID"
 msgstr "多个需要转换的文件的文件路径或视频ID"
 
-#: cli.py:125
+#: cli.py:128
 msgid "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
 msgstr "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
 
-#: cli.py:135
+#: cli.py:138
 msgid "变换分辨率X"
 msgstr "变换分辨率X"
 
-#: cli.py:143
+#: cli.py:146
 msgid "变换分辨率Y"
 msgstr "变换分辨率Y"
 
-#: cli.py:150 cli.py:152
+#: cli.py:153 cli.py:155
 msgid "Microsoft YaHei"
 msgstr "Microsoft YaHei"
 
-#: cli.py:153
+#: cli.py:156
 msgid "指定字体"
 msgstr "指定字体"
 
-#: cli.py:159
+#: cli.py:162
 msgid "尝试从 Internet Archive 下载注释文件"
 msgstr "尝试从 Internet Archive 下载注释文件"
 
-#: cli.py:165
+#: cli.py:168
 msgid "仅下载注释"
 msgstr "仅下载注释"
 
-#: cli.py:172
+#: cli.py:175
 msgid "预览视频, 需要 mpv(https://mpv.io/)"
 msgstr "预览视频, 需要 mpv(https://mpv.io/)"
 
-#: cli.py:180
+#: cli.py:183
 msgid "生成视频, 需要 FFmpeg(https://ffmpeg.org/)"
 msgstr "生成视频, 需要 FFmpeg(https://ffmpeg.org/)"
 
-#: cli.py:187
+#: cli.py:190
 msgid "指定 invidious 实例(https://redirect.invidious.io/)"
 msgstr "指定 invidious 实例(https://redirect.invidious.io/)"
 
-#: cli.py:192
-msgid "输出至标准输出"
-msgstr "输出至标准输出"
-
-#: cli.py:195
+#: cli.py:194
 msgid "不覆盖文件"
 msgstr "不覆盖文件"
 
-#: cli.py:200
+#: cli.py:199
 msgid "不保留中间文件"
 msgstr "不保留中间文件"
 
-#: cli.py:207
+#: cli.py:206
 msgid "目录"
 msgstr "目录"
 
-#: cli.py:208
+#: cli.py:207
 msgid "指定转换后文件的输出目录"
 msgstr "指定转换后文件的输出目录"
 
@@ -123,51 +119,35 @@ msgid "文件"
 msgstr "文件"
 
 #: cli.py:210
-msgid "保存到此文件"
-msgstr "保存到此文件"
+msgid "保存到此文件, 如果为 \"-\" 则输出到标准输出"
+msgstr "保存到此文件, 如果为 \"-\" 则输出到标准输出"
 
-#: cli.py:215
+#: cli.py:216
 msgid "显示版本号"
 msgstr "显示版本号"
 
-#: cli.py:216
+#: cli.py:217
 #, python-brace-format
 msgid "Annotations2Sub v{version}"
 msgstr "Annotations2Sub v{version}"
 
-#: cli.py:224
+#: cli.py:225
 msgid "显示更多消息"
 msgstr "显示更多消息"
 
-#: cli.py:234
-msgid "--output-to-stdout 不能与 --output-directory 选项同时使用"
-msgstr "--output-to-stdout 不能与 --output-directory 选项同时使用"
-
-#: cli.py:237
-msgid "--output-to-stdout 不能与 --output 选项同时使用"
-msgstr "--output-to-stdout 不能与 --output 选项同时使用"
-
-#: cli.py:243
-msgid ""
-"--output-to-stdout 不能与 --preview-video 或 --generate-video 选"
-"项同时使用"
-msgstr ""
-"--output-to-stdout 不能与 --preview-video 或 --generate-video 选"
-"项同时使用"
-
-#: cli.py:251
+#: cli.py:254
 msgid "--output 不能与 --output--directory 选项同时使用"
 msgstr "--output 不能与 --output--directory 选项同时使用"
 
-#: cli.py:254
+#: cli.py:257
 msgid "--output 只能处理一个文件"
 msgstr "--output 只能处理一个文件"
 
-#: cli.py:259
+#: cli.py:264
 msgid "转换后文件输出目录应该指定一个文件夹"
 msgstr "转换后文件输出目录应该指定一个文件夹"
 
-#: cli.py:274
+#: cli.py:278
 msgid ""
 "如果您的视频不是 16:9, 请使用 --transform-resolution-x --"
 "transform-resolution-y, 以确保效果"
@@ -175,57 +155,86 @@ msgstr ""
 "如果您的视频不是 16:9, 请使用 --transform-resolution-x --"
 "transform-resolution-y, 以确保效果"
 
-#: cli.py:286
+#: cli.py:289
 msgid "您好像无法访问 Google 🤔"
 msgstr "您好像无法访问 Google 🤔"
 
-#: cli.py:297
+#: cli.py:301
 msgid "{} 不是一个有效的视频 ID"
 msgstr "{} 不是一个有效的视频 ID"
 
-#: cli.py:310
+#: cli.py:314
 msgid "文件已存在, 跳过下载 ({})"
 msgstr "文件已存在, 跳过下载 ({})"
 
-#: cli.py:314
+#: cli.py:318
 msgid "下载 {}"
 msgstr "下载 {}"
 
-#: cli.py:326
+#: cli.py:330
 msgid "{} 不是一个文件"
 msgstr "{} 不是一个文件"
 
-#: cli.py:334
+#: cli.py:338
 msgid "{} 可能没有 Annotation"
 msgstr "{} 可能没有 Annotation"
 
-#: cli.py:341
+#: cli.py:345
 msgid "{} 不是一个有效的 XML 文件"
 msgstr "{} 不是一个有效的 XML 文件"
 
-#: cli.py:348
+#: cli.py:352
 msgid "{} 不是 Annotation 文件"
 msgstr "{} 不是 Annotation 文件"
 
-#: cli.py:353
+#: cli.py:357
 msgid "{} 没有 Annotation"
 msgstr "{} 没有 Annotation"
 
-#: cli.py:375
+#: cli.py:379
 msgid "{} 没有注释被转换"
 msgstr "{} 没有注释被转换"
 
-#: cli.py:392
+#: cli.py:396
 msgid "文件已存在, 跳过输出 ({})"
 msgstr "文件已存在, 跳过输出 ({})"
 
-#: cli.py:396 cli.py:411
+#: cli.py:400 cli.py:415
 msgid "删除 {}"
 msgstr "删除 {}"
 
-#: cli.py:400
+#: cli.py:404
 msgid "保存于: {}"
 msgstr "保存于: {}"
+
+#: utils.py:60
+msgid "错误: "
+msgstr "错误: "
+
+#: utils.py:64
+msgid "警告: "
+msgstr "警告: "
+
+#~ msgid "输出至标准输出"
+#~ msgstr "输出至标准输出"
+
+#~ msgid "保存到此文件"
+#~ msgstr "保存到此文件"
+
+#~ msgid ""
+#~ "--output-to-stdout 不能与 --output-directory 选项同时使用"
+#~ msgstr ""
+#~ "--output-to-stdout 不能与 --output-directory 选项同时使用"
+
+#~ msgid "--output-to-stdout 不能与 --output 选项同时使用"
+#~ msgstr "--output-to-stdout 不能与 --output 选项同时使用"
+
+#~ msgid ""
+#~ "--output-to-stdout 不能与 --preview-video 或 --generate-video "
+#~ "选项同时使用"
+#~ msgstr ""
+#~ "--output-to-stdout 不能与 --preview-video 或 --generate-video "
+#~ "选项同时使用"
 
 #~ msgid ""
 #~ "--output-to-stdout 不能与 --no-overwrite-files 选项同时使用"
