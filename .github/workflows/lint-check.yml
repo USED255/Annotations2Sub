@@ -5,15 +5,11 @@ on:
     branches:
       - "master"
     paths:
-      - "**/*.py"
-      - "src/**"
-      - "tests/**"
+      - "**.py"
       - ".github/workflows/lint-check.yml"
   pull_request:
     paths:
-      - "**/*.py"
-      - "src/**"
-      - "tests/**"
+      - "**.py"
       - ".github/workflows/lint-check.yml"
 
 jobs:
@@ -30,7 +26,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: "3.x"
 
       - name: Install dependencies
         run: |

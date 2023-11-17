@@ -28,12 +28,7 @@ file1 = os.path.join(testCasePath, "file.ass.test")
 
 def test_cli():
     """预期失败的命令"""
-    test = f"""-s {baseline1File} -O {file1}
--s {baseline1File} -o {file1}
--sD {baseline1File}
--sp {baseline1File}
--sg {baseline1File}
--ND {baseline1File}
+    test = f"""-ND {baseline1File}
 {baseline1File} -O {file1}
 {baseline1File} {baseline2File} -o 1.ass
 {baseline1File} -O . -o 1.ass
@@ -53,7 +48,7 @@ def test_cli2():
     """预期成功的命令"""
     test = f"""{baseline1File} {baseline2File} -l -x 1920 -y 1080 -f Microsoft -V -O .
 {baseline1File} -o 1.ass
-{baseline1File} -s
+{baseline1File} -o -
 {baseline1File} -n
 {emptyAnnotations}"""
 
@@ -69,7 +64,7 @@ def test_cli3():
     test = f"""-g {baseline1VideoId} -O .
 -D {baseline1VideoId} -o 1.xml
 -g {baseline1VideoId} -i 2
--D {baseline1VideoId} -s
+-D {baseline1VideoId} -o -
 -dNn {baseline1VideoId}
 -pN {baseline1VideoId}
 -gn {baseline1VideoId}

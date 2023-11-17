@@ -25,11 +25,12 @@ from Annotations2Sub.Sub import Sub
 from Annotations2Sub.utils import (
     Flags,
     MakeSureStr,
-    RedText,
     Stderr,
     YellowText,
     _,
     urllibWapper,
+    Error,
+    Warn,
 )
 
 
@@ -48,12 +49,12 @@ def run(argv=None):
             return False
         return True
 
-    def MediaFromInvidious(videoId: str, instanceDomain: str = "") -> tuple:
+    def MediaFromInvidious(videoId: str, instance_domain: str = "") -> tuple:
         """返回一个视频流和音频流网址"""
         instances = []
-        if instanceDomain != "":
-            instances.append([instanceDomain])
-        if instanceDomain == "":
+        if instance_domain != "":
+            instances.append([instance_domain])
+        if instance_domain == "":
             instances = json.loads(
                 urllibWapper("https://api.invidious.io/instances.json")
             )
@@ -111,7 +112,7 @@ def run(argv=None):
 
     Dummy([CheckUrl, AnnotationsFromArchive, MediaFromInvidious])  # type: ignore
 
-    code = 0
+    exit_code = 0
     parser = argparse.ArgumentParser(description=_("下载和转换 Youtube 注释"))
     parser.add_argument(
         "queue",
@@ -189,10 +190,6 @@ def run(argv=None):
         help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
     )
 
-    # 与 Unix 工具结合成为了可能
-    parser.add_argument(
-        "-s", "--output-to-stdout", action="store_true", help=_("输出至标准输出")
-    )
     parser.add_argument(
         "-n", "--no-overwrite-files", action="store_true", help=_("不覆盖文件")
     )
@@ -209,7 +206,9 @@ def run(argv=None):
         metavar=_("目录"),
         help=_("指定转换后文件的输出目录"),
     )
-    parser.add_argument("-o", "--output", type=str, metavar=_("文件"), help=_("保存到此文件"))
+    parser.add_argument(
+        "-o", "--output", type=str, metavar=_("文件"), help=_('保存到此文件, 如果为 "-" 则输出到标准输出')
+    )
     parser.add_argument(
         "-v",
         "--version",
@@ -228,200 +227,203 @@ def run(argv=None):
 
     args = parser.parse_args(argv)
 
-    if args.verbose:
+    queue = args.queue
+
+    enable_embrace_libass = args.embrace_libass
+    transform_resolution_x = args.transform_resolution_x
+    transform_resolution_y = args.transform_resolution_y
+    font = args.font
+    enable_download_for_archive = args.download_for_archive
+    enable_download_annotation_only = args.download_annotation_only
+    enable_preview_video = args.preview_video
+    enable_generate_video = args.generate_video
+    invidious_instances = args.invidious_instances
+    enable_no_overwrite_files = args.no_overwrite_files
+    enable_no_keep_intermediate_files = args.no_keep_intermediate_files
+    output_directory = args.output_directory
+    output = args.output
+    enable_verbose = args.verbose
+
+    output_to_stdout = False
+
+    if enable_verbose:
         Flags.verbose = True
 
-    if args.output_to_stdout:
-        if args.output_directory is not None:
-            Stderr(RedText(_("--output-to-stdout 不能与 --output-directory 选项同时使用")))
+    if output is not None:
+        if output_directory is not None:
+            Error(_("--output 不能与 --output--directory 选项同时使用"))
             return 1
-        if args.output is not None:
-            Stderr(RedText(_("--output-to-stdout 不能与 --output 选项同时使用")))
+        if len(queue) > 1:
+            Error(_("--output 只能处理一个文件"))
             return 1
-        if args.preview_video or args.generate_video:
-            Stderr(
-                RedText(
-                    _(
-                        "--output-to-stdout 不能与 --preview-video 或 --generate-video 选项同时使用"
-                    )
-                )
-            )
+        if args.output == "-":
+            output_to_stdout = True
+
+    if output_directory is not None:
+        if os.path.isdir(output_directory) is False:
+            Error(_("转换后文件输出目录应该指定一个文件夹"))
             return 1
 
-    if args.output is not None:
-        if args.output_directory is not None:
-            Stderr(RedText(_("--output 不能与 --output--directory 选项同时使用")))
-            return 1
-        if len(args.queue) > 1:
-            Stderr(RedText(_("--output 只能处理一个文件")))
-            return 1
+    if enable_preview_video or enable_generate_video:
+        enable_download_for_archive = True
+        enable_embrace_libass = True
+        if invidious_instances == None:
+            invidious_instances = ""
 
-    if args.output_directory is not None:
-        if os.path.isdir(args.output_directory) is False:
-            Stderr(RedText(_("转换后文件输出目录应该指定一个文件夹")))
-            return 1
-
-    if args.preview_video or args.generate_video:
-        args.download_for_archive = True
-        args.embrace_libass = True
-        if args.invidious_instances == None:
-            args.invidious_instances = ""
-
-    if args.embrace_libass and (
-        args.transform_resolution_x == 100 or args.transform_resolution_y == 100
+    if enable_embrace_libass and (
+        transform_resolution_x == 100 or transform_resolution_y == 100
     ):
-        Stderr(
-            YellowText(
-                _(
-                    "如果您的视频不是 16:9, 请使用 --transform-resolution-x --transform-resolution-y, 以确保效果"
-                )
+        Warn(
+            _(
+                "如果您的视频不是 16:9, 请使用 --transform-resolution-x --transform-resolution-y, 以确保效果"
             )
         )
 
-    if args.download_annotation_only:
-        args.download_for_archive = True
+    if enable_download_annotation_only:
+        enable_download_for_archive = True
 
-    if args.download_for_archive:
+    if enable_download_for_archive:
         # 省的网不好不知道
         def CheckNetwork():
             if CheckUrl() is False:
-                Stderr(YellowText(_("您好像无法访问 Google 🤔")))
+                Warn(_("您好像无法访问 Google 🤔"))
 
         _thread.start_new_thread(CheckNetwork, ())
 
-    for Task in args.queue:
-        videoId = MakeSureStr(Task)
-        annotationFile = Task
-        if args.download_for_archive:
-            if videoId.startswith("\\"):
-                videoId = videoId.replace("\\", "", 1)
-            if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
-                Stderr(RedText(_("{} 不是一个有效的视频 ID").format(videoId)))
-                code = 1
+    for Task in queue:
+        video_id = MakeSureStr(Task)
+        annotation_file = Task
+
+        if enable_download_for_archive:
+            if video_id.startswith("\\"):
+                video_id = video_id.replace("\\", "", 1)
+            if re.match(r"[a-zA-Z0-9_-]{11}", video_id) is None:
+                Error(_("{} 不是一个有效的视频 ID").format(video_id))
+                exit_code = 1
                 continue
 
-            annotationFile = f"{videoId}.xml"
-            if args.download_annotation_only and args.output:
-                annotationFile = args.output
-            if args.output_directory is not None:
-                annotationFile = os.path.join(args.output_directory, annotationFile)
+            annotation_file = f"{video_id}.xml"
+            if enable_download_annotation_only and output:
+                annotation_file = output
+            if output_directory is not None:
+                annotation_file = os.path.join(output_directory, annotation_file)
 
-            skipDownload = False
-            if args.no_overwrite_files and os.path.exists(annotationFile):
-                if os.path.exists(annotationFile):
-                    Stderr(YellowText(_("文件已存在, 跳过下载 ({})").format(videoId)))
-                    skipDownload = True
-            if not skipDownload:
-                url = AnnotationsFromArchive(videoId)
+            is_skip_download = False
+            if enable_no_overwrite_files and os.path.exists(annotation_file):
+                if os.path.exists(annotation_file):
+                    Stderr(YellowText(_("文件已存在, 跳过下载 ({})").format(video_id)))
+                    is_skip_download = True
+            if not is_skip_download:
+                url = AnnotationsFromArchive(video_id)
                 Stderr(_("下载 {}").format(url))
                 string = urllibWapper(url)
-                if args.output_to_stdout:
+                if output_to_stdout:
                     print(string, file=sys.stdout)
                     continue
-                with open(annotationFile, "w", encoding="utf-8") as f:
+                with open(annotation_file, "w", encoding="utf-8") as f:
                     f.write(string)
 
-            if args.download_annotation_only:
+            if enable_download_annotation_only:
                 continue
 
-        if os.path.isfile(annotationFile) is False:
-            Stderr(RedText(_("{} 不是一个文件").format(annotationFile)))
-            code = 1
+        if os.path.isfile(annotation_file) is False:
+            Error(_("{} 不是一个文件").format(annotation_file))
+            exit_code = 1
             continue
 
-        with open(annotationFile, "r", encoding="utf-8") as f:
-            annotationsString = f.read()
+        with open(annotation_file, "r", encoding="utf-8") as f:
+            annotations_string = f.read()
 
-        if annotationsString == "":
-            Stderr(YellowText(_("{} 可能没有 Annotation").format(videoId)))
-            code = 1
+        if annotations_string == "":
+            Warn(_("{} 可能没有 Annotation").format(video_id))
+            exit_code = 1
             continue
 
         try:
-            tree = defusedxml.ElementTree.parse(annotationFile)
+            tree = defusedxml.ElementTree.parse(annotation_file)
         except ParseError:
-            Stderr(RedText(_("{} 不是一个有效的 XML 文件").format(annotationFile)))
+            Error(_("{} 不是一个有效的 XML 文件").format(annotation_file))
             if Flags.verbose:
                 Stderr(traceback.format_exc())
-            code = 1
+            exit_code = 1
             continue
 
         if tree.find("annotations") == None:
-            Stderr(RedText(_("{} 不是 Annotation 文件").format(annotationFile)))
-            code = 1
+            Error(_("{} 不是 Annotation 文件").format(annotation_file))
+            exit_code = 1
             continue
 
         if len(tree.find("annotations").findall("annotation")) == 0:
-            Stderr(YellowText(_("{} 没有 Annotation").format(annotationFile)))
+            Warn(_("{} 没有 Annotation").format(annotation_file))
 
-        subFile = annotationFile + ".ass"
-        if args.output_directory is not None:
-            fileName = os.path.basename(annotationFile)
-            fileName = fileName + ".ass"
-            subFile = os.path.join(args.output_directory, fileName)
-        if args.output is not None:
-            subFile = args.output
+        subtitle_file = annotation_file + ".ass"
+        if output_directory is not None:
+            file_name = os.path.basename(annotation_file)
+            file_name = file_name + ".ass"
+            subtitle_file = os.path.join(output_directory, file_name)
+        if output is not None:
+            subtitle_file = output
 
         # 这里是 __init__.py 开头那个流程图
-        with open(annotationFile, "r", encoding="utf-8") as f:
+        with open(annotation_file, "r", encoding="utf-8") as f:
             string = f.read()
         tree = defusedxml.ElementTree.fromstring(string)
         annotations = Parse(tree)
         events = Convert(
             annotations,
-            args.embrace_libass,
-            args.transform_resolution_x,
-            args.transform_resolution_y,
+            enable_embrace_libass,
+            transform_resolution_x,
+            transform_resolution_y,
         )
         if events == []:
-            Stderr(YellowText(_("{} 没有注释被转换").format(annotationFile)))
+            Warn(_("{} 没有注释被转换").format(annotation_file))
         # Annotation 是无序的
         # 按时间重新排列字幕事件, 是为了人类可读
         events.sort(key=lambda event: event.Start)
         sub = Sub()
         sub.events.extend(events)
-        sub.info["PlayResX"] = args.transform_resolution_x
-        sub.info["PlayResY"] = args.transform_resolution_y
-        sub.info["Title"] = os.path.basename(annotationFile)
-        sub.styles["Default"].Fontname = args.font
+        sub.info["PlayResX"] = transform_resolution_x  # type: ignore
+        sub.info["PlayResY"] = transform_resolution_y  # type: ignore
+        sub.info["Title"] = os.path.basename(annotation_file)
+        sub.styles["Default"].Fontname = font
         subString = sub.Dump()
-        if args.output_to_stdout:
+        if output_to_stdout:
             print(subString, file=sys.stdout)
             continue
-        noSave = False
-        if args.no_overwrite_files:
-            if os.path.exists(subFile):
-                Stderr(YellowText(_("文件已存在, 跳过输出 ({})").format(subFile)))
-                noSave = True
-        if args.no_keep_intermediate_files:
-            os.remove(annotationFile)
-            Stderr(_("删除 {}").format(annotationFile))
-        if not noSave:
-            with open(subFile, "w", encoding="utf-8") as f:
+        is_no_save = False
+        if enable_no_overwrite_files:
+            if os.path.exists(subtitle_file):
+                Stderr(YellowText(_("文件已存在, 跳过输出 ({})").format(subtitle_file)))
+                is_no_save = True
+        if enable_no_keep_intermediate_files:
+            os.remove(annotation_file)
+            Stderr(_("删除 {}").format(annotation_file))
+        if not is_no_save:
+            with open(subtitle_file, "w", encoding="utf-8") as f:
                 f.write(subString)
-            Stderr(_("保存于: {}").format(subFile))
+            Stderr(_("保存于: {}").format(subtitle_file))
 
-        def d1():
+        def function1():
             if Flags.verbose:
                 Stderr(cmd)
             exit_code = os.system(cmd)
             if Flags.verbose:
                 if exit_code != 0:
                     Stderr(YellowText("exit with {}".format(exit_code)))
-            if args.no_keep_intermediate_files:
-                os.remove(subFile)
-                Stderr(_("删除 {}").format(subFile))
+            if enable_no_keep_intermediate_files:
+                os.remove(subtitle_file)
+                Stderr(_("删除 {}").format(subtitle_file))
 
         video = audio = ""
-        if args.preview_video or args.generate_video:
-            video, audio = MediaFromInvidious(videoId, args.invidious_instances)
+        if enable_preview_video or enable_generate_video:
+            video, audio = MediaFromInvidious(video_id, invidious_instances)
 
-        if args.preview_video:
-            cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subFile}"'
-            d1()
+        if enable_preview_video:
+            cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subtitle_file}"'
+            function1()
 
-        if args.generate_video:
-            cmd = rf'ffmpeg -i "{video}" -i "{audio}" -vf "ass={subFile}" {subFile}.mp4'
-            d1()
+        if enable_generate_video:
+            cmd = rf'ffmpeg -i "{video}" -i "{audio}" -vf "ass={subtitle_file}" {subtitle_file}.mp4'
+            function1()
 
-    return code
+    return exit_code
