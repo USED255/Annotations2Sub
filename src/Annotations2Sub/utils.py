@@ -37,7 +37,7 @@ def internationalization():
         )
         return translate.gettext
     except FileNotFoundError:
-        Stderr(RedText("翻译文件加载失败"))
+        Error("翻译文件加载失败")
         return gettext.gettext
 
 
@@ -54,6 +54,14 @@ def RedText(s: str) -> str:
 def Stderr(s: str):
     """打印到标准错误"""
     print(s, file=sys.stderr)
+
+
+def Error(s: str):
+    Stderr(RedText(_("错误: ") + s))
+
+
+def Warn(s: str):
+    Stderr(YellowText(_("警告: ") + s))
 
 
 def MakeSureStr(s: Any) -> str:

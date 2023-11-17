@@ -2,50 +2,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Unit Test",
-            "type": "python",
-            "request": "test",
-            "justMyCode": false,
-        },
-        {
-            "name": "python -m Annotations2Sub ../tests/testCase/annotation.xml.test",
+            "name": "Annotations2Sub src/tests/testCase/annotation.xml.test",
             "type": "python",
             "module": "Annotations2Sub",
             "request": "launch",
             "console": "integratedTerminal",
             "justMyCode": false,
-            "cwd": "${workspaceFolder}/src",
+            "cwd": "${workspaceFolder}",
             "args": [
-                "../tests/testCase/annotation.xml.test"
-            ],
-        },
-        {
-            "name": "python -m Annotations2Sub -p 29-q7YnyUmY",
-            "type": "python",
-            "module": "Annotations2Sub",
-            "request": "launch",
-            "console": "integratedTerminal",
-            "justMyCode": false,
-            "cwd": "${workspaceFolder}/src",
-            "env": {
-                "http_proxy": "http://127.0.0.1:7890",
-                "https_proxy": "http://127.0.0.1:7890"
-            },
-            "args": [
-                "-p",
-                "29-q7YnyUmY"
-            ],
-        },
-        {
-            "name": "python -m Annotations2Sub XwxBJEzgqWU.xml",
-            "type": "python",
-            "module": "Annotations2Sub",
-            "request": "launch",
-            "console": "integratedTerminal",
-            "justMyCode": false,
-            "cwd": "${workspaceFolder}/src",
-            "args": [
-                "XwxBJEzgqWU.xml"
+                "src/tests/testCase/annotation.xml.test"
             ],
         }
     ]
