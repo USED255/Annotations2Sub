@@ -8,15 +8,13 @@ on:
     branches:
       - "master"
     paths:
-      - "**/*.py"
-      - "src/**"
-      - "tests/**"
+      - "**.py"
+      - "**.test"
       - ".github/workflows/test.yml"
   pull_request:
     paths:
-      - "**/*.py"
-      - "src/**"
-      - "tests/**"
+      - "**.py"
+      - "**.test"
       - ".github/workflows/test.yml"
 
 jobs:
