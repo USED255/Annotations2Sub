@@ -46,8 +46,6 @@ optional arguments:
   -g, --generate-video  Generate video, requires FFmpeg(https://ffmpeg.org/)
   -i invidious-instances.domain, --invidious-instances invidious-instances.domain
                         Specify invidious instances (https://redirect.invidious.io/)
-  -s, --output-to-stdout
-                        Output to stdout
   -n, --no-overwrite-files
                         Do not overwrite files
   -N, --no-keep-intermediate-files
@@ -55,7 +53,7 @@ optional arguments:
   -O directory, --output-directory directory
                         Specify the output directory for the converted file
   -o File, --output File
-                        Save to this file
+                        Save to this file, if "-" then output to standard output
   -v, --version         Show version
   -V, --verbose         Show more messages
 ```
