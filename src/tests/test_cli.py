@@ -93,7 +93,7 @@ def test_cli3():
         raise Exception
 
     m = pytest.MonkeyPatch()
-    m.setattr(cli, "urllibWapper", mock)
+    m.setattr(cli, "GetUrl", mock)
     m.setattr(os, "system", lambda __: None)
 
     for line in test.splitlines():
@@ -113,7 +113,7 @@ def test_cli3():
 
 def test_cli4():
     m = pytest.MonkeyPatch()
-    m.setattr(cli, "urllibWapper", lambda x: "")
+    m.setattr(cli, "GetUrl", lambda x: "")
     assert run("""-d \\-9-q7YnyUmY""".split(" ")) == 1
 
 

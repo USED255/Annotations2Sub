@@ -14,7 +14,7 @@ from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
 # 我觉得在输入确定的环境下用不着这玩意
-# 不过打包到了 PyPI 也不用像以前那些忌惮第三方库了
+# 不过打包到了 PyPI 也不用像以前那样忌惮第三方库了
 # 不用白不用
 import defusedxml.ElementTree  # type: ignore
 
@@ -28,13 +28,14 @@ from Annotations2Sub.utils import (
     Stderr,
     YellowText,
     _,
-    urllibWapper,
-    Error,
+    GetUrl,
+    Err,
     Warn,
 )
 
 
 def Dummy(*args, **kwargs):
+    """用于 MonkeyPatch"""
     pass
 
 
@@ -42,22 +43,19 @@ def run(argv=None):
     """跑起来🐎🐎🐎"""
 
     def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
-        """检查网络"""
         try:
             urllib.request.urlopen(url=url, timeout=timeout)
         except URLError:
             return False
         return True
 
-    def MediaFromInvidious(videoId: str, instance_domain: str = "") -> tuple:
-        """返回一个视频流和音频流网址"""
+    def MediaFromInvidious(videoId: str, instanceDomain: str = "") -> tuple:
+        """返回视频流和音频流网址"""
         instances = []
-        if instance_domain != "":
-            instances.append([instance_domain])
-        if instance_domain == "":
-            instances = json.loads(
-                urllibWapper("https://api.invidious.io/instances.json")
-            )
+        if instanceDomain != "":
+            instances.append([instanceDomain])
+        if instanceDomain == "":
+            instances = json.loads(GetUrl("https://api.invidious.io/instances.json"))
         for instance in instances:
             try:
                 if not instance[1]["api"]:  # type: ignore
@@ -68,15 +66,15 @@ def run(argv=None):
             url = f"https://{domain}/api/v1/videos/{videoId}"
             Stderr(_("获取 {}").format(url))
             try:
-                data = json.loads(urllibWapper(url))
+                data = json.loads(GetUrl(url))
             except (json.JSONDecodeError, URLError):
                 continue
             videos = []
             audios = []
             for i in data.get("adaptiveFormats"):
-                if re.match("video", i.get("type")) is not None:
+                if re.match("video", i.get("type")) != None:
                     videos.append(i)
-                if re.match("audio", i.get("type")) is not None:
+                if re.match("audio", i.get("type")) != None:
                     audios.append(i)
             videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
             audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
@@ -128,7 +126,7 @@ def run(argv=None):
         help=_("拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"),
     )
 
-    # 虽然把分辨率置为 100, 100 字幕滤镜也能正常定位, 但是显然正确的分辨率更惹字幕滤镜喜欢
+    # 虽然把分辨率置为 100, 100 字幕滤镜也能正常定位, 但是正确的分辨率会让字幕滤更高兴
     parser.add_argument(
         "-x",
         "--transform-resolution-x",
@@ -167,7 +165,7 @@ def run(argv=None):
         action="store_true",
         help=_("仅下载注释"),
     )
-    # 就是拼接参数执行 mpv
+    # 拼接参数执行 mpv
     parser.add_argument(
         "-p",
         "--preview-video",
@@ -175,7 +173,6 @@ def run(argv=None):
         help=_("预览视频, 需要 mpv(https://mpv.io/)"),
     )
 
-    # 与上面同理
     parser.add_argument(
         "-g",
         "--generate-video",
@@ -249,19 +246,19 @@ def run(argv=None):
     if enable_verbose:
         Flags.verbose = True
 
-    if output is not None:
-        if output_directory is not None:
-            Error(_("--output 不能与 --output--directory 选项同时使用"))
+    if output != None:
+        if output_directory != None:
+            Err(_("--output 不能与 --output--directory 选项同时使用"))
             return 1
         if len(queue) > 1:
-            Error(_("--output 只能处理一个文件"))
+            Err(_("--output 只能处理一个文件"))
             return 1
         if args.output == "-":
             output_to_stdout = True
 
-    if output_directory is not None:
+    if output_directory != None:
         if os.path.isdir(output_directory) is False:
-            Error(_("转换后文件输出目录应该指定一个文件夹"))
+            Err(_("转换后文件输出目录应该指定一个文件夹"))
             return 1
 
     if enable_preview_video or enable_generate_video:
@@ -298,14 +295,14 @@ def run(argv=None):
             if video_id.startswith("\\"):
                 video_id = video_id.replace("\\", "", 1)
             if re.match(r"[a-zA-Z0-9_-]{11}", video_id) is None:
-                Error(_("{} 不是一个有效的视频 ID").format(video_id))
+                Err(_("{} 不是一个有效的视频 ID").format(video_id))
                 exit_code = 1
                 continue
 
             annotation_file = f"{video_id}.xml"
             if enable_download_annotation_only and output:
                 annotation_file = output
-            if output_directory is not None:
+            if output_directory != None:
                 annotation_file = os.path.join(output_directory, annotation_file)
 
             is_skip_download = False
@@ -316,7 +313,7 @@ def run(argv=None):
             if not is_skip_download:
                 url = AnnotationsFromArchive(video_id)
                 Stderr(_("下载 {}").format(url))
-                string = urllibWapper(url)
+                string = GetUrl(url)
                 if output_to_stdout:
                     print(string, file=sys.stdout)
                     continue
@@ -327,7 +324,7 @@ def run(argv=None):
                 continue
 
         if os.path.isfile(annotation_file) is False:
-            Error(_("{} 不是一个文件").format(annotation_file))
+            Err(_("{} 不是一个文件").format(annotation_file))
             exit_code = 1
             continue
 
@@ -342,14 +339,14 @@ def run(argv=None):
         try:
             tree = defusedxml.ElementTree.parse(annotation_file)
         except ParseError:
-            Error(_("{} 不是一个有效的 XML 文件").format(annotation_file))
+            Err(_("{} 不是一个有效的 XML 文件").format(annotation_file))
             if Flags.verbose:
                 Stderr(traceback.format_exc())
             exit_code = 1
             continue
 
         if tree.find("annotations") == None:
-            Error(_("{} 不是 Annotation 文件").format(annotation_file))
+            Err(_("{} 不是 Annotation 文件").format(annotation_file))
             exit_code = 1
             continue
 
@@ -357,11 +354,11 @@ def run(argv=None):
             Warn(_("{} 没有 Annotation").format(annotation_file))
 
         subtitle_file = annotation_file + ".ass"
-        if output_directory is not None:
+        if output_directory != None:
             file_name = os.path.basename(annotation_file)
             file_name = file_name + ".ass"
             subtitle_file = os.path.join(output_directory, file_name)
-        if output is not None:
+        if output != None:
             subtitle_file = output
 
         # 这里是 __init__.py 开头那个流程图
@@ -380,15 +377,15 @@ def run(argv=None):
         # Annotation 是无序的
         # 按时间重新排列字幕事件, 是为了人类可读
         events.sort(key=lambda event: event.Start)
-        sub = Sub()
-        sub.events.extend(events)
-        sub.info["PlayResX"] = transform_resolution_x  # type: ignore
-        sub.info["PlayResY"] = transform_resolution_y  # type: ignore
-        sub.info["Title"] = os.path.basename(annotation_file)
-        sub.styles["Default"].Fontname = font
-        subString = sub.Dump()
+        subtitle = Sub()
+        subtitle.events.extend(events)
+        subtitle.info["PlayResX"] = transform_resolution_x  # type: ignore
+        subtitle.info["PlayResY"] = transform_resolution_y  # type: ignore
+        subtitle.info["Title"] = os.path.basename(annotation_file)
+        subtitle.styles["Default"].Fontname = font
+        subtitle_string = subtitle.Dump()
         if output_to_stdout:
-            print(subString, file=sys.stdout)
+            print(subtitle_string, file=sys.stdout)
             continue
         is_no_save = False
         if enable_no_overwrite_files:
@@ -400,7 +397,7 @@ def run(argv=None):
             Stderr(_("删除 {}").format(annotation_file))
         if not is_no_save:
             with open(subtitle_file, "w", encoding="utf-8") as f:
-                f.write(subString)
+                f.write(subtitle_string)
             Stderr(_("保存于: {}").format(subtitle_file))
 
         def function1():
