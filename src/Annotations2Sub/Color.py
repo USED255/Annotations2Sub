@@ -34,5 +34,7 @@ class Alpha:
 
 class Rgba:
     def __init__(self, color: Color = Color(), alpha: Alpha = Alpha()):
-        self.color = color
-        self.alpha = alpha
+        self.red = color.red
+        self.green = color.green
+        self.blue = color.blue
+        self.alpha = alpha.alpha

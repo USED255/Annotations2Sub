@@ -379,6 +379,8 @@ def run(argv=None):
         events.sort(key=lambda event: event.Start)
         subtitle = Sub()
         subtitle.events.extend(events)
+        subtitle.comment += _("此脚本使用 Annotations2Sub 生成") + "\n"
+        subtitle.comment += "https://github.com/USED255/Annotations2Sub"
         subtitle.info["PlayResX"] = transform_resolution_x  # type: ignore
         subtitle.info["PlayResY"] = transform_resolution_y  # type: ignore
         subtitle.info["Title"] = os.path.basename(annotation_file)
