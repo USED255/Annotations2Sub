@@ -47,48 +47,35 @@ def Convert(
             # Annotation 无非就是文本, 框, 或者是一个点击按钮和动图
             # 之前我用了一个函数生成标签, 还不如直接拼接
             tag = ""
-            # 样式复写代码, ASS 标签, 特效标签, Aegisub 特效标签, 标签
-            # *** 带引号的是从 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 粘过来的 ***
-            # ```
+            # 样式复写代码, 样式复写标签, ASS 标签, 特效标签, Aegisub 特效标签, 标签
+            # 带引号的是从 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 粘过来的
             # "\an<位置>"
             # "<位置> 是一个数字，决定了字幕显示在屏幕上哪个位置。"
-            # ```
             # 默认 SSA 定位会定在文本中间
-            # 现在用 \an7 指定在左上角.
-            # ```
+            # 用 \an7 指定在左上角.
             # "\pos(<x>,<y>)"
             # "将字幕定位在坐标点 <x>,<y>。"
-            # ```
-            # 就是坐标
-            # 顺便一提 SSA 和 Annotation 坐标系一致, y 向下(左手取向).
-            # 这里坐标 +1 主要是为了美观, 可能与 Annotation 的行为不一致
-            tag += r"\an7" + rf"\pos({x + 1},{y + 1})"
-            # ```
+            # SSA 和 Annotation 坐标系一致, y 向下(左手取向).
+            # 这里坐标 +1 是为了美观, 与 Annotation 行为不一致
+            tag += rf"\an7\pos({x + 1},{y + 1})"
             # "\fs<字体尺寸>"
             # "<字体尺寸> 是一个数字，指定了字体的点的尺寸。"
             # "注意，这里的字体尺寸并不是字号的大小，\fs20 并不是字体大小（font-size）为 20px，"
-            # 而是指其行高（line-height）为 20px，主要归咎于 VSFilter 使用的 Windows GDI 的字体接口。"
-            # ```
-            # 直接用得了
-            # 反正效果也没咋差
-            tag += r"\fs" + str(textSize)
-            # ```
+            # "而是指其行高（line-height）为 20px，主要归咎于 VSFilter 使用的 Windows GDI 的字体接口。"
+            # 不明白字体大小和行高有什么区别
+            tag += rf"\fs{str(textSize)}"
             # "\[<颜色序号>]c[&][H]<BBGGRR>[&]"
             # "<BBGGRR> 是一个十六进制的 RGB 值，但颜色顺序相反，前导的 0 可以省略。"
             # "<颜色序号> 可选值为 1、2、3 和 4，分别对应单独设置 PrimaryColour、SecondaryColour、OutlineColor 和 BackColour"
-            # PrimaryColour 填充颜色, SecondaryColour 卡拉OK变色, OutlineColor 边框颜色, BackColour 阴影颜色
-            # 这里省略了一段
             # "其中的 & 和 H 按规范应该是要有的，但是如果没有也能正常解析。"
-            # ```
-            tag += r"\c" + DumpColor(each.fgColor)
-            # ```
+            # PrimaryColour 填充颜色, SecondaryColour 卡拉OK变色, OutlineColor 边框颜色, BackColour 阴影颜色
+            tag += rf"\c{DumpColor(each.fgColor)}"
             # "\<颜色序号>a[&][H]<AA>[&]"
             # "<AA> 是一个十六进制的透明度数值，00 为全见，FF 为全透明。"
             # "<颜色序号> 含义同上，但这里不能省略。写法举例：\1a&H80&、\2a&H80、\3a80、\4a&H80&。"
             # "其中的 & 和 H 按规范应该是要有的，但是如果没有也能正常解析。"
-            # ```
             # Annotation 文本好像没有透明度, 这个很符合直觉
-            tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
+            tag += r"\2a&HFF&\3a&HFF&\4a&HFF&"
             # 现在加个括号就成了
             tag = "{" + tag + "}"
             # 直接拼接就可以了
@@ -101,10 +88,10 @@ def Convert(
 
             # 没什么太大的变化
             tag = ""
-            tag += r"\an7" + rf"\pos({x},{y})"
-            tag += r"\c" + DumpColor(each.bgColor)
-            tag += r"\1a" + DumpAlpha(each.bgOpacity)
-            tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
+            tag += rf"\an7\pos({x},{y})"
+            tag += rf"\c{DumpColor(each.bgColor)}"
+            tag += rf"\1a{DumpAlpha(each.bgOpacity)}"
+            tag += r"\2a&HFF&\3a&HFF&\4a&HFF&"
             tag = "{" + tag + "}"
 
             # 在之前这里我拼接字符串, 做的还没有全民核酸检测好
@@ -115,25 +102,24 @@ def Convert(
             d.Add(DrawCommand(width, height, "l"))
             d.Add(DrawCommand(0, height, "l"))
             box = d.Dump()
-            # ```
             # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
-            # ```
-            box = r"{\p1}" + box + r"{\p0}"
+            box_tag = r"{\p1}" + box + r"{\p0}"
+            del box
 
-            event.Text = tag + box
+            event.Text = tag + box_tag
             return event
 
         def popup_text(event: Event) -> Event:
             """生成 popup 样式的文本 Event"""
 
             # 多加几个字, 便于调试
-            event.Name += ";popup;text"
+            event.Name += "popup_text;"
 
             return Text(event)
 
         def popup_box(event: Event) -> Event:
             """生成 popup 样式的框 Event"""
-            event.Name = event.Name + ";popup;box"
+            event.Name = event.Name + "popup_box;"
 
             return Box(event)
 
@@ -154,38 +140,38 @@ def Convert(
 
         def highlightText_text(event: Event) -> Event:
             """生成 highlightText 样式的文本 Event"""
-            event.Name += ";highlightText;text"
+            event.Name += "highlightText_text;"
 
             return Text(event)
 
         def highlightText_box(event: Event) -> Event:
             """生成 highlightText 样式的框 Event"""
-            event.Name = event.Name + ";highlightText;box"
+            event.Name = event.Name + "highlightText_box;"
 
             return Box(event)
 
         def speech_text(event: Event) -> Event:
             """生成 speech 样式的文本 Event"""
-            event.Name += ";speech;text"
+            event.Name += "speech_text;"
 
             return Text(event)
 
-        def speech_box(event: Event) -> Event:
+        def speech_box_1(event: Event) -> Event:
             """生成 speech 样式的框 Event"""
-            event.Name += ";speech;box1"
+            event.Name += "speech_box_1;"
 
             return Box(event)
 
         def speech_box_2(event: Event) -> Event:
             """生成 speech 样式的第二个框 Event"""
-            event.Name += ";speech;box2"
+            event.Name += "speech_box_2;"
             event.Layer = 0
 
             tag = ""
-            tag += r"\an7" + rf"\pos({sx},{sy})"
-            tag += r"\c" + DumpColor(each.bgColor)
-            tag += r"\1a" + DumpAlpha(each.bgOpacity)
-            tag += r"\2a" + "&HFF&" + r"\3a" + "&HFF&" + r"\4a" + "&HFF&"
+            tag += rf"\an7\pos({sx},{sy})"
+            tag += rf"\c{DumpColor(each.bgColor)}"
+            tag += rf"\1a{DumpAlpha(each.bgOpacity)}"
+            tag += r"\2a&HFF&" + r"\3a&HFF&" + r"\4a&HFF&"
             tag = "{" + tag + "}"
 
             # 开始只是按部就班的画一个气泡框
@@ -223,44 +209,43 @@ def Convert(
             d.Add(DrawCommand(x1, y1, "l"))
             d.Add(DrawCommand(x2, y1, "l"))
             box = d.Dump()
-            box = r"{\p1}" + box + r"{\p0}"
+            box_tag = r"{\p1}" + box + r"{\p0}"
+            del box
 
-            event.Text = tag + box
+            event.Text = tag + box_tag
             return event
 
         def anchored_text(event: Event) -> Event:
             """生成 anchored 样式的文本 Event"""
-            event.Name += ";anchored;text"
+            event.Name += "anchored_text;"
 
             return Text(event)
 
         def anchored_box(event: Event) -> Event:
             """生成 anchored 样式的框 Event"""
-            event.Name += ";anchored;box"
+            event.Name += "anchored_box;"
 
             return Box(event)
 
         def label_text(event: Event) -> Event:
-            event.Name += ";label;text"
+            event.Name += "label_text;"
             return Text(event)
 
         def label_box(event: Event) -> Event:
-            event.Name += ";label;box"
+            event.Name += "label_box;"
             return Box(event)
 
         events: List[Event] = []
         event = Event()
 
         # 我把 Annotation 抽成单独的结构就是为了这种效果
-        # 直接赋值, 不用加上一大坨的清洗代码
+        # 直接赋值, 不用加上一大坨清洗代码
         event.Start = each.timeStart
         event.End = each.timeEnd
-        # Name 置为 "id" 主要为了方便调试, 其次才是辨识
-        # 随便一提, Name 在 Aegisub 里是 "说话人"
-        if each.author:
-            event.Name += each.author
-            event.Name += ";"
-        event.Name += each.id
+        # author;id;function;alternative
+        # Name 在 Aegisub 里是 "说话人"
+        event.Name += each.author + ";"
+        event.Name += each.id + ";"
 
         text = each.text
         # SSA 用 "\N" 换行
@@ -272,22 +257,22 @@ def Convert(
             text = text.replace("{", r"\{")
             text = text.replace("}", r"\}")
         event.Text = text
+        del text
 
-        # 这里处理下数据供后面使用, 不需要处理都直接使用 each.
-        # 如果我在注释中用了句号, 那代表本段注释结束了, 下文跟上文没关系.
+        # 这里处理下数据供后面使用, 不需要处理都直接使用 each
         # Annotation 的定位是"百分比"
         # 恰好直接把"分辨率"设置为 100 就可以实现
         # 但是这其实还是依赖于字幕滤镜的怪癖
-        transformCoefficientX = resolutionX / 100
-        transformCoefficientY = resolutionY / 100
+        transform_coefficient_x = resolutionX / 100
+        transform_coefficient_y = resolutionY / 100
         # 浮点数太长了, 为了美观, 用 round 截断成三位, 字幕滤镜本身是支持小数的
-        x = round(each.x * transformCoefficientX, 3)
-        y = round(each.y * transformCoefficientY, 3)
-        textSize = round(each.textSize * transformCoefficientY, 3)
-        width = round(each.width * transformCoefficientX, 3)
-        height = round(each.height * transformCoefficientY, 3)
-        sx = round(each.sx * transformCoefficientX, 3)
-        sy = round(each.sy * transformCoefficientY, 3)
+        x = round(each.x * transform_coefficient_x, 3)
+        y = round(each.y * transform_coefficient_y, 3)
+        textSize = round(each.textSize * transform_coefficient_y, 3)
+        width = round(each.width * transform_coefficient_x, 3)
+        height = round(each.height * transform_coefficient_y, 3)
+        sx = round(each.sx * transform_coefficient_x, 3)
+        sy = round(each.sy * transform_coefficient_y, 3)
 
         if libass and resolutionX == 100 and resolutionY == 100:
             # 针对 libass 的 hack
@@ -296,15 +281,14 @@ def Convert(
             # 而且仅适用于 16:9 分辨率
             # 不要指望我在 libass 开 issue
             # 毕竟不知道还有多少脚本依赖于这个怪癖
-            width = width * 1.776
+            width = round(width * 1.776, 3)
+            # sy 是中间变量, 不需要 round
             sy = sy * 1.776
-        width = round(width, 3)
 
         # Layer 是"层", 他们说大的会覆盖小的
         # 但是没有这个也可以正常显示, 之前就没有, 现在也就是安心些
         event.Layer = 1
 
-        # 共同的处理完了, 下面才是真正的处理
         if each.style == "popup":
             # 用浅拷贝拷贝一遍再处理看起来简单些, 我不在意性能
             events.append(popup_text(copy.copy(event)))
@@ -318,7 +302,7 @@ def Convert(
         elif each.style == "speech":
             # 上次恶心到我的地方, 这次想到了另一种方法处理掉了
             events.append(speech_text(copy.copy(event)))
-            events.append(speech_box(copy.copy(event)))
+            events.append(speech_box_1(copy.copy(event)))
             events.append(speech_box_2(copy.copy(event)))
             # 我没见过 "anchored" 实现不对
         elif each.style == "anchored":

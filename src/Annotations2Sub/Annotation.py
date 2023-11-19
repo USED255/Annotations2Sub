@@ -3,10 +3,8 @@
 
 """Annotation 相关"""
 
-# 用于处理定时
 import datetime
 
-# 用于类型检查
 from typing import Any, List, Optional, Union
 
 # 解析 XML 时使用的是 defusedxml
@@ -24,8 +22,8 @@ except ImportError:
     pass
 
 
-# 用于测试
 def Dummy(*args, **kwargs):
+    """用于 MonkeyPatch"""
     pass
 
 
@@ -76,14 +74,14 @@ class Annotation:
         # bgOpacity(bgAlpha) 是注释文本后面那个框的不透明度
         # Annotation 用一个小数表示不透明度
         self.bgOpacity: Alpha = Alpha(alpha=204)
-        # bgColor 是注释文本的不透明度
+        # bgColor 是注释文本后面那个框的颜色
         self.bgColor: Color = Color(red=255, green=255, blue=255)
         # fgColor 就是注释文本的颜色
         # 如果不是 Annotation, 我都不知道颜色值可以用十进制表达
         # 类似于 bgOpacity, 开始我也不知道这玩耶是 BGR, 是视频出来效果不对才知道
         # 一个结构化的颜色显然比奇怪的颜色值要容易理解得多
         self.fgColor: Color = Color(red=0, green=0, blue=0)
-        # textSize 是 "文字在画布的百分比", 而在 title 样式中才是熟悉的 "字体大小"
+        # textSize 是 "文字占画布的百分比", 而在 title 样式中才是熟悉的 "字体大小"
         self.textSize: float = 3.15
         # annotationlib 没处理 author, 我会处理
         self.author: str = ""
@@ -100,10 +98,10 @@ def Parse(tree: Element) -> List[Annotation]:
     """将 XML 树转换为 List[Annotation]"""
 
     # Annotation 文件是一个 XML 文件
-    # 详细结构可以看看 src/test/testCase/annotation.xml.test
+    # 详细结构可以看看 src/tests/testCase/annotation.xml.test
 
     # 在此之前(f20f9fe fixbugs) XML 树就直接转为 Event 了
-    # 随着时间推移代码变得很糟
+    # 随着时间推移代码变得越来越糟
     # 幸好当初没傻到直接吐字符串, youtube-ass 就是这么干的
 
     def ParseAnnotationAlpha(alpha: str) -> Alpha:
@@ -113,8 +111,8 @@ def Parse(tree: Element) -> List[Annotation]:
         """
         if alpha is None:
             raise Exception("alpha is None")
-        s1 = float(alpha) * 255
-        return Alpha(alpha=int(s1))
+        variable1 = float(alpha) * 255
+        return Alpha(alpha=int(variable1))
 
     def ParseAnnotationColor(color: str) -> Color:
         """
@@ -123,25 +121,25 @@ def Parse(tree: Element) -> List[Annotation]:
         """
         if color is None:
             raise Exception("color is None")
-        num = int(color)
-        r = num & 255
-        g = (num >> 8) & 255
-        b = num >> 16
+        integer = int(color)
+        r = integer & 255
+        g = (integer >> 8) & 255
+        b = integer >> 16
         return Color(red=r, green=g, blue=b)
 
     def ParseTime(timeString: str) -> datetime.datetime:
-        colon = timeString.count(":")
-        timeFormat = ""
-        if colon == 2:
-            timeFormat += "%H:"
-        timeFormat += "%M:%S"
+        colon_count = timeString.count(":")
+        time_format = ""
+        if colon_count == 2:
+            time_format += "%H:"
+        time_format += "%M:%S"
         if "." in timeString:
-            timeFormat += ".%f"
-        time = datetime.datetime.strptime(timeString, timeFormat)
+            time_format += ".%f"
+        time = datetime.datetime.strptime(timeString, time_format)
         return time
 
     def MakeSureElement(element: Any) -> Element:
-        """确保是Element"""
+        """确保是 Element"""
         if isinstance(element, Element):
             return element
         raise TypeError
@@ -154,7 +152,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
         annotation = Annotation()
 
-        _id = MakeSureStr(each.get("id"))
+        annotation_id = MakeSureStr(each.get("id"))
 
         # 依照
         # https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L129
@@ -165,12 +163,13 @@ def Parse(tree: Element) -> List[Annotation]:
         # 我相信字幕滤镜不会闲的蛋疼实现暂停功能
         # 而且 annotationlib 也不处理 pause
         # annotationlib 也不处理空的 type
-        __type = each.get("type")
-        if __type is None:
+        _annotation_type = each.get("type")
+        if _annotation_type is None:
             return None
-        _type = MakeSureStr(__type)
-        if _type not in ("text", "highlight", "branding"):
-            Stderr(_("不支持{}类型 ({})").format(_type, _id))
+        annotation_type = MakeSureStr(_annotation_type)
+        del _annotation_type
+        if annotation_type not in ("text", "highlight", "branding"):
+            Stderr(_("不支持{}类型 ({})").format(annotation_type, annotation_id))
             # 我不知道显式的 return None 有什么用
             # 但是 annotationlib 是这样做的
             # 我也学学
@@ -180,7 +179,7 @@ def Parse(tree: Element) -> List[Annotation]:
         # 根据经验, 没有 style 也就没有内容
         if style is None:
             if Flags.verbose:
-                Stderr(_("{} 没有 style, 跳过").format(_id))
+                Stderr(_("{} 没有 style, 跳过").format(annotation_id))
             return None
         style = MakeSureStr(style)
 
@@ -191,9 +190,11 @@ def Parse(tree: Element) -> List[Annotation]:
             text = ""
         if isinstance(__text, Element):
             _text = __text.text
+            del __text
             text = MakeSureStr(_text)
+            del _text
 
-        # 类型检查可以避免些低级错误, 提升编码体验, 虽然在 Python 上有些瓦店房化
+        # 类型检查可以避免些低级错误, 提升编码体验, 虽然在 Python 上有些瓦房店化
         _Segment = each.find("segment").find("movingRegion")  # type: ignore
         if _Segment is None:  # type: ignore
             # 学习 annotationlib
@@ -202,12 +203,12 @@ def Parse(tree: Element) -> List[Annotation]:
             # 之前(f20f9fe fixbugs)学的是 youtube-ass(https://github.com/nirbheek/youtube-ass)
             # 只是简单地把时间置零
             if Flags.verbose:
-                Stderr(_("{} 没有 movingRegion, 跳过").format(_id))
+                Stderr(_("{} 没有 movingRegion, 跳过").format(annotation_id))
             return None
 
         Segment = _Segment.findall("rectRegion")  # type: ignore
         if len(Segment) == 0:
-            # 在这之前(bdb6559 更新), 这里有个莫名其妙的包了个括号
+            # 在这之前(bdb6559 更新), 这里莫名其妙的包了个括号
             # 我把整个代码注释一遍原因之一就是为了发现这些问题
             # 而且这些代码是经验堆积而成, 我希望丰富的注释可以帮助路人理解这些代码怎么运行
             Segment = _Segment.findall("anchoredRegion")  # type: ignore
@@ -216,11 +217,10 @@ def Parse(tree: Element) -> List[Annotation]:
             if style != "highlightText":
                 # 抄自 https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L121
                 # 不过我现在没见过 highlightText
-                # 不理解为什么 highlightText 可以没有时间
                 # 我选择相信别人的经验
-                # 毕竟我也没咋看过 Youtube
+                # 我猜 highlightText 一直在屏幕上, 需要手动关闭
                 if Flags.verbose:
-                    Stderr(_("{} 没有时间, 跳过").format(_id))
+                    Stderr(_("{} 没有时间, 跳过").format(annotation_id))
                 return None
 
         _Start = _End = "0:00:00.00"
@@ -233,7 +233,7 @@ def Parse(tree: Element) -> List[Annotation]:
         if "never" in (t1, t2):
             # 跳过不显示的 Annotation
             if Flags.verbose:
-                Stderr(_("{} 不显示, 跳过").format(_id))
+                Stderr(_("{} 不显示, 跳过").format(annotation_id))
             return None
 
         _Start = min(t1, t2)
@@ -242,11 +242,14 @@ def Parse(tree: Element) -> List[Annotation]:
         Start = ParseTime(_Start)
         End = ParseTime(_End)
 
+        del _Start
+        del _End
+
         x = float(MakeSureStr(Segment[0].get("x")))
         y = float(MakeSureStr(Segment[0].get("y")))
 
-        annotation.id = _id
-        annotation.type = _type
+        annotation.id = annotation_id
+        annotation.type = annotation_type
         annotation.style = style
         annotation.text = text
         annotation.timeStart = Start
@@ -254,7 +257,7 @@ def Parse(tree: Element) -> List[Annotation]:
         annotation.x = x
         annotation.y = y
 
-        # 两个 Segment 只有时间有差别
+        # 两个 Segment 只有时间差别
         w = Segment[0].get("w")
         h = Segment[0].get("h")
         sx = Segment[0].get("sx")

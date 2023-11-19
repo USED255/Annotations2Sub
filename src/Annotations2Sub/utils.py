@@ -13,7 +13,6 @@ from typing import Any
 
 class flags:
     def __init__(self):
-        self.unstable = False
         self.verbose = False
 
 
@@ -37,43 +36,43 @@ def internationalization():
         )
         return translate.gettext
     except FileNotFoundError:
-        Error("翻译文件加载失败")
+        Err("翻译文件加载失败")
         return gettext.gettext
 
 
-def YellowText(s: str) -> str:
+def YellowText(string: str) -> str:
     """返回黄色文本"""
-    return "\033[33m" + s + "\033[0m"
+    return "\033[33m" + string + "\033[0m"
 
 
-def RedText(s: str) -> str:
+def RedText(string: str) -> str:
     """返回红色文本"""
-    return "\033[31m" + s + "\033[0m"
+    return "\033[31m" + string + "\033[0m"
 
 
-def Stderr(s: str):
+def Stderr(string: str):
     """打印到标准错误"""
-    print(s, file=sys.stderr)
+    print(string, file=sys.stderr)
 
 
-def Error(s: str):
-    Stderr(RedText(_("错误: ") + s))
+def Err(string: str):
+    Stderr(RedText(_("错误: ") + string))
 
 
-def Warn(s: str):
-    Stderr(YellowText(_("警告: ") + s))
+def Warn(string: str):
+    Stderr(YellowText(_("警告: ") + string))
 
 
-def MakeSureStr(s: Any) -> str:
+def MakeSureStr(string: Any) -> str:
     """确保输入的是字符串"""
 
-    # 这个是用来应付类型注释了, 我觉得在输入确定的环境里做类型检查没有必要
-    if isinstance(s, str):
-        return str(s)
+    # 这个是用来应付类型注释的, 我觉得在输入确定的环境里做类型检查没有必要
+    if isinstance(string, str):
+        return str(string)
     raise TypeError
 
 
-def urllibWapper(url: str) -> str:
+def GetUrl(url: str) -> str:
     with urllib.request.urlopen(url) as r:
         return r.read().decode("utf-8")
 

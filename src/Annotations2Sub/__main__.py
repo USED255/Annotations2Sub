@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""python __main__.py or python -m Annotations2Sub"""
+"""在 src 目录运行 python __main__.py 或 python -m Annotations2Sub"""
 
 if not __package__:
     import os

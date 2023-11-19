@@ -7,7 +7,7 @@ import pytest
 from Annotations2Sub.Sub import Draw, DrawCommand
 
 
-def test_Draw_Dump():
+def test_DrawDump():
     draw = Draw()
     draw.Add(DrawCommand(0, 0, "m"))
     draw.Add(DrawCommand(100, 100, "l"))

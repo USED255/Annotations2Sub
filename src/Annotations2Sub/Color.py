@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""颜色表示"""
+"""颜色数据类"""
 
 
 class Color:
-    """以 0-255 的整数表示颜色值, 不提供序列化方法"""
-
     def __init__(
         self,
         red: int = 0,
@@ -25,8 +23,6 @@ class Color:
 
 
 class Alpha:
-    """以 0-255 的整数表示不透明度, 255 是不透明, 不提供序列化方法"""
-
     def __init__(
         self,
         alpha: int = 0,
@@ -38,5 +34,7 @@ class Alpha:
 
 class Rgba:
     def __init__(self, color: Color = Color(), alpha: Alpha = Alpha()):
-        self.color = color
-        self.alpha = alpha
+        self.red = color.red
+        self.green = color.green
+        self.blue = color.blue
+        self.alpha = alpha.alpha

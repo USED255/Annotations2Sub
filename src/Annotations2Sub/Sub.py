@@ -23,17 +23,17 @@ except ImportError:
 
 
 class Style:
-    """单个 SSA 样式(Style) 结构"""
+    """SSA 样式(Style) 结构"""
 
-    # ! 带引号的还是从 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 粘过来的 !
-    # Name 不在这里面, 因为我想用字典实现
     def __init__(self):
-        # "Style 行中的所有设定，除了阴影和边框的类型和深度，都可以被字幕文本中的控制代码所覆写。"
+        # 带引号的是从 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 粘过来的
+        # Name 不在这里面, 它会这样出现 Dict[Name:str, Style:Style]
 
+        # "Style 行中的所有设定，除了阴影和边框的类型和深度，都可以被字幕文本中的控制代码所覆写。"
         # "使用的字体名称，区分大小写。"
         self.Fontname: str = "Arial"
 
-        # 一下都用默认值
+        # 本项目的样式都用样式复写标签实现, 这些字段不会用到
         self.Fontsize: float = 20
         self.PrimaryColour: Rgba = Rgba(Color(255, 255, 255), Alpha(0))
         self.SecondaryColour: Rgba = Rgba(Color(255, 0, 0), Alpha(0))
@@ -64,15 +64,14 @@ class Style:
 
 
 class Event:
-    """单个 SSA 事件(Event) 结构"""
+    """SSA 事件(Event) 结构"""
 
     def __init__(self):
         # 有 Dialogue, Comment, Picture, Sound, Movie, Command 事件
-        # 但是我们只用到了 Dialogue
+        # 但是只用到了 Dialogue
         # "这是一个对话事件，即显示一些文本。"
         self.Type: Literal["Dialogue"] = "Dialogue"
         # Aegisub 没有 Marked, 所以我们也没有
-        # 剩下的就读一下 ./Convert.py 吧
         self.Layer: int = 0
         self.Start: datetime.datetime = datetime.datetime.strptime("0", "%S")
         self.End: datetime.datetime = datetime.datetime.strptime("0", "%S")
@@ -95,17 +94,13 @@ class Sub:
         self._events = self.Events()
 
         # 我想让他们直接操作列表或字典
-        self.info = self._info.info
-        self.note = self._info.note
+        self.info = self._info.infos
+        self.comment = ""
         self.styles = self._styles.styles
         self.events = self._events.events
 
         # "标题，对脚本的描述。如果未指定，自动设置为 <untitled>。"
         self.info["Title"] = "Default File"
-        # Aegisub 开头也有着这一段
-        # 我也学学
-        self.note.append(_("此脚本使用 Annotations2Sub 生成"))
-        self.note.append("https://github.com/USED255/Annotations2Sub")
         # 定义默认样式
         self.styles["Default"] = Style()
 
@@ -114,25 +109,25 @@ class Sub:
 
         def __init__(self):
             # 好像流行开头来一段注释的样子
-            self.note: List[str] = []
-            # 不言而喻
-            # 详细的读 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
-            self.info: Dict[str, str] = {"ScriptType": "v4.00+"}
+            self.comment: str = ""
+            # 必要的字段
+            self.infos: Dict[str, str] = {"ScriptType": "v4.00+"}
 
         def Dump(self) -> str:
             """将 Info 结构转换为字符串"""
 
             # 只是暴力拼接字符串而已
-            s = ""
-            s += "[Script Info]" + "\n"
-            for i in self.note:
-                s += "; " + i + "\n"
-            for k, v in self.info.items():
-                s += f"{k}: {v}\n"
-            s += "\n"
-            return s
+            string = ""
+            string += "[Script Info]" + "\n"
+            if self.comment != "":
+                for line in self.comment.split("\n"):
+                    string += f"; {line}\n"
+            for k, v in self.infos.items():
+                string += f"{k}: {v}\n"
+            string += "\n"
+            return string
 
-    # 这次和之前相比把一个类拆成了单个结构和一个有 Dump 方法的类
+    # 这次和之前相比把一个类拆成了结构和一个 Dump 方法
     class Styles:
         def __init__(self):
             self.styles: Dict[str, Style] = {}
@@ -144,44 +139,42 @@ class Sub:
                 # "长整型 BGR（蓝绿红）值，还包含了 alpha 通道信息。"
                 # "该值的十六进制字节顺序为 AABBGGRR。例如，&H00FFFFFF。"
                 return "&H{:02X}{:02X}{:02X}{:02X}".format(
-                    rgba.alpha.alpha, rgba.color.blue, rgba.color.green, rgba.color.red
+                    rgba.alpha, rgba.blue, rgba.green, rgba.red
                 )
 
-            # 还是暴力拼接字符串而已
-            # 建议阅读: https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
-            s = ""
-            s += "[V4+ Styles]" + "\n"
-            s += (
+            string = ""
+            string += "[V4+ Styles]" + "\n"
+            string += (
                 "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding"
                 + "\n"
             )
-            for name, each in self.styles.items():
-                s += "Style: "
-                s += name + ","
-                s += each.Fontname + ","
-                s += str(each.Fontsize) + ","
-                s += DumpAABBGGRR(each.PrimaryColour) + ","
-                s += DumpAABBGGRR(each.SecondaryColour) + ","
-                s += DumpAABBGGRR(each.OutlineColour) + ","
-                s += DumpAABBGGRR(each.BackColour) + ","
-                s += str(each.Bold) + ","
-                s += str(each.Italic) + ","
-                s += str(each.Underline) + ","
-                s += str(each.StrikeOut) + ","
-                s += str(each.ScaleX) + ","
-                s += str(each.ScaleY) + ","
-                s += str(each.Spacing) + ","
-                s += str(each.Angle) + ","
-                s += str(each.BorderStyle) + ","
-                s += str(each.Outline) + ","
-                s += str(each.Shadow) + ","
-                s += str(each.Alignment) + ","
-                s += str(each.MarginL) + ","
-                s += str(each.MarginR) + ","
-                s += str(each.MarginV) + ","
-                s += str(each.Encoding) + "\n"
-            s += "\n"
-            return s
+            for Name, Styles in self.styles.items():
+                string += "Style: "
+                string += Name + ","
+                string += Styles.Fontname + ","
+                string += str(Styles.Fontsize) + ","
+                string += DumpAABBGGRR(Styles.PrimaryColour) + ","
+                string += DumpAABBGGRR(Styles.SecondaryColour) + ","
+                string += DumpAABBGGRR(Styles.OutlineColour) + ","
+                string += DumpAABBGGRR(Styles.BackColour) + ","
+                string += str(Styles.Bold) + ","
+                string += str(Styles.Italic) + ","
+                string += str(Styles.Underline) + ","
+                string += str(Styles.StrikeOut) + ","
+                string += str(Styles.ScaleX) + ","
+                string += str(Styles.ScaleY) + ","
+                string += str(Styles.Spacing) + ","
+                string += str(Styles.Angle) + ","
+                string += str(Styles.BorderStyle) + ","
+                string += str(Styles.Outline) + ","
+                string += str(Styles.Shadow) + ","
+                string += str(Styles.Alignment) + ","
+                string += str(Styles.MarginL) + ","
+                string += str(Styles.MarginR) + ","
+                string += str(Styles.MarginV) + ","
+                string += str(Styles.Encoding) + "\n"
+            string += "\n"
+            return string
 
     class Events:
         def __init__(self):
@@ -194,45 +187,46 @@ class Sub:
                 # "格式为 0:00:00:00（小时:分:秒:毫秒）"
                 return t.strftime("%H:%M:%S.%f")[:-4]
 
-            # 建议找个字幕文件看一看
-            s = ""
-            s += "[Events]" + "\n"
-            s += (
+            string = ""
+            string += "[Events]" + "\n"
+            string += (
                 "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"
                 + "\n"
             )
-            for each in self.events:
-                s += "Dialogue: "
-                s += str(each.Layer) + ","
-                s += DumpTime(each.Start) + ","
-                s += DumpTime(each.End) + ","
-                s += each.Style + ","
-                s += each.Name + ","
-                s += str(each.MarginL) + ","
-                s += str(each.MarginR) + ","
-                s += str(each.MarginV) + ","
-                s += each.Effect + ","
-                s += each.Text + "\n"
-            s += "\n"
-            return s
+            for Event in self.events:
+                string += "Dialogue: "
+                string += str(Event.Layer) + ","
+                string += DumpTime(Event.Start) + ","
+                string += DumpTime(Event.End) + ","
+                string += Event.Style + ","
+                string += Event.Name + ","
+                string += str(Event.MarginL) + ","
+                string += str(Event.MarginR) + ","
+                string += str(Event.MarginV) + ","
+                string += Event.Effect + ","
+                string += Event.Text + "\n"
+            string += "\n"
+            return string
 
     def Dump(self) -> str:
         """转储为 SSA"""
-        s = ""
-        s += self._info.Dump()
-        s += self._styles.Dump()
-        s += self._events.Dump()
-        return s
+        self._info.comment = self.comment
+
+        string = ""
+        string += self._info.Dump()
+        string += self._styles.Dump()
+        string += self._events.Dump()
+        return string
 
 
 class DrawCommand:
-    """单个绘图指令"""
+    """绘图指令结构"""
 
     def __init__(self, x: float = 0, y: float = 0, command: Literal["m", "l"] = "m"):
         self.x: float = x
         self.y: float = y
+        # 命令有 m, n, l, b, s, p, c
         # 这里仅列出需要的命令
-        # m, n, l, b, s, p, c
         self.command: Literal["m", "l"] = command
 
 
@@ -240,24 +234,21 @@ class Draw:
     """绘图类"""
 
     def __init__(self):
-        self.draw: List[DrawCommand] = []
+        self.draws: List[DrawCommand] = []
 
     def Add(self, command: DrawCommand):
         """添加一个绘图指令"""
         if isinstance(command, DrawCommand) is False:
             raise TypeError("command must be DrawCommand")
-        self.draw.append(command)
+        self.draws.append(command)
 
     def Dump(self) -> str:
         """转储为绘图命令"""
 
-        # ```
         # "所有绘图都应由 m <x> <y> 命令开头"
         # "所有没闭合的图形会被自动地在起点和终点之间添加直线来闭合。"
         # "如果一个对话行中的多个图形有重叠，重叠部分会进行异或运算。"
-        # ```
-        # 建议下一个 Aegisub 然后打开 ASSDraw3 画画玩玩
-        s = ""
-        for i in self.draw:
-            s = s + f"{i.command} {i.x} {i.y} "
-        return s
+        string = ""
+        for draw in self.draws:
+            string = string + f"{draw.command} {draw.x} {draw.y} "
+        return string
