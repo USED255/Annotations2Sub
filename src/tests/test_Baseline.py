@@ -49,16 +49,16 @@ def test_equal():
 def test_Baseline1():
     target = baseline1 + ".ass"
     run([baseline1])
-    assert equal(target, baseline1_ssa)
+    assert equal(baseline1_ssa, target)
 
 
 def test_Baseline2():
     target = baseline2 + ".ass"
     run([baseline2])
-    assert equal(target, baseline2_ssa)
+    assert equal(baseline2_ssa, target)
 
 
 def test_Baseline3():
     target = baseline3 + ".ass"
     run([baseline3])
-    assert equal(target, baseline3_ssa)
+    assert equal(baseline3_ssa, target)
