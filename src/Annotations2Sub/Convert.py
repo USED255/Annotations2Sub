@@ -113,13 +113,13 @@ def Convert(
             """生成 popup 样式的文本 Event"""
 
             # 多加几个字, 便于调试
-            event.Name += ";popup;text"
+            event.Name += "popup_text;"
 
             return Text(event)
 
         def popup_box(event: Event) -> Event:
             """生成 popup 样式的框 Event"""
-            event.Name = event.Name + ";popup;box"
+            event.Name = event.Name + "popup_box;"
 
             return Box(event)
 
@@ -140,31 +140,31 @@ def Convert(
 
         def highlightText_text(event: Event) -> Event:
             """生成 highlightText 样式的文本 Event"""
-            event.Name += ";highlightText;text"
+            event.Name += "highlightText_text;"
 
             return Text(event)
 
         def highlightText_box(event: Event) -> Event:
             """生成 highlightText 样式的框 Event"""
-            event.Name = event.Name + ";highlightText;box"
+            event.Name = event.Name + "highlightText_box;"
 
             return Box(event)
 
         def speech_text(event: Event) -> Event:
             """生成 speech 样式的文本 Event"""
-            event.Name += ";speech;text"
+            event.Name += "speech_text;"
 
             return Text(event)
 
         def speech_box_1(event: Event) -> Event:
             """生成 speech 样式的框 Event"""
-            event.Name += ";speech;box1"
+            event.Name += "speech_box_1;"
 
             return Box(event)
 
         def speech_box_2(event: Event) -> Event:
             """生成 speech 样式的第二个框 Event"""
-            event.Name += ";speech;box2"
+            event.Name += "speech_box_2;"
             event.Layer = 0
 
             tag = ""
@@ -217,22 +217,22 @@ def Convert(
 
         def anchored_text(event: Event) -> Event:
             """生成 anchored 样式的文本 Event"""
-            event.Name += ";anchored;text"
+            event.Name += "anchored_text;"
 
             return Text(event)
 
         def anchored_box(event: Event) -> Event:
             """生成 anchored 样式的框 Event"""
-            event.Name += ";anchored;box"
+            event.Name += "anchored_box;"
 
             return Box(event)
 
         def label_text(event: Event) -> Event:
-            event.Name += ";label;text"
+            event.Name += "label_text;"
             return Text(event)
 
         def label_box(event: Event) -> Event:
-            event.Name += ";label;box"
+            event.Name += "label_box;"
             return Box(event)
 
         events: List[Event] = []
@@ -242,12 +242,10 @@ def Convert(
         # 直接赋值, 不用加上一大坨清洗代码
         event.Start = each.timeStart
         event.End = each.timeEnd
-        # Name 置为 "id" 主要为了方便调试, 其次是辨识
+        # author;id;function;alternative
         # Name 在 Aegisub 里是 "说话人"
-        if each.author != "":
-            event.Name += each.author
-            event.Name += ";"
-        event.Name += each.id
+        event.Name += each.author + ";"
+        event.Name += each.id + ";"
 
         text = each.text
         # SSA 用 "\N" 换行
