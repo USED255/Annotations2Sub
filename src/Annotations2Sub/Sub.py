@@ -35,7 +35,7 @@ class Style:
 
     def __init__(self):
         # 带引号的是从 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 粘过来的
-        # Name 不在这里面, 它会这样出现 Dict[Name:str, Style:Style]
+        # Name 不在这里, 它会这样出现 Dict[Name:str, Style:Style]
 
         # "Style 行中的所有设定，除了阴影和边框的类型和深度，都可以被字幕文本中的控制代码所覆写。"
         # "使用的字体名称，区分大小写。"
@@ -76,7 +76,7 @@ class Event:
 
     def __init__(self):
         # 有 Dialogue, Comment, Picture, Sound, Movie, Command 事件
-        # 但是只用到了 Dialogue
+        # 只用到了 Dialogue
         # "这是一个对话事件，即显示一些文本。"
         self.Type: Literal["Dialogue"] = "Dialogue"
         # Aegisub 没有 Marked, 所以我们也没有
@@ -126,7 +126,7 @@ class Sub:
 
             # 只是暴力拼接字符串而已
             string = ""
-            string += "[Script Info]" + "\n"
+            string += "[Script Info]\n"
             if self.comment != "":
                 for line in self.comment.split("\n"):
                     string += f"; {line}\n"
@@ -151,36 +151,11 @@ class Sub:
                 )
 
             string = ""
-            string += "[V4+ Styles]" + "\n"
-            string += (
-                "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding"
-                + "\n"
-            )
+            string += "[V4+ Styles]\n"
+            string += "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n"
+
             for Name, Styles in self.styles.items():
-                string += "Style: "
-                string += Name + ","
-                string += Styles.Fontname + ","
-                string += str(Styles.Fontsize) + ","
-                string += DumpAABBGGRR(Styles.PrimaryColour) + ","
-                string += DumpAABBGGRR(Styles.SecondaryColour) + ","
-                string += DumpAABBGGRR(Styles.OutlineColour) + ","
-                string += DumpAABBGGRR(Styles.BackColour) + ","
-                string += str(Styles.Bold) + ","
-                string += str(Styles.Italic) + ","
-                string += str(Styles.Underline) + ","
-                string += str(Styles.StrikeOut) + ","
-                string += str(Styles.ScaleX) + ","
-                string += str(Styles.ScaleY) + ","
-                string += str(Styles.Spacing) + ","
-                string += str(Styles.Angle) + ","
-                string += str(Styles.BorderStyle) + ","
-                string += str(Styles.Outline) + ","
-                string += str(Styles.Shadow) + ","
-                string += str(Styles.Alignment) + ","
-                string += str(Styles.MarginL) + ","
-                string += str(Styles.MarginR) + ","
-                string += str(Styles.MarginV) + ","
-                string += str(Styles.Encoding) + "\n"
+                string += f"Style: {Name},{Styles.Fontname},{Styles.Fontsize},{DumpAABBGGRR(Styles.PrimaryColour)},{DumpAABBGGRR(Styles.SecondaryColour)},{DumpAABBGGRR(Styles.OutlineColour)},{DumpAABBGGRR(Styles.BackColour)},{Styles.Bold},{Styles.Italic},{Styles.Underline},{Styles.StrikeOut},{Styles.ScaleX},{Styles.ScaleY},{Styles.Spacing},{Styles.Angle},{Styles.BorderStyle},{Styles.Outline},{Styles.Shadow},{Styles.Alignment},{Styles.MarginL},{Styles.MarginR},{Styles.MarginV},{Styles.Encoding}\n"
             string += "\n"
             return string
 
@@ -196,23 +171,11 @@ class Sub:
                 return t.strftime("%H:%M:%S.%f")[:-4]
 
             string = ""
-            string += "[Events]" + "\n"
-            string += (
-                "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"
-                + "\n"
-            )
+            string += "[Events]\n"
+            string += "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
+
             for Event in self.events:
-                string += "Dialogue: "
-                string += str(Event.Layer) + ","
-                string += DumpTime(Event.Start) + ","
-                string += DumpTime(Event.End) + ","
-                string += Event.Style + ","
-                string += Event.Name + ","
-                string += str(Event.MarginL) + ","
-                string += str(Event.MarginR) + ","
-                string += str(Event.MarginV) + ","
-                string += Event.Effect + ","
-                string += Event.Text + "\n"
+                string += f"Dialogue: {Event.Layer},{DumpTime(Event.Start)},{DumpTime(Event.End)},{Event.Style},{Event.Name},{Event.MarginL},{Event.MarginR},{Event.MarginV},{Event.Effect},{Event.Text}\n"
             string += "\n"
             return string
 
