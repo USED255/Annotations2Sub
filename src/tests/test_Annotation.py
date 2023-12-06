@@ -12,7 +12,7 @@ from Annotations2Sub import Annotation
 
 
 def test_ImportError():
-    if sys.version_info > (3, 7):
+    if sys.version_info.major == 3 and sys.version_info.minor > 7:
         m = pytest.MonkeyPatch()
         m.delattr(typing, "Literal")
         from Annotations2Sub import Annotation
