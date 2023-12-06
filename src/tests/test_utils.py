@@ -16,7 +16,7 @@ def test_RedText():
     assert RedText("Test") == "\033[31mTest\033[0m"
 
 
-def test_MakeSureStr():
+def test_MakeSureStr_TypeError():
     with pytest.raises(TypeError):
         MakeSureStr(0)  # type: ignore
 
@@ -25,7 +25,7 @@ def test_internationalization():
     internationalization()
 
 
-def test_internationalization2():
+def test_internationalization_FileNotFoundError():
     def f(*args, **kwargs):
         raise FileNotFoundError
 

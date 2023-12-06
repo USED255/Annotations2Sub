@@ -18,7 +18,7 @@ def test_ImportError():
     m.undo()
 
 
-def test_ParseAnnotationAlpha():
+def test_ParseAnnotationAlpha_ValueError():
     def f(x):
         for i in x:
             if i.__name__ == "ParseAnnotationAlpha":
@@ -26,12 +26,12 @@ def test_ParseAnnotationAlpha():
 
     m = pytest.MonkeyPatch()
     m.setattr(Annotation, "Dummy", f)
-    with pytest.raises(Exception):
+    with pytest.raises(ValueError):
         Annotation.Parse(Element(""))  # type: ignore
     m.undo()
 
 
-def test_ParseAnnotationColor():
+def test_ParseAnnotationColor_ValueError():
     def f(x):
         for i in x:
             if i.__name__ == "ParseAnnotationColor":
@@ -39,12 +39,12 @@ def test_ParseAnnotationColor():
 
     m = pytest.MonkeyPatch()
     m.setattr(Annotation, "Dummy", f)
-    with pytest.raises(Exception):
+    with pytest.raises(ValueError):
         Annotation.Parse(Element(""))  # type: ignore
     m.undo()
 
 
-def test_MakeSureElement():
+def test_MakeSureElement_TypeError():
     def f(x):
         for i in x:
             if i.__name__ == "MakeSureElement":
