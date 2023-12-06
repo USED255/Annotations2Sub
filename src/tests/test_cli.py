@@ -61,6 +61,11 @@ def test_cli_success():
 
 def test_cli_network_failed():
     """网络相关"""
+    commands = f"""-g {baseline1_video_id} -i bad.instance
+-d 00000000000"""
+
+    with open(baseline1_file, encoding="utf-8") as f:
+        baseline1_string = f.read()
 
     def mock(url: str):
         if (
@@ -68,18 +73,25 @@ def test_cli_network_failed():
             == "https://archive.org/download/youtubeannotations_52/00.tar/000/00000000000.xml"
         ):
             return ""
-        if url == "bad.instance":
+        if (
+            url
+            == "https://archive.org/download/youtubeannotations_54/29.tar/29-/29-q7YnyUmY.xml"
+        ):
+            return baseline1_string
+        if url == "https://bad.instance/api/v1/videos/29-q7YnyUmY":
             return ""
+
         raise Exception
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "GetUrl", mock)
     m.setattr(os, "system", lambda __: None)
 
-    with pytest.raises(Exception):
-        run(f"-g {baseline1_video_id} -i bad.instance".split(" "))
-
-    assert run(r"-d 00000000000".split(" ")) == 1
+    for command in commands.splitlines():
+        Stderr(command)
+        argv = command.split(" ")
+        code = run(argv)
+        assert code == 1
 
     with pytest.raises(Exception):
         mock("")
@@ -159,10 +171,10 @@ def test_CheckUrl_SystemExit():
     m.undo()
 
 
-def test_AnnotationsFromArchive_ValueError():
+def test_GetAnnotationsUrl_ValueError():
     def f(x):
         for i in x:
-            if i.__name__ == "AnnotationsFromArchive":
+            if i.__name__ == "GetAnnotationsUrl":
                 i("")
 
     m = pytest.MonkeyPatch()
