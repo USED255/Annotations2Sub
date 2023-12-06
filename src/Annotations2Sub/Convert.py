@@ -171,7 +171,7 @@ def Convert(
             tag += rf"\an7\pos({sx},{sy})"
             tag += rf"\c{DumpColor(each.bgColor)}"
             tag += rf"\1a{DumpAlpha(each.bgOpacity)}"
-            tag += r"\2a&HFF&" + r"\3a&HFF&" + r"\4a&HFF&"
+            tag += r"\2a&HFF&\3a&HFF&\4a&HFF&"
             tag = "{" + tag + "}"
 
             # 开始只是按部就班的画一个气泡框

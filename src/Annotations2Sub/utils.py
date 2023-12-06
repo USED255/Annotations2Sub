@@ -42,12 +42,12 @@ def internationalization():
 
 def YellowText(string: str) -> str:
     """返回黄色文本"""
-    return "\033[33m" + string + "\033[0m"
+    return f"\033[33m{string}\033[0m"
 
 
 def RedText(string: str) -> str:
     """返回红色文本"""
-    return "\033[31m" + string + "\033[0m"
+    return f"\033[31m{string}\033[0m"
 
 
 def Stderr(string: str):
