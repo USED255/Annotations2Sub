@@ -73,6 +73,8 @@ def MakeSureStr(string: Any) -> str:
 
 
 def GetUrl(url: str) -> str:
+    if not url.startswith("http"):
+        raise ValueError("url must be http")
     with urllib.request.urlopen(url) as r:
         return r.read().decode("utf-8")
 

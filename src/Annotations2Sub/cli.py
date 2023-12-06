@@ -13,10 +13,8 @@ import urllib.request
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
-# 我觉得在输入确定的环境下用不着这玩意
-# 不过打包到了 PyPI 也不用像以前那样忌惮第三方库了
-# 不用白不用
-import defusedxml.ElementTree  # type: ignore
+
+import  xml.etree.ElementTree  # type: ignore
 
 from Annotations2Sub import version
 from Annotations2Sub.Annotation import Parse
@@ -353,7 +351,7 @@ def run(argv=None):
             continue
 
         try:
-            tree = defusedxml.ElementTree.parse(annotation_file)
+            tree = xml.etree.ElementTree.parse(annotation_file)
         except ParseError:
             Err(_("{} 不是一个有效的 XML 文件").format(annotation_file))
             if Flags.verbose:
@@ -366,7 +364,7 @@ def run(argv=None):
             exit_code = 1
             continue
 
-        if len(tree.find("annotations").findall("annotation")) == 0:
+        if len(tree.find("annotations").findall("annotation")) == 0: # type: ignore
             Warn(_("{} 没有 Annotation").format(annotation_file))
 
         subtitle_file = annotation_file + ".ass"
@@ -380,7 +378,7 @@ def run(argv=None):
         # 这里是 __init__.py 开头那个流程图
         with open(annotation_file, "r", encoding="utf-8") as f:
             string = f.read()
-        tree = defusedxml.ElementTree.fromstring(string)
+        tree = xml.etree.ElementTree.fromstring(string)
         annotations = Parse(tree)
         events = Convert(
             annotations,
