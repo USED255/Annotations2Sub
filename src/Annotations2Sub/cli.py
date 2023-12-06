@@ -14,7 +14,7 @@ from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
 
-import  xml.etree.ElementTree  # type: ignore
+import xml.etree.ElementTree  # type: ignore
 
 from Annotations2Sub import version
 from Annotations2Sub.Annotation import Parse
@@ -364,7 +364,7 @@ def run(argv=None):
             exit_code = 1
             continue
 
-        if len(tree.find("annotations").findall("annotation")) == 0: # type: ignore
+        if len(tree.find("annotations").findall("annotation")) == 0:  # type: ignore
             Warn(_("{} 没有 Annotation").format(annotation_file))
 
         subtitle_file = annotation_file + ".ass"
