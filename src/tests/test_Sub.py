@@ -14,9 +14,8 @@ def test_ImportError():
         m = pytest.MonkeyPatch()
         m.delattr(typing, "Literal")
 
-    from Annotations2Sub import Sub
+        from Annotations2Sub import Sub
 
-    if sys.version_info <= (3, 7):
         m.undo()
 
 
