@@ -2,9 +2,18 @@
 # -*- coding: utf-8 -*-
 
 
+import typing
 import pytest
 
 from Annotations2Sub.Sub import Draw, DrawCommand
+
+
+def test_ImportError():
+    m = pytest.MonkeyPatch()
+    m.delattr(typing, "Literal")
+    from Annotations2Sub import Sub
+
+    m.undo()
 
 
 def test_DrawDump():

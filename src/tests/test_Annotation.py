@@ -2,11 +2,20 @@
 # -*- coding: utf-8 -*-
 
 
+import typing
 from xml.etree.ElementTree import Element
 
 import pytest
 
 from Annotations2Sub import Annotation
+
+
+def test_ImportError():
+    m = pytest.MonkeyPatch()
+    m.delattr(typing, "Literal")
+    from Annotations2Sub import Annotation
+
+    m.undo()
 
 
 def test_ParseAnnotationAlpha():
