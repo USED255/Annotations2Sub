@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
+import sys
 import typing
 import pytest
 
@@ -9,11 +10,14 @@ from Annotations2Sub.Sub import Draw, DrawCommand
 
 
 def test_ImportError():
-    m = pytest.MonkeyPatch()
-    m.delattr(typing, "Literal")
+    if sys.version_info <= (3, 7):
+        m = pytest.MonkeyPatch()
+        m.delattr(typing, "Literal")
+
     from Annotations2Sub import Sub
 
-    m.undo()
+    if sys.version_info <= (3, 7):
+        m.undo()
 
 
 def test_DrawDump():

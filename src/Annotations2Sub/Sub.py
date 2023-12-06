@@ -7,7 +7,6 @@ import datetime
 from typing import Dict, List
 
 from Annotations2Sub.Color import Alpha, Color, Rgba
-from Annotations2Sub.utils import _
 
 
 def Dummy(*args, **kwargs):
