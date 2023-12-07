@@ -427,20 +427,32 @@ def run(argv=None):
                 os.remove(subtitle_file)
                 Stderr(_("删除 {}").format(subtitle_file))
 
+        def function2():
+            if not video.startswith("http"):
+                raise Exception
+            if not audio.startswith("http"):
+                raise Exception
+
         video = audio = ""
         if enable_preview_video or enable_generate_video:
             if invidious_instances == "":
-                video, audio = AutoGetMedia(video_id)
-            elif invidious_instances != "":
                 try:
-                    video, audio = GetMedia(video_id, invidious_instances)
-                except json.JSONDecodeError:
+                    video, audio = AutoGetMedia(video_id)
+                except:
                     Err(_("无法获取视频"))
                     Stderr(traceback.format_exc())
                     exit_code = 1
                     continue
-            else:
-                raise Exception
+                function2()
+            if invidious_instances != "":
+                try:
+                    video, audio = GetMedia(video_id, invidious_instances)
+                except (json.JSONDecodeError, URLError):
+                    Err(_("无法获取视频"))
+                    Stderr(traceback.format_exc())
+                    exit_code = 1
+                    continue
+                function2()
 
         if enable_preview_video:
             cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subtitle_file}"'

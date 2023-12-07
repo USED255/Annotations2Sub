@@ -6,17 +6,7 @@ import sys
 import typing
 import pytest
 
-from Annotations2Sub.Sub import Draw, DrawCommand
-
-
-def test_ImportError():
-    if sys.version_info.major == 3 and sys.version_info.minor > 7:
-        m = pytest.MonkeyPatch()
-        m.delattr(typing, "Literal")
-
-        from Annotations2Sub import Sub
-
-        m.undo()
+from Annotations2Sub.Sub import Draw, DrawCommand, Sub
 
 
 def test_DrawDump():
@@ -27,3 +17,14 @@ def test_DrawDump():
     with pytest.raises(TypeError):
         draw = Draw()
         draw.Add(1)  # type: ignore
+
+
+def test_str():
+    subtitle = Sub()
+    str(subtitle._info)
+    str(subtitle._styles)
+    str(subtitle._events)
+    str(subtitle)
+
+    draw = Draw()
+    str(draw)

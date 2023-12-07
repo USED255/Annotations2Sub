@@ -111,8 +111,7 @@ def test_cli_network_success():
 -D {baseline1_video_id}
 -g {baseline1_video_id}"""
 
-    instances_string = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"1"},{"type":"audio","bitrate":1,"url":"2"}]}'
-    invidious_string = r'[["bad.instances",{"api":false}],["good.instance"]]'
+    instances_string = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"https://1/video"},{"type":"audio","bitrate":1,"url":"https://1/audio"}]}'
     with open(baseline1_file, encoding="utf-8") as f:
         baseline1_string = f.read()
 
@@ -123,7 +122,7 @@ def test_cli_network_success():
         ):
             return baseline1_string
         if url == "https://api.invidious.io/instances.json":
-            return invidious_string
+            return r'[["good.instance"]]'
         if url == "https://good.instance/api/v1/videos/29-q7YnyUmY":
             return instances_string
 
@@ -145,32 +144,6 @@ def test_cli_network_success():
     m.undo()
 
 
-def test_CheckUrl_SystemExit():
-    def f1(x):
-        for i in x:
-            if i.__name__ == "CheckUrl":
-                i()
-
-    def f2(*args, **kwargs):
-        return
-
-    def f3(*args, **kwargs):
-        raise URLError("")
-
-    m = pytest.MonkeyPatch()
-    m.setattr(cli, "Dummy", f1)
-    m.setattr(urllib.request, "urlopen", f2)
-
-    with pytest.raises(SystemExit):
-        run([])
-
-    m.setattr(urllib.request, "urlopen", f3)
-    with pytest.raises(SystemExit):
-        run([])
-
-    m.undo()
-
-
 def test_GetAnnotationsUrl_ValueError():
     def f(x):
         for i in x:
@@ -181,5 +154,106 @@ def test_GetAnnotationsUrl_ValueError():
     m.setattr(cli, "Dummy", f)
     with pytest.raises(ValueError):
         run()
+
+    m.undo()
+
+
+def test_1():
+    commands = f"""-d -0000000000
+-d \\00000000000"""
+
+    instances_string = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"1"},{"type":"audio","bitrate":1,"url":"2"}]}'
+    invidious_string = r'[["bad.instance"],["good.instance"]]'
+    with open(baseline1_file, encoding="utf-8") as f:
+        baseline1_string = f.read()
+
+    def mock(url: str):
+        if (
+            url
+            == "https://archive.org/download/youtubeannotations_52/00.tar/000/00000000000.xml"
+        ):
+            return baseline1_string
+        if (
+            url
+            == "https://archive.org/download/youtubeannotations_64/-0.tar/-00/-0000000000.xml"
+        ):
+            return baseline1_string
+        if url == "https://api.invidious.io/instances.json":
+            return invidious_string
+        if url == "https://bad.instance/api/v1/videos/000000000000":
+            return ""
+        if url == "https://bad.instance/api/v1/videos/-00000000000":
+            return ""
+        if url == "https://good.instance/api/v1/videos/000000000000":
+            return instances_string
+        if url == "https://good.instance/api/v1/videos/-00000000000":
+            return instances_string
+        raise Exception
+
+    m = pytest.MonkeyPatch()
+    m.setattr(cli, "GetUrl", mock)
+
+    for command in commands.splitlines():
+        Stderr(command)
+        argv = command.split(" ")
+        code = run(argv)
+        assert code == 0
+
+    with pytest.raises(Exception):
+        mock("")
+
+    m.undo()
+
+
+def test_2():
+    with open(baseline1_file, encoding="utf-8") as f:
+        baseline1_string = f.read()
+
+    def mock(url: str):
+        if (
+            url
+            == "https://archive.org/download/youtubeannotations_52/00.tar/000/00000000000.xml"
+        ):
+            return baseline1_string
+        if url == "https://api.invidious.io/instances.json":
+            return r'[["bad.instance"]]'
+        if url == "https://bad.instance/api/v1/videos/000000000000":
+            return ""
+        raise Exception
+
+    m = pytest.MonkeyPatch()
+    m.setattr(cli, "GetUrl", mock)
+
+    assert run("-g 00000000000".split(" ")) == 1
+
+    with pytest.raises(Exception):
+        mock("")
+
+    m.undo()
+
+
+def test_3():
+    def f(x):
+        raise URLError("")
+
+    with open(baseline1_file, encoding="utf-8") as file:
+        baseline1_string = file.read()
+
+    def mock(url: str):
+        if (
+            url
+            == "https://archive.org/download/youtubeannotations_54/29.tar/29-/29-q7YnyUmY.xml"
+        ):
+            return baseline1_string
+        if url == "https://api.invidious.io/instances.json":
+            return r'[["good.instance"]]'
+
+        raise Exception
+
+    m = pytest.MonkeyPatch()
+    m.setattr(urllib.request, "urlopen", f)
+    m.setattr(cli, "GetUrl", mock)
+
+    assert run(f"-d {baseline1_video_id}".split(" ")) == 0
 
     m.undo()

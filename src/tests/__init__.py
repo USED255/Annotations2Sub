@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
+import typing
 
 import pytest
 
@@ -17,3 +19,7 @@ m.chdir(garbagePath)
 from Annotations2Sub.utils import Flags
 
 Flags.verbose = True
+
+if sys.version_info.major == 3 and sys.version_info.minor > 7:
+    m = pytest.MonkeyPatch()
+    m.delattr(typing, "Literal")
