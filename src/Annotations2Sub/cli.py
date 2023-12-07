@@ -10,25 +10,23 @@ import re
 import sys
 import traceback
 import urllib.request
+import xml.etree.ElementTree  # type: ignore
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
-
-
-import xml.etree.ElementTree  # type: ignore
 
 from Annotations2Sub import version
 from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
 from Annotations2Sub.utils import (
+    Err,
     Flags,
+    GetUrl,
     MakeSureStr,
     Stderr,
+    Warn,
     YellowText,
     _,
-    GetUrl,
-    Err,
-    Warn,
 )
 
 

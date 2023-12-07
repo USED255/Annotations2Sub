@@ -4,8 +4,8 @@
 import gettext
 import os
 import sys
-
 import urllib.request
+
 import pytest
 
 from Annotations2Sub.utils import (

@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 
 
-import sys
-import typing
 import pytest
 
 from Annotations2Sub.Sub import Draw, DrawCommand, Sub

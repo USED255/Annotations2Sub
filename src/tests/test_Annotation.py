@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 
 
-import sys
-import typing
 from xml.etree.ElementTree import Element
 
 import pytest

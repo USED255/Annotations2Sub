@@ -4,7 +4,6 @@
 """Annotation 相关"""
 
 import datetime
-
 from typing import Any, List, Optional, Union
 
 # 解析 XML 时使用的是 defusedxml
@@ -13,7 +12,6 @@ from xml.etree.ElementTree import Element
 
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.utils import Flags, MakeSureStr, Stderr, _
-
 
 # 兼容 Python3.6, 3.7
 # Python3.6, 3.7 的 typing 没有 Literal

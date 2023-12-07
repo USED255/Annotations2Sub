@@ -18,8 +18,6 @@ def Dummy(*args, **kwargs):
 # Python3.6, 3.7 的 typing 没有 Literal
 try:
     from typing import Literal  # type: ignore
-
-    Dummy()
 except ImportError:
 
     class a:
