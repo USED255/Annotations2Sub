@@ -235,7 +235,7 @@ def test_2():
 def test_3():
     def f(x):
         raise URLError("")
-    
+
     instances_string = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"https://1/video"},{"type":"audio","bitrate":1,"url":"https://1/audio"}]}'
     with open(baseline1_file, encoding="utf-8") as file:
         baseline1_string = file.read()
