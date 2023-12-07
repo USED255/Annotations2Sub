@@ -378,8 +378,8 @@ def run(argv=None):
         # 这里是 __init__.py 开头那个流程图
         with open(annotation_file, "r", encoding="utf-8") as f:
             string = f.read()
-        tree = xml.etree.ElementTree.fromstring(string)
-        annotations = Parse(tree)
+        tree = xml.etree.ElementTree.fromstring(string)  # type: ignore
+        annotations = Parse(tree)  # type: ignore
         events = Convert(
             annotations,
             enable_embrace_libass,

@@ -96,9 +96,9 @@ class Sub:
     """SSA 类"""
 
     def __init__(self):
-        self._info = self.Info()
-        self._styles = self.Styles()
-        self._events = self.Events()
+        self._info = self._Info()
+        self._styles = self._Styles()
+        self._events = self._Events()
 
         # 我想让他们直接操作列表或字典
         self.info = self._info.infos
@@ -111,7 +111,20 @@ class Sub:
         # 定义默认样式
         self.styles["Default"] = Style()
 
-    class Info:
+    def __str__(self) -> str:
+        return self.Dump()
+
+    def Dump(self) -> str:
+        """转储为 SSA"""
+        self._info.comment = self.comment
+
+        string = ""
+        string += self._info.Dump()
+        string += self._styles.Dump()
+        string += self._events.Dump()
+        return string
+
+    class _Info:
         """SSA 的信息(Info) 结构"""
 
         def __init__(self):
@@ -119,6 +132,9 @@ class Sub:
             self.comment: str = ""
             # 必要的字段
             self.infos: Dict[str, str] = {"ScriptType": "v4.00+"}
+
+        def __str__(self) -> str:
+            return self.Dump()
 
         def Dump(self) -> str:
             """将 Info 结构转换为字符串"""
@@ -135,9 +151,12 @@ class Sub:
             return string
 
     # 这次和之前相比把一个类拆成了结构和一个 Dump 方法
-    class Styles:
+    class _Styles:
         def __init__(self):
             self.styles: Dict[str, Style] = {}
+
+        def __str__(self) -> str:
+            return self.Dump()
 
         def Dump(self) -> str:
             def DumpAABBGGRR(rgba: Rgba) -> str:
@@ -158,9 +177,12 @@ class Sub:
             string += "\n"
             return string
 
-    class Events:
+    class _Events:
         def __init__(self):
             self.events: List[Event] = []
+
+        def __str__(self) -> str:
+            return self.Dump()
 
         def Dump(self) -> str:
             def DumpTime(t: datetime.datetime) -> str:
@@ -177,16 +199,6 @@ class Sub:
                 string += f"Dialogue: {Event.Layer},{DumpTime(Event.Start)},{DumpTime(Event.End)},{Event.Style},{Event.Name},{Event.MarginL},{Event.MarginR},{Event.MarginV},{Event.Effect},{Event.Text}\n"
             string += "\n"
             return string
-
-    def Dump(self) -> str:
-        """转储为 SSA"""
-        self._info.comment = self.comment
-
-        string = ""
-        string += self._info.Dump()
-        string += self._styles.Dump()
-        string += self._events.Dump()
-        return string
 
 
 class DrawCommand:
@@ -205,6 +217,9 @@ class Draw:
 
     def __init__(self):
         self.draws: List[DrawCommand] = []
+
+    def __str__(self) -> str:
+        return self.Dump()
 
     def Add(self, command: DrawCommand):
         """添加一个绘图指令"""
