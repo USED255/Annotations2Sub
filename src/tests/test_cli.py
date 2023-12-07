@@ -159,10 +159,10 @@ def test_GetAnnotationsUrl_ValueError():
 
 
 def test_1():
-    commands = f"""-d -0000000000
--d \\00000000000"""
+    commands = f"""-g -0000000000
+-g \\00000000000"""
 
-    instances_string = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"1"},{"type":"audio","bitrate":1,"url":"2"}]}'
+    instances_string = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"https://1/video"},{"type":"audio","bitrate":1,"url":"https://1/audio"}]}'
     invidious_string = r'[["bad.instance"],["good.instance"]]'
     with open(baseline1_file, encoding="utf-8") as f:
         baseline1_string = f.read()
@@ -228,34 +228,5 @@ def test_2():
 
     with pytest.raises(Exception):
         mock("")
-
-    m.undo()
-
-
-def test_3():
-    def f(x):
-        raise URLError("")
-
-    instances_string = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"https://1/video"},{"type":"audio","bitrate":1,"url":"https://1/audio"}]}'
-    with open(baseline1_file, encoding="utf-8") as file:
-        baseline1_string = file.read()
-
-    def mock(url: str):
-        if (
-            url
-            == "https://archive.org/download/youtubeannotations_54/29.tar/29-/29-q7YnyUmY.xml"
-        ):
-            return baseline1_string
-        if url == "https://api.invidious.io/instances.json":
-            return r'[["good.instance"]]'
-        if url == "https://good.instance/api/v1/videos/29-q7YnyUmY":
-            return instances_string
-        raise Exception
-
-    m = pytest.MonkeyPatch()
-    m.setattr(urllib.request, "urlopen", f)
-    m.setattr(cli, "GetUrl", mock)
-
-    assert run(f"-g {baseline1_video_id}".split(" ")) == 0
 
     m.undo()
