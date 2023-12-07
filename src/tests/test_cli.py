@@ -180,13 +180,13 @@ def test_1():
             return baseline1_string
         if url == "https://api.invidious.io/instances.json":
             return invidious_string
-        if url == "https://bad.instance/api/v1/videos/000000000000":
+        if url == "https://bad.instance/api/v1/videos/00000000000":
             return ""
-        if url == "https://bad.instance/api/v1/videos/-00000000000":
+        if url == "https://bad.instance/api/v1/videos/-0000000000":
             return ""
-        if url == "https://good.instance/api/v1/videos/000000000000":
+        if url == "https://good.instance/api/v1/videos/00000000000":
             return instances_string
-        if url == "https://good.instance/api/v1/videos/-00000000000":
+        if url == "https://good.instance/api/v1/videos/-0000000000":
             return instances_string
         raise Exception
 
@@ -217,7 +217,7 @@ def test_2():
             return baseline1_string
         if url == "https://api.invidious.io/instances.json":
             return r'[["bad.instance"]]'
-        if url == "https://bad.instance/api/v1/videos/000000000000":
+        if url == "https://bad.instance/api/v1/videos/00000000000":
             return ""
         raise Exception
 
@@ -235,7 +235,8 @@ def test_2():
 def test_3():
     def f(x):
         raise URLError("")
-
+    
+    instances_string = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"https://1/video"},{"type":"audio","bitrate":1,"url":"https://1/audio"}]}'
     with open(baseline1_file, encoding="utf-8") as file:
         baseline1_string = file.read()
 
@@ -247,13 +248,14 @@ def test_3():
             return baseline1_string
         if url == "https://api.invidious.io/instances.json":
             return r'[["good.instance"]]'
-
+        if url == "https://good.instance/api/v1/videos/29-q7YnyUmY":
+            return instances_string
         raise Exception
 
     m = pytest.MonkeyPatch()
     m.setattr(urllib.request, "urlopen", f)
     m.setattr(cli, "GetUrl", mock)
 
-    assert run(f"-d {baseline1_video_id}".split(" ")) == 0
+    assert run(f"-g {baseline1_video_id}".split(" ")) == 0
 
     m.undo()
