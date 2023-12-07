@@ -230,3 +230,29 @@ def test_2():
         mock("")
 
     m.undo()
+
+
+def test_3():
+    def f1(x):
+        for i in x:
+            if i.__name__ == "CheckUrl":
+                i()
+
+    def f2(*args, **kwargs):
+        return
+
+    def f3(*args, **kwargs):
+        raise URLError("")
+
+    m = pytest.MonkeyPatch()
+    m.setattr(cli, "Dummy", f1)
+    m.setattr(urllib.request, "urlopen", f2)
+
+    with pytest.raises(SystemExit):
+        run([])
+
+    m.setattr(urllib.request, "urlopen", f3)
+    with pytest.raises(SystemExit):
+        run([])
+
+    m.undo()
