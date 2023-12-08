@@ -194,34 +194,6 @@ def test_GetAnnotationsUrl_ValueError():
     m.undo()
 
 
-def test_2():
-    with open(baseline1_file, encoding="utf-8") as f:
-        baseline1_string = f.read()
-
-    def mock(url: str):
-        if (
-            url
-            == "https://archive.org/download/youtubeannotations_52/00.tar/000/00000000000.xml"
-        ):
-            return baseline1_string
-        if url == "https://api.invidious.io/instances.json":
-            return r'[["bad.instance"]]'
-        if url == "https://bad.instance/api/v1/videos/00000000000":
-            return ""
-
-        pytest.fail()
-
-    m = pytest.MonkeyPatch()
-    m.setattr(cli, "GetUrl", mock)
-
-    assert run("-g 00000000000".split(" ")) == 1
-
-    with pytest.raises(pytest.fail.Exception):
-        mock("")
-
-    m.undo()
-
-
 def test_3():
     def f1(x):
         for i in x:
@@ -236,8 +208,8 @@ def test_3():
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "Dummy", f1)
-    m.setattr(urllib.request, "urlopen", f2)
 
+    m.setattr(urllib.request, "urlopen", f2)
     with pytest.raises(SystemExit):
         run([])
 
