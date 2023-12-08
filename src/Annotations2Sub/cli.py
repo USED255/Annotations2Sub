@@ -409,7 +409,7 @@ def run(argv=None):
                     Stderr(traceback.format_exc())
                     exit_code = 1
                     continue
-            if invidious_instances != "":
+            else:
                 try:
                     video, audio = GetMedia(video_id, invidious_instances)
                 except (json.JSONDecodeError, URLError, ValueError):
