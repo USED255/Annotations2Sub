@@ -99,6 +99,10 @@ def run(argv=None):
             audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
             video = MakeSureStr(videos[0]["url"])
             audio = MakeSureStr(audios[0]["url"])
+            if not video.startswith("http"):
+                continue
+            if not audio.startswith("http"):
+                continue
             return video, audio
 
         raise Exception
@@ -118,6 +122,10 @@ def run(argv=None):
         audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
         video = MakeSureStr(videos[0]["url"])
         audio = MakeSureStr(audios[0]["url"])
+        if not video.startswith("http"):
+            raise Exception
+        if not audio.startswith("http"):
+            raise Exception
         return video, audio
 
     Dummy([CheckUrl, GetAnnotationsUrl, AutoGetMedia])  # type: ignore
@@ -425,12 +433,6 @@ def run(argv=None):
                 os.remove(subtitle_file)
                 Stderr(_("删除 {}").format(subtitle_file))
 
-        def function2():
-            if not video.startswith("http"):
-                raise Exception
-            if not audio.startswith("http"):
-                raise Exception
-
         video = audio = ""
         if enable_preview_video or enable_generate_video:
             if invidious_instances == "":
@@ -441,16 +443,14 @@ def run(argv=None):
                     Stderr(traceback.format_exc())
                     exit_code = 1
                     continue
-                function2()
             if invidious_instances != "":
                 try:
                     video, audio = GetMedia(video_id, invidious_instances)
-                except (json.JSONDecodeError, URLError):
+                except:
                     Err(_("无法获取视频"))
                     Stderr(traceback.format_exc())
                     exit_code = 1
                     continue
-                function2()
 
         if enable_preview_video:
             cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subtitle_file}"'

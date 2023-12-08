@@ -62,7 +62,10 @@ def test_cli_success():
 def test_cli_network_failed():
     """网络相关"""
     commands = f"""-g {baseline1_video_id} -i bad.instance
--d 00000000000"""
+-g {baseline1_video_id}
+-g {baseline1_video_id} -i malicious.instance
+-g {baseline1_video_id} -i malicious2.instance
+-d 12345678911"""
 
     with open(baseline1_file, encoding="utf-8") as f:
         baseline1_string = f.read()
@@ -70,7 +73,7 @@ def test_cli_network_failed():
     def mock(url: str):
         if (
             url
-            == "https://archive.org/download/youtubeannotations_52/00.tar/000/00000000000.xml"
+            == "https://archive.org/download/youtubeannotations_53/12.tar/123/12345678911.xml"
         ):
             return ""
         if (
@@ -78,8 +81,14 @@ def test_cli_network_failed():
             == "https://archive.org/download/youtubeannotations_54/29.tar/29-/29-q7YnyUmY.xml"
         ):
             return baseline1_string
+        if url == "https://api.invidious.io/instances.json":
+            return r'[["malicious.instance"],["malicious2.instance"]]'
         if url == "https://bad.instance/api/v1/videos/29-q7YnyUmY":
             return ""
+        if url == "https://malicious.instance/api/v1/videos/29-q7YnyUmY":
+            return r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"file://c/"},{"type":"audio","bitrate":1,"url":"file://c/"}]}'
+        if url == "https://malicious2.instance/api/v1/videos/29-q7YnyUmY":
+            return r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"http://c/"},{"type":"audio","bitrate":1,"url":"file://c/"}]}'
 
         raise Exception
 
@@ -112,6 +121,7 @@ def test_cli_network_success():
 -g {baseline1_video_id}"""
 
     instances_string = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"https://1/video"},{"type":"audio","bitrate":1,"url":"https://1/audio"}]}'
+    invidious_string = r'[["noapi.instances",{"api":false}],["good.instance"]]'
     with open(baseline1_file, encoding="utf-8") as f:
         baseline1_string = f.read()
 
@@ -122,7 +132,7 @@ def test_cli_network_success():
         ):
             return baseline1_string
         if url == "https://api.invidious.io/instances.json":
-            return r'[["good.instance"]]'
+            return invidious_string
         if url == "https://good.instance/api/v1/videos/29-q7YnyUmY":
             return instances_string
 
