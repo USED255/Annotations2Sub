@@ -11,7 +11,7 @@
             "cwd": "${workspaceFolder}",
             "args": [
                 "src/tests/testCase/annotation.xml.test"
-            ],
+            ]
         }
     ]
 }

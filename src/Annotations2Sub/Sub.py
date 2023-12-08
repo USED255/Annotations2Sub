@@ -7,7 +7,11 @@ import datetime
 from typing import Dict, List
 
 from Annotations2Sub.Color import Alpha, Color, Rgba
-from Annotations2Sub.utils import _
+
+
+def Dummy(*args, **kwargs):
+    """用于 MonkeyPatch"""
+
 
 # 兼容 Python3.6, 3.7
 # Python3.6, 3.7 的 typing 没有 Literal
@@ -27,7 +31,7 @@ class Style:
 
     def __init__(self):
         # 带引号的是从 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 粘过来的
-        # Name 不在这里面, 它会这样出现 Dict[Name:str, Style:Style]
+        # Name 不在这里, 它会这样出现 Dict[Name:str, Style:Style]
 
         # "Style 行中的所有设定，除了阴影和边框的类型和深度，都可以被字幕文本中的控制代码所覆写。"
         # "使用的字体名称，区分大小写。"
@@ -68,7 +72,7 @@ class Event:
 
     def __init__(self):
         # 有 Dialogue, Comment, Picture, Sound, Movie, Command 事件
-        # 但是只用到了 Dialogue
+        # 只用到了 Dialogue
         # "这是一个对话事件，即显示一些文本。"
         self.Type: Literal["Dialogue"] = "Dialogue"
         # Aegisub 没有 Marked, 所以我们也没有
@@ -89,9 +93,9 @@ class Sub:
     """SSA 类"""
 
     def __init__(self):
-        self._info = self.Info()
-        self._styles = self.Styles()
-        self._events = self.Events()
+        self._info = self._Info()
+        self._styles = self._Styles()
+        self._events = self._Events()
 
         # 我想让他们直接操作列表或字典
         self.info = self._info.infos
@@ -104,7 +108,20 @@ class Sub:
         # 定义默认样式
         self.styles["Default"] = Style()
 
-    class Info:
+    def __str__(self) -> str:
+        return self.Dump()
+
+    def Dump(self) -> str:
+        """转储为 SSA"""
+        self._info.comment = self.comment
+
+        string = ""
+        string += self._info.Dump()
+        string += self._styles.Dump()
+        string += self._events.Dump()
+        return string
+
+    class _Info:
         """SSA 的信息(Info) 结构"""
 
         def __init__(self):
@@ -113,12 +130,15 @@ class Sub:
             # 必要的字段
             self.infos: Dict[str, str] = {"ScriptType": "v4.00+"}
 
+        def __str__(self) -> str:
+            return self.Dump()
+
         def Dump(self) -> str:
             """将 Info 结构转换为字符串"""
 
             # 只是暴力拼接字符串而已
             string = ""
-            string += "[Script Info]" + "\n"
+            string += "[Script Info]\n"
             if self.comment != "":
                 for line in self.comment.split("\n"):
                     string += f"; {line}\n"
@@ -128,9 +148,12 @@ class Sub:
             return string
 
     # 这次和之前相比把一个类拆成了结构和一个 Dump 方法
-    class Styles:
+    class _Styles:
         def __init__(self):
             self.styles: Dict[str, Style] = {}
+
+        def __str__(self) -> str:
+            return self.Dump()
 
         def Dump(self) -> str:
             def DumpAABBGGRR(rgba: Rgba) -> str:
@@ -143,42 +166,20 @@ class Sub:
                 )
 
             string = ""
-            string += "[V4+ Styles]" + "\n"
-            string += (
-                "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding"
-                + "\n"
-            )
+            string += "[V4+ Styles]\n"
+            string += "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n"
+
             for Name, Styles in self.styles.items():
-                string += "Style: "
-                string += Name + ","
-                string += Styles.Fontname + ","
-                string += str(Styles.Fontsize) + ","
-                string += DumpAABBGGRR(Styles.PrimaryColour) + ","
-                string += DumpAABBGGRR(Styles.SecondaryColour) + ","
-                string += DumpAABBGGRR(Styles.OutlineColour) + ","
-                string += DumpAABBGGRR(Styles.BackColour) + ","
-                string += str(Styles.Bold) + ","
-                string += str(Styles.Italic) + ","
-                string += str(Styles.Underline) + ","
-                string += str(Styles.StrikeOut) + ","
-                string += str(Styles.ScaleX) + ","
-                string += str(Styles.ScaleY) + ","
-                string += str(Styles.Spacing) + ","
-                string += str(Styles.Angle) + ","
-                string += str(Styles.BorderStyle) + ","
-                string += str(Styles.Outline) + ","
-                string += str(Styles.Shadow) + ","
-                string += str(Styles.Alignment) + ","
-                string += str(Styles.MarginL) + ","
-                string += str(Styles.MarginR) + ","
-                string += str(Styles.MarginV) + ","
-                string += str(Styles.Encoding) + "\n"
+                string += f"Style: {Name},{Styles.Fontname},{Styles.Fontsize},{DumpAABBGGRR(Styles.PrimaryColour)},{DumpAABBGGRR(Styles.SecondaryColour)},{DumpAABBGGRR(Styles.OutlineColour)},{DumpAABBGGRR(Styles.BackColour)},{Styles.Bold},{Styles.Italic},{Styles.Underline},{Styles.StrikeOut},{Styles.ScaleX},{Styles.ScaleY},{Styles.Spacing},{Styles.Angle},{Styles.BorderStyle},{Styles.Outline},{Styles.Shadow},{Styles.Alignment},{Styles.MarginL},{Styles.MarginR},{Styles.MarginV},{Styles.Encoding}\n"
             string += "\n"
             return string
 
-    class Events:
+    class _Events:
         def __init__(self):
             self.events: List[Event] = []
+
+        def __str__(self) -> str:
+            return self.Dump()
 
         def Dump(self) -> str:
             def DumpTime(t: datetime.datetime) -> str:
@@ -188,35 +189,13 @@ class Sub:
                 return t.strftime("%H:%M:%S.%f")[:-4]
 
             string = ""
-            string += "[Events]" + "\n"
-            string += (
-                "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"
-                + "\n"
-            )
+            string += "[Events]\n"
+            string += "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
+
             for Event in self.events:
-                string += "Dialogue: "
-                string += str(Event.Layer) + ","
-                string += DumpTime(Event.Start) + ","
-                string += DumpTime(Event.End) + ","
-                string += Event.Style + ","
-                string += Event.Name + ","
-                string += str(Event.MarginL) + ","
-                string += str(Event.MarginR) + ","
-                string += str(Event.MarginV) + ","
-                string += Event.Effect + ","
-                string += Event.Text + "\n"
+                string += f"Dialogue: {Event.Layer},{DumpTime(Event.Start)},{DumpTime(Event.End)},{Event.Style},{Event.Name},{Event.MarginL},{Event.MarginR},{Event.MarginV},{Event.Effect},{Event.Text}\n"
             string += "\n"
             return string
-
-    def Dump(self) -> str:
-        """转储为 SSA"""
-        self._info.comment = self.comment
-
-        string = ""
-        string += self._info.Dump()
-        string += self._styles.Dump()
-        string += self._events.Dump()
-        return string
 
 
 class DrawCommand:
@@ -235,6 +214,9 @@ class Draw:
 
     def __init__(self):
         self.draws: List[DrawCommand] = []
+
+    def __str__(self) -> str:
+        return self.Dump()
 
     def Add(self, command: DrawCommand):
         """添加一个绘图指令"""

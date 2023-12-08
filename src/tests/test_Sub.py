@@ -4,7 +4,7 @@
 
 import pytest
 
-from Annotations2Sub.Sub import Draw, DrawCommand
+from Annotations2Sub.Sub import Draw, DrawCommand, Sub
 
 
 def test_DrawDump():
@@ -15,3 +15,14 @@ def test_DrawDump():
     with pytest.raises(TypeError):
         draw = Draw()
         draw.Add(1)  # type: ignore
+
+
+def test_str():
+    subtitle = Sub()
+    str(subtitle._info)
+    str(subtitle._styles)
+    str(subtitle._events)
+    str(subtitle)
+
+    draw = Draw()
+    str(draw)

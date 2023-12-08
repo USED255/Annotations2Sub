@@ -4,7 +4,6 @@
 """Annotation 相关"""
 
 import datetime
-
 from typing import Any, List, Optional, Union
 
 # 解析 XML 时使用的是 defusedxml
@@ -24,7 +23,6 @@ except ImportError:
 
 def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
-    pass
 
 
 class Annotation:
@@ -110,7 +108,7 @@ def Parse(tree: Element) -> List[Annotation]:
         bgAlpha("0.600000023842") -> Alpha(alpha=102)
         """
         if alpha is None:
-            raise Exception("alpha is None")
+            raise ValueError("alpha is None")
         variable1 = float(alpha) * 255
         return Alpha(alpha=int(variable1))
 
@@ -120,7 +118,7 @@ def Parse(tree: Element) -> List[Annotation]:
         bgColor("4210330") -> Color(red=154, green=62, blue=64)
         """
         if color is None:
-            raise Exception("color is None")
+            raise ValueError("color is None")
         integer = int(color)
         r = integer & 255
         g = (integer >> 8) & 255

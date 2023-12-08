@@ -10,33 +10,32 @@ import re
 import sys
 import traceback
 import urllib.request
+import xml.etree.ElementTree  # type: ignore
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
-
-# 我觉得在输入确定的环境下用不着这玩意
-# 不过打包到了 PyPI 也不用像以前那样忌惮第三方库了
-# 不用白不用
-import defusedxml.ElementTree  # type: ignore
 
 from Annotations2Sub import version
 from Annotations2Sub.Annotation import Parse
 from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
 from Annotations2Sub.utils import (
+    Err,
     Flags,
+    GetUrl,
     MakeSureStr,
     Stderr,
+    Warn,
     YellowText,
     _,
-    GetUrl,
-    Err,
-    Warn,
 )
 
 
 def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
-    pass
+
+
+class NoMediaStreamsFoundError(Exception):
+    """自定义异常，表示未找到媒体流"""
 
 
 def run(argv=None):
@@ -49,41 +48,7 @@ def run(argv=None):
             return False
         return True
 
-    def MediaFromInvidious(videoId: str, instanceDomain: str = "") -> tuple:
-        """返回视频流和音频流网址"""
-        instances = []
-        if instanceDomain != "":
-            instances.append([instanceDomain])
-        if instanceDomain == "":
-            instances = json.loads(GetUrl("https://api.invidious.io/instances.json"))
-        for instance in instances:
-            try:
-                if not instance[1]["api"]:  # type: ignore
-                    continue
-            except IndexError:
-                pass
-            domain = instance[0]
-            url = f"https://{domain}/api/v1/videos/{videoId}"
-            Stderr(_("获取 {}").format(url))
-            try:
-                data = json.loads(GetUrl(url))
-            except (json.JSONDecodeError, URLError):
-                continue
-            videos = []
-            audios = []
-            for i in data.get("adaptiveFormats"):
-                if re.match("video", i.get("type")) != None:
-                    videos.append(i)
-                if re.match("audio", i.get("type")) != None:
-                    audios.append(i)
-            videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-            audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-            video = MakeSureStr(videos[0]["url"])
-            audio = MakeSureStr(audios[0]["url"])
-            return video, audio
-        raise Exception
-
-    def AnnotationsFromArchive(videoId: str) -> str:
+    def GetAnnotationsUrl(videoId: str) -> str:
         # 移植自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
         # 向 https://archive.org/details/youtubeannotations 致敬
         # 如果你对你的数据在意, 就不要把它们托付给他人
@@ -108,7 +73,65 @@ def run(argv=None):
 
         return f"{ARCHIVE_URL}/download/youtubeannotations_{index}/{videoId[0:2]}.tar/{file}"
 
-    Dummy([CheckUrl, AnnotationsFromArchive, MediaFromInvidious])  # type: ignore
+    def AutoGetMedia(videoId: str) -> tuple:
+        """返回视频流和音频流网址"""
+        instances = []
+        instances = json.loads(GetUrl("https://api.invidious.io/instances.json"))
+        for instance in instances:
+            try:
+                if not instance[1]["api"]:  # type: ignore
+                    continue
+            except IndexError:
+                pass
+            domain = instance[0]
+            url = f"https://{domain}/api/v1/videos/{videoId}"
+            Stderr(_("获取 {}").format(url))
+            try:
+                data = json.loads(GetUrl(url))
+            except (json.JSONDecodeError, URLError):
+                continue
+
+            videos = []
+            audios = []
+            for i in data.get("adaptiveFormats"):
+                if re.match("video", i.get("type")) != None:
+                    videos.append(i)
+                if re.match("audio", i.get("type")) != None:
+                    audios.append(i)
+            videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
+            audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
+            video = MakeSureStr(videos[0]["url"])
+            audio = MakeSureStr(audios[0]["url"])
+            if not video.startswith("http"):
+                continue
+            if not audio.startswith("http"):
+                continue
+            return video, audio
+
+        raise NoMediaStreamsFoundError
+
+    def GetMedia(videoId: str, instanceDomain: str) -> tuple:
+        url = f"https://{instanceDomain}/api/v1/videos/{videoId}"
+        Stderr(_("获取 {}").format(url))
+        data = json.loads(GetUrl(url))
+        videos = []
+        audios = []
+        for i in data.get("adaptiveFormats"):
+            if re.match("video", i.get("type")) != None:
+                videos.append(i)
+            if re.match("audio", i.get("type")) != None:
+                audios.append(i)
+        videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
+        audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
+        video = MakeSureStr(videos[0]["url"])
+        audio = MakeSureStr(audios[0]["url"])
+        if not video.startswith("http"):
+            raise ValueError(f"Invalid video URL: {video}")
+        if not audio.startswith("http"):
+            raise ValueError(f"Invalid audio URL: {audio}")
+        return video, audio
+
+    Dummy([CheckUrl, GetAnnotationsUrl, AutoGetMedia])  # type: ignore
 
     exit_code = 0
     parser = argparse.ArgumentParser(description=_("下载和转换 Youtube 注释"))
@@ -311,7 +334,7 @@ def run(argv=None):
                     Stderr(YellowText(_("文件已存在, 跳过下载 ({})").format(video_id)))
                     is_skip_download = True
             if not is_skip_download:
-                url = AnnotationsFromArchive(video_id)
+                url = GetAnnotationsUrl(video_id)
                 Stderr(_("下载 {}").format(url))
                 string = GetUrl(url)
                 if output_to_stdout:
@@ -337,7 +360,7 @@ def run(argv=None):
             continue
 
         try:
-            tree = defusedxml.ElementTree.parse(annotation_file)
+            tree = xml.etree.ElementTree.parse(annotation_file)
         except ParseError:
             Err(_("{} 不是一个有效的 XML 文件").format(annotation_file))
             if Flags.verbose:
@@ -350,7 +373,7 @@ def run(argv=None):
             exit_code = 1
             continue
 
-        if len(tree.find("annotations").findall("annotation")) == 0:
+        if len(tree.find("annotations").findall("annotation")) == 0:  # type: ignore
             Warn(_("{} 没有 Annotation").format(annotation_file))
 
         subtitle_file = annotation_file + ".ass"
@@ -364,8 +387,8 @@ def run(argv=None):
         # 这里是 __init__.py 开头那个流程图
         with open(annotation_file, "r", encoding="utf-8") as f:
             string = f.read()
-        tree = defusedxml.ElementTree.fromstring(string)
-        annotations = Parse(tree)
+        tree = xml.etree.ElementTree.fromstring(string)  # type: ignore
+        annotations = Parse(tree)  # type: ignore
         events = Convert(
             annotations,
             enable_embrace_libass,
@@ -386,10 +409,10 @@ def run(argv=None):
         subtitle.info["Title"] = os.path.basename(annotation_file)
         subtitle.styles["Default"].Fontname = font
         subtitle_string = subtitle.Dump()
-        if output_to_stdout:
-            print(subtitle_string, file=sys.stdout)
-            continue
         is_no_save = False
+        if output_to_stdout:
+            is_no_save = True
+            print(subtitle_string, file=sys.stdout)
         if enable_no_overwrite_files:
             if os.path.exists(subtitle_file):
                 Stderr(YellowText(_("文件已存在, 跳过输出 ({})").format(subtitle_file)))
@@ -415,7 +438,22 @@ def run(argv=None):
 
         video = audio = ""
         if enable_preview_video or enable_generate_video:
-            video, audio = MediaFromInvidious(video_id, invidious_instances)
+            if invidious_instances == "":
+                try:
+                    video, audio = AutoGetMedia(video_id)
+                except NoMediaStreamsFoundError:
+                    Err(_("无法获取视频"))
+                    Stderr(traceback.format_exc())
+                    exit_code = 1
+                    continue
+            if invidious_instances != "":
+                try:
+                    video, audio = GetMedia(video_id, invidious_instances)
+                except (json.JSONDecodeError, URLError, ValueError):
+                    Err(_("无法获取视频"))
+                    Stderr(traceback.format_exc())
+                    exit_code = 1
+                    continue
 
         if enable_preview_video:
             cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subtitle_file}"'

@@ -96,12 +96,12 @@ def Convert(
 
             # 在之前这里我拼接字符串, 做的还没有全民核酸检测好
             # 现在画四个点直接闭合一个框
-            d = Draw()
-            d.Add(DrawCommand(0, 0, "m"))
-            d.Add(DrawCommand(width, 0, "l"))
-            d.Add(DrawCommand(width, height, "l"))
-            d.Add(DrawCommand(0, height, "l"))
-            box = d.Dump()
+            draw = Draw()
+            draw.Add(DrawCommand(0, 0, "m"))
+            draw.Add(DrawCommand(width, 0, "l"))
+            draw.Add(DrawCommand(width, height, "l"))
+            draw.Add(DrawCommand(0, height, "l"))
+            box = draw.Dump()
             # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
             box_tag = r"{\p1}" + box + r"{\p0}"
             del box
@@ -171,7 +171,7 @@ def Convert(
             tag += rf"\an7\pos({sx},{sy})"
             tag += rf"\c{DumpColor(each.bgColor)}"
             tag += rf"\1a{DumpAlpha(each.bgOpacity)}"
-            tag += r"\2a&HFF&" + r"\3a&HFF&" + r"\4a&HFF&"
+            tag += r"\2a&HFF&\3a&HFF&\4a&HFF&"
             tag = "{" + tag + "}"
 
             # 开始只是按部就班的画一个气泡框
@@ -203,12 +203,12 @@ def Convert(
             y1 = round(y1, 3)
             x2 = round(x2, 3)
 
-            d = Draw()
+            draw = Draw()
             # 一共三个点, 怎么画都是个三角形
-            d.Add(DrawCommand(0, 0, "m"))
-            d.Add(DrawCommand(x1, y1, "l"))
-            d.Add(DrawCommand(x2, y1, "l"))
-            box = d.Dump()
+            draw.Add(DrawCommand(0, 0, "m"))
+            draw.Add(DrawCommand(x1, y1, "l"))
+            draw.Add(DrawCommand(x2, y1, "l"))
+            box = draw.Dump()
             box_tag = r"{\p1}" + box + r"{\p0}"
             del box
 
@@ -320,7 +320,6 @@ def Convert(
     events = []
     for each in annotations:
         # 一个 Annotations 可能会需要多个 Event 来表达.
-        # each 这个习惯来源于 youtube-ass, 看起来比 i 要好一些
         events.extend(ConvertAnnotation(each))
 
     return events
