@@ -106,29 +106,10 @@ def run(argv=None):
             except IndexError:
                 pass
             domain = instance[0]
-            url = f"https://{domain}/api/v1/videos/{videoId}"
-            Stderr(_("获取 {}").format(url))
             try:
-                data = json.loads(GetUrl(url))
-            except (json.JSONDecodeError, URLError, IncompleteRead):
+                return GetMedia(videoId, domain)
+            except (json.JSONDecodeError, URLError, IncompleteRead, ValueError):
                 continue
-
-            videos = []
-            audios = []
-            for i in data.get("adaptiveFormats"):
-                if re.match("video", i.get("type")) != None:
-                    videos.append(i)
-                if re.match("audio", i.get("type")) != None:
-                    audios.append(i)
-            videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-            audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-            video = MakeSureStr(videos[0]["url"])
-            audio = MakeSureStr(audios[0]["url"])
-            if not video.startswith("http"):
-                continue
-            if not audio.startswith("http"):
-                continue
-            return video, audio
 
         raise NoMediaStreamsFoundError
 
