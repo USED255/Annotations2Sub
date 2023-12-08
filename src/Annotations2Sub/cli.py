@@ -74,6 +74,27 @@ def run(argv=None):
 
         return f"{ARCHIVE_URL}/download/youtubeannotations_{index}/{videoId[0:2]}.tar/{file}"
 
+    def GetMedia(videoId: str, instanceDomain: str) -> tuple:
+        url = f"https://{instanceDomain}/api/v1/videos/{videoId}"
+        Stderr(_("获取 {}").format(url))
+        data = json.loads(GetUrl(url))
+        videos = []
+        audios = []
+        for i in data.get("adaptiveFormats"):
+            if re.match("video", i.get("type")) != None:
+                videos.append(i)
+            if re.match("audio", i.get("type")) != None:
+                audios.append(i)
+        videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
+        audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
+        video = MakeSureStr(videos[0]["url"])
+        audio = MakeSureStr(audios[0]["url"])
+        if not video.startswith("http"):
+            raise ValueError
+        if not audio.startswith("http"):
+            raise ValueError
+        return video, audio
+
     def AutoGetMedia(videoId: str) -> tuple:
         """返回视频流和音频流网址"""
         instances = []
@@ -110,27 +131,6 @@ def run(argv=None):
             return video, audio
 
         raise NoMediaStreamsFoundError
-
-    def GetMedia(videoId: str, instanceDomain: str) -> tuple:
-        url = f"https://{instanceDomain}/api/v1/videos/{videoId}"
-        Stderr(_("获取 {}").format(url))
-        data = json.loads(GetUrl(url))
-        videos = []
-        audios = []
-        for i in data.get("adaptiveFormats"):
-            if re.match("video", i.get("type")) != None:
-                videos.append(i)
-            if re.match("audio", i.get("type")) != None:
-                audios.append(i)
-        videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-        audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-        video = MakeSureStr(videos[0]["url"])
-        audio = MakeSureStr(audios[0]["url"])
-        if not video.startswith("http"):
-            raise ValueError
-        if not audio.startswith("http"):
-            raise ValueError
-        return video, audio
 
     Dummy([CheckUrl, GetAnnotationsUrl, AutoGetMedia])  # type: ignore
 
