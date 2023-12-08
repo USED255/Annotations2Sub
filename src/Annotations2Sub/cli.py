@@ -59,7 +59,7 @@ def run(argv=None):
         CHARS_SAFE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
 
         if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
-            raise ValueError("Invalid videoId")
+            raise ValueError(_("无效的 videoId"))
 
         index = CHARS_SAFE.index(videoId[0]).__str__().rjust(2, "0")
 
@@ -126,9 +126,9 @@ def run(argv=None):
         video = MakeSureStr(videos[0]["url"])
         audio = MakeSureStr(audios[0]["url"])
         if not video.startswith("http"):
-            raise ValueError(f"Invalid video URL: {video}")
+            raise ValueError
         if not audio.startswith("http"):
-            raise ValueError(f"Invalid audio URL: {audio}")
+            raise ValueError
         return video, audio
 
     Dummy([CheckUrl, GetAnnotationsUrl, AutoGetMedia])  # type: ignore
