@@ -32,7 +32,6 @@ from Annotations2Sub.utils import (
 
 def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
-    pass
 
 
 def run(argv=None):
@@ -72,6 +71,10 @@ def run(argv=None):
 
     def AutoGetMedia(videoId: str) -> tuple:
         """返回视频流和音频流网址"""
+
+        class NoMediaStreamsFoundError(Exception):
+            """自定义异常，表示未找到媒体流"""
+
         instances = []
         instances = json.loads(GetUrl("https://api.invidious.io/instances.json"))
         for instance in instances:
@@ -105,7 +108,7 @@ def run(argv=None):
                 continue
             return video, audio
 
-        raise Exception
+        raise NoMediaStreamsFoundError
 
     def GetMedia(videoId: str, instanceDomain: str) -> tuple:
         url = f"https://{instanceDomain}/api/v1/videos/{videoId}"
@@ -123,9 +126,9 @@ def run(argv=None):
         video = MakeSureStr(videos[0]["url"])
         audio = MakeSureStr(audios[0]["url"])
         if not video.startswith("http"):
-            raise Exception
+            raise ValueError(f"Invalid video URL: {video}")
         if not audio.startswith("http"):
-            raise Exception
+            raise ValueError(f"Invalid audio URL: {audio}")
         return video, audio
 
     Dummy([CheckUrl, GetAnnotationsUrl, AutoGetMedia])  # type: ignore

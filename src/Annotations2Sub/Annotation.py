@@ -23,7 +23,6 @@ except ImportError:
 
 def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
-    pass
 
 
 class Annotation:
