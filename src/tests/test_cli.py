@@ -90,7 +90,7 @@ def test_cli_network_failed():
         if url == "https://malicious2.instance/api/v1/videos/29-q7YnyUmY":
             return r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"http://c/"},{"type":"audio","bitrate":1,"url":"file://c/"}]}'
 
-        raise Exception
+        pytest.fail()
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "GetUrl", mock)
@@ -102,7 +102,7 @@ def test_cli_network_failed():
         code = run(argv)
         assert code == 1
 
-    with pytest.raises(Exception):
+    with pytest.raises(pytest.fail.Exception):
         mock("")
 
     m.undo()
@@ -118,10 +118,15 @@ def test_cli_network_success():
 -gn {baseline1_video_id}
 -pg {baseline1_video_id}
 -D {baseline1_video_id}
--g {baseline1_video_id}"""
+-g {baseline1_video_id}
+-g -2345678911
+-g \\12345678911
+"""
 
     instances_string = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"https://1/video"},{"type":"audio","bitrate":1,"url":"https://1/audio"}]}'
-    invidious_string = r'[["noapi.instances",{"api":false}],["good.instance"]]'
+    invidious_string = (
+        r'[["noapi.instances",{"api":false}],["bad.instance"],["good.instance"]]'
+    )
     with open(baseline1_file, encoding="utf-8") as f:
         baseline1_string = f.read()
 
@@ -131,12 +136,32 @@ def test_cli_network_success():
             == "https://archive.org/download/youtubeannotations_54/29.tar/29-/29-q7YnyUmY.xml"
         ):
             return baseline1_string
+        if (
+            url
+            == "https://archive.org/download/youtubeannotations_53/12.tar/123/12345678911.xml"
+        ):
+            return baseline1_string
+        if (
+            url
+            == "https://archive.org/download/youtubeannotations_64/-2.tar/-23/-2345678911.xml"
+        ):
+            return baseline1_string
         if url == "https://api.invidious.io/instances.json":
             return invidious_string
         if url == "https://good.instance/api/v1/videos/29-q7YnyUmY":
             return instances_string
+        if url == "https://good.instance/api/v1/videos/12345678911":
+            return instances_string
+        if url == "https://good.instance/api/v1/videos/-2345678911":
+            return instances_string
+        if url == "https://bad.instance/api/v1/videos/29-q7YnyUmY":
+            return ""
+        if url == "https://bad.instance/api/v1/videos/12345678911":
+            return ""
+        if url == "https://bad.instance/api/v1/videos/-2345678911":
+            return ""
 
-        raise Exception
+        pytest.fail()
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "GetUrl", mock)
@@ -148,7 +173,7 @@ def test_cli_network_success():
         code = run(argv)
         assert code == 0
 
-    with pytest.raises(Exception):
+    with pytest.raises(pytest.fail.Exception):
         mock("")
 
     m.undo()
@@ -162,55 +187,9 @@ def test_GetAnnotationsUrl_ValueError():
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "Dummy", f)
+
     with pytest.raises(ValueError):
         run()
-
-    m.undo()
-
-
-def test_1():
-    commands = f"""-g -0000000000
--g \\00000000000"""
-
-    instances_string = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"https://1/video"},{"type":"audio","bitrate":1,"url":"https://1/audio"}]}'
-    invidious_string = r'[["bad.instance"],["good.instance"]]'
-    with open(baseline1_file, encoding="utf-8") as f:
-        baseline1_string = f.read()
-
-    def mock(url: str):
-        if (
-            url
-            == "https://archive.org/download/youtubeannotations_52/00.tar/000/00000000000.xml"
-        ):
-            return baseline1_string
-        if (
-            url
-            == "https://archive.org/download/youtubeannotations_64/-0.tar/-00/-0000000000.xml"
-        ):
-            return baseline1_string
-        if url == "https://api.invidious.io/instances.json":
-            return invidious_string
-        if url == "https://bad.instance/api/v1/videos/00000000000":
-            return ""
-        if url == "https://bad.instance/api/v1/videos/-0000000000":
-            return ""
-        if url == "https://good.instance/api/v1/videos/00000000000":
-            return instances_string
-        if url == "https://good.instance/api/v1/videos/-0000000000":
-            return instances_string
-        raise Exception
-
-    m = pytest.MonkeyPatch()
-    m.setattr(cli, "GetUrl", mock)
-
-    for command in commands.splitlines():
-        Stderr(command)
-        argv = command.split(" ")
-        code = run(argv)
-        assert code == 0
-
-    with pytest.raises(Exception):
-        mock("")
 
     m.undo()
 
@@ -229,14 +208,15 @@ def test_2():
             return r'[["bad.instance"]]'
         if url == "https://bad.instance/api/v1/videos/00000000000":
             return ""
-        raise Exception
+
+        pytest.fail()
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "GetUrl", mock)
 
     assert run("-g 00000000000".split(" ")) == 1
 
-    with pytest.raises(Exception):
+    with pytest.raises(pytest.fail.Exception):
         mock("")
 
     m.undo()
