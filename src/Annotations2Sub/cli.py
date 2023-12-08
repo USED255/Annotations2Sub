@@ -11,6 +11,7 @@ import sys
 import traceback
 import urllib.request
 import xml.etree.ElementTree  # type: ignore
+from http.client import IncompleteRead
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
@@ -88,7 +89,7 @@ def run(argv=None):
             Stderr(_("获取 {}").format(url))
             try:
                 data = json.loads(GetUrl(url))
-            except (json.JSONDecodeError, URLError):
+            except (json.JSONDecodeError, URLError, IncompleteRead):
                 continue
 
             videos = []
