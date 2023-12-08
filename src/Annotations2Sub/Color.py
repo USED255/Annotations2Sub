@@ -3,6 +3,8 @@
 
 """颜色数据类"""
 
+from Annotations2Sub.utils import _
+
 
 class Color:
     def __init__(
@@ -12,11 +14,11 @@ class Color:
         blue: int = 0,
     ):
         if red > 255:
-            raise ValueError("red must be 0-255")
+            raise ValueError(_('"red" 必须在 0-255 之间'))
         if green > 255:
-            raise ValueError("green must be 0-255")
+            raise ValueError(_('"green" 必须在 0-255 之间'))
         if blue > 255:
-            raise ValueError("blue must be 0-255")
+            raise ValueError(_('"blue" 必须在 0-255 之间'))
         self.red = red
         self.green = green
         self.blue = blue
@@ -28,7 +30,7 @@ class Alpha:
         alpha: int = 0,
     ):
         if alpha > 255:
-            raise ValueError("alpha must be 0-255")
+            raise ValueError(_('"alpha" 必须在 0-255 之间'))
         self.alpha = alpha
 
 

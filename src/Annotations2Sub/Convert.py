@@ -268,7 +268,10 @@ def Convert(
         # 浮点数太长了, 为了美观, 用 round 截断成三位, 字幕滤镜本身是支持小数的
         x = round(each.x * transform_coefficient_x, 3)
         y = round(each.y * transform_coefficient_y, 3)
-        textSize = round(each.textSize * transform_coefficient_y, 3)
+        if each.style == "title":
+            textSize = each.textSize
+        else:
+            textSize = round(each.textSize * transform_coefficient_y, 3)
         width = round(each.width * transform_coefficient_x, 3)
         height = round(each.height * transform_coefficient_y, 3)
         sx = round(each.sx * transform_coefficient_x, 3)

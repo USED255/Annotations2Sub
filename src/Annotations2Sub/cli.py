@@ -11,6 +11,7 @@ import sys
 import traceback
 import urllib.request
 import xml.etree.ElementTree  # type: ignore
+from http.client import IncompleteRead
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
@@ -59,7 +60,7 @@ def run(argv=None):
         CHARS_SAFE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
 
         if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
-            raise ValueError("Invalid videoId")
+            raise ValueError(_("无效的 videoId"))
 
         index = CHARS_SAFE.index(videoId[0]).__str__().rjust(2, "0")
 
@@ -72,43 +73,6 @@ def run(argv=None):
         file = f"{videoId[0:3]}/{videoId}.xml"
 
         return f"{ARCHIVE_URL}/download/youtubeannotations_{index}/{videoId[0:2]}.tar/{file}"
-
-    def AutoGetMedia(videoId: str) -> tuple:
-        """返回视频流和音频流网址"""
-        instances = []
-        instances = json.loads(GetUrl("https://api.invidious.io/instances.json"))
-        for instance in instances:
-            try:
-                if not instance[1]["api"]:  # type: ignore
-                    continue
-            except IndexError:
-                pass
-            domain = instance[0]
-            url = f"https://{domain}/api/v1/videos/{videoId}"
-            Stderr(_("获取 {}").format(url))
-            try:
-                data = json.loads(GetUrl(url))
-            except (json.JSONDecodeError, URLError):
-                continue
-
-            videos = []
-            audios = []
-            for i in data.get("adaptiveFormats"):
-                if re.match("video", i.get("type")) != None:
-                    videos.append(i)
-                if re.match("audio", i.get("type")) != None:
-                    audios.append(i)
-            videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-            audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-            video = MakeSureStr(videos[0]["url"])
-            audio = MakeSureStr(audios[0]["url"])
-            if not video.startswith("http"):
-                continue
-            if not audio.startswith("http"):
-                continue
-            return video, audio
-
-        raise NoMediaStreamsFoundError
 
     def GetMedia(videoId: str, instanceDomain: str) -> tuple:
         url = f"https://{instanceDomain}/api/v1/videos/{videoId}"
@@ -126,10 +90,28 @@ def run(argv=None):
         video = MakeSureStr(videos[0]["url"])
         audio = MakeSureStr(audios[0]["url"])
         if not video.startswith("http"):
-            raise ValueError(f"Invalid video URL: {video}")
+            raise ValueError
         if not audio.startswith("http"):
-            raise ValueError(f"Invalid audio URL: {audio}")
+            raise ValueError
         return video, audio
+
+    def AutoGetMedia(videoId: str) -> tuple:
+        """返回视频流和音频流网址"""
+        instances = []
+        instances = json.loads(GetUrl("https://api.invidious.io/instances.json"))
+        for instance in instances:
+            try:
+                if not instance[1]["api"]:  # type: ignore
+                    continue
+            except IndexError:
+                pass
+            domain = instance[0]
+            try:
+                return GetMedia(videoId, domain)
+            except (json.JSONDecodeError, URLError, IncompleteRead, ValueError):
+                continue
+
+        raise NoMediaStreamsFoundError
 
     Dummy([CheckUrl, GetAnnotationsUrl, AutoGetMedia])  # type: ignore
 
@@ -336,12 +318,12 @@ def run(argv=None):
             if not is_skip_download:
                 url = GetAnnotationsUrl(video_id)
                 Stderr(_("下载 {}").format(url))
-                string = GetUrl(url)
+                annotation_string = GetUrl(url)
                 if output_to_stdout:
-                    print(string, file=sys.stdout)
-                    continue
-                with open(annotation_file, "w", encoding="utf-8") as f:
-                    f.write(string)
+                    print(annotation_string, file=sys.stdout)
+                else:
+                    with open(annotation_file, "w", encoding="utf-8") as f:
+                        f.write(annotation_string)
 
             if enable_download_annotation_only:
                 continue
@@ -351,31 +333,6 @@ def run(argv=None):
             exit_code = 1
             continue
 
-        with open(annotation_file, "r", encoding="utf-8") as f:
-            annotations_string = f.read()
-
-        if annotations_string == "":
-            Warn(_("{} 可能没有 Annotation").format(video_id))
-            exit_code = 1
-            continue
-
-        try:
-            tree = xml.etree.ElementTree.parse(annotation_file)
-        except ParseError:
-            Err(_("{} 不是一个有效的 XML 文件").format(annotation_file))
-            if Flags.verbose:
-                Stderr(traceback.format_exc())
-            exit_code = 1
-            continue
-
-        if tree.find("annotations") == None:
-            Err(_("{} 不是 Annotation 文件").format(annotation_file))
-            exit_code = 1
-            continue
-
-        if len(tree.find("annotations").findall("annotation")) == 0:  # type: ignore
-            Warn(_("{} 没有 Annotation").format(annotation_file))
-
         subtitle_file = annotation_file + ".ass"
         if output_directory != None:
             file_name = os.path.basename(annotation_file)
@@ -384,10 +341,26 @@ def run(argv=None):
         if output != None:
             subtitle_file = output
 
-        # 这里是 __init__.py 开头那个流程图
         with open(annotation_file, "r", encoding="utf-8") as f:
-            string = f.read()
-        tree = xml.etree.ElementTree.fromstring(string)  # type: ignore
+            annotation_string = f.read()
+        if annotation_string == "":
+            Warn(_("{} 可能没有 Annotation").format(video_id))
+            exit_code = 1
+            continue
+        try:
+            tree = xml.etree.ElementTree.fromstring(annotation_string)  # type: ignore
+        except ParseError:
+            Err(_("{} 不是一个有效的 XML 文件").format(annotation_file))
+            if Flags.verbose:
+                Stderr(traceback.format_exc())
+            exit_code = 1
+            continue
+        if tree.find("annotations") == None:
+            Err(_("{} 不是 Annotation 文件").format(annotation_file))
+            exit_code = 1
+            continue
+        if len(tree.find("annotations").findall("annotation")) == 0:  # type: ignore
+            Warn(_("{} 没有 Annotation").format(annotation_file))
         annotations = Parse(tree)  # type: ignore
         events = Convert(
             annotations,
@@ -409,6 +382,7 @@ def run(argv=None):
         subtitle.info["Title"] = os.path.basename(annotation_file)
         subtitle.styles["Default"].Fontname = font
         subtitle_string = subtitle.Dump()
+
         is_no_save = False
         if output_to_stdout:
             is_no_save = True
@@ -425,17 +399,6 @@ def run(argv=None):
                 f.write(subtitle_string)
             Stderr(_("保存于: {}").format(subtitle_file))
 
-        def function1():
-            if Flags.verbose:
-                Stderr(cmd)
-            exit_code = os.system(cmd)
-            if Flags.verbose:
-                if exit_code != 0:
-                    Stderr(YellowText("exit with {}".format(exit_code)))
-            if enable_no_keep_intermediate_files:
-                os.remove(subtitle_file)
-                Stderr(_("删除 {}").format(subtitle_file))
-
         video = audio = ""
         if enable_preview_video or enable_generate_video:
             if invidious_instances == "":
@@ -446,7 +409,7 @@ def run(argv=None):
                     Stderr(traceback.format_exc())
                     exit_code = 1
                     continue
-            if invidious_instances != "":
+            else:
                 try:
                     video, audio = GetMedia(video_id, invidious_instances)
                 except (json.JSONDecodeError, URLError, ValueError):
@@ -454,6 +417,17 @@ def run(argv=None):
                     Stderr(traceback.format_exc())
                     exit_code = 1
                     continue
+
+        def function1():
+            if Flags.verbose:
+                Stderr(cmd)
+            exit_code = os.system(cmd)
+            if Flags.verbose:
+                if exit_code != 0:
+                    Stderr(YellowText("exit with {}".format(exit_code)))
+            if enable_no_keep_intermediate_files:
+                os.remove(subtitle_file)
+                Stderr(_("删除 {}").format(subtitle_file))
 
         if enable_preview_video:
             cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subtitle_file}"'

@@ -7,6 +7,7 @@ import datetime
 from typing import Dict, List
 
 from Annotations2Sub.Color import Alpha, Color, Rgba
+from Annotations2Sub.utils import _
 
 
 def Dummy(*args, **kwargs):
@@ -221,7 +222,7 @@ class Draw:
     def Add(self, command: DrawCommand):
         """添加一个绘图指令"""
         if isinstance(command, DrawCommand) is False:
-            raise TypeError("command must be DrawCommand")
+            raise TypeError(_('"command" 必须是 "DrawCommand"'))
         self.draws.append(command)
 
     def Dump(self) -> str:
