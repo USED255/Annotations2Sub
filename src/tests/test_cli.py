@@ -194,7 +194,7 @@ def test_GetAnnotationsUrl_ValueError():
     m.undo()
 
 
-def test_3():
+def test_CheckUrl():
     def f1(x):
         for i in x:
             if i.__name__ == "CheckUrl":
