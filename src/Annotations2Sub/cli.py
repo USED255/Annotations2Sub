@@ -34,6 +34,10 @@ def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
+class NoMediaStreamsFoundError(Exception):
+    """自定义异常，表示未找到媒体流"""
+
+
 def run(argv=None):
     """跑起来🐎🐎🐎"""
 
@@ -71,10 +75,6 @@ def run(argv=None):
 
     def AutoGetMedia(videoId: str) -> tuple:
         """返回视频流和音频流网址"""
-
-        class NoMediaStreamsFoundError(Exception):
-            """自定义异常，表示未找到媒体流"""
-
         instances = []
         instances = json.loads(GetUrl("https://api.invidious.io/instances.json"))
         for instance in instances:
@@ -441,7 +441,7 @@ def run(argv=None):
             if invidious_instances == "":
                 try:
                     video, audio = AutoGetMedia(video_id)
-                except:
+                except NoMediaStreamsFoundError:
                     Err(_("无法获取视频"))
                     Stderr(traceback.format_exc())
                     exit_code = 1
@@ -449,7 +449,7 @@ def run(argv=None):
             if invidious_instances != "":
                 try:
                     video, audio = GetMedia(video_id, invidious_instances)
-                except:
+                except (json.JSONDecodeError, URLError, ValueError):
                     Err(_("无法获取视频"))
                     Stderr(traceback.format_exc())
                     exit_code = 1
