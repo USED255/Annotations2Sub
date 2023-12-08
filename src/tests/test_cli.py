@@ -179,21 +179,6 @@ def test_cli_network_success():
     m.undo()
 
 
-def test_GetAnnotationsUrl_ValueError():
-    def f(x):
-        for i in x:
-            if i.__name__ == "GetAnnotationsUrl":
-                i("")
-
-    m = pytest.MonkeyPatch()
-    m.setattr(cli, "Dummy", f)
-
-    with pytest.raises(ValueError):
-        run()
-
-    m.undo()
-
-
 def test_CheckUrl():
     def f1(x):
         for i in x:
@@ -216,5 +201,20 @@ def test_CheckUrl():
     m.setattr(urllib.request, "urlopen", f3)
     with pytest.raises(SystemExit):
         run([])
+
+    m.undo()
+
+
+def test_GetAnnotationsUrl_ValueError():
+    def f(x):
+        for i in x:
+            if i.__name__ == "GetAnnotationsUrl":
+                i("")
+
+    m = pytest.MonkeyPatch()
+    m.setattr(cli, "Dummy", f)
+
+    with pytest.raises(ValueError):
+        run()
 
     m.undo()
