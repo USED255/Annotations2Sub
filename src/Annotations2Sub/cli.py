@@ -318,12 +318,12 @@ def run(argv=None):
             if not is_skip_download:
                 url = GetAnnotationsUrl(video_id)
                 Stderr(_("下载 {}").format(url))
-                string = GetUrl(url)
+                annotation_string = GetUrl(url)
                 if output_to_stdout:
-                    print(string, file=sys.stdout)
-                    continue
-                with open(annotation_file, "w", encoding="utf-8") as f:
-                    f.write(string)
+                    print(annotation_string, file=sys.stdout)
+                else:
+                    with open(annotation_file, "w", encoding="utf-8") as f:
+                        f.write(annotation_string)
 
             if enable_download_annotation_only:
                 continue
@@ -333,31 +333,6 @@ def run(argv=None):
             exit_code = 1
             continue
 
-        with open(annotation_file, "r", encoding="utf-8") as f:
-            annotations_string = f.read()
-
-        if annotations_string == "":
-            Warn(_("{} 可能没有 Annotation").format(video_id))
-            exit_code = 1
-            continue
-
-        try:
-            tree = xml.etree.ElementTree.parse(annotation_file)
-        except ParseError:
-            Err(_("{} 不是一个有效的 XML 文件").format(annotation_file))
-            if Flags.verbose:
-                Stderr(traceback.format_exc())
-            exit_code = 1
-            continue
-
-        if tree.find("annotations") == None:
-            Err(_("{} 不是 Annotation 文件").format(annotation_file))
-            exit_code = 1
-            continue
-
-        if len(tree.find("annotations").findall("annotation")) == 0:  # type: ignore
-            Warn(_("{} 没有 Annotation").format(annotation_file))
-
         subtitle_file = annotation_file + ".ass"
         if output_directory != None:
             file_name = os.path.basename(annotation_file)
@@ -366,10 +341,26 @@ def run(argv=None):
         if output != None:
             subtitle_file = output
 
-        # 这里是 __init__.py 开头那个流程图
         with open(annotation_file, "r", encoding="utf-8") as f:
-            string = f.read()
-        tree = xml.etree.ElementTree.fromstring(string)  # type: ignore
+            annotation_string = f.read()
+        if annotation_string == "":
+            Warn(_("{} 可能没有 Annotation").format(video_id))
+            exit_code = 1
+            continue
+        try:
+            tree = xml.etree.ElementTree.fromstring(annotation_string)  # type: ignore
+        except ParseError:
+            Err(_("{} 不是一个有效的 XML 文件").format(annotation_file))
+            if Flags.verbose:
+                Stderr(traceback.format_exc())
+            exit_code = 1
+            continue
+        if tree.find("annotations") == None:
+            Err(_("{} 不是 Annotation 文件").format(annotation_file))
+            exit_code = 1
+            continue
+        if len(tree.find("annotations").findall("annotation")) == 0:  # type: ignore
+            Warn(_("{} 没有 Annotation").format(annotation_file))
         annotations = Parse(tree)  # type: ignore
         events = Convert(
             annotations,
@@ -391,6 +382,7 @@ def run(argv=None):
         subtitle.info["Title"] = os.path.basename(annotation_file)
         subtitle.styles["Default"].Fontname = font
         subtitle_string = subtitle.Dump()
+
         is_no_save = False
         if output_to_stdout:
             is_no_save = True
@@ -406,17 +398,6 @@ def run(argv=None):
             with open(subtitle_file, "w", encoding="utf-8") as f:
                 f.write(subtitle_string)
             Stderr(_("保存于: {}").format(subtitle_file))
-
-        def function1():
-            if Flags.verbose:
-                Stderr(cmd)
-            exit_code = os.system(cmd)
-            if Flags.verbose:
-                if exit_code != 0:
-                    Stderr(YellowText("exit with {}".format(exit_code)))
-            if enable_no_keep_intermediate_files:
-                os.remove(subtitle_file)
-                Stderr(_("删除 {}").format(subtitle_file))
 
         video = audio = ""
         if enable_preview_video or enable_generate_video:
@@ -436,6 +417,17 @@ def run(argv=None):
                     Stderr(traceback.format_exc())
                     exit_code = 1
                     continue
+
+        def function1():
+            if Flags.verbose:
+                Stderr(cmd)
+            exit_code = os.system(cmd)
+            if Flags.verbose:
+                if exit_code != 0:
+                    Stderr(YellowText("exit with {}".format(exit_code)))
+            if enable_no_keep_intermediate_files:
+                os.remove(subtitle_file)
+                Stderr(_("删除 {}").format(subtitle_file))
 
         if enable_preview_video:
             cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subtitle_file}"'
