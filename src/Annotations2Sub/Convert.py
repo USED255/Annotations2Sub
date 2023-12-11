@@ -125,15 +125,6 @@ def Convert(
 
         def title(event: Event) -> Event:
             """生成 title 样式的 Event"""
-
-            # 很明显 title 的字体大小和其他的不一样
-            # 很像是我们熟悉的 "字体大小"
-            # 但好像又不是
-            # / 4 也是试出来的
-            if resolutionX == 100 and resolutionY == 100:
-                nonlocal textSize  # type: ignore
-                textSize = round(textSize / 4, 3)
-
             event.Name += ";title"
 
             return Text(event)
@@ -268,10 +259,10 @@ def Convert(
         # 浮点数太长了, 为了美观, 用 round 截断成三位, 字幕滤镜本身是支持小数的
         x = round(each.x * transform_coefficient_x, 3)
         y = round(each.y * transform_coefficient_y, 3)
+        textSize = round(each.textSize * transform_coefficient_y, 3)
         if each.style == "title":
-            textSize = each.textSize
-        else:
-            textSize = round(each.textSize * transform_coefficient_y, 3)
+            # Windows 酱赛高
+            textSize = round(textSize * 100 / 480, 3)
         width = round(each.width * transform_coefficient_x, 3)
         height = round(each.height * transform_coefficient_y, 3)
         sx = round(each.sx * transform_coefficient_x, 3)
