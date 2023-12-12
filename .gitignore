@@ -3,6 +3,7 @@ __pycache__
 .mypy_cache
 .coverage
 .venv
+htmlcov
 dist
 Annotations2Sub.egg-info
 测试用例/
@@ -12,3 +13,4 @@ Annotations2Sub.egg-info
 *.xml
 *.ass
 *.lnk
+*.ps1
