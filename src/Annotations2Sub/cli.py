@@ -436,13 +436,14 @@ def run(argv=None):
             if sys.version_info.major == 3 and sys.version_info.minor > 7:
                 if Flags.verbose:
                     Stderr(shlex.join(commands))
-            exit_code = subprocess.run(
+            _exit_code = subprocess.run(
                 commands, stdout=sys.stdout, stderr=sys.stderr
             ).returncode
             if Flags.verbose:
-                if exit_code != 0:
-                    Stderr(YellowText("exit with {}".format(exit_code)))
-
+                if _exit_code != 0:
+                    Stderr(YellowText("exit with {}".format(_exit_code)))
+                    nonlocal exit_code
+                    exit_code = 1
             if enable_no_keep_intermediate_files:
                 Stderr(_("删除 {}").format(subtitle_file))
                 os.remove(subtitle_file)

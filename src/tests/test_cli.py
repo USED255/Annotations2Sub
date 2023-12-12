@@ -66,6 +66,7 @@ def test_cli_network_failed():
 -g {baseline1_video_id}
 -g {baseline1_video_id} -i malicious.instance
 -g {baseline1_video_id} -i malicious2.instance
+-g {baseline1_video_id} -i malicious3.instance
 -d 12345678911"""
 
     with open(baseline1_file, encoding="utf-8") as f:
@@ -90,11 +91,21 @@ def test_cli_network_failed():
             return r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"file://c/"},{"type":"audio","bitrate":1,"url":"file://c/"}]}'
         if url == "https://malicious2.instance/api/v1/videos/29-q7YnyUmY":
             return r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"http://c/"},{"type":"audio","bitrate":1,"url":"file://c/"}]}'
+        if url == "https://malicious3.instance/api/v1/videos/29-q7YnyUmY":
+            return r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"http://c/"},{"type":"audio","bitrate":1,"url":"http://c/"}]}'
 
         pytest.fail()
 
+    def f1(*args, **kwargs):
+        class a:
+            def __init__(self) -> None:
+                self.returncode = 1
+
+        return a()
+
     m = pytest.MonkeyPatch()
     m.setattr(cli, "GetUrl", mock)
+    m.setattr(subprocess, "run", f1)
 
     for command in commands.splitlines():
         Stderr(command)
