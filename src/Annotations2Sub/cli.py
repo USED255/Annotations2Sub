@@ -7,6 +7,8 @@ import argparse
 import json
 import os
 import re
+import shlex
+import subprocess
 import sys
 import traceback
 import urllib.request
@@ -403,8 +405,8 @@ def run(argv=None):
                 is_no_save = True
 
         if enable_no_keep_intermediate_files:
-            os.remove(annotation_file)
             Stderr(_("删除 {}").format(annotation_file))
+            os.remove(annotation_file)
 
         if not is_no_save:
             with open(subtitle_file, "w", encoding="utf-8") as f:
@@ -432,23 +434,38 @@ def run(argv=None):
 
         def function1():
             if Flags.verbose:
-                Stderr(cmd)
-
-            exit_code = os.system(cmd)
+                Stderr(shlex.join(commands))
+            exit_code = subprocess.run(
+                commands, stdout=sys.stdout, stderr=sys.stderr
+            ).returncode
             if Flags.verbose:
                 if exit_code != 0:
                     Stderr(YellowText("exit with {}".format(exit_code)))
 
             if enable_no_keep_intermediate_files:
-                os.remove(subtitle_file)
                 Stderr(_("删除 {}").format(subtitle_file))
+                os.remove(subtitle_file)
 
         if enable_preview_video:
-            cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subtitle_file}"'
+            commands = [
+                "mpv",
+                video,
+                f"--audio-file={audio}",
+                f"--sub-file={subtitle_file}",
+            ]
             function1()
 
         if enable_generate_video:
-            cmd = rf'ffmpeg -i "{video}" -i "{audio}" -vf "ass={subtitle_file}" {subtitle_file}.mp4'
+            commands = [
+                "ffmpeg",
+                "-i",
+                video,
+                "-i",
+                audio,
+                "-vf",
+                f"ass={subtitle_file}",
+                f"{subtitle_file}.mp4",
+            ]
             function1()
 
     return exit_code
