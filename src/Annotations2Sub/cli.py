@@ -433,8 +433,9 @@ def run(argv=None):
                     continue
 
         def function1():
-            if Flags.verbose:
-                Stderr(shlex.join(commands))
+            if sys.version_info.major == 3 and sys.version_info.minor > 7:
+                if Flags.verbose:
+                    Stderr(shlex.join(commands))
             exit_code = subprocess.run(
                 commands, stdout=sys.stdout, stderr=sys.stderr
             ).returncode
