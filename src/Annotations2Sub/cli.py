@@ -7,6 +7,8 @@ import argparse
 import json
 import os
 import re
+import shlex
+import subprocess
 import sys
 import traceback
 import urllib.request
@@ -299,6 +301,7 @@ def run(argv=None):
         if enable_download_for_archive:
             if video_id.startswith("\\"):
                 video_id = video_id.replace("\\", "", 1)
+
             if re.match(r"[a-zA-Z0-9_-]{11}", video_id) is None:
                 Err(_("{} 不是一个有效的视频 ID").format(video_id))
                 exit_code = 1
@@ -307,6 +310,7 @@ def run(argv=None):
             annotation_file = f"{video_id}.xml"
             if enable_download_annotation_only and output:
                 annotation_file = output
+
             if output_directory != None:
                 annotation_file = os.path.join(output_directory, annotation_file)
 
@@ -315,6 +319,7 @@ def run(argv=None):
                 if os.path.exists(annotation_file):
                     Stderr(YellowText(_("文件已存在, 跳过下载 ({})").format(video_id)))
                     is_skip_download = True
+
             if not is_skip_download:
                 url = GetAnnotationsUrl(video_id)
                 Stderr(_("下载 {}").format(url))
@@ -338,6 +343,7 @@ def run(argv=None):
             file_name = os.path.basename(annotation_file)
             file_name = file_name + ".ass"
             subtitle_file = os.path.join(output_directory, file_name)
+
         if output != None:
             subtitle_file = output
 
@@ -347,6 +353,7 @@ def run(argv=None):
             Warn(_("{} 可能没有 Annotation").format(video_id))
             exit_code = 1
             continue
+
         try:
             tree = xml.etree.ElementTree.fromstring(annotation_string)  # type: ignore
         except ParseError:
@@ -355,12 +362,15 @@ def run(argv=None):
                 Stderr(traceback.format_exc())
             exit_code = 1
             continue
+
         if tree.find("annotations") == None:
             Err(_("{} 不是 Annotation 文件").format(annotation_file))
             exit_code = 1
             continue
+
         if len(tree.find("annotations").findall("annotation")) == 0:  # type: ignore
             Warn(_("{} 没有 Annotation").format(annotation_file))
+
         annotations = Parse(tree)  # type: ignore
         events = Convert(
             annotations,
@@ -373,27 +383,31 @@ def run(argv=None):
         # Annotation 是无序的
         # 按时间重新排列字幕事件, 是为了人类可读
         events.sort(key=lambda event: event.Start)
+
         subtitle = Sub()
-        subtitle.events.extend(events)
         subtitle.comment += _("此脚本使用 Annotations2Sub 生成") + "\n"
         subtitle.comment += "https://github.com/USED255/Annotations2Sub"
         subtitle.info["PlayResX"] = transform_resolution_x  # type: ignore
         subtitle.info["PlayResY"] = transform_resolution_y  # type: ignore
         subtitle.info["Title"] = os.path.basename(annotation_file)
         subtitle.styles["Default"].Fontname = font
+        subtitle.events.extend(events)
         subtitle_string = subtitle.Dump()
 
         is_no_save = False
         if output_to_stdout:
             is_no_save = True
             print(subtitle_string, file=sys.stdout)
+
         if enable_no_overwrite_files:
             if os.path.exists(subtitle_file):
                 Stderr(YellowText(_("文件已存在, 跳过输出 ({})").format(subtitle_file)))
                 is_no_save = True
+
         if enable_no_keep_intermediate_files:
-            os.remove(annotation_file)
             Stderr(_("删除 {}").format(annotation_file))
+            os.remove(annotation_file)
+
         if not is_no_save:
             with open(subtitle_file, "w", encoding="utf-8") as f:
                 f.write(subtitle_string)
@@ -419,22 +433,41 @@ def run(argv=None):
                     continue
 
         def function1():
+            if sys.version_info.major == 3 and sys.version_info.minor > 7:
+                if Flags.verbose:
+                    Stderr(shlex.join(commands))
+            _exit_code = subprocess.run(
+                commands, stdout=sys.stdout, stderr=sys.stderr
+            ).returncode
             if Flags.verbose:
-                Stderr(cmd)
-            exit_code = os.system(cmd)
-            if Flags.verbose:
-                if exit_code != 0:
-                    Stderr(YellowText("exit with {}".format(exit_code)))
+                if _exit_code != 0:
+                    Stderr(YellowText("exit with {}".format(_exit_code)))
+                    nonlocal exit_code
+                    exit_code = 1
             if enable_no_keep_intermediate_files:
-                os.remove(subtitle_file)
                 Stderr(_("删除 {}").format(subtitle_file))
+                os.remove(subtitle_file)
 
         if enable_preview_video:
-            cmd = rf'mpv "{video}" --audio-file="{audio}" --sub-file="{subtitle_file}"'
+            commands = [
+                "mpv",
+                video,
+                f"--audio-file={audio}",
+                f"--sub-file={subtitle_file}",
+            ]
             function1()
 
         if enable_generate_video:
-            cmd = rf'ffmpeg -i "{video}" -i "{audio}" -vf "ass={subtitle_file}" {subtitle_file}.mp4'
+            commands = [
+                "ffmpeg",
+                "-i",
+                video,
+                "-i",
+                audio,
+                "-vf",
+                f"ass={subtitle_file}",
+                f"{subtitle_file}.mp4",
+            ]
             function1()
 
     return exit_code
