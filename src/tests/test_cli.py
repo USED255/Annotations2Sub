@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import subprocess
 import urllib.request
 from urllib.error import URLError
 
@@ -94,7 +95,6 @@ def test_cli_network_failed():
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "GetUrl", mock)
-    m.setattr(os, "system", lambda __: None)
 
     for command in commands.splitlines():
         Stderr(command)
@@ -163,9 +163,16 @@ def test_cli_network_success():
 
         pytest.fail()
 
+    def f1(*args, **kwargs):
+        class a:
+            def __init__(self) -> None:
+                self.returncode = 0
+
+        return a()
+
     m = pytest.MonkeyPatch()
     m.setattr(cli, "GetUrl", mock)
-    m.setattr(os, "system", lambda __: None)
+    m.setattr(subprocess, "run", f1)
 
     for command in commands.splitlines():
         Stderr(command)
