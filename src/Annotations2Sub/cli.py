@@ -168,7 +168,7 @@ def Run(argv=None):
     )
     parser.add_argument(
         "-D",
-        "--download-annotation-only",
+        "--download-annotations-only",
         action="store_true",
         help=_("仅下载注释"),
     )
@@ -238,7 +238,7 @@ def Run(argv=None):
     transform_resolution_y = args.transform_resolution_y
     font = args.font
     enable_download_for_archive = args.download_for_archive
-    enable_download_annotation_only = args.download_annotation_only
+    enable_download_annotations_only = args.download_annotations_only
     enable_preview_video = args.preview_video
     enable_generate_video = args.generate_video
     invidious_instances = args.invidious_instances
@@ -283,7 +283,7 @@ def Run(argv=None):
             )
         )
 
-    if enable_download_annotation_only:
+    if enable_download_annotations_only:
         enable_download_for_archive = True
 
     if enable_download_for_archive:
@@ -296,7 +296,7 @@ def Run(argv=None):
 
     for Task in queue:
         video_id = MakeSureStr(Task)
-        annotation_file = Task
+        annotations_file = Task
 
         if enable_download_for_archive:
             if video_id.startswith("\\"):
@@ -307,69 +307,69 @@ def Run(argv=None):
                 exit_code = 1
                 continue
 
-            annotation_file = f"{video_id}.xml"
-            if enable_download_annotation_only and output:
-                annotation_file = output
+            annotations_file = f"{video_id}.xml"
+            if enable_download_annotations_only and output:
+                annotations_file = output
 
             if output_directory != None:
-                annotation_file = os.path.join(output_directory, annotation_file)
+                annotations_file = os.path.join(output_directory, annotations_file)
 
             is_skip_download = False
-            if enable_no_overwrite_files and os.path.exists(annotation_file):
-                if os.path.exists(annotation_file):
+            if enable_no_overwrite_files and os.path.exists(annotations_file):
+                if os.path.exists(annotations_file):
                     Stderr(YellowText(_("文件已存在, 跳过下载 ({})").format(video_id)))
                     is_skip_download = True
 
             if not is_skip_download:
-                url = GetAnnotationsUrl(video_id)
-                Stderr(_("下载 {}").format(url))
-                annotation_string = GetUrl(url)
+                annotations_url = GetAnnotationsUrl(video_id)
+                Stderr(_("下载 {}").format(annotations_url))
+                annotations_string = GetUrl(annotations_url)
                 if output_to_stdout:
-                    print(annotation_string, file=sys.stdout)
+                    print(annotations_string, file=sys.stdout)
                 else:
-                    with open(annotation_file, "w", encoding="utf-8") as f:
-                        f.write(annotation_string)
+                    with open(annotations_file, "w", encoding="utf-8") as f:
+                        f.write(annotations_string)
 
-            if enable_download_annotation_only:
+            if enable_download_annotations_only:
                 continue
 
-        if os.path.isfile(annotation_file) is False:
-            Err(_("{} 不是一个文件").format(annotation_file))
+        if os.path.isfile(annotations_file) is False:
+            Err(_("{} 不是一个文件").format(annotations_file))
             exit_code = 1
             continue
 
-        subtitle_file = annotation_file + ".ass"
+        subtitle_file = annotations_file + ".ass"
         if output_directory != None:
-            file_name = os.path.basename(annotation_file)
+            file_name = os.path.basename(annotations_file)
             file_name = file_name + ".ass"
             subtitle_file = os.path.join(output_directory, file_name)
 
         if output != None:
             subtitle_file = output
 
-        with open(annotation_file, "r", encoding="utf-8") as f:
-            annotation_string = f.read()
-        if annotation_string == "":
+        with open(annotations_file, "r", encoding="utf-8") as f:
+            annotations_string = f.read()
+        if annotations_string == "":
             Warn(_("{} 可能没有 Annotation").format(video_id))
             exit_code = 1
             continue
 
         try:
-            tree = xml.etree.ElementTree.fromstring(annotation_string)  # type: ignore
+            tree = xml.etree.ElementTree.fromstring(annotations_string)  # type: ignore
         except ParseError:
-            Err(_("{} 不是一个有效的 XML 文件").format(annotation_file))
+            Err(_("{} 不是一个有效的 XML 文件").format(annotations_file))
             if Flags.verbose:
                 Stderr(traceback.format_exc())
             exit_code = 1
             continue
 
         if tree.find("annotations") == None:
-            Err(_("{} 不是 Annotation 文件").format(annotation_file))
+            Err(_("{} 不是 Annotation 文件").format(annotations_file))
             exit_code = 1
             continue
 
         if len(tree.find("annotations").findall("annotation")) == 0:  # type: ignore
-            Warn(_("{} 没有 Annotation").format(annotation_file))
+            Warn(_("{} 没有 Annotation").format(annotations_file))
 
         annotations = Parse(tree)  # type: ignore
         events = Convert(
@@ -379,7 +379,7 @@ def Run(argv=None):
             transform_resolution_y,
         )
         if events == []:
-            Warn(_("{} 没有注释被转换").format(annotation_file))
+            Warn(_("{} 没有注释被转换").format(annotations_file))
         # Annotation 是无序的
         # 按时间重新排列字幕事件, 是为了人类可读
         events.sort(key=lambda event: event.Start)
@@ -389,7 +389,7 @@ def Run(argv=None):
         subtitle.comment += "https://github.com/USED255/Annotations2Sub"
         subtitle.info["PlayResX"] = transform_resolution_x  # type: ignore
         subtitle.info["PlayResY"] = transform_resolution_y  # type: ignore
-        subtitle.info["Title"] = os.path.basename(annotation_file)
+        subtitle.info["Title"] = os.path.basename(annotations_file)
         subtitle.styles["Default"].Fontname = font
         subtitle.events.extend(events)
         subtitle_string = subtitle.Dump()
@@ -405,8 +405,8 @@ def Run(argv=None):
                 is_no_save = True
 
         if enable_no_keep_intermediate_files:
-            Stderr(_("删除 {}").format(annotation_file))
-            os.remove(annotation_file)
+            Stderr(_("删除 {}").format(annotations_file))
+            os.remove(annotations_file)
 
         if not is_no_save:
             with open(subtitle_file, "w", encoding="utf-8") as f:
