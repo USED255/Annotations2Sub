@@ -9,7 +9,7 @@ from urllib.error import URLError
 import pytest
 
 from Annotations2Sub import cli
-from Annotations2Sub.cli import run
+from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import Stderr
 
 base_path = os.path.dirname(__file__)
@@ -41,7 +41,7 @@ def test_cli_failed():
     for command in commands.splitlines():
         Stderr(command)
         argv = command.split(" ")
-        code = run(argv)
+        code = Run(argv)
         assert code == 1
 
 
@@ -56,7 +56,7 @@ def test_cli_success():
     for command in commands.splitlines():
         Stderr(command)
         argv = command.split(" ")
-        code = run(argv)
+        code = Run(argv)
         assert code == 0
 
 
@@ -110,7 +110,7 @@ def test_cli_network_failed():
     for command in commands.splitlines():
         Stderr(command)
         argv = command.split(" ")
-        code = run(argv)
+        code = Run(argv)
         assert code == 1
 
     with pytest.raises(pytest.fail.Exception):
@@ -188,7 +188,7 @@ def test_cli_network_success():
     for command in commands.splitlines():
         Stderr(command)
         argv = command.split(" ")
-        code = run(argv)
+        code = Run(argv)
         assert code == 0
 
     with pytest.raises(pytest.fail.Exception):
@@ -214,11 +214,11 @@ def test_CheckUrl():
 
     m.setattr(urllib.request, "urlopen", f2)
     with pytest.raises(SystemExit):
-        run([])
+        Run([])
 
     m.setattr(urllib.request, "urlopen", f3)
     with pytest.raises(SystemExit):
-        run([])
+        Run([])
 
     m.undo()
 
@@ -233,6 +233,6 @@ def test_GetAnnotationsUrl_ValueError():
     m.setattr(cli, "Dummy", f)
 
     with pytest.raises(ValueError):
-        run()
+        Run()
 
     m.undo()

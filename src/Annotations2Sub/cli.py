@@ -41,7 +41,7 @@ class NoMediaStreamsFoundError(Exception):
     """自定义异常，表示未找到媒体流"""
 
 
-def run(argv=None):
+def Run(argv=None):
     """跑起来🐎🐎🐎"""
 
     def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:

@@ -4,7 +4,7 @@
 import difflib
 import os
 
-from Annotations2Sub.cli import run
+from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import RedText, Stderr
 
 base_path = os.path.dirname(__file__)
@@ -60,29 +60,29 @@ def test_not_equal():
 
 def test_Baseline1():
     target = baseline1_file + ".ass"
-    run([baseline1_file])
+    Run([baseline1_file])
     assert equal(baseline1_ssa, target)
-    run([baseline1_file, "-l"])
+    Run([baseline1_file, "-l"])
     assert equal(baseline1_libass, target)
-    run([baseline1_file, "-x", "1920", "-y", "1080"])
+    Run([baseline1_file, "-x", "1920", "-y", "1080"])
     assert equal(baseline1_transform, target)
 
 
 def test_Baseline2():
     target = baseline2_file + ".ass"
-    run([baseline2_file])
+    Run([baseline2_file])
     assert equal(baseline2_ssa, target)
-    run([baseline2_file, "-l"])
+    Run([baseline2_file, "-l"])
     assert equal(baseline2_libass, target)
-    run([baseline2_file, "-x", "1920", "-y", "1080"])
+    Run([baseline2_file, "-x", "1920", "-y", "1080"])
     assert equal(baseline2_transform, target)
 
 
 def test_Baseline3():
     target = baseline3_file + ".ass"
-    run([baseline3_file])
+    Run([baseline3_file])
     assert equal(baseline3_ssa, target)
-    run([baseline3_file, "-l"])
+    Run([baseline3_file, "-l"])
     assert equal(baseline3_libass, target)
-    run([baseline3_file, "-x", "1920", "-y", "1080"])
+    Run([baseline3_file, "-x", "1920", "-y", "1080"])
     assert equal(baseline3_transform, target)

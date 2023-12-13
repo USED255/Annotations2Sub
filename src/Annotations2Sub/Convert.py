@@ -256,17 +256,24 @@ def Convert(
         # 但是这其实还是依赖于字幕滤镜的怪癖
         transform_coefficient_x = resolutionX / 100
         transform_coefficient_y = resolutionY / 100
+
         # 浮点数太长了, 为了美观, 用 round 截断成三位, 字幕滤镜本身是支持小数的
-        x = round(each.x * transform_coefficient_x, 3)
-        y = round(each.y * transform_coefficient_y, 3)
-        textSize = round(each.textSize * transform_coefficient_y, 3)
+        def TransformX(x: float) -> float:
+            return round(x * transform_coefficient_x, 3)
+
+        def TransformY(y: float) -> float:
+            return round(y * transform_coefficient_y, 3)
+
+        x = TransformX(each.x)
+        y = TransformY(each.y)
+        textSize = TransformY(each.textSize)
         if each.style == "title":
             # Windows 酱赛高
             textSize = round(textSize * 100 / 480, 3)
-        width = round(each.width * transform_coefficient_x, 3)
-        height = round(each.height * transform_coefficient_y, 3)
-        sx = round(each.sx * transform_coefficient_x, 3)
-        sy = round(each.sy * transform_coefficient_y, 3)
+        width = TransformX(each.width)
+        height = TransformY(each.height)
+        sx = TransformX(each.sx)
+        sy = TransformY(each.sy)
 
         if libass and resolutionX == 100 and resolutionY == 100:
             # 针对 libass 的 hack

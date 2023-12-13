@@ -19,7 +19,7 @@ class flags:
 Flags = flags()
 
 
-def internationalization():
+def Internationalization():
     """On n'habite pas un pays, on habite une langue. Une patrie, c'est cela et rien d'autre."""
     try:
         # 配合 __main__.py
@@ -79,4 +79,4 @@ def GetUrl(url: str) -> str:
         return r.read().decode("utf-8")
 
 
-_ = internationalization()
+_ = Internationalization()
