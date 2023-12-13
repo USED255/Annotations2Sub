@@ -397,7 +397,7 @@ def Run(argv=None):
         is_no_save = False
         if output_to_stdout:
             is_no_save = True
-            print(subtitle_string, file=sys.stdout)
+            sys.stdout.write(subtitle_string)
 
         if enable_no_overwrite_files:
             if os.path.exists(subtitle_file):
