@@ -413,23 +413,25 @@ def Run(argv=None):
                 f.write(subtitle_string)
             Stderr(_("保存于: {}").format(subtitle_file))
 
+        def function2():
+            Err(_("无法获取视频"))
+            Stderr(traceback.format_exc())
+            nonlocal exit_code
+            exit_code = 1
+
         video = audio = ""
         if enable_preview_video or enable_generate_video:
             if invidious_instances == "":
                 try:
                     video, audio = AutoGetMedia(video_id)
                 except NoMediaStreamsFoundError:
-                    Err(_("无法获取视频"))
-                    Stderr(traceback.format_exc())
-                    exit_code = 1
+                    function2()
                     continue
             else:
                 try:
                     video, audio = GetMedia(video_id, invidious_instances)
                 except (json.JSONDecodeError, URLError, ValueError):
-                    Err(_("无法获取视频"))
-                    Stderr(traceback.format_exc())
-                    exit_code = 1
+                    function2()
                     continue
 
         def function1():
