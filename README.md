@@ -12,9 +12,9 @@ Download and convert Youtube Annotation
 
 ---
 
-**因为字幕滤镜行为和怪癖的不断变动, 以及Web技术和字幕技术上的巨大差异, 本项目无法正确还原注释的行为**
+**因为字幕滤镜的行为和怪癖不断变动, 以及 Web 技术和字幕技术上的巨大差异, 本项目无法正确还原注释的行为**
 
-**Because of the constant changes in subtitle filter behavior and quirks, as well as the huge differences in web technology and subtitle technology, this project was unable to correctly restore the behavior of annotations.**
+**Because of the ever-changing behavior and quirks of subtitle filters, and the vast differences between web and subtitle technologies, this project was unable to correctly restore the behavior of annotations.**
 
 ```bash
 pip install Annotations2Sub
