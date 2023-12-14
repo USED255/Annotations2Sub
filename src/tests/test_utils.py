@@ -78,6 +78,11 @@ def test_GetUrl_ValueError():
         GetUrl("file://c:/windows/system32/drivers/config")
 
 
-def test_GetAnnotationsUrl_ValueError():
+def test_GetAnnotationsUrl():
+    assert (
+        GetAnnotationsUrl("-8kKeUuytqA")
+        == "https://archive.org/download/youtubeannotations_64/-8.tar/-8k/-8kKeUuytqA.xml"
+    )
+
     with pytest.raises(ValueError):
         GetAnnotationsUrl("")
