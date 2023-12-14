@@ -197,42 +197,39 @@ def test_cli_network_success():
     m.undo()
 
 
-def test_CheckUrl():
-    def f1(x):
-        for i in x:
-            if i.__name__ == "CheckUrl":
-                i()
-
-    def f2(*args, **kwargs):
-        return
-
-    def f3(*args, **kwargs):
-        raise URLError("")
-
-    m = pytest.MonkeyPatch()
-    m.setattr(cli, "Dummy", f1)
-
-    m.setattr(urllib.request, "urlopen", f2)
-    with pytest.raises(SystemExit):
-        Run([])
-
-    m.setattr(urllib.request, "urlopen", f3)
-    with pytest.raises(SystemExit):
-        Run([])
-
-    m.undo()
-
-
-def test_GetAnnotationsUrl_ValueError():
+def test_CheckNetwork():
     def f(x):
         for i in x:
-            if i.__name__ == "GetAnnotationsUrl":
-                i("")
+            if i.__name__ == "CheckNetwork":
+                i()
+
+    def mock(url: str):
+        if (
+            url
+            == "https://archive.org/download/youtubeannotations_53/12.tar/123/12345678911.xml"
+        ):
+            return ""
+        pytest.fail()
+
+    def mock1(url: str, **kwargs):
+        if url == "https://google.com/":
+            return
+
+    def mock2(url: str, **kwargs):
+        if url == "https://google.com/":
+            raise URLError("")
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "Dummy", f)
+    m.setattr(cli, "GetUrl", mock)
 
-    with pytest.raises(ValueError):
-        Run()
+    m.setattr(urllib.request, "urlopen", mock1)
+    Run("-d 12345678911".split(" "))
+
+    m.setattr(urllib.request, "urlopen", mock2)
+    Run("-d 12345678911".split(" "))
+
+    with pytest.raises(pytest.fail.Exception):
+        mock("")
 
     m.undo()

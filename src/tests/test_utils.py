@@ -9,6 +9,7 @@ import urllib.request
 import pytest
 
 from Annotations2Sub.utils import (
+    GetAnnotationsUrl,
     GetUrl,
     Internationalization,
     MakeSureStr,
@@ -75,3 +76,8 @@ def test_GetUrl():
 def test_GetUrl_ValueError():
     with pytest.raises(ValueError):
         GetUrl("file://c:/windows/system32/drivers/config")
+
+
+def test_GetAnnotationsUrl_ValueError():
+    with pytest.raises(ValueError):
+        GetAnnotationsUrl("")

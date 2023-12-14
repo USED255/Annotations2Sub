@@ -148,9 +148,7 @@ def Parse(tree: Element) -> List[Annotation]:
         # 致谢: https://github.com/nirbheek/youtube-ass
         #    & https://github.com/isaackd/annotationlib
 
-        annotation = Annotation()
-
-        annotation_id = MakeSureStr(each.get("id"))
+        _id = MakeSureStr(each.get("id"))
 
         # 依照
         # https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L129
@@ -161,13 +159,13 @@ def Parse(tree: Element) -> List[Annotation]:
         # 我相信字幕滤镜不会闲的蛋疼实现暂停功能
         # 而且 annotationlib 也不处理 pause
         # annotationlib 也不处理空的 type
-        _annotation_type = each.get("type")
-        if _annotation_type is None:
+        __type = each.get("type")
+        if __type is None:
             return None
-        annotation_type = MakeSureStr(_annotation_type)
-        del _annotation_type
-        if annotation_type not in ("text", "highlight", "branding"):
-            Stderr(_("不支持{}类型 ({})").format(annotation_type, annotation_id))
+        _type = MakeSureStr(__type)
+        del __type
+        if _type not in ("text", "highlight", "branding"):
+            Stderr(_("不支持{}类型 ({})").format(_type, _id))
             # 我不知道显式的 return None 有什么用
             # 但是 annotationlib 是这样做的
             # 我也学学
@@ -177,7 +175,7 @@ def Parse(tree: Element) -> List[Annotation]:
         # 根据经验, 没有 style 也就没有内容
         if style is None:
             if Flags.verbose:
-                Stderr(_("{} 没有 style, 跳过").format(annotation_id))
+                Stderr(_("{} 没有 style, 跳过").format(_id))
             return None
         style = MakeSureStr(style)
 
@@ -201,7 +199,7 @@ def Parse(tree: Element) -> List[Annotation]:
             # 之前(f20f9fe fixbugs)学的是 youtube-ass(https://github.com/nirbheek/youtube-ass)
             # 只是简单地把时间置零
             if Flags.verbose:
-                Stderr(_("{} 没有 movingRegion, 跳过").format(annotation_id))
+                Stderr(_("{} 没有 movingRegion, 跳过").format(_id))
             return None
 
         Segment = _Segment.findall("rectRegion")  # type: ignore
@@ -218,7 +216,7 @@ def Parse(tree: Element) -> List[Annotation]:
                 # 我选择相信别人的经验
                 # 我猜 highlightText 一直在屏幕上, 需要手动关闭
                 if Flags.verbose:
-                    Stderr(_("{} 没有时间, 跳过").format(annotation_id))
+                    Stderr(_("{} 没有时间, 跳过").format(_id))
                 return None
 
         _Start = _End = "0:00:00.00"
@@ -231,7 +229,7 @@ def Parse(tree: Element) -> List[Annotation]:
         if "never" in (t1, t2):
             # 跳过不显示的 Annotation
             if Flags.verbose:
-                Stderr(_("{} 不显示, 跳过").format(annotation_id))
+                Stderr(_("{} 不显示, 跳过").format(_id))
             return None
 
         _Start = min(t1, t2)
@@ -246,8 +244,10 @@ def Parse(tree: Element) -> List[Annotation]:
         x = float(MakeSureStr(Segment[0].get("x")))
         y = float(MakeSureStr(Segment[0].get("y")))
 
-        annotation.id = annotation_id
-        annotation.type = annotation_type
+        annotation = Annotation()
+
+        annotation.id = _id
+        annotation.type = _type
         annotation.style = style
         annotation.text = text
         annotation.timeStart = Start

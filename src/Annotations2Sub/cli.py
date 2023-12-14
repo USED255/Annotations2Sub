@@ -24,6 +24,7 @@ from Annotations2Sub.Sub import Sub
 from Annotations2Sub.utils import (
     Err,
     Flags,
+    GetAnnotationsUrl,
     GetUrl,
     MakeSureStr,
     Stderr,
@@ -37,10 +38,6 @@ def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
-class NoMediaStreamsFoundError(Exception):
-    """自定义异常，表示未找到媒体流"""
-
-
 def Run(argv=None):
     """跑起来🐎🐎🐎"""
 
@@ -50,31 +47,6 @@ def Run(argv=None):
         except URLError:
             return False
         return True
-
-    def GetAnnotationsUrl(videoId: str) -> str:
-        # 移植自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
-        # 向 https://archive.org/details/youtubeannotations 致敬
-        # 如果你对你的数据在意, 就不要把它们托付给他人
-        # Rain Shimotsuki 不仅是个打歌词的, 他更是一位创作者
-        # 自己作品消失, 我相信没人愿意看到
-        """返回注释在互联网档案馆的网址"""
-        ARCHIVE_URL = "https://archive.org"
-        CHARS_SAFE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
-
-        if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
-            raise ValueError(_("无效的 videoId"))
-
-        index = CHARS_SAFE.index(videoId[0]).__str__().rjust(2, "0")
-
-        # IA doesn't handle leading hyphens,
-        # so we use https://archive.org/details/youtubeannotations_64
-        if index == "62":
-            index = "64"
-            videoId.replace("^-", "A")
-
-        file = f"{videoId[0:3]}/{videoId}.xml"
-
-        return f"{ARCHIVE_URL}/download/youtubeannotations_{index}/{videoId[0:2]}.tar/{file}"
 
     def GetMedia(videoId: str, instanceDomain: str) -> tuple:
         url = f"https://{instanceDomain}/api/v1/videos/{videoId}"
@@ -96,26 +68,6 @@ def Run(argv=None):
         if not audio.startswith("http"):
             raise ValueError
         return video, audio
-
-    def AutoGetMedia(videoId: str) -> tuple:
-        """返回视频流和音频流网址"""
-        instances = []
-        instances = json.loads(GetUrl("https://api.invidious.io/instances.json"))
-        for instance in instances:
-            try:
-                if not instance[1]["api"]:  # type: ignore
-                    continue
-            except IndexError:
-                pass
-            domain = instance[0]
-            try:
-                return GetMedia(videoId, domain)
-            except (json.JSONDecodeError, URLError, IncompleteRead, ValueError):
-                continue
-
-        raise NoMediaStreamsFoundError
-
-    Dummy([CheckUrl, GetAnnotationsUrl, AutoGetMedia])  # type: ignore
 
     exit_code = 0
     parser = argparse.ArgumentParser(description=_("下载和转换 Youtube 注释"))
@@ -292,6 +244,7 @@ def Run(argv=None):
             if CheckUrl() is False:
                 Warn(_("您好像无法访问 Google 🤔"))
 
+        Dummy([CheckNetwork])  # type: ignore
         _thread.start_new_thread(CheckNetwork, ())
 
     for Task in queue:
@@ -422,9 +375,22 @@ def Run(argv=None):
         video = audio = ""
         if enable_preview_video or enable_generate_video:
             if invidious_instances == "":
-                try:
-                    video, audio = AutoGetMedia(video_id)
-                except NoMediaStreamsFoundError:
+                instances = []
+                instances = json.loads(
+                    GetUrl("https://api.invidious.io/instances.json")
+                )
+                for instance in instances:
+                    try:
+                        if not instance[1]["api"]:  # type: ignore
+                            continue
+                    except IndexError:
+                        pass
+                    domain = instance[0]
+                    try:
+                        video, audio = GetMedia(video_id, domain)
+                    except (json.JSONDecodeError, URLError, IncompleteRead, ValueError):
+                        continue
+                if video == "" or audio == "":
                     function2()
                     continue
             else:
