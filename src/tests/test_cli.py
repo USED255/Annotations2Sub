@@ -212,11 +212,11 @@ def test_CheckNetwork():
         pytest.fail()
 
     def mock1(url: str, **kwargs):
-        if url == "https://google.com/":
+        if url == "https://google.com":
             return
 
     def mock2(url: str, **kwargs):
-        if url == "https://google.com/":
+        if url == "https://google.com":
             raise URLError("")
 
     m = pytest.MonkeyPatch()

@@ -41,13 +41,6 @@ def Dummy(*args, **kwargs):
 def Run(argv=None):
     """跑起来🐎🐎🐎"""
 
-    def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
-        try:
-            urllib.request.urlopen(url=url, timeout=timeout)
-        except URLError:
-            return False
-        return True
-
     def GetMedia(videoId: str, instanceDomain: str) -> tuple:
         url = f"https://{instanceDomain}/api/v1/videos/{videoId}"
         Stderr(_("获取 {}").format(url))
@@ -241,7 +234,11 @@ def Run(argv=None):
     if enable_download_for_archive:
         # 省的网不好不知道
         def CheckNetwork():
-            if CheckUrl() is False:
+            try:
+                urllib.request.urlopen(url="https://google.com", timeout=3)
+                # with urllib.request.urlopen(url="http://google.com", timeout=3) as r:
+                #     r.read().decode("utf-8")
+            except URLError:
                 Warn(_("您好像无法访问 Google 🤔"))
 
         Dummy([CheckNetwork])  # type: ignore
