@@ -33,8 +33,6 @@ positional arguments:
 
 optional arguments:
   -h, --help            Show this help message and exit
-  -l, --embrace-libass  Embrace libass's quirks and features, and not specifying
-                        this option will adapt to xy-vsfilter
   -x 100, --transform-resolution-x 100
                         Transform resolution X
   -y 100, --transform-resolution-y 100

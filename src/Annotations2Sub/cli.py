@@ -207,7 +207,6 @@ def Run(argv=None):
 
     if enable_preview_video or enable_generate_video:
         enable_download_for_archive = True
-        enable_embrace_libass = True
         if invidious_instances == None:
             invidious_instances = ""
 

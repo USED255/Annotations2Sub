@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2023-12-08 12:43+0800\n"
-"PO-Revision-Date: 2023-12-08 12:46+0800\n"
+"POT-Creation-Date: 2023-12-25 23:09+0800\n"
+"PO-Revision-Date: 2023-12-25 23:09+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -22,23 +22,23 @@ msgstr "\"alpha\" 不应为 None"
 msgid "\"color\" 不应为 None"
 msgstr "\"color\" 不应为 None"
 
-#: Annotation.py:170
+#: Annotation.py:168
 msgid "不支持{}类型 ({})"
 msgstr "不支持{}类型 ({})"
 
-#: Annotation.py:180
+#: Annotation.py:178
 msgid "{} 没有 style, 跳过"
 msgstr "{} 没有 style, 跳过"
 
-#: Annotation.py:204
+#: Annotation.py:202
 msgid "{} 没有 movingRegion, 跳过"
 msgstr "{} 没有 movingRegion, 跳过"
 
-#: Annotation.py:221
+#: Annotation.py:219
 msgid "{} 没有时间, 跳过"
 msgstr "{} 没有时间, 跳过"
 
-#: Annotation.py:234
+#: Annotation.py:232
 msgid "{} 不显示, 跳过"
 msgstr "{} 不显示, 跳过"
 
@@ -58,7 +58,7 @@ msgstr "\"blue\" 必须在 0-255 之间"
 msgid "\"alpha\" 必须在 0-255 之间"
 msgstr "\"alpha\" 必须在 0-255 之间"
 
-#: Convert.py:316
+#: Convert.py:304
 msgid "不支持 {} 样式 ({})"
 msgstr "不支持 {} 样式 ({})"
 
@@ -66,194 +66,188 @@ msgstr "不支持 {} 样式 ({})"
 msgid "\"command\" 必须是 \"DrawCommand\""
 msgstr "\"command\" 必须是 \"DrawCommand\""
 
-#: cli.py:62
-msgid "无效的 videoId"
-msgstr "无效的 videoId"
-
-#: cli.py:88 cli.py:115
+#: cli.py:46
 msgid "获取 {}"
 msgstr "获取 {}"
 
-#: cli.py:137
+#: cli.py:66
 msgid "下载和转换 Youtube 注释"
 msgstr "下载和转换 Youtube 注释"
 
-#: cli.py:142
+#: cli.py:71
 msgid "文件 或 videoId"
 msgstr "文件 或 videoId"
 
-#: cli.py:143
+#: cli.py:72
 msgid "多个需要转换的文件的文件路径或视频ID"
 msgstr "多个需要转换的文件的文件路径或视频ID"
 
-#: cli.py:149
-msgid "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
-msgstr "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
-
-#: cli.py:159
+#: cli.py:81
 msgid "变换分辨率X"
 msgstr "变换分辨率X"
 
-#: cli.py:167
+#: cli.py:89
 msgid "变换分辨率Y"
 msgstr "变换分辨率Y"
 
-#: cli.py:174 cli.py:176
+#: cli.py:96 cli.py:98
 msgid "Microsoft YaHei"
 msgstr "Microsoft YaHei"
 
-#: cli.py:177
+#: cli.py:99
 msgid "指定字体"
 msgstr "指定字体"
 
-#: cli.py:183
+#: cli.py:105
 msgid "尝试从 Internet Archive 下载注释文件"
 msgstr "尝试从 Internet Archive 下载注释文件"
 
-#: cli.py:189
+#: cli.py:111
 msgid "仅下载注释"
 msgstr "仅下载注释"
 
-#: cli.py:196
+#: cli.py:118
 msgid "预览视频, 需要 mpv(https://mpv.io/)"
 msgstr "预览视频, 需要 mpv(https://mpv.io/)"
 
-#: cli.py:203
+#: cli.py:125
 msgid "生成视频, 需要 FFmpeg(https://ffmpeg.org/)"
 msgstr "生成视频, 需要 FFmpeg(https://ffmpeg.org/)"
 
-#: cli.py:210
+#: cli.py:132
 msgid "指定 invidious 实例(https://redirect.invidious.io/)"
 msgstr "指定 invidious 实例(https://redirect.invidious.io/)"
 
-#: cli.py:214
+#: cli.py:136
 msgid "不覆盖文件"
 msgstr "不覆盖文件"
 
-#: cli.py:219
+#: cli.py:141
 msgid "不保留中间文件"
 msgstr "不保留中间文件"
 
-#: cli.py:226
+#: cli.py:148
 msgid "目录"
 msgstr "目录"
 
-#: cli.py:227
+#: cli.py:149
 msgid "指定转换后文件的输出目录"
 msgstr "指定转换后文件的输出目录"
 
-#: cli.py:230
+#: cli.py:152
 msgid "文件"
 msgstr "文件"
 
-#: cli.py:230
+#: cli.py:152
 msgid "保存到此文件, 如果为 \"-\" 则输出到标准输出"
 msgstr "保存到此文件, 如果为 \"-\" 则输出到标准输出"
 
-#: cli.py:236
+#: cli.py:158
 msgid "显示版本号"
 msgstr "显示版本号"
 
-#: cli.py:237
+#: cli.py:159
 #, python-brace-format
 msgid "Annotations2Sub v{version}"
 msgstr "Annotations2Sub v{version}"
 
-#: cli.py:245
+#: cli.py:167
 msgid "显示更多消息"
 msgstr "显示更多消息"
 
-#: cli.py:274
+#: cli.py:195
 msgid "--output 不能与 --output--directory 选项同时使用"
 msgstr "--output 不能与 --output--directory 选项同时使用"
 
-#: cli.py:277
+#: cli.py:198
 msgid "--output 只能处理一个文件"
 msgstr "--output 只能处理一个文件"
 
-#: cli.py:284
+#: cli.py:205
 msgid "转换后文件输出目录应该指定一个文件夹"
 msgstr "转换后文件输出目录应该指定一个文件夹"
 
-#: cli.py:298
-msgid ""
-"如果您的视频不是 16:9, 请使用 --transform-resolution-x --"
-"transform-resolution-y, 以确保效果"
-msgstr ""
-"如果您的视频不是 16:9, 请使用 --transform-resolution-x --"
-"transform-resolution-y, 以确保效果"
-
-#: cli.py:309
+#: cli.py:224
 msgid "您好像无法访问 Google 🤔"
 msgstr "您好像无法访问 Google 🤔"
 
-#: cli.py:321
+#: cli.py:238
 msgid "{} 不是一个有效的视频 ID"
 msgstr "{} 不是一个有效的视频 ID"
 
-#: cli.py:334
+#: cli.py:252
 msgid "文件已存在, 跳过下载 ({})"
 msgstr "文件已存在, 跳过下载 ({})"
 
-#: cli.py:338
+#: cli.py:257
 msgid "下载 {}"
 msgstr "下载 {}"
 
-#: cli.py:350
+#: cli.py:269
 msgid "{} 不是一个文件"
 msgstr "{} 不是一个文件"
 
-#: cli.py:358
+#: cli.py:285
 msgid "{} 可能没有 Annotation"
 msgstr "{} 可能没有 Annotation"
 
-#: cli.py:365
+#: cli.py:292
 msgid "{} 不是一个有效的 XML 文件"
 msgstr "{} 不是一个有效的 XML 文件"
 
-#: cli.py:372
+#: cli.py:299
 msgid "{} 不是 Annotation 文件"
 msgstr "{} 不是 Annotation 文件"
 
-#: cli.py:377
+#: cli.py:304
 msgid "{} 没有 Annotation"
 msgstr "{} 没有 Annotation"
 
-#: cli.py:399
+#: cli.py:313
 msgid "{} 没有注释被转换"
 msgstr "{} 没有注释被转换"
 
-#: cli.py:405
+#: cli.py:319
 msgid "此脚本使用 Annotations2Sub 生成"
 msgstr "此脚本使用 Annotations2Sub 生成"
 
-#: cli.py:418
+#: cli.py:335
 msgid "文件已存在, 跳过输出 ({})"
 msgstr "文件已存在, 跳过输出 ({})"
 
-#: cli.py:422 cli.py:437
+#: cli.py:339 cli.py:394
 msgid "删除 {}"
 msgstr "删除 {}"
 
-#: cli.py:426
+#: cli.py:345
 msgid "保存于: {}"
 msgstr "保存于: {}"
 
-#: cli.py:445 cli.py:453
+#: cli.py:348
 msgid "无法获取视频"
 msgstr "无法获取视频"
 
-#: utils.py:59
+#: utils.py:63
 msgid "错误: "
 msgstr "错误: "
 
-#: utils.py:63
+#: utils.py:67
 msgid "警告: "
 msgstr "警告: "
 
-#: utils.py:77
+#: utils.py:81
 msgid "\"url\" 必须是 http(s)"
 msgstr "\"url\" 必须是 http(s)"
+
+#: utils.py:97
+msgid "无效的 videoId"
+msgstr "无效的 videoId"
+
+#~ msgid "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
+#~ msgstr "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
+
+#~ msgid "如果您的视频不是 16:9, 请使用 --transform-resolution-x --transform-resolution-y, 以确保效果"
+#~ msgstr "如果您的视频不是 16:9, 请使用 --transform-resolution-x --transform-resolution-y, 以确保效果"
 
 #~ msgid "输出至标准输出"
 #~ msgstr "输出至标准输出"
@@ -261,46 +255,26 @@ msgstr "\"url\" 必须是 http(s)"
 #~ msgid "保存到此文件"
 #~ msgstr "保存到此文件"
 
-#~ msgid ""
-#~ "--output-to-stdout 不能与 --output-directory 选项同时使用"
-#~ msgstr ""
-#~ "--output-to-stdout 不能与 --output-directory 选项同时使用"
+#~ msgid "--output-to-stdout 不能与 --output-directory 选项同时使用"
+#~ msgstr "--output-to-stdout 不能与 --output-directory 选项同时使用"
 
 #~ msgid "--output-to-stdout 不能与 --output 选项同时使用"
 #~ msgstr "--output-to-stdout 不能与 --output 选项同时使用"
 
-#~ msgid ""
-#~ "--output-to-stdout 不能与 --preview-video 或 --generate-video "
-#~ "选项同时使用"
-#~ msgstr ""
-#~ "--output-to-stdout 不能与 --preview-video 或 --generate-video "
-#~ "选项同时使用"
+#~ msgid "--output-to-stdout 不能与 --preview-video 或 --generate-video 选项同时使用"
+#~ msgstr "--output-to-stdout 不能与 --preview-video 或 --generate-video 选项同时使用"
 
-#~ msgid ""
-#~ "--output-to-stdout 不能与 --no-overwrite-files 选项同时使用"
-#~ msgstr ""
-#~ "--output-to-stdout 不能与 --no-overwrite-files 选项同时使用"
+#~ msgid "--output-to-stdout 不能与 --no-overwrite-files 选项同时使用"
+#~ msgstr "--output-to-stdout 不能与 --no-overwrite-files 选项同时使用"
 
-#~ msgid ""
-#~ "--output-to-stdout 不能与 --download-annotation-only 选项同时"
-#~ "使用"
-#~ msgstr ""
-#~ "--output-to-stdout 不能与 --download-annotation-only 选项同时"
-#~ "使用"
+#~ msgid "--output-to-stdout 不能与 --download-annotation-only 选项同时使用"
+#~ msgstr "--output-to-stdout 不能与 --download-annotation-only 选项同时使用"
 
-#~ msgid ""
-#~ "--no-keep-intermediate-files 不能与 --download-annotation-"
-#~ "only 选项同时使用"
-#~ msgstr ""
-#~ "--no-keep-intermediate-files 不能与 --download-annotation-"
-#~ "only 选项同时使用"
+#~ msgid "--no-keep-intermediate-files 不能与 --download-annotation-only 选项同时使用"
+#~ msgstr "--no-keep-intermediate-files 不能与 --download-annotation-only 选项同时使用"
 
-#~ msgid ""
-#~ "--no-keep-intermediate-files 必须和 --download-for-archive 或 "
-#~ "--preview-video 或 --generate-video 选项使用"
-#~ msgstr ""
-#~ "--no-keep-intermediate-files 必须和 --download-for-archive 或 "
-#~ "--preview-video 或 --generate-video 选项使用"
+#~ msgid "--no-keep-intermediate-files 必须和 --download-for-archive 或 --preview-video 或 --generate-video 选项使用"
+#~ msgstr "--no-keep-intermediate-files 必须和 --download-for-archive 或 --preview-video 或 --generate-video 选项使用"
 
 #~ msgid "请指定一个 invidious 实例"
 #~ msgstr "请指定一个 invidious 实例"
@@ -311,32 +285,20 @@ msgstr "\"url\" 必须是 http(s)"
 #~ msgid "跳过无效文件"
 #~ msgstr "跳过无效文件"
 
-#~ msgid ""
-#~ "多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从"
-#~ "Internet Archive 下载注释文件 Youtube 视频的 videoId"
-#~ msgstr ""
-#~ "多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从"
-#~ "Internet Archive 下载注释文件 Youtube 视频的 videoId"
+#~ msgid "多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从Internet Archive 下载注释文件 Youtube 视频的 videoId"
+#~ msgstr "多个需要转换的文件的文件路径, 或者是多个需要预览, 生成, 从Internet Archive 下载注释文件 Youtube 视频的 videoId"
 
 #~ msgid "文件夹"
 #~ msgstr "文件夹"
 
-#~ msgid ""
-#~ "指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被"
-#~ "转换文件同一目录"
-#~ msgstr ""
-#~ "指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被"
-#~ "转换文件同一目录"
+#~ msgid "指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目录"
+#~ msgstr "指定转换后文件的输出路径, 不指定此选项转换后的文件会输出至与被转换文件同一目录"
 
 #~ msgid "启用不稳定功能, 会出现一些问题"
 #~ msgstr "启用不稳定功能, 会出现一些问题"
 
-#~ msgid ""
-#~ "一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced "
-#~ "SubStation Alpha)文件的脚本"
-#~ msgstr ""
-#~ "一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced "
-#~ "SubStation Alpha)文件的脚本"
+#~ msgid "一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced SubStation Alpha)文件的脚本"
+#~ msgstr "一个可以把 Youtube Annotation 转换成 ASS 字幕(Advanced SubStation Alpha)文件的脚本"
 
 #~ msgid "指定 invidious 实例(域名)"
 #~ msgstr "指定 invidious 实例(域名)"
