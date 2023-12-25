@@ -71,14 +71,7 @@ def Run(argv=None):
         metavar=_("文件 或 videoId"),
         help=_("多个需要转换的文件的文件路径或视频ID"),
     )
-    parser.add_argument(
-        "-l",
-        "--embrace-libass",
-        action="store_true",
-        help=_("拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"),
-    )
-
-    # 虽然把分辨率置为 100, 100 字幕滤镜也能正常定位, 但是正确的分辨率会让字幕滤更高兴
+    # 此选项为了兼容小于 0.17 版本的 libass
     parser.add_argument(
         "-x",
         "--transform-resolution-x",
@@ -178,7 +171,6 @@ def Run(argv=None):
 
     queue = args.queue
 
-    enable_embrace_libass = args.embrace_libass
     transform_resolution_x = args.transform_resolution_x
     transform_resolution_y = args.transform_resolution_y
     font = args.font
@@ -218,15 +210,6 @@ def Run(argv=None):
         enable_embrace_libass = True
         if invidious_instances == None:
             invidious_instances = ""
-
-    if enable_embrace_libass and (
-        transform_resolution_x == 100 or transform_resolution_y == 100
-    ):
-        Warn(
-            _(
-                "如果您的视频不是 16:9, 请使用 --transform-resolution-x --transform-resolution-y, 以确保效果"
-            )
-        )
 
     if enable_download_annotations_only:
         enable_download_for_archive = True
@@ -324,7 +307,6 @@ def Run(argv=None):
         annotations = Parse(tree)  # type: ignore
         events = Convert(
             annotations,
-            enable_embrace_libass,
             transform_resolution_x,
             transform_resolution_y,
         )

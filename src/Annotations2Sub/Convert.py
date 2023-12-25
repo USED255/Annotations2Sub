@@ -18,7 +18,6 @@ from Annotations2Sub.utils import Stderr, _
 
 def Convert(
     annotations: List[Annotation],
-    libass: bool = False,
     resolutionX: int = 100,
     resolutionY: int = 100,
 ) -> List[Event]:
@@ -241,12 +240,11 @@ def Convert(
         text = each.text
         # SSA 用 "\N" 换行
         text = text.replace("\n", r"\N")
-        if libass:
-            # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
-            # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
-            # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
-            text = text.replace("{", r"\{")
-            text = text.replace("}", r"\}")
+        # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
+        # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
+        # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
+        text = text.replace("{", r"\{")
+        text = text.replace("}", r"\}")
         event.Text = text
         del text
 
@@ -274,17 +272,6 @@ def Convert(
         height = TransformY(each.height)
         sx = TransformX(each.sx)
         sy = TransformY(each.sy)
-
-        if libass and resolutionX == 100 and resolutionY == 100:
-            # 针对 libass 的 hack
-            # 我也不知道 libass 咋回事
-            # 1.776 是试出来的
-            # 而且仅适用于 16:9 分辨率
-            # 不要指望我在 libass 开 issue
-            # 毕竟不知道还有多少脚本依赖于这个怪癖
-            width = round(width * 1.776, 3)
-            # sy 是中间变量, 不需要 round
-            sy = sy * 1.776
 
         # Layer 是"层", 他们说大的会覆盖小的
         # 但是没有这个也可以正常显示, 之前就没有, 现在也就是安心些

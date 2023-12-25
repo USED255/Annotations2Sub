@@ -23,10 +23,6 @@ baseline1_ssa = os.path.join(baseline_path, baseline1 + ".ass.test")
 baseline2_ssa = os.path.join(baseline_path, baseline2 + ".ass.test")
 baseline3_ssa = os.path.join(baseline_path, baseline3 + ".ass.test")
 
-baseline1_libass = os.path.join(baseline_path, baseline1 + ".libass.ass.test")
-baseline2_libass = os.path.join(baseline_path, baseline2 + ".libass.ass.test")
-baseline3_libass = os.path.join(baseline_path, baseline3 + ".libass.ass.test")
-
 baseline1_transform = os.path.join(baseline_path, baseline1 + ".transform.ass.test")
 baseline2_transform = os.path.join(baseline_path, baseline2 + ".transform.ass.test")
 baseline3_transform = os.path.join(baseline_path, baseline3 + ".transform.ass.test")
@@ -62,8 +58,6 @@ def test_Baseline1():
     target = baseline1_file + ".ass"
     Run([baseline1_file])
     assert equal(baseline1_ssa, target)
-    Run([baseline1_file, "-l"])
-    assert equal(baseline1_libass, target)
     Run([baseline1_file, "-x", "1920", "-y", "1080"])
     assert equal(baseline1_transform, target)
 
@@ -72,8 +66,6 @@ def test_Baseline2():
     target = baseline2_file + ".ass"
     Run([baseline2_file])
     assert equal(baseline2_ssa, target)
-    Run([baseline2_file, "-l"])
-    assert equal(baseline2_libass, target)
     Run([baseline2_file, "-x", "1920", "-y", "1080"])
     assert equal(baseline2_transform, target)
 
@@ -82,7 +74,6 @@ def test_Baseline3():
     target = baseline3_file + ".ass"
     Run([baseline3_file])
     assert equal(baseline3_ssa, target)
-    Run([baseline3_file, "-l"])
-    assert equal(baseline3_libass, target)
+
     Run([baseline3_file, "-x", "1920", "-y", "1080"])
     assert equal(baseline3_transform, target)

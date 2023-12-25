@@ -16,7 +16,7 @@ def test_Annotations2Sub():
         string = f.read()
     tree = xml.etree.ElementTree.fromstring(string)
     annotations = Parse(tree)
-    events = Convert(annotations, True)
+    events = Convert(annotations)
     subtitle = Sub()
     subtitle.events.extend(events)
     subtitle.info["PlayResX"] = "100"
