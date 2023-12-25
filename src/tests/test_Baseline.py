@@ -42,6 +42,8 @@ def equal(file1: str, file2: str) -> bool:
                 continue
             diffList.append(i)
         for i in diffList:
+            Stderr(RedText(file1))
+            Stderr(RedText(file2))
             Stderr(RedText(i))
         return False
     return True
@@ -74,6 +76,5 @@ def test_Baseline3():
     target = baseline3_file + ".ass"
     Run([baseline3_file])
     assert equal(baseline3_ssa, target)
-
     Run([baseline3_file, "-x", "1920", "-y", "1080"])
     assert equal(baseline3_transform, target)
