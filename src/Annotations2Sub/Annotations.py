@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""Annotation 相关"""
+"""Annotations 相关"""
 
 import datetime
 from typing import Any, List, Optional, Union
@@ -32,10 +32,10 @@ class Annotation:
     # 这是 annotationlib "简易结构" 的一个模仿, 命名遵循了其风格
     # 将 Annotation 抽成简单的结构让事情变得简单起来
 
-    # 随着 Google 关闭 Annotation,
-    # Annotation 已成黑盒
+    # 随着 Google 关闭 Annotations,
+    # Annotations 已成黑盒
     # 你应当了解
-    # 本项目对 Annotation 的猜测并不准确
+    # 本项目对 Annotations 的猜测并不准确
     # 更何况我没有写过 CSS :-)
 
     def __init__(self):
@@ -57,10 +57,10 @@ class Annotation:
         ] = "popup"
         self.text: str = ""
         # 经过上次的时间字符串转换教训, 这次使用了 datetime
-        # 但是其实 Annotation 与 SSA 的时间字符串可以通用
+        # 但是其实 Annotations 与 SSA 的时间字符串可以通用
         self.timeStart: datetime.datetime = datetime.datetime.strptime("0", "%S")
         self.timeEnd: datetime.datetime = datetime.datetime.strptime("0", "%S")
-        # Annotation 的定位全部是 "百分比", 还可能是用 CSS 实现的, SSA 能正确显示真是谢天谢地
+        # Annotations 的定位全部是 "百分比", 还可能是用 CSS 实现的, SSA 能正确显示真是谢天谢地
         self.x: float = 0.0
         self.y: float = 0.0
         # width(w), height(h) 是文本框的宽高
@@ -70,12 +70,12 @@ class Annotation:
         self.sx: float = 0.0
         self.sy: float = 0.0
         # bgOpacity(bgAlpha) 是注释文本后面那个框的不透明度
-        # Annotation 用一个小数表示不透明度
+        # Annotations 用一个小数表示不透明度
         self.bgOpacity: Alpha = Alpha(alpha=204)
         # bgColor 是注释文本后面那个框的颜色
         self.bgColor: Color = Color(red=255, green=255, blue=255)
         # fgColor 就是注释文本的颜色
-        # 如果不是 Annotation, 我都不知道颜色值可以用十进制表达
+        # 如果不是 Annotations, 我都不知道颜色值可以用十进制表达
         # 类似于 bgOpacity, 开始我也不知道这玩耶是 BGR, 是视频出来效果不对才知道
         # 一个结构化的颜色显然比奇怪的颜色值要容易理解得多
         self.fgColor: Color = Color(red=0, green=0, blue=0)

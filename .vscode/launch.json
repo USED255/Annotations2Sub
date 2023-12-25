@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Annotations2Sub src/tests/testCase/annotation.xml.test",
+            "name": "Annotations2Sub src/tests/testCase/annotations.xml.test",
             "type": "python",
             "module": "Annotations2Sub",
             "request": "launch",
@@ -10,7 +10,7 @@
             "justMyCode": false,
             "cwd": "${workspaceFolder}",
             "args": [
-                "src/tests/testCase/annotation.xml.test"
+                "src/tests/testCase/annotations.xml.test"
             ]
         }
     ]

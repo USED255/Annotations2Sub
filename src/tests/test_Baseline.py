@@ -13,7 +13,7 @@ baseline_path = os.path.join(test_case_path, "Baseline")
 
 baseline1 = "29-q7YnyUmY"
 baseline2 = "e8kKeUuytqA"
-baseline3 = "annotation"
+baseline3 = "annotations"
 
 baseline1_file = os.path.join(baseline_path, baseline1 + ".xml.test")
 baseline2_file = os.path.join(baseline_path, baseline2 + ".xml.test")

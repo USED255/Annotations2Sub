@@ -18,7 +18,7 @@ from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
 from Annotations2Sub import version
-from Annotations2Sub.Annotation import Parse
+from Annotations2Sub.Annotations import Parse
 from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
 from Annotations2Sub.utils import (
@@ -282,7 +282,7 @@ def Run(argv=None):
         with open(annotations_file, "r", encoding="utf-8") as f:
             annotations_string = f.read()
         if annotations_string == "":
-            Warn(_("{} 可能没有 Annotation").format(video_id))
+            Warn(_("{} 可能没有 Annotations").format(video_id))
             exit_code = 1
             continue
 
@@ -296,7 +296,7 @@ def Run(argv=None):
             continue
 
         if tree.find("annotations") == None:
-            Err(_("{} 不是 Annotation 文件").format(annotations_file))
+            Err(_("{} 不是 Annotations 文件").format(annotations_file))
             exit_code = 1
             continue
 
@@ -311,7 +311,7 @@ def Run(argv=None):
         )
         if events == []:
             Warn(_("{} 没有注释被转换").format(annotations_file))
-        # Annotation 是无序的
+        # Annotations 是无序的
         # 按时间重新排列字幕事件, 是为了人类可读
         events.sort(key=lambda event: event.Start)
 

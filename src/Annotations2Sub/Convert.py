@@ -10,7 +10,7 @@ from typing import List
 # 依照在 Go 中的经验把一个脚本拆成若干个模块
 # 并上传到 PyPI
 # 当然单文件脚本还是有用的
-from Annotations2Sub.Annotation import Annotation
+from Annotations2Sub.Annotations import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, DrawCommand, Event
 from Annotations2Sub.utils import Stderr, _
@@ -54,8 +54,8 @@ def Convert(
             # 用 \an7 指定在左上角.
             # "\pos(<x>,<y>)"
             # "将字幕定位在坐标点 <x>,<y>。"
-            # SSA 和 Annotation 坐标系一致, y 向下(左手取向).
-            # 这里坐标 +1 是为了美观, 与 Annotation 行为不一致
+            # SSA 和 Annotations 坐标系一致, y 向下(左手取向).
+            # 这里坐标 +1 是为了美观, 与 Annotations 行为不一致
             tag += rf"\an7\pos({x + 1},{y + 1})"
             # "\fs<字体尺寸>"
             # "<字体尺寸> 是一个数字，指定了字体的点的尺寸。"
@@ -73,7 +73,7 @@ def Convert(
             # "<AA> 是一个十六进制的透明度数值，00 为全见，FF 为全透明。"
             # "<颜色序号> 含义同上，但这里不能省略。写法举例：\1a&H80&、\2a&H80、\3a80、\4a&H80&。"
             # "其中的 & 和 H 按规范应该是要有的，但是如果没有也能正常解析。"
-            # Annotation 文本好像没有透明度, 这个很符合直觉
+            # Annotations 文本好像没有透明度, 这个很符合直觉
             tag += r"\2a&HFF&\3a&HFF&\4a&HFF&"
             # 现在加个括号就成了
             tag = "{" + tag + "}"
@@ -249,7 +249,7 @@ def Convert(
         del text
 
         # 这里处理下数据供后面使用, 不需要处理都直接使用 each
-        # Annotation 的定位是"百分比"
+        # Annotations 的定位是"百分比"
         # 恰好直接把"分辨率"设置为 100 就可以实现
         # 但是这其实还是依赖于字幕滤镜的怪癖
         transform_coefficient_x = resolutionX / 100
@@ -307,7 +307,7 @@ def Convert(
 
     events = []
     for each in annotations:
-        # 一个 Annotations 可能会需要多个 Event 来表达.
+        # 一个 Annotation 可能会需要多个 Event 来表达.
         events.extend(ConvertAnnotation(each))
 
     return events
