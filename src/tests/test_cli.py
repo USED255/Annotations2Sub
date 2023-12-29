@@ -9,7 +9,7 @@ from urllib.error import URLError
 import pytest
 
 from Annotations2Sub import cli
-from Annotations2Sub.cli import run
+from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import Stderr
 
 base_path = os.path.dirname(__file__)
@@ -41,13 +41,13 @@ def test_cli_failed():
     for command in commands.splitlines():
         Stderr(command)
         argv = command.split(" ")
-        code = run(argv)
+        code = Run(argv)
         assert code == 1
 
 
 def test_cli_success():
     """预期成功的命令"""
-    commands = f"""{baseline1_file} {baseline2_file} -l -x 1920 -y 1080 -f Microsoft -V -O .
+    commands = f"""{baseline1_file} {baseline2_file} -x 1920 -y 1080 -f Microsoft -V -O .
 {baseline1_file} -o annotations.ass
 {baseline1_file} -o -
 {baseline1_file} -n
@@ -56,7 +56,7 @@ def test_cli_success():
     for command in commands.splitlines():
         Stderr(command)
         argv = command.split(" ")
-        code = run(argv)
+        code = Run(argv)
         assert code == 0
 
 
@@ -110,7 +110,7 @@ def test_cli_network_failed():
     for command in commands.splitlines():
         Stderr(command)
         argv = command.split(" ")
-        code = run(argv)
+        code = Run(argv)
         assert code == 1
 
     with pytest.raises(pytest.fail.Exception):
@@ -188,7 +188,7 @@ def test_cli_network_success():
     for command in commands.splitlines():
         Stderr(command)
         argv = command.split(" ")
-        code = run(argv)
+        code = Run(argv)
         assert code == 0
 
     with pytest.raises(pytest.fail.Exception):
@@ -197,42 +197,39 @@ def test_cli_network_success():
     m.undo()
 
 
-def test_CheckUrl():
-    def f1(x):
-        for i in x:
-            if i.__name__ == "CheckUrl":
-                i()
-
-    def f2(*args, **kwargs):
-        return
-
-    def f3(*args, **kwargs):
-        raise URLError("")
-
-    m = pytest.MonkeyPatch()
-    m.setattr(cli, "Dummy", f1)
-
-    m.setattr(urllib.request, "urlopen", f2)
-    with pytest.raises(SystemExit):
-        run([])
-
-    m.setattr(urllib.request, "urlopen", f3)
-    with pytest.raises(SystemExit):
-        run([])
-
-    m.undo()
-
-
-def test_GetAnnotationsUrl_ValueError():
+def test_CheckNetwork():
     def f(x):
         for i in x:
-            if i.__name__ == "GetAnnotationsUrl":
-                i("")
+            if i.__name__ == "CheckNetwork":
+                i()
+
+    def mock(url: str):
+        if (
+            url
+            == "https://archive.org/download/youtubeannotations_53/12.tar/123/12345678911.xml"
+        ):
+            return ""
+        pytest.fail()
+
+    def mock1(url: str, **kwargs):
+        if url == "https://google.com":
+            return
+
+    def mock2(url: str, **kwargs):
+        if url == "https://google.com":
+            raise URLError("")
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "Dummy", f)
+    m.setattr(cli, "GetUrl", mock)
 
-    with pytest.raises(ValueError):
-        run()
+    m.setattr(urllib.request, "urlopen", mock1)
+    Run("-d 12345678911".split(" "))
+
+    m.setattr(urllib.request, "urlopen", mock2)
+    Run("-d 12345678911".split(" "))
+
+    with pytest.raises(pytest.fail.Exception):
+        mock("")
 
     m.undo()

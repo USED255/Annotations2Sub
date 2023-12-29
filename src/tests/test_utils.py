@@ -9,11 +9,12 @@ import urllib.request
 import pytest
 
 from Annotations2Sub.utils import (
+    GetAnnotationsUrl,
     GetUrl,
+    Internationalization,
     MakeSureStr,
     RedText,
     YellowText,
-    internationalization,
 )
 
 
@@ -31,7 +32,7 @@ def test_MakeSureStr_TypeError():
 
 
 def test_internationalization():
-    internationalization()
+    Internationalization()
 
 
 def test_internationalization_FileNotFoundError():
@@ -41,14 +42,14 @@ def test_internationalization_FileNotFoundError():
     m = pytest.MonkeyPatch()
     m.setattr(gettext, "translation", f)
 
-    internationalization()
+    Internationalization()
 
 
 def test_internationalization_win32():
     m = pytest.MonkeyPatch()
     m.setattr(sys, "platform", "win32")
     m.setattr(os, "getenv", lambda x: None)
-    internationalization()
+    Internationalization()
     m.undo()
 
 
@@ -75,3 +76,13 @@ def test_GetUrl():
 def test_GetUrl_ValueError():
     with pytest.raises(ValueError):
         GetUrl("file://c:/windows/system32/drivers/config")
+
+
+def test_GetAnnotationsUrl():
+    assert (
+        GetAnnotationsUrl("-8kKeUuytqA")
+        == "https://archive.org/download/youtubeannotations_64/-8.tar/-8k/-8kKeUuytqA.xml"
+    )
+
+    with pytest.raises(ValueError):
+        GetAnnotationsUrl("")

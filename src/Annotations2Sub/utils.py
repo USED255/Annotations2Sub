@@ -6,6 +6,7 @@
 import gettext
 import locale
 import os
+import re
 import sys
 import urllib.request
 from typing import Any
@@ -19,7 +20,7 @@ class flags:
 Flags = flags()
 
 
-def internationalization():
+def Internationalization():
     """On n'habite pas un pays, on habite une langue. Une patrie, c'est cela et rien d'autre."""
     try:
         # 配合 __main__.py
@@ -38,6 +39,9 @@ def internationalization():
     except FileNotFoundError:
         Err("翻译文件加载失败")
         return gettext.gettext
+
+
+_ = Internationalization()
 
 
 def YellowText(string: str) -> str:
@@ -79,4 +83,29 @@ def GetUrl(url: str) -> str:
         return r.read().decode("utf-8")
 
 
-_ = internationalization()
+def GetAnnotationsUrl(videoId: str) -> str:
+    # 移植自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
+    # 向 https://archive.org/details/youtubeannotations 致敬
+    # 如果你对你的数据在意, 就不要把它们托付给他人
+    # Rain Shimotsuki 不仅是个打歌词的, 他更是一位创作者
+    # 自己作品消失, 我相信没人愿意看到
+    """返回注释在互联网档案馆的网址"""
+    ARCHIVE_URL = "https://archive.org"
+    CHARS_SAFE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+
+    if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
+        raise ValueError(_("无效的 videoId"))
+
+    index = CHARS_SAFE.index(videoId[0]).__str__().rjust(2, "0")
+
+    # IA doesn't handle leading hyphens,
+    # so we use https://archive.org/details/youtubeannotations_64
+    if index == "62":
+        index = "64"
+        videoId.replace("^-", "A")
+
+    file = f"{videoId[0:3]}/{videoId}.xml"
+
+    return (
+        f"{ARCHIVE_URL}/download/youtubeannotations_{index}/{videoId[0:2]}.tar/{file}"
+    )

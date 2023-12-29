@@ -5,8 +5,8 @@
 
 import sys
 
-from Annotations2Sub.cli import run
+from Annotations2Sub.cli import Run
 
 
 def main():
-    sys.exit(run())
+    sys.exit(Run())

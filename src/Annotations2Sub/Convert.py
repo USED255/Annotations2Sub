@@ -10,7 +10,7 @@ from typing import List
 # 依照在 Go 中的经验把一个脚本拆成若干个模块
 # 并上传到 PyPI
 # 当然单文件脚本还是有用的
-from Annotations2Sub.Annotation import Annotation
+from Annotations2Sub.Annotations import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, DrawCommand, Event
 from Annotations2Sub.utils import Stderr, _
@@ -18,7 +18,6 @@ from Annotations2Sub.utils import Stderr, _
 
 def Convert(
     annotations: List[Annotation],
-    libass: bool = False,
     resolutionX: int = 100,
     resolutionY: int = 100,
 ) -> List[Event]:
@@ -43,6 +42,15 @@ def Convert(
 
         def Text(event: Event) -> Event:
             """生成 Annotation 文本的 Event"""
+            _x = x + 1
+            _y = y + 1
+
+            if (
+                "transform_coefficient_x" in locals()
+                or "transform_coefficient_y" in locals()
+            ):
+                _x = round(_x + transform_coefficient_x, 3)
+                _y = round(_y + transform_coefficient_y, 3)
 
             # Annotation 无非就是文本, 框, 或者是一个点击按钮和动图
             # 之前我用了一个函数生成标签, 还不如直接拼接
@@ -55,15 +63,14 @@ def Convert(
             # 用 \an7 指定在左上角.
             # "\pos(<x>,<y>)"
             # "将字幕定位在坐标点 <x>,<y>。"
-            # SSA 和 Annotation 坐标系一致, y 向下(左手取向).
-            # 这里坐标 +1 是为了美观, 与 Annotation 行为不一致
-            tag += rf"\an7\pos({x + 1},{y + 1})"
+            # SSA 和 Annotations 坐标系一致, y 向下(左手取向).
+            tag += rf"\an7\pos({_x},{_y})"
             # "\fs<字体尺寸>"
             # "<字体尺寸> 是一个数字，指定了字体的点的尺寸。"
             # "注意，这里的字体尺寸并不是字号的大小，\fs20 并不是字体大小（font-size）为 20px，"
             # "而是指其行高（line-height）为 20px，主要归咎于 VSFilter 使用的 Windows GDI 的字体接口。"
             # 不明白字体大小和行高有什么区别
-            tag += rf"\fs{str(textSize)}"
+            tag += rf"\fs{textSize}"
             # "\[<颜色序号>]c[&][H]<BBGGRR>[&]"
             # "<BBGGRR> 是一个十六进制的 RGB 值，但颜色顺序相反，前导的 0 可以省略。"
             # "<颜色序号> 可选值为 1、2、3 和 4，分别对应单独设置 PrimaryColour、SecondaryColour、OutlineColor 和 BackColour"
@@ -74,7 +81,7 @@ def Convert(
             # "<AA> 是一个十六进制的透明度数值，00 为全见，FF 为全透明。"
             # "<颜色序号> 含义同上，但这里不能省略。写法举例：\1a&H80&、\2a&H80、\3a80、\4a&H80&。"
             # "其中的 & 和 H 按规范应该是要有的，但是如果没有也能正常解析。"
-            # Annotation 文本好像没有透明度, 这个很符合直觉
+            # Annotations 文本好像没有透明度, 这个很符合直觉
             tag += r"\2a&HFF&\3a&HFF&\4a&HFF&"
             # 现在加个括号就成了
             tag = "{" + tag + "}"
@@ -241,47 +248,57 @@ def Convert(
         text = each.text
         # SSA 用 "\N" 换行
         text = text.replace("\n", r"\N")
-        if libass:
-            # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
-            # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
-            # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
-            text = text.replace("{", r"\{")
-            text = text.replace("}", r"\}")
+        # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
+        # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
+        # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
+        text = text.replace("{", r"\{")
+        text = text.replace("}", r"\}")
         event.Text = text
         del text
-
-        # 这里处理下数据供后面使用, 不需要处理都直接使用 each
-        # Annotation 的定位是"百分比"
-        # 恰好直接把"分辨率"设置为 100 就可以实现
-        # 但是这其实还是依赖于字幕滤镜的怪癖
-        transform_coefficient_x = resolutionX / 100
-        transform_coefficient_y = resolutionY / 100
-        # 浮点数太长了, 为了美观, 用 round 截断成三位, 字幕滤镜本身是支持小数的
-        x = round(each.x * transform_coefficient_x, 3)
-        y = round(each.y * transform_coefficient_y, 3)
-        textSize = round(each.textSize * transform_coefficient_y, 3)
-        if each.style == "title":
-            # Windows 酱赛高
-            textSize = round(textSize * 100 / 480, 3)
-        width = round(each.width * transform_coefficient_x, 3)
-        height = round(each.height * transform_coefficient_y, 3)
-        sx = round(each.sx * transform_coefficient_x, 3)
-        sy = round(each.sy * transform_coefficient_y, 3)
-
-        if libass and resolutionX == 100 and resolutionY == 100:
-            # 针对 libass 的 hack
-            # 我也不知道 libass 咋回事
-            # 1.776 是试出来的
-            # 而且仅适用于 16:9 分辨率
-            # 不要指望我在 libass 开 issue
-            # 毕竟不知道还有多少脚本依赖于这个怪癖
-            width = round(width * 1.776, 3)
-            # sy 是中间变量, 不需要 round
-            sy = sy * 1.776
 
         # Layer 是"层", 他们说大的会覆盖小的
         # 但是没有这个也可以正常显示, 之前就没有, 现在也就是安心些
         event.Layer = 1
+
+        x = round(each.x, 3)
+        y = round(each.y, 3)
+        textSize = round(each.textSize, 3)
+        width = round(each.width, 3)
+        height = round(each.height, 3)
+        sx = round(each.sx, 3)
+        sy = round(each.sy, 3)
+
+        if each.style == "title":
+            # Windows 酱赛高
+            textSize = round(textSize * 100 / 480, 3)
+
+        if resolutionX != 100 or resolutionY != 100:
+            # Annotations 的定位是"百分比"
+            # 恰好直接把"分辨率"设置为 100 就可以实现
+            # 但是这其实还是依赖于字幕滤镜的怪癖
+            transform_coefficient_x = resolutionX / 100
+            transform_coefficient_y = resolutionY / 100
+
+            # 浮点数太长了, 为了美观, 用 round 截断成三位, 字幕滤镜本身是支持小数的
+            def TransformX(x: float) -> float:
+                return round(x * transform_coefficient_x, 3)
+
+            def TransformY(y: float) -> float:
+                return round(y * transform_coefficient_y, 3)
+
+            x = TransformX(x)
+            y = TransformY(y)
+            textSize = TransformY(textSize)
+            width = TransformX(width)
+            height = TransformY(height)
+            sx = TransformX(sx)
+            sy = TransformY(sy)
+
+        # 破坏性更改: 移除 --embrace-libass(b6e7cde)
+        # 在 https://github.com/libass/libass/pull/645 之前
+        # libass 的 x和y轴共用了一个缩放系数
+        # 以至于我需要将 width * 1.776 手动修正缩放错误
+        # 1.776 = 16/9 😅
 
         if each.style == "popup":
             # 用浅拷贝拷贝一遍再处理看起来简单些, 我不在意性能
@@ -290,15 +307,14 @@ def Convert(
         elif each.style == "title":
             events.append(title(copy.copy(event)))
         elif each.style == "highlightText":
-            # 我还没遇到过 highlightText, 所以实现很可能不对
+            # 我没见过 highlightText, 所以实现很可能不对
             events.append(highlightText_text(copy.copy(event)))
             events.append(highlightText_box(copy.copy(event)))
         elif each.style == "speech":
-            # 上次恶心到我的地方, 这次想到了另一种方法处理掉了
             events.append(speech_text(copy.copy(event)))
             events.append(speech_box_1(copy.copy(event)))
             events.append(speech_box_2(copy.copy(event)))
-            # 我没见过 "anchored" 实现不对
+            # 我没见过 "anchored" 所有实现很可能不对
         elif each.style == "anchored":
             events.append(anchored_text(copy.copy(event)))
             events.append(anchored_box(copy.copy(event)))
@@ -306,14 +322,13 @@ def Convert(
             events.append(label_text(copy.copy(event)))
             events.append(label_box(copy.copy(event)))
         else:
-            # 传承于 Annotations2Sub™
             Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
 
         return events
 
     events = []
     for each in annotations:
-        # 一个 Annotations 可能会需要多个 Event 来表达.
+        # 一个 Annotation 可能会需要多个 Event 来表达.
         events.extend(ConvertAnnotation(each))
 
     return events

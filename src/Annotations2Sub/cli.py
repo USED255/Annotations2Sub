@@ -18,12 +18,13 @@ from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
 from Annotations2Sub import version
-from Annotations2Sub.Annotation import Parse
+from Annotations2Sub.Annotations import Parse
 from Annotations2Sub.Convert import Convert
 from Annotations2Sub.Sub import Sub
 from Annotations2Sub.utils import (
     Err,
     Flags,
+    GetAnnotationsUrl,
     GetUrl,
     MakeSureStr,
     Stderr,
@@ -37,44 +38,8 @@ def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
-class NoMediaStreamsFoundError(Exception):
-    """自定义异常，表示未找到媒体流"""
-
-
-def run(argv=None):
+def Run(argv=None):
     """跑起来🐎🐎🐎"""
-
-    def CheckUrl(url: str = "https://google.com/", timeout: float = 3.0) -> bool:
-        try:
-            urllib.request.urlopen(url=url, timeout=timeout)
-        except URLError:
-            return False
-        return True
-
-    def GetAnnotationsUrl(videoId: str) -> str:
-        # 移植自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
-        # 向 https://archive.org/details/youtubeannotations 致敬
-        # 如果你对你的数据在意, 就不要把它们托付给他人
-        # Rain Shimotsuki 不仅是个打歌词的, 他更是一位创作者
-        # 自己作品消失, 我相信没人愿意看到
-        """返回注释在互联网档案馆的网址"""
-        ARCHIVE_URL = "https://archive.org"
-        CHARS_SAFE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
-
-        if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
-            raise ValueError(_("无效的 videoId"))
-
-        index = CHARS_SAFE.index(videoId[0]).__str__().rjust(2, "0")
-
-        # IA doesn't handle leading hyphens,
-        # so we use https://archive.org/details/youtubeannotations_64
-        if index == "62":
-            index = "64"
-            videoId.replace("^-", "A")
-
-        file = f"{videoId[0:3]}/{videoId}.xml"
-
-        return f"{ARCHIVE_URL}/download/youtubeannotations_{index}/{videoId[0:2]}.tar/{file}"
 
     def GetMedia(videoId: str, instanceDomain: str) -> tuple:
         url = f"https://{instanceDomain}/api/v1/videos/{videoId}"
@@ -97,26 +62,6 @@ def run(argv=None):
             raise ValueError
         return video, audio
 
-    def AutoGetMedia(videoId: str) -> tuple:
-        """返回视频流和音频流网址"""
-        instances = []
-        instances = json.loads(GetUrl("https://api.invidious.io/instances.json"))
-        for instance in instances:
-            try:
-                if not instance[1]["api"]:  # type: ignore
-                    continue
-            except IndexError:
-                pass
-            domain = instance[0]
-            try:
-                return GetMedia(videoId, domain)
-            except (json.JSONDecodeError, URLError, IncompleteRead, ValueError):
-                continue
-
-        raise NoMediaStreamsFoundError
-
-    Dummy([CheckUrl, GetAnnotationsUrl, AutoGetMedia])  # type: ignore
-
     exit_code = 0
     parser = argparse.ArgumentParser(description=_("下载和转换 Youtube 注释"))
     parser.add_argument(
@@ -126,14 +71,7 @@ def run(argv=None):
         metavar=_("文件 或 videoId"),
         help=_("多个需要转换的文件的文件路径或视频ID"),
     )
-    parser.add_argument(
-        "-l",
-        "--embrace-libass",
-        action="store_true",
-        help=_("拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"),
-    )
-
-    # 虽然把分辨率置为 100, 100 字幕滤镜也能正常定位, 但是正确的分辨率会让字幕滤更高兴
+    # 此选项为了兼容小于 0.17 版本的 libass
     parser.add_argument(
         "-x",
         "--transform-resolution-x",
@@ -168,7 +106,7 @@ def run(argv=None):
     )
     parser.add_argument(
         "-D",
-        "--download-annotation-only",
+        "--download-annotations-only",
         action="store_true",
         help=_("仅下载注释"),
     )
@@ -233,12 +171,11 @@ def run(argv=None):
 
     queue = args.queue
 
-    enable_embrace_libass = args.embrace_libass
     transform_resolution_x = args.transform_resolution_x
     transform_resolution_y = args.transform_resolution_y
     font = args.font
     enable_download_for_archive = args.download_for_archive
-    enable_download_annotation_only = args.download_annotation_only
+    enable_download_annotations_only = args.download_annotations_only
     enable_preview_video = args.preview_video
     enable_generate_video = args.generate_video
     invidious_instances = args.invidious_instances
@@ -270,33 +207,28 @@ def run(argv=None):
 
     if enable_preview_video or enable_generate_video:
         enable_download_for_archive = True
-        enable_embrace_libass = True
         if invidious_instances == None:
             invidious_instances = ""
 
-    if enable_embrace_libass and (
-        transform_resolution_x == 100 or transform_resolution_y == 100
-    ):
-        Warn(
-            _(
-                "如果您的视频不是 16:9, 请使用 --transform-resolution-x --transform-resolution-y, 以确保效果"
-            )
-        )
-
-    if enable_download_annotation_only:
+    if enable_download_annotations_only:
         enable_download_for_archive = True
 
     if enable_download_for_archive:
         # 省的网不好不知道
         def CheckNetwork():
-            if CheckUrl() is False:
+            try:
+                urllib.request.urlopen(url="https://google.com", timeout=3)
+                # with urllib.request.urlopen(url="http://google.com", timeout=3) as r:
+                #     r.read().decode("utf-8")
+            except URLError:
                 Warn(_("您好像无法访问 Google 🤔"))
 
+        Dummy([CheckNetwork])  # type: ignore
         _thread.start_new_thread(CheckNetwork, ())
 
     for Task in queue:
         video_id = MakeSureStr(Task)
-        annotation_file = Task
+        annotations_file = Task
 
         if enable_download_for_archive:
             if video_id.startswith("\\"):
@@ -307,80 +239,79 @@ def run(argv=None):
                 exit_code = 1
                 continue
 
-            annotation_file = f"{video_id}.xml"
-            if enable_download_annotation_only and output:
-                annotation_file = output
+            annotations_file = f"{video_id}.xml"
+            if enable_download_annotations_only and output:
+                annotations_file = output
 
             if output_directory != None:
-                annotation_file = os.path.join(output_directory, annotation_file)
+                annotations_file = os.path.join(output_directory, annotations_file)
 
             is_skip_download = False
-            if enable_no_overwrite_files and os.path.exists(annotation_file):
-                if os.path.exists(annotation_file):
+            if enable_no_overwrite_files and os.path.exists(annotations_file):
+                if os.path.exists(annotations_file):
                     Stderr(YellowText(_("文件已存在, 跳过下载 ({})").format(video_id)))
                     is_skip_download = True
 
             if not is_skip_download:
-                url = GetAnnotationsUrl(video_id)
-                Stderr(_("下载 {}").format(url))
-                annotation_string = GetUrl(url)
+                annotations_url = GetAnnotationsUrl(video_id)
+                Stderr(_("下载 {}").format(annotations_url))
+                annotations_string = GetUrl(annotations_url)
                 if output_to_stdout:
-                    print(annotation_string, file=sys.stdout)
+                    print(annotations_string, file=sys.stdout)
                 else:
-                    with open(annotation_file, "w", encoding="utf-8") as f:
-                        f.write(annotation_string)
+                    with open(annotations_file, "w", encoding="utf-8") as f:
+                        f.write(annotations_string)
 
-            if enable_download_annotation_only:
+            if enable_download_annotations_only:
                 continue
 
-        if os.path.isfile(annotation_file) is False:
-            Err(_("{} 不是一个文件").format(annotation_file))
+        if os.path.isfile(annotations_file) is False:
+            Err(_("{} 不是一个文件").format(annotations_file))
             exit_code = 1
             continue
 
-        subtitle_file = annotation_file + ".ass"
+        subtitle_file = annotations_file + ".ass"
         if output_directory != None:
-            file_name = os.path.basename(annotation_file)
+            file_name = os.path.basename(annotations_file)
             file_name = file_name + ".ass"
             subtitle_file = os.path.join(output_directory, file_name)
 
         if output != None:
             subtitle_file = output
 
-        with open(annotation_file, "r", encoding="utf-8") as f:
-            annotation_string = f.read()
-        if annotation_string == "":
-            Warn(_("{} 可能没有 Annotation").format(video_id))
+        with open(annotations_file, "r", encoding="utf-8") as f:
+            annotations_string = f.read()
+        if annotations_string == "":
+            Warn(_("{} 可能没有 Annotations").format(video_id))
             exit_code = 1
             continue
 
         try:
-            tree = xml.etree.ElementTree.fromstring(annotation_string)  # type: ignore
+            tree = xml.etree.ElementTree.fromstring(annotations_string)  # type: ignore
         except ParseError:
-            Err(_("{} 不是一个有效的 XML 文件").format(annotation_file))
+            Err(_("{} 不是一个有效的 XML 文件").format(annotations_file))
             if Flags.verbose:
                 Stderr(traceback.format_exc())
             exit_code = 1
             continue
 
         if tree.find("annotations") == None:
-            Err(_("{} 不是 Annotation 文件").format(annotation_file))
+            Err(_("{} 不是 Annotations 文件").format(annotations_file))
             exit_code = 1
             continue
 
         if len(tree.find("annotations").findall("annotation")) == 0:  # type: ignore
-            Warn(_("{} 没有 Annotation").format(annotation_file))
+            Warn(_("{} 没有 Annotation").format(annotations_file))
 
         annotations = Parse(tree)  # type: ignore
         events = Convert(
             annotations,
-            enable_embrace_libass,
             transform_resolution_x,
             transform_resolution_y,
         )
         if events == []:
-            Warn(_("{} 没有注释被转换").format(annotation_file))
-        # Annotation 是无序的
+            Warn(_("{} 没有注释被转换").format(annotations_file))
+        # Annotations 是无序的
         # 按时间重新排列字幕事件, 是为了人类可读
         events.sort(key=lambda event: event.Start)
 
@@ -389,7 +320,7 @@ def run(argv=None):
         subtitle.comment += "https://github.com/USED255/Annotations2Sub"
         subtitle.info["PlayResX"] = transform_resolution_x  # type: ignore
         subtitle.info["PlayResY"] = transform_resolution_y  # type: ignore
-        subtitle.info["Title"] = os.path.basename(annotation_file)
+        subtitle.info["Title"] = os.path.basename(annotations_file)
         subtitle.styles["Default"].Fontname = font
         subtitle.events.extend(events)
         subtitle_string = subtitle.Dump()
@@ -397,7 +328,7 @@ def run(argv=None):
         is_no_save = False
         if output_to_stdout:
             is_no_save = True
-            print(subtitle_string, file=sys.stdout)
+            sys.stdout.write(subtitle_string)
 
         if enable_no_overwrite_files:
             if os.path.exists(subtitle_file):
@@ -405,31 +336,46 @@ def run(argv=None):
                 is_no_save = True
 
         if enable_no_keep_intermediate_files:
-            Stderr(_("删除 {}").format(annotation_file))
-            os.remove(annotation_file)
+            Stderr(_("删除 {}").format(annotations_file))
+            os.remove(annotations_file)
 
         if not is_no_save:
             with open(subtitle_file, "w", encoding="utf-8") as f:
                 f.write(subtitle_string)
             Stderr(_("保存于: {}").format(subtitle_file))
 
+        def function2():
+            Err(_("无法获取视频"))
+            Stderr(traceback.format_exc())
+            nonlocal exit_code
+            exit_code = 1
+
         video = audio = ""
         if enable_preview_video or enable_generate_video:
             if invidious_instances == "":
-                try:
-                    video, audio = AutoGetMedia(video_id)
-                except NoMediaStreamsFoundError:
-                    Err(_("无法获取视频"))
-                    Stderr(traceback.format_exc())
-                    exit_code = 1
+                instances = []
+                instances = json.loads(
+                    GetUrl("https://api.invidious.io/instances.json")
+                )
+                for instance in instances:
+                    try:
+                        if not instance[1]["api"]:  # type: ignore
+                            continue
+                    except IndexError:
+                        pass
+                    domain = instance[0]
+                    try:
+                        video, audio = GetMedia(video_id, domain)
+                    except (json.JSONDecodeError, URLError, IncompleteRead, ValueError):
+                        continue
+                if video == "" or audio == "":
+                    function2()
                     continue
             else:
                 try:
                     video, audio = GetMedia(video_id, invidious_instances)
                 except (json.JSONDecodeError, URLError, ValueError):
-                    Err(_("无法获取视频"))
-                    Stderr(traceback.format_exc())
-                    exit_code = 1
+                    function2()
                     continue
 
         def function1():

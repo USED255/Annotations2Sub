@@ -6,7 +6,7 @@ from xml.etree.ElementTree import Element
 
 import pytest
 
-from Annotations2Sub import Annotation
+from Annotations2Sub import Annotations
 
 
 def test_ParseAnnotationAlpha_ValueError():
@@ -16,9 +16,9 @@ def test_ParseAnnotationAlpha_ValueError():
                 i(None)
 
     m = pytest.MonkeyPatch()
-    m.setattr(Annotation, "Dummy", f)
+    m.setattr(Annotations, "Dummy", f)
     with pytest.raises(ValueError):
-        Annotation.Parse(Element(""))  # type: ignore
+        Annotations.Parse(Element(""))  # type: ignore
     m.undo()
 
 
@@ -29,9 +29,9 @@ def test_ParseAnnotationColor_ValueError():
                 i(None)
 
     m = pytest.MonkeyPatch()
-    m.setattr(Annotation, "Dummy", f)
+    m.setattr(Annotations, "Dummy", f)
     with pytest.raises(ValueError):
-        Annotation.Parse(Element(""))  # type: ignore
+        Annotations.Parse(Element(""))  # type: ignore
     m.undo()
 
 
@@ -42,7 +42,7 @@ def test_MakeSureElement_TypeError():
                 i(None)
 
     m = pytest.MonkeyPatch()
-    m.setattr(Annotation, "Dummy", f)
+    m.setattr(Annotations, "Dummy", f)
     with pytest.raises(TypeError):
-        Annotation.Parse(Element(""))  # type: ignore
+        Annotations.Parse(Element(""))  # type: ignore
     m.undo()
