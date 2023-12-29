@@ -11,9 +11,9 @@ base_path = os.path.dirname(__file__)
 test_case_path = os.path.join(base_path, "testCase")
 baseline_path = os.path.join(test_case_path, "Baseline")
 
-baseline1 = "29-q7YnyUmY"
+baseline1 = "annotations"
 baseline2 = "e8kKeUuytqA"
-baseline3 = "annotations"
+baseline3 = "29-q7YnyUmY"
 
 baseline1_file = os.path.join(baseline_path, baseline1 + ".xml.test")
 baseline2_file = os.path.join(baseline_path, baseline2 + ".xml.test")
@@ -34,17 +34,23 @@ def equal(file1: str, file2: str) -> bool:
     with open(file2, "r", encoding="utf-8") as f:
         b = f.readlines()
     if a != b:
+        Stderr(RedText(file1))
+        Stderr(RedText(file2))
         differ = difflib.Differ()
         diffs = list(differ.compare(a, b))
-        diffList = []
+        bool = False
         for i in diffs:
             if i.startswith(" "):
                 continue
-            diffList.append(i)
-        for i in diffList:
-            Stderr(RedText(file1))
-            Stderr(RedText(file2))
-            Stderr(RedText(i))
+            if i.startswith("+"):
+                bool = True
+            if i.startswith("?"):
+                Stderr(RedText(i))
+                if bool:
+                    Stderr("\n\n")
+                    bool = False
+                continue
+            Stderr(i)
         return False
     return True
 
@@ -56,25 +62,43 @@ def test_not_equal():
     )
 
 
+def baseline(Baseline):
+    baseline_file = os.path.join(baseline_path, Baseline + ".xml.test")
+    baseline_result = os.path.join(baseline_path, Baseline + ".ass.test")
+    result = baseline_file + ".ass"
+
+    Run([baseline_file])
+    assert equal(baseline_result, result)
+
+
 def test_Baseline1():
-    target = baseline1_file + ".ass"
-    Run([baseline1_file])
-    assert equal(baseline1_ssa, target)
-    Run([baseline1_file, "-x", "1920", "-y", "1080"])
-    assert equal(baseline1_transform, target)
+    baseline(baseline1)
 
 
 def test_Baseline2():
-    target = baseline2_file + ".ass"
-    Run([baseline2_file])
-    assert equal(baseline2_ssa, target)
-    Run([baseline2_file, "-x", "1920", "-y", "1080"])
-    assert equal(baseline2_transform, target)
+    baseline(baseline2)
 
 
 def test_Baseline3():
-    target = baseline3_file + ".ass"
-    Run([baseline3_file])
-    assert equal(baseline3_ssa, target)
-    Run([baseline3_file, "-x", "1920", "-y", "1080"])
-    assert equal(baseline3_transform, target)
+    baseline(baseline3)
+
+
+def baseline_transform(Baseline):
+    baseline_file = os.path.join(baseline_path, Baseline + ".xml.test")
+    baseline_result = os.path.join(baseline_path, Baseline + ".transform.ass.test")
+    result = baseline_file + ".ass"
+
+    Run([baseline_file, "-x", "1920", "-y", "1080"])
+    assert equal(baseline_result, result)
+
+
+def test_Baseline1_transform():
+    baseline_transform(baseline1)
+
+
+def test_Baseline2_transform():
+    baseline_transform(baseline2)
+
+
+def test_Baseline3_transform():
+    baseline_transform(baseline3)
