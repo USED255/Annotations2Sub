@@ -217,9 +217,8 @@ def Run(argv=None):
         # 省的网不好不知道
         def CheckNetwork():
             try:
-                urllib.request.urlopen(url="https://google.com", timeout=3)
-                # with urllib.request.urlopen(url="http://google.com", timeout=3) as r:
-                #     r.read().decode("utf-8")
+                with urllib.request.urlopen(url="http://google.com", timeout=3) as r:
+                    r.read().decode("utf-8")
             except URLError:
                 Warn(_("您好像无法访问 Google 🤔"))
 

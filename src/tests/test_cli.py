@@ -203,6 +203,22 @@ def test_CheckNetwork():
             if i.__name__ == "CheckNetwork":
                 i()
 
+    def f2(url, **kwargs):
+        class mock:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                pass
+
+            def read(self):
+                return b""
+
+        return mock()
+
+    def f3(*args, **kwargs):
+        raise URLError("")
+
     def mock(url: str):
         if (
             url
@@ -211,22 +227,14 @@ def test_CheckNetwork():
             return ""
         pytest.fail()
 
-    def mock1(url: str, **kwargs):
-        if url == "https://google.com":
-            return
-
-    def mock2(url: str, **kwargs):
-        if url == "https://google.com":
-            raise URLError("")
-
     m = pytest.MonkeyPatch()
     m.setattr(cli, "Dummy", f)
     m.setattr(cli, "GetUrl", mock)
 
-    m.setattr(urllib.request, "urlopen", mock1)
+    m.setattr(urllib.request, "urlopen", f2)
     Run("-d 12345678911".split(" "))
 
-    m.setattr(urllib.request, "urlopen", mock2)
+    m.setattr(urllib.request, "urlopen", f3)
     Run("-d 12345678911".split(" "))
 
     with pytest.raises(pytest.fail.Exception):
