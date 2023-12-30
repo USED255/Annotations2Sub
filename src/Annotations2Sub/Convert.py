@@ -10,7 +10,7 @@ from typing import List
 # 依照在 Go 中的经验把一个脚本拆成若干个模块
 # 并上传到 PyPI
 # 当然单文件脚本还是有用的
-from Annotations2Sub.Annotations import Annotation
+from Annotations2Sub import Annotation
 from Annotations2Sub.Color import Alpha, Color
 from Annotations2Sub.Sub import Draw, DrawCommand, Event
 from Annotations2Sub.utils import Stderr, _

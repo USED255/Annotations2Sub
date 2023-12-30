@@ -17,10 +17,7 @@ from http.client import IncompleteRead
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
-from Annotations2Sub import version
-from Annotations2Sub.Annotations import Parse
-from Annotations2Sub.Convert import Convert
-from Annotations2Sub.Sub import Sub
+from Annotations2Sub import Convert, Parse, Sub, version
 from Annotations2Sub.utils import (
     Err,
     Flags,

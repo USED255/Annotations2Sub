@@ -82,3 +82,9 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 
 """
 version = __version__
+
+from Annotations2Sub.Annotations import Annotation, Parse
+from Annotations2Sub.Convert import Convert
+from Annotations2Sub.Sub import Sub
+
+__all__ = ["Parse", "Annotation", "Convert", "Sub", "version"]
