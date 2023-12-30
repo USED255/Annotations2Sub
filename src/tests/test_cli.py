@@ -24,17 +24,17 @@ baseline2_file = os.path.join(baseline_path, "e8kKeUuytqA.xml.test")
 
 empty_xml = os.path.join(test_case_path, "empty.xml.test")
 empty_annotations = os.path.join(test_case_path, "emptyAnnotations.xml.test")
-file1 = os.path.join(test_case_path, "file.ass.test")
+file_file = os.path.join(test_case_path, "file.ass.test")
 
 
 def test_cli_failed():
     """预期失败的命令"""
     commands = f"""-ND {baseline1_file}
-{baseline1_file} -O {file1}
+{baseline1_file} -O {file_file}
 {baseline1_file} {baseline2_file} -o 1.ass
 {baseline1_file} -O . -o 1.ass
 {empty_xml}
-{file1}
+{file_file}
 0
 -d 0"""
 
@@ -72,7 +72,7 @@ def test_cli_network_failed():
     with open(baseline1_file, encoding="utf-8") as f:
         baseline1_string = f.read()
 
-    def mock(url: str):
+    def GetUrlMock(url: str):
         if (
             url
             == "https://archive.org/download/youtubeannotations_53/12.tar/123/12345678911.xml"
@@ -96,7 +96,7 @@ def test_cli_network_failed():
 
         pytest.fail()
 
-    def f1(*args, **kwargs):
+    def subprocessMock(*args, **kwargs):
         class a:
             def __init__(self) -> None:
                 self.returncode = 1
@@ -104,8 +104,8 @@ def test_cli_network_failed():
         return a()
 
     m = pytest.MonkeyPatch()
-    m.setattr(cli, "GetUrl", mock)
-    m.setattr(subprocess, "run", f1)
+    m.setattr(cli, "GetUrl", GetUrlMock)
+    m.setattr(subprocess, "run", subprocessMock)
 
     for command in commands.splitlines():
         Stderr(command)
@@ -114,7 +114,7 @@ def test_cli_network_failed():
         assert code == 1
 
     with pytest.raises(pytest.fail.Exception):
-        mock("")
+        GetUrlMock("")
 
     m.undo()
 
@@ -141,7 +141,7 @@ def test_cli_network_success():
     with open(baseline1_file, encoding="utf-8") as f:
         baseline1_string = f.read()
 
-    def mock(url: str):
+    def GetUrlMock(url: str):
         if (
             url
             == "https://archive.org/download/youtubeannotations_54/29.tar/29-/29-q7YnyUmY.xml"
@@ -174,7 +174,7 @@ def test_cli_network_success():
 
         pytest.fail()
 
-    def f1(*args, **kwargs):
+    def subprocessMock(*args, **kwargs):
         class a:
             def __init__(self) -> None:
                 self.returncode = 0
@@ -182,8 +182,8 @@ def test_cli_network_success():
         return a()
 
     m = pytest.MonkeyPatch()
-    m.setattr(cli, "GetUrl", mock)
-    m.setattr(subprocess, "run", f1)
+    m.setattr(cli, "GetUrl", GetUrlMock)
+    m.setattr(subprocess, "run", subprocessMock)
 
     for command in commands.splitlines():
         Stderr(command)
@@ -192,7 +192,7 @@ def test_cli_network_success():
         assert code == 0
 
     with pytest.raises(pytest.fail.Exception):
-        mock("")
+        GetUrlMock("")
 
     m.undo()
 
@@ -203,7 +203,23 @@ def test_CheckNetwork():
             if i.__name__ == "CheckNetwork":
                 i()
 
-    def mock(url: str):
+    def urlopenMock(url, **kwargs):
+        class mock:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                pass
+
+            def read(self):
+                return b""
+
+        return mock()
+
+    def urlopenURLErrorMock(*args, **kwargs):
+        raise URLError("")
+
+    def GetUrlMock(url: str):
         if (
             url
             == "https://archive.org/download/youtubeannotations_53/12.tar/123/12345678911.xml"
@@ -211,25 +227,17 @@ def test_CheckNetwork():
             return ""
         pytest.fail()
 
-    def mock1(url: str, **kwargs):
-        if url == "https://google.com":
-            return
-
-    def mock2(url: str, **kwargs):
-        if url == "https://google.com":
-            raise URLError("")
-
     m = pytest.MonkeyPatch()
     m.setattr(cli, "Dummy", f)
-    m.setattr(cli, "GetUrl", mock)
+    m.setattr(cli, "GetUrl", GetUrlMock)
 
-    m.setattr(urllib.request, "urlopen", mock1)
+    m.setattr(urllib.request, "urlopen", urlopenMock)
     Run("-d 12345678911".split(" "))
 
-    m.setattr(urllib.request, "urlopen", mock2)
+    m.setattr(urllib.request, "urlopen", urlopenURLErrorMock)
     Run("-d 12345678911".split(" "))
 
     with pytest.raises(pytest.fail.Exception):
-        mock("")
+        GetUrlMock("")
 
     m.undo()

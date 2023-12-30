@@ -4,9 +4,7 @@
 import os
 import xml.etree.ElementTree
 
-from Annotations2Sub.Annotations import Parse
-from Annotations2Sub.Convert import Convert
-from Annotations2Sub.Sub import Sub
+from Annotations2Sub import Convert, Parse, Sub
 
 filePath = os.path.join(os.path.dirname(__file__), "testCase", "annotations.xml.test")
 
