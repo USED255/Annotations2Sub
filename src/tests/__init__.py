@@ -12,14 +12,13 @@ testCasePath = os.path.join(basePath, "testCase")
 garbagePath = os.path.join(testCasePath, "garbage")
 
 m = pytest.MonkeyPatch()
-m.setenv("LC_ALL", "zh_CN")
 
+m.setenv("LC_ALL", "zh_CN")
 m.chdir(garbagePath)
+
+if sys.version_info.major == 3 and sys.version_info.minor > 7:
+    m.delattr(typing, "Literal")
 
 from Annotations2Sub.utils import Flags
 
 Flags.verbose = True
-
-if sys.version_info.major == 3 and sys.version_info.minor > 7:
-    m = pytest.MonkeyPatch()
-    m.delattr(typing, "Literal")
