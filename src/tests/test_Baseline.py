@@ -15,18 +15,6 @@ baseline1 = "annotations"
 baseline2 = "e8kKeUuytqA"
 baseline3 = "29-q7YnyUmY"
 
-baseline1_file = os.path.join(baseline_path, baseline1 + ".xml.test")
-baseline2_file = os.path.join(baseline_path, baseline2 + ".xml.test")
-baseline3_file = os.path.join(baseline_path, baseline3 + ".xml.test")
-
-baseline1_ssa = os.path.join(baseline_path, baseline1 + ".ass.test")
-baseline2_ssa = os.path.join(baseline_path, baseline2 + ".ass.test")
-baseline3_ssa = os.path.join(baseline_path, baseline3 + ".ass.test")
-
-baseline1_transform = os.path.join(baseline_path, baseline1 + ".transform.ass.test")
-baseline2_transform = os.path.join(baseline_path, baseline2 + ".transform.ass.test")
-baseline3_transform = os.path.join(baseline_path, baseline3 + ".transform.ass.test")
-
 
 def equal(file1: str, file2: str) -> bool:
     with open(file1, "r", encoding="utf-8") as f:
