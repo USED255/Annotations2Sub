@@ -11,8 +11,9 @@ from typing import List
 # 并上传到 PyPI
 # 当然单文件脚本还是有用的
 from Annotations2Sub import Annotation
-from Annotations2Sub.Color import Alpha, Color
+from Annotations2Sub.Color import Alpha
 from Annotations2Sub.Sub import Draw, DrawCommand, Event
+from Annotations2Sub.tag import Tag
 from Annotations2Sub.utils import Stderr, _
 
 
@@ -23,17 +24,6 @@ def Convert(
 ) -> List[Event]:
     """转换 Annotations"""
 
-    def DumpColor(color: Color) -> str:
-        """将 Color 转换为 SSA 的颜色表示"""
-        return "&H{:02X}{:02X}{:02X}&".format(color.red, color.green, color.blue)
-
-    def DumpAlpha(alpha: Alpha) -> str:
-        """将 Alpha 转换为 SSA 的 Alpha 表示"""
-
-        # 据 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 所说
-        # SSA 的 Alpha 是透明度, 00 为不透明，FF 为全透明
-        return "&H{:02X}&".format(255 - alpha.alpha)
-
     def ConvertAnnotation(each: Annotation) -> List[Event]:
         """将 Annotation 转换为 List[Event]"""
 
@@ -41,7 +31,6 @@ def Convert(
         #       https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 
         def Text(event: Event) -> Event:
-            """生成 Annotation 文本的 Event"""
             _x = x + 1
             _y = y + 1
 
@@ -52,54 +41,22 @@ def Convert(
                 _x = round(_x + transform_coefficient_x, 3)
                 _y = round(_y + transform_coefficient_y, 3)
 
-            # Annotation 无非就是文本, 框, 或者是一个点击按钮和动图
-            # 之前我用了一个函数生成标签, 还不如直接拼接
-            tag = ""
-            # 样式复写代码, 样式复写标签, ASS 标签, 特效标签, Aegisub 特效标签, 标签
-            # 带引号的是从 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 粘过来的
-            # "\an<位置>"
-            # "<位置> 是一个数字，决定了字幕显示在屏幕上哪个位置。"
-            # 默认 SSA 定位会定在文本中间
-            # 用 \an7 指定在左上角.
-            # "\pos(<x>,<y>)"
-            # "将字幕定位在坐标点 <x>,<y>。"
-            # SSA 和 Annotations 坐标系一致, y 向下(左手取向).
-            tag += rf"\an7\pos({_x},{_y})"
-            # "\fs<字体尺寸>"
-            # "<字体尺寸> 是一个数字，指定了字体的点的尺寸。"
-            # "注意，这里的字体尺寸并不是字号的大小，\fs20 并不是字体大小（font-size）为 20px，"
-            # "而是指其行高（line-height）为 20px，主要归咎于 VSFilter 使用的 Windows GDI 的字体接口。"
-            # 不明白字体大小和行高有什么区别
-            tag += rf"\fs{textSize}"
-            # "\[<颜色序号>]c[&][H]<BBGGRR>[&]"
-            # "<BBGGRR> 是一个十六进制的 RGB 值，但颜色顺序相反，前导的 0 可以省略。"
-            # "<颜色序号> 可选值为 1、2、3 和 4，分别对应单独设置 PrimaryColour、SecondaryColour、OutlineColor 和 BackColour"
-            # "其中的 & 和 H 按规范应该是要有的，但是如果没有也能正常解析。"
-            # PrimaryColour 填充颜色, SecondaryColour 卡拉OK变色, OutlineColor 边框颜色, BackColour 阴影颜色
-            tag += rf"\c{DumpColor(each.fgColor)}"
-            # "\<颜色序号>a[&][H]<AA>[&]"
-            # "<AA> 是一个十六进制的透明度数值，00 为全见，FF 为全透明。"
-            # "<颜色序号> 含义同上，但这里不能省略。写法举例：\1a&H80&、\2a&H80、\3a80、\4a&H80&。"
-            # "其中的 & 和 H 按规范应该是要有的，但是如果没有也能正常解析。"
-            # Annotations 文本好像没有透明度, 这个很符合直觉
-            tag += r"\2a&HFF&\3a&HFF&\4a&HFF&"
-            # 现在加个括号就成了
-            tag = "{" + tag + "}"
-            # 直接拼接就可以了
-            event.Text = tag + event.Text
+            tag = Tag.Builder(event.Text)
+            tag.tags.append(Tag.Pos(_x, _y))
+            tag.tags.append(Tag.Fontsize(textSize))
+            tag.tags.append(Tag.PrimaryColour(each.fgColor))
+            a = [
+                Tag.SecondaryAlpha(Alpha()),
+                Tag.BorderAlpha(Alpha()),
+                Tag.ShadowAlpha(Alpha()),
+            ]
+            tag.tags.extend(a)
+            event.Text = str(tag)
             return event
 
         def Box(event: Event) -> Event:
             """生成 Annotation 文本框的 Event"""
             event.Layer = 0
-
-            # 没什么太大的变化
-            tag = ""
-            tag += rf"\an7\pos({x},{y})"
-            tag += rf"\c{DumpColor(each.bgColor)}"
-            tag += rf"\1a{DumpAlpha(each.bgOpacity)}"
-            tag += r"\2a&HFF&\3a&HFF&\4a&HFF&"
-            tag = "{" + tag + "}"
 
             # 在之前这里我拼接字符串, 做的还没有全民核酸检测好
             # 现在画四个点直接闭合一个框
@@ -112,8 +69,17 @@ def Convert(
             # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
             box_tag = r"{\p1}" + box + r"{\p0}"
             del box
-
-            event.Text = tag + box_tag
+            tag = Tag.Builder(box_tag)
+            tag.tags.append(Tag.Pos(x, y))
+            tag.tags.append(Tag.PrimaryColour(each.bgColor))
+            tag.tags.append(Tag.PrimaryAlpha(each.bgOpacity))
+            a = [
+                Tag.SecondaryAlpha(Alpha()),
+                Tag.BorderAlpha(Alpha()),
+                Tag.ShadowAlpha(Alpha()),
+            ]
+            tag.tags.extend(a)
+            event.Text = str(tag)
             return event
 
         def popup_text(event: Event) -> Event:
@@ -165,13 +131,6 @@ def Convert(
             event.Name += "speech_box_2;"
             event.Layer = 0
 
-            tag = ""
-            tag += rf"\an7\pos({sx},{sy})"
-            tag += rf"\c{DumpColor(each.bgColor)}"
-            tag += rf"\1a{DumpAlpha(each.bgOpacity)}"
-            tag += r"\2a&HFF&\3a&HFF&\4a&HFF&"
-            tag = "{" + tag + "}"
-
             # 开始只是按部就班的画一个气泡框
             # 之后我想可以拆成一个普通的方框和一个三角形
             # 这可以直接复用 Box, 气泡锚点定位也可以直接使用 /pos
@@ -210,7 +169,17 @@ def Convert(
             box_tag = r"{\p1}" + box + r"{\p0}"
             del box
 
-            event.Text = tag + box_tag
+            tag = Tag.Builder(box_tag)
+            tag.tags.append(Tag.Pos(sx, sy))
+            tag.tags.append(Tag.PrimaryColour(each.bgColor))
+            tag.tags.append(Tag.PrimaryAlpha(each.bgOpacity))
+            a = [
+                Tag.SecondaryAlpha(Alpha()),
+                Tag.BorderAlpha(Alpha()),
+                Tag.ShadowAlpha(Alpha()),
+            ]
+            tag.tags.extend(a)
+            event.Text = str(tag)
             return event
 
         def anchored_text(event: Event) -> Event:

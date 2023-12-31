@@ -213,7 +213,7 @@ Dialogue: 1,00:03:30.42,00:03:34.80,Default,;annotation_2700584797;popup_text;,0
 Dialogue: 0,00:03:30.42,00:03:34.80,Default,;annotation_2700584797;popup_box;,0,0,0,,{\an7\pos(20.937,20.703)\c&H191997&\1a&H66&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 10.977 0 l 10.977 20.28 l 0 20.28 {\p0}
 Dialogue: 1,00:03:31.20,00:03:35.50,Default,;annotation_702014493;popup_text;,0,0,0,,{\an7\pos(1.0,1.0)\fs4.814\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}Was yea ra, Rra yea ra irs an ar ciel, ee\N（美しいこの世界と共に）\N（這個美麗的世界一起）
 Dialogue: 0,00:03:31.20,00:03:35.50,Default,;annotation_702014493;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H191997&\1a&H66&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 100.0 0 l 100.0 20.475 l 0 20.475 {\p0}
-Dialogue: 1,00:03:31.98,00:03:34.80,Default,;annotation_2148365783;popup_text;,0,0,0,,{\an7\pos(32.867000000000004,21.703)\fs4.814\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}繋がり行く\N相連而走
+Dialogue: 1,00:03:31.98,00:03:34.80,Default,;annotation_2148365783;popup_text;,0,0,0,,{\an7\pos(32.867,21.703)\fs4.814\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}繋がり行く\N相連而走
 Dialogue: 0,00:03:31.98,00:03:34.80,Default,;annotation_2148365783;popup_box;,0,0,0,,{\an7\pos(31.867,20.703)\c&H191997&\1a&H66&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 68.133 0 l 68.133 20.299 l 0 20.299 {\p0}
 Dialogue: 1,00:03:31.98,00:03:34.80,Default,;annotation_3296137385;popup_text;,0,0,0,,{\an7\pos(32.845,60.896)\fs4.814\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}繋がり行く\N相連而走
 Dialogue: 0,00:03:31.98,00:03:34.80,Default,;annotation_3296137385;popup_box;,0,0,0,,{\an7\pos(31.845,59.896)\c&H9A3E40&\1a&H66&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 68.155 0 l 68.155 20.176 l 0 20.176 {\p0}
@@ -278,9 +278,9 @@ Dialogue: 1,00:04:39.80,00:04:48.18,Default,;annotation_145472553;popup_text;,0,
 Dialogue: 0,00:04:39.80,00:04:48.18,Default,;annotation_145472553;popup_box;,0,0,0,,{\an7\pos(0.0,20.703)\c&H191997&\1a&H66&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 15.432 0 l 15.432 20.488 l 0 20.488 {\p0}
 Dialogue: 1,00:04:40.24,00:04:48.20,Default,;annotation_1419895517;popup_text;,0,0,0,,{\an7\pos(1.0,60.896)\fs4.814\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}解き放て\N釋放出來
 Dialogue: 0,00:04:40.24,00:04:48.20,Default,;annotation_1419895517;popup_box;,0,0,0,,{\an7\pos(0.0,59.896)\c&H9A3E40&\1a&H66&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 15.417 0 l 15.417 20.313 l 0 20.313 {\p0}
-Dialogue: 1,00:04:41.26,00:04:48.18,Default,;annotation_2558774551;popup_text;,0,0,0,,{\an7\pos(16.372999999999998,21.573)\fs4.814\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}響きわたれや\N響徹雲霄吧
+Dialogue: 1,00:04:41.26,00:04:48.18,Default,;annotation_2558774551;popup_text;,0,0,0,,{\an7\pos(16.373,21.573)\fs4.814\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}響きわたれや\N響徹雲霄吧
 Dialogue: 0,00:04:41.26,00:04:48.18,Default,;annotation_2558774551;popup_box;,0,0,0,,{\an7\pos(15.373,20.573)\c&H191997&\1a&H66&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 20.377 0 l 20.377 20.488 l 0 20.488 {\p0}
-Dialogue: 1,00:04:41.30,00:04:48.20,Default,;annotation_1647928039;popup_text;,0,0,0,,{\an7\pos(16.372999999999998,60.896)\fs4.814\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}響きわたれや\N響徹雲霄吧
+Dialogue: 1,00:04:41.30,00:04:48.20,Default,;annotation_1647928039;popup_text;,0,0,0,,{\an7\pos(16.373,60.896)\fs4.814\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}響きわたれや\N響徹雲霄吧
 Dialogue: 0,00:04:41.30,00:04:48.20,Default,;annotation_1647928039;popup_box;,0,0,0,,{\an7\pos(15.373,59.896)\c&H9A3E40&\1a&H66&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 20.289 0 l 20.289 20.423 l 0 20.423 {\p0}
 Dialogue: 1,00:04:44.10,00:04:48.18,Default,;annotation_103040153;popup_text;,0,0,0,,{\an7\pos(36.652,21.703)\fs4.814\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}紡ぎ謳よ\N創世之詩啊
 Dialogue: 0,00:04:44.10,00:04:48.18,Default,;annotation_103040153;popup_box;,0,0,0,,{\an7\pos(35.652,20.703)\c&H191997&\1a&H66&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 64.348 0 l 64.348 20.488 l 0 20.488 {\p0}
