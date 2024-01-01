@@ -51,7 +51,7 @@ def Convert(
             _y = round(_y, 3)
             _textSize = round(_textSize, 3)
 
-            tag = Tag.Builder(event.Text)
+            tag = Tag.Builder()
             tags = [
                 Tag.Pos(_x, _y),
                 Tag.Fontsize(_textSize),
@@ -61,7 +61,7 @@ def Convert(
                 Tag.ShadowAlpha(Alpha()),
             ]
             tag.tags.extend(tags)
-            event.Text = str(tag)
+            event.Text = str(tag) + event.Text
             return event
 
         def Box(event: Event) -> Event:
@@ -86,7 +86,7 @@ def Convert(
             # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
             box_tag = r"{\p1}" + box + r"{\p0}"
             del box
-            tag = Tag.Builder(box_tag)
+            tag = Tag.Builder()
             tags = [
                 Tag.Pos(_x, _y),
                 Tag.PrimaryColour(each.bgColor),
@@ -96,7 +96,7 @@ def Convert(
                 Tag.ShadowAlpha(Alpha()),
             ]
             tag.tags.extend(tags)
-            event.Text = str(tag)
+            event.Text = str(tag) + box_tag
             return event
 
         def popup_text(event: Event) -> Event:
@@ -189,7 +189,7 @@ def Convert(
             _sy = sy
             _sx = round(_sx, 3)
             _sy = round(_sy, 3)
-            tag = Tag.Builder(box_tag)
+            tag = Tag.Builder()
             tags = [
                 Tag.Pos(_sx, _sy),
                 Tag.PrimaryColour(each.bgColor),
@@ -199,7 +199,7 @@ def Convert(
                 Tag.ShadowAlpha(Alpha()),
             ]
             tag.tags.extend(tags)
-            event.Text = str(tag)
+            event.Text = str(tag) + box_tag
             return event
 
         def anchored_text(event: Event) -> Event:

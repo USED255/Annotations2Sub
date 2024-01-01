@@ -23,8 +23,7 @@ def DumpAlpha(alpha: Alpha) -> str:
 
 class Tag:
     class Builder:
-        def __init__(self, text: str):
-            self.text = text
+        def __init__(self):
             self.tags: list = []
 
         def __str__(self) -> str:
@@ -32,7 +31,7 @@ class Tag:
             for i in self.tags:
                 tag += str(i)
             tag = r"{" + tag + r"}"
-            return tag + self.text
+            return tag
 
     class Pos:
         """\an<位置>"""
