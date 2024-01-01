@@ -30,7 +30,7 @@ class Tag(list):
         return tag
 
     class Pos:
-        """\an<位置>"""
+        r"""\an<位置>"""
 
         # "<位置> 是一个数字，决定了字幕显示在屏幕上哪个位置。"
         # 默认 SSA 定位会定在文本中间
@@ -46,7 +46,7 @@ class Tag(list):
             return rf"\an7\pos({self.x},{self.y})"
 
     class Fontsize:
-        """\fs<字体尺寸>"""
+        r"""\fs<字体尺寸>"""
 
         # "<字体尺寸> 是一个数字，指定了字体的点的尺寸。"
         # "注意，这里的字体尺寸并不是字号的大小，\fs20 并不是字体大小（font-size）为 20px，"
@@ -59,7 +59,7 @@ class Tag(list):
             return r"\fs" + str(self.size)
 
     class PrimaryColour:
-        """\<颜色序号>c[&][H]<BBGGRR>[&]"""
+        r"""\<颜色序号>c[&][H]<BBGGRR>[&]"""
 
         # "<BBGGRR> 是一个十六进制的 RGB 值，但颜色顺序相反，前导的 0 可以省略。"
         # "<颜色序号> 可选值为 1、2、3 和 4，分别对应单独设置 PrimaryColour、SecondaryColour、OutlineColor 和 BackColour"
@@ -72,7 +72,7 @@ class Tag(list):
             return r"\c" + DumpColor(self.colour)
 
     class PrimaryAlpha:
-        """\<颜色序号>a[&][H]<AA>[&]"""
+        r"""\<颜色序号>a[&][H]<AA>[&]"""
 
         # "<AA> 是一个十六进制的透明度数值，00 为全见，FF 为全透明。"
         # "<颜色序号> 含义同上，但这里不能省略。写法举例：\1a&H80&、\2a&H80、\3a80、\4a&H80&。"
