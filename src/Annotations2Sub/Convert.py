@@ -31,6 +31,7 @@ def Convert(
         #       https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 
         def Text(event: Event) -> Event:
+            """生成 Annotation 文本的 Event"""
             _x = x
             _y = y
             nonlocal textSize  # type: ignore
