@@ -21,17 +21,13 @@ def DumpAlpha(alpha: Alpha) -> str:
     return "&H{:02X}&".format(255 - alpha.alpha)
 
 
-class Tag:
-    class Builder:
-        def __init__(self):
-            self.tags: list = []
-
-        def __str__(self) -> str:
-            tag = ""
-            for i in self.tags:
-                tag += str(i)
-            tag = r"{" + tag + r"}"
-            return tag
+class Tag(list):
+    def __str__(self) -> str:
+        tag = ""
+        for i in self:
+            tag += str(i)
+        tag = r"{" + tag + r"}"
+        return tag
 
     class Pos:
         """\an<位置>"""

@@ -13,7 +13,7 @@ from typing import List
 from Annotations2Sub import Annotation
 from Annotations2Sub.Color import Alpha
 from Annotations2Sub.Sub import Draw, DrawCommand, Event
-from Annotations2Sub.tag import Tag
+from Annotations2Sub.Tag import Tag
 from Annotations2Sub.utils import Stderr, _
 
 
@@ -51,17 +51,18 @@ def Convert(
             _y = round(_y, 3)
             _textSize = round(_textSize, 3)
 
-            tag = Tag.Builder()
-            tags = [
-                Tag.Pos(_x, _y),
-                Tag.Fontsize(_textSize),
-                Tag.PrimaryColour(each.fgColor),
-                Tag.SecondaryAlpha(Alpha()),
-                Tag.BorderAlpha(Alpha()),
-                Tag.ShadowAlpha(Alpha()),
-            ]
-            tag.tags.extend(tags)
-            event.Text = str(tag) + event.Text
+            tags = Tag()
+            tags.extend(
+                [
+                    Tag.Pos(_x, _y),
+                    Tag.Fontsize(_textSize),
+                    Tag.PrimaryColour(each.fgColor),
+                    Tag.SecondaryAlpha(Alpha()),
+                    Tag.BorderAlpha(Alpha()),
+                    Tag.ShadowAlpha(Alpha()),
+                ]
+            )
+            event.Text = str(tags) + event.Text
             return event
 
         def Box(event: Event) -> Event:
@@ -86,17 +87,18 @@ def Convert(
             # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
             box_tag = r"{\p1}" + box + r"{\p0}"
             del box
-            tag = Tag.Builder()
-            tags = [
-                Tag.Pos(_x, _y),
-                Tag.PrimaryColour(each.bgColor),
-                Tag.PrimaryAlpha(each.bgOpacity),
-                Tag.SecondaryAlpha(Alpha()),
-                Tag.BorderAlpha(Alpha()),
-                Tag.ShadowAlpha(Alpha()),
-            ]
-            tag.tags.extend(tags)
-            event.Text = str(tag) + box_tag
+            tags = Tag()
+            tags.extend(
+                [
+                    Tag.Pos(_x, _y),
+                    Tag.PrimaryColour(each.bgColor),
+                    Tag.PrimaryAlpha(each.bgOpacity),
+                    Tag.SecondaryAlpha(Alpha()),
+                    Tag.BorderAlpha(Alpha()),
+                    Tag.ShadowAlpha(Alpha()),
+                ]
+            )
+            event.Text = str(tags) + box_tag
             return event
 
         def popup_text(event: Event) -> Event:
@@ -189,17 +191,18 @@ def Convert(
             _sy = sy
             _sx = round(_sx, 3)
             _sy = round(_sy, 3)
-            tag = Tag.Builder()
-            tags = [
-                Tag.Pos(_sx, _sy),
-                Tag.PrimaryColour(each.bgColor),
-                Tag.PrimaryAlpha(each.bgOpacity),
-                Tag.SecondaryAlpha(Alpha()),
-                Tag.BorderAlpha(Alpha()),
-                Tag.ShadowAlpha(Alpha()),
-            ]
-            tag.tags.extend(tags)
-            event.Text = str(tag) + box_tag
+            tags = Tag()
+            tags.extend(
+                [
+                    Tag.Pos(_sx, _sy),
+                    Tag.PrimaryColour(each.bgColor),
+                    Tag.PrimaryAlpha(each.bgOpacity),
+                    Tag.SecondaryAlpha(Alpha()),
+                    Tag.BorderAlpha(Alpha()),
+                    Tag.ShadowAlpha(Alpha()),
+                ]
+            )
+            event.Text = str(tags) + box_tag
             return event
 
         def anchored_text(event: Event) -> Event:
