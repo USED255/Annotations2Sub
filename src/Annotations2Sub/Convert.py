@@ -51,15 +51,15 @@ def Convert(
             _textSize = round(_textSize, 3)
 
             tag = Tag.Builder(event.Text)
-            tag.tags.append(Tag.Pos(_x, _y))
-            tag.tags.append(Tag.Fontsize(_textSize))
-            tag.tags.append(Tag.PrimaryColour(each.fgColor))
-            a = [
+            tags = [
+                Tag.Pos(_x, _y),
+                Tag.Fontsize(_textSize),
+                Tag.PrimaryColour(each.fgColor),
                 Tag.SecondaryAlpha(Alpha()),
                 Tag.BorderAlpha(Alpha()),
                 Tag.ShadowAlpha(Alpha()),
             ]
-            tag.tags.extend(a)
+            tag.tags.extend(tags)
             event.Text = str(tag)
             return event
 
@@ -86,15 +86,15 @@ def Convert(
             box_tag = r"{\p1}" + box + r"{\p0}"
             del box
             tag = Tag.Builder(box_tag)
-            tag.tags.append(Tag.Pos(_x, _y))
-            tag.tags.append(Tag.PrimaryColour(each.bgColor))
-            tag.tags.append(Tag.PrimaryAlpha(each.bgOpacity))
-            a = [
+            tags = [
+                Tag.Pos(_x, _y),
+                Tag.PrimaryColour(each.bgColor),
+                Tag.PrimaryAlpha(each.bgOpacity),
                 Tag.SecondaryAlpha(Alpha()),
                 Tag.BorderAlpha(Alpha()),
                 Tag.ShadowAlpha(Alpha()),
             ]
-            tag.tags.extend(a)
+            tag.tags.extend(tags)
             event.Text = str(tag)
             return event
 
@@ -189,15 +189,15 @@ def Convert(
             _sx = round(_sx, 3)
             _sy = round(_sy, 3)
             tag = Tag.Builder(box_tag)
-            tag.tags.append(Tag.Pos(_sx, _sy))
-            tag.tags.append(Tag.PrimaryColour(each.bgColor))
-            tag.tags.append(Tag.PrimaryAlpha(each.bgOpacity))
-            a = [
+            tags = [
+                Tag.Pos(_sx, _sy),
+                Tag.PrimaryColour(each.bgColor),
+                Tag.PrimaryAlpha(each.bgOpacity),
                 Tag.SecondaryAlpha(Alpha()),
                 Tag.BorderAlpha(Alpha()),
                 Tag.ShadowAlpha(Alpha()),
             ]
-            tag.tags.extend(a)
+            tag.tags.extend(tags)
             event.Text = str(tag)
             return event
 
