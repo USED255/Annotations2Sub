@@ -20,8 +20,8 @@ def DumpAlpha(alpha: Alpha) -> str:
 class Tag:
     class Pos:
         def __init__(self, x: float, y: float):
-            self.x = round(x, 3)
-            self.y = round(y, 3)
+            self.x = x
+            self.y = y
 
         def __str__(self) -> str:
             return rf"\an7\pos({self.x},{self.y})"
@@ -33,33 +33,12 @@ class Tag:
         def __str__(self) -> str:
             return r"\c" + DumpColor(self.colour)
 
-    class SecondaryColour:
-        def __init__(self, colour: Color):
-            self.colour = colour
-
-        def __str__(self) -> str:
-            return r"\2c" + DumpColor(self.colour)
-
-    class BorderColor:
-        def __init__(self, colour: Color):
-            self.colour = colour
-
-        def __str__(self) -> str:
-            return r"\3c" + DumpColor(self.colour)
-
-    class ShadowColor:
-        def __init__(self, colour: Color):
-            self.colour = colour
-
-        def __str__(self) -> str:
-            return r"\4c" + DumpColor(self.colour)
-
     class Fontsize:
         def __init__(self, size: float):
             self.size = size
 
         def __str__(self) -> str:
-            return r"\fs" + str(round(self.size, 3))
+            return r"\fs" + str(self.size)
 
     class PrimaryAlpha:
         def __init__(self, alpha: Alpha):

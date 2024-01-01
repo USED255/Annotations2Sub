@@ -31,19 +31,28 @@ def Convert(
         #       https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 
         def Text(event: Event) -> Event:
-            _x = x + 1
-            _y = y + 1
+            _x = x
+            _y = y
+            nonlocal textSize  # type: ignore
+            _textSize = textSize
+
+            _x = _x + 1
+            _y = _y + 1
 
             if (
                 "transform_coefficient_x" in locals()
                 or "transform_coefficient_y" in locals()
             ):
-                _x = round(_x + transform_coefficient_x, 3)
-                _y = round(_y + transform_coefficient_y, 3)
+                _x = _x - 1 + transform_coefficient_x
+                _y = _y - 1 + transform_coefficient_y
+
+            _x = round(_x, 3)
+            _y = round(_y, 3)
+            _textSize = round(_textSize, 3)
 
             tag = Tag.Builder(event.Text)
             tag.tags.append(Tag.Pos(_x, _y))
-            tag.tags.append(Tag.Fontsize(textSize))
+            tag.tags.append(Tag.Fontsize(_textSize))
             tag.tags.append(Tag.PrimaryColour(each.fgColor))
             a = [
                 Tag.SecondaryAlpha(Alpha()),
@@ -57,20 +66,27 @@ def Convert(
         def Box(event: Event) -> Event:
             """生成 Annotation 文本框的 Event"""
             event.Layer = 0
-
+            _x = x
+            _y = y
+            _width = width
+            _height = height
+            _x = round(_x, 3)
+            _y = round(_y, 3)
+            _width = round(_width, 3)
+            _height = round(_height, 3)
             # 在之前这里我拼接字符串, 做的还没有全民核酸检测好
             # 现在画四个点直接闭合一个框
             draw = Draw()
             draw.Add(DrawCommand(0, 0, "m"))
-            draw.Add(DrawCommand(width, 0, "l"))
-            draw.Add(DrawCommand(width, height, "l"))
-            draw.Add(DrawCommand(0, height, "l"))
+            draw.Add(DrawCommand(_width, 0, "l"))
+            draw.Add(DrawCommand(_width, _height, "l"))
+            draw.Add(DrawCommand(0, _height, "l"))
             box = draw.Dump()
             # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
             box_tag = r"{\p1}" + box + r"{\p0}"
             del box
             tag = Tag.Builder(box_tag)
-            tag.tags.append(Tag.Pos(x, y))
+            tag.tags.append(Tag.Pos(_x, _y))
             tag.tags.append(Tag.PrimaryColour(each.bgColor))
             tag.tags.append(Tag.PrimaryAlpha(each.bgOpacity))
             a = [
@@ -168,9 +184,12 @@ def Convert(
             box = draw.Dump()
             box_tag = r"{\p1}" + box + r"{\p0}"
             del box
-
+            _sx = sx
+            _sy = sy
+            _sx = round(_sx, 3)
+            _sy = round(_sy, 3)
             tag = Tag.Builder(box_tag)
-            tag.tags.append(Tag.Pos(sx, sy))
+            tag.tags.append(Tag.Pos(_sx, _sy))
             tag.tags.append(Tag.PrimaryColour(each.bgColor))
             tag.tags.append(Tag.PrimaryAlpha(each.bgOpacity))
             a = [
@@ -229,17 +248,17 @@ def Convert(
         # 但是没有这个也可以正常显示, 之前就没有, 现在也就是安心些
         event.Layer = 1
 
-        x = round(each.x, 3)
-        y = round(each.y, 3)
-        textSize = round(each.textSize, 3)
-        width = round(each.width, 3)
-        height = round(each.height, 3)
-        sx = round(each.sx, 3)
-        sy = round(each.sy, 3)
+        x = each.x
+        y = each.y
+        textSize = each.textSize
+        width = each.width
+        height = each.height
+        sx = each.sx
+        sy = each.sy
 
         if each.style == "title":
             # Windows 酱赛高
-            textSize = round(textSize * 100 / 480, 3)
+            textSize = textSize * 100 / 480
 
         if resolutionX != 100 or resolutionY != 100:
             # Annotations 的定位是"百分比"
@@ -248,12 +267,11 @@ def Convert(
             transform_coefficient_x = resolutionX / 100
             transform_coefficient_y = resolutionY / 100
 
-            # 浮点数太长了, 为了美观, 用 round 截断成三位, 字幕滤镜本身是支持小数的
             def TransformX(x: float) -> float:
-                return round(x * transform_coefficient_x, 3)
+                return x * transform_coefficient_x
 
             def TransformY(y: float) -> float:
-                return round(y * transform_coefficient_y, 3)
+                return y * transform_coefficient_y
 
             x = TransformX(x)
             y = TransformY(y)
