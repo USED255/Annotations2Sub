@@ -18,6 +18,18 @@ def DumpAlpha(alpha: Alpha) -> str:
 
 
 class Tag:
+    class Builder:
+        def __init__(self, text: str):
+            self.text = text
+            self.tags: list = []
+
+        def __str__(self) -> str:
+            tag = ""
+            for i in self.tags:
+                tag += str(i)
+            tag = r"{" + tag + r"}"
+            return tag + self.text
+
     class Pos:
         def __init__(self, x: float, y: float):
             self.x = x
@@ -26,19 +38,19 @@ class Tag:
         def __str__(self) -> str:
             return rf"\an7\pos({self.x},{self.y})"
 
-    class PrimaryColour:
-        def __init__(self, colour: Color):
-            self.colour = colour
-
-        def __str__(self) -> str:
-            return r"\c" + DumpColor(self.colour)
-
     class Fontsize:
         def __init__(self, size: float):
             self.size = size
 
         def __str__(self) -> str:
             return r"\fs" + str(self.size)
+
+    class PrimaryColour:
+        def __init__(self, colour: Color):
+            self.colour = colour
+
+        def __str__(self) -> str:
+            return r"\c" + DumpColor(self.colour)
 
     class PrimaryAlpha:
         def __init__(self, alpha: Alpha):
@@ -67,15 +79,3 @@ class Tag:
 
         def __str__(self) -> str:
             return r"\4a" + DumpAlpha(self.alpha)
-
-    class Builder:
-        def __init__(self, text: str):
-            self.text = text
-            self.tags: list = []
-
-        def __str__(self) -> str:
-            tag = ""
-            for i in self.tags:
-                tag += str(i)
-            tag = r"{" + tag + r"}"
-            return tag + self.text
