@@ -16,7 +16,7 @@ from Annotations2Sub.utils import Flags, MakeSureStr, Stderr, _
 # 兼容 Python3.6, 3.7
 # Python3.6, 3.7 的 typing 没有 Literal
 try:
-    from typing import Literal  # type: ignore
+    from typing import Literal
 except ImportError:
     pass
 
@@ -192,7 +192,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
         # 类型检查可以避免些低级错误, 提升编码体验, 虽然在 Python 上有些瓦房店化
         _Segment = each.find("segment").find("movingRegion")  # type: ignore
-        if _Segment is None:  # type: ignore
+        if _Segment is None:
             # 学习 annotationlib
             # https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L117
             # 跳过没有内容的 Annotation
@@ -202,12 +202,12 @@ def Parse(tree: Element) -> List[Annotation]:
                 Stderr(_("{} 没有 movingRegion, 跳过").format(_id))
             return None
 
-        Segment = _Segment.findall("rectRegion")  # type: ignore
+        Segment = _Segment.findall("rectRegion")
         if len(Segment) == 0:
             # 在这之前(bdb6559 更新), 这里莫名其妙的包了个括号
             # 我把整个代码注释一遍原因之一就是为了发现这些问题
             # 而且这些代码是经验堆积而成, 我希望丰富的注释可以帮助路人理解这些代码怎么运行
-            Segment = _Segment.findall("anchoredRegion")  # type: ignore
+            Segment = _Segment.findall("anchoredRegion")
 
         if len(Segment) == 0:
             if style != "highlightText":

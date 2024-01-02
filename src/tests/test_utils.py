@@ -28,7 +28,7 @@ def test_RedText():
 
 def test_MakeSureStr_TypeError():
     with pytest.raises(TypeError):
-        MakeSureStr(0)  # type: ignore
+        MakeSureStr(0)
 
 
 def test_internationalization():

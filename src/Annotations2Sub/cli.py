@@ -12,7 +12,7 @@ import subprocess
 import sys
 import traceback
 import urllib.request
-import xml.etree.ElementTree  # type: ignore
+import xml.etree.ElementTree
 from http.client import IncompleteRead
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
@@ -219,7 +219,7 @@ def Run(argv=None):
             except URLError:
                 Warn(_("您好像无法访问 Google 🤔"))
 
-        Dummy([CheckNetwork])  # type: ignore
+        Dummy([CheckNetwork])
         _thread.start_new_thread(CheckNetwork, ())
 
     for Task in queue:
@@ -283,7 +283,7 @@ def Run(argv=None):
             annotations_string = f.read()
 
         try:
-            tree = xml.etree.ElementTree.fromstring(annotations_string)  # type: ignore
+            tree = xml.etree.ElementTree.fromstring(annotations_string)
         except ParseError:
             Err(_("{} 不是一个有效的 XML 文件").format(annotations_file))
             if Flags.verbose:
@@ -299,7 +299,7 @@ def Run(argv=None):
         if len(tree.find("annotations").findall("annotation")) == 0:  # type: ignore
             Warn(_("{} 没有 Annotation").format(annotations_file))
 
-        annotations = Parse(tree)  # type: ignore
+        annotations = Parse(tree)
         events = Convert(
             annotations,
             transform_resolution_x,
@@ -314,8 +314,8 @@ def Run(argv=None):
         subtitle = Sub()
         subtitle.comment += _("此脚本使用 Annotations2Sub 生成") + "\n"
         subtitle.comment += "https://github.com/USED255/Annotations2Sub"
-        subtitle.info["PlayResX"] = transform_resolution_x  # type: ignore
-        subtitle.info["PlayResY"] = transform_resolution_y  # type: ignore
+        subtitle.info["PlayResX"] = transform_resolution_x
+        subtitle.info["PlayResY"] = transform_resolution_y
         subtitle.info["Title"] = os.path.basename(annotations_file)
         subtitle.styles["Default"].Fontname = font
         subtitle.events.extend(events)
@@ -355,7 +355,7 @@ def Run(argv=None):
                 )
                 for instance in instances:
                     try:
-                        if not instance[1]["api"]:  # type: ignore
+                        if not instance[1]["api"]:
                             continue
                     except IndexError:
                         pass
