@@ -84,5 +84,7 @@ def test_GetAnnotationsUrl():
         == "https://archive.org/download/youtubeannotations_64/-8.tar/-8k/-8kKeUuytqA.xml"
     )
 
+
+def test_GetAnnotationsUrl_ValueError():
     with pytest.raises(ValueError):
         GetAnnotationsUrl("")
