@@ -252,6 +252,10 @@ def Run(argv=None):
                 annotations_url = GetAnnotationsUrl(video_id)
                 Stderr(_("下载 {}").format(annotations_url))
                 annotations_string = GetUrl(annotations_url)
+                if annotations_string == "":
+                    Warn(_("{} 可能没有 Annotations").format(video_id))
+                    exit_code = 1
+                    continue
                 if output_to_stdout:
                     print(annotations_string, file=sys.stdout)
                 else:
@@ -277,10 +281,6 @@ def Run(argv=None):
 
         with open(annotations_file, "r", encoding="utf-8") as f:
             annotations_string = f.read()
-        if annotations_string == "":
-            Warn(_("{} 可能没有 Annotations").format(video_id))
-            exit_code = 1
-            continue
 
         try:
             tree = xml.etree.ElementTree.fromstring(annotations_string)  # type: ignore
