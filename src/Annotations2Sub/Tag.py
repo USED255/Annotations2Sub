@@ -84,27 +84,6 @@ class Tag(list):
         def __str__(self) -> str:
             return r"\1a" + DumpAlpha(self.alpha)
 
-    class SecondaryAlpha:
-        def __init__(self, alpha: Alpha):
-            self.alpha = alpha
-
-        def __str__(self) -> str:
-            return r"\2a" + DumpAlpha(self.alpha)
-
-    class BorderAlpha:
-        def __init__(self, alpha: Alpha):
-            self.alpha = alpha
-
-        def __str__(self) -> str:
-            return r"\3a" + DumpAlpha(self.alpha)
-
-    class ShadowAlpha:
-        def __init__(self, alpha: Alpha):
-            self.alpha = alpha
-
-        def __str__(self) -> str:
-            return r"\4a" + DumpAlpha(self.alpha)
-
     class Bold:
         def __init__(self, bold: int):
             self.bold = bold
