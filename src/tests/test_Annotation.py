@@ -18,7 +18,7 @@ def test_ParseAnnotationAlpha_ValueError():
     m = pytest.MonkeyPatch()
     m.setattr(Annotations, "Dummy", f)
     with pytest.raises(ValueError):
-        Annotations.Parse(Element(""))  # type: ignore
+        Annotations.Parse(Element(""))
 
     m.undo()
 
@@ -32,7 +32,7 @@ def test_ParseAnnotationColor_ValueError():
     m = pytest.MonkeyPatch()
     m.setattr(Annotations, "Dummy", f)
     with pytest.raises(ValueError):
-        Annotations.Parse(Element(""))  # type: ignore
+        Annotations.Parse(Element(""))
 
     m.undo()
 
@@ -46,6 +46,6 @@ def test_MakeSureElement_TypeError():
     m = pytest.MonkeyPatch()
     m.setattr(Annotations, "Dummy", f)
     with pytest.raises(TypeError):
-        Annotations.Parse(Element(""))  # type: ignore
+        Annotations.Parse(Element(""))
 
     m.undo()

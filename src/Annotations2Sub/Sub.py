@@ -17,7 +17,7 @@ def Dummy(*args, **kwargs):
 # 兼容 Python3.6, 3.7
 # Python3.6, 3.7 的 typing 没有 Literal
 try:
-    from typing import Literal  # type: ignore
+    from typing import Literal
 except ImportError:
 
     class a:

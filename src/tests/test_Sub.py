@@ -12,6 +12,9 @@ def test_DrawDump():
     draw.Add(DrawCommand(0, 0, "m"))
     draw.Add(DrawCommand(100, 100, "l"))
     assert draw.Dump() == "m 0 0 l 100 100 "
+
+
+def test_DrawDump_TypeError():
     with pytest.raises(TypeError):
         draw = Draw()
         draw.Add(1)  # type: ignore
