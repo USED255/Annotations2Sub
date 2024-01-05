@@ -83,6 +83,7 @@ class Annotation:
         self.textSize: float = 3.15
         # annotationlib 没处理 author, 我会处理
         self.author: str = ""
+        self.fontWeight: str = ""
         # SSA 不能实现交互,
         # 处理 action 没有意义
         # self.actionType: Literal["time", "url"] = "time"
@@ -283,6 +284,7 @@ def Parse(tree: Element) -> List[Annotation]:
             bgColor = Appearance.get("bgColor")
             fgColor = Appearance.get("fgColor")
             textSize = Appearance.get("textSize")
+            fontWeight = Appearance.get("fontWeight")
 
             if bgAlpha != None:
                 annotation.bgOpacity = ParseAnnotationAlpha(MakeSureStr(bgAlpha))
@@ -292,6 +294,8 @@ def Parse(tree: Element) -> List[Annotation]:
                 annotation.fgColor = ParseAnnotationColor(MakeSureStr(fgColor))
             if textSize != None:
                 annotation.textSize = float(MakeSureStr(textSize))
+            if fontWeight != None:
+                annotation.fontWeight = MakeSureStr(fontWeight)
 
         author = each.get("author")
         if author != None:

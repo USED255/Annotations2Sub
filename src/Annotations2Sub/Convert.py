@@ -74,6 +74,9 @@ def Convert(
                     Tag.ShadowAlpha(Alpha()),
                 ]
             )
+            if each.fontWeight == "bold":
+                tags.append(Tag.Bold(1))
+
             event.Text = str(tags) + text
             return event
 

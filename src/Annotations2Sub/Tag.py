@@ -104,3 +104,10 @@ class Tag(list):
 
         def __str__(self) -> str:
             return r"\4a" + DumpAlpha(self.alpha)
+
+    class Bold:
+        def __init__(self,bold: int):
+            self.bold = bold
+
+        def __str__(self) -> str:
+            return r"\b" + str(self.bold)
