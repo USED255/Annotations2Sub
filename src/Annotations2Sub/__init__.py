@@ -61,7 +61,7 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 ---
 
 作为我的第一个代码, 我一直想让其趋于完美.
-首先想的是参考 https://github.com/isaackd/annotationlib (致谢), 将 s 抽成一个简单的结构, 
+首先想的是参考 https://github.com/isaackd/annotationlib (致谢), 将 Annotations 抽成一个简单的结构, 
 与脚本生成器(转换器)解耦, 结果并没有让事情变简单. (2020)
 之后还尝试过实现 speech 样式, 把事情弄得一团糟
 还尝试过扔掉 invidious , 发现我简直像个shaberhu (2021)
