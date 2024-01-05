@@ -303,7 +303,10 @@ def Parse(tree: Element) -> List[Annotation]:
     Dummy([ParseAnnotationAlpha, ParseAnnotationColor, MakeSureElement])
     annotations: List[Annotation] = []
     # 下面这行代码先从 youtube-ass 传到之前的 Annotations2Sub, 再从之前的 Annotations2Sub 传到这里
-    for each in tree.find("annotations").findall("annotation"):  # type: ignore
+    annotations_tree = tree.find("annotations")
+    if annotations_tree == None:
+        raise ValueError(_("不是 Annotations 文档"))
+    for each in annotations_tree.findall("annotation"):  # type: ignore
         annotation = ParseAnnotation(each)
         if annotation != None:
             # 我想这个类型检查真是奇怪, 但是我也不知道该怎么做

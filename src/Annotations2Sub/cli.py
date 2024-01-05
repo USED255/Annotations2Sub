@@ -291,15 +291,12 @@ def Run(argv=None):
             exit_code = 1
             continue
 
-        if tree.find("annotations") == None:
+        try:
+            annotations = Parse(tree)
+        except ValueError:
             Err(_("{} 不是 Annotations 文件").format(annotations_file))
             exit_code = 1
             continue
-
-        if len(tree.find("annotations").findall("annotation")) == 0:  # type: ignore
-            Warn(_("{} 没有 Annotation").format(annotations_file))
-
-        annotations = Parse(tree)
         events = Convert(
             annotations,
             transform_resolution_x,
