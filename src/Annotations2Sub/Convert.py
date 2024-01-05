@@ -33,6 +33,9 @@ def Convert(
         def Text(event: Event) -> Event:
             """生成 Annotation 文本的 Event"""
             text = each.text
+            if text.startswith(" "):
+                # 让前导空格生效
+                text = "\u200b" + text
             # SSA 用 "\N" 换行
             text = text.replace("\n", r"\N")
             # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
