@@ -32,6 +32,15 @@ def Convert(
 
         def Text(event: Event) -> Event:
             """生成 Annotation 文本的 Event"""
+            text = each.text
+            # SSA 用 "\N" 换行
+            text = text.replace("\n", r"\N")
+            # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
+            # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
+            # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
+            text = text.replace("{", r"\{")
+            text = text.replace("}", r"\}")
+
             _x = x
             _y = y
             nonlocal textSize  # type: ignore
@@ -62,7 +71,7 @@ def Convert(
                     Tag.ShadowAlpha(Alpha()),
                 ]
             )
-            event.Text = str(tags) + event.Text
+            event.Text = str(tags) + text
             return event
 
         def Box(event: Event) -> Event:
@@ -236,17 +245,6 @@ def Convert(
         # Name 在 Aegisub 里是 "说话人"
         event.Name += each.author + ";"
         event.Name += each.id + ";"
-
-        text = each.text
-        # SSA 用 "\N" 换行
-        text = text.replace("\n", r"\N")
-        # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
-        # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
-        # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
-        text = text.replace("{", r"\{")
-        text = text.replace("}", r"\}")
-        event.Text = text
-        del text
 
         # Layer 是"层", 他们说大的会覆盖小的
         # 但是没有这个也可以正常显示, 之前就没有, 现在也就是安心些
