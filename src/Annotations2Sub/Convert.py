@@ -69,9 +69,8 @@ def Convert(
                     Tag.Pos(_x, _y),
                     Tag.Fontsize(_textSize),
                     Tag.PrimaryColour(each.fgColor),
-                    Tag.SecondaryAlpha(Alpha()),
-                    Tag.BorderAlpha(Alpha()),
-                    Tag.ShadowAlpha(Alpha()),
+                    Tag.Bord(0),
+                    Tag.Shadow(0),
                 ]
             )
             if each.fontWeight == "bold":
@@ -108,9 +107,8 @@ def Convert(
                     Tag.Pos(_x, _y),
                     Tag.PrimaryColour(each.bgColor),
                     Tag.PrimaryAlpha(each.bgOpacity),
-                    Tag.SecondaryAlpha(Alpha()),
-                    Tag.BorderAlpha(Alpha()),
-                    Tag.ShadowAlpha(Alpha()),
+                    Tag.Bord(0),
+                    Tag.Shadow(0),
                 ]
             )
             event.Text = str(tags) + box_tag
@@ -212,9 +210,8 @@ def Convert(
                     Tag.Pos(_sx, _sy),
                     Tag.PrimaryColour(each.bgColor),
                     Tag.PrimaryAlpha(each.bgOpacity),
-                    Tag.SecondaryAlpha(Alpha()),
-                    Tag.BorderAlpha(Alpha()),
-                    Tag.ShadowAlpha(Alpha()),
+                    Tag.Bord(0),
+                    Tag.Shadow(0),
                 ]
             )
             event.Text = str(tags) + box_tag
