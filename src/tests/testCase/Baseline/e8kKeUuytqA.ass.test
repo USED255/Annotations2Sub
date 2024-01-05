@@ -5,6 +5,7 @@ ScriptType: v4.00+
 Title: e8kKeUuytqA.xml.test
 PlayResX: 100
 PlayResY: 100
+WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding

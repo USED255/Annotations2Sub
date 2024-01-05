@@ -310,9 +310,10 @@ def Run(argv=None):
         subtitle = Sub()
         subtitle.comment += _("此脚本使用 Annotations2Sub 生成") + "\n"
         subtitle.comment += "https://github.com/USED255/Annotations2Sub"
+        subtitle.info["Title"] = os.path.basename(annotations_file)
         subtitle.info["PlayResX"] = transform_resolution_x
         subtitle.info["PlayResY"] = transform_resolution_y
-        subtitle.info["Title"] = os.path.basename(annotations_file)
+        subtitle.info["WrapStyle"]= "2"
         subtitle.styles["Default"].Fontname = font
         subtitle.events.extend(events)
         subtitle_string = subtitle.Dump()
