@@ -229,7 +229,7 @@ def Run(argv=None):
             if video_id.startswith("\\"):
                 video_id = video_id.replace("\\", "", 1)
 
-            if re.match(r"[a-zA-Z0-9_-]{11}", video_id) is None:
+            if re.match(r"[a-zA-Z0-9_-]{11}", video_id) == None:
                 Err(_("{} 不是一个有效的视频 ID").format(video_id))
                 exit_code = 1
                 continue
