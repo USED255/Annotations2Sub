@@ -174,7 +174,8 @@ def Parse(tree: Element) -> List[Annotation]:
             return None
 
         style = each.get("style")
-        # 根据经验, 没有 style 也就没有内容
+        if style == None and _type == "highlight":
+            style = ""
         if style == None:
             if Flags.verbose:
                 Stderr(_("{} 没有 style, 跳过").format(_id))

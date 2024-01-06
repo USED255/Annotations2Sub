@@ -323,6 +323,9 @@ def Convert(
         elif each.style == "label":
             events.append(label_text(copy.copy(event)))
             events.append(label_box(copy.copy(event)))
+        elif each.style == "" and each.type == "highlight":
+            events.append(highlightText_text(copy.copy(event)))
+            events.append(highlightText_box(copy.copy(event)))
         else:
             Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
 
