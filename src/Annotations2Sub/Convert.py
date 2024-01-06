@@ -91,12 +91,17 @@ def Convert(
             _height = round(_height, 3)
             # 在之前这里我拼接字符串, 做的还没有全民核酸检测好
             # 现在画四个点直接闭合一个框
-            draw = Draw()
-            draw.Add(DrawCommand(0, 0, "m"))
-            draw.Add(DrawCommand(_width, 0, "l"))
-            draw.Add(DrawCommand(_width, _height, "l"))
-            draw.Add(DrawCommand(0, _height, "l"))
-            box = draw.Dump()
+            draws = Draw()
+            draws.extend(
+                [
+                    DrawCommand(0, 0, "m"),
+                    DrawCommand(_width, 0, "l"),
+                    DrawCommand(_width, _height, "l"),
+                    DrawCommand(0, _height, "l"),
+                ]
+            )
+
+            box = str(draws)
             # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
             box_tag = r"{\p1}" + box + r"{\p0}"
             del box
@@ -191,12 +196,16 @@ def Convert(
             y1 = round(y1, 3)
             x2 = round(x2, 3)
 
-            draw = Draw()
+            draws = Draw()
             # 一共三个点, 怎么画都是个三角形
-            draw.Add(DrawCommand(0, 0, "m"))
-            draw.Add(DrawCommand(x1, y1, "l"))
-            draw.Add(DrawCommand(x2, y1, "l"))
-            box = draw.Dump()
+            draws.extend(
+                [
+                    DrawCommand(0, 0, "m"),
+                    DrawCommand(x1, y1, "l"),
+                    DrawCommand(x2, y1, "l"),
+                ]
+            )
+            box = str(draws)
             box_tag = r"{\p1}" + box + r"{\p0}"
             del box
             _sx = sx

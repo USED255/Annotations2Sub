@@ -110,17 +110,17 @@ class Sub:
         self.styles["Default"] = Style()
 
     def __str__(self) -> str:
-        return self.Dump()
-
-    def Dump(self) -> str:
-        """转储为 SSA"""
         self._info.comment = self.comment
 
         string = ""
-        string += self._info.Dump()
-        string += self._styles.Dump()
-        string += self._events.Dump()
+        string += str(self._info)
+        string += str(self._styles)
+        string += str(self._events)
         return string
+
+    def Dump(self) -> str:
+        """转储为 SSA"""
+        return str(self)
 
     class _Info:
         """SSA 的信息(Info) 结构"""
@@ -132,11 +132,6 @@ class Sub:
             self.infos: Dict[str, str] = {"ScriptType": "v4.00+"}
 
         def __str__(self) -> str:
-            return self.Dump()
-
-        def Dump(self) -> str:
-            """将 Info 结构转换为字符串"""
-
             # 只是暴力拼接字符串而已
             string = ""
             string += "[Script Info]\n"
@@ -148,7 +143,6 @@ class Sub:
             string += "\n"
             return string
 
-    # 这次和之前相比把一个类拆成了结构和一个 Dump 方法
     class _Styles:
         def __init__(self):
             self.styles: Dict[str, Style] = {}
@@ -180,9 +174,6 @@ class Sub:
             self.events: List[Event] = []
 
         def __str__(self) -> str:
-            return self.Dump()
-
-        def Dump(self) -> str:
             def DumpTime(t: datetime.datetime) -> str:
                 """转换为 SSA 时间字符串"""
 
@@ -210,28 +201,12 @@ class DrawCommand:
         self.command: Literal["m", "l"] = command
 
 
-class Draw:
-    """绘图类"""
-
-    def __init__(self):
-        self.draws: List[DrawCommand] = []
-
+class Draw(list):
     def __str__(self) -> str:
-        return self.Dump()
-
-    def Add(self, command: DrawCommand):
-        """添加一个绘图指令"""
-        if isinstance(command, DrawCommand) is False:
-            raise TypeError(_('"command" 必须是 "DrawCommand"'))
-        self.draws.append(command)
-
-    def Dump(self) -> str:
-        """转储为绘图命令"""
-
         # "所有绘图都应由 m <x> <y> 命令开头"
         # "所有没闭合的图形会被自动地在起点和终点之间添加直线来闭合。"
         # "如果一个对话行中的多个图形有重叠，重叠部分会进行异或运算。"
         string = ""
-        for draw in self.draws:
+        for draw in self:
             string = string + f"{draw.command} {draw.x} {draw.y} "
         return string
