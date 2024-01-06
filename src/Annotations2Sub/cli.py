@@ -106,6 +106,14 @@ def Run(argv=None):
         action="store_true",
         help=_("仅下载注释"),
     )
+
+    parser.add_argument(
+        "-i",
+        "--invidious-instances",
+        type=str,
+        metavar="invidious.domain",
+        help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
+    )
     # 拼接参数执行 mpv
     parser.add_argument(
         "-p",
@@ -121,14 +129,6 @@ def Run(argv=None):
         help=_("生成视频, 需要 FFmpeg(https://ffmpeg.org/)"),
     )
     parser.add_argument(
-        "-i",
-        "--invidious-instances",
-        type=str,
-        metavar="invidious.domain",
-        help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
-    )
-
-    parser.add_argument(
         "-n", "--no-overwrite-files", action="store_true", help=_("不覆盖文件")
     )
 
@@ -138,14 +138,14 @@ def Run(argv=None):
     )
 
     parser.add_argument(
+        "-o", "--output", type=str, metavar=_("文件"), help=_('保存到此文件, 如果为 "-" 则输出到标准输出')
+    )
+    parser.add_argument(
         "-O",
         "--output-directory",
         type=str,
         metavar=_("目录"),
         help=_("指定转换后文件的输出目录"),
-    )
-    parser.add_argument(
-        "-o", "--output", type=str, metavar=_("文件"), help=_('保存到此文件, 如果为 "-" 则输出到标准输出')
     )
     parser.add_argument(
         "-v",
@@ -256,7 +256,7 @@ def Run(argv=None):
                     exit_code = 1
                     continue
                 if output_to_stdout:
-                    print(annotations_string, file=sys.stdout)
+                    sys.stdout.write(annotations_string)
                 else:
                     with open(annotations_file, "w", encoding="utf-8") as f:
                         f.write(annotations_string)
