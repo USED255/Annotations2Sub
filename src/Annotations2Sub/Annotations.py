@@ -166,7 +166,7 @@ def Parse(tree: Element) -> List[Annotation]:
         _type = MakeSureStr(__type)
         del __type
         if _type not in ("text", "highlight", "branding"):
-            Stderr(_("不支持{}类型 ({})").format(_type, _id))
+            Stderr(_("不支持 {} 类型 ({})").format(_type, _id))
             # 我不知道显式的 return None 有什么用
             # 但是 annotationlib 是这样做的
             # 我也学学

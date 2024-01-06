@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2023-12-25 23:09+0800\n"
-"PO-Revision-Date: 2023-12-25 23:09+0800\n"
+"POT-Creation-Date: 2024-01-06 17:44+0800\n"
+"PO-Revision-Date: 2024-01-06 17:46+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -14,33 +14,37 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: Annotation.py:111
+#: Annotations.py:112
 msgid "\"alpha\" 不应为 None"
 msgstr "\"alpha\" should not be None"
 
-#: Annotation.py:121
+#: Annotations.py:122
 msgid "\"color\" 不应为 None"
 msgstr "\"color\" should not be None"
 
-#: Annotation.py:168
-msgid "不支持{}类型 ({})"
+#: Annotations.py:169
+msgid "不支持 {} 类型 ({})"
 msgstr "The {} type is not supported ({})"
 
-#: Annotation.py:178
+#: Annotations.py:179
 msgid "{} 没有 style, 跳过"
 msgstr "{} No style, skip"
 
-#: Annotation.py:202
+#: Annotations.py:203
 msgid "{} 没有 movingRegion, 跳过"
 msgstr "{} No movingRegion, skip"
 
-#: Annotation.py:219
+#: Annotations.py:220
 msgid "{} 没有时间, 跳过"
 msgstr "{} No time, skip"
 
-#: Annotation.py:232
+#: Annotations.py:233
 msgid "{} 不显示, 跳过"
 msgstr "{} Do not display, skip"
+
+#: Annotations.py:312
+msgid "不是 Annotations 文档"
+msgstr "Not an Annotations document"
 
 #: Color.py:17
 msgid "\"red\" 必须在 0-255 之间"
@@ -58,7 +62,7 @@ msgstr "\"blue\" must be between 0-255"
 msgid "\"alpha\" 必须在 0-255 之间"
 msgstr "\"alpha\" must be between 0-255"
 
-#: Convert.py:304
+#: Convert.py:316
 msgid "不支持 {} 样式 ({})"
 msgstr "The {} style is not supported ({})"
 
@@ -66,164 +70,160 @@ msgstr "The {} style is not supported ({})"
 msgid "\"command\" 必须是 \"DrawCommand\""
 msgstr "\"command\" must be \"DrawCommand\""
 
-#: cli.py:46
+#: cli.py:42
 msgid "获取 {}"
 msgstr "Get {}"
 
-#: cli.py:66
+#: cli.py:62
 msgid "下载和转换 Youtube 注释"
 msgstr "Download and convert Youtube Annotation"
 
-#: cli.py:71
+#: cli.py:67
 msgid "文件 或 videoId"
 msgstr "File or videoId"
 
-#: cli.py:72
+#: cli.py:68
 msgid "多个需要转换的文件的文件路径或视频ID"
 msgstr "File path or video ID of multiple files to be convert"
 
-#: cli.py:81
+#: cli.py:77
 msgid "变换分辨率X"
 msgstr "Transform resolution X"
 
-#: cli.py:89
+#: cli.py:85
 msgid "变换分辨率Y"
 msgstr "Transform resolution Y"
 
-#: cli.py:96 cli.py:98
+#: cli.py:92 cli.py:94
 msgid "Microsoft YaHei"
 msgstr "Arial"
 
-#: cli.py:99
+#: cli.py:95
 msgid "指定字体"
 msgstr "Specify font"
 
-#: cli.py:105
+#: cli.py:101
 msgid "尝试从 Internet Archive 下载注释文件"
 msgstr "Try to download the Annotation file from the Internet Archive"
 
-#: cli.py:111
+#: cli.py:107
 msgid "仅下载注释"
 msgstr "Download annotation only"
 
-#: cli.py:118
+#: cli.py:114
 msgid "预览视频, 需要 mpv(https://mpv.io/)"
 msgstr "Preview video, requires mpv(https://mpv.io/)"
 
-#: cli.py:125
+#: cli.py:121
 msgid "生成视频, 需要 FFmpeg(https://ffmpeg.org/)"
 msgstr "Generate video, requires FFmpeg(https://ffmpeg.org/)"
 
-#: cli.py:132
+#: cli.py:128
 msgid "指定 invidious 实例(https://redirect.invidious.io/)"
 msgstr "Specify invidious instances (https://redirect.invidious.io/)"
 
-#: cli.py:136
+#: cli.py:132
 msgid "不覆盖文件"
 msgstr "Do not overwrite files"
 
-#: cli.py:141
+#: cli.py:137
 msgid "不保留中间文件"
 msgstr "Do not keep intermediate files"
 
-#: cli.py:148
+#: cli.py:144
 msgid "目录"
 msgstr "directory"
 
-#: cli.py:149
+#: cli.py:145
 msgid "指定转换后文件的输出目录"
 msgstr "Specify the output directory for the converted file"
 
-#: cli.py:152
+#: cli.py:148
 msgid "文件"
 msgstr "File"
 
-#: cli.py:152
+#: cli.py:148
 msgid "保存到此文件, 如果为 \"-\" 则输出到标准输出"
 msgstr "Save to this file, if \"-\" then output to standard output"
 
-#: cli.py:158
+#: cli.py:154
 msgid "显示版本号"
 msgstr "Show Version"
 
-#: cli.py:159
+#: cli.py:155
 #, python-brace-format
 msgid "Annotations2Sub v{version}"
 msgstr "Annotations2Sub v{version}"
 
-#: cli.py:167
+#: cli.py:163
 msgid "显示更多消息"
 msgstr "Show more messages"
 
-#: cli.py:195
+#: cli.py:191
 msgid "--output 不能与 --output--directory 选项同时使用"
 msgstr "--output cannot be used with the --output-directory options"
 
-#: cli.py:198
+#: cli.py:194
 msgid "--output 只能处理一个文件"
 msgstr "--output can only process one file"
 
-#: cli.py:205
+#: cli.py:201
 msgid "转换后文件输出目录应该指定一个文件夹"
 msgstr "The output directory of the converted file should specify a folder"
 
-#: cli.py:224
+#: cli.py:219
 msgid "您好像无法访问 Google 🤔"
 msgstr "You can't seem to access Google 🤔"
 
-#: cli.py:238
+#: cli.py:233
 msgid "{} 不是一个有效的视频 ID"
 msgstr "{} is not a valid videoId"
 
-#: cli.py:252
+#: cli.py:247
 msgid "文件已存在, 跳过下载 ({})"
 msgstr "File already exists, skip download ({})"
 
-#: cli.py:257
+#: cli.py:252
 msgid "下载 {}"
 msgstr "Downloading {}"
 
-#: cli.py:269
+#: cli.py:255
+msgid "{} 可能没有 Annotations"
+msgstr "{} May not have Annotations"
+
+#: cli.py:268
 msgid "{} 不是一个文件"
 msgstr "{} is not a file"
 
-#: cli.py:285
-msgid "{} 可能没有 Annotation"
-msgstr "{} May not have Annotation"
-
-#: cli.py:292
+#: cli.py:287
 msgid "{} 不是一个有效的 XML 文件"
 msgstr "{} is not a valid XML file"
 
-#: cli.py:299
-msgid "{} 不是 Annotation 文件"
-msgstr "{} is not an Annotation file"
+#: cli.py:296
+msgid "{} 不是 Annotations 文件"
+msgstr "{} is not an Annotations file"
 
-#: cli.py:304
-msgid "{} 没有 Annotation"
-msgstr "{} have no Annotation"
-
-#: cli.py:313
+#: cli.py:305
 msgid "{} 没有注释被转换"
 msgstr "{} No Annotation are converted"
 
-#: cli.py:319
+#: cli.py:311
 msgid "此脚本使用 Annotations2Sub 生成"
 msgstr "Script generated by Annotations2Sub"
 
-#: cli.py:335
+#: cli.py:328
 msgid "文件已存在, 跳过输出 ({})"
 msgstr "File already exists, skip output ({})"
 
-#: cli.py:339 cli.py:394
+#: cli.py:332 cli.py:383
 msgid "删除 {}"
 msgstr "Delete {}"
 
-#: cli.py:345
+#: cli.py:338
 msgid "保存于: {}"
 msgstr "Saved in: {}"
 
-#: cli.py:348
+#: cli.py:341
 msgid "无法获取视频"
 msgstr "Unable to get video"
 
@@ -242,6 +242,9 @@ msgstr "\"url\" must be http(s)"
 #: utils.py:97
 msgid "无效的 videoId"
 msgstr "Invalid videoId"
+
+#~ msgid "{} 没有 Annotation"
+#~ msgstr "{} have no Annotation"
 
 #~ msgid "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
 #~ msgstr "Embrace libass's quirks and features, not specifying this option will adapt to xy-vsfilter"
