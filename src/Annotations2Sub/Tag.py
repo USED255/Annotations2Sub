@@ -85,21 +85,21 @@ class Tag(list):
             return r"\1a" + DumpAlpha(self.alpha)
 
     class Bold:
-        def __init__(self, bold: int):
+        def __init__(self, bold: float):
             self.bold = bold
 
         def __str__(self) -> str:
             return r"\b" + str(self.bold)
 
     class Bord:
-        def __init__(self, bord: int):
+        def __init__(self, bord: float):
             self.bord = bord
 
         def __str__(self) -> str:
             return r"\bord" + str(self.bord)
 
     class Shadow:
-        def __init__(self, shadow: int):
+        def __init__(self, shadow: float):
             self.shadow = shadow
 
         def __str__(self) -> str:

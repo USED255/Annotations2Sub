@@ -16,7 +16,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 1,00:00:00.10,00:00:23.20,Default,;annotation_2200715567;;title,0,0,0,,{\an7\pos(979.2,64.238)\fs48.744\c&H000000&\bord0\shad0\b1}世界中的人們
 Dialogue: 1,00:00:12.50,00:00:23.20,Default,;annotation_2223401619;popup_text;,0,0,0,,{\an7\pos(312.96,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}1
 Dialogue: 0,00:00:12.50,00:00:23.20,Default,;annotation_2223401619;popup_box;,0,0,0,,{\an7\pos(293.76,489.38)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.699 l 0 122.699 {\p0}
-Dialogue: 1,00:00:50.52,00:00:55.06,Default,;annotation_2843969679;label_text;,0,0,0,,{\an7\pos(1373.242,13.846)\fs42.245\c&HFFFFFF&\bord0\shad0}THIS IS A NORMAL ANNOTATION\N                (Normal Mode)
+Dialogue: 1,00:00:50.52,00:00:55.06,Default,;annotation_2843969679;label_text;,0,0,0,,{\an7\pos(1373.242,13.846)\fs42.245\c&HFFFFFF&\bord0\shad2}THIS IS A NORMAL ANNOTATION\N                (Normal Mode)
 Dialogue: 0,00:00:50.52,00:00:55.06,Default,;annotation_2843969679;label_box;,0,0,0,,{\an7\pos(1354.042,3.046)\c&HAE547C&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 480.0 0 l 480.0 192.002 l 0 192.002 {\p0}
 Dialogue: 1,00:00:55.68,00:00:57.66,Default,;annotation_1028971653;anchored_text;,0,0,0,,{\an7\pos(607.2,968.803)\fs90.99\c&H1A1A1A&\bord0\shad0}There you go, you greedy boy.
 Dialogue: 0,00:00:55.68,00:00:57.66,Default,;annotation_1028971653;anchored_box;,0,0,0,,{\an7\pos(588.0,958.003)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 819.994 0 l 819.994 122.202 l 0 122.202 {\p0}
