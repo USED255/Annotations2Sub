@@ -194,214 +194,155 @@ def Convert(
             return event
 
         def Triangle(event: Event) -> Event:
-            # 开始只是按部就班的画一个气泡框
-            # 之后我想可以拆成一个普通的方框和一个三角形
-            # 这可以直接复用 Box, 气泡锚点定位也可以直接使用 /pos
-            # 绘图变得更简单, 一共三个点
+            h_base_start_multiplier = 0.17379070765180116
+            h_base_end_multiplier = 0.14896346370154384
+            v_base_start_multiplier = 0.12
+            v_base_end_multiplier = 0.3
 
-            # 图形定位在气泡锚点上, 图形需要画成一个三角形和 Box 拼接成一个气泡框
-            # 原点是 (0,0), 那么如果锚点在框的下方点就应该往上画, 反之赤然
+            h_s_v = width * h_base_start_multiplier
+            h_e_v = width * h_base_end_multiplier
+            v_s_v = height * v_base_start_multiplier
+            v_e_v = height * v_base_end_multiplier
 
-            # 以气泡锚点为原点求相对位置
             x1 = x - sx
-            x2 = x - sx
-            # 锚点靠那边就往那边画
-            if sx < x + width / 2:
-                x1 = x1 + width * 0.2
-                x2 = x2 + width * 0.4
-            else:
-                x1 = x1 + width * 0.8
-                x2 = x2 + width * 0.6
-
-            # 以气泡锚点为原点求相对位置
             y1 = y - sy
-            # 如果锚点在框的下方那么三角的边接的是框的下边, 所以是 y1 + height
-            if sy > y:
-                y1 = y1 + height
 
-            x1 = round(x1, 3)
-            y1 = round(y1, 3)
-            x2 = round(x2, 3)
+            v1 = x1 + h_s_v
+            v2 = x1 + h_s_v * 2
+            v3 = y1 + height
+            v4 = y1 + v_s_v
 
-            draws = Draw()
-            # 一共三个点, 怎么画都是个三角形
-            draws.extend(
-                [
-                    DrawCommand(0, 0, "m"),
-                    DrawCommand(x1, y1, "l"),
-                    DrawCommand(x2, y1, "l"),
-                ]
-            )
-            box = str(draws)
-            box_tag = r"{\p1}" + box + r"{\p0}"
-            del box
-            _sx = sx
-            _sy = sy
-            _sx = round(_sx, 3)
-            _sy = round(_sy, 3)
-            tags = Tag()
-            tags.extend(
-                [
-                    Tag.Pos(_sx, _sy),
-                    Tag.PrimaryColour(each.bgColor),
-                    Tag.PrimaryAlpha(each.bgOpacity),
-                    Tag.Bord(0),
-                    Tag.Shadow(0),
-                ]
-            )
-            event.Text = str(tags) + box_tag
-            return event
+            def f(event, x1, y1, x2):
+                x1 = round(x1, 3)
+                y1 = round(y1, 3)
+                x2 = round(x2, 3)
+                _sx = round(sx, 3)
+                _sy = round(sy, 3)
 
-        # def Triangle2(event: Event) -> Event:
-        #     h_base_start_multiplier = 0.17379070765180116
-        #     h_base_end_multiplier = 0.14896346370154384
-        #     v_base_start_multiplier = 0.12
-        #     v_base_end_multiplier = 0.3
+                draws = Draw()
+                draws.extend(
+                    [
+                        DrawCommand(0, 0, "m"),
+                        DrawCommand(x1, y1, "l"),
+                        DrawCommand(x2, y1, "l"),
+                    ]
+                )
+                box_tag = r"{\p1}" + str(draws) + r"{\p0}"
 
-        #     h_s_v = width * h_base_start_multiplier
-        #     h_e_v = width * h_base_end_multiplier
-        #     v_s_v = height * v_base_start_multiplier
-        #     v_e_v = height * v_base_end_multiplier
+                tags = Tag()
+                tags.extend(
+                    [
+                        Tag.Pos(_sx, _sy),
+                        Tag.PrimaryColour(each.bgColor),
+                        Tag.PrimaryAlpha(each.bgOpacity),
+                        Tag.Bord(0),
+                        Tag.Shadow(0),
+                    ]
+                )
+                event.Text = str(tags) + box_tag
+                return event
 
-        #     x1 = x - sx
-        #     y1 = y - sy
+            def f2(event, x1, y1, y2):
+                x1 = round(x1, 3)
+                y1 = round(y1, 3)
+                y2 = round(y2, 3)
+                _sx = round(sx, 3)
+                _sy = round(sy, 3)
 
-        #     v1 = x1 + h_s_v
-        #     v2 = x1 + h_s_v * 2
-        #     v3 = y1 + height
-        #     v4 = y1 + v_s_v
+                draws = Draw()
+                draws.extend(
+                    [
+                        DrawCommand(0, 0, "m"),
+                        DrawCommand(x1, y1, "l"),
+                        DrawCommand(y2, y1, "l"),
+                    ]
+                )
+                box_tag = r"{\p1}" + str(draws) + r"{\p0}"
 
-        #     def f(event, x1, y1, x2):
-        #         x1 = round(x1, 3)
-        #         y1 = round(y1, 3)
-        #         x2 = round(x2, 3)
-        #         _sx = round(sx, 3)
-        #         _sy = round(sy, 3)
+                tags = Tag()
+                tags.extend(
+                    [
+                        Tag.Pos(_sx, _sy),
+                        Tag.PrimaryColour(each.bgColor),
+                        Tag.PrimaryAlpha(each.bgOpacity),
+                        Tag.Bord(0),
+                        Tag.Shadow(0),
+                    ]
+                )
+                event.Text = str(tags) + box_tag
+                return event
 
-        #         draws = Draw()
-        #         draws.extend(
-        #             [
-        #                 DrawCommand(0, 0, "m"),
-        #                 DrawCommand(x1, y1, "l"),
-        #                 DrawCommand(x2, y1, "l"),
-        #             ]
-        #         )
-        #         box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+            def top_left():
+                _x1 = v1
+                x2 = _x1 + h_e_v
 
-        #         tags = Tag()
-        #         tags.extend(
-        #             [
-        #                 Tag.Pos(_sx, _sy),
-        #                 Tag.PrimaryColour(each.bgColor),
-        #                 Tag.PrimaryAlpha(each.bgOpacity),
-        #                 Tag.Bord(0),
-        #                 Tag.Shadow(0),
-        #             ]
-        #         )
-        #         event.Text = str(tags) + box_tag
-        #         return event
+                return f(event, _x1, y1, x2)
 
-        #     def f2(event, x1, y1, y2):
-        #         x1 = round(x1, 3)
-        #         y1 = round(y1, 3)
-        #         y2 = round(y2, 3)
-        #         _sx = round(sx, 3)
-        #         _sy = round(sy, 3)
+            def top_right():
+                _x1 = v2
+                x2 = _x1 - h_e_v
 
-        #         draws = Draw()
-        #         draws.extend(
-        #             [
-        #                 DrawCommand(0, 0, "m"),
-        #                 DrawCommand(x1, y1, "l"),
-        #                 DrawCommand(y2, y1, "l"),
-        #             ]
-        #         )
-        #         box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+                return f(event, _x1, y1, x2)
 
-        #         tags = Tag()
-        #         tags.extend(
-        #             [
-        #                 Tag.Pos(_sx, _sy),
-        #                 Tag.PrimaryColour(each.bgColor),
-        #                 Tag.PrimaryAlpha(each.bgOpacity),
-        #                 Tag.Bord(0),
-        #                 Tag.Shadow(0),
-        #             ]
-        #         )
-        #         event.Text = str(tags) + box_tag
-        #         return event
+            def bottom_left():
+                _x1 = v1
+                x2 = _x1 + h_e_v
 
-        #     def top_left():
-        #         _x1 = v1
-        #         x2 = _x1 + h_e_v
+                return f(event, _x1, v3, x2)
 
-        #         return f(event, _x1, y1, x2)
+            def bottom_right():
+                _x1 = v2
+                x2 = _x1 - h_e_v
 
-        #     def top_right():
-        #         _x1 = v2
-        #         x2 = _x1 - h_e_v
+                return f(event, _x1, v3, x2)
 
-        #         return f(event, _x1, y1, x2)
+            def left():
+                _y1 = v4
+                y2 = _y1 + v_e_v
+                return f2(event, x1, _y1, y2)
 
-        #     def bottom_left():
-        #         _x1 = v1
-        #         x2 = _x1 + h_e_v
+            def right():
+                _y1 = v4
+                y2 = _y1 + v_e_v
 
-        #         return f(event, _x1, v3, x2)
+                _x1 = x1 + width
+                return f2(event, _x1, _y1, y2)
 
-        #     def bottom_right():
-        #         _x1 = v2
-        #         x2 = _x1 - h_e_v
+            direction_padding = 20
+            bottom = False
+            top = False
+            _right = False
+            _left = False
 
-        #         return f(event, _x1, v3, x2)
+            if sy < (y - direction_padding):
+                top = True
+            if sy > y + height:
+                bottom = True
 
-        #     def left():
-        #         _y1 = v4
-        #         y2 = _y1 + v_e_v
-        #         return f2(event, x1, _y1, y2)
+            if sx < ((x + width) - (width / 2)):
+                _left = True
+            if sx > ((x + width) - (width / 2)):
+                _right = True
 
-        #     def right():
-        #         _y1 = v4
-        #         y2 = _y1 + v_e_v
+            if (
+                sx > (x + width)
+                and sy > (y - direction_padding)
+                and sy < ((y + height) - direction_padding)
+            ):
+                return right()
+            if sx < x and sy > y and sy < (y + height):
+                return left()
 
-        #         _x1 = x1 + width
-        #         return f2(event, _x1, _y1, y2)
+            if top and _left:
+                return top_left()
+            if top and _right:
+                return top_right()
+            if bottom and _left:
+                return bottom_left()
+            if bottom and _right:
+                return bottom_right()
 
-        #     direction_padding = 20
-        #     bottom = False
-        #     top = False
-        #     _right = False
-        #     _left = False
-
-        #     if sy < (y - direction_padding):
-        #         top = True
-        #     if sy > y + height:
-        #         bottom = True
-
-        #     if sx < ((x + width) - (width / 2)):
-        #         _left = True
-        #     if sx > ((x + width) - (width / 2)):
-        #         _right = True
-
-        #     if (
-        #         sx > (x + width)
-        #         and sy > (y - direction_padding)
-        #         and sy < ((y + height) - direction_padding)
-        #     ):
-        #         return right()
-        #     if sx < x and sy > y and sy < (y + height):
-        #         return left()
-
-        #     if top and _left:
-        #         return top_left()
-        #     if top and _right:
-        #         return top_right()
-        #     if bottom and _left:
-        #         return bottom_left()
-        #     if bottom and _right:
-        #         return bottom_right()
-
-        #     return bottom_left()
+            return bottom_left()
 
         def popup_text() -> Event:
             """生成 popup 样式的文本 Event"""
