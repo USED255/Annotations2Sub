@@ -194,25 +194,27 @@ def Convert(
             return event
 
         def Triangle(event: Event) -> Event:
-            h_base_start_multiplier = 0.17379070765180116
-            h_base_end_multiplier = 0.14896346370154384
-            v_base_start_multiplier = 0.12
-            v_base_end_multiplier = 0.3
+            direction_padding = 20
 
-            h_s_v = width * h_base_start_multiplier
-            h_e_v = width * h_base_end_multiplier
-            v_s_v = height * v_base_start_multiplier
-            v_e_v = height * v_base_end_multiplier
+            horizontal_base_start_multiplier = 0.17379070765180116
+            horizontal_base_end_multiplier = 0.14896346370154384
+            vertical_base_start_multiplier = 0.12
+            vertical_base_end_multiplier = 0.3
+
+            horizontal_start_value = width * horizontal_base_start_multiplier
+            horizontal_end_value = width * horizontal_base_end_multiplier
+            vertical_start_value = height * vertical_base_start_multiplier
+            vertical_end_value = height * vertical_base_end_multiplier
 
             x1 = x - sx
             y1 = y - sy
 
-            v1 = x1 + h_s_v
-            v2 = x1 + h_s_v * 2
+            v1 = x1 + horizontal_start_value
+            v2 = x1 + horizontal_start_value * 2
             v3 = y1 + height
-            v4 = y1 + v_s_v
+            v4 = y1 + vertical_start_value
 
-            def f(event, p1, p2, p3):
+            def draw_box(event, p1, p2, p3):
                 p1 = round(p1, 3)
                 p2 = round(p2, 3)
                 p3 = round(p3, 3)
@@ -242,63 +244,56 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
-            def f2(event, x1, y1, x2):
-                return f(event, x1, y1, x2)
-
-            def f3(event, x1, y1, y2):
-                return f(event, x1, y1, y2)
-
             def top_left():
                 _x1 = v1
-                x2 = _x1 + h_e_v
+                x2 = _x1 + horizontal_end_value
 
-                return f2(event, _x1, y1, x2)
+                return draw_box(event, _x1, y1, x2)
 
             def top_right():
                 _x1 = v2
-                x2 = _x1 - h_e_v
+                x2 = _x1 - horizontal_end_value
 
-                return f2(event, _x1, y1, x2)
+                return draw_box(event, _x1, y1, x2)
 
             def bottom_left():
                 _x1 = v1
-                x2 = _x1 + h_e_v
+                x2 = _x1 + horizontal_end_value
 
-                return f2(event, _x1, v3, x2)
+                return draw_box(event, _x1, v3, x2)
 
             def bottom_right():
                 _x1 = v2
-                x2 = _x1 - h_e_v
+                x2 = _x1 - horizontal_end_value
 
-                return f2(event, _x1, v3, x2)
+                return draw_box(event, _x1, v3, x2)
 
             def left():
                 _y1 = v4
-                y2 = _y1 + v_e_v
-                return f3(event, x1, _y1, y2)
+                y2 = _y1 + vertical_end_value
+                return draw_box(event, x1, _y1, y2)
 
             def right():
                 _y1 = v4
-                y2 = _y1 + v_e_v
+                y2 = _y1 + vertical_end_value
 
                 _x1 = x1 + width
-                return f3(event, _x1, _y1, y2)
+                return draw_box(event, _x1, _y1, y2)
 
-            direction_padding = 20
-            bottom = False
-            top = False
-            _right = False
-            _left = False
+            is_bottom = False
+            is_top = False
+            is_right = False
+            is_left = False
 
             if sy < (y - direction_padding):
-                top = True
+                is_top = True
             if sy > y + height:
-                bottom = True
+                is_bottom = True
 
             if sx < ((x + width) - (width / 2)):
-                _left = True
+                is_left = True
             if sx > ((x + width) - (width / 2)):
-                _right = True
+                is_right = True
 
             if (
                 sx > (x + width)
@@ -309,13 +304,13 @@ def Convert(
             if sx < x and sy > y and sy < (y + height):
                 return left()
 
-            if top and _left:
+            if is_top and is_left:
                 return top_left()
-            if top and _right:
+            if is_top and is_right:
                 return top_right()
-            if bottom and _left:
+            if is_bottom and is_left:
                 return bottom_left()
-            if bottom and _right:
+            if is_bottom and is_right:
                 return bottom_right()
 
             return bottom_left()
