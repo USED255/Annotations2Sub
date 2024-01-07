@@ -78,8 +78,8 @@ def Convert(
             _x = _x + variable1
             _y = _y + variable2
 
-            x1 = _x
-            y1 = _y
+            x1 = _x * 0.9
+            y1 = _y * 0.9
             x2 = _x + _width - variable1
             y2 = _y + _height - variable2
 
@@ -99,7 +99,7 @@ def Convert(
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
                     Tag.Shadow(0),
-                    # Tag.Clip(x1, y1, x2, y2),
+                    Tag.Clip(x1, y1, x2, y2),
                 ]
             )
             if each.fontWeight == "bold":
