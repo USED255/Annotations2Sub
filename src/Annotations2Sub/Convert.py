@@ -112,7 +112,6 @@ def Convert(
 
         def Box(event: Event) -> Event:
             """生成 Annotation 文本框的 Event"""
-            event.Layer = 0
             _x = x
             _y = y
             _width = width
@@ -197,7 +196,6 @@ def Convert(
         def speech_box_2(event: Event) -> Event:
             """生成 speech 样式的第二个框 Event"""
             event.Name += "speech_box_2;"
-            event.Layer = 0
 
             # 开始只是按部就班的画一个气泡框
             # 之后我想可以拆成一个普通的方框和一个三角形
@@ -289,10 +287,6 @@ def Convert(
         event.Name += each.author + ";"
         event.Name += each.id + ";"
 
-        # Layer 是"层", 他们说大的会覆盖小的
-        # 但是没有这个也可以正常显示, 之前就没有, 现在也就是安心些
-        event.Layer = 1
-
         x = each.x
         y = each.y
         textSize = each.textSize
@@ -337,28 +331,28 @@ def Convert(
 
         if each.style == "popup":
             # 用浅拷贝拷贝一遍再处理看起来简单些, 我不在意性能
-            events.append(popup_text(copy.copy(event)))
             events.append(popup_box(copy.copy(event)))
+            events.append(popup_text(copy.copy(event)))
         elif each.style == "title":
             events.append(title(copy.copy(event)))
         elif each.style == "highlightText":
             # 我没见过 highlightText, 所以实现很可能不对
-            events.append(highlightText_text(copy.copy(event)))
             events.append(highlightText_box(copy.copy(event)))
+            events.append(highlightText_text(copy.copy(event)))
         elif each.style == "speech":
-            events.append(speech_text(copy.copy(event)))
             events.append(speech_box_1(copy.copy(event)))
             events.append(speech_box_2(copy.copy(event)))
+            events.append(speech_text(copy.copy(event)))
             # 我没见过 "anchored" 所有实现很可能不对
         elif each.style == "anchored":
-            events.append(anchored_text(copy.copy(event)))
             events.append(anchored_box(copy.copy(event)))
+            events.append(anchored_text(copy.copy(event)))
         elif each.style == "label":
-            events.append(label_text(copy.copy(event)))
             events.append(label_box(copy.copy(event)))
+            events.append(label_text(copy.copy(event)))
         elif each.style == "" and each.type == "highlight":
-            events.append(highlightText_text(copy.copy(event)))
             events.append(highlightText_box(copy.copy(event)))
+            events.append(highlightText_text(copy.copy(event)))
         else:
             Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
 
