@@ -31,12 +31,6 @@ def Convert(
 
         def Text(event: Event) -> Event:
             """生成 Annotation 文本的 Event"""
-
-            _x = x
-            _y = y
-            _width = width
-            _height = height
-            _textSize = textSize
             text = each.text
 
             if "\n" not in text:
@@ -46,7 +40,7 @@ def Convert(
                     or "transform_coefficient_y" not in locals()
                 ):
                     coefficient = coefficient + 16 / 9
-                length = int(_width / (textSize / coefficient))
+                length = int(width / (textSize / coefficient))
 
                 line = []
                 for _text in text.split("\n"):
@@ -75,17 +69,17 @@ def Convert(
             if "transform_coefficient_y" in locals():
                 variable2 = variable2 * transform_coefficient_y
 
-            _x = _x + variable1
-            _y = _y + variable2
+            _x = x + variable1
+            _y = y + variable2
 
-            x1 = _x * 0.9
-            y1 = _y * 0.9
-            x2 = _x + _width - variable1
-            y2 = _y + _height - variable2
+            x1 = x + variable1
+            y1 = y + variable2
+            x2 = x + width - variable1
+            y2 = y + height - variable2
 
             _x = round(_x, 3)
             _y = round(_y, 3)
-            _textSize = round(_textSize, 3)
+            _textSize = round(textSize, 3)
             x1 = round(x1, 3)
             y1 = round(y1, 3)
             x2 = round(x2, 3)
@@ -147,11 +141,6 @@ def Convert(
             return event
 
         def HighlightBox(event: Event) -> Event:
-            _x = x
-            _y = y
-            _width = width
-            _height = height
-
             variable1 = 1.0
             variable2 = 1.0
 
@@ -161,20 +150,19 @@ def Convert(
             if "transform_coefficient_y" in locals():
                 variable2 = variable2 * transform_coefficient_y
 
-            _x = _x + variable1
-            _y = _y + variable2
+            x1 = x + variable1
+            y1 = y + variable2
+            x2 = x + width - variable1
+            y2 = y + height - variable2
 
-            x1 = _x * 0.9
-            y1 = _y * 0.9
-            x2 = _x + _width - variable1
-            y2 = _y + _height - variable2
-
-            _x = round(_x, 3)
-            _y = round(_y, 3)
+            _x = round(x, 3)
+            _y = round(y, 3)
             x1 = round(x1, 3)
             y1 = round(y1, 3)
             x2 = round(x2, 3)
             y2 = round(y2, 3)
+            _width = round(width, 3)
+            _height = round(height, 3)
 
             # 在之前这里我拼接字符串, 做的还没有全民核酸检测好
             # 现在画四个点直接闭合一个框
