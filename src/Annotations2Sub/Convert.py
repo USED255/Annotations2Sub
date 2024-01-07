@@ -146,6 +146,65 @@ def Convert(
             event.Text = str(tags) + box_tag
             return event
 
+        def HighlightBox(event: Event) -> Event:
+            _x = x
+            _y = y
+            _width = width
+            _height = height
+
+            variable1 = 1.0
+            variable2 = 1.0
+
+            if "transform_coefficient_x" in locals():
+                variable1 = variable1 * transform_coefficient_x
+
+            if "transform_coefficient_y" in locals():
+                variable2 = variable2 * transform_coefficient_y
+
+            _x = _x + variable1
+            _y = _y + variable2
+
+            x1 = _x * 0.9
+            y1 = _y * 0.9
+            x2 = _x + _width - variable1
+            y2 = _y + _height - variable2
+
+            _x = round(_x, 3)
+            _y = round(_y, 3)
+            x1 = round(x1, 3)
+            y1 = round(y1, 3)
+            x2 = round(x2, 3)
+            y2 = round(y2, 3)
+
+            # 在之前这里我拼接字符串, 做的还没有全民核酸检测好
+            # 现在画四个点直接闭合一个框
+            draws = Draw()
+            draws.extend(
+                [
+                    DrawCommand(0, 0, "m"),
+                    DrawCommand(_width, 0, "l"),
+                    DrawCommand(_width, _height, "l"),
+                    DrawCommand(0, _height, "l"),
+                ]
+            )
+
+            # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
+            box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+
+            tags = Tag()
+            tags.extend(
+                [
+                    Tag.Pos(_x, _y),
+                    Tag.PrimaryColour(each.bgColor),
+                    Tag.PrimaryAlpha(each.bgOpacity),
+                    Tag.Bord(0),
+                    Tag.Shadow(0),
+                    Tag.iClip(x1, y1, x2, y2),
+                ]
+            )
+            event.Text = str(tags) + box_tag
+            return event
+
         def Triangle(event: Event) -> Event:
             # 开始只是按部就班的画一个气泡框
             # 之后我想可以拆成一个普通的方框和一个三角形
@@ -215,6 +274,7 @@ def Convert(
             h_e_v = width * h_base_end_multiplier
             v_s_v = height * v_base_start_multiplier
             v_e_v = height * v_base_end_multiplier
+
             x1 = x - sx
             y1 = y - sy
 
@@ -236,6 +296,36 @@ def Convert(
                         DrawCommand(0, 0, "m"),
                         DrawCommand(x1, y1, "l"),
                         DrawCommand(x2, y1, "l"),
+                    ]
+                )
+                box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+
+                tags = Tag()
+                tags.extend(
+                    [
+                        Tag.Pos(_sx, _sy),
+                        Tag.PrimaryColour(each.bgColor),
+                        Tag.PrimaryAlpha(each.bgOpacity),
+                        Tag.Bord(0),
+                        Tag.Shadow(0),
+                    ]
+                )
+                event.Text = str(tags) + box_tag
+                return event
+
+            def f2(event, x1, y1, y2):
+                x1 = round(x1, 3)
+                y1 = round(y1, 3)
+                y2 = round(y2, 3)
+                _sx = round(sx, 3)
+                _sy = round(sy, 3)
+
+                draws = Draw()
+                draws.extend(
+                    [
+                        DrawCommand(0, 0, "m"),
+                        DrawCommand(x1, y1, "l"),
+                        DrawCommand(y2, y1, "l"),
                     ]
                 )
                 box_tag = r"{\p1}" + str(draws) + r"{\p0}"
@@ -276,36 +366,6 @@ def Convert(
                 x2 = _x1 - h_e_v
 
                 return f(event, _x1, v3, x2)
-
-            def f2(event, x1, y1, y2):
-                x1 = round(x1, 3)
-                y1 = round(y1, 3)
-                y2 = round(y2, 3)
-                _sx = round(sx, 3)
-                _sy = round(sy, 3)
-
-                draws = Draw()
-                draws.extend(
-                    [
-                        DrawCommand(0, 0, "m"),
-                        DrawCommand(x1, y1, "l"),
-                        DrawCommand(y2, y1, "l"),
-                    ]
-                )
-                box_tag = r"{\p1}" + str(draws) + r"{\p0}"
-
-                tags = Tag()
-                tags.extend(
-                    [
-                        Tag.Pos(_sx, _sy),
-                        Tag.PrimaryColour(each.bgColor),
-                        Tag.PrimaryAlpha(each.bgOpacity),
-                        Tag.Bord(0),
-                        Tag.Shadow(0),
-                    ]
-                )
-                event.Text = str(tags) + box_tag
-                return event
 
             def left(event):
                 _y1 = v4
@@ -434,6 +494,16 @@ def Convert(
             _event.Name += "label_box;"
             return Box(_event)
 
+        def highlight_text() -> Event:
+            _event = copy.copy(event)
+            _event.Name += "highlight_text;"
+            return Text(_event)
+
+        def highlight_box() -> Event:
+            _event = copy.copy(event)
+            _event.Name += "highlight_box;"
+            return HighlightBox(_event)
+
         events: List[Event] = []
         event = Event()
 
@@ -510,8 +580,8 @@ def Convert(
             events.append(label_box())
             events.append(label_text())
         elif each.style == "" and each.type == "highlight":
-            events.append(highlightText_box())
-            events.append(highlightText_text())
+            events.append(highlight_box())
+            events.append(highlight_text())
         else:
             Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
 
