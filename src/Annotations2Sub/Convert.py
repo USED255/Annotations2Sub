@@ -146,53 +146,8 @@ def Convert(
             event.Text = str(tags) + box_tag
             return event
 
-        def popup_text(event: Event) -> Event:
-            """生成 popup 样式的文本 Event"""
-
-            # 多加几个字, 便于调试
-            event.Name += "popup_text;"
-
-            return Text(event)
-
-        def popup_box(event: Event) -> Event:
-            """生成 popup 样式的框 Event"""
-            event.Name = event.Name + "popup_box;"
-
-            return Box(event)
-
-        def title(event: Event) -> Event:
-            """生成 title 样式的 Event"""
-            event.Name += ";title"
-
-            return Text(event)
-
-        def highlightText_text(event: Event) -> Event:
-            """生成 highlightText 样式的文本 Event"""
-            event.Name += "highlightText_text;"
-
-            return Text(event)
-
-        def highlightText_box(event: Event) -> Event:
-            """生成 highlightText 样式的框 Event"""
-            event.Name = event.Name + "highlightText_box;"
-
-            return Box(event)
-
-        def speech_text(event: Event) -> Event:
-            """生成 speech 样式的文本 Event"""
-            event.Name += "speech_text;"
-
-            return Text(event)
-
-        def speech_box_1(event: Event) -> Event:
-            """生成 speech 样式的框 Event"""
-            event.Name += "speech_box_1;"
-
-            return Box(event)
-
-        def speech_box_2(event: Event) -> Event:
+        def speech_box_222(event: Event) -> Event:
             """生成 speech 样式的第二个框 Event"""
-            event.Name += "speech_box_2;"
 
             # 开始只是按部就班的画一个气泡框
             # 之后我想可以拆成一个普通的方框和一个三角形
@@ -253,8 +208,6 @@ def Convert(
             return event
 
         def speech_box_22(event: Event) -> Event:
-            event.Name += "speech_box_2;"
-
             h_base_start_multiplier = 0.17379070765180116
             h_base_end_multiplier = 0.14896346370154384
             v_base_start_multiplier = 0.12
@@ -404,25 +357,84 @@ def Convert(
 
             return bottom_left(event)
 
-        def anchored_text(event: Event) -> Event:
+        def popup_text() -> Event:
+            """生成 popup 样式的文本 Event"""
+            _event = copy.copy(event)
+            # 多加几个字, 便于调试
+            _event.Name += "popup_text;"
+
+            return Text(_event)
+
+        def popup_box() -> Event:
+            """生成 popup 样式的框 Event"""
+            _event = copy.copy(event)
+            _event.Name = event.Name + "popup_box;"
+
+            return Box(_event)
+
+        def title() -> Event:
+            """生成 title 样式的 Event"""
+            _event = copy.copy(event)
+            _event.Name += ";title"
+
+            return Text(_event)
+
+        def highlightText_text() -> Event:
+            """生成 highlightText 样式的文本 Event"""
+            _event = copy.copy(event)
+            _event.Name += "highlightText_text;"
+
+            return Text(_event)
+
+        def highlightText_box() -> Event:
+            """生成 highlightText 样式的框 Event"""
+            _event = copy.copy(event)
+            _event.Name = event.Name + "highlightText_box;"
+
+            return Box(_event)
+
+        def speech_text() -> Event:
+            """生成 speech 样式的文本 Event"""
+            _event = copy.copy(event)
+            _event.Name += "speech_text;"
+
+            return Text(_event)
+
+        def speech_box_1() -> Event:
+            """生成 speech 样式的框 Event"""
+            _event = copy.copy(event)
+            _event.Name += "speech_box_1;"
+
+            return Box(_event)
+
+        def speech_box_2() -> Event:
+            _event = copy.copy(event)
+            _event.Name += "speech_box_2;"
+            return speech_box_222(_event)
+
+        def anchored_text() -> Event:
             """生成 anchored 样式的文本 Event"""
-            event.Name += "anchored_text;"
+            _event = copy.copy(event)
+            _event.Name += "anchored_text;"
 
-            return Text(event)
+            return Text(_event)
 
-        def anchored_box(event: Event) -> Event:
+        def anchored_box() -> Event:
+            _event = copy.copy(event)
             """生成 anchored 样式的框 Event"""
-            event.Name += "anchored_box;"
+            _event.Name += "anchored_box;"
 
-            return Box(event)
+            return Box(_event)
 
-        def label_text(event: Event) -> Event:
-            event.Name += "label_text;"
-            return Text(event)
+        def label_text() -> Event:
+            _event = copy.copy(event)
+            _event.Name += "label_text;"
+            return Text(_event)
 
-        def label_box(event: Event) -> Event:
-            event.Name += "label_box;"
-            return Box(event)
+        def label_box() -> Event:
+            _event = copy.copy(event)
+            _event.Name += "label_box;"
+            return Box(_event)
 
         events: List[Event] = []
         event = Event()
@@ -480,28 +492,28 @@ def Convert(
 
         if each.style == "popup":
             # 用浅拷贝拷贝一遍再处理看起来简单些, 我不在意性能
-            events.append(popup_box(copy.copy(event)))
-            events.append(popup_text(copy.copy(event)))
+            events.append(popup_box())
+            events.append(popup_text())
         elif each.style == "title":
-            events.append(title(copy.copy(event)))
+            events.append(title())
         elif each.style == "highlightText":
             # 我没见过 highlightText, 所以实现很可能不对
-            events.append(highlightText_box(copy.copy(event)))
-            events.append(highlightText_text(copy.copy(event)))
+            events.append(highlightText_box())
+            events.append(highlightText_text())
         elif each.style == "speech":
-            events.append(speech_box_1(copy.copy(event)))
-            events.append(speech_box_2(copy.copy(event)))
-            events.append(speech_text(copy.copy(event)))
+            events.append(speech_box_1())
+            events.append(speech_box_2())
+            events.append(speech_text())
             # 我没见过 "anchored" 所有实现很可能不对
         elif each.style == "anchored":
-            events.append(anchored_box(copy.copy(event)))
-            events.append(anchored_text(copy.copy(event)))
+            events.append(anchored_box())
+            events.append(anchored_text())
         elif each.style == "label":
-            events.append(label_box(copy.copy(event)))
-            events.append(label_text(copy.copy(event)))
+            events.append(label_box())
+            events.append(label_text())
         elif each.style == "" and each.type == "highlight":
-            events.append(highlightText_box(copy.copy(event)))
-            events.append(highlightText_text(copy.copy(event)))
+            events.append(highlightText_box())
+            events.append(highlightText_text())
         else:
             Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
 
