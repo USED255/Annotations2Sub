@@ -146,9 +146,7 @@ def Convert(
             event.Text = str(tags) + box_tag
             return event
 
-        def speech_box_222(event: Event) -> Event:
-            """生成 speech 样式的第二个框 Event"""
-
+        def Triangle(event: Event) -> Event:
             # 开始只是按部就班的画一个气泡框
             # 之后我想可以拆成一个普通的方框和一个三角形
             # 这可以直接复用 Box, 气泡锚点定位也可以直接使用 /pos
@@ -207,7 +205,7 @@ def Convert(
             event.Text = str(tags) + box_tag
             return event
 
-        def speech_box_22(event: Event) -> Event:
+        def Triangle2(event: Event) -> Event:
             h_base_start_multiplier = 0.17379070765180116
             h_base_end_multiplier = 0.14896346370154384
             v_base_start_multiplier = 0.12
@@ -400,17 +398,17 @@ def Convert(
 
             return Text(_event)
 
-        def speech_box_1() -> Event:
+        def speech_box() -> Event:
             """生成 speech 样式的框 Event"""
             _event = copy.copy(event)
-            _event.Name += "speech_box_1;"
+            _event.Name += "speech_box;"
 
             return Box(_event)
 
-        def speech_box_2() -> Event:
+        def speech_triangle() -> Event:
             _event = copy.copy(event)
-            _event.Name += "speech_box_2;"
-            return speech_box_222(_event)
+            _event.Name += "speech_triangle;"
+            return Triangle(_event)
 
         def anchored_text() -> Event:
             """生成 anchored 样式的文本 Event"""
@@ -501,8 +499,8 @@ def Convert(
             events.append(highlightText_box())
             events.append(highlightText_text())
         elif each.style == "speech":
-            events.append(speech_box_1())
-            events.append(speech_box_2())
+            events.append(speech_box())
+            events.append(speech_triangle())
             events.append(speech_text())
             # 我没见过 "anchored" 所有实现很可能不对
         elif each.style == "anchored":
