@@ -31,12 +31,6 @@ def Convert(
 
         def Text(event: Event) -> Event:
             """生成 Annotation 文本的 Event"""
-
-            _x = x
-            _y = y
-            _width = width
-            _height = height
-            _textSize = textSize
             text = each.text
 
             if "\n" not in text:
@@ -46,7 +40,7 @@ def Convert(
                     or "transform_coefficient_y" not in locals()
                 ):
                     coefficient = coefficient + 16 / 9
-                length = int(_width / (textSize / coefficient))
+                length = int(width / (textSize / coefficient))
 
                 line = []
                 for _text in text.split("\n"):
@@ -75,17 +69,17 @@ def Convert(
             if "transform_coefficient_y" in locals():
                 variable2 = variable2 * transform_coefficient_y
 
-            _x = _x + variable1
-            _y = _y + variable2
+            _x = x + variable1
+            _y = y + variable2
 
-            x1 = _x * 0.9
-            y1 = _y * 0.9
-            x2 = _x + _width - variable1
-            y2 = _y + _height - variable2
+            x1 = x + variable1
+            y1 = y + variable2
+            x2 = x + width - variable1
+            y2 = y + height - variable2
 
             _x = round(_x, 3)
             _y = round(_y, 3)
-            _textSize = round(_textSize, 3)
+            _textSize = round(textSize, 3)
             x1 = round(x1, 3)
             y1 = round(y1, 3)
             x2 = round(x2, 3)
@@ -112,14 +106,12 @@ def Convert(
 
         def Box(event: Event) -> Event:
             """生成 Annotation 文本框的 Event"""
-            _x = x
-            _y = y
-            _width = width
-            _height = height
-            _x = round(_x, 3)
-            _y = round(_y, 3)
-            _width = round(_width, 3)
-            _height = round(_height, 3)
+
+            _x = round(x, 3)
+            _y = round(y, 3)
+            _width = round(width, 3)
+            _height = round(height, 3)
+
             # 在之前这里我拼接字符串, 做的还没有全民核酸检测好
             # 现在画四个点直接闭合一个框
             draws = Draw()
@@ -132,10 +124,9 @@ def Convert(
                 ]
             )
 
-            box = str(draws)
             # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
-            box_tag = r"{\p1}" + box + r"{\p0}"
-            del box
+            box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+
             tags = Tag()
             tags.extend(
                 [
@@ -149,54 +140,60 @@ def Convert(
             event.Text = str(tags) + box_tag
             return event
 
-        def popup_text(event: Event) -> Event:
-            """生成 popup 样式的文本 Event"""
+        def HighlightBox(event: Event) -> Event:
+            variable1 = 1.0
+            variable2 = 1.0
 
-            # 多加几个字, 便于调试
-            event.Name += "popup_text;"
+            if "transform_coefficient_x" in locals():
+                variable1 = variable1 * transform_coefficient_x
 
-            return Text(event)
+            if "transform_coefficient_y" in locals():
+                variable2 = variable2 * transform_coefficient_y
 
-        def popup_box(event: Event) -> Event:
-            """生成 popup 样式的框 Event"""
-            event.Name = event.Name + "popup_box;"
+            x1 = x + variable1
+            y1 = y + variable2
+            x2 = x + width - variable1
+            y2 = y + height - variable2
 
-            return Box(event)
+            _x = round(x, 3)
+            _y = round(y, 3)
+            x1 = round(x1, 3)
+            y1 = round(y1, 3)
+            x2 = round(x2, 3)
+            y2 = round(y2, 3)
+            _width = round(width, 3)
+            _height = round(height, 3)
 
-        def title(event: Event) -> Event:
-            """生成 title 样式的 Event"""
-            event.Name += ";title"
+            # 在之前这里我拼接字符串, 做的还没有全民核酸检测好
+            # 现在画四个点直接闭合一个框
+            draws = Draw()
+            draws.extend(
+                [
+                    DrawCommand(0, 0, "m"),
+                    DrawCommand(_width, 0, "l"),
+                    DrawCommand(_width, _height, "l"),
+                    DrawCommand(0, _height, "l"),
+                ]
+            )
 
-            return Text(event)
+            # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
+            box_tag = r"{\p1}" + str(draws) + r"{\p0}"
 
-        def highlightText_text(event: Event) -> Event:
-            """生成 highlightText 样式的文本 Event"""
-            event.Name += "highlightText_text;"
+            tags = Tag()
+            tags.extend(
+                [
+                    Tag.Pos(_x, _y),
+                    Tag.PrimaryColour(each.bgColor),
+                    Tag.PrimaryAlpha(each.bgOpacity),
+                    Tag.Bord(0),
+                    Tag.Shadow(0),
+                    Tag.iClip(x1, y1, x2, y2),
+                ]
+            )
+            event.Text = str(tags) + box_tag
+            return event
 
-            return Text(event)
-
-        def highlightText_box(event: Event) -> Event:
-            """生成 highlightText 样式的框 Event"""
-            event.Name = event.Name + "highlightText_box;"
-
-            return Box(event)
-
-        def speech_text(event: Event) -> Event:
-            """生成 speech 样式的文本 Event"""
-            event.Name += "speech_text;"
-
-            return Text(event)
-
-        def speech_box_1(event: Event) -> Event:
-            """生成 speech 样式的框 Event"""
-            event.Name += "speech_box_1;"
-
-            return Box(event)
-
-        def speech_box_2(event: Event) -> Event:
-            """生成 speech 样式的第二个框 Event"""
-            event.Name += "speech_box_2;"
-
+        def Triangle(event: Event) -> Event:
             # 开始只是按部就班的画一个气泡框
             # 之后我想可以拆成一个普通的方框和一个三角形
             # 这可以直接复用 Box, 气泡锚点定位也可以直接使用 /pos
@@ -255,25 +252,245 @@ def Convert(
             event.Text = str(tags) + box_tag
             return event
 
-        def anchored_text(event: Event) -> Event:
+        # def Triangle2(event: Event) -> Event:
+        #     h_base_start_multiplier = 0.17379070765180116
+        #     h_base_end_multiplier = 0.14896346370154384
+        #     v_base_start_multiplier = 0.12
+        #     v_base_end_multiplier = 0.3
+
+        #     h_s_v = width * h_base_start_multiplier
+        #     h_e_v = width * h_base_end_multiplier
+        #     v_s_v = height * v_base_start_multiplier
+        #     v_e_v = height * v_base_end_multiplier
+
+        #     x1 = x - sx
+        #     y1 = y - sy
+
+        #     v1 = x1 + h_s_v
+        #     v2 = x1 + h_s_v * 2
+        #     v3 = y1 + height
+        #     v4 = y1 + v_s_v
+
+        #     def f(event, x1, y1, x2):
+        #         x1 = round(x1, 3)
+        #         y1 = round(y1, 3)
+        #         x2 = round(x2, 3)
+        #         _sx = round(sx, 3)
+        #         _sy = round(sy, 3)
+
+        #         draws = Draw()
+        #         draws.extend(
+        #             [
+        #                 DrawCommand(0, 0, "m"),
+        #                 DrawCommand(x1, y1, "l"),
+        #                 DrawCommand(x2, y1, "l"),
+        #             ]
+        #         )
+        #         box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+
+        #         tags = Tag()
+        #         tags.extend(
+        #             [
+        #                 Tag.Pos(_sx, _sy),
+        #                 Tag.PrimaryColour(each.bgColor),
+        #                 Tag.PrimaryAlpha(each.bgOpacity),
+        #                 Tag.Bord(0),
+        #                 Tag.Shadow(0),
+        #             ]
+        #         )
+        #         event.Text = str(tags) + box_tag
+        #         return event
+
+        #     def f2(event, x1, y1, y2):
+        #         x1 = round(x1, 3)
+        #         y1 = round(y1, 3)
+        #         y2 = round(y2, 3)
+        #         _sx = round(sx, 3)
+        #         _sy = round(sy, 3)
+
+        #         draws = Draw()
+        #         draws.extend(
+        #             [
+        #                 DrawCommand(0, 0, "m"),
+        #                 DrawCommand(x1, y1, "l"),
+        #                 DrawCommand(y2, y1, "l"),
+        #             ]
+        #         )
+        #         box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+
+        #         tags = Tag()
+        #         tags.extend(
+        #             [
+        #                 Tag.Pos(_sx, _sy),
+        #                 Tag.PrimaryColour(each.bgColor),
+        #                 Tag.PrimaryAlpha(each.bgOpacity),
+        #                 Tag.Bord(0),
+        #                 Tag.Shadow(0),
+        #             ]
+        #         )
+        #         event.Text = str(tags) + box_tag
+        #         return event
+
+        #     def top_left():
+        #         _x1 = v1
+        #         x2 = _x1 + h_e_v
+
+        #         return f(event, _x1, y1, x2)
+
+        #     def top_right():
+        #         _x1 = v2
+        #         x2 = _x1 - h_e_v
+
+        #         return f(event, _x1, y1, x2)
+
+        #     def bottom_left():
+        #         _x1 = v1
+        #         x2 = _x1 + h_e_v
+
+        #         return f(event, _x1, v3, x2)
+
+        #     def bottom_right():
+        #         _x1 = v2
+        #         x2 = _x1 - h_e_v
+
+        #         return f(event, _x1, v3, x2)
+
+        #     def left():
+        #         _y1 = v4
+        #         y2 = _y1 + v_e_v
+        #         return f2(event, x1, _y1, y2)
+
+        #     def right():
+        #         _y1 = v4
+        #         y2 = _y1 + v_e_v
+
+        #         _x1 = x1 + width
+        #         return f2(event, _x1, _y1, y2)
+
+        #     direction_padding = 20
+        #     bottom = False
+        #     top = False
+        #     _right = False
+        #     _left = False
+
+        #     if sy < (y - direction_padding):
+        #         top = True
+        #     if sy > y + height:
+        #         bottom = True
+
+        #     if sx < ((x + width) - (width / 2)):
+        #         _left = True
+        #     if sx > ((x + width) - (width / 2)):
+        #         _right = True
+
+        #     if (
+        #         sx > (x + width)
+        #         and sy > (y - direction_padding)
+        #         and sy < ((y + height) - direction_padding)
+        #     ):
+        #         return right()
+        #     if sx < x and sy > y and sy < (y + height):
+        #         return left()
+
+        #     if top and _left:
+        #         return top_left()
+        #     if top and _right:
+        #         return top_right()
+        #     if bottom and _left:
+        #         return bottom_left()
+        #     if bottom and _right:
+        #         return bottom_right()
+
+        #     return bottom_left()
+
+        def popup_text() -> Event:
+            """生成 popup 样式的文本 Event"""
+            _event = copy.copy(event)
+            # 多加几个字, 便于调试
+            _event.Name += "popup_text;"
+
+            return Text(_event)
+
+        def popup_box() -> Event:
+            """生成 popup 样式的框 Event"""
+            _event = copy.copy(event)
+            _event.Name = event.Name + "popup_box;"
+
+            return Box(_event)
+
+        def title() -> Event:
+            """生成 title 样式的 Event"""
+            _event = copy.copy(event)
+            _event.Name += ";title"
+
+            return Text(_event)
+
+        def highlightText_text() -> Event:
+            """生成 highlightText 样式的文本 Event"""
+            _event = copy.copy(event)
+            _event.Name += "highlightText_text;"
+
+            return Text(_event)
+
+        def highlightText_box() -> Event:
+            """生成 highlightText 样式的框 Event"""
+            _event = copy.copy(event)
+            _event.Name = event.Name + "highlightText_box;"
+
+            return Box(_event)
+
+        def speech_text() -> Event:
+            """生成 speech 样式的文本 Event"""
+            _event = copy.copy(event)
+            _event.Name += "speech_text;"
+
+            return Text(_event)
+
+        def speech_box() -> Event:
+            """生成 speech 样式的框 Event"""
+            _event = copy.copy(event)
+            _event.Name += "speech_box;"
+
+            return Box(_event)
+
+        def speech_triangle() -> Event:
+            _event = copy.copy(event)
+            _event.Name += "speech_triangle;"
+            return Triangle(_event)
+
+        def anchored_text() -> Event:
             """生成 anchored 样式的文本 Event"""
-            event.Name += "anchored_text;"
+            _event = copy.copy(event)
+            _event.Name += "anchored_text;"
 
-            return Text(event)
+            return Text(_event)
 
-        def anchored_box(event: Event) -> Event:
+        def anchored_box() -> Event:
+            _event = copy.copy(event)
             """生成 anchored 样式的框 Event"""
-            event.Name += "anchored_box;"
+            _event.Name += "anchored_box;"
 
-            return Box(event)
+            return Box(_event)
 
-        def label_text(event: Event) -> Event:
-            event.Name += "label_text;"
-            return Text(event)
+        def label_text() -> Event:
+            _event = copy.copy(event)
+            _event.Name += "label_text;"
+            return Text(_event)
 
-        def label_box(event: Event) -> Event:
-            event.Name += "label_box;"
-            return Box(event)
+        def label_box() -> Event:
+            _event = copy.copy(event)
+            _event.Name += "label_box;"
+            return Box(_event)
+
+        def highlight_text() -> Event:
+            _event = copy.copy(event)
+            _event.Name += "highlight_text;"
+            return Text(_event)
+
+        def highlight_box() -> Event:
+            _event = copy.copy(event)
+            _event.Name += "highlight_box;"
+            return HighlightBox(_event)
 
         events: List[Event] = []
         event = Event()
@@ -331,28 +548,28 @@ def Convert(
 
         if each.style == "popup":
             # 用浅拷贝拷贝一遍再处理看起来简单些, 我不在意性能
-            events.append(popup_box(copy.copy(event)))
-            events.append(popup_text(copy.copy(event)))
+            events.append(popup_box())
+            events.append(popup_text())
         elif each.style == "title":
-            events.append(title(copy.copy(event)))
+            events.append(title())
         elif each.style == "highlightText":
             # 我没见过 highlightText, 所以实现很可能不对
-            events.append(highlightText_box(copy.copy(event)))
-            events.append(highlightText_text(copy.copy(event)))
+            events.append(highlightText_box())
+            events.append(highlightText_text())
         elif each.style == "speech":
-            events.append(speech_box_1(copy.copy(event)))
-            events.append(speech_box_2(copy.copy(event)))
-            events.append(speech_text(copy.copy(event)))
+            events.append(speech_box())
+            events.append(speech_triangle())
+            events.append(speech_text())
             # 我没见过 "anchored" 所有实现很可能不对
         elif each.style == "anchored":
-            events.append(anchored_box(copy.copy(event)))
-            events.append(anchored_text(copy.copy(event)))
+            events.append(anchored_box())
+            events.append(anchored_text())
         elif each.style == "label":
-            events.append(label_box(copy.copy(event)))
-            events.append(label_text(copy.copy(event)))
+            events.append(label_box())
+            events.append(label_text())
         elif each.style == "" and each.type == "highlight":
-            events.append(highlightText_box(copy.copy(event)))
-            events.append(highlightText_text(copy.copy(event)))
+            events.append(highlight_box())
+            events.append(highlight_text())
         else:
             Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
 

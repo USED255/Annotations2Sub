@@ -333,3 +333,18 @@ class Tag(list):
 
         def __str__(self) -> str:
             return rf"\clip({self.x},{self.y},{self.x1},{self.y1})"
+
+    class iClip:
+        r"""\iclip((<x1>,<y1>,<x2>,<y2>))"""
+
+        # "定义一个矩形，只有在该矩形范围内的内容不可见。"
+        # "<x1>,<y1> 为矩形的左上角，<x2>,<y2> 为矩形的右下角。"
+        # "当一行中有多个 \[i]clip 时，以__最后一个__为准。"
+        def __init__(self, x: float, y: float, x1: float, y1: float):
+            self.x = x
+            self.y = y
+            self.x1 = x1
+            self.y1 = y1
+
+        def __str__(self) -> str:
+            return rf"\iclip({self.x},{self.y},{self.x1},{self.y1})"
