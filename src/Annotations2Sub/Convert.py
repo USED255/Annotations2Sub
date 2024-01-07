@@ -37,20 +37,23 @@ def Convert(
             _y = y
             _width = width
             _textSize = textSize
-            _text = each.text
+            text = each.text
 
-            coefficient = 2.0
-            if (
-                "transform_coefficient_x" not in locals()
-                or "transform_coefficient_y" not in locals()
-            ):
-                coefficient = coefficient + 16 / 9
-            length = int(_width / (textSize / coefficient))
+            if "\n" not in text:
+                coefficient = 2.0
+                if (
+                    "transform_coefficient_x" not in locals()
+                    or "transform_coefficient_y" not in locals()
+                ):
+                    coefficient = coefficient + 16 / 9
+                length = int(_width / (textSize / coefficient))
 
-            line = []
-            for __text in _text.split("\n"):
-                line.extend(textwrap.wrap(__text, width=length, drop_whitespace=False))
-            text = "\n".join(line)
+                line = []
+                for _text in text.split("\n"):
+                    line.extend(
+                        textwrap.wrap(_text, width=length, drop_whitespace=False)
+                    )
+                text = "\n".join(line)
 
             if text.startswith(" "):
                 # 让前导空格生效
