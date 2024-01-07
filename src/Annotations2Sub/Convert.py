@@ -331,36 +331,36 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
-            def top_left(event):
+            def top_left():
                 _x1 = v1
                 x2 = _x1 + h_e_v
 
                 return f(event, _x1, y1, x2)
 
-            def top_right(event):
+            def top_right():
                 _x1 = v2
                 x2 = _x1 - h_e_v
 
                 return f(event, _x1, y1, x2)
 
-            def bottom_left(event):
+            def bottom_left():
                 _x1 = v1
                 x2 = _x1 + h_e_v
 
                 return f(event, _x1, v3, x2)
 
-            def bottom_right(event):
+            def bottom_right():
                 _x1 = v2
                 x2 = _x1 - h_e_v
 
                 return f(event, _x1, v3, x2)
 
-            def left(event):
+            def left():
                 _y1 = v4
                 y2 = _y1 + v_e_v
                 return f2(event, x1, _y1, y2)
 
-            def right(event):
+            def right():
                 _y1 = v4
                 y2 = _y1 + v_e_v
 
@@ -388,20 +388,20 @@ def Convert(
                 and sy > (y - direction_padding)
                 and sy < ((y + height) - direction_padding)
             ):
-                return right(event)
+                return right()
             if sx < x and sy > y and sy < (y + height):
-                return left(event)
+                return left()
 
             if top and _left:
-                return top_left(event)
+                return top_left()
             if top and _right:
-                return top_right(event)
+                return top_right()
             if bottom and _left:
-                return bottom_left(event)
+                return bottom_left()
             if bottom and _right:
-                return bottom_right(event)
+                return bottom_right()
 
-            return bottom_left(event)
+            return bottom_left()
 
         def popup_text() -> Event:
             """生成 popup 样式的文本 Event"""
