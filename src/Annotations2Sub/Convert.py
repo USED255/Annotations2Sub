@@ -4,6 +4,7 @@
 """转换器"""
 
 import copy
+import textwrap
 from typing import List
 
 # 在重写本项目前, 我写了一些 Go 的代码
@@ -31,7 +32,26 @@ def Convert(
 
         def Text(event: Event) -> Event:
             """生成 Annotation 文本的 Event"""
-            text = each.text
+
+            _x = x
+            _y = y
+            _width = width
+            _textSize = textSize
+            _text = each.text
+
+            coefficient = 2.0
+            if (
+                "transform_coefficient_x" not in locals()
+                or "transform_coefficient_y" not in locals()
+            ):
+                coefficient = coefficient + 16 / 9
+            length = int(_width / (textSize / coefficient))
+
+            line = []
+            for __text in _text.split("\n"):
+                line.extend(textwrap.wrap(__text, width=length, drop_whitespace=False))
+            text = "\n".join(line)
+
             if text.startswith(" "):
                 # 让前导空格生效
                 text = "\u200b" + text
@@ -42,11 +62,6 @@ def Convert(
             # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
             text = text.replace("{", r"\{")
             text = text.replace("}", r"\}")
-
-            _x = x
-            _y = y
-            nonlocal textSize  # type: ignore
-            _textSize = textSize
 
             _x = _x + 1
             _y = _y + 1
