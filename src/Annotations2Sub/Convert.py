@@ -112,14 +112,12 @@ def Convert(
 
         def Box(event: Event) -> Event:
             """生成 Annotation 文本框的 Event"""
-            _x = x
-            _y = y
-            _width = width
-            _height = height
-            _x = round(_x, 3)
-            _y = round(_y, 3)
-            _width = round(_width, 3)
-            _height = round(_height, 3)
+
+            _x = round(x, 3)
+            _y = round(y, 3)
+            _width = round(width, 3)
+            _height = round(height, 3)
+
             # 在之前这里我拼接字符串, 做的还没有全民核酸检测好
             # 现在画四个点直接闭合一个框
             draws = Draw()
@@ -132,10 +130,9 @@ def Convert(
                 ]
             )
 
-            box = str(draws)
             # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
-            box_tag = r"{\p1}" + box + r"{\p0}"
-            del box
+            box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+
             tags = Tag()
             tags.extend(
                 [
