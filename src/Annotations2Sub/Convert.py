@@ -35,6 +35,7 @@ def Convert(
             _x = x
             _y = y
             _width = width
+            _height = height
             _textSize = textSize
             text = each.text
 
@@ -68,16 +69,29 @@ def Convert(
             _x = _x + 1
             _y = _y + 1
 
-            if (
-                "transform_coefficient_x" in locals()
-                or "transform_coefficient_y" in locals()
-            ):
+            variable1 = 2.0
+            variable2 = 2.0
+
+            if "transform_coefficient_x" in locals():
                 _x = _x - 1 + transform_coefficient_x
+                variable1 = variable1 * transform_coefficient_x
+
+            if "transform_coefficient_y" in locals():
                 _y = _y - 1 + transform_coefficient_y
+                variable2 = variable2 * transform_coefficient_y
+
+            x1 = _x + variable1
+            y1 = _y + variable2
+            x2 = _x + _width - variable1
+            y2 = _y + _height - variable2
 
             _x = round(_x, 3)
             _y = round(_y, 3)
             _textSize = round(_textSize, 3)
+            x1 = round(x1, 3)
+            y1 = round(y1, 3)
+            x2 = round(x2, 3)
+            y2 = round(y2, 3)
 
             tags = Tag()
             tags.extend(
@@ -87,6 +101,7 @@ def Convert(
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
                     Tag.Shadow(0),
+                    # Tag.Clip(x1, y1, x2, y2),
                 ]
             )
             if each.fontWeight == "bold":
@@ -292,25 +307,28 @@ def Convert(
             # Windows 酱赛高
             textSize = textSize * 100 / 480
 
-        if resolutionX != 100 or resolutionY != 100:
+        if resolutionX != 100:
             # Annotations 的定位是"百分比"
             # 恰好直接把"分辨率"设置为 100 就可以实现
             # 但是这其实还是依赖于字幕滤镜的怪癖
             transform_coefficient_x = resolutionX / 100
-            transform_coefficient_y = resolutionY / 100
 
             def TransformX(x: float) -> float:
                 return x * transform_coefficient_x
 
+            x = TransformX(x)
+            width = TransformX(width)
+            sx = TransformX(sx)
+
+        if resolutionY != 100:
+            transform_coefficient_y = resolutionY / 100
+
             def TransformY(y: float) -> float:
                 return y * transform_coefficient_y
 
-            x = TransformX(x)
             y = TransformY(y)
             textSize = TransformY(textSize)
-            width = TransformX(width)
             height = TransformY(height)
-            sx = TransformX(sx)
             sy = TransformY(sy)
 
         # 破坏性更改: 移除 --embrace-libass(b6e7cde)
