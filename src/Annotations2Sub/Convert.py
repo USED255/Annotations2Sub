@@ -209,10 +209,10 @@ def Convert(
             x1 = x - sx
             y1 = y - sy
 
-            v1 = x1 + horizontal_start_value
-            v2 = x1 + horizontal_start_value * 2
-            v3 = y1 + height
-            v4 = y1 + vertical_start_value
+            constant1 = x1 + horizontal_start_value
+            constant2 = x1 + horizontal_start_value * 2
+            constant3 = y1 + height
+            constant4 = y1 + vertical_start_value
 
             def draw_box(event, p1, p2, p3):
                 p1 = round(p1, 3)
@@ -245,36 +245,36 @@ def Convert(
                 return event
 
             def top_left():
-                _x1 = v1
+                _x1 = constant1
                 x2 = _x1 + horizontal_end_value
 
                 return draw_box(event, _x1, y1, x2)
 
             def top_right():
-                _x1 = v2
+                _x1 = constant2
                 x2 = _x1 - horizontal_end_value
 
                 return draw_box(event, _x1, y1, x2)
 
             def bottom_left():
-                _x1 = v1
+                _x1 = constant1
                 x2 = _x1 + horizontal_end_value
 
-                return draw_box(event, _x1, v3, x2)
+                return draw_box(event, _x1, constant3, x2)
 
             def bottom_right():
-                _x1 = v2
+                _x1 = constant2
                 x2 = _x1 - horizontal_end_value
 
-                return draw_box(event, _x1, v3, x2)
+                return draw_box(event, _x1, constant3, x2)
 
             def left():
-                _y1 = v4
+                _y1 = constant4
                 y2 = _y1 + vertical_end_value
                 return draw_box(event, x1, _y1, y2)
 
             def right():
-                _y1 = v4
+                _y1 = constant4
                 y2 = _y1 + vertical_end_value
 
                 _x1 = x1 + width
