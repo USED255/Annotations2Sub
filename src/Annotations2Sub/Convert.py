@@ -212,10 +212,10 @@ def Convert(
             v3 = y1 + height
             v4 = y1 + v_s_v
 
-            def f(event, x1, y1, x2):
-                x1 = round(x1, 3)
-                y1 = round(y1, 3)
-                x2 = round(x2, 3)
+            def f(event, p1, p2, p3):
+                p1 = round(p1, 3)
+                p2 = round(p2, 3)
+                p3 = round(p3, 3)
                 _sx = round(sx, 3)
                 _sy = round(sy, 3)
 
@@ -223,8 +223,8 @@ def Convert(
                 draws.extend(
                     [
                         DrawCommand(0, 0, "m"),
-                        DrawCommand(x1, y1, "l"),
-                        DrawCommand(x2, y1, "l"),
+                        DrawCommand(p1, p2, "l"),
+                        DrawCommand(p3, p2, "l"),
                     ]
                 )
                 box_tag = r"{\p1}" + str(draws) + r"{\p0}"
@@ -242,71 +242,47 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
-            def f2(event, x1, y1, y2):
-                x1 = round(x1, 3)
-                y1 = round(y1, 3)
-                y2 = round(y2, 3)
-                _sx = round(sx, 3)
-                _sy = round(sy, 3)
+            def f2(event, x1, y1, x2):
+                return f(event, x1, y1, x2)
 
-                draws = Draw()
-                draws.extend(
-                    [
-                        DrawCommand(0, 0, "m"),
-                        DrawCommand(x1, y1, "l"),
-                        DrawCommand(y2, y1, "l"),
-                    ]
-                )
-                box_tag = r"{\p1}" + str(draws) + r"{\p0}"
-
-                tags = Tag()
-                tags.extend(
-                    [
-                        Tag.Pos(_sx, _sy),
-                        Tag.PrimaryColour(each.bgColor),
-                        Tag.PrimaryAlpha(each.bgOpacity),
-                        Tag.Bord(0),
-                        Tag.Shadow(0),
-                    ]
-                )
-                event.Text = str(tags) + box_tag
-                return event
+            def f3(event, x1, y1, y2):
+                return f(event, x1, y1, y2)
 
             def top_left():
                 _x1 = v1
                 x2 = _x1 + h_e_v
 
-                return f(event, _x1, y1, x2)
+                return f2(event, _x1, y1, x2)
 
             def top_right():
                 _x1 = v2
                 x2 = _x1 - h_e_v
 
-                return f(event, _x1, y1, x2)
+                return f2(event, _x1, y1, x2)
 
             def bottom_left():
                 _x1 = v1
                 x2 = _x1 + h_e_v
 
-                return f(event, _x1, v3, x2)
+                return f2(event, _x1, v3, x2)
 
             def bottom_right():
                 _x1 = v2
                 x2 = _x1 - h_e_v
 
-                return f(event, _x1, v3, x2)
+                return f2(event, _x1, v3, x2)
 
             def left():
                 _y1 = v4
                 y2 = _y1 + v_e_v
-                return f2(event, x1, _y1, y2)
+                return f3(event, x1, _y1, y2)
 
             def right():
                 _y1 = v4
                 y2 = _y1 + v_e_v
 
                 _x1 = x1 + width
-                return f2(event, _x1, _y1, y2)
+                return f3(event, _x1, _y1, y2)
 
             direction_padding = 20
             bottom = False
