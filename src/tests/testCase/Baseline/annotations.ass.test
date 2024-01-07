@@ -5,6 +5,7 @@ ScriptType: v4.00+
 Title: annotations.xml.test
 PlayResX: 100
 PlayResY: 100
+WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
@@ -12,27 +13,27 @@ Style: Default,Microsoft YaHei,20,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 1,00:00:00.10,00:00:23.20,Default,;annotation_2200715567;;title,0,0,0,,{\an7\pos(51.0,5.948)\fs4.513\c&H000000&\2a&HFF&\3a&HFF&\4a&HFF&}世界中的人們
-Dialogue: 1,00:00:12.50,00:00:23.20,Default,;annotation_2223401619;popup_text;,0,0,0,,{\an7\pos(16.3,46.313)\fs4.814\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}1
-Dialogue: 0,00:00:12.50,00:00:23.20,Default,;annotation_2223401619;popup_box;,0,0,0,,{\an7\pos(15.3,45.313)\c&H9A3E40&\1a&H66&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 3.953 0 l 3.953 11.361 l 0 11.361 {\p0}
-Dialogue: 1,00:00:50.52,00:00:55.06,Default,;annotation_2843969679;label_text;,0,0,0,,{\an7\pos(71.523,1.282)\fs3.912\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}THIS IS A NORMAL ANNOTATION\N                (Normal Mode)
-Dialogue: 0,00:00:50.52,00:00:55.06,Default,;annotation_2843969679;label_box;,0,0,0,,{\an7\pos(70.523,0.282)\c&HAE547C&\1a&H66&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 25.0 0 l 25.0 17.778 l 0 17.778 {\p0}
-Dialogue: 1,00:00:55.68,00:00:57.66,Default,;annotation_1028971653;anchored_text;,0,0,0,,{\an7\pos(31.625,89.704)\fs8.425\c&H1A1A1A&\2a&HFF&\3a&HFF&\4a&HFF&}There you go, you greedy boy.
-Dialogue: 0,00:00:55.68,00:00:57.66,Default,;annotation_1028971653;anchored_box;,0,0,0,,{\an7\pos(30.625,88.704)\c&HFFFFFF&\1a&H33&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 42.708 0 l 42.708 11.315 l 0 11.315 {\p0}
-Dialogue: 1,00:01:17.60,00:01:22.60,Default,AcidPoweredChainsaw;annotation_855617;speech_text;,0,0,0,,{\an7\pos(6.417,39.889)\fs3.15\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}DAT VAGUUU
-Dialogue: 0,00:01:17.60,00:01:22.60,Default,AcidPoweredChainsaw;annotation_855617;speech_box_1;,0,0,0,,{\an7\pos(5.417,38.889)\c&H28952E&\1a&H33&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 37.917 0 l 37.917 8.889 l 0 8.889 {\p0}
-Dialogue: 0,00:01:17.60,00:01:22.60,Default,AcidPoweredChainsaw;annotation_855617;speech_box_2;,0,0,0,,{\an7\pos(40.417,23.611)\c&H28952E&\1a&H33&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l -4.666 15.278 l -12.25 15.278 {\p0}
-Dialogue: 1,00:01:17.60,00:01:22.60,Default,AcidPoweredChainsaw;8;speech_text;,0,0,0,,{\an7\pos(101.417,39.889)\fs3.15\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}DAT VAGUUU
-Dialogue: 0,00:01:17.60,00:01:22.60,Default,AcidPoweredChainsaw;8;speech_box_1;,0,0,0,,{\an7\pos(100.417,38.889)\c&H28952E&\1a&H33&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 37.917 0 l 37.917 8.889 l 0 8.889 {\p0}
-Dialogue: 0,00:01:17.60,00:01:22.60,Default,AcidPoweredChainsaw;8;speech_box_2;,0,0,0,,{\an7\pos(40.417,2.611)\c&H28952E&\1a&H33&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 67.583 36.278 l 75.167 36.278 {\p0}
-Dialogue: 1,00:01:58.20,00:02:03.20,Default,;annotation_622281;popup_text;,0,0,0,,{\an7\pos(1.559,1.933)\fs3.611\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}\N                JUMBO\N                BEAAAAAAAAAAAAMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmm
-Dialogue: 0,00:01:58.20,00:02:03.20,Default,;annotation_622281;popup_box;,0,0,0,,{\an7\pos(0.559,0.933)\c&H000000&\1a&HC0&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 99.441 0 l 99.441 92.537 l 0 92.537 {\p0}
-Dialogue: 1,00:02:59.50,00:06:16.70,Default,;annotation_487437;popup_text;,0,0,0,,{\an7\pos(6.625,35.444)\fs3.611\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}My face when Teto never won a match during her stint on Pokemon
-Dialogue: 0,00:02:59.50,00:06:16.70,Default,;annotation_487437;popup_box;,0,0,0,,{\an7\pos(5.625,34.444)\c&H943806&\1a&H33&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 56.875 0 l 56.875 11.667 l 0 11.667 {\p0}
-Dialogue: 1,00:02:59.50,00:06:16.70,Default,;8;popup_text;,0,0,0,,{\an7\pos(6.625,35.444)\fs3.611\c&HFFFFFF&\2a&HFF&\3a&HFF&\4a&HFF&}My face when Teto never won a match during her stint on Pokemon
-Dialogue: 0,00:02:59.50,00:06:16.70,Default,;8;popup_box;,0,0,0,,{\an7\pos(5.625,34.444)\c&H943806&\1a&H33&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 56.875 0 l 56.875 11.667 l 0 11.667 {\p0}
-Dialogue: 1,00:04:56.70,00:05:01.20,Default,;5;highlightText_text;,0,0,0,,{\an7\pos(1.0,60.896)\fs3.15\c&H000000&\2a&HFF&\3a&HFF&\4a&HFF&}
-Dialogue: 0,00:04:56.70,00:05:01.20,Default,;5;highlightText_box;,0,0,0,,{\an7\pos(0.0,59.896)\c&HFFFFFF&\1a&H33&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 10.52 0 l 10.52 20.195 l 0 20.195 {\p0}
-Dialogue: 1,00:04:56.70,00:04:56.70,Default,;annotation_493976;highlightText_text;,0,0,0,,{\an7\pos(-29.833,53.222)\fs3.611\c&H000000&\2a&HFF&\3a&HFF&\4a&HFF&}.........................no..............
-Dialogue: 0,00:04:56.70,00:04:56.70,Default,;annotation_493976;highlightText_box;,0,0,0,,{\an7\pos(-30.833,52.222)\c&HFFFFFF&\1a&HFF&\2a&HFF&\3a&HFF&\4a&HFF&}{\p1}m 0 0 l 82.292 0 l 82.292 11.667 l 0 11.667 {\p0}
+Dialogue: 1,00:00:00.10,00:00:23.20,Default,;annotation_2200715567;;title,0,0,0,,{\an7\pos(51.0,5.948)\fs4.513\c&H000000&\bord0\shad0\b1}世界中的人們
+Dialogue: 1,00:00:12.50,00:00:23.20,Default,;annotation_2223401619;popup_text;,0,0,0,,{\an7\pos(16.3,46.313)\fs4.814\c&HFFFFFF&\bord0\shad0}1
+Dialogue: 0,00:00:12.50,00:00:23.20,Default,;annotation_2223401619;popup_box;,0,0,0,,{\an7\pos(15.3,45.313)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 3.953 0 l 3.953 11.361 l 0 11.361 {\p0}
+Dialogue: 1,00:00:50.52,00:00:55.06,Default,;annotation_2843969679;label_text;,0,0,0,,{\an7\pos(71.523,1.282)\fs3.912\c&HFFFFFF&\bord0\shad2}THIS IS A NORMAL ANNOTATION\N                (Normal Mode)
+Dialogue: 0,00:00:50.52,00:00:55.06,Default,;annotation_2843969679;label_box;,0,0,0,,{\an7\pos(70.523,0.282)\c&HAE547C&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 25.0 0 l 25.0 17.778 l 0 17.778 {\p0}
+Dialogue: 1,00:00:55.68,00:00:57.66,Default,;annotation_1028971653;anchored_text;,0,0,0,,{\an7\pos(31.625,89.704)\fs8.425\c&H1A1A1A&\bord0\shad0}There you go, you greedy boy.
+Dialogue: 0,00:00:55.68,00:00:57.66,Default,;annotation_1028971653;anchored_box;,0,0,0,,{\an7\pos(30.625,88.704)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 42.708 0 l 42.708 11.315 l 0 11.315 {\p0}
+Dialogue: 1,00:01:17.60,00:01:22.60,Default,AcidPoweredChainsaw;annotation_855617;speech_text;,0,0,0,,{\an7\pos(6.417,39.889)\fs3.15\c&HFFFFFF&\bord0\shad0}DAT VAGUUU
+Dialogue: 0,00:01:17.60,00:01:22.60,Default,AcidPoweredChainsaw;annotation_855617;speech_box_1;,0,0,0,,{\an7\pos(5.417,38.889)\c&H28952E&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 37.917 0 l 37.917 8.889 l 0 8.889 {\p0}
+Dialogue: 0,00:01:17.60,00:01:22.60,Default,AcidPoweredChainsaw;annotation_855617;speech_box_2;,0,0,0,,{\an7\pos(40.417,23.611)\c&H28952E&\1a&H33&\bord0\shad0}{\p1}m 0 0 l -4.666 15.278 l -12.25 15.278 {\p0}
+Dialogue: 1,00:01:17.60,00:01:22.60,Default,AcidPoweredChainsaw;8;speech_text;,0,0,0,,{\an7\pos(101.417,39.889)\fs3.15\c&HFFFFFF&\bord0\shad0}DAT VAGUUU
+Dialogue: 0,00:01:17.60,00:01:22.60,Default,AcidPoweredChainsaw;8;speech_box_1;,0,0,0,,{\an7\pos(100.417,38.889)\c&H28952E&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 37.917 0 l 37.917 8.889 l 0 8.889 {\p0}
+Dialogue: 0,00:01:17.60,00:01:22.60,Default,AcidPoweredChainsaw;8;speech_box_2;,0,0,0,,{\an7\pos(40.417,2.611)\c&H28952E&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 67.583 36.278 l 75.167 36.278 {\p0}
+Dialogue: 1,00:01:58.20,00:02:03.20,Default,;annotation_622281;popup_text;,0,0,0,,{\an7\pos(1.559,1.933)\fs3.611\c&HFFFFFF&\bord0\shad0}\N                JUMBO\N                BEAAAAAAAAAAAAMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmmMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMmmmm
+Dialogue: 0,00:01:58.20,00:02:03.20,Default,;annotation_622281;popup_box;,0,0,0,,{\an7\pos(0.559,0.933)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 99.441 0 l 99.441 92.537 l 0 92.537 {\p0}
+Dialogue: 1,00:02:59.50,00:06:16.70,Default,;annotation_487437;popup_text;,0,0,0,,{\an7\pos(6.625,35.444)\fs3.611\c&HFFFFFF&\bord0\shad0}My face when Teto never won a match during her stint on Pokemon
+Dialogue: 0,00:02:59.50,00:06:16.70,Default,;annotation_487437;popup_box;,0,0,0,,{\an7\pos(5.625,34.444)\c&H943806&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 56.875 0 l 56.875 11.667 l 0 11.667 {\p0}
+Dialogue: 1,00:02:59.50,00:06:16.70,Default,;8;popup_text;,0,0,0,,{\an7\pos(6.625,35.444)\fs3.611\c&HFFFFFF&\bord0\shad0}My face when Teto never won a match during her stint on Pokemon
+Dialogue: 0,00:02:59.50,00:06:16.70,Default,;8;popup_box;,0,0,0,,{\an7\pos(5.625,34.444)\c&H943806&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 56.875 0 l 56.875 11.667 l 0 11.667 {\p0}
+Dialogue: 1,00:04:56.70,00:05:01.20,Default,;5;highlightText_text;,0,0,0,,{\an7\pos(1.0,60.896)\fs3.15\c&H000000&\bord0\shad0}
+Dialogue: 0,00:04:56.70,00:05:01.20,Default,;5;highlightText_box;,0,0,0,,{\an7\pos(0.0,59.896)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 10.52 0 l 10.52 20.195 l 0 20.195 {\p0}
+Dialogue: 1,00:04:56.70,00:04:56.70,Default,;annotation_493976;highlightText_text;,0,0,0,,{\an7\pos(-29.833,53.222)\fs3.611\c&H000000&\bord0\shad0}.........................no..............
+Dialogue: 0,00:04:56.70,00:04:56.70,Default,;annotation_493976;highlightText_box;,0,0,0,,{\an7\pos(-30.833,52.222)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 82.292 0 l 82.292 11.667 l 0 11.667 {\p0}
 

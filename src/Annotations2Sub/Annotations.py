@@ -83,6 +83,8 @@ class Annotation:
         self.textSize: float = 3.15
         # annotationlib 没处理 author, 我会处理
         self.author: str = ""
+        self.fontWeight: str = ""
+        self.effects: str = ""
         # SSA 不能实现交互,
         # 处理 action 没有意义
         # self.actionType: Literal["time", "url"] = "time"
@@ -107,7 +109,7 @@ def Parse(tree: Element) -> List[Annotation]:
         解析 Annotation 的透明度
         bgAlpha("0.600000023842") -> Alpha(alpha=102)
         """
-        if alpha is None:
+        if alpha == None:
             raise ValueError(_('"alpha" 不应为 None'))
         variable1 = float(alpha) * 255
         return Alpha(alpha=int(variable1))
@@ -117,7 +119,7 @@ def Parse(tree: Element) -> List[Annotation]:
         解析 Annotation 的颜色值
         bgColor("4210330") -> Color(red=154, green=62, blue=64)
         """
-        if color is None:
+        if color == None:
             raise ValueError(_('"color" 不应为 None'))
         integer = int(color)
         r = integer & 255
@@ -160,20 +162,21 @@ def Parse(tree: Element) -> List[Annotation]:
         # 而且 annotationlib 也不处理 pause
         # annotationlib 也不处理空的 type
         __type = each.get("type")
-        if __type is None:
+        if __type == None:
             return None
         _type = MakeSureStr(__type)
         del __type
         if _type not in ("text", "highlight", "branding"):
-            Stderr(_("不支持{}类型 ({})").format(_type, _id))
+            Stderr(_("不支持 {} 类型 ({})").format(_type, _id))
             # 我不知道显式的 return None 有什么用
             # 但是 annotationlib 是这样做的
             # 我也学学
             return None
 
         style = each.get("style")
-        # 根据经验, 没有 style 也就没有内容
-        if style is None:
+        if style == None and _type == "highlight":
+            style = ""
+        if style == None:
             if Flags.verbose:
                 Stderr(_("{} 没有 style, 跳过").format(_id))
             return None
@@ -182,7 +185,7 @@ def Parse(tree: Element) -> List[Annotation]:
         text = ""
         __text = each.find("TEXT")
         # 根据经验, 空的 TEXT 只是没有文本, 不是没有内容
-        if __text is None:
+        if __text == None:
             text = ""
         if isinstance(__text, Element):
             _text = __text.text
@@ -192,7 +195,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
         # 类型检查可以避免些低级错误, 提升编码体验, 虽然在 Python 上有些瓦房店化
         _Segment = each.find("segment").find("movingRegion")  # type: ignore
-        if _Segment is None:
+        if _Segment == None:
             # 学习 annotationlib
             # https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L117
             # 跳过没有内容的 Annotation
@@ -202,12 +205,12 @@ def Parse(tree: Element) -> List[Annotation]:
                 Stderr(_("{} 没有 movingRegion, 跳过").format(_id))
             return None
 
-        Segment = _Segment.findall("rectRegion")
+        Segment = _Segment.findall("rectRegion")  # type: ignore
         if len(Segment) == 0:
             # 在这之前(bdb6559 更新), 这里莫名其妙的包了个括号
             # 我把整个代码注释一遍原因之一就是为了发现这些问题
             # 而且这些代码是经验堆积而成, 我希望丰富的注释可以帮助路人理解这些代码怎么运行
-            Segment = _Segment.findall("anchoredRegion")
+            Segment = _Segment.findall("anchoredRegion")  # type: ignore
 
         if len(Segment) == 0:
             if style != "highlightText":
@@ -283,6 +286,8 @@ def Parse(tree: Element) -> List[Annotation]:
             bgColor = Appearance.get("bgColor")
             fgColor = Appearance.get("fgColor")
             textSize = Appearance.get("textSize")
+            fontWeight = Appearance.get("fontWeight")
+            effects = Appearance.get("effects")
 
             if bgAlpha != None:
                 annotation.bgOpacity = ParseAnnotationAlpha(MakeSureStr(bgAlpha))
@@ -292,6 +297,10 @@ def Parse(tree: Element) -> List[Annotation]:
                 annotation.fgColor = ParseAnnotationColor(MakeSureStr(fgColor))
             if textSize != None:
                 annotation.textSize = float(MakeSureStr(textSize))
+            if fontWeight != None:
+                annotation.fontWeight = MakeSureStr(fontWeight)
+            if effects != None:
+                annotation.effects = MakeSureStr(effects)
 
         author = each.get("author")
         if author != None:

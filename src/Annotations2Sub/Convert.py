@@ -11,7 +11,6 @@ from typing import List
 # 并上传到 PyPI
 # 当然单文件脚本还是有用的
 from Annotations2Sub import Annotation
-from Annotations2Sub.Color import Alpha
 from Annotations2Sub.Sub import Draw, DrawCommand, Event
 from Annotations2Sub.Tag import Tag
 from Annotations2Sub.utils import Stderr, _
@@ -33,6 +32,9 @@ def Convert(
         def Text(event: Event) -> Event:
             """生成 Annotation 文本的 Event"""
             text = each.text
+            if text.startswith(" "):
+                # 让前导空格生效
+                text = "\u200b" + text
             # SSA 用 "\N" 换行
             text = text.replace("\n", r"\N")
             # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
@@ -66,11 +68,15 @@ def Convert(
                     Tag.Pos(_x, _y),
                     Tag.Fontsize(_textSize),
                     Tag.PrimaryColour(each.fgColor),
-                    Tag.SecondaryAlpha(Alpha()),
-                    Tag.BorderAlpha(Alpha()),
-                    Tag.ShadowAlpha(Alpha()),
+                    Tag.Bord(0),
+                    Tag.Shadow(0),
                 ]
             )
+            if each.fontWeight == "bold":
+                tags.append(Tag.Bold(1))
+            if each.effects == "textdropshadow":
+                tags[4].shadow = 2
+
             event.Text = str(tags) + text
             return event
 
@@ -87,12 +93,17 @@ def Convert(
             _height = round(_height, 3)
             # 在之前这里我拼接字符串, 做的还没有全民核酸检测好
             # 现在画四个点直接闭合一个框
-            draw = Draw()
-            draw.Add(DrawCommand(0, 0, "m"))
-            draw.Add(DrawCommand(_width, 0, "l"))
-            draw.Add(DrawCommand(_width, _height, "l"))
-            draw.Add(DrawCommand(0, _height, "l"))
-            box = draw.Dump()
+            draws = Draw()
+            draws.extend(
+                [
+                    DrawCommand(0, 0, "m"),
+                    DrawCommand(_width, 0, "l"),
+                    DrawCommand(_width, _height, "l"),
+                    DrawCommand(0, _height, "l"),
+                ]
+            )
+
+            box = str(draws)
             # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
             box_tag = r"{\p1}" + box + r"{\p0}"
             del box
@@ -102,9 +113,8 @@ def Convert(
                     Tag.Pos(_x, _y),
                     Tag.PrimaryColour(each.bgColor),
                     Tag.PrimaryAlpha(each.bgOpacity),
-                    Tag.SecondaryAlpha(Alpha()),
-                    Tag.BorderAlpha(Alpha()),
-                    Tag.ShadowAlpha(Alpha()),
+                    Tag.Bord(0),
+                    Tag.Shadow(0),
                 ]
             )
             event.Text = str(tags) + box_tag
@@ -188,12 +198,16 @@ def Convert(
             y1 = round(y1, 3)
             x2 = round(x2, 3)
 
-            draw = Draw()
+            draws = Draw()
             # 一共三个点, 怎么画都是个三角形
-            draw.Add(DrawCommand(0, 0, "m"))
-            draw.Add(DrawCommand(x1, y1, "l"))
-            draw.Add(DrawCommand(x2, y1, "l"))
-            box = draw.Dump()
+            draws.extend(
+                [
+                    DrawCommand(0, 0, "m"),
+                    DrawCommand(x1, y1, "l"),
+                    DrawCommand(x2, y1, "l"),
+                ]
+            )
+            box = str(draws)
             box_tag = r"{\p1}" + box + r"{\p0}"
             del box
             _sx = sx
@@ -206,9 +220,8 @@ def Convert(
                     Tag.Pos(_sx, _sy),
                     Tag.PrimaryColour(each.bgColor),
                     Tag.PrimaryAlpha(each.bgOpacity),
-                    Tag.SecondaryAlpha(Alpha()),
-                    Tag.BorderAlpha(Alpha()),
-                    Tag.ShadowAlpha(Alpha()),
+                    Tag.Bord(0),
+                    Tag.Shadow(0),
                 ]
             )
             event.Text = str(tags) + box_tag
@@ -310,6 +323,9 @@ def Convert(
         elif each.style == "label":
             events.append(label_text(copy.copy(event)))
             events.append(label_box(copy.copy(event)))
+        elif each.style == "" and each.type == "highlight":
+            events.append(highlightText_text(copy.copy(event)))
+            events.append(highlightText_box(copy.copy(event)))
         else:
             Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
 

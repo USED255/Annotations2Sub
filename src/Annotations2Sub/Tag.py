@@ -23,11 +23,11 @@ def DumpAlpha(alpha: Alpha) -> str:
 
 class Tag(list):
     def __str__(self) -> str:
-        tag = ""
-        for i in self:
-            tag += str(i)
-        tag = r"{" + tag + r"}"
-        return tag
+        tag_string = ""
+        for tag in self:
+            tag_string += str(tag)
+        tag_string = r"{" + tag_string + r"}"
+        return tag_string
 
     class Pos:
         r"""\an<位置>"""
@@ -84,23 +84,23 @@ class Tag(list):
         def __str__(self) -> str:
             return r"\1a" + DumpAlpha(self.alpha)
 
-    class SecondaryAlpha:
-        def __init__(self, alpha: Alpha):
-            self.alpha = alpha
+    class Bold:
+        def __init__(self, bold: float):
+            self.bold = bold
 
         def __str__(self) -> str:
-            return r"\2a" + DumpAlpha(self.alpha)
+            return r"\b" + str(self.bold)
 
-    class BorderAlpha:
-        def __init__(self, alpha: Alpha):
-            self.alpha = alpha
-
-        def __str__(self) -> str:
-            return r"\3a" + DumpAlpha(self.alpha)
-
-    class ShadowAlpha:
-        def __init__(self, alpha: Alpha):
-            self.alpha = alpha
+    class Bord:
+        def __init__(self, bord: float):
+            self.bord = bord
 
         def __str__(self) -> str:
-            return r"\4a" + DumpAlpha(self.alpha)
+            return r"\bord" + str(self.bord)
+
+    class Shadow:
+        def __init__(self, shadow: float):
+            self.shadow = shadow
+
+        def __str__(self) -> str:
+            return r"\shad" + str(self.shadow)

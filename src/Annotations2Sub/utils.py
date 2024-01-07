@@ -28,7 +28,7 @@ def Internationalization():
 
         # https://stackoverflow.com/a/8377533
         if sys.platform == "win32":
-            if os.getenv("LANG") is None:
+            if os.getenv("LANG") == None:
                 os.environ["LANG"], __ = locale.getdefaultlocale()  # type: ignore
 
         translate = gettext.translation(
@@ -93,7 +93,7 @@ def GetAnnotationsUrl(videoId: str) -> str:
     ARCHIVE_URL = "https://archive.org"
     CHARS_SAFE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
 
-    if re.match(r"[a-zA-Z0-9_-]{11}", videoId) is None:
+    if re.match(r"[a-zA-Z0-9_-]{11}", videoId) == None:
         raise ValueError(_("无效的 videoId"))
 
     index = CHARS_SAFE.index(videoId[0]).__str__().rjust(2, "0")

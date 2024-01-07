@@ -7,7 +7,6 @@ import argparse
 import json
 import os
 import re
-import shlex
 import subprocess
 import sys
 import traceback
@@ -107,6 +106,14 @@ def Run(argv=None):
         action="store_true",
         help=_("仅下载注释"),
     )
+
+    parser.add_argument(
+        "-i",
+        "--invidious-instances",
+        type=str,
+        metavar="invidious.domain",
+        help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
+    )
     # 拼接参数执行 mpv
     parser.add_argument(
         "-p",
@@ -122,14 +129,6 @@ def Run(argv=None):
         help=_("生成视频, 需要 FFmpeg(https://ffmpeg.org/)"),
     )
     parser.add_argument(
-        "-i",
-        "--invidious-instances",
-        type=str,
-        metavar="invidious.domain",
-        help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
-    )
-
-    parser.add_argument(
         "-n", "--no-overwrite-files", action="store_true", help=_("不覆盖文件")
     )
 
@@ -139,14 +138,14 @@ def Run(argv=None):
     )
 
     parser.add_argument(
+        "-o", "--output", type=str, metavar=_("文件"), help=_('保存到此文件, 如果为 "-" 则输出到标准输出')
+    )
+    parser.add_argument(
         "-O",
         "--output-directory",
         type=str,
         metavar=_("目录"),
         help=_("指定转换后文件的输出目录"),
-    )
-    parser.add_argument(
-        "-o", "--output", type=str, metavar=_("文件"), help=_('保存到此文件, 如果为 "-" 则输出到标准输出')
     )
     parser.add_argument(
         "-v",
@@ -230,7 +229,7 @@ def Run(argv=None):
             if video_id.startswith("\\"):
                 video_id = video_id.replace("\\", "", 1)
 
-            if re.match(r"[a-zA-Z0-9_-]{11}", video_id) is None:
+            if re.match(r"[a-zA-Z0-9_-]{11}", video_id) == None:
                 Err(_("{} 不是一个有效的视频 ID").format(video_id))
                 exit_code = 1
                 continue
@@ -257,7 +256,7 @@ def Run(argv=None):
                     exit_code = 1
                     continue
                 if output_to_stdout:
-                    print(annotations_string, file=sys.stdout)
+                    sys.stdout.write(annotations_string)
                 else:
                     with open(annotations_file, "w", encoding="utf-8") as f:
                         f.write(annotations_string)
@@ -311,9 +310,10 @@ def Run(argv=None):
         subtitle = Sub()
         subtitle.comment += _("此脚本使用 Annotations2Sub 生成") + "\n"
         subtitle.comment += "https://github.com/USED255/Annotations2Sub"
+        subtitle.info["Title"] = os.path.basename(annotations_file)
         subtitle.info["PlayResX"] = transform_resolution_x
         subtitle.info["PlayResY"] = transform_resolution_y
-        subtitle.info["Title"] = os.path.basename(annotations_file)
+        subtitle.info["WrapStyle"] = "2"
         subtitle.styles["Default"].Fontname = font
         subtitle.events.extend(events)
         subtitle_string = subtitle.Dump()
@@ -372,17 +372,13 @@ def Run(argv=None):
                     continue
 
         def function1():
-            if sys.version_info.major == 3 and sys.version_info.minor > 7:
-                if Flags.verbose:
-                    Stderr(shlex.join(commands))
-            _exit_code = subprocess.run(
-                commands, stdout=sys.stdout, stderr=sys.stderr
-            ).returncode
             if Flags.verbose:
-                if _exit_code != 0:
-                    Stderr(YellowText("exit with {}".format(_exit_code)))
-                    nonlocal exit_code
-                    exit_code = 1
+                Stderr(" ".join(commands))
+            _exit_code = subprocess.run(commands).returncode
+            if _exit_code != 0:
+                Stderr(YellowText("exit with {}".format(_exit_code)))
+                nonlocal exit_code
+                exit_code = 1
             if enable_no_keep_intermediate_files:
                 Stderr(_("删除 {}").format(subtitle_file))
                 os.remove(subtitle_file)

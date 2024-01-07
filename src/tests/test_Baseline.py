@@ -26,15 +26,15 @@ def equal(file1: str, file2: str) -> bool:
         Stderr(RedText(file2))
         differ = difflib.Differ()
         diffs = list(differ.compare(a, b))
-        for i in diffs:
-            if i.startswith(" "):
+        for diff in diffs:
+            if diff.startswith(" "):
                 continue
-            if i.startswith("-"):
+            if diff.startswith("-"):
                 Stderr("\n")
-            if i.startswith("?"):
-                Stderr(RedText(i))
+            if diff.startswith("?"):
+                Stderr(RedText(diff))
                 continue
-            Stderr(i)
+            Stderr(diff)
         return False
     return True
 
