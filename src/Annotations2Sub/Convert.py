@@ -252,6 +252,158 @@ def Convert(
             event.Text = str(tags) + box_tag
             return event
 
+        def speech_box_22(event: Event) -> Event:
+            event.Name += "speech_box_2;"
+
+            h_base_start_multiplier = 0.17379070765180116
+            h_base_end_multiplier = 0.14896346370154384
+            v_base_start_multiplier = 0.12
+            v_base_end_multiplier = 0.3
+
+            h_s_v = width * h_base_start_multiplier
+            h_e_v = width * h_base_end_multiplier
+            v_s_v = height * v_base_start_multiplier
+            v_e_v = height * v_base_end_multiplier
+            x1 = x - sx
+            y1 = y - sy
+
+            v1 = x1 + h_s_v
+            v2 = x1 + h_s_v * 2
+            v3 = y1 + height
+            v4 = y1 + v_s_v
+
+            def f(event, x1, y1, x2):
+                x1 = round(x1, 3)
+                y1 = round(y1, 3)
+                x2 = round(x2, 3)
+                _sx = round(sx, 3)
+                _sy = round(sy, 3)
+
+                draws = Draw()
+                draws.extend(
+                    [
+                        DrawCommand(0, 0, "m"),
+                        DrawCommand(x1, y1, "l"),
+                        DrawCommand(x2, y1, "l"),
+                    ]
+                )
+                box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+
+                tags = Tag()
+                tags.extend(
+                    [
+                        Tag.Pos(_sx, _sy),
+                        Tag.PrimaryColour(each.bgColor),
+                        Tag.PrimaryAlpha(each.bgOpacity),
+                        Tag.Bord(0),
+                        Tag.Shadow(0),
+                    ]
+                )
+                event.Text = str(tags) + box_tag
+                return event
+
+            def top_left(event):
+                _x1 = v1
+                x2 = _x1 + h_e_v
+
+                return f(event, _x1, y1, x2)
+
+            def top_right(event):
+                _x1 = v2
+                x2 = _x1 - h_e_v
+
+                return f(event, _x1, y1, x2)
+
+            def bottom_left(event):
+                _x1 = v1
+                x2 = _x1 + h_e_v
+
+                return f(event, _x1, v3, x2)
+
+            def bottom_right(event):
+                _x1 = v2
+                x2 = _x1 - h_e_v
+
+                return f(event, _x1, v3, x2)
+
+            def f2(event, x1, y1, y2):
+                x1 = round(x1, 3)
+                y1 = round(y1, 3)
+                y2 = round(y2, 3)
+                _sx = round(sx, 3)
+                _sy = round(sy, 3)
+
+                draws = Draw()
+                draws.extend(
+                    [
+                        DrawCommand(0, 0, "m"),
+                        DrawCommand(x1, y1, "l"),
+                        DrawCommand(y2, y1, "l"),
+                    ]
+                )
+                box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+
+                tags = Tag()
+                tags.extend(
+                    [
+                        Tag.Pos(_sx, _sy),
+                        Tag.PrimaryColour(each.bgColor),
+                        Tag.PrimaryAlpha(each.bgOpacity),
+                        Tag.Bord(0),
+                        Tag.Shadow(0),
+                    ]
+                )
+                event.Text = str(tags) + box_tag
+                return event
+
+            def left(event):
+                _y1 = v4
+                y2 = _y1 + v_e_v
+                return f2(event, x1, _y1, y2)
+
+            def right(event):
+                _y1 = v4
+                y2 = _y1 + v_e_v
+
+                _x1 = x1 + width
+                return f2(event, _x1, _y1, y2)
+
+            direction_padding = 20
+            bottom = False
+            top = False
+            _right = False
+            _left = False
+
+            if sy < (y - direction_padding):
+                top = True
+            if sy > y + height:
+                bottom = True
+
+            if sx < ((x + width) - (width / 2)):
+                _left = True
+            if sx > ((x + width) - (width / 2)):
+                _right = True
+
+            if (
+                sx > (x + width)
+                and sy > (y - direction_padding)
+                and sy < ((y + height) - direction_padding)
+            ):
+                return right(event)
+            if sx < x and sy > y and sy < (y + height):
+                return left(event)
+
+            if top and _left:
+                return top_left(event)
+            if top and _right:
+                return top_right(event)
+            if bottom and _left:
+                return bottom_left(event)
+            if bottom and _right:
+                return bottom_right(event)
+
+            return bottom_left(event)
+
         def anchored_text(event: Event) -> Event:
             """生成 anchored 样式的文本 Event"""
             event.Name += "anchored_text;"
