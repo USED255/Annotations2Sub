@@ -4,6 +4,7 @@
 """转换器"""
 
 import copy
+import textwrap
 from typing import List
 
 # 在重写本项目前, 我写了一些 Go 的代码
@@ -11,8 +12,7 @@ from typing import List
 # 并上传到 PyPI
 # 当然单文件脚本还是有用的
 from Annotations2Sub import Annotation
-from Annotations2Sub.Sub import Draw, DrawCommand, Event
-from Annotations2Sub.Tag import Tag
+from Annotations2Sub.Sub import Draw, DrawCommand, Event, Tag
 from Annotations2Sub.utils import Stderr, _
 
 
@@ -31,7 +31,30 @@ def Convert(
 
         def Text(event: Event) -> Event:
             """生成 Annotation 文本的 Event"""
+
+            _x = x
+            _y = y
+            _width = width
+            _height = height
+            _textSize = textSize
             text = each.text
+
+            if "\n" not in text:
+                coefficient = 2.0
+                if (
+                    "transform_coefficient_x" not in locals()
+                    or "transform_coefficient_y" not in locals()
+                ):
+                    coefficient = coefficient + 16 / 9
+                length = int(_width / (textSize / coefficient))
+
+                line = []
+                for _text in text.split("\n"):
+                    line.extend(
+                        textwrap.wrap(_text, width=length, drop_whitespace=False)
+                    )
+                text = "\n".join(line)
+
             if text.startswith(" "):
                 # 让前导空格生效
                 text = "\u200b" + text
@@ -43,24 +66,30 @@ def Convert(
             text = text.replace("{", r"\{")
             text = text.replace("}", r"\}")
 
-            _x = x
-            _y = y
-            nonlocal textSize  # type: ignore
-            _textSize = textSize
+            variable1 = 1.0
+            variable2 = 1.0
 
-            _x = _x + 1
-            _y = _y + 1
+            if "transform_coefficient_x" in locals():
+                variable1 = variable1 * transform_coefficient_x
 
-            if (
-                "transform_coefficient_x" in locals()
-                or "transform_coefficient_y" in locals()
-            ):
-                _x = _x - 1 + transform_coefficient_x
-                _y = _y - 1 + transform_coefficient_y
+            if "transform_coefficient_y" in locals():
+                variable2 = variable2 * transform_coefficient_y
+
+            _x = _x + variable1
+            _y = _y + variable2
+
+            x1 = _x * 0.9
+            y1 = _y * 0.9
+            x2 = _x + _width - variable1
+            y2 = _y + _height - variable2
 
             _x = round(_x, 3)
             _y = round(_y, 3)
             _textSize = round(_textSize, 3)
+            x1 = round(x1, 3)
+            y1 = round(y1, 3)
+            x2 = round(x2, 3)
+            y2 = round(y2, 3)
 
             tags = Tag()
             tags.extend(
@@ -70,6 +99,7 @@ def Convert(
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
                     Tag.Shadow(0),
+                    Tag.Clip(x1, y1, x2, y2),
                 ]
             )
             if each.fontWeight == "bold":
@@ -82,7 +112,6 @@ def Convert(
 
         def Box(event: Event) -> Event:
             """生成 Annotation 文本框的 Event"""
-            event.Layer = 0
             _x = x
             _y = y
             _width = width
@@ -167,7 +196,6 @@ def Convert(
         def speech_box_2(event: Event) -> Event:
             """生成 speech 样式的第二个框 Event"""
             event.Name += "speech_box_2;"
-            event.Layer = 0
 
             # 开始只是按部就班的画一个气泡框
             # 之后我想可以拆成一个普通的方框和一个三角形
@@ -259,10 +287,6 @@ def Convert(
         event.Name += each.author + ";"
         event.Name += each.id + ";"
 
-        # Layer 是"层", 他们说大的会覆盖小的
-        # 但是没有这个也可以正常显示, 之前就没有, 现在也就是安心些
-        event.Layer = 1
-
         x = each.x
         y = each.y
         textSize = each.textSize
@@ -275,25 +299,28 @@ def Convert(
             # Windows 酱赛高
             textSize = textSize * 100 / 480
 
-        if resolutionX != 100 or resolutionY != 100:
+        if resolutionX != 100:
             # Annotations 的定位是"百分比"
             # 恰好直接把"分辨率"设置为 100 就可以实现
             # 但是这其实还是依赖于字幕滤镜的怪癖
             transform_coefficient_x = resolutionX / 100
-            transform_coefficient_y = resolutionY / 100
 
             def TransformX(x: float) -> float:
                 return x * transform_coefficient_x
 
+            x = TransformX(x)
+            width = TransformX(width)
+            sx = TransformX(sx)
+
+        if resolutionY != 100:
+            transform_coefficient_y = resolutionY / 100
+
             def TransformY(y: float) -> float:
                 return y * transform_coefficient_y
 
-            x = TransformX(x)
             y = TransformY(y)
             textSize = TransformY(textSize)
-            width = TransformX(width)
             height = TransformY(height)
-            sx = TransformX(sx)
             sy = TransformY(sy)
 
         # 破坏性更改: 移除 --embrace-libass(b6e7cde)
@@ -304,28 +331,28 @@ def Convert(
 
         if each.style == "popup":
             # 用浅拷贝拷贝一遍再处理看起来简单些, 我不在意性能
-            events.append(popup_text(copy.copy(event)))
             events.append(popup_box(copy.copy(event)))
+            events.append(popup_text(copy.copy(event)))
         elif each.style == "title":
             events.append(title(copy.copy(event)))
         elif each.style == "highlightText":
             # 我没见过 highlightText, 所以实现很可能不对
-            events.append(highlightText_text(copy.copy(event)))
             events.append(highlightText_box(copy.copy(event)))
+            events.append(highlightText_text(copy.copy(event)))
         elif each.style == "speech":
-            events.append(speech_text(copy.copy(event)))
             events.append(speech_box_1(copy.copy(event)))
             events.append(speech_box_2(copy.copy(event)))
+            events.append(speech_text(copy.copy(event)))
             # 我没见过 "anchored" 所有实现很可能不对
         elif each.style == "anchored":
-            events.append(anchored_text(copy.copy(event)))
             events.append(anchored_box(copy.copy(event)))
+            events.append(anchored_text(copy.copy(event)))
         elif each.style == "label":
-            events.append(label_text(copy.copy(event)))
             events.append(label_box(copy.copy(event)))
+            events.append(label_text(copy.copy(event)))
         elif each.style == "" and each.type == "highlight":
-            events.append(highlightText_text(copy.copy(event)))
             events.append(highlightText_box(copy.copy(event)))
+            events.append(highlightText_text(copy.copy(event)))
         else:
             Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
 
