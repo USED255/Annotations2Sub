@@ -12,8 +12,7 @@ from typing import List
 # 并上传到 PyPI
 # 当然单文件脚本还是有用的
 from Annotations2Sub import Annotation
-from Annotations2Sub.Sub import Draw, DrawCommand, Event
-from Annotations2Sub.Tag import Tag
+from Annotations2Sub.Sub import Draw, DrawCommand, Event, Tag
 from Annotations2Sub.utils import Stderr, _
 
 
