@@ -66,22 +66,20 @@ def Convert(
             text = text.replace("{", r"\{")
             text = text.replace("}", r"\}")
 
-            _x = _x + 1
-            _y = _y + 1
-
-            variable1 = 2.0
-            variable2 = 2.0
+            variable1 = 1.0
+            variable2 = 1.0
 
             if "transform_coefficient_x" in locals():
-                _x = _x - 1 + transform_coefficient_x
                 variable1 = variable1 * transform_coefficient_x
 
             if "transform_coefficient_y" in locals():
-                _y = _y - 1 + transform_coefficient_y
                 variable2 = variable2 * transform_coefficient_y
 
-            x1 = _x + variable1
-            y1 = _y + variable2
+            _x = _x + variable1
+            _y = _y + variable2
+
+            x1 = _x
+            y1 = _y
             x2 = _x + _width - variable1
             y2 = _y + _height - variable2
 
