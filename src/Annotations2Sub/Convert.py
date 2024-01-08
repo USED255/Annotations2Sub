@@ -60,30 +60,30 @@ def Convert(
             text = text.replace("{", r"\{")
             text = text.replace("}", r"\}")
 
-            variable1 = 1.0
-            variable2 = 1.0
+            variable_x = 1.0
+            variable_y = 1.0
 
             if "transform_coefficient_x" in locals():
-                variable1 = variable1 * transform_coefficient_x
+                variable_x = variable_x * transform_coefficient_x
 
             if "transform_coefficient_y" in locals():
-                variable2 = variable2 * transform_coefficient_y
+                variable_y = variable_y * transform_coefficient_y
 
-            _x = x + variable1
-            _y = y + variable2
+            _x = x + variable_x
+            _y = y + variable_y
 
-            x1 = x + variable1
-            y1 = y + variable2
-            x2 = x + width - variable1
-            y2 = y + height - variable2
+            clip_x1 = x + variable_x
+            clip_y1 = y + variable_y
+            clip_x2 = x + width - variable_x
+            clip_y2 = y + height - variable_y
 
             _x = round(_x, 3)
             _y = round(_y, 3)
             _textSize = round(textSize, 3)
-            x1 = round(x1, 3)
-            y1 = round(y1, 3)
-            x2 = round(x2, 3)
-            y2 = round(y2, 3)
+            clip_x1 = round(clip_x1, 3)
+            clip_y1 = round(clip_y1, 3)
+            clip_x2 = round(clip_x2, 3)
+            clip_y2 = round(clip_y2, 3)
 
             tags = Tag()
             tags.extend(
@@ -93,7 +93,7 @@ def Convert(
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
                     Tag.Shadow(0),
-                    Tag.Clip(x1, y1, x2, y2),
+                    Tag.Clip(clip_x1, clip_y1, clip_x2, clip_y2),
                 ]
             )
             if each.fontWeight == "bold":
