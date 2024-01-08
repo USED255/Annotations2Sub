@@ -41,19 +41,17 @@ def Convert(
                 ):
                     coefficient = coefficient + 16 / 9
                 length = int(width / (textSize / coefficient))
-
-                line = []
-                for _text in text.split("\n"):
-                    line.extend(
-                        textwrap.wrap(_text, width=length, drop_whitespace=False)
-                    )
-                text = "\n".join(line)
+                text = "\n".join(
+                    textwrap.wrap(text, width=length, drop_whitespace=False)
+                )
 
             if text.startswith(" "):
                 # 让前导空格生效
                 text = "\u200b" + text
+
             # SSA 用 "\N" 换行
             text = text.replace("\n", r"\N")
+
             # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
             # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
             # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
