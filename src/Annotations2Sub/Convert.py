@@ -213,10 +213,8 @@ def Convert(
             x_left_1 = x_left + horizontal_start_value
             x_left_2 = x_left_1 + horizontal_end_value
 
-            x_right_1 = x_left + horizontal_start_value * 2
-            x_right_2 = x_right_1 - horizontal_end_value
-            # x_right_1 = x_right - horizontal_start_value
-            # x_right_2 = x_right_1 - horizontal_end_value
+            x_right_1 = x_right - horizontal_end_value
+            x_right_2 = x_right_1 - horizontal_start_value
 
             y_middle_1 = y_top + vertical_start_value
             y_middle_2 = y_middle_1 + vertical_end_value
