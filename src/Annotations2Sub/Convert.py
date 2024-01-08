@@ -219,27 +219,25 @@ def Convert(
             y_middle_1 = y_top + vertical_start_value
             y_middle_2 = y_middle_1 + vertical_end_value
 
+            is_left = (
+                sx > (x + width)
+                and sy > (y - direction_padding)
+                and sy < ((y + height) - direction_padding)
+            )
+            is_right = sx < x and sy > y and sy < (y + height)
+
             is_top = sy < (y - direction_padding)
             is_bottom = sy > y + height
-            is_left = sx < ((x + width) - (width / 2))
-            is_right = sx > ((x + width) - (width / 2))
+            is_keep_left = sx < ((x + width) - (width / 2))
+            is_keep_right = sx > ((x + width) - (width / 2))
 
-            def draw(p1, p2, p3):
-                p1 = round(p1, 3)
-                p2 = round(p2, 3)
-                p3 = round(p3, 3)
+            def draw(x, y, x2):
                 _sx = round(sx, 3)
                 _sy = round(sy, 3)
 
-                draws = Draw()
-                draws.extend(
-                    [
-                        DrawCommand(0, 0, "m"),
-                        DrawCommand(p1, p2, "l"),
-                        DrawCommand(p3, p2, "l"),
-                    ]
-                )
-                box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+                x = round(x, 3)
+                y = round(y, 3)
+                x2 = round(x2, 3)
 
                 tags = Tag()
                 tags.extend(
@@ -251,8 +249,57 @@ def Convert(
                         Tag.Shadow(0),
                     ]
                 )
+
+                draws = Draw()
+                draws.extend(
+                    [
+                        DrawCommand(0, 0, "m"),
+                        DrawCommand(x, y, "l"),
+                        DrawCommand(x2, y, "l"),
+                    ]
+                )
+                box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+
                 event.Text = str(tags) + box_tag
                 return event
+
+            def draw2(x, y, y2):
+                _sx = round(sx, 3)
+                _sy = round(sy, 3)
+
+                x = round(x, 3)
+                y = round(y, 3)
+                y2 = round(y2, 3)
+
+                tags = Tag()
+                tags.extend(
+                    [
+                        Tag.Pos(_sx, _sy),
+                        Tag.PrimaryColour(each.bgColor),
+                        Tag.PrimaryAlpha(each.bgOpacity),
+                        Tag.Bord(0),
+                        Tag.Shadow(0),
+                    ]
+                )
+
+                draws = Draw()
+                draws.extend(
+                    [
+                        DrawCommand(0, 0, "m"),
+                        DrawCommand(x, y, "l"),
+                        DrawCommand(x, y2, "l"),
+                    ]
+                )
+                box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+
+                event.Text = str(tags) + box_tag
+                return event
+
+            def left():
+                return draw2(x_base, y_middle_1, y_middle_2)
+
+            def right():
+                return draw2(x_right, y_middle_1, y_middle_2)
 
             def top_left():
                 return draw(x_left_1, y_top, x_left_2)
@@ -266,28 +313,18 @@ def Convert(
             def bottom_right():
                 return draw(x_right_1, y_bottom, x_right_2)
 
-            def left():
-                return draw(x_base, y_middle_1, y_middle_2)
-
-            def right():
-                return draw(x_right, y_middle_1, y_middle_2)
-
-            if (
-                sx > (x + width)
-                and sy > (y - direction_padding)
-                and sy < ((y + height) - direction_padding)
-            ):
+            if is_left:
                 return right()
-            if sx < x and sy > y and sy < (y + height):
+            if is_right:
                 return left()
 
-            if is_top and is_left:
+            if is_top and is_keep_left:
                 return top_left()
-            if is_top and is_right:
+            if is_top and is_keep_right:
                 return top_right()
-            if is_bottom and is_left:
+            if is_bottom and is_keep_left:
                 return bottom_left()
-            if is_bottom and is_right:
+            if is_bottom and is_keep_right:
                 return bottom_right()
 
             return bottom_left()
