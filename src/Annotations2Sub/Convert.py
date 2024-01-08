@@ -164,8 +164,6 @@ def Convert(
             _width = round(width, 3)
             _height = round(height, 3)
 
-            # 在之前这里我拼接字符串, 做的还没有全民核酸检测好
-            # 现在画四个点直接闭合一个框
             draws = Draw()
             draws.extend(
                 [
@@ -176,7 +174,6 @@ def Convert(
                 ]
             )
 
-            # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
             box_tag = r"{\p1}" + str(draws) + r"{\p0}"
 
             tags = Tag()
@@ -209,12 +206,23 @@ def Convert(
             x1 = x - sx
             y1 = y - sy
 
-            constant1 = x1 + horizontal_start_value
-            constant2 = x1 + horizontal_start_value * 2
-            constant3 = y1 + height
-            constant4 = y1 + vertical_start_value
+            vertex_bottom = y1 + height
 
-            def draw_box(event, p1, p2, p3):
+            vertex_left_1 = x1 + horizontal_start_value
+            vertex_left_2 = vertex_left_1 + horizontal_end_value
+
+            vertex_right_1 = x1 + horizontal_start_value * 2
+            vertex_right_2 = vertex_right_1 - horizontal_end_value
+
+            vertex4 = y1 + vertical_start_value
+            vertex7 = vertex4 + vertical_end_value
+
+            is_top = sy < (y - direction_padding)
+            is_bottom = sy > y + height
+            is_left = sx < ((x + width) - (width / 2))
+            is_right = sx > ((x + width) - (width / 2))
+
+            def draw(event, p1, p2, p3):
                 p1 = round(p1, 3)
                 p2 = round(p2, 3)
                 p3 = round(p3, 3)
@@ -244,56 +252,15 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
-            def top_left():
-                _x1 = constant1
-                x2 = _x1 + horizontal_end_value
-
-                return draw_box(event, _x1, y1, x2)
-
-            def top_right():
-                _x1 = constant2
-                x2 = _x1 - horizontal_end_value
-
-                return draw_box(event, _x1, y1, x2)
-
             def bottom_left():
-                _x1 = constant1
-                x2 = _x1 + horizontal_end_value
-
-                return draw_box(event, _x1, constant3, x2)
-
-            def bottom_right():
-                _x1 = constant2
-                x2 = _x1 - horizontal_end_value
-
-                return draw_box(event, _x1, constant3, x2)
+                return draw(event, vertex_bottom, vertex_left_1, vertex_left_2)
 
             def left():
-                _y1 = constant4
-                y2 = _y1 + vertical_end_value
-                return draw_box(event, x1, _y1, y2)
+                return draw(event, x1, vertex4, vertex7)
 
             def right():
-                _y1 = constant4
-                y2 = _y1 + vertical_end_value
-
                 _x1 = x1 + width
-                return draw_box(event, _x1, _y1, y2)
-
-            is_bottom = False
-            is_top = False
-            is_right = False
-            is_left = False
-
-            if sy < (y - direction_padding):
-                is_top = True
-            if sy > y + height:
-                is_bottom = True
-
-            if sx < ((x + width) - (width / 2)):
-                is_left = True
-            if sx > ((x + width) - (width / 2)):
-                is_right = True
+                return draw(event, _x1, vertex4, vertex7)
 
             if (
                 sx > (x + width)
@@ -304,14 +271,20 @@ def Convert(
             if sx < x and sy > y and sy < (y + height):
                 return left()
 
-            if is_top and is_left:
-                return top_left()
-            if is_top and is_right:
-                return top_right()
-            if is_bottom and is_left:
-                return bottom_left()
-            if is_bottom and is_right:
-                return bottom_right()
+            point = []
+            if is_top:
+                point.append(y1)
+            if is_bottom:
+                point.append(vertex_bottom)
+            if is_left:
+                point.append(vertex_left_1)
+                point.append(vertex_left_2)
+            if is_right:
+                point.append(vertex_right_1)
+                point.append(vertex_right_2)
+
+            if len(point) == 3:
+                return draw(event, point[0], point[1], point[2])
 
             return bottom_left()
 
