@@ -110,21 +110,6 @@ def Convert(
             _width = round(width, 3)
             _height = round(height, 3)
 
-            # 在之前这里我拼接字符串, 做的还没有全民核酸检测好
-            # 现在画四个点直接闭合一个框
-            draws = Draw()
-            draws.extend(
-                [
-                    DrawCommand(0, 0, "m"),
-                    DrawCommand(_width, 0, "l"),
-                    DrawCommand(_width, _height, "l"),
-                    DrawCommand(0, _height, "l"),
-                ]
-            )
-
-            # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
-            box_tag = r"{\p1}" + str(draws) + r"{\p0}"
-
             tags = Tag()
             tags.extend(
                 [
@@ -135,6 +120,19 @@ def Convert(
                     Tag.Shadow(0),
                 ]
             )
+
+            draws = Draw()
+            draws.extend(
+                [
+                    DrawCommand(0, 0, "m"),
+                    DrawCommand(_width, 0, "l"),
+                    DrawCommand(_width, _height, "l"),
+                    DrawCommand(0, _height, "l"),
+                ]
+            )
+            # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
+            box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+
             event.Text = str(tags) + box_tag
             return event
 
@@ -216,16 +214,6 @@ def Convert(
             x_right_1 = x_right - horizontal_end_value
             x_right_2 = x_right_1 - horizontal_start_value
 
-            y_middle_1 = y_top + vertical_start_value
-            y_middle_2 = y_middle_1 + vertical_end_value
-
-            is_left = (
-                sx > (x + width)
-                and sy > (y - direction_padding)
-                and sy < ((y + height) - direction_padding)
-            )
-            is_right = sx < x and sy > y and sy < (y + height)
-
             is_top = sy < (y - direction_padding)
             is_bottom = sy > y + height
             is_keep_left = sx < ((x + width) - (width / 2))
@@ -262,6 +250,37 @@ def Convert(
 
                 event.Text = str(tags) + box_tag
                 return event
+
+            def top_left():
+                return draw(x_left_1, y_top, x_left_2)
+
+            def top_right():
+                return draw(x_right_1, y_top, x_right_2)
+
+            def bottom_left():
+                return draw(x_left_1, y_bottom, x_left_2)
+
+            def bottom_right():
+                return draw(x_right_1, y_bottom, x_right_2)
+
+            if is_top and is_keep_left:
+                return top_left()
+            if is_top and is_keep_right:
+                return top_right()
+            if is_bottom and is_keep_left:
+                return bottom_left()
+            if is_bottom and is_keep_right:
+                return bottom_right()
+
+            y_middle_1 = y_top + vertical_start_value
+            y_middle_2 = y_middle_1 + vertical_end_value
+
+            is_left = (
+                sx > (x + width)
+                and sy > (y - direction_padding)
+                and sy < ((y + height) - direction_padding)
+            )
+            is_right = sx < x and sy > y and sy < (y + height)
 
             def draw2(x, y, y2):
                 _sx = round(sx, 3)
@@ -301,31 +320,10 @@ def Convert(
             def right():
                 return draw2(x_right, y_middle_1, y_middle_2)
 
-            def top_left():
-                return draw(x_left_1, y_top, x_left_2)
-
-            def top_right():
-                return draw(x_right_1, y_top, x_right_2)
-
-            def bottom_left():
-                return draw(x_left_1, y_bottom, x_left_2)
-
-            def bottom_right():
-                return draw(x_right_1, y_bottom, x_right_2)
-
             if is_left:
                 return right()
             if is_right:
                 return left()
-
-            if is_top and is_keep_left:
-                return top_left()
-            if is_top and is_keep_right:
-                return top_right()
-            if is_bottom and is_keep_left:
-                return bottom_left()
-            if is_bottom and is_keep_right:
-                return bottom_right()
 
             return bottom_left()
 
