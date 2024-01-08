@@ -219,13 +219,14 @@ def Convert(
             is_keep_left = sx < ((x + width) - (width / 2))
             is_keep_right = sx > ((x + width) - (width / 2))
 
-            def draw(x, y, x2):
+            def draw(x1, y1, x2, y2):
                 _sx = round(sx, 3)
                 _sy = round(sy, 3)
 
-                x = round(x, 3)
-                y = round(y, 3)
+                x1 = round(x1, 3)
+                y1 = round(y1, 3)
                 x2 = round(x2, 3)
+                y2 = round(y2, 3)
 
                 tags = Tag()
                 tags.extend(
@@ -242,8 +243,8 @@ def Convert(
                 draws.extend(
                     [
                         DrawCommand(0, 0, "m"),
-                        DrawCommand(x, y, "l"),
-                        DrawCommand(x2, y, "l"),
+                        DrawCommand(x1, y1, "l"),
+                        DrawCommand(x2, y2, "l"),
                     ]
                 )
                 box_tag = r"{\p1}" + str(draws) + r"{\p0}"
@@ -251,17 +252,20 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
+            def draw1(x, y, x2):
+                return draw(x, y, x2, y)
+
             def top_left():
-                return draw(x_left_1, y_top, x_left_2)
+                return draw1(x_left_1, y_top, x_left_2)
 
             def top_right():
-                return draw(x_right_1, y_top, x_right_2)
+                return draw1(x_right_1, y_top, x_right_2)
 
             def bottom_left():
-                return draw(x_left_1, y_bottom, x_left_2)
+                return draw1(x_left_1, y_bottom, x_left_2)
 
             def bottom_right():
-                return draw(x_right_1, y_bottom, x_right_2)
+                return draw1(x_right_1, y_bottom, x_right_2)
 
             if is_top and is_keep_left:
                 return top_left()
@@ -283,36 +287,7 @@ def Convert(
             is_right = sx < x and sy > y and sy < (y + height)
 
             def draw2(x, y, y2):
-                _sx = round(sx, 3)
-                _sy = round(sy, 3)
-
-                x = round(x, 3)
-                y = round(y, 3)
-                y2 = round(y2, 3)
-
-                tags = Tag()
-                tags.extend(
-                    [
-                        Tag.Pos(_sx, _sy),
-                        Tag.PrimaryColour(each.bgColor),
-                        Tag.PrimaryAlpha(each.bgOpacity),
-                        Tag.Bord(0),
-                        Tag.Shadow(0),
-                    ]
-                )
-
-                draws = Draw()
-                draws.extend(
-                    [
-                        DrawCommand(0, 0, "m"),
-                        DrawCommand(x, y, "l"),
-                        DrawCommand(x, y2, "l"),
-                    ]
-                )
-                box_tag = r"{\p1}" + str(draws) + r"{\p0}"
-
-                event.Text = str(tags) + box_tag
-                return event
+                return draw(x, y, x, y2)
 
             def left():
                 return draw2(x_base, y_middle_1, y_middle_2)
