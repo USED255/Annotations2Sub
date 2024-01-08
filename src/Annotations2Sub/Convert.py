@@ -201,26 +201,32 @@ def Convert(
             vertical_start_value = height * vertical_base_start_multiplier
             vertical_end_value = height * vertical_base_end_multiplier
 
-            x1 = x - sx
-            y1 = y - sy
+            x_base = x - sx
+            y_base = y - sy
 
-            vertex_bottom = y1 + height
+            x_left = x_base
+            x_right = x_base + width
 
-            vertex_left_1 = x1 + horizontal_start_value
-            vertex_left_2 = vertex_left_1 + horizontal_end_value
+            y_top = y_base
+            y_bottom = y_base + height
 
-            vertex_right_1 = x1 + horizontal_start_value * 2
-            vertex_right_2 = vertex_right_1 - horizontal_end_value
+            x_left_1 = x_left + horizontal_start_value
+            x_left_2 = x_left_1 + horizontal_end_value
 
-            vertex4 = y1 + vertical_start_value
-            vertex7 = vertex4 + vertical_end_value
+            x_right_1 = x_left + horizontal_start_value * 2
+            x_right_2 = x_right_1 - horizontal_end_value
+            # x_right_1 = x_right - horizontal_start_value
+            # x_right_2 = x_right_1 - horizontal_end_value
+
+            y_middle_1 = y_top + vertical_start_value
+            y_middle_2 = y_middle_1 + vertical_end_value
 
             is_top = sy < (y - direction_padding)
             is_bottom = sy > y + height
             is_left = sx < ((x + width) - (width / 2))
             is_right = sx > ((x + width) - (width / 2))
 
-            def draw(event, p1, p2, p3):
+            def draw(p1, p2, p3):
                 p1 = round(p1, 3)
                 p2 = round(p2, 3)
                 p3 = round(p3, 3)
@@ -250,15 +256,23 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
+            def top_left():
+                return draw(x_left_1, y_top, x_left_2)
+
+            def top_right():
+                return draw(x_right_1, y_top, x_right_2)
+
             def bottom_left():
-                return draw(event, vertex_bottom, vertex_left_1, vertex_left_2)
+                return draw(x_left_1, y_bottom, x_left_2)
+
+            def bottom_right():
+                return draw(x_right_1, y_bottom, x_right_2)
 
             def left():
-                return draw(event, x1, vertex4, vertex7)
+                return draw(x_base, y_middle_1, y_middle_2)
 
             def right():
-                _x1 = x1 + width
-                return draw(event, _x1, vertex4, vertex7)
+                return draw(x_right, y_middle_1, y_middle_2)
 
             if (
                 sx > (x + width)
@@ -269,20 +283,14 @@ def Convert(
             if sx < x and sy > y and sy < (y + height):
                 return left()
 
-            point = []
-            if is_top:
-                point.append(y1)
-            if is_bottom:
-                point.append(vertex_bottom)
-            if is_left:
-                point.append(vertex_left_1)
-                point.append(vertex_left_2)
-            if is_right:
-                point.append(vertex_right_1)
-                point.append(vertex_right_2)
-
-            if len(point) == 3:
-                return draw(event, point[0], point[1], point[2])
+            if is_top and is_left:
+                return top_left()
+            if is_top and is_right:
+                return top_right()
+            if is_bottom and is_left:
+                return bottom_left()
+            if is_bottom and is_right:
+                return bottom_right()
 
             return bottom_left()
 
