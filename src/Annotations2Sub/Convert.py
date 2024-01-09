@@ -237,7 +237,7 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
-            def f1():
+            def left_right():
                 y_start = height * y_start_multiplier
                 y_end = height * y_end_multiplier
 
@@ -263,7 +263,7 @@ def Convert(
                 if None not in (x1, y1, x2, y2):
                     return draw(x1, y1, x2, y2)
 
-            def f2():
+            def up_down():
                 x_right_1 = x_right - x_end
                 x_right_2 = x_right_1 - x_start
 
@@ -287,11 +287,11 @@ def Convert(
                 if None not in (x1, y1, x2, y2):
                     return draw(x1, y1, x2, y2)
 
-            _event = f1()
+            _event = left_right()
             if _event != None:
                 return _event
 
-            _event = f2()
+            _event = up_down()
             if _event != None:
                 return _event
 
