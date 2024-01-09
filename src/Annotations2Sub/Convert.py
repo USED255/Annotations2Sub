@@ -237,6 +237,30 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
+            def up_down():
+                x_right_1 = x_right - x_end
+                x_right_2 = x_right_1 - x_start
+
+                is_top = sy < (y - direction_padding)
+                is_bottom = sy > y + height
+                is_keep_left = sx < ((x + width) - (width / 2))
+                is_keep_right = sx > ((x + width) - (width / 2))
+
+                x1 = y1 = x2 = y2 = None
+                if is_top:
+                    y2 = y1 = y_top
+                if is_bottom:
+                    y2 = y1 = y_bottom
+                if is_keep_left:
+                    x1 = x_left_1
+                    x2 = x_left_2
+                if is_keep_right:
+                    x1 = x_right_1
+                    x2 = x_right_2
+
+                if None not in (x1, y1, x2, y2):
+                    return draw(x1, y1, x2, y2)
+
             def left_right():
                 y_start = height * y_start_multiplier
                 y_end = height * y_end_multiplier
@@ -263,35 +287,11 @@ def Convert(
                 if None not in (x1, y1, x2, y2):
                     return draw(x1, y1, x2, y2)
 
-            def up_down():
-                x_right_1 = x_right - x_end
-                x_right_2 = x_right_1 - x_start
-
-                is_top = sy < (y - direction_padding)
-                is_bottom = sy > y + height
-                is_keep_left = sx < ((x + width) - (width / 2))
-                is_keep_right = sx > ((x + width) - (width / 2))
-
-                x1 = y1 = x2 = y2 = None
-                if is_top:
-                    y2 = y1 = y_top
-                if is_bottom:
-                    y2 = y1 = y_bottom
-                if is_keep_left:
-                    x1 = x_left_1
-                    x2 = x_left_2
-                if is_keep_right:
-                    x1 = x_right_1
-                    x2 = x_right_2
-
-                if None not in (x1, y1, x2, y2):
-                    return draw(x1, y1, x2, y2)
-
-            _event = left_right()
+            _event = up_down()
             if _event != None:
                 return _event
 
-            _event = up_down()
+            _event = left_right()
             if _event != None:
                 return _event
 
