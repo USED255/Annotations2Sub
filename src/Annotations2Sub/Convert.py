@@ -246,12 +246,6 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
-            def draw1(x, y, x2):
-                return draw(x, y, x2, y)
-
-            def bottom_left():
-                return draw1(x_left_1, y_bottom, x_left_2)
-
             x1 = y1 = x2 = y2 = None
             if is_top:
                 y2 = y1 = y_top
@@ -290,6 +284,9 @@ def Convert(
                 return right()
             if is_right:
                 return left()
+
+            def bottom_left():
+                return draw(x_left_1, y_bottom, x_left_2, y_bottom)
 
             return bottom_left()
 
