@@ -202,17 +202,6 @@ def Convert(
             y_top = y_base
             y_bottom = y_base + height
 
-            x_left_1 = x_left + horizontal_start_value
-            x_left_2 = x_left_1 + horizontal_end_value
-
-            x_right_1 = x_right - horizontal_end_value
-            x_right_2 = x_right_1 - horizontal_start_value
-
-            is_top = sy < (y - direction_padding)
-            is_bottom = sy > y + height
-            is_keep_left = sx < ((x + width) - (width / 2))
-            is_keep_right = sx > ((x + width) - (width / 2))
-
             def draw(x1, y1, x2, y2):
                 _sx = round(sx, 3)
                 _sy = round(sy, 3)
@@ -256,12 +245,32 @@ def Convert(
             )
             is_right = sx < x and sy > y and sy < (y + height)
 
+            x1 = y1 = x2 = y2 = None
+
+            y1 = y_middle_1
+            y2 = y_middle_2
+
             if is_left:
-                return draw(x_base, y_middle_1, x_base, y_middle_2)
+                x2 = x1 = x_left
             if is_right:
-                return draw(x_right, y_middle_1, x_right, y_middle_2)
+                x2 = x1 = x_right
+
+            if None not in (x1, y1, x2, y2):
+                return draw(x1, y1, x2, y2)
+
+            is_top = sy < (y - direction_padding)
+            is_bottom = sy > y + height
+            is_keep_left = sx < ((x + width) - (width / 2))
+            is_keep_right = sx > ((x + width) - (width / 2))
 
             x1 = y1 = x2 = y2 = None
+
+            x_left_1 = x_left + horizontal_start_value
+            x_left_2 = x_left_1 + horizontal_end_value
+
+            x_right_1 = x_right - horizontal_end_value
+            x_right_2 = x_right_1 - horizontal_start_value
+
             if is_top:
                 y2 = y1 = y_top
             if is_bottom:
@@ -273,7 +282,7 @@ def Convert(
                 x1 = x_right_1
                 x2 = x_right_2
 
-            if not None in (x1, y1, x2, y2):
+            if None not in (x1, y1, x2, y2):
                 return draw(x1, y1, x2, y2)
 
             def bottom_left():
