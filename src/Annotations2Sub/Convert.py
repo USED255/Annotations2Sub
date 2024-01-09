@@ -188,11 +188,6 @@ def Convert(
             vertical_base_start_multiplier = 0.12
             vertical_base_end_multiplier = 0.3
 
-            x_start = width * horizontal_base_start_multiplier
-            x_end = width * horizontal_base_end_multiplier
-            y_start = height * vertical_base_start_multiplier
-            y_end = height * vertical_base_end_multiplier
-
             x_base = x - sx
             y_base = y - sy
 
@@ -235,6 +230,9 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
+            y_start = height * vertical_base_start_multiplier
+            y_end = height * vertical_base_end_multiplier
+
             y_middle_1 = y_top + y_start
             y_middle_2 = y_middle_1 + y_end
 
@@ -264,6 +262,9 @@ def Convert(
             is_keep_right = sx > ((x + width) - (width / 2))
 
             x1 = y1 = x2 = y2 = None
+
+            x_start = width * horizontal_base_start_multiplier
+            x_end = width * horizontal_base_end_multiplier
 
             x_left_1 = x_left + x_start
             x_left_2 = x_left_1 + x_end
