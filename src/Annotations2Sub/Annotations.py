@@ -6,8 +6,7 @@
 import datetime
 from typing import Any, List, Optional, Union
 
-# 解析 XML 时使用的是 defusedxml
-# 这里是为了类型检查
+
 from xml.etree.ElementTree import Element
 
 from Annotations2Sub.Color import Alpha, Color
@@ -39,8 +38,6 @@ class Annotation:
     # 更何况我没有写过 CSS :-)
 
     def __init__(self):
-        # 为什么不使用数据类?
-        # 因为没必要, 我不指望有人使用本脚本进行二次开发
         self.id: str = ""
         # 这里仅列出需要的 type 和 style, 且 Literal 仅做提醒作用
         self.type: Union[Literal["text", "highlight", "branding"], str] = "text"
@@ -56,11 +53,9 @@ class Annotation:
             str,
         ] = "popup"
         self.text: str = ""
-        # 经过上次的时间字符串转换教训, 这次使用了 datetime
-        # 但是其实 Annotations 与 SSA 的时间字符串可以通用
         self.timeStart: datetime.datetime = datetime.datetime.strptime("0", "%S")
         self.timeEnd: datetime.datetime = datetime.datetime.strptime("0", "%S")
-        # Annotations 的定位全部是 "百分比", 还可能是用 CSS 实现的, SSA 能正确显示真是谢天谢地
+        # Annotations 的定位全部是 "百分比", SSA 能正确显示真是谢天谢地
         self.x: float = 0.0
         self.y: float = 0.0
         # width(w), height(h) 是文本框的宽高
@@ -75,13 +70,10 @@ class Annotation:
         # bgColor 是注释文本后面那个框的颜色
         self.bgColor: Color = Color(red=255, green=255, blue=255)
         # fgColor 就是注释文本的颜色
-        # 如果不是 Annotations, 我都不知道颜色值可以用十进制表达
-        # 类似于 bgOpacity, 开始我也不知道这玩耶是 BGR, 是视频出来效果不对才知道
-        # 一个结构化的颜色显然比奇怪的颜色值要容易理解得多
+        # 如果不是 Annotations, 我都不知道颜色值可以用十进制表达, 而且还是BGR ,视频出来效果不对才知道
         self.fgColor: Color = Color(red=0, green=0, blue=0)
         # textSize 是 "文字占画布的百分比", 而在 title 样式中才是熟悉的 "字体大小"
         self.textSize: float = 3.15
-        # annotationlib 没处理 author, 我会处理
         self.author: str = ""
         self.fontWeight: str = ""
         self.effects: str = ""
@@ -99,10 +91,6 @@ def Parse(tree: Element) -> List[Annotation]:
 
     # Annotation 文件是一个 XML 文件
     # 详细结构可以看看 src/tests/testCase/annotation.xml.test
-
-    # 在此之前(f20f9fe fixbugs) XML 树就直接转为 Event 了
-    # 随着时间推移代码变得越来越糟
-    # 幸好当初没傻到直接吐字符串, youtube-ass 就是这么干的
 
     def ParseAnnotationAlpha(alpha: str) -> Alpha:
         """
@@ -142,7 +130,7 @@ def Parse(tree: Element) -> List[Annotation]:
         """确保是 Element"""
         if isinstance(element, Element):
             return element
-        raise TypeError
+        raise TypeError(_("不是 Element 类型"))
 
     def ParseAnnotation(each: Element) -> Optional[Annotation]:
         """解析 Annotation"""
@@ -193,8 +181,12 @@ def Parse(tree: Element) -> List[Annotation]:
             text = MakeSureStr(_text)
             del _text
 
-        # 类型检查可以避免些低级错误, 提升编码体验, 虽然在 Python 上有些瓦房店化
-        _Segment = each.find("segment").find("movingRegion")  # type: ignore
+        _Segment = each.find("segment")
+        if _Segment is None:
+            if Flags.verbose:
+                Stderr(_("{} 没有 segment, 跳过").format(_id))
+            return None
+        _Segment = _Segment.find("movingRegion")
         if _Segment == None:
             # 学习 annotationlib
             # https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L117
@@ -205,12 +197,13 @@ def Parse(tree: Element) -> List[Annotation]:
                 Stderr(_("{} 没有 movingRegion, 跳过").format(_id))
             return None
 
-        Segment = _Segment.findall("rectRegion")  # type: ignore
+        _Segment = MakeSureElement(_Segment)
+        Segment = _Segment.findall("rectRegion")
         if len(Segment) == 0:
             # 在这之前(bdb6559 更新), 这里莫名其妙的包了个括号
             # 我把整个代码注释一遍原因之一就是为了发现这些问题
             # 而且这些代码是经验堆积而成, 我希望丰富的注释可以帮助路人理解这些代码怎么运行
-            Segment = _Segment.findall("anchoredRegion")  # type: ignore
+            Segment = _Segment.findall("anchoredRegion")
 
         if len(Segment) == 0:
             if style != "highlightText":
@@ -310,15 +303,16 @@ def Parse(tree: Element) -> List[Annotation]:
         return annotation
 
     Dummy([ParseAnnotationAlpha, ParseAnnotationColor, MakeSureElement])
-    annotations: List[Annotation] = []
-    # 下面这行代码先从 youtube-ass 传到之前的 Annotations2Sub, 再从之前的 Annotations2Sub 传到这里
-    annotations_tree = tree.find("annotations")
-    if annotations_tree == None:
+
+    try:
+        annotations_tree = MakeSureElement(tree.find("annotations"))
+    except TypeError:
         raise ValueError(_("不是 Annotations 文档"))
-    for each in annotations_tree.findall("annotation"):  # type: ignore
+
+    annotations: List[Annotation] = []
+    for each in annotations_tree.findall("annotation"):
         annotation = ParseAnnotation(each)
-        if annotation != None:
-            # 我想这个类型检查真是奇怪, 但是我也不知道该怎么做
-            annotations.append(annotation)  # type: ignore
+        if isinstance(annotation, Annotation):
+            annotations.append(annotation)
 
     return annotations

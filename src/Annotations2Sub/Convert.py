@@ -5,7 +5,7 @@
 
 import copy
 import textwrap
-from typing import List
+from typing import List, Optional
 
 # 在重写本项目前, 我写了一些 Go 的代码
 # 依照在 Go 中的经验把一个脚本拆成若干个模块
@@ -180,8 +180,8 @@ def Convert(
             event.Text = str(tags) + box_tag
             return event
 
-        def Triangle(event: Event) -> Event:
-            direction_padding = 2.0
+        def Triangle(event: Event) -> Optional[Event]:
+            padding = 1.0
 
             x_start_multiplier = 0.174
             x_end_multiplier = 0.149
@@ -194,7 +194,7 @@ def Convert(
                 x_end_multiplier = x_end_multiplier * transform_coefficient_x
 
             if "transform_coefficient_y" in locals():
-                direction_padding = direction_padding * transform_coefficient_y
+                padding = padding * transform_coefficient_y
 
                 y_start_multiplier = y_start_multiplier * transform_coefficient_y
                 y_end_multiplier = y_end_multiplier * transform_coefficient_y
@@ -251,10 +251,10 @@ def Convert(
                 x_right_1 = x_right - x_end
                 x_right_2 = x_right_1 - x_start
 
-                is_top = sy < (y - direction_padding)
-                is_bottom = sy > y + height
-                is_keep_left = sx < ((x + width) - (width / 2))
-                is_keep_right = sx > ((x + width) - (width / 2))
+                is_top = sy < (y - padding)
+                is_bottom = sy > (y + height + padding)
+                is_keep_left = sx <= (x + (width / 2))
+                is_keep_right = sx >= (x + (width / 2))
 
                 x1 = y1 = x2 = y2 = None
                 if is_top:
@@ -278,12 +278,8 @@ def Convert(
                 y_middle_1 = y_top + y_start
                 y_middle_2 = y_middle_1 + y_end
 
-                is_left = sx < x and sy > y and sy < (y + height)
-                is_right = (
-                    sx > (x + width)
-                    and sy > (y - direction_padding)
-                    and sy < ((y + height) - direction_padding)
-                )
+                is_left = sx < (x - padding)
+                is_right = sx > (x + width + padding)
 
                 x1 = y1 = x2 = y2 = None
                 if is_left:
@@ -305,10 +301,7 @@ def Convert(
             if _event != None:
                 return _event
 
-            def bottom_left():
-                return draw(x_left_1, y_bottom, x_left_2, y_bottom)
-
-            return bottom_left()
+            return None
 
         def popup_text() -> Event:
             """生成 popup 样式的文本 Event"""
@@ -360,7 +353,7 @@ def Convert(
 
             return Box(_event)
 
-        def speech_triangle() -> Event:
+        def speech_triangle() -> Optional[Event]:
             _event = copy.copy(event)
             _event.Name += "speech_triangle;"
             return Triangle(_event)
@@ -465,7 +458,9 @@ def Convert(
             events.append(highlightText_text())
         elif each.style == "speech":
             events.append(speech_box())
-            events.append(speech_triangle())
+            _event = speech_triangle()
+            if isinstance(_event, Event):
+                events.append(_event)
             events.append(speech_text())
             # 我没见过 "anchored" 所有实现很可能不对
         elif each.style == "anchored":

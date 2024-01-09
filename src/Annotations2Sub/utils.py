@@ -73,7 +73,7 @@ def MakeSureStr(string: Any) -> str:
     # 这个是用来应付类型注释的, 我觉得在输入确定的环境里做类型检查没有必要
     if isinstance(string, str):
         return str(string)
-    raise TypeError
+    raise TypeError(_("不是字符串"))
 
 
 def GetUrl(url: str) -> str:
