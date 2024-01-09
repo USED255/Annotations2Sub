@@ -181,13 +181,23 @@ def Convert(
             return event
 
         def Triangle(event: Event) -> Event:
-            direction_padding = 20
+            direction_padding = 2.0
 
             x_start_multiplier = 0.174
             x_end_multiplier = 0.149
 
             y_start_multiplier = 0.12
             y_end_multiplier = 0.3
+
+            if "transform_coefficient_x" in locals():
+                x_start_multiplier = x_start_multiplier * transform_coefficient_x
+                x_end_multiplier = x_end_multiplier * transform_coefficient_x
+
+            if "transform_coefficient_y" in locals():
+                direction_padding = direction_padding * transform_coefficient_y
+
+                y_start_multiplier = y_start_multiplier * transform_coefficient_y
+                y_end_multiplier = y_end_multiplier * transform_coefficient_y
 
             x_base = x - sx
             y_base = y - sy
