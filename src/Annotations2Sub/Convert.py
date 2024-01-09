@@ -249,26 +249,23 @@ def Convert(
             def draw1(x, y, x2):
                 return draw(x, y, x2, y)
 
-            def top_left():
-                return draw1(x_left_1, y_top, x_left_2)
-
-            def top_right():
-                return draw1(x_right_1, y_top, x_right_2)
-
             def bottom_left():
                 return draw1(x_left_1, y_bottom, x_left_2)
 
-            def bottom_right():
-                return draw1(x_right_1, y_bottom, x_right_2)
+            x1 = y1 = x2 = y2 = None
+            if is_top:
+                y2 = y1 = y_top
+            if is_bottom:
+                y2 = y1 = y_bottom
+            if is_keep_left:
+                x1 = x_left_1
+                x2 = x_left_2
+            if is_keep_right:
+                x1 = x_right_1
+                x2 = x_right_2
 
-            if is_top and is_keep_left:
-                return top_left()
-            if is_top and is_keep_right:
-                return top_right()
-            if is_bottom and is_keep_left:
-                return bottom_left()
-            if is_bottom and is_keep_right:
-                return bottom_right()
+            if not None in (x1, y1, x2, y2):
+                return draw(x1, y1, x2, y2)
 
             y_middle_1 = y_top + vertical_start_value
             y_middle_2 = y_middle_1 + vertical_end_value
