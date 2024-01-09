@@ -271,14 +271,11 @@ def Convert(
             )
             is_right = sx < x and sy > y and sy < (y + height)
 
-            def draw2(x, y, y2):
-                return draw(x, y, x, y2)
-
             def left():
-                return draw2(x_base, y_middle_1, y_middle_2)
+                return draw(x_base, y_middle_1, x_base, y_middle_2)
 
             def right():
-                return draw2(x_right, y_middle_1, y_middle_2)
+                return draw(x_right, y_middle_1, x_right, y_middle_2)
 
             if is_left:
                 return right()
