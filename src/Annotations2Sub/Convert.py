@@ -246,6 +246,21 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
+            y_middle_1 = y_top + vertical_start_value
+            y_middle_2 = y_middle_1 + vertical_end_value
+
+            is_left = (
+                sx > (x + width)
+                and sy > (y - direction_padding)
+                and sy < ((y + height) - direction_padding)
+            )
+            is_right = sx < x and sy > y and sy < (y + height)
+
+            if is_left:
+                return draw(x_base, y_middle_1, x_base, y_middle_2)
+            if is_right:
+                return draw(x_right, y_middle_1, x_right, y_middle_2)
+
             x1 = y1 = x2 = y2 = None
             if is_top:
                 y2 = y1 = y_top
@@ -260,22 +275,6 @@ def Convert(
 
             if not None in (x1, y1, x2, y2):
                 return draw(x1, y1, x2, y2)
-
-            y_middle_1 = y_top + vertical_start_value
-            y_middle_2 = y_middle_1 + vertical_end_value
-
-            is_left = (
-                sx > (x + width)
-                and sy > (y - direction_padding)
-                and sy < ((y + height) - direction_padding)
-            )
-            is_right = sx < x and sy > y and sy < (y + height)
-
-            if is_left:
-                return draw(x_base, y_middle_1, x_base, y_middle_2)
-
-            if is_right:
-                return draw(x_right, y_middle_1, x_right, y_middle_2)
 
             def bottom_left():
                 return draw(x_left_1, y_bottom, x_left_2, y_bottom)
