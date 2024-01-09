@@ -278,12 +278,12 @@ def Convert(
                 y_middle_1 = y_top + y_start
                 y_middle_2 = y_middle_1 + y_end
 
-                is_left = (
+                is_left = sx < x and sy > y and sy < (y + height)
+                is_right = (
                     sx > (x + width)
                     and sy > (y - direction_padding)
                     and sy < ((y + height) - direction_padding)
                 )
-                is_right = sx < x and sy > y and sy < (y + height)
 
                 x1 = y1 = x2 = y2 = None
                 if is_left:
