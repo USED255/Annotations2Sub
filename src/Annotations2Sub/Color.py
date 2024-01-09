@@ -25,10 +25,7 @@ class Color:
 
 
 class Alpha:
-    def __init__(
-        self,
-        alpha: int = 0,
-    ):
+    def __init__(self, alpha: int = 0):
         if alpha > 255:
             raise ValueError(_('"alpha" 必须在 0-255 之间'))
         self.alpha = alpha

@@ -68,7 +68,6 @@ def Run(argv=None):
         metavar=_("文件 或 videoId"),
         help=_("多个需要转换的文件的文件路径或视频ID"),
     )
-    # 此选项为了兼容小于 0.17 版本的 libass
     parser.add_argument(
         "-x",
         "--transform-resolution-x",
@@ -85,8 +84,7 @@ def Run(argv=None):
         metavar="100",
         help=_("变换分辨率Y"),
     )
-
-    # 应该使用非衬线字体, 但是 SSA 不能方便的指定字体家族, 只得出此下策
+    # 应该使用非衬线字体, 但是 SSA 不能方便的指定字体家族
     parser.add_argument(
         "-f",
         "--font",
@@ -107,7 +105,6 @@ def Run(argv=None):
         action="store_true",
         help=_("仅下载注释"),
     )
-
     parser.add_argument(
         "-i",
         "--invidious-instances",
@@ -115,14 +112,13 @@ def Run(argv=None):
         metavar="invidious.domain",
         help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
     )
-    # 拼接参数执行 mpv
+    # 拼接参数运行 mpv
     parser.add_argument(
         "-p",
         "--preview-video",
         action="store_true",
         help=_("预览视频, 需要 mpv(https://mpv.io/)"),
     )
-
     parser.add_argument(
         "-g",
         "--generate-video",
@@ -132,12 +128,9 @@ def Run(argv=None):
     parser.add_argument(
         "-n", "--no-overwrite-files", action="store_true", help=_("不覆盖文件")
     )
-
-    # 指从 Internet Archive 下载的注释文件
     parser.add_argument(
         "-N", "--no-keep-intermediate-files", action="store_true", help=_("不保留中间文件")
     )
-
     parser.add_argument(
         "-o", "--output", type=str, metavar=_("文件"), help=_('保存到此文件, 如果为 "-" 则输出到标准输出')
     )
@@ -155,8 +148,6 @@ def Run(argv=None):
         help=_("显示版本号"),
         version=_("Annotations2Sub v{version}").format(version=version),
     )
-
-    # 这个不是用来调试用的
     parser.add_argument(
         "-V",
         "--verbose",
@@ -173,13 +164,13 @@ def Run(argv=None):
     font = args.font
     enable_download_for_archive = args.download_for_archive
     enable_download_annotations_only = args.download_annotations_only
+    invidious_instances = args.invidious_instances
     enable_preview_video = args.preview_video
     enable_generate_video = args.generate_video
-    invidious_instances = args.invidious_instances
     enable_no_overwrite_files = args.no_overwrite_files
     enable_no_keep_intermediate_files = args.no_keep_intermediate_files
-    output_directory = args.output_directory
     output = args.output
+    output_directory = args.output_directory
     enable_verbose = args.verbose
 
     output_to_stdout = False
@@ -297,6 +288,7 @@ def Run(argv=None):
             Err(_("{} 不是 Annotations 文件").format(annotations_file))
             exit_code = 1
             continue
+
         events = Convert(
             annotations,
             transform_resolution_x,
@@ -347,7 +339,6 @@ def Run(argv=None):
         video = audio = ""
         if enable_preview_video or enable_generate_video:
             if invidious_instances == "":
-                instances = []
                 instances = json.loads(
                     GetUrl("https://api.invidious.io/instances.json")
                 )
@@ -358,10 +349,12 @@ def Run(argv=None):
                     except IndexError:
                         pass
                     domain = instance[0]
+
                     try:
                         video, audio = GetMedia(video_id, domain)
                     except (json.JSONDecodeError, URLError, IncompleteRead, ValueError):
                         continue
+
                 if video == "" or audio == "":
                     function2()
                     continue
@@ -375,11 +368,13 @@ def Run(argv=None):
         def function1():
             if Flags.verbose:
                 Stderr(" ".join(commands))
+
             _exit_code = subprocess.run(commands).returncode
             if _exit_code != 0:
                 Stderr(YellowText("exit with {}".format(_exit_code)))
                 nonlocal exit_code
                 exit_code = 1
+
             if enable_no_keep_intermediate_files:
                 Stderr(_("删除 {}").format(subtitle_file))
                 os.remove(subtitle_file)
