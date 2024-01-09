@@ -198,6 +198,12 @@ def Convert(
             y_top = y_base
             y_bottom = y_base + height
 
+            x_start = width * x_start_multiplier
+            x_end = width * x_end_multiplier
+
+            x_left_1 = x_left + x_start
+            x_left_2 = x_left_1 + x_end
+
             def draw(x1, y1, x2, y2):
                 _sx = round(sx, 3)
                 _sy = round(sy, 3)
@@ -231,61 +237,63 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
-            y_start = height * y_start_multiplier
-            y_end = height * y_end_multiplier
+            def f1():
+                y_start = height * y_start_multiplier
+                y_end = height * y_end_multiplier
 
-            y_middle_1 = y_top + y_start
-            y_middle_2 = y_middle_1 + y_end
+                y_middle_1 = y_top + y_start
+                y_middle_2 = y_middle_1 + y_end
 
-            is_left = (
-                sx > (x + width)
-                and sy > (y - direction_padding)
-                and sy < ((y + height) - direction_padding)
-            )
-            is_right = sx < x and sy > y and sy < (y + height)
+                is_left = (
+                    sx > (x + width)
+                    and sy > (y - direction_padding)
+                    and sy < ((y + height) - direction_padding)
+                )
+                is_right = sx < x and sy > y and sy < (y + height)
 
-            x1 = y1 = x2 = y2 = None
+                x1 = y1 = x2 = y2 = None
+                if is_left:
+                    x2 = x1 = x_left
+                if is_right:
+                    x2 = x1 = x_right
 
-            y1 = y_middle_1
-            y2 = y_middle_2
+                y1 = y_middle_1
+                y2 = y_middle_2
 
-            if is_left:
-                x2 = x1 = x_left
-            if is_right:
-                x2 = x1 = x_right
+                if None not in (x1, y1, x2, y2):
+                    return draw(x1, y1, x2, y2)
 
-            if None not in (x1, y1, x2, y2):
-                return draw(x1, y1, x2, y2)
+            def f2():
+                x_right_1 = x_right - x_end
+                x_right_2 = x_right_1 - x_start
 
-            is_top = sy < (y - direction_padding)
-            is_bottom = sy > y + height
-            is_keep_left = sx < ((x + width) - (width / 2))
-            is_keep_right = sx > ((x + width) - (width / 2))
+                is_top = sy < (y - direction_padding)
+                is_bottom = sy > y + height
+                is_keep_left = sx < ((x + width) - (width / 2))
+                is_keep_right = sx > ((x + width) - (width / 2))
 
-            x1 = y1 = x2 = y2 = None
+                x1 = y1 = x2 = y2 = None
+                if is_top:
+                    y2 = y1 = y_top
+                if is_bottom:
+                    y2 = y1 = y_bottom
+                if is_keep_left:
+                    x1 = x_left_1
+                    x2 = x_left_2
+                if is_keep_right:
+                    x1 = x_right_1
+                    x2 = x_right_2
 
-            x_start = width * x_start_multiplier
-            x_end = width * x_end_multiplier
+                if None not in (x1, y1, x2, y2):
+                    return draw(x1, y1, x2, y2)
 
-            x_left_1 = x_left + x_start
-            x_left_2 = x_left_1 + x_end
+            _event = f1()
+            if _event != None:
+                return _event
 
-            x_right_1 = x_right - x_end
-            x_right_2 = x_right_1 - x_start
-
-            if is_top:
-                y2 = y1 = y_top
-            if is_bottom:
-                y2 = y1 = y_bottom
-            if is_keep_left:
-                x1 = x_left_1
-                x2 = x_left_2
-            if is_keep_right:
-                x1 = x_right_1
-                x2 = x_right_2
-
-            if None not in (x1, y1, x2, y2):
-                return draw(x1, y1, x2, y2)
+            _event = f2()
+            if _event != None:
+                return _event
 
             def bottom_left():
                 return draw(x_left_1, y_bottom, x_left_2, y_bottom)
