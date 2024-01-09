@@ -34,13 +34,7 @@ def Convert(
             text = each.text
 
             if "\n" not in text:
-                coefficient = 2.0
-                if (
-                    "transform_coefficient_x" not in locals()
-                    or "transform_coefficient_y" not in locals()
-                ):
-                    coefficient = coefficient + 16 / 9
-                length = int(width / (textSize / coefficient))
+                length = int(width / (textSize / 2)) + 1
                 text = "\n".join(
                     textwrap.wrap(text, width=length, drop_whitespace=False)
                 )
