@@ -59,7 +59,7 @@ Dialogue: 0,00:00:00.10,00:00:30.00,Default,Xermoe;annotation_927291;speech_box;
 Dialogue: 0,00:00:00.10,00:00:30.00,Default,Xermoe;annotation_927291;speech_triangle;,0,0,0,,{\an7\pos(14.167,100.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 9.945 -8.333 l 5.021 -8.333 {\p0}
 Dialogue: 0,00:00:00.10,00:00:30.00,Default,Xermoe;annotation_927291;speech_text;,0,0,0,,{\an7\pos(1.0,83.778)\fs3.15\c&H000000&\bord0\shad0\clip(1.0,83.778,27.333,90.667)}F8
 Dialogue: 0,00:00:00.20,00:00:01.90,Default,Danooodle;annotation_140994;speech_box;,0,0,0,,{\an7\pos(91.875,91.111)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 8.125 0 l 8.125 8.889 l 0 8.889 {\p0}
-Dialogue: 0,00:00:00.20,00:00:01.90,Default,Danooodle;annotation_140994;speech_triangle;,0,0,0,,{\an7\pos(89.167,92.778)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 2.708 -0.6 l 2.708 2.066 {\p0}
+Dialogue: 0,00:00:00.20,00:00:01.90,Default,Danooodle;annotation_140994;speech_triangle;,0,0,0,,{\an7\pos(89.167,92.778)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 10.833 -0.6 l 10.833 2.066 {\p0}
 Dialogue: 0,00:00:00.20,00:00:01.90,Default,Danooodle;annotation_140994;speech_text;,0,0,0,,{\an7\pos(92.875,92.111)\fs3.15\c&H000000&\bord0\shad0\clip(92.875,92.111,99.0,99.0)}>:3
 Dialogue: 0,00:00:00.20,00:00:05.20,Default,banana1planet;annotation_652844;speech_box;,0,0,0,,{\an7\pos(0.0,86.111)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 17.917 0 l 17.917 13.333 l 0 13.333 {\p0}
 Dialogue: 0,00:00:00.20,00:00:05.20,Default,banana1planet;annotation_652844;speech_triangle;,0,0,0,,{\an7\pos(38.958,58.333)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l -23.71 27.778 l -26.824 27.778 {\p0}
@@ -640,7 +640,7 @@ Dialogue: 0,00:01:18.00,00:01:43.00,Default,revnge;annotation_231090;speech_box;
 Dialogue: 0,00:01:18.00,00:01:43.00,Default,revnge;annotation_231090;speech_triangle;,0,0,0,,{\an7\pos(32.292,24.722)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l -4.868 17.5 l -0.647 17.5 {\p0}
 Dialogue: 0,00:01:18.00,00:01:43.00,Default,revnge;annotation_231090;speech_text;,0,0,0,,{\an7\pos(23.5,34.333)\fs3.15\c&H000000&\bord0\shad0\clip(23.5,34.333,49.833,41.222)}WHERE!?
 Dialogue: 0,00:01:19.90,00:01:24.90,Default,TikalChao;annotation_822878;speech_box;,0,0,0,,{\an7\pos(33.125,18.611)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 28.333 0 l 28.333 13.333 l 0 13.333 {\p0}
-Dialogue: 0,00:01:19.90,00:01:24.90,Default,TikalChao;annotation_822878;speech_triangle;,0,0,0,,{\an7\pos(29.167,19.722)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 3.958 0.489 l 3.958 4.489 {\p0}
+Dialogue: 0,00:01:19.90,00:01:24.90,Default,TikalChao;annotation_822878;speech_triangle;,0,0,0,,{\an7\pos(29.167,19.722)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 32.291 0.489 l 32.291 4.489 {\p0}
 Dialogue: 0,00:01:19.90,00:01:24.90,Default,TikalChao;annotation_822878;speech_text;,0,0,0,,{\an7\pos(34.125,19.611)\fs3.611\c&HFFFFFF&\bord0\shad0\clip(34.125,19.611,60.458,30.944)}MOST PEOPLE DO, \NTETO.
 Dialogue: 0,00:01:21.00,00:01:26.00,Default,;annotation_669985;popup_box;,0,0,0,,{\an7\pos(0.625,0.0)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 98.75 0 l 98.75 27.778 l 0 27.778 {\p0}
 Dialogue: 0,00:01:21.00,00:01:26.00,Default,;annotation_669985;popup_text;,0,0,0,,{\an7\pos(1.625,1.0)\fs3.611\c&HFFFFFF&\bord0\shad0\clip(1.625,1.0,98.375,26.778)}
@@ -678,10 +678,10 @@ Dialogue: 0,00:02:18.10,00:02:41.20,Default,Skadd;annotation_408000;speech_box;,
 Dialogue: 0,00:02:18.10,00:02:41.20,Default,Skadd;annotation_408000;speech_triangle;,0,0,0,,{\an7\pos(51.458,45.556)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l -14.429 26.388 l -19.353 26.388 {\p0}
 Dialogue: 0,00:02:18.10,00:02:41.20,Default,Skadd;annotation_408000;speech_text;,0,0,0,,{\an7\pos(13.917,72.944)\fs3.15\c&H000000&\bord0\shad0\clip(13.917,72.944,40.25,79.833)}
 Dialogue: 0,00:02:18.10,00:02:41.20,Default,Skadd;annotation_503917;speech_box;,0,0,0,,{\an7\pos(64.375,68.056)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 28.333 0 l 28.333 8.889 l 0 8.889 {\p0}
-Dialogue: 0,00:02:18.10,00:02:41.20,Default,Skadd;annotation_503917;speech_triangle;,0,0,0,,{\an7\pos(35.417,72.222)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 28.958 -3.099 l 28.958 -0.433 {\p0}
+Dialogue: 0,00:02:18.10,00:02:41.20,Default,Skadd;annotation_503917;speech_triangle;,0,0,0,,{\an7\pos(35.417,72.222)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 57.291 -3.099 l 57.291 -0.433 {\p0}
 Dialogue: 0,00:02:18.10,00:02:41.20,Default,Skadd;annotation_503917;speech_text;,0,0,0,,{\an7\pos(65.375,69.056)\fs3.15\c&H000000&\bord0\shad0\clip(65.375,69.056,91.708,75.945)}
 Dialogue: 0,00:02:18.10,00:02:41.20,Default,Skadd;annotation_759696;speech_box;,0,0,0,,{\an7\pos(59.375,52.778)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 28.333 0 l 28.333 8.889 l 0 8.889 {\p0}
-Dialogue: 0,00:02:18.10,00:02:41.20,Default,Skadd;annotation_759696;speech_triangle;,0,0,0,,{\an7\pos(42.917,57.222)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 16.458 -3.377 l 16.458 -0.711 {\p0}
+Dialogue: 0,00:02:18.10,00:02:41.20,Default,Skadd;annotation_759696;speech_triangle;,0,0,0,,{\an7\pos(42.917,57.222)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 44.791 -3.377 l 44.791 -0.711 {\p0}
 Dialogue: 0,00:02:18.10,00:02:41.20,Default,Skadd;annotation_759696;speech_text;,0,0,0,,{\an7\pos(60.375,53.778)\fs3.15\c&H000000&\bord0\shad0\clip(60.375,53.778,86.708,60.667)}
 Dialogue: 0,00:02:18.10,00:02:41.20,Default,Skadd;annotation_808944;speech_box;,0,0,0,,{\an7\pos(11.667,53.056)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 28.333 0 l 28.333 8.889 l 0 8.889 {\p0}
 Dialogue: 0,00:02:18.10,00:02:41.20,Default,Skadd;annotation_808944;speech_triangle;,0,0,0,,{\an7\pos(56.667,57.222)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l -40.076 4.723 l -35.855 4.723 {\p0}

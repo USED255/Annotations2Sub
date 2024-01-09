@@ -278,9 +278,9 @@ def Convert(
                 return draw(x_right, y_middle_1, x_right, y_middle_2)
 
             if is_left:
-                return right()
-            if is_right:
                 return left()
+            if is_right:
+                return right()
 
             def bottom_left():
                 return draw(x_left_1, y_bottom, x_left_2, y_bottom)
