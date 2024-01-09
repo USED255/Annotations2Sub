@@ -183,8 +183,8 @@ def Convert(
         def Triangle(event: Event) -> Event:
             direction_padding = 20
 
-            x_start_multiplier = 0.17379070765180116
-            x_end_multiplier = 0.14896346370154384
+            x_start_multiplier = 0.174
+            x_end_multiplier = 0.149
 
             y_start_multiplier = 0.12
             y_end_multiplier = 0.3
