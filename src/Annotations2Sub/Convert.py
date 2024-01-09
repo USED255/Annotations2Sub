@@ -459,7 +459,7 @@ def Convert(
         elif each.style == "speech":
             events.append(speech_box())
             _event = speech_triangle()
-            if isinstance(_event, Event):
+            if _event is not None:
                 events.append(_event)
             events.append(speech_text())
             # 我没见过 "anchored" 所有实现很可能不对
