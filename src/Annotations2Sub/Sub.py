@@ -98,7 +98,6 @@ class Sub:
         self._styles = self._Styles()
         self._events = self._Events()
 
-        # 我想让他们直接操作列表或字典
         self.info = self._info.infos
         self.comment = ""
         self.styles = self._styles.styles

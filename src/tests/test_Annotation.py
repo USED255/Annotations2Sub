@@ -37,15 +37,6 @@ def test_ParseAnnotationColor_ValueError():
     m.undo()
 
 
-def test_MakeSureElement_TypeError():
-    def f(x):
-        for i in x:
-            if i.__name__ == "MakeSureElement":
-                i(None)
-
-    m = pytest.MonkeyPatch()
-    m.setattr(Annotations, "Dummy", f)
-    with pytest.raises(TypeError):
+def test_Parse_ValueError():
+    with pytest.raises(ValueError):
         Annotations.Parse(Element(""))
-
-    m.undo()

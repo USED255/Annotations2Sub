@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2024-01-06 17:44+0800\n"
-"PO-Revision-Date: 2024-01-06 17:46+0800\n"
+"POT-Creation-Date: 2024-01-09 18:00+0800\n"
+"PO-Revision-Date: 2024-01-09 18:00+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -14,35 +14,39 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: Annotations.py:112
+#: Annotations.py:113
 msgid "\"alpha\" 不应为 None"
 msgstr "\"alpha\" 不应为 None"
 
-#: Annotations.py:122
+#: Annotations.py:123
 msgid "\"color\" 不应为 None"
 msgstr "\"color\" 不应为 None"
 
-#: Annotations.py:169
+#: Annotations.py:145
+msgid "不是 Element 类型"
+msgstr "不是 Element 类型"
+
+#: Annotations.py:170
 msgid "不支持 {} 类型 ({})"
 msgstr "不支持 {} 类型 ({})"
 
-#: Annotations.py:179
+#: Annotations.py:181
 msgid "{} 没有 style, 跳过"
 msgstr "{} 没有 style, 跳过"
 
-#: Annotations.py:203
+#: Annotations.py:205
 msgid "{} 没有 movingRegion, 跳过"
 msgstr "{} 没有 movingRegion, 跳过"
 
-#: Annotations.py:220
+#: Annotations.py:222
 msgid "{} 没有时间, 跳过"
 msgstr "{} 没有时间, 跳过"
 
-#: Annotations.py:233
+#: Annotations.py:235
 msgid "{} 不显示, 跳过"
 msgstr "{} 不显示, 跳过"
 
-#: Annotations.py:312
+#: Annotations.py:317
 msgid "不是 Annotations 文档"
 msgstr "不是 Annotations 文档"
 
@@ -62,17 +66,21 @@ msgstr "\"blue\" 必须在 0-255 之间"
 msgid "\"alpha\" 必须在 0-255 之间"
 msgstr "\"alpha\" 必须在 0-255 之间"
 
-#: Convert.py:316
+#: Convert.py:476
 msgid "不支持 {} 样式 ({})"
 msgstr "不支持 {} 样式 ({})"
-
-#: Sub.py:225
-msgid "\"command\" 必须是 \"DrawCommand\""
-msgstr "\"command\" 必须是 \"DrawCommand\""
 
 #: cli.py:42
 msgid "获取 {}"
 msgstr "获取 {}"
+
+#: cli.py:56
+msgid "没有 Video"
+msgstr "没有 Video"
+
+#: cli.py:58
+msgid "没有 Audio"
+msgstr "没有 Audio"
 
 #: cli.py:62
 msgid "下载和转换 Youtube 注释"
@@ -110,17 +118,17 @@ msgstr "尝试从 Internet Archive 下载注释文件"
 msgid "仅下载注释"
 msgstr "仅下载注释"
 
-#: cli.py:114
+#: cli.py:115
+msgid "指定 invidious 实例(https://redirect.invidious.io/)"
+msgstr "指定 invidious 实例(https://redirect.invidious.io/)"
+
+#: cli.py:122
 msgid "预览视频, 需要 mpv(https://mpv.io/)"
 msgstr "预览视频, 需要 mpv(https://mpv.io/)"
 
-#: cli.py:121
+#: cli.py:129
 msgid "生成视频, 需要 FFmpeg(https://ffmpeg.org/)"
 msgstr "生成视频, 需要 FFmpeg(https://ffmpeg.org/)"
-
-#: cli.py:128
-msgid "指定 invidious 实例(https://redirect.invidious.io/)"
-msgstr "指定 invidious 实例(https://redirect.invidious.io/)"
 
 #: cli.py:132
 msgid "不覆盖文件"
@@ -130,21 +138,21 @@ msgstr "不覆盖文件"
 msgid "不保留中间文件"
 msgstr "不保留中间文件"
 
-#: cli.py:144
-msgid "目录"
-msgstr "目录"
-
-#: cli.py:145
-msgid "指定转换后文件的输出目录"
-msgstr "指定转换后文件的输出目录"
-
-#: cli.py:148
+#: cli.py:141
 msgid "文件"
 msgstr "文件"
 
-#: cli.py:148
+#: cli.py:141
 msgid "保存到此文件, 如果为 \"-\" 则输出到标准输出"
 msgstr "保存到此文件, 如果为 \"-\" 则输出到标准输出"
+
+#: cli.py:147
+msgid "目录"
+msgstr "目录"
+
+#: cli.py:148
+msgid "指定转换后文件的输出目录"
+msgstr "指定转换后文件的输出目录"
 
 #: cli.py:154
 msgid "显示版本号"
@@ -235,6 +243,10 @@ msgstr "错误: "
 msgid "警告: "
 msgstr "警告: "
 
+#: utils.py:76
+msgid "不是字符串"
+msgstr "不是字符串"
+
 #: utils.py:81
 msgid "\"url\" 必须是 http(s)"
 msgstr "\"url\" 必须是 http(s)"
@@ -243,8 +255,8 @@ msgstr "\"url\" 必须是 http(s)"
 msgid "无效的 videoId"
 msgstr "无效的 videoId"
 
-#~ msgid "{} 没有 Annotation"
-#~ msgstr "{} 没有 Annotation"
+#~ msgid "\"command\" 必须是 \"DrawCommand\""
+#~ msgstr "\"command\" 必须是 \"DrawCommand\""
 
 #~ msgid "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"
 #~ msgstr "拥抱 libass 的怪癖和特性, 不指定此选项则会适配 xy-vsfilter"

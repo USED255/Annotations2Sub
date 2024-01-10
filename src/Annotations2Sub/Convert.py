@@ -5,12 +5,8 @@
 
 import copy
 import textwrap
-from typing import List
+from typing import List, Optional
 
-# 在重写本项目前, 我写了一些 Go 的代码
-# 依照在 Go 中的经验把一个脚本拆成若干个模块
-# 并上传到 PyPI
-# 当然单文件脚本还是有用的
 from Annotations2Sub import Annotation
 from Annotations2Sub.Sub import Draw, DrawCommand, Event, Tag
 from Annotations2Sub.utils import Stderr, _
@@ -34,13 +30,7 @@ def Convert(
             text = each.text
 
             if "\n" not in text:
-                coefficient = 2.0
-                if (
-                    "transform_coefficient_x" not in locals()
-                    or "transform_coefficient_y" not in locals()
-                ):
-                    coefficient = coefficient + 16 / 9
-                length = int(width / (textSize / coefficient))
+                length = int(width / (textSize / 2)) + 1
                 text = "\n".join(
                     textwrap.wrap(text, width=length, drop_whitespace=False)
                 )
@@ -186,18 +176,24 @@ def Convert(
             event.Text = str(tags) + box_tag
             return event
 
-        def Triangle(event: Event) -> Event:
-            direction_padding = 20
+        def Triangle(event: Event) -> Optional[Event]:
+            padding = 1.0
 
-            horizontal_base_start_multiplier = 0.17379070765180116
-            horizontal_base_end_multiplier = 0.14896346370154384
-            vertical_base_start_multiplier = 0.12
-            vertical_base_end_multiplier = 0.3
+            x_start_multiplier = 0.174
+            x_end_multiplier = 0.149
 
-            horizontal_start_value = width * horizontal_base_start_multiplier
-            horizontal_end_value = width * horizontal_base_end_multiplier
-            vertical_start_value = height * vertical_base_start_multiplier
-            vertical_end_value = height * vertical_base_end_multiplier
+            y_start_multiplier = 0.12
+            y_end_multiplier = 0.3
+
+            if "transform_coefficient_x" in locals():
+                x_start_multiplier = x_start_multiplier * transform_coefficient_x
+                x_end_multiplier = x_end_multiplier * transform_coefficient_x
+
+            if "transform_coefficient_y" in locals():
+                padding = padding * transform_coefficient_y
+
+                y_start_multiplier = y_start_multiplier * transform_coefficient_y
+                y_end_multiplier = y_end_multiplier * transform_coefficient_y
 
             x_base = x - sx
             y_base = y - sy
@@ -208,16 +204,11 @@ def Convert(
             y_top = y_base
             y_bottom = y_base + height
 
-            x_left_1 = x_left + horizontal_start_value
-            x_left_2 = x_left_1 + horizontal_end_value
+            x_start = width * x_start_multiplier
+            x_end = width * x_end_multiplier
 
-            x_right_1 = x_right - horizontal_end_value
-            x_right_2 = x_right_1 - horizontal_start_value
-
-            is_top = sy < (y - direction_padding)
-            is_bottom = sy > y + height
-            is_keep_left = sx < ((x + width) - (width / 2))
-            is_keep_right = sx > ((x + width) - (width / 2))
+            x_left_1 = x_left + x_start
+            x_left_2 = x_left_1 + x_end
 
             def draw(x1, y1, x2, y2):
                 _sx = round(sx, 3)
@@ -252,55 +243,61 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
-            def draw1(x, y, x2):
-                return draw(x, y, x2, y)
+            def up_down():
+                x_right_1 = x_right - x_end
+                x_right_2 = x_right_1 - x_start
 
-            def top_left():
-                return draw1(x_left_1, y_top, x_left_2)
+                is_top = y_top - padding > 0
+                is_bottom = 0 > y_bottom + padding
+                is_keep_left = x_left + width / 2 >= 0
+                is_keep_right = 0 >= x_right - width / 2
 
-            def top_right():
-                return draw1(x_right_1, y_top, x_right_2)
+                x1 = y1 = x2 = y2 = None
+                if is_top:
+                    y2 = y1 = y_top
+                if is_bottom:
+                    y2 = y1 = y_bottom
+                if is_keep_left:
+                    x1 = x_left_1
+                    x2 = x_left_2
+                if is_keep_right:
+                    x1 = x_right_1
+                    x2 = x_right_2
 
-            def bottom_left():
-                return draw1(x_left_1, y_bottom, x_left_2)
+                if None not in (x1, y1, x2, y2):
+                    return draw(x1, y1, x2, y2)
 
-            def bottom_right():
-                return draw1(x_right_1, y_bottom, x_right_2)
+            def left_right():
+                y_start = height * y_start_multiplier
+                y_end = height * y_end_multiplier
 
-            if is_top and is_keep_left:
-                return top_left()
-            if is_top and is_keep_right:
-                return top_right()
-            if is_bottom and is_keep_left:
-                return bottom_left()
-            if is_bottom and is_keep_right:
-                return bottom_right()
+                y_middle_1 = y_top + y_start
+                y_middle_2 = y_middle_1 + y_end
 
-            y_middle_1 = y_top + vertical_start_value
-            y_middle_2 = y_middle_1 + vertical_end_value
+                is_left = x_left - padding > 0
+                is_right = 0 > x_right + padding
 
-            is_left = (
-                sx > (x + width)
-                and sy > (y - direction_padding)
-                and sy < ((y + height) - direction_padding)
-            )
-            is_right = sx < x and sy > y and sy < (y + height)
+                x1 = y1 = x2 = y2 = None
+                if is_left:
+                    x2 = x1 = x_left
+                if is_right:
+                    x2 = x1 = x_right
 
-            def draw2(x, y, y2):
-                return draw(x, y, x, y2)
+                y1 = y_middle_1
+                y2 = y_middle_2
 
-            def left():
-                return draw2(x_base, y_middle_1, y_middle_2)
+                if None not in (x1, y1, x2, y2):
+                    return draw(x1, y1, x2, y2)
 
-            def right():
-                return draw2(x_right, y_middle_1, y_middle_2)
+            _event = up_down()
+            if _event != None:
+                return _event
 
-            if is_left:
-                return right()
-            if is_right:
-                return left()
+            _event = left_right()
+            if _event != None:
+                return _event
 
-            return bottom_left()
+            return None
 
         def popup_text() -> Event:
             """生成 popup 样式的文本 Event"""
@@ -352,7 +349,7 @@ def Convert(
 
             return Box(_event)
 
-        def speech_triangle() -> Event:
+        def speech_triangle() -> Optional[Event]:
             _event = copy.copy(event)
             _event.Name += "speech_triangle;"
             return Triangle(_event)
@@ -394,8 +391,6 @@ def Convert(
         events: List[Event] = []
         event = Event()
 
-        # 我把 Annotation 抽成单独的结构就是为了这种效果
-        # 直接赋值, 不用加上一大坨清洗代码
         event.Start = each.timeStart
         event.End = each.timeEnd
         # author;id;function;alternative
@@ -412,7 +407,6 @@ def Convert(
         sy = each.sy
 
         if each.style == "title":
-            # Windows 酱赛高
             textSize = textSize * 100 / 480
 
         if resolutionX != 100:
@@ -439,14 +433,7 @@ def Convert(
             height = TransformY(height)
             sy = TransformY(sy)
 
-        # 破坏性更改: 移除 --embrace-libass(b6e7cde)
-        # 在 https://github.com/libass/libass/pull/645 之前
-        # libass 的 x和y轴共用了一个缩放系数
-        # 以至于我需要将 width * 1.776 手动修正缩放错误
-        # 1.776 = 16/9 😅
-
         if each.style == "popup":
-            # 用浅拷贝拷贝一遍再处理看起来简单些, 我不在意性能
             events.append(popup_box())
             events.append(popup_text())
         elif each.style == "title":
@@ -457,7 +444,9 @@ def Convert(
             events.append(highlightText_text())
         elif each.style == "speech":
             events.append(speech_box())
-            events.append(speech_triangle())
+            _event = speech_triangle()
+            if _event is not None:
+                events.append(_event)
             events.append(speech_text())
             # 我没见过 "anchored" 所有实现很可能不对
         elif each.style == "anchored":
