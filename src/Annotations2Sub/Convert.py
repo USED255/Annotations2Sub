@@ -248,9 +248,9 @@ def Convert(
                 x_right_2 = x_right_1 - x_start
 
                 is_top = y_top - padding > 0
-                is_bottom = y_bottom + padding < 0
+                is_bottom = 0 > y_bottom + padding
                 is_keep_left = x_left + width / 2 >= 0
-                is_keep_right = x_right - width / 2 <= 0
+                is_keep_right = 0 >= x_right - width / 2
 
                 x1 = y1 = x2 = y2 = None
                 if is_top:
@@ -275,7 +275,7 @@ def Convert(
                 y_middle_2 = y_middle_1 + y_end
 
                 is_left = x_left - padding > 0
-                is_right = x_right + padding < 0
+                is_right = 0 > x_right + padding
 
                 x1 = y1 = x2 = y2 = None
                 if is_left:
