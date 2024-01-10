@@ -247,8 +247,8 @@ def Convert(
                 x_right_1 = x_right - x_end
                 x_right_2 = x_right_1 - x_start
 
-                is_top = sy < (y - padding)
-                is_bottom = sy > (y + height + padding)
+                is_top = y_top - padding > 0
+                is_bottom = y_bottom + padding < 0
                 is_keep_left = sx <= (x + (width / 2))
                 is_keep_right = sx >= (x + (width / 2))
 
