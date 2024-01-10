@@ -14,6 +14,7 @@ Style: Default,Microsoft YaHei,20,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,00:00:00.10,00:00:23.20,Default,;annotation_2200715567;;title,0,0,0,,{\an7\pos(979.2,64.238)\fs48.744\c&H000000&\bord0\shad0\clip(979.2,64.238,1900.8,124.06)\b1}世界中的人們
+Dialogue: 0,00:00:00.10,00:00:23.20,Default,;10;;title,0,0,0,,{\an7\pos(979.2,64.238)\fs48.744\c&H000000&\bord0\shad0\clip(979.2,64.238,1900.8,124.06)\b1}​ 世界中的人們
 Dialogue: 0,00:00:12.50,00:00:23.20,Default,;annotation_2223401619;popup_box;,0,0,0,,{\an7\pos(293.76,489.38)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.699 l 0 122.699 {\p0}
 Dialogue: 0,00:00:12.50,00:00:23.20,Default,;annotation_2223401619;popup_text;,0,0,0,,{\an7\pos(312.96,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0\clip(312.96,500.18,350.458,601.279)}1
 Dialogue: 0,00:00:50.52,00:00:55.06,Default,;annotation_2843969679;label_box;,0,0,0,,{\an7\pos(1354.042,3.046)\c&HAE547C&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 480.0 0 l 480.0 192.002 l 0 192.002 {\p0}
@@ -38,4 +39,15 @@ Dialogue: 0,00:04:56.70,00:04:56.70,Default,;annotation_493976;highlightText_box
 Dialogue: 0,00:04:56.70,00:04:56.70,Default,;annotation_493976;highlightText_text;,0,0,0,,{\an7\pos(-572.794,574.798)\fs38.996\c&H000000&\bord0\shad0\clip(-572.794,574.798,968.813,679.201)}.........................no..............
 Dialogue: 0,00:08:59.30,00:09:04.30,Default,Arnkellj;annotation_376449;speech_box;,0,0,0,,{\an7\pos(1363.2,626.4)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 543.994 0 l 543.994 143.996 l 0 143.996 {\p0}
 Dialogue: 0,00:08:59.30,00:09:04.30,Default,Arnkellj;annotation_376449;speech_text;,0,0,0,,{\an7\pos(1382.4,637.2)\fs34.02\c&HFFFFFF&\bord0\shad0\clip(1382.4,637.2,1887.994,759.596)}Best song ever!
+Dialogue: 0,00:08:59.30,00:09:04.30,Default,Arnkellj;11;speech_box;,0,0,0,,{\an7\pos(1363.2,626.4)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 543.994 0 l 543.994 143.996 l 0 143.996 {\p0}
+Dialogue: 0,00:08:59.30,00:09:04.30,Default,Arnkellj;11;speech_triangle;,0,0,0,,{\an7\pos(1363.2,874.8)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 1817.374 -104.404 l 3373.631 -104.404 {\p0}
+Dialogue: 0,00:08:59.30,00:09:04.30,Default,Arnkellj;11;speech_text;,0,0,0,,{\an7\pos(1382.4,637.2)\fs34.02\c&HFFFFFF&\bord0\shad0\clip(1382.4,637.2,1887.994,759.596)}Best song ever!
+Dialogue: 0,00:08:59.30,00:09:04.30,Default,Arnkellj;12;speech_box;,0,0,0,,{\an7\pos(1363.2,626.4)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 543.994 0 l 543.994 143.996 l 0 143.996 {\p0}
+Dialogue: 0,00:08:59.30,00:09:04.30,Default,Arnkellj;12;speech_triangle;,0,0,0,,{\an7\pos(979.2,648.0)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 384.0 165.019 l 384.0 631.568 {\p0}
+Dialogue: 0,00:08:59.30,00:09:04.30,Default,Arnkellj;12;speech_text;,0,0,0,,{\an7\pos(1382.4,637.2)\fs34.02\c&HFFFFFF&\bord0\shad0\clip(1382.4,637.2,1887.994,759.596)}Best song ever!
+Dialogue: 0,00:08:59.30,00:09:04.30,Default,Arnkellj;12;speech_box;,0,0,0,,{\an7\pos(1363.2,626.4)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 543.994 0 l 543.994 143.996 l 0 143.996 {\p0}
+Dialogue: 0,00:08:59.30,00:09:04.30,Default,Arnkellj;12;speech_triangle;,0,0,0,,{\an7\pos(1920.0,626.4)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l -12.806 186.619 l -12.806 653.168 {\p0}
+Dialogue: 0,00:08:59.30,00:09:04.30,Default,Arnkellj;12;speech_text;,0,0,0,,{\an7\pos(1382.4,637.2)\fs34.02\c&HFFFFFF&\bord0\shad0\clip(1382.4,637.2,1887.994,759.596)}Best song ever!
+Dialogue: 0,00:09:04.30,00:09:09.30,Default,;annotation_809006;highlight_box;,0,0,0,,{\an7\pos(720.0,389.999)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(739.2,400.799,1180.8,679.201)}{\p1}m 0 0 l 480.0 0 l 480.0 300.002 l 0 300.002 {\p0}
+Dialogue: 0,00:09:04.30,00:09:09.30,Default,;annotation_809006;highlight_text;,0,0,0,,{\an7\pos(739.2,400.799)\fs34.02\c&H000000&\bord0\shad0\clip(739.2,400.799,1180.8,679.201)}
 
