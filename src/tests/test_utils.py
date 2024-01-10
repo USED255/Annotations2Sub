@@ -21,23 +21,6 @@ from Annotations2Sub.utils import (
 )
 
 
-def test_YellowText():
-    assert YellowText("Test") == "\033[33mTest\033[0m"
-
-
-def test_RedText():
-    assert RedText("Test") == "\033[31mTest\033[0m"
-
-
-def test_MakeSureStr():
-    assert MakeSureStr("Test") == "Test"
-
-
-def test_MakeSureStr_TypeError():
-    with pytest.raises(TypeError):
-        MakeSureStr(0)
-
-
 def test_internationalization():
     Internationalization()
 
@@ -58,6 +41,35 @@ def test_internationalization_win32():
     m.setattr(os, "getenv", lambda x: None)
     Internationalization()
     m.undo()
+
+
+def test_YellowText():
+    assert YellowText("Test") == "\033[33mTest\033[0m"
+
+
+def test_RedText():
+    assert RedText("Test") == "\033[31mTest\033[0m"
+
+
+def test_Stderr():
+    Stderr("Test")
+
+
+def test_Err():
+    Err("Test")
+
+
+def test_Warn():
+    Warn("Test")
+
+
+def test_MakeSureStr():
+    assert MakeSureStr("Test") == "Test"
+
+
+def test_MakeSureStr_TypeError():
+    with pytest.raises(TypeError):
+        MakeSureStr(0)
 
 
 def test_GetUrl():
@@ -95,15 +107,3 @@ def test_GetAnnotationsUrl():
 def test_GetAnnotationsUrl_ValueError():
     with pytest.raises(ValueError):
         GetAnnotationsUrl("")
-
-
-def test_Stderr():
-    Stderr("Test")
-
-
-def test_Err():
-    Err("Test")
-
-
-def test_Warn():
-    Warn("Test")

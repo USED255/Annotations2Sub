@@ -23,20 +23,20 @@ Dialogue: 0,00:00:00.00,00:00:00.00,Default,Test;12;popup_box;,0,0,0,,{\an7\pos(
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,Test;12;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs34.02\c&H000000&\bord0\shad2\clip(19.2,10.8,-19.2,-10.8)\b1}​ \NT\Ne\Ns\Nt
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;13;highlightText_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;13;highlightText_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs34.02\c&H000000&\bord0\shad0\clip(19.2,10.8,-19.2,-10.8)}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;14;;title,0,0,0,,{\an7\pos(19.2,10.8)\fs7.088\c&H000000&\bord0\shad0\clip(19.2,10.8,-19.2,-10.8)}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;14;title;,0,0,0,,{\an7\pos(19.2,10.8)\fs7.088\c&H000000&\bord0\shad0\clip(19.2,10.8,-19.2,-10.8)}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;15;speech_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;15;speech_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs34.02\c&H000000&\bord0\shad0\clip(19.2,10.8,-19.2,-10.8)}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_box;,0,0,0,,{\an7\pos(960.0,540.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 384.0 0 l 384.0 108.0 l 0 108.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_triangle;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 2242.867 540.0 l 3341.414 540.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_triangle;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 1026.816 540.0 l 1084.032 540.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_text;,0,0,0,,{\an7\pos(979.2,550.8)\fs34.02\c&H000000&\bord0\shad0\clip(979.2,550.8,1324.8,637.2)}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_box;,0,0,0,,{\an7\pos(960.0,540.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 384.0 0 l 384.0 108.0 l 0 108.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_triangle;,0,0,0,,{\an7\pos(0.0,658.8)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 2242.867 -10.8 l 3341.414 -10.8 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_triangle;,0,0,0,,{\an7\pos(0.0,658.8)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 1026.816 -10.8 l 1084.032 -10.8 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_text;,0,0,0,,{\an7\pos(979.2,550.8)\fs34.02\c&H000000&\bord0\shad0\clip(979.2,550.8,1324.8,637.2)}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;17;speech_box;,0,0,0,,{\an7\pos(960.0,540.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 384.0 0 l 384.0 108.0 l 0 108.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;17;speech_triangle;,0,0,0,,{\an7\pos(0.0,540.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 960.0 139.968 l 960.0 489.888 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;17;speech_triangle;,0,0,0,,{\an7\pos(0.0,540.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 960.0 12.96 l 960.0 45.36 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;17;speech_text;,0,0,0,,{\an7\pos(979.2,550.8)\fs34.02\c&H000000&\bord0\shad0\clip(979.2,550.8,1324.8,637.2)}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;18;speech_box;,0,0,0,,{\an7\pos(960.0,540.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 384.0 0 l 384.0 108.0 l 0 108.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;18;speech_triangle;,0,0,0,,{\an7\pos(1920.0,540.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l -576.0 139.968 l -576.0 489.888 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;18;speech_triangle;,0,0,0,,{\an7\pos(1920.0,540.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l -576.0 12.96 l -576.0 45.36 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;18;speech_text;,0,0,0,,{\an7\pos(979.2,550.8)\fs34.02\c&H000000&\bord0\shad0\clip(979.2,550.8,1324.8,637.2)}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs34.02\c&H000000&\bord0\shad0\clip(19.2,10.8,-19.2,-10.8)}
