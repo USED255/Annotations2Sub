@@ -269,5 +269,87 @@
                 highlightFontColor="13369344" highlightWidth="3" />
         </annotation>
 
+        <annotation id="annotation_809006" type="highlight"
+            log_data="a-type=3&amp;a-id=annotation_809006&amp;xble=1&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-v=29-q7YnyUmY"
+            itct="CAIQs-UBGP___________wEiEwjxpKSuh-DfAhXBgVsKHZlYDOco-B0yAml2SOakyc_Y3erv2wE">
+            <segment>
+                <movingRegion type="rect">
+                    <rectRegion x="37.50000" y="36.11100" w="25.00000" h="27.77800" t="0:09:04.3" />
+                    <rectRegion x="37.50000" y="36.11100" w="25.00000" h="27.77800" t="0:09:09.3" />
+                </movingRegion>
+            </segment>
+            <appearance bgColor="16777215" highlightWidth="3" borderAlpha="0.2" />
+        </annotation>
+
+        <annotation author="" id="10"
+            log_data="a-id=annotation_2200715567&amp;ei=hWs9XK_ICd3ogQfQ1KeYAg&amp;a-v=e8kKeUuytqA&amp;a-type=4&amp;xble=1"
+            style="title" type="text">
+            <TEXT> 世界中的人們</TEXT>
+            <segment>
+                <movingRegion type="rect">
+                    <rectRegion d="0" h="7.53900003433" t="0:00.100" w="50.0" x="50.0"
+                        y="4.94799995422" />
+                    <rectRegion d="0" h="7.53900003433" t="0:23.200" w="50.0" x="50.0"
+                        y="4.94799995422" />
+                </movingRegion>
+            </segment>
+            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects=""
+                fgColor="0" fontWeight="bold" highlightFontColor="0" textSize="21.6642" />
+        </annotation>
+
+        <annotation author="Arnkellj" id="11"
+            itct="CAgQs-UBGP___________wEiEwjxpKSuh-DfAhXBgVsKHZlYDOco-B0yAml2SOakyc_Y3erv2wE"
+            log_data="a-type=2&amp;a-id=annotation_376449&amp;xble=1&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-v=29-q7YnyUmY"
+            style="speech" type="text">
+            <TEXT>Best song ever!</TEXT>
+            <segment>
+                <movingRegion type="anchored">
+                    <anchoredRegion d="0" h="13.3330001831" sx="71" sy="81"
+                        t="0:08:59.3" w="28.3330001831" x="71" y="58" />
+                    <anchoredRegion d="0" h="13.3330001831" sx="71" sy="81"
+                        t="0:09:04.3" w="28.3330001831" x="71" y="58" />
+                </movingRegion>
+            </segment>
+            <appearance bgAlpha="0.800000011921" bgColor="13369344" borderAlpha="0.20000000298"
+                borderColor="0" borderWidth="0" fgColor="16777215" gloss="40"
+                highlightFontColor="13369344" highlightWidth="3" />
+        </annotation>
+
+        <annotation author="Arnkellj" id="12"
+            itct="CAgQs-UBGP___________wEiEwjxpKSuh-DfAhXBgVsKHZlYDOco-B0yAml2SOakyc_Y3erv2wE"
+            log_data="a-type=2&amp;a-id=annotation_376449&amp;xble=1&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-v=29-q7YnyUmY"
+            style="speech" type="text">
+            <TEXT>Best song ever!</TEXT>
+            <segment>
+                <movingRegion type="anchored">
+                    <anchoredRegion d="0" h="13.3330001831" sx="51" sy="60"
+                        t="0:08:59.3" w="28.3330001831" x="71" y="58" />
+                    <anchoredRegion d="0" h="13.3330001831" sx="51" sy="60"
+                        t="0:09:04.3" w="28.3330001831" x="71" y="58" />
+                </movingRegion>
+            </segment>
+            <appearance bgAlpha="0.800000011921" bgColor="13369344" borderAlpha="0.20000000298"
+                borderColor="0" borderWidth="0" fgColor="16777215" gloss="40"
+                highlightFontColor="13369344" highlightWidth="3" />
+        </annotation>
+
+        <annotation author="Arnkellj" id="12"
+            itct="CAgQs-UBGP___________wEiEwjxpKSuh-DfAhXBgVsKHZlYDOco-B0yAml2SOakyc_Y3erv2wE"
+            log_data="a-type=2&amp;a-id=annotation_376449&amp;xble=1&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-v=29-q7YnyUmY"
+            style="speech" type="text">
+            <TEXT>Best song ever!</TEXT>
+            <segment>
+                <movingRegion type="anchored">
+                    <anchoredRegion d="0" h="13.3330001831" sx="100" sy="58"
+                        t="0:08:59.3" w="28.3330001831" x="71" y="58" />
+                    <anchoredRegion d="0" h="13.3330001831" sx="100" sy="58"
+                        t="0:09:04.3" w="28.3330001831" x="71" y="58" />
+                </movingRegion>
+            </segment>
+            <appearance bgAlpha="0.800000011921" bgColor="13369344" borderAlpha="0.20000000298"
+                borderColor="0" borderWidth="0" fgColor="16777215" gloss="40"
+                highlightFontColor="13369344" highlightWidth="3" />
+        </annotation>
+
     </annotations>
 </document>

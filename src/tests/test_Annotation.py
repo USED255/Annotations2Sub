@@ -35,3 +35,8 @@ def test_ParseAnnotationColor_ValueError():
         Annotations.Parse(Element(""))
 
     m.undo()
+
+
+def test_Parse_ValueError():
+    with pytest.raises(ValueError):
+        Annotations.Parse(Element(""))

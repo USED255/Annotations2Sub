@@ -5,8 +5,6 @@
 
 import datetime
 from typing import List, Optional, Union
-
-
 from xml.etree.ElementTree import Element
 
 from Annotations2Sub.Color import Alpha, Color

@@ -433,7 +433,6 @@ def Convert(
             height = TransformY(height)
             sy = TransformY(sy)
 
-
         if each.style == "popup":
             events.append(popup_box())
             events.append(popup_text())

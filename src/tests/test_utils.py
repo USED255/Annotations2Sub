@@ -9,11 +9,14 @@ import urllib.request
 import pytest
 
 from Annotations2Sub.utils import (
+    Err,
     GetAnnotationsUrl,
     GetUrl,
     Internationalization,
     MakeSureStr,
     RedText,
+    Stderr,
+    Warn,
     YellowText,
 )
 
@@ -24,6 +27,10 @@ def test_YellowText():
 
 def test_RedText():
     assert RedText("Test") == "\033[31mTest\033[0m"
+
+
+def test_MakeSureStr():
+    assert MakeSureStr("Test") == "Test"
 
 
 def test_MakeSureStr_TypeError():
@@ -88,3 +95,15 @@ def test_GetAnnotationsUrl():
 def test_GetAnnotationsUrl_ValueError():
     with pytest.raises(ValueError):
         GetAnnotationsUrl("")
+
+
+def test_Stderr():
+    Stderr("Test")
+
+
+def test_Err():
+    Err("Test")
+
+
+def test_Warn():
+    Warn("Test")
