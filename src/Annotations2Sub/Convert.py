@@ -7,10 +7,6 @@ import copy
 import textwrap
 from typing import List, Optional
 
-# 在重写本项目前, 我写了一些 Go 的代码
-# 依照在 Go 中的经验把一个脚本拆成若干个模块
-# 并上传到 PyPI
-# 当然单文件脚本还是有用的
 from Annotations2Sub import Annotation
 from Annotations2Sub.Sub import Draw, DrawCommand, Event, Tag
 from Annotations2Sub.utils import Stderr, _
@@ -395,8 +391,6 @@ def Convert(
         events: List[Event] = []
         event = Event()
 
-        # 我把 Annotation 抽成单独的结构就是为了这种效果
-        # 直接赋值, 不用加上一大坨清洗代码
         event.Start = each.timeStart
         event.End = each.timeEnd
         # author;id;function;alternative
@@ -413,7 +407,6 @@ def Convert(
         sy = each.sy
 
         if each.style == "title":
-            # Windows 酱赛高
             textSize = textSize * 100 / 480
 
         if resolutionX != 100:
@@ -440,14 +433,8 @@ def Convert(
             height = TransformY(height)
             sy = TransformY(sy)
 
-        # 破坏性更改: 移除 --embrace-libass(b6e7cde)
-        # 在 https://github.com/libass/libass/pull/645 之前
-        # libass 的 x和y轴共用了一个缩放系数
-        # 以至于我需要将 width * 1.776 手动修正缩放错误
-        # 1.776 = 16/9 😅
 
         if each.style == "popup":
-            # 用浅拷贝拷贝一遍再处理看起来简单些, 我不在意性能
             events.append(popup_box())
             events.append(popup_text())
         elif each.style == "title":
