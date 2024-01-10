@@ -317,7 +317,7 @@ def Convert(
         def title() -> Event:
             """生成 title 样式的 Event"""
             _event = copy.copy(event)
-            _event.Name += ";title"
+            _event.Name += "title;"
 
             return Text(_event)
 
