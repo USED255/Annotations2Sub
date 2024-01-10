@@ -36,4 +36,6 @@ Dialogue: 0,00:04:56.70,00:05:01.20,Default,;5;highlightText_box;,0,0,0,,{\an7\p
 Dialogue: 0,00:04:56.70,00:05:01.20,Default,;5;highlightText_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs34.02\c&H000000&\bord0\shad0\clip(19.2,657.677,182.784,854.183)}
 Dialogue: 0,00:04:56.70,00:04:56.70,Default,;annotation_493976;highlightText_box;,0,0,0,,{\an7\pos(-591.994,563.998)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1580.006 0 l 1580.006 126.004 l 0 126.004 {\p0}
 Dialogue: 0,00:04:56.70,00:04:56.70,Default,;annotation_493976;highlightText_text;,0,0,0,,{\an7\pos(-572.794,574.798)\fs38.996\c&H000000&\bord0\shad0\clip(-572.794,574.798,968.813,679.201)}.........................no..............
+Dialogue: 0,00:08:59.30,00:09:04.30,Default,Arnkellj;annotation_376449;speech_box;,0,0,0,,{\an7\pos(1363.2,626.4)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 543.994 0 l 543.994 143.996 l 0 143.996 {\p0}
+Dialogue: 0,00:08:59.30,00:09:04.30,Default,Arnkellj;annotation_376449;speech_text;,0,0,0,,{\an7\pos(1382.4,637.2)\fs34.02\c&HFFFFFF&\bord0\shad0\clip(1382.4,637.2,1887.994,759.596)}Best song ever!
 

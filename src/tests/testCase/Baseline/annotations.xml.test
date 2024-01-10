@@ -241,5 +241,33 @@
             <appearance bgAlpha="0.25" bgColor="0" fgColor="16777215" textSize="3.6107" effects=""></appearance>
         </annotation>
 
+        <annotation author="Arnkellj" id="annotation_376449"
+            itct="CAgQs-UBGP___________wEiEwjxpKSuh-DfAhXBgVsKHZlYDOco-B0yAml2SOakyc_Y3erv2wE"
+            log_data="a-type=2&amp;a-id=annotation_376449&amp;xble=1&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-v=29-q7YnyUmY"
+            style="speech" type="text">
+            <TEXT>Best song ever!</TEXT>
+            <segment>
+                <movingRegion type="anchored">
+                    <anchoredRegion d="0" h="13.3330001831" sx="71" sy="58"
+                        t="0:08:59.3" w="28.3330001831" x="71" y="58" />
+                    <anchoredRegion d="0" h="13.3330001831" sx="71" sy="58"
+                        t="0:09:04.3" w="28.3330001831" x="71" y="58" />
+                </movingRegion>
+            </segment>
+            <appearance bgAlpha="0.800000011921" bgColor="13369344" borderAlpha="0.20000000298"
+                borderColor="0" borderWidth="0" fgColor="16777215" gloss="40"
+                highlightFontColor="13369344" highlightWidth="3" />
+        </annotation>
+
+        <annotation author="Arnkellj" id="9"
+            itct="CAgQs-UBGP___________wEiEwjxpKSuh-DfAhXBgVsKHZlYDOco-B0yAml2SOakyc_Y3erv2wE"
+            log_data="a-type=2&amp;a-id=annotation_376449&amp;xble=1&amp;ei=tJI1XPH6F8GD7gKZsbG4Dg&amp;a-v=29-q7YnyUmY"
+            style="speech" type="text">
+            <TEXT>Best song ever!</TEXT>
+            <appearance bgAlpha="0.800000011921" bgColor="13369344" borderAlpha="0.20000000298"
+                borderColor="0" borderWidth="0" fgColor="16777215" gloss="40"
+                highlightFontColor="13369344" highlightWidth="3" />
+        </annotation>
+
     </annotations>
 </document>
