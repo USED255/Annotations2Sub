@@ -98,7 +98,7 @@ def test_cli_network_failed():
 
     def subprocessMock(*args, **kwargs):
         class a:
-            def __init__(self) -> None:
+            def __init__(self):
                 self.returncode = 1
 
         return a()
@@ -176,7 +176,7 @@ def test_cli_network_success():
 
     def subprocessMock(*args, **kwargs):
         class a:
-            def __init__(self) -> None:
+            def __init__(self):
                 self.returncode = 0
 
         return a()

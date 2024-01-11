@@ -173,11 +173,11 @@ class Sub:
             self.events: List[Event] = []
 
         def __str__(self) -> str:
-            def DumpTime(t: datetime.datetime) -> str:
+            def DumpTime(time: datetime.datetime) -> str:
                 """转换为 SSA 时间字符串"""
 
                 # "格式为 0:00:00:00（小时:分:秒:毫秒）"
-                return t.strftime("%H:%M:%S.%f")[:-4]
+                return time.strftime("%H:%M:%S.%f")[:-4]
 
             string = ""
             string += "[Events]\n"

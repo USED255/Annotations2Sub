@@ -102,7 +102,7 @@ def Parse(tree: Element) -> List[Annotation]:
     def ParseAnnotationAlpha(alpha: str) -> Alpha:
         """
         解析 Annotation 的透明度
-        bgAlpha("0.600000023842") -> Alpha(alpha=102)
+        "0.600000023842" -> Alpha(alpha=102)
         """
         if alpha == None:
             raise ValueError(_('"alpha" 不应为 None'))
@@ -112,7 +112,7 @@ def Parse(tree: Element) -> List[Annotation]:
     def ParseAnnotationColor(color: str) -> Color:
         """
         解析 Annotation 的颜色值
-        bgColor("4210330") -> Color(red=154, green=62, blue=64)
+        "4210330" -> Color(red=154, green=62, blue=64)
         """
         if color == None:
             raise ValueError(_('"color" 不应为 None'))

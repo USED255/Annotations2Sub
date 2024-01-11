@@ -34,7 +34,7 @@ def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
-def GetMedia(videoId: str, instanceDomain: str) -> tuple:
+def GetMedia(videoId: str, instanceDomain: str) -> tuple[str, str]:
     url = f"https://{instanceDomain}/api/v1/videos/{videoId}"
     Stderr(_("获取 {}").format(url))
     data = json.loads(GetUrl(url))
@@ -56,7 +56,7 @@ def GetMedia(videoId: str, instanceDomain: str) -> tuple:
     return video, audio
 
 
-def Run(argv=None):
+def Run(argv=None) -> int:
     """跑起来🐎🐎🐎"""
 
     exit_code = 0
