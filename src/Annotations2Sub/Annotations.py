@@ -26,7 +26,7 @@ class Annotation:
     """Annotation 结构"""
 
     # 致谢 https://github.com/isaackd/annotationlib
-    # 这是 annotationlib "简易结构" 的一个模仿, 命名遵循了其风格
+    # 这是 annotationlib "简易结构" 的一个模仿
     # 将 Annotation 抽成简单的结构让事情变得简单起来
 
     # 随着 Google 关闭 Annotations,
@@ -39,7 +39,7 @@ class Annotation:
         self.id: str = ""
         # 这里仅列出需要的 type 和 style, 且 Literal 仅做提醒作用
         self.type: Union[Literal["text", "highlight", "branding"], str] = "text"
-        # 现在就遇到这几个样式, 不知道还有什么样式
+        # 现在就遇到这几个样式
         self.style: Union[
             Literal[
                 "popup",
@@ -47,6 +47,15 @@ class Annotation:
                 "speech",
                 "highlightText",
                 "anchored",
+                # branding
+                # channel
+                # cta
+                # label
+                # playlist
+                # subscribe
+                # video
+                # vote
+                # website
             ],
             str,
         ] = "popup"
@@ -67,8 +76,8 @@ class Annotation:
         self.bgOpacity: Alpha = Alpha(alpha=204)
         # bgColor 是注释文本后面那个框的颜色
         self.bgColor: Color = Color(red=255, green=255, blue=255)
-        # fgColor 就是注释文本的颜色
-        # 如果不是 Annotations, 我都不知道颜色值可以用十进制表达, 而且还是BGR ,视频出来效果不对才知道
+        # fgColor 是注释文本的颜色
+        # 如果不是 Annotations, 我都不知道颜色值可以用十进制表达, 而且还是BGR, 视频出来效果不对才知道
         self.fgColor: Color = Color(red=0, green=0, blue=0)
         # textSize 是 "文字占画布的百分比", 而在 title 样式中才是熟悉的 "字体大小"
         self.textSize: float = 3.15
@@ -160,11 +169,6 @@ def Parse(tree: Element) -> List[Annotation]:
 
         _Segment = _Segment.find("movingRegion")
         if _Segment is None:
-            # 学习 annotationlib
-            # https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L117
-            # 跳过没有内容的 Annotation
-            # 之前(f20f9fe fixbugs)学的是 youtube-ass(https://github.com/nirbheek/youtube-ass)
-            # 只是简单地把时间置零
             if Flags.verbose:
                 Stderr(_("{} 没有 movingRegion, 跳过").format(_id))
             return None
@@ -174,10 +178,6 @@ def Parse(tree: Element) -> List[Annotation]:
             Segment = _Segment.findall("anchoredRegion")
         if len(Segment) == 0:
             if style != "highlightText":
-                # 抄自 https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L121
-                # 不过我现在没见过 highlightText
-                # 我选择相信别人的经验
-                # 我猜 highlightText 一直在屏幕上, 需要手动关闭
                 if Flags.verbose:
                     Stderr(_("{} 没有时间, 跳过").format(_id))
                 return None
@@ -190,7 +190,6 @@ def Parse(tree: Element) -> List[Annotation]:
         t1 = Segment[0].get("t", _Start)
         t2 = Segment[1].get("t", _End)
         if "never" in (t1, t2):
-            # 跳过不显示的 Annotation
             if Flags.verbose:
                 Stderr(_("{} 不显示, 跳过").format(_id))
             return None
