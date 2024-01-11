@@ -179,12 +179,6 @@ def Convert(
         def Triangle(event: Event) -> Optional[Event]:
             padding = 1.0
 
-            x_start_multiplier = 0.174
-            x_end_multiplier = 0.149
-
-            y_start_multiplier = 0.12
-            y_end_multiplier = 0.3
-
             x_base = x - sx
             y_base = y - sy
 
@@ -193,12 +187,6 @@ def Convert(
 
             y_top = y_base
             y_bottom = y_base + height
-
-            x_start = width * x_start_multiplier
-            x_end = width * x_end_multiplier
-
-            x_left_1 = x_left + x_start
-            x_left_2 = x_left_1 + x_end
 
             def draw(x1, y1, x2, y2):
                 _sx = round(sx, 3)
@@ -234,6 +222,15 @@ def Convert(
                 return event
 
             def up_down():
+                x_start_multiplier = 0.174
+                x_end_multiplier = 0.149
+
+                x_start = width * x_start_multiplier
+                x_end = width * x_end_multiplier
+
+                x_left_1 = x_left + x_start
+                x_left_2 = x_left_1 + x_end
+
                 x_right_1 = x_right - x_end
                 x_right_2 = x_right_1 - x_start
 
@@ -258,6 +255,9 @@ def Convert(
                     return draw(x1, y1, x2, y2)
 
             def left_right():
+                y_start_multiplier = 0.12
+                y_end_multiplier = 0.3
+
                 y_start = height * y_start_multiplier
                 y_end = height * y_end_multiplier
 
