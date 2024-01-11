@@ -290,50 +290,42 @@ def Convert(
             return None
 
         def popup_text() -> Event:
-            """生成 popup 样式的文本 Event"""
             _event = copy.copy(event)
-            # 多加几个字, 便于调试
             _event.Name += "popup_text;"
 
             return Text(_event)
 
         def popup_box() -> Event:
-            """生成 popup 样式的框 Event"""
             _event = copy.copy(event)
             _event.Name = event.Name + "popup_box;"
 
             return Box(_event)
 
         def title() -> Event:
-            """生成 title 样式的 Event"""
             _event = copy.copy(event)
             _event.Name += "title;"
 
             return Text(_event)
 
         def highlightText_text() -> Event:
-            """生成 highlightText 样式的文本 Event"""
             _event = copy.copy(event)
             _event.Name += "highlightText_text;"
 
             return Text(_event)
 
         def highlightText_box() -> Event:
-            """生成 highlightText 样式的框 Event"""
             _event = copy.copy(event)
             _event.Name = event.Name + "highlightText_box;"
 
             return Box(_event)
 
         def speech_text() -> Event:
-            """生成 speech 样式的文本 Event"""
             _event = copy.copy(event)
             _event.Name += "speech_text;"
 
             return Text(_event)
 
         def speech_box() -> Event:
-            """生成 speech 样式的框 Event"""
             _event = copy.copy(event)
             _event.Name += "speech_box;"
 
@@ -345,7 +337,6 @@ def Convert(
             return Triangle(_event)
 
         def anchored_text() -> Event:
-            """生成 anchored 样式的文本 Event"""
             _event = copy.copy(event)
             _event.Name += "anchored_text;"
 
@@ -353,7 +344,6 @@ def Convert(
 
         def anchored_box() -> Event:
             _event = copy.copy(event)
-            """生成 anchored 样式的框 Event"""
             _event.Name += "anchored_box;"
 
             return Box(_event)
@@ -383,6 +373,7 @@ def Convert(
 
         event.Start = each.timeStart
         event.End = each.timeEnd
+
         # author;id;function;alternative
         # Name 在 Aegisub 里是 "说话人"
         event.Name += each.author + ";"
@@ -400,9 +391,6 @@ def Convert(
             textSize = textSize * 100 / 480
 
         if resolutionX != 100:
-            # Annotations 的定位是"百分比"
-            # 恰好直接把"分辨率"设置为 100 就可以实现
-            # 但是这其实还是依赖于字幕滤镜的怪癖
             transform_coefficient_x = resolutionX / 100
 
             def TransformX(x: float) -> float:
@@ -429,7 +417,6 @@ def Convert(
         elif each.style == "title":
             events.append(title())
         elif each.style == "highlightText":
-            # 我没见过 highlightText, 所以实现很可能不对
             events.append(highlightText_box())
             events.append(highlightText_text())
         elif each.style == "speech":
@@ -438,7 +425,6 @@ def Convert(
             if _event is not None:
                 events.append(_event)
             events.append(speech_text())
-            # 我没见过 "anchored" 所有实现很可能不对
         elif each.style == "anchored":
             events.append(anchored_box())
             events.append(anchored_text())
@@ -455,7 +441,6 @@ def Convert(
 
     events = []
     for each in annotations:
-        # 一个 Annotation 可能会需要多个 Event 来表达.
         events.extend(ConvertAnnotation(each))
 
     return events
