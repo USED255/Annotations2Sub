@@ -1,5 +1,4 @@
 {
-    "version": "0.2.0",
     "configurations": [
         {
             "name": "Annotations2Sub src/tests/testCase/annotations.xml.test",
