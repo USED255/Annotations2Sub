@@ -14,3 +14,4 @@ Annotations2Sub.egg-info
 *.ass
 *.lnk
 *.ps1
+mypy.ini
