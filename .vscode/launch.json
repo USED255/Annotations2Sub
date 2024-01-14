@@ -3,9 +3,8 @@
         {
             "name": "Annotations2Sub src/tests/testCase/annotations.xml.test",
             "type": "python",
-            "module": "Annotations2Sub",
             "request": "launch",
-            "console": "integratedTerminal",
+            "module": "Annotations2Sub",
             "justMyCode": false,
             "cwd": "${workspaceFolder}",
             "args": [
