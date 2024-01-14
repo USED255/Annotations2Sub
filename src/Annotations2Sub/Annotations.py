@@ -8,7 +8,7 @@ from typing import List, Optional, Union
 from xml.etree.ElementTree import Element
 
 from Annotations2Sub.Color import Alpha, Color
-from Annotations2Sub.utils import Flags, Stderr, _
+from Annotations2Sub.utils import Flags, Info, Stderr, _
 
 # 兼容 Python3.6, 3.7
 # Python3.6, 3.7 的 typing 没有 Literal
@@ -151,8 +151,7 @@ def Parse(tree: Element) -> List[Annotation]:
         style = each.get("style", "")
 
         if style == "" and _type != "highlight":
-            if Flags.verbose:
-                Stderr(_("{} 没有 style, 跳过").format(_id))
+            Info(_("{} 没有 style, 跳过").format(_id))
             return None
 
         text = ""
@@ -163,14 +162,12 @@ def Parse(tree: Element) -> List[Annotation]:
 
         _Segment = each.find("segment")
         if _Segment is None:
-            if Flags.verbose:
-                Stderr(_("{} 没有 segment, 跳过").format(_id))
+            Info(_("{} 没有 segment, 跳过").format(_id))
             return None
 
         _Segment = _Segment.find("movingRegion")
         if _Segment is None:
-            if Flags.verbose:
-                Stderr(_("{} 没有 movingRegion, 跳过").format(_id))
+            Info(_("{} 没有 movingRegion, 跳过").format(_id))
             return None
 
         Segment = _Segment.findall("rectRegion")
@@ -178,8 +175,7 @@ def Parse(tree: Element) -> List[Annotation]:
             Segment = _Segment.findall("anchoredRegion")
         if len(Segment) == 0:
             if style != "highlightText":
-                if Flags.verbose:
-                    Stderr(_("{} 没有时间, 跳过").format(_id))
+                Info(_("{} 没有时间, 跳过").format(_id))
                 return None
 
         _Start = _End = "0:00:00.00"
@@ -190,8 +186,7 @@ def Parse(tree: Element) -> List[Annotation]:
         t1 = Segment[0].get("t", _Start)
         t2 = Segment[1].get("t", _End)
         if "never" in (t1, t2):
-            if Flags.verbose:
-                Stderr(_("{} 不显示, 跳过").format(_id))
+            Info(_("{} 不显示, 跳过").format(_id))
             return None
 
         Start = ParseTime(min(t1, t2))

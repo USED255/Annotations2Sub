@@ -22,6 +22,7 @@ from Annotations2Sub.utils import (
     Flags,
     GetAnnotationsUrl,
     GetUrl,
+    Info,
     MakeSureStr,
     Stderr,
     Warn,
@@ -277,8 +278,7 @@ def Run(argv=None) -> int:
             tree = xml.etree.ElementTree.fromstring(annotations_string)
         except ParseError:
             Err(_("{} 不是一个有效的 XML 文件").format(annotations_file))
-            if Flags.verbose:
-                Stderr(traceback.format_exc())
+            Info(traceback.format_exc())
             exit_code = 1
             continue
 
@@ -366,8 +366,7 @@ def Run(argv=None) -> int:
                     continue
 
         def function1():
-            if Flags.verbose:
-                Stderr(" ".join(commands))
+            Info(" ".join(commands))
 
             _exit_code = subprocess.run(commands).returncode
             if _exit_code != 0:

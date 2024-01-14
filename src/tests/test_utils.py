@@ -12,6 +12,7 @@ from Annotations2Sub.utils import (
     Err,
     GetAnnotationsUrl,
     GetUrl,
+    Info,
     Internationalization,
     MakeSureStr,
     RedText,
@@ -61,6 +62,10 @@ def test_Err():
 
 def test_Warn():
     Warn("Test")
+
+
+def test_Info():
+    Info("Test")
 
 
 def test_MakeSureStr():
