@@ -156,9 +156,6 @@ class Sub:
             self.styles: Dict[str, Style] = {}
 
         def __str__(self) -> str:
-            return self.Dump()
-
-        def Dump(self) -> str:
             def DumpAABBGGRR(rgba: Rgba) -> str:
                 """转换为 SSA 颜色字符串"""
 
