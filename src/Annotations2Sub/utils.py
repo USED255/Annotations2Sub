@@ -67,6 +67,11 @@ def Warn(string: str):
     Stderr(YellowText(_("警告: ") + string))
 
 
+def Info(string: str):
+    if Flags.verbose:
+        Stderr(string)
+
+
 def MakeSureStr(string: Any) -> str:
     """确保输入的是字符串"""
     if isinstance(string, str):

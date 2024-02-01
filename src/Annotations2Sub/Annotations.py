@@ -3,12 +3,12 @@
 
 """Annotations 相关"""
 
-import datetime
+from datetime import datetime
 from typing import List, Optional, Union
 from xml.etree.ElementTree import Element
 
 from Annotations2Sub.Color import Alpha, Color
-from Annotations2Sub.utils import Flags, Stderr, _
+from Annotations2Sub.utils import Info, Stderr, _
 
 # 兼容 Python3.6, 3.7
 # Python3.6, 3.7 的 typing 没有 Literal
@@ -26,7 +26,7 @@ class Annotation:
     """Annotation 结构"""
 
     # 致谢 https://github.com/isaackd/annotationlib
-    # 这是 annotationlib "简易结构" 的一个模仿, 命名遵循了其风格
+    # 这是 annotationlib "简易结构" 的一个模仿
     # 将 Annotation 抽成简单的结构让事情变得简单起来
 
     # 随着 Google 关闭 Annotations,
@@ -39,7 +39,7 @@ class Annotation:
         self.id: str = ""
         # 这里仅列出需要的 type 和 style, 且 Literal 仅做提醒作用
         self.type: Union[Literal["text", "highlight", "branding"], str] = "text"
-        # 现在就遇到这几个样式, 不知道还有什么样式
+        # 现在就遇到这几个样式
         self.style: Union[
             Literal[
                 "popup",
@@ -47,12 +47,21 @@ class Annotation:
                 "speech",
                 "highlightText",
                 "anchored",
+                # branding
+                # channel
+                # cta
+                # label
+                # playlist
+                # subscribe
+                # video
+                # vote
+                # website
             ],
             str,
         ] = "popup"
         self.text: str = ""
-        self.timeStart: datetime.datetime = datetime.datetime.strptime("0", "%S")
-        self.timeEnd: datetime.datetime = datetime.datetime.strptime("0", "%S")
+        self.timeStart: datetime = datetime.strptime("0", "%S")
+        self.timeEnd: datetime = datetime.strptime("0", "%S")
         # Annotations 的定位全部是 "百分比", SSA 能正确显示真是谢天谢地
         self.x: float = 0.0
         self.y: float = 0.0
@@ -67,8 +76,8 @@ class Annotation:
         self.bgOpacity: Alpha = Alpha(alpha=204)
         # bgColor 是注释文本后面那个框的颜色
         self.bgColor: Color = Color(red=255, green=255, blue=255)
-        # fgColor 就是注释文本的颜色
-        # 如果不是 Annotations, 我都不知道颜色值可以用十进制表达, 而且还是BGR ,视频出来效果不对才知道
+        # fgColor 是注释文本的颜色
+        # 如果不是 Annotations, 我都不知道颜色值可以用十进制表达, 而且还是BGR, 视频出来效果不对才知道
         self.fgColor: Color = Color(red=0, green=0, blue=0)
         # textSize 是 "文字占画布的百分比", 而在 title 样式中才是熟悉的 "字体大小"
         self.textSize: float = 3.15
@@ -80,7 +89,7 @@ class Annotation:
         # self.actionType: Literal["time", "url"] = "time"
         # self.actionUrl: str = ""
         # self.actionUrlTarget: str = ""
-        # self.actionSeconds: datetime.datetime = datetime.datetime.strptime("0", "%S")
+        # self.actionSeconds: datetime = datetime.strptime("0", "%S")
         # self.highlightId: str = ""
 
 
@@ -93,7 +102,7 @@ def Parse(tree: Element) -> List[Annotation]:
     def ParseAnnotationAlpha(alpha: str) -> Alpha:
         """
         解析 Annotation 的透明度
-        bgAlpha("0.600000023842") -> Alpha(alpha=102)
+        "0.600000023842" -> Alpha(alpha=102)
         """
         if alpha == None:
             raise ValueError(_('"alpha" 不应为 None'))
@@ -103,7 +112,7 @@ def Parse(tree: Element) -> List[Annotation]:
     def ParseAnnotationColor(color: str) -> Color:
         """
         解析 Annotation 的颜色值
-        bgColor("4210330") -> Color(red=154, green=62, blue=64)
+        "4210330" -> Color(red=154, green=62, blue=64)
         """
         if color == None:
             raise ValueError(_('"color" 不应为 None'))
@@ -113,7 +122,7 @@ def Parse(tree: Element) -> List[Annotation]:
         b = integer >> 16
         return Color(red=r, green=g, blue=b)
 
-    def ParseTime(timeString: str) -> datetime.datetime:
+    def ParseTime(timeString: str) -> datetime:
         colon_count = timeString.count(":")
         time_format = ""
         if colon_count == 2:
@@ -121,7 +130,7 @@ def Parse(tree: Element) -> List[Annotation]:
         time_format += "%M:%S"
         if "." in timeString:
             time_format += ".%f"
-        time = datetime.datetime.strptime(timeString, time_format)
+        time = datetime.strptime(timeString, time_format)
         return time
 
     def ParseAnnotation(each: Element) -> Optional[Annotation]:
@@ -142,8 +151,7 @@ def Parse(tree: Element) -> List[Annotation]:
         style = each.get("style", "")
 
         if style == "" and _type != "highlight":
-            if Flags.verbose:
-                Stderr(_("{} 没有 style, 跳过").format(_id))
+            Info(_("{} 没有 style, 跳过").format(_id))
             return None
 
         text = ""
@@ -154,19 +162,12 @@ def Parse(tree: Element) -> List[Annotation]:
 
         _Segment = each.find("segment")
         if _Segment is None:
-            if Flags.verbose:
-                Stderr(_("{} 没有 segment, 跳过").format(_id))
+            Info(_("{} 没有 segment, 跳过").format(_id))
             return None
 
         _Segment = _Segment.find("movingRegion")
         if _Segment is None:
-            # 学习 annotationlib
-            # https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L117
-            # 跳过没有内容的 Annotation
-            # 之前(f20f9fe fixbugs)学的是 youtube-ass(https://github.com/nirbheek/youtube-ass)
-            # 只是简单地把时间置零
-            if Flags.verbose:
-                Stderr(_("{} 没有 movingRegion, 跳过").format(_id))
+            Info(_("{} 没有 movingRegion, 跳过").format(_id))
             return None
 
         Segment = _Segment.findall("rectRegion")
@@ -174,12 +175,7 @@ def Parse(tree: Element) -> List[Annotation]:
             Segment = _Segment.findall("anchoredRegion")
         if len(Segment) == 0:
             if style != "highlightText":
-                # 抄自 https://github.com/isaackd/annotationlib/blob/0818bddadade8dd1d13f3006e34a5837a539567f/src/parser/index.js#L121
-                # 不过我现在没见过 highlightText
-                # 我选择相信别人的经验
-                # 我猜 highlightText 一直在屏幕上, 需要手动关闭
-                if Flags.verbose:
-                    Stderr(_("{} 没有时间, 跳过").format(_id))
+                Info(_("{} 没有时间, 跳过").format(_id))
                 return None
 
         _Start = _End = "0:00:00.00"
@@ -190,9 +186,7 @@ def Parse(tree: Element) -> List[Annotation]:
         t1 = Segment[0].get("t", _Start)
         t2 = Segment[1].get("t", _End)
         if "never" in (t1, t2):
-            # 跳过不显示的 Annotation
-            if Flags.verbose:
-                Stderr(_("{} 不显示, 跳过").format(_id))
+            Info(_("{} 不显示, 跳过").format(_id))
             return None
 
         Start = ParseTime(min(t1, t2))

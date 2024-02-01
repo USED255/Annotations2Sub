@@ -13,6 +13,7 @@ import traceback
 import urllib.request
 import xml.etree.ElementTree
 from http.client import IncompleteRead
+from typing import List, Optional
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
@@ -22,6 +23,7 @@ from Annotations2Sub.utils import (
     Flags,
     GetAnnotationsUrl,
     GetUrl,
+    Info,
     MakeSureStr,
     Stderr,
     Warn,
@@ -29,12 +31,19 @@ from Annotations2Sub.utils import (
     _,
 )
 
+# 兼容 Python3.6, 3.7
+# Python3.6, 3.7 的 typing 没有 Literal
+try:
+    from typing import Literal
+except ImportError:
+    pass
+
 
 def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
-def GetMedia(videoId: str, instanceDomain: str) -> tuple:
+def GetMedia(videoId: str, instanceDomain: str):  # -> tuple[str, str]:
     url = f"https://{instanceDomain}/api/v1/videos/{videoId}"
     Stderr(_("获取 {}").format(url))
     data = json.loads(GetUrl(url))
@@ -56,7 +65,7 @@ def GetMedia(videoId: str, instanceDomain: str) -> tuple:
     return video, audio
 
 
-def Run(argv=None):
+def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
     """跑起来🐎🐎🐎"""
 
     exit_code = 0
@@ -129,10 +138,17 @@ def Run(argv=None):
         "-n", "--no-overwrite-files", action="store_true", help=_("不覆盖文件")
     )
     parser.add_argument(
-        "-N", "--no-keep-intermediate-files", action="store_true", help=_("不保留中间文件")
+        "-N",
+        "--no-keep-intermediate-files",
+        action="store_true",
+        help=_("不保留中间文件"),
     )
     parser.add_argument(
-        "-o", "--output", type=str, metavar=_("文件"), help=_('保存到此文件, 如果为 "-" 则输出到标准输出')
+        "-o",
+        "--output",
+        type=str,
+        metavar=_("文件"),
+        help=_('保存到此文件, 如果为 "-" 则输出到标准输出'),
     )
     parser.add_argument(
         "-O",
@@ -207,7 +223,7 @@ def Run(argv=None):
             try:
                 with urllib.request.urlopen(url="http://google.com", timeout=3) as r:
                     r.read().decode("utf-8")
-            except URLError:
+            except (URLError, TimeoutError):
                 Warn(_("您好像无法访问 Google 🤔"))
 
         Dummy([CheckNetwork])
@@ -277,8 +293,7 @@ def Run(argv=None):
             tree = xml.etree.ElementTree.fromstring(annotations_string)
         except ParseError:
             Err(_("{} 不是一个有效的 XML 文件").format(annotations_file))
-            if Flags.verbose:
-                Stderr(traceback.format_exc())
+            Info(traceback.format_exc())
             exit_code = 1
             continue
 
@@ -366,8 +381,7 @@ def Run(argv=None):
                     continue
 
         def function1():
-            if Flags.verbose:
-                Stderr(" ".join(commands))
+            Info(" ".join(commands))
 
             _exit_code = subprocess.run(commands).returncode
             if _exit_code != 0:
