@@ -3,7 +3,7 @@
 
 """SSA 相关"""
 
-import datetime
+from datetime import datetime
 from typing import Dict, List
 
 from Annotations2Sub.Color import Alpha, Color, Rgba
@@ -78,8 +78,8 @@ class Event:
         self.Type: Literal["Dialogue"] = "Dialogue"
         # Aegisub 没有 Marked, 所以我们也没有
         self.Layer: int = 0
-        self.Start: datetime.datetime = datetime.datetime.strptime("0", "%S")
-        self.End: datetime.datetime = datetime.datetime.strptime("0", "%S")
+        self.Start: datetime = datetime.strptime("0", "%S")
+        self.End: datetime = datetime.strptime("0", "%S")
         self.Style: str = "Default"
         self.Name: str = ""
         # MarginL, MarginR, MarginV, Effect 在本项目中均没有使用
@@ -90,7 +90,7 @@ class Event:
         self.Text: str = ""
 
     def __str__(self) -> str:
-        def DumpTime(time: datetime.datetime) -> str:
+        def DumpTime(time: datetime) -> str:
             """转换为 SSA 时间字符串"""
 
             # "格式为 0:00:00:00（小时:分:秒:毫秒）"

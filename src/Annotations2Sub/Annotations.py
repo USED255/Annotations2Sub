@@ -3,12 +3,12 @@
 
 """Annotations 相关"""
 
-import datetime
+from datetime import datetime
 from typing import List, Optional, Union
 from xml.etree.ElementTree import Element
 
 from Annotations2Sub.Color import Alpha, Color
-from Annotations2Sub.utils import Flags, Info, Stderr, _
+from Annotations2Sub.utils import Info, Stderr, _
 
 # 兼容 Python3.6, 3.7
 # Python3.6, 3.7 的 typing 没有 Literal
@@ -60,8 +60,8 @@ class Annotation:
             str,
         ] = "popup"
         self.text: str = ""
-        self.timeStart: datetime.datetime = datetime.datetime.strptime("0", "%S")
-        self.timeEnd: datetime.datetime = datetime.datetime.strptime("0", "%S")
+        self.timeStart: datetime = datetime.strptime("0", "%S")
+        self.timeEnd: datetime = datetime.strptime("0", "%S")
         # Annotations 的定位全部是 "百分比", SSA 能正确显示真是谢天谢地
         self.x: float = 0.0
         self.y: float = 0.0
@@ -89,7 +89,7 @@ class Annotation:
         # self.actionType: Literal["time", "url"] = "time"
         # self.actionUrl: str = ""
         # self.actionUrlTarget: str = ""
-        # self.actionSeconds: datetime.datetime = datetime.datetime.strptime("0", "%S")
+        # self.actionSeconds: datetime = datetime.strptime("0", "%S")
         # self.highlightId: str = ""
 
 
@@ -122,7 +122,7 @@ def Parse(tree: Element) -> List[Annotation]:
         b = integer >> 16
         return Color(red=r, green=g, blue=b)
 
-    def ParseTime(timeString: str) -> datetime.datetime:
+    def ParseTime(timeString: str) -> datetime:
         colon_count = timeString.count(":")
         time_format = ""
         if colon_count == 2:
@@ -130,7 +130,7 @@ def Parse(tree: Element) -> List[Annotation]:
         time_format += "%M:%S"
         if "." in timeString:
             time_format += ".%f"
-        time = datetime.datetime.strptime(timeString, time_format)
+        time = datetime.strptime(timeString, time_format)
         return time
 
     def ParseAnnotation(each: Element) -> Optional[Annotation]:

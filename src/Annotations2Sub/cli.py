@@ -13,6 +13,7 @@ import traceback
 import urllib.request
 import xml.etree.ElementTree
 from http.client import IncompleteRead
+from typing import List, Optional
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
@@ -30,12 +31,19 @@ from Annotations2Sub.utils import (
     _,
 )
 
+# 兼容 Python3.6, 3.7
+# Python3.6, 3.7 的 typing 没有 Literal
+try:
+    from typing import Literal
+except ImportError:
+    pass
+
 
 def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
-def GetMedia(videoId: str, instanceDomain: str) -> tuple[str, str]:
+def GetMedia(videoId: str, instanceDomain: str):  # -> tuple[str, str]:
     url = f"https://{instanceDomain}/api/v1/videos/{videoId}"
     Stderr(_("获取 {}").format(url))
     data = json.loads(GetUrl(url))
@@ -57,7 +65,7 @@ def GetMedia(videoId: str, instanceDomain: str) -> tuple[str, str]:
     return video, audio
 
 
-def Run(argv=None) -> int:
+def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
     """跑起来🐎🐎🐎"""
 
     exit_code = 0
