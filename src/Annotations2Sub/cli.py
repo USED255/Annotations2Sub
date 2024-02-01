@@ -130,10 +130,17 @@ def Run(argv=None) -> int:
         "-n", "--no-overwrite-files", action="store_true", help=_("不覆盖文件")
     )
     parser.add_argument(
-        "-N", "--no-keep-intermediate-files", action="store_true", help=_("不保留中间文件")
+        "-N",
+        "--no-keep-intermediate-files",
+        action="store_true",
+        help=_("不保留中间文件"),
     )
     parser.add_argument(
-        "-o", "--output", type=str, metavar=_("文件"), help=_('保存到此文件, 如果为 "-" 则输出到标准输出')
+        "-o",
+        "--output",
+        type=str,
+        metavar=_("文件"),
+        help=_('保存到此文件, 如果为 "-" 则输出到标准输出'),
     )
     parser.add_argument(
         "-O",
