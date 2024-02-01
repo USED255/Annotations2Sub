@@ -208,7 +208,7 @@ def Run(argv=None) -> int:
             try:
                 with urllib.request.urlopen(url="http://google.com", timeout=3) as r:
                     r.read().decode("utf-8")
-            except URLError:
+            except (URLError, TimeoutError):
                 Warn(_("您好像无法访问 Google 🤔"))
 
         Dummy([CheckNetwork])
