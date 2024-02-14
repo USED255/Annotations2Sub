@@ -37,11 +37,8 @@ def Internationalization():
         )
         return translate.gettext
     except FileNotFoundError:
-        Err("翻译文件加载失败")
+        Stderr("翻译文件加载失败")
         return gettext.gettext
-
-
-_ = Internationalization()
 
 
 def YellowText(string: str) -> str:
@@ -112,3 +109,6 @@ def GetAnnotationsUrl(videoId: str) -> str:
     return (
         f"{ARCHIVE_URL}/download/youtubeannotations_{index}/{videoId[0:2]}.tar/{file}"
     )
+
+
+_ = Internationalization()
