@@ -368,7 +368,30 @@ def Convert(
             _event.Name += "highlight_box;"
             return HighlightBox(_event)
 
-        events: List[Event] = []
+        def popup() -> List[Event]:
+            return [popup_box(), popup_text()]
+
+        def highlightText() -> List[Event]:
+            return [highlightText_box(), highlightText_text()]
+
+        def speech() -> List[Event]:
+            events: List[Event] = []
+            events.append(speech_box())
+            _event = speech_triangle()
+            if _event is not None:
+                events.append(_event)
+            events.append(speech_text())
+            return events
+
+        def anchored() -> List[Event]:
+            return [anchored_box(), anchored_text()]
+
+        def label() -> List[Event]:
+            return [label_box(), label_text()]
+
+        def highlight() -> List[Event]:
+            return [highlight_box(), highlight_text()]
+
         event = Event()
 
         event.Start = each.timeStart
@@ -412,32 +435,23 @@ def Convert(
             sy = TransformY(sy)
 
         if each.style == "popup":
-            events.append(popup_box())
-            events.append(popup_text())
+            return popup()
         elif each.style == "title":
-            events.append(title())
+            return [title()]
         elif each.style == "highlightText":
-            events.append(highlightText_box())
-            events.append(highlightText_text())
+            return highlightText()
         elif each.style == "speech":
-            events.append(speech_box())
-            _event = speech_triangle()
-            if _event is not None:
-                events.append(_event)
-            events.append(speech_text())
+            return speech()
         elif each.style == "anchored":
-            events.append(anchored_box())
-            events.append(anchored_text())
+            return anchored()
         elif each.style == "label":
-            events.append(label_box())
-            events.append(label_text())
+            return label()
         elif each.style == "" and each.type == "highlight":
-            events.append(highlight_box())
-            events.append(highlight_text())
+            return highlight()
         else:
             Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
 
-        return events
+        return []
 
     events = []
     for each in annotations:
