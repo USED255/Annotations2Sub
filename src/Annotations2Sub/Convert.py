@@ -450,8 +450,7 @@ def Convert(
             return highlight()
         else:
             Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
-
-        return []
+            return []
 
     events = []
     for each in annotations:
