@@ -29,14 +29,15 @@ def Convert(
             """生成 Annotation 文本的 Event"""
             text = each.text
 
+            # 模拟换行行为
             if "\n" not in text:
                 length = int(width / (textSize / 2)) + 1
                 text = "\n".join(
                     textwrap.wrap(text, width=length, drop_whitespace=False)
                 )
 
+            # 让前导空格生效
             if text.startswith(" "):
-                # 让前导空格生效
                 text = "\u200b" + text
 
             # SSA 用 "\N" 换行
@@ -57,21 +58,20 @@ def Convert(
             if "transform_coefficient_y" in locals():
                 variable_y = variable_y * transform_coefficient_y
 
+            # 文本与框保持一定距离
             _x = x + variable_x
             _y = y + variable_y
 
-            clip_x1 = x + variable_x
-            clip_y1 = y + variable_y
-            clip_x2 = x + width - variable_x
-            clip_y2 = y + height - variable_y
+            # # 模拟裁剪行为
+            # clip_x2 = x + width - variable_x
+            # clip_y2 = y + height - variable_y
 
+            # 为了可读性, 去掉多余的小数
             _x = round(_x, 3)
             _y = round(_y, 3)
             _textSize = round(textSize, 3)
-            clip_x1 = round(clip_x1, 3)
-            clip_y1 = round(clip_y1, 3)
-            clip_x2 = round(clip_x2, 3)
-            clip_y2 = round(clip_y2, 3)
+            # clip_x2 = round(clip_x2, 3)
+            # clip_y2 = round(clip_y2, 3)
 
             tags = Tag()
             tags.extend(
@@ -81,13 +81,13 @@ def Convert(
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
                     Tag.Shadow(0),
-                    Tag.Clip(clip_x1, clip_y1, clip_x2, clip_y2),
+                    # Tag.Clip(_x, _y, clip_x2, clip_y2),
                 ]
             )
-            if each.fontWeight == "bold":
-                tags.append(Tag.Bold(1))
-            if each.effects == "textdropshadow":
-                tags[4].shadow = 2
+            # if each.fontWeight == "bold":
+            #     tags.append(Tag.Bold(1))
+            # if each.effects == "textdropshadow":
+            #     tags[4].shadow = 2
 
             event.Text = str(tags) + text
             return event
@@ -150,18 +150,6 @@ def Convert(
             _width = round(width, 3)
             _height = round(height, 3)
 
-            draws = Draw()
-            draws.extend(
-                [
-                    DrawCommand(0, 0, "m"),
-                    DrawCommand(_width, 0, "l"),
-                    DrawCommand(_width, _height, "l"),
-                    DrawCommand(0, _height, "l"),
-                ]
-            )
-
-            box_tag = r"{\p1}" + str(draws) + r"{\p0}"
-
             tags = Tag()
             tags.extend(
                 [
@@ -173,20 +161,30 @@ def Convert(
                     Tag.iClip(x1, y1, x2, y2),
                 ]
             )
+
+            draws = Draw()
+            draws.extend(
+                [
+                    DrawCommand(0, 0, "m"),
+                    DrawCommand(_width, 0, "l"),
+                    DrawCommand(_width, _height, "l"),
+                    DrawCommand(0, _height, "l"),
+                ]
+            )
+            box_tag = r"{\p1}" + str(draws) + r"{\p0}"
+
             event.Text = str(tags) + box_tag
             return event
 
         def Triangle(event: Event) -> Optional[Event]:
             padding = 1.0
 
-            x_base = x - sx
-            y_base = y - sy
+            # 坐标原点
+            x_left = x - sx
+            y_top = y - sy
 
-            x_left = x_base
-            x_right = x_base + width
-
-            y_top = y_base
-            y_bottom = y_base + height
+            x_right = x_left + width
+            y_bottom = y_top + height
 
             def draw(x1, y1, x2, y2):
                 _sx = round(sx, 3)
@@ -235,8 +233,8 @@ def Convert(
                 x_right_2 = x_right_1 - x_start
 
                 is_top = y_top > padding
-                is_bottom = -y_bottom > padding
-                is_keep_left = -x_left <= width / 2
+                is_bottom = y_bottom < padding
+                is_keep_left = x_left >= width / 2
                 is_keep_right = x_right <= width / 2
 
                 x1 = y1 = x2 = y2 = None
@@ -265,9 +263,9 @@ def Convert(
                 y_middle_2 = y_middle_1 + y_end
 
                 is_left = x_left > padding
-                is_right = -x_right > padding
+                is_right = x_right < padding
 
-                x1 = y1 = x2 = y2 = None
+                x1 = x2 = None
                 if is_left:
                     x2 = x1 = x_left
                 if is_right:
@@ -397,8 +395,9 @@ def Convert(
         event.Start = each.timeStart
         event.End = each.timeEnd
 
-        # author;id;function;alternative
         # Name 在 Aegisub 里是 "说话人"
+        # 这里用于调试
+        # author;id;function;alternative
         event.Name += each.author + ";"
         event.Name += each.id + ";"
 
