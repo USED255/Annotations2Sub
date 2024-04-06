@@ -62,16 +62,10 @@ def Convert(
             _x = x + variable_x
             _y = y + variable_y
 
-            # # 模拟裁剪行为
-            # clip_x2 = x + width - variable_x
-            # clip_y2 = y + height - variable_y
-
             # 为了可读性, 去掉多余的小数
             _x = round(_x, 3)
             _y = round(_y, 3)
             _textSize = round(textSize, 3)
-            # clip_x2 = round(clip_x2, 3)
-            # clip_y2 = round(clip_y2, 3)
 
             tags = Tag()
             tags.extend(
@@ -81,13 +75,8 @@ def Convert(
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
                     Tag.Shadow(0),
-                    # Tag.Clip(_x, _y, clip_x2, clip_y2),
                 ]
             )
-            # if each.fontWeight == "bold":
-            #     tags.append(Tag.Bold(1))
-            # if each.effects == "textdropshadow":
-            #     tags[4].shadow = 2
 
             event.Text = str(tags) + text
             return event
