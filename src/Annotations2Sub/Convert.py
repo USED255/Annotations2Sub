@@ -67,6 +67,7 @@ def Convert(
             _y = round(_y, 3)
             _textSize = round(textSize, 3)
 
+            shadow = Tag.Shadow(0)
             tags = Tag()
             tags.extend(
                 [
@@ -74,9 +75,13 @@ def Convert(
                     Tag.Fontsize(_textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
-                    Tag.Shadow(0),
+                    shadow
                 ]
             )
+            if each.fontWeight == "bold":
+                tags.append(Tag.Bold(1))
+            if each.effects == "textdropshadow":
+                shadow.shadow = 2
 
             event.Text = str(tags) + text
             return event

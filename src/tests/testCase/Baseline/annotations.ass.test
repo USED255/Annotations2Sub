@@ -20,7 +20,7 @@ Dialogue: 0,00:00:00.00,00:00:00.00,Default,;10;popup_text;,0,0,0,,{\an7\pos(1.0
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;11;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;11;popup_text;,0,0,0,,{\an7\pos(1.0,1.0)\fs3.15\c&H000000&\bord0\shad0}T\Ne\Ns\Nt
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,Test;12;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,Test;12;popup_text;,0,0,0,,{\an7\pos(1.0,1.0)\fs3.15\c&H000000&\bord0\shad0}​ \NT\Ne\Ns\Nt
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,Test;12;popup_text;,0,0,0,,{\an7\pos(1.0,1.0)\fs3.15\c&H000000&\bord0\shad2\b1}​ \NT\Ne\Ns\Nt
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;13;highlightText_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;13;highlightText_text;,0,0,0,,{\an7\pos(1.0,1.0)\fs3.15\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;14;title;,0,0,0,,{\an7\pos(1.0,1.0)\fs0.656\c&H000000&\bord0\shad0}
