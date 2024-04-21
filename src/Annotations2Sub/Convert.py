@@ -75,7 +75,7 @@ def Convert(
                     Tag.Fontsize(_textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
-                    shadow
+                    shadow,
                 ]
             )
             if each.fontWeight == "bold":
