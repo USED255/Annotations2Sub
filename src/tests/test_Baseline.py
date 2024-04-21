@@ -30,10 +30,12 @@ def equal(file1: str, file2: str) -> bool:
             if diff.startswith(" "):
                 continue
             if diff.startswith("-"):
-                Stderr("\n")
+                Stderr("\n\n")
             if diff.startswith("?"):
+                diff = diff.rstrip("\n")
                 Stderr(RedText(diff))
                 continue
+            diff = diff.rstrip("\n")
             Stderr(diff)
         return False
     return True
