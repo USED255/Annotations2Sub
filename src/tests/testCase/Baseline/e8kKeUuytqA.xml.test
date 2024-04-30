@@ -903,7 +903,8 @@ Was</TEXT>
                     <rectRegion d="0" h="7.53900003433" t="0:23.200" w="50.0" x="50.0" y="4.94799995422" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="0" fontWeight="bold" highlightFontColor="0" textSize="21.6642" />    </annotation>
+            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="0" fontWeight="bold" highlightFontColor="0" textSize="21.6642" />
+        </annotation>
 
         <annotation id="annotation_2223401619" type="text" style="popup" log_data="a-id=annotation_2223401619&amp;ei=hWs9XK_ICd3ogQfQ1KeYAg&amp;a-v=e8kKeUuytqA&amp;a-type=1&amp;xble=1" itct="">
             <TEXT>1</TEXT>
@@ -1006,7 +1007,8 @@ Was</TEXT>
                     <rectRegion d="0" h="19.3799991608" t="5:55.000" w="100.0" x="0.0" y="40.8450012207" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="0" fontWeight="bold" highlightFontColor="0" textSize="14.4428" />    </annotation>
+            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="0" fontWeight="bold" highlightFontColor="0" textSize="14.4428" />
+        </annotation>
 
         <annotation id="annotation_2302363499" type="text" style="popup" log_data="a-id=annotation_2302363499&amp;ei=hWs9XK_ICd3ogQfQ1KeYAg&amp;a-v=e8kKeUuytqA&amp;a-type=1&amp;xble=1" itct="">
             <TEXT>碧玉の雨
@@ -1138,7 +1140,8 @@ Was</TEXT>
                     <rectRegion d="0" h="25.5540008545" t="3:47.100" w="100.0" x="0.0" y="35.8069992065" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="16777215" fontWeight="bold" textSize="14.4428" />    </annotation>
+            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="16777215" fontWeight="bold" textSize="14.4428" />
+        </annotation>
 
         <annotation id="annotation_2506721273" type="text" style="popup" log_data="a-id=annotation_2506721273&amp;ei=hWs9XK_ICd3ogQfQ1KeYAg&amp;a-v=e8kKeUuytqA&amp;a-type=1&amp;xble=1" itct="">
             <TEXT>この謳よ
@@ -1208,7 +1211,8 @@ ra</TEXT>
                     <rectRegion d="0" h="15.704000473" t="7:15.000" w="100.0" x="0.0" y="42.2540016174" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="16777215" fontWeight="bold" textSize="14.4428" />    </annotation>
+            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="16777215" fontWeight="bold" textSize="14.4428" />
+        </annotation>
 
         <annotation id="annotation_2558774551" type="text" style="popup" log_data="a-id=annotation_2558774551&amp;ei=hWs9XK_ICd3ogQfQ1KeYAg&amp;a-v=e8kKeUuytqA&amp;a-type=1&amp;xble=1" itct="">
             <TEXT>響きわたれや
@@ -1749,7 +1753,8 @@ ra</TEXT>
                     <rectRegion d="0" h="18.8029994965" t="0:11.600" w="100.0" x="0.0" y="40.7550010681" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="16777215" fontWeight="bold" textSize="14.4428" />    </annotation>
+            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="16777215" fontWeight="bold" textSize="14.4428" />
+        </annotation>
 
         <annotation id="annotation_320978197" type="text" style="popup" log_data="a-id=annotation_320978197&amp;ei=hWs9XK_ICd3ogQfQ1KeYAg&amp;a-v=e8kKeUuytqA&amp;a-type=1&amp;xble=1" itct="">
             <TEXT>清き日々を
@@ -2543,7 +2548,8 @@ AH</TEXT>
                     <rectRegion d="0" h="11.9919996262" t="0:23.236" w="49.9599990845" x="0.0" y="85.2860031128" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="16777215" fontWeight="bold" textSize="21.6642" />    </annotation>
+            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="16777215" fontWeight="bold" textSize="21.6642" />
+        </annotation>
 
         <annotation id="annotation_476494933" type="text" style="popup" log_data="a-id=annotation_476494933&amp;ei=hWs9XK_ICd3ogQfQ1KeYAg&amp;a-v=e8kKeUuytqA&amp;a-type=1&amp;xble=1" itct="">
             <TEXT>日々を
@@ -2652,7 +2658,8 @@ AH</TEXT>
                     <rectRegion d="0" h="18.8169994354" t="6:15.600" w="100.0" x="0.0" y="40.5629997253" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="0" fontWeight="bold" highlightFontColor="0" textSize="14.4428" />    </annotation>
+            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="0" fontWeight="bold" highlightFontColor="0" textSize="14.4428" />
+        </annotation>
 
         <annotation id="annotation_571262541" type="text" style="popup" log_data="a-id=annotation_571262541&amp;ei=hWs9XK_ICd3ogQfQ1KeYAg&amp;a-v=e8kKeUuytqA&amp;a-type=1&amp;xble=1" itct="">
             <TEXT>我ぞ
@@ -2769,7 +2776,8 @@ AH</TEXT>
                     <rectRegion d="0" h="7.9439997673" t="5:05.900" w="100.0" x="0.0" y="49.2960014343" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="16777215" fontWeight="bold" highlightFontColor="16777215" textSize="14.4428" />    </annotation>
+            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="16777215" fontWeight="bold" highlightFontColor="16777215" textSize="14.4428" />
+        </annotation>
 
         <annotation id="annotation_917853957" type="text" style="popup" log_data="a-id=annotation_917853957&amp;ei=hWs9XK_ICd3ogQfQ1KeYAg&amp;a-v=e8kKeUuytqA&amp;a-type=1&amp;xble=1" itct="">
             <TEXT>Was
@@ -2803,7 +2811,8 @@ Was</TEXT>
                     <rectRegion d="0" h="11.9919996262" t="0:23.200" w="50.0369987488" x="50.0" y="85.2860031128" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="16777215" fontWeight="bold" textSize="21.6642" />    </annotation>
+            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="16777215" fontWeight="bold" textSize="21.6642" />
+        </annotation>
 
         <annotation id="annotation_948629057" type="text" style="popup" log_data="a-id=annotation_948629057&amp;ei=hWs9XK_ICd3ogQfQ1KeYAg&amp;a-v=e8kKeUuytqA&amp;a-type=1&amp;xble=1" itct="">
             <TEXT>ささやく
@@ -2837,7 +2846,8 @@ Was</TEXT>
                     <rectRegion d="0" h="7.44799995422" t="0:23.236" w="49.8499984741" x="0.0" y="4.94799995422" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="16777215" fontWeight="bold" textSize="21.6642" />    </annotation>
+            <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects="" fgColor="16777215" fontWeight="bold" textSize="21.6642" />
+        </annotation>
 
 
     </annotations>
