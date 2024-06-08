@@ -237,13 +237,25 @@ class Tag(list):
         tag_string = r"{" + tag_string + r"}"
         return tag_string
 
-    class Pos:
+    class Align:
         r"""\an<位置>"""
 
         # "<位置> 是一个数字，决定了字幕显示在屏幕上哪个位置。"
-        # 默认 SSA 定位会定在文本中间
+        # 默认 SSA 定位会定在文本中间(居中)
         # 用 \an7 指定在左上角.
-        # "\pos(<x>,<y>)"
+        # fmt: off
+        def __init__(self, align: Literal[7,8,9,
+                                          4,5,6,
+                                          1,2,3] ):
+        # fmt: on
+            self.align = align
+
+        def __str__(self) -> str:
+            return rf"\an{self.align}"
+
+    class Pos:
+        r"""\pos(<x>,<y>)"""
+
         # "将字幕定位在坐标点 <x>,<y>。"
         # SSA 和 Annotations 坐标系一致, y 向下(左手取向).
         def __init__(self, x: float, y: float):
@@ -251,7 +263,7 @@ class Tag(list):
             self.y = y
 
         def __str__(self) -> str:
-            return rf"\an7\pos({self.x},{self.y})"
+            return rf"\pos({self.x},{self.y})"
 
     class Fontsize:
         r"""\fs<字体尺寸>"""

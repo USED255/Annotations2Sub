@@ -71,6 +71,7 @@ def Convert(
             tags = Tag()
             tags.extend(
                 [
+                    Tag.Align(7),
                     Tag.Pos(_x, _y),
                     Tag.Fontsize(_textSize),
                     Tag.PrimaryColour(each.fgColor),
@@ -97,6 +98,7 @@ def Convert(
             tags = Tag()
             tags.extend(
                 [
+                    Tag.Align(7),
                     Tag.Pos(_x, _y),
                     Tag.PrimaryColour(each.bgColor),
                     Tag.PrimaryAlpha(each.bgOpacity),
@@ -147,6 +149,7 @@ def Convert(
             tags = Tag()
             tags.extend(
                 [
+                    Tag.Align(7),
                     Tag.Pos(_x, _y),
                     Tag.PrimaryColour(each.bgColor),
                     Tag.PrimaryAlpha(each.bgOpacity),
@@ -192,6 +195,7 @@ def Convert(
                 tags = Tag()
                 tags.extend(
                     [
+                        Tag.Align(7),
                         Tag.Pos(_sx, _sy),
                         Tag.PrimaryColour(each.bgColor),
                         Tag.PrimaryAlpha(each.bgOpacity),

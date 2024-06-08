@@ -60,8 +60,11 @@ class Annotation:
             str,
         ] = "popup"
         self.text: str = ""
+        # fmt: off
         self.timeStart: datetime = datetime.strptime("0", "%S")
-        self.timeEnd: datetime = datetime.strptime("0", "%S")
+        self.timeEnd:   datetime = datetime.strptime("0", "%S")
+        # fmt: on
+
         # Annotations 的定位全部是 "百分比", SSA 能正确显示真是谢天谢地
         self.x: float = 0.0
         self.y: float = 0.0
@@ -180,8 +183,10 @@ def Parse(tree: Element) -> List[Annotation]:
 
         _Start = _End = "0:00:00.00"
         if style == "highlightText":
+            # fmt: off
             _Start = "0:00:00.00"
-            _End = "9:00:00.00"
+            _End   = "9:00:00.00"
+            # fmt: on
 
         t1 = Segment[0].get("t", _Start)
         t2 = Segment[1].get("t", _End)
