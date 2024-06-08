@@ -156,7 +156,7 @@ def Convert(
             return event
 
         def Triangle(event: Event) -> Optional[Event]:
-            padding = 1.0
+            padding = padding_y
 
             # 坐标原点
             x_left = x - sx
