@@ -282,6 +282,7 @@ def Convert(
             text = text.replace("{", r"\{")
             text = text.replace("}", r"\}")
 
+            # 模拟居中
             _x = x + (width / 2)
             _y = y + (height / 2)
 
@@ -303,8 +304,6 @@ def Convert(
             )
             if each.fontWeight == "bold":
                 tags.append(Tag.Bold(1))
-            if each.effects == "textdropshadow":
-                shadow.shadow = 2
 
             event.Text = str(tags) + text
             return event
