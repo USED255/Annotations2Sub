@@ -397,7 +397,7 @@ Dialogue: 0,00:05:33.70,00:05:39.27,Default,;annotation_1528353471;popup_text;,0
 Dialogue: 0,00:05:33.70,00:05:39.27,Default,;annotation_2870835573;popup_box;,0,0,0,,{\an7\pos(13.836,20.703)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 13.569 0 l 13.569 20.482 l 0 20.482 {\p0}
 Dialogue: 0,00:05:33.70,00:05:39.27,Default,;annotation_2870835573;popup_text;,0,0,0,,{\an7\pos(14.836,21.703)\fs4.814\c&HFFFFFF&\bord0\shad0}祈りよ\N祈願啊
 Dialogue: 0,00:05:35.40,00:05:39.27,Default,;annotation_3564176531;popup_box;,0,0,0,,{\an7\pos(27.233,20.573)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 72.734 0 l 72.734 20.482 l 0 20.482 {\p0}
-Dialogue: 0,00:05:35.40,00:05:39.27,Default,;annotation_3564176531;popup_text;,0,0,0,,{\an7\pos(28.233,21.573)\fs4.814\c&HFFFFFF&\bord0\shad2}とこしえに\N永恆吧
+Dialogue: 0,00:05:35.40,00:05:39.27,Default,;annotation_3564176531;popup_text;,0,0,0,,{\an7\pos(28.233,21.573)\fs4.814\c&HFFFFFF&\bord0\shad0}とこしえに\N永恆吧
 Dialogue: 0,00:05:35.88,00:05:39.27,Default,;annotation_1865749955;popup_box;,0,0,0,,{\an7\pos(27.16,59.896)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 72.793 0 l 72.793 20.241 l 0 20.241 {\p0}
 Dialogue: 0,00:05:35.88,00:05:39.27,Default,;annotation_1865749955;popup_text;,0,0,0,,{\an7\pos(28.16,60.896)\fs4.814\c&HFFFFFF&\bord0\shad0}嗚呼\N嗚呼
 Dialogue: 0,00:05:39.30,00:05:47.67,Default,;annotation_1367421693;popup_box;,0,0,0,,{\an7\pos(0.0,59.896)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 21.449 0 l 21.449 20.202 l 0 20.202 {\p0}

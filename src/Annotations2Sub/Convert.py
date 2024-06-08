@@ -72,8 +72,6 @@ def Convert(
             )
             if each.fontWeight == "bold":
                 tags.append(Tag.Bold(1))
-            if each.effects == "textdropshadow":
-                shadow.shadow = 2
 
             event.Text = str(tags) + text
             return event
