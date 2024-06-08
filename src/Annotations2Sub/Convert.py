@@ -49,15 +49,6 @@ def Convert(
             text = text.replace("{", r"\{")
             text = text.replace("}", r"\}")
 
-            padding_x = 1.0
-            padding_y = 1.0
-
-            if "transform_coefficient_x" in locals():
-                padding_x = padding_x * transform_coefficient_x
-
-            if "transform_coefficient_y" in locals():
-                padding_y = padding_y * transform_coefficient_y
-
             # 文本与框保持一定距离
             _x = x + padding_x
             _y = y + padding_y
@@ -123,15 +114,6 @@ def Convert(
             return event
 
         def HighlightBox(event: Event) -> Event:
-            padding_x = 1.0
-            padding_y = 1.0
-
-            if "transform_coefficient_x" in locals():
-                padding_x = padding_x * transform_coefficient_x
-
-            if "transform_coefficient_y" in locals():
-                padding_y = padding_y * transform_coefficient_y
-
             x1 = x + padding_x
             y1 = y + padding_y
             x2 = x + width - padding_x
@@ -432,6 +414,9 @@ def Convert(
         def highlight() -> List[Event]:
             return [highlight_box(), highlight_text()]
 
+        padding_x = 1.0
+        padding_y = 1.0
+
         event = Event()
 
         event.Start = each.timeStart
@@ -463,6 +448,7 @@ def Convert(
             x = TransformX(x)
             width = TransformX(width)
             sx = TransformX(sx)
+            padding_x = TransformX(padding_x)
 
         if resolutionY != 100:
             transform_coefficient_y = resolutionY / 100
@@ -474,6 +460,7 @@ def Convert(
             textSize = TransformY(textSize)
             height = TransformY(height)
             sy = TransformY(sy)
+            padding_y = TransformY(padding_y)
 
         if each.style == "popup":
             return popup()
