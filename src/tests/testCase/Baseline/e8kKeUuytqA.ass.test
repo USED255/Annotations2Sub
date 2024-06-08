@@ -21,17 +21,17 @@ Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_1951424657;popup_box;,0,
 Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_1951424657;popup_text;,0,0,0,,{\an7\pos(1.0,1.0)\fs4.814\c&HFFFFFF&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_3031980063;popup_box;,0,0,0,,{\an7\pos(49.941,83.294)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 50.059 0 l 50.059 16.706 l 0 16.706 {\p0}
 Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_3031980063;popup_text;,0,0,0,,{\an7\pos(50.941,84.294)\fs3.912\c&HFFFFFF&\bord0\shad0}
-Dialogue: 0,00:00:00.10,00:00:23.20,Default,;annotation_2200715567;title;,0,0,0,,{\an7\pos(51.0,5.948)\fs4.513\c&H000000&\bord0\shad0\b1}世界中的人們
-Dialogue: 0,00:00:00.10,00:00:23.20,Default,;annotation_939591749;title;,0,0,0,,{\an7\pos(51.0,86.286)\fs4.513\c&HFFFFFF&\bord0\shad0\b1}Luca_Truelywaath\N霜月はるか
-Dialogue: 0,00:00:00.10,00:00:23.23,Default,;annotation_99707445;title;,0,0,0,,{\an7\pos(1.0,5.948)\fs4.513\c&HFFFFFF&\bord0\shad0\b1}合唱
-Dialogue: 0,00:00:00.10,00:00:23.23,Default,;annotation_470221101;title;,0,0,0,,{\an7\pos(1.0,86.286)\fs4.513\c&HFFFFFF&\bord0\shad0\b1}Chroche_Latel_Pastalie\N志方あきこ
+Dialogue: 0,00:00:00.10,00:00:23.20,Default,;annotation_2200715567;title;,0,0,0,,{\an5\pos(75.0,8.717)\fs4.513\c&H000000&\bord0\shad0\b1}世界中的人們
+Dialogue: 0,00:00:00.10,00:00:23.20,Default,;annotation_939591749;title;,0,0,0,,{\an5\pos(75.018,91.282)\fs4.513\c&HFFFFFF&\bord0\shad0\b1}Luca_Truelywaath\N霜月はるか
+Dialogue: 0,00:00:00.10,00:00:23.23,Default,;annotation_99707445;title;,0,0,0,,{\an5\pos(24.925,8.672)\fs4.513\c&HFFFFFF&\bord0\shad0\b1}合唱
+Dialogue: 0,00:00:00.10,00:00:23.23,Default,;annotation_470221101;title;,0,0,0,,{\an5\pos(24.98,91.282)\fs4.513\c&HFFFFFF&\bord0\shad0\b1}Chroche_Latel_Pastalie\N志方あきこ
 Dialogue: 0,00:00:01.58,00:00:09.40,Default,;annotation_1266590287;popup_box;,0,0,0,,{\an7\pos(0.0,20.697)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 100.0 0 l 100.0 20.462 l 0 20.462 {\p0}
 Dialogue: 0,00:00:01.58,00:00:09.40,Default,;annotation_1266590287;popup_text;,0,0,0,,{\an7\pos(1.0,21.697)\fs4.814\c&HFFFFFF&\bord0\shad0}Was yea ra chs leeya fhyu en xest eazas yanyaue yor\N（私は希望の風になる、そして大切な貴方と互いに変換する）\N（我化身為希望之風、然後與最重要的您互相變換）
 Dialogue: 0,00:00:02.78,00:00:09.40,Default,;annotation_3538433031;popup_box;,0,0,0,,{\an7\pos(0.0,60.026)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 100.0 0 l 100.0 21.016 l 0 21.016 {\p0}
 Dialogue: 0,00:00:02.78,00:00:09.40,Default,;annotation_3538433031;popup_text;,0,0,0,,{\an7\pos(1.0,61.026)\fs4.814\c&HFFFFFF&\bord0\shad0}Wee ki ra chs wasara dor en xest eazas yanyaue yor\N（私は豊かな大地になる、そして大切な貴方と互いに変換する）\N（我化身為豐壤的大地、然後與最重要的您互相變換）
 Dialogue: 0,00:00:06.31,00:00:11.60,Default,;annotation_3723999841;popup_box;,0,0,0,,{\an7\pos(0.0,41.146)\c&H75B96A&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 100.0 0 l 100.0 18.587 l 0 18.587 {\p0}
 Dialogue: 0,00:00:06.31,00:00:11.60,Default,;annotation_3723999841;popup_text;,0,0,0,,{\an7\pos(1.0,42.146)\fs4.814\c&HFFFFFF&\bord0\shad0}
-Dialogue: 0,00:00:06.35,00:00:11.60,Default,;annotation_3208875289;title;,0,0,0,,{\an7\pos(1.0,41.755)\fs3.009\c&HFFFFFF&\bord0\shad0\b1}enne yanje yehah...\N永久の幸せを願わん\N祈求永遠的幸福
+Dialogue: 0,00:00:06.35,00:00:11.60,Default,;annotation_3208875289;title;,0,0,0,,{\an5\pos(50.0,50.157)\fs3.009\c&HFFFFFF&\bord0\shad0\b1}enne yanje yehah...\N永久の幸せを願わん\N祈求永遠的幸福
 Dialogue: 0,00:00:09.40,00:00:23.20,Default,;annotation_893311481;popup_box;,0,0,0,,{\an7\pos(0.0,60.026)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 100.0 0 l 100.0 20.986 l 0 20.986 {\p0}
 Dialogue: 0,00:00:09.40,00:00:23.20,Default,;annotation_893311481;popup_text;,0,0,0,,{\an7\pos(1.0,61.026)\fs4.814\c&HFFFFFF&\bord0\shad0}xest 1x1101101001100110111000 >> syec mea.\N（私は豊かな大地になる、そして大切な貴方と互いに変換する）\N（我化身為豐壤的大地、然後與最重要的您互相變換）
 Dialogue: 0,00:00:09.40,00:00:23.22,Default,;annotation_51648431;popup_box;,0,0,0,,{\an7\pos(0.0,20.697)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 100.0 0 l 100.0 20.462 l 0 20.462 {\p0}
@@ -234,7 +234,7 @@ Dialogue: 0,00:03:40.52,00:03:45.50,Default,;annotation_2186317993;popup_box;,0,
 Dialogue: 0,00:03:40.52,00:03:45.50,Default,;annotation_2186317993;popup_text;,0,0,0,,{\an7\pos(30.202,60.896)\fs4.814\c&HFFFFFF&\bord0\shad0}ひとつずつ\N步行的足跡
 Dialogue: 0,00:03:45.60,00:03:47.10,Default,;annotation_2916883851;popup_box;,0,0,0,,{\an7\pos(0.0,35.417)\c&H75B96A&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 100.0 0 l 100.0 27.897 l 0 27.897 {\p0}
 Dialogue: 0,00:03:45.60,00:03:47.10,Default,;annotation_2916883851;popup_text;,0,0,0,,{\an7\pos(1.0,36.417)\fs8.425\c&HFFFFFF&\bord0\shad0}
-Dialogue: 0,00:03:45.61,00:03:47.10,Default,;annotation_2505354063;title;,0,0,0,,{\an7\pos(1.0,36.807)\fs3.009\c&HFFFFFF&\bord0\shad0\b1}Waath！\N再生を！\N再生吧！
+Dialogue: 0,00:03:45.61,00:03:47.10,Default,;annotation_2505354063;title;,0,0,0,,{\an5\pos(50.0,48.584)\fs3.009\c&HFFFFFF&\bord0\shad0\b1}Waath！\N再生を！\N再生吧！
 Dialogue: 0,00:03:53.80,00:04:01.50,Default,;annotation_3539282655;popup_box;,0,0,0,,{\an7\pos(0.0,59.896)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 25.769 0 l 25.769 20.156 l 0 20.156 {\p0}
 Dialogue: 0,00:03:53.80,00:04:01.50,Default,;annotation_3539282655;popup_text;,0,0,0,,{\an7\pos(1.0,60.896)\fs4.814\c&HFFFFFF&\bord0\shad0}謳は胸を溢れて\N詩於心中洋溢並
 Dialogue: 0,00:03:57.70,00:04:01.50,Default,;annotation_363137815;popup_box;,0,0,0,,{\an7\pos(25.765,59.896)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 74.235 0 l 74.235 20.156 l 0 20.156 {\p0}
@@ -345,7 +345,7 @@ Dialogue: 0,00:05:01.20,00:05:05.80,Default,;annotation_2923327851;popup_box;,0,
 Dialogue: 0,00:05:01.20,00:05:05.80,Default,;annotation_2923327851;popup_text;,0,0,0,,{\an7\pos(1.0,60.896)\fs4.814\c&HFFFFFF&\bord0\shad0}wael\Nwael
 Dialogue: 0,00:05:01.20,00:05:05.90,Default,;annotation_389704765;popup_box;,0,0,0,,{\an7\pos(57.61,41.27)\c&HD368C0&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 8.782 0 l 8.782 18.3 l 0 18.3 {\p0}
 Dialogue: 0,00:05:01.20,00:05:05.90,Default,;annotation_389704765;popup_text;,0,0,0,,{\an7\pos(58.61,42.27)\fs4.814\c&HFFFFFF&\bord0\shad0}wael
-Dialogue: 0,00:05:01.21,00:05:05.90,Default,;annotation_894810579;title;,0,0,0,,{\an7\pos(1.0,50.296)\fs3.009\c&HFFFFFF&\bord0\shad0\b1}歡欣吧
+Dialogue: 0,00:05:01.21,00:05:05.90,Default,;annotation_894810579;title;,0,0,0,,{\an5\pos(50.0,53.268)\fs3.009\c&HFFFFFF&\bord0\shad0\b1}歡欣吧
 Dialogue: 0,00:05:01.60,00:05:05.80,Default,;annotation_3011930069;popup_box;,0,0,0,,{\an7\pos(0.0,20.703)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 14.03 0 l 14.03 20.273 l 0 20.273 {\p0}
 Dialogue: 0,00:05:01.60,00:05:05.80,Default,;annotation_3011930069;popup_text;,0,0,0,,{\an7\pos(1.0,21.703)\fs4.814\c&HFFFFFF&\bord0\shad0}果てぬ\N無盡
 Dialogue: 0,00:05:02.20,00:05:05.80,Default,;annotation_2025933989;popup_box;,0,0,0,,{\an7\pos(10.908,59.896)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 19.257 0 l 19.257 20.176 l 0 20.176 {\p0}
@@ -406,7 +406,7 @@ Dialogue: 0,00:05:39.30,00:05:47.70,Default,;annotation_3320098849;popup_box;,0,
 Dialogue: 0,00:05:39.30,00:05:47.70,Default,;annotation_3320098849;popup_text;,0,0,0,,{\an7\pos(1.0,81.26)\fs4.814\c&HFFFFFF&\bord0\shad0}xE rre herr en harr yEyYE phira art kapa enrer.\N（いつしか人々も苗に水を与えようになった）\N（不知從何時開始人們也將水分給予種子）
 Dialogue: 0,00:05:39.89,00:05:55.04,Default,;annotation_3931061025;popup_box;,0,0,0,,{\an7\pos(0.0,41.276)\c&H36DAFD&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 100.0 0 l 100.0 18.535 l 0 18.535 {\p0}
 Dialogue: 0,00:05:39.89,00:05:55.04,Default,;annotation_3931061025;popup_text;,0,0,0,,{\an7\pos(1.0,42.276)\fs4.814\c&H000000&\bord0\shad0}
-Dialogue: 0,00:05:39.90,00:05:55.00,Default,;annotation_2281726627;title;,0,0,0,,{\an7\pos(1.0,41.845)\fs3.009\c&H000000&\bord0\shad0\b1}Was yea ra hymme ieeya en rannef,\N称えや、かけがえなき世界\N歌頌、無可替代的世界吧
+Dialogue: 0,00:05:39.90,00:05:55.00,Default,;annotation_2281726627;title;,0,0,0,,{\an5\pos(50.0,50.535)\fs3.009\c&H000000&\bord0\shad0\b1}Was yea ra hymme ieeya en rannef,\N称えや、かけがえなき世界\N歌頌、無可替代的世界吧
 Dialogue: 0,00:05:42.84,00:05:47.70,Default,;annotation_3079441333;popup_box;,0,0,0,,{\an7\pos(21.391,59.896)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 24.652 0 l 24.652 20.215 l 0 20.215 {\p0}
 Dialogue: 0,00:05:42.84,00:05:47.70,Default,;annotation_3079441333;popup_text;,0,0,0,,{\an7\pos(22.391,60.896)\fs4.814\c&HFFFFFF&\bord0\shad0}この世界\N這個無可替代的
 Dialogue: 0,00:05:45.19,00:05:47.70,Default,;annotation_1533412915;popup_box;,0,0,0,,{\an7\pos(45.988,59.896)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 54.012 0 l 54.012 20.215 l 0 20.215 {\p0}
@@ -427,7 +427,7 @@ Dialogue: 0,00:05:56.90,00:06:04.50,Default,;annotation_3406613253;popup_box;,0,
 Dialogue: 0,00:05:56.90,00:06:04.50,Default,;annotation_3406613253;popup_text;,0,0,0,,{\an7\pos(1.0,60.896)\fs4.814\c&HFFFFFF&\bord0\shad0}ただ\N只是
 Dialogue: 0,00:05:57.00,00:06:15.60,Default,;annotation_2075155237;popup_box;,0,0,0,,{\an7\pos(0.0,41.146)\c&H36DAFD&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 100.0 0 l 100.0 18.542 l 0 18.542 {\p0}
 Dialogue: 0,00:05:57.00,00:06:15.60,Default,;annotation_2075155237;popup_text;,0,0,0,,{\an7\pos(1.0,42.146)\fs4.814\c&H000000&\bord0\shad0}
-Dialogue: 0,00:05:57.03,00:06:15.60,Default,;annotation_559346629;title;,0,0,0,,{\an7\pos(1.0,41.563)\fs3.009\c&H000000&\bord0\shad0\b1}chanti ee ar ciel, infel yor.\N謳えや、希望と感謝の詩\N謳歌、希望與感謝的詩吧
+Dialogue: 0,00:05:57.03,00:06:15.60,Default,;annotation_559346629;title;,0,0,0,,{\an5\pos(50.0,49.971)\fs3.009\c&H000000&\bord0\shad0\b1}chanti ee ar ciel, infel yor.\N謳えや、希望と感謝の詩\N謳歌、希望與感謝的詩吧
 Dialogue: 0,00:05:57.30,00:06:04.50,Default,;annotation_3776804407;popup_box;,0,0,0,,{\an7\pos(0.0,80.299)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 100.0 0 l 100.0 19.701 l 0 19.701 {\p0}
 Dialogue: 0,00:05:57.30,00:06:04.50,Default,;annotation_3776804407;popup_text;,0,0,0,,{\an7\pos(1.0,81.299)\fs4.814\c&HFFFFFF&\bord0\shad0}den, xA rre LYAglansse r.w. walasye lmplanta.\N（けれど神の大樹インプランタがあった）\N（但是卻擁有一棵神之大樹 Implanta）
 Dialogue: 0,00:05:57.51,00:06:04.50,Default,;annotation_1354241607;popup_box;,0,0,0,,{\an7\pos(0.0,20.573)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 10.216 0 l 10.216 20.404 l 0 20.404 {\p0}
@@ -478,5 +478,5 @@ Dialogue: 0,00:07:00.20,00:07:06.10,Default,;annotation_1683072517;popup_box;,0,
 Dialogue: 0,00:07:00.20,00:07:06.10,Default,;annotation_1683072517;popup_text;,0,0,0,,{\an7\pos(51.3,21.573)\fs4.814\c&HFFFFFF&\bord0\shad0}生くる者に\N為活下去的人們
 Dialogue: 0,00:07:06.10,00:07:15.00,Default,;annotation_60903519;popup_box;,0,0,0,,{\an7\pos(0.0,41.146)\c&H75B96A&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 100.0 0 l 100.0 19.028 l 0 19.028 {\p0}
 Dialogue: 0,00:07:06.10,00:07:15.00,Default,;annotation_60903519;popup_text;,0,0,0,,{\an7\pos(1.0,42.146)\fs4.814\c&HFFFFFF&\bord0\shad0}
-Dialogue: 0,00:07:06.16,00:07:15.00,Default,;annotation_2554772065;title;,0,0,0,,{\an7\pos(1.0,43.254)\fs3.009\c&HFFFFFF&\bord0\shad0\b1}愛を　永久に\N永遠地  賦予愛
+Dialogue: 0,00:07:06.16,00:07:15.00,Default,;annotation_2554772065;title;,0,0,0,,{\an5\pos(50.0,50.106)\fs3.009\c&HFFFFFF&\bord0\shad0\b1}愛を　永久に\N永遠地  賦予愛
 
