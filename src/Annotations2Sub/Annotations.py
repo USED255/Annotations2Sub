@@ -60,8 +60,11 @@ class Annotation:
             str,
         ] = "popup"
         self.text: str = ""
+        # fmt: off
         self.timeStart: datetime = datetime.strptime("0", "%S")
-        self.timeEnd: datetime = datetime.strptime("0", "%S")
+        self.timeEnd:   datetime = datetime.strptime("0", "%S")
+        # fmt: on
+
         # Annotations 的定位全部是 "百分比", SSA 能正确显示真是谢天谢地
         self.x: float = 0.0
         self.y: float = 0.0
@@ -173,15 +176,16 @@ def Parse(tree: Element) -> List[Annotation]:
         Segment = _Segment.findall("rectRegion")
         if len(Segment) == 0:
             Segment = _Segment.findall("anchoredRegion")
-        if len(Segment) == 0:
-            if style != "highlightText":
-                Info(_("{} 没有时间, 跳过").format(_id))
-                return None
+        if len(Segment) == 0 and style != "highlightText":
+            Info(_("{} 没有时间, 跳过").format(_id))
+            return None
 
         _Start = _End = "0:00:00.00"
         if style == "highlightText":
+            # fmt: off
             _Start = "0:00:00.00"
-            _End = "9:00:00.00"
+            _End   = "9:00:00.00"
+            # fmt: on
 
         t1 = Segment[0].get("t", _Start)
         t2 = Segment[1].get("t", _End)
@@ -207,15 +211,15 @@ def Parse(tree: Element) -> List[Annotation]:
         annotation.y = y
 
         # 两个 Segment 只有时间差别
-        w = Segment[0].get("w", "0")
-        h = Segment[0].get("h", "0")
-        sx = Segment[0].get("sx", "0")
-        sy = Segment[0].get("sy", "0")
+        w = float(Segment[0].get("w", "0"))
+        h = float(Segment[0].get("h", "0"))
+        sx = float(Segment[0].get("sx", "0"))
+        sy = float(Segment[0].get("sy", "0"))
 
-        annotation.width = float(w)
-        annotation.height = float(h)
-        annotation.sx = float(sx)
-        annotation.sy = float(sy)
+        annotation.width = w
+        annotation.height = h
+        annotation.sx = sx
+        annotation.sy = sy
 
         Appearance = each.find("appearance")
 

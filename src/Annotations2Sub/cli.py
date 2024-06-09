@@ -31,8 +31,8 @@ from Annotations2Sub.utils import (
     _,
 )
 
-# 兼容 Python3.6, 3.7
-# Python3.6, 3.7 的 typing 没有 Literal
+# 兼容 Python 3.6, 3.7
+# Python 3.6, 3.7 的 typing 没有 Literal
 try:
     from typing import Literal
 except ImportError:

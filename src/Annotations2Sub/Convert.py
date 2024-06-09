@@ -49,39 +49,28 @@ def Convert(
             text = text.replace("{", r"\{")
             text = text.replace("}", r"\}")
 
-            variable_x = 1.0
-            variable_y = 1.0
-
-            if "transform_coefficient_x" in locals():
-                variable_x = variable_x * transform_coefficient_x
-
-            if "transform_coefficient_y" in locals():
-                variable_y = variable_y * transform_coefficient_y
-
             # 文本与框保持一定距离
-            _x = x + variable_x
-            _y = y + variable_y
+            _x = x + padding_x
+            _y = y + padding_y
 
             # 为了可读性, 去掉多余的小数
             _x = round(_x, 3)
             _y = round(_y, 3)
             _textSize = round(textSize, 3)
 
-            shadow = Tag.Shadow(0)
             tags = Tag()
             tags.extend(
                 [
+                    Tag.Align(7),
                     Tag.Pos(_x, _y),
                     Tag.Fontsize(_textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
-                    shadow,
+                    Tag.Shadow(0),
                 ]
             )
             if each.fontWeight == "bold":
                 tags.append(Tag.Bold(1))
-            if each.effects == "textdropshadow":
-                shadow.shadow = 2
 
             event.Text = str(tags) + text
             return event
@@ -97,6 +86,7 @@ def Convert(
             tags = Tag()
             tags.extend(
                 [
+                    Tag.Align(7),
                     Tag.Pos(_x, _y),
                     Tag.PrimaryColour(each.bgColor),
                     Tag.PrimaryAlpha(each.bgOpacity),
@@ -121,19 +111,11 @@ def Convert(
             return event
 
         def HighlightBox(event: Event) -> Event:
-            variable1 = 1.0
-            variable2 = 1.0
-
-            if "transform_coefficient_x" in locals():
-                variable1 = variable1 * transform_coefficient_x
-
-            if "transform_coefficient_y" in locals():
-                variable2 = variable2 * transform_coefficient_y
-
-            x1 = x + variable1
-            y1 = y + variable2
-            x2 = x + width - variable1
-            y2 = y + height - variable2
+            # HighlightBox 是一个中空的框
+            x1 = x + padding_x
+            y1 = y + padding_y
+            x2 = x + width - padding_x
+            y2 = y + height - padding_y
 
             _x = round(x, 3)
             _y = round(y, 3)
@@ -147,11 +129,13 @@ def Convert(
             tags = Tag()
             tags.extend(
                 [
+                    Tag.Align(7),
                     Tag.Pos(_x, _y),
                     Tag.PrimaryColour(each.bgColor),
                     Tag.PrimaryAlpha(each.bgOpacity),
                     Tag.Bord(0),
                     Tag.Shadow(0),
+                    # 将一个框挖空模拟其效果
                     Tag.iClip(x1, y1, x2, y2),
                 ]
             )
@@ -171,7 +155,9 @@ def Convert(
             return event
 
         def Triangle(event: Event) -> Optional[Event]:
-            padding = 1.0
+            # 气泡框的框和柄分开绘制
+            # 这个函数绘制气泡柄
+            padding = padding_y
 
             # 坐标原点
             x_left = x - sx
@@ -192,6 +178,7 @@ def Convert(
                 tags = Tag()
                 tags.extend(
                     [
+                        Tag.Align(7),
                         Tag.Pos(_sx, _sy),
                         Tag.PrimaryColour(each.bgColor),
                         Tag.PrimaryAlpha(each.bgOpacity),
@@ -281,6 +268,50 @@ def Convert(
 
             return None
 
+        def Title(event: Event) -> Event:
+            # 相比 Text, 文字会居中
+            text = each.text
+
+            if "\n" not in text:
+                length = int(width / (textSize / 2)) + 1
+                text = "\n".join(
+                    textwrap.wrap(text, width=length, drop_whitespace=False)
+                )
+
+            if text.startswith(" "):
+                text = "\u200b" + text
+
+            text = text.replace("\n", r"\N")
+
+            text = text.replace("{", r"\{")
+            text = text.replace("}", r"\}")
+
+            # 模拟居中
+            _x = x + (width / 2)
+            _y = y + (height / 2)
+
+            _x = round(_x, 3)
+            _y = round(_y, 3)
+            _textSize = round(textSize, 3)
+
+            shadow = Tag.Shadow(0)
+            tags = Tag()
+            tags.extend(
+                [
+                    Tag.Align(5),
+                    Tag.Pos(_x, _y),
+                    Tag.Fontsize(_textSize),
+                    Tag.PrimaryColour(each.fgColor),
+                    Tag.Bord(0),
+                    shadow,
+                ]
+            )
+            if each.fontWeight == "bold":
+                tags.append(Tag.Bold(1))
+
+            event.Text = str(tags) + text
+            return event
+
         def popup_text() -> Event:
             _event = copy.copy(event)
             _event.Name += "popup_text;"
@@ -297,7 +328,7 @@ def Convert(
             _event = copy.copy(event)
             _event.Name += "title;"
 
-            return Text(_event)
+            return Title(_event)
 
         def highlightText_text() -> Event:
             _event = copy.copy(event)
@@ -384,6 +415,10 @@ def Convert(
         def highlight() -> List[Event]:
             return [highlight_box(), highlight_text()]
 
+        # 框与文本之间有填充距离
+        padding_x = 1.0
+        padding_y = 1.0
+
         event = Event()
 
         event.Start = each.timeStart
@@ -403,6 +438,7 @@ def Convert(
         sx = each.sx
         sy = each.sy
 
+        # 模拟 DPI 缩放
         if each.style == "title":
             textSize = textSize * 100 / 480
 
@@ -415,6 +451,7 @@ def Convert(
             x = TransformX(x)
             width = TransformX(width)
             sx = TransformX(sx)
+            padding_x = TransformX(padding_x)
 
         if resolutionY != 100:
             transform_coefficient_y = resolutionY / 100
@@ -426,6 +463,7 @@ def Convert(
             textSize = TransformY(textSize)
             height = TransformY(height)
             sy = TransformY(sy)
+            padding_y = TransformY(padding_y)
 
         if each.style == "popup":
             return popup()

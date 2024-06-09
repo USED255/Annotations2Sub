@@ -3,17 +3,17 @@
 
 """Annotations2Sub, 一个能把 Youtube 注释转换成 Advanced SubStation Alpha 字幕文件的脚本"""
 
-__version__ = "2.15.1"
+__version__ = "2.16.0"
 
 """
-                                            xml.
-                                            etree.
+                                             xml.
+                                             etree.
 ┌─────────────────┐            ┌────────┐    ElementTree.  ┌─────────┐
 │                 │    read()  │        │    fromstring()  │         │     Parse()
 │ Annotations.xml │ ─────────► │ String │ ───────────────► │ Element │ ────────────┐
 │                 │            │        │                  │         │             │
 └─────────────────┘            └────────┘                  └─────────┘             │
-                                                                                  ▼
+                                                                                   ▼
                                                                          ┌──────────────────┐
                                                                          │                  │
                                                                          │ List[Annotation] │
@@ -80,10 +80,17 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 ...
 
 ---
+
+在失眠的夜晚思绪飞扬, 我在 Internet Archive 上找到了旧的 YouTube 网页, 在一些修补下, Annotations 能正常工作,
+现在我们能够直接看到正确的效果, 这给调试带来了极大的便利.
+您可以在这里找到成品: https://github.com/USED255/youtube_annotations_hack
+
+---
 - 注释(Annotations): YouTube 的功能
 - SSA(Sub Station Alpha): 字幕格式
 - ASS(Advanced SubStation Alpha): 字幕格式
 - invidious(https://invidious.io/): 开源 YouTube 前端
+- Internet Archive(https://archive.org/): 互联网档案馆
 
 """
 version = __version__
