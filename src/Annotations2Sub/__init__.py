@@ -82,7 +82,8 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 ---
 
 在失眠的夜晚思绪飞扬, 我在 Internet Archive 上找到了旧的 YouTube 网页, 在一些修补下, Annotations 能正常工作,
-这为调试带来了极大的便利. https://github.com/USED255/youtube_annotations_hack
+现在我们能够直接看到正确的效果, 这给调试带来了极大的便利.
+您可以在这里找到成品: https://github.com/USED255/youtube_annotations_hack
 
 ---
 - 注释(Annotations): YouTube 的功能
