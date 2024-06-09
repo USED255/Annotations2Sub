@@ -58,7 +58,6 @@ def Convert(
             _y = round(_y, 3)
             _textSize = round(textSize, 3)
 
-            shadow = Tag.Shadow(0)
             tags = Tag()
             tags.extend(
                 [
@@ -67,7 +66,7 @@ def Convert(
                     Tag.Fontsize(_textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
-                    shadow,
+                    Tag.Shadow(0),
                 ]
             )
             if each.fontWeight == "bold":
@@ -112,6 +111,7 @@ def Convert(
             return event
 
         def HighlightBox(event: Event) -> Event:
+            # HighlightBox 是一个中空的框
             x1 = x + padding_x
             y1 = y + padding_y
             x2 = x + width - padding_x
@@ -135,6 +135,7 @@ def Convert(
                     Tag.PrimaryAlpha(each.bgOpacity),
                     Tag.Bord(0),
                     Tag.Shadow(0),
+                    # 将一个框挖空模拟其效果
                     Tag.iClip(x1, y1, x2, y2),
                 ]
             )
@@ -154,6 +155,8 @@ def Convert(
             return event
 
         def Triangle(event: Event) -> Optional[Event]:
+            # 气泡框的框和柄分开绘制
+            # 这个函数绘制气泡柄
             padding = padding_y
 
             # 坐标原点
@@ -266,6 +269,7 @@ def Convert(
             return None
 
         def Title(event: Event) -> Event:
+            # 相比 Text, 文字会居中
             text = each.text
 
             if "\n" not in text:
@@ -411,6 +415,7 @@ def Convert(
         def highlight() -> List[Event]:
             return [highlight_box(), highlight_text()]
 
+        # 框与文本之间有填充距离
         padding_x = 1.0
         padding_y = 1.0
 
@@ -433,6 +438,7 @@ def Convert(
         sx = each.sx
         sy = each.sy
 
+        # 模拟 DPI 缩放
         if each.style == "title":
             textSize = textSize * 100 / 480
 
