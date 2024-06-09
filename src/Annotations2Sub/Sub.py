@@ -67,6 +67,8 @@ class Style:
         # 直接抄 Aegisub 置为 1
         self.Encoding: int = 1
 
+    # Name 字段不在这里, 所以没有 __str__()
+
 
 class Event:
     """SSA 事件(Event) 结构"""
