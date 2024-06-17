@@ -84,11 +84,6 @@ def Convert(
         def Box(event: Event) -> Event:
             """生成 Annotation 文本框的 Event"""
 
-            _x = round(x, 3)
-            _y = round(y, 3)
-            _width = round(width, 3)
-            _height = round(height, 3)
-
             tags = Tag()
             tags.extend(
                 [
@@ -451,6 +446,14 @@ def Convert(
         textSize = round(textSize, 3)
         # width = round(width, 3)
         # height = round(height, 3)
+        # sx = round(sx, 3)
+        # sy = round(sy, 3)
+
+        _x = round(x, 3)
+        _y = round(y, 3)
+        # textSize = round(textSize, 3)
+        _width = round(width, 3)
+        _height = round(height, 3)
         # sx = round(sx, 3)
         # sy = round(sy, 3)
 
