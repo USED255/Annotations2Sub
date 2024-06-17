@@ -6,8 +6,10 @@ import xml.etree.ElementTree
 
 from Annotations2Sub import Convert, Parse, Sub
 from Annotations2Sub.utils import _
+from tests import garbagePath, testCasePath
 
-filePath = os.path.join(os.path.dirname(__file__), "testCase", "annotations.xml.test")
+filePath = os.path.join(testCasePath, "annotations.xml.test")
+filePath2 = os.path.join(garbagePath, "annotations.ass.test")
 
 
 def test_Annotations2Sub():
@@ -24,4 +26,6 @@ def test_Annotations2Sub():
     subtitle.info["PlayResY"] = "1080"
     subtitle.info["WrapStyle"] = "2"
     subtitle.events.extend(events)
-    subtitle.Dump()
+    sub = subtitle.Dump()
+    with open(filePath2, "w", encoding="utf-8") as f:
+        f.write(sub)
