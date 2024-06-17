@@ -118,8 +118,6 @@ def Convert(
             x2 = x + width - padding_x
             y2 = y + height - padding_y
 
-            _x = round(x, 3)
-            _y = round(y, 3)
             x1 = round(x1, 3)
             y1 = round(y1, 3)
             x2 = round(x2, 3)
