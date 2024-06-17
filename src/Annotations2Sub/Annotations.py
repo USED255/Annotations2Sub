@@ -21,6 +21,9 @@ except ImportError:
 def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
+class NotAnnotationsDocumentError(ValueError):
+    pass
+
 
 class Annotation:
     """Annotation 结构"""
@@ -248,7 +251,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
     annotations_tree = tree.find("annotations")
     if annotations_tree is None:
-        raise ValueError(_("不是 Annotations 文档"))
+        raise NotAnnotationsDocumentError(_("不是 Annotations 文档"))
 
     annotations: List[Annotation] = []
     for each in annotations_tree.findall("annotation"):
