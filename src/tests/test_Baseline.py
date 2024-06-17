@@ -6,9 +6,8 @@ import os
 
 from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import RedText, Stderr
-from tests import testCasePath
+from tests import testCasePath, baselinePath
 
-baseline_path = os.path.join(testCasePath, "Baseline")
 
 baselines = ["annotations", "e8kKeUuytqA", "29-q7YnyUmY"]
 
@@ -46,8 +45,8 @@ def test_not_equal():
 
 
 def run_baseline(Baseline: str):
-    baseline_file = os.path.join(baseline_path, Baseline + ".xml.test")
-    baseline_result = os.path.join(baseline_path, Baseline + ".ass.test")
+    baseline_file = os.path.join(baselinePath, Baseline + ".xml.test")
+    baseline_result = os.path.join(baselinePath, Baseline + ".ass.test")
     result = baseline_file + ".ass"
 
     Run([baseline_file])
@@ -55,8 +54,8 @@ def run_baseline(Baseline: str):
 
 
 def run_baseline_transform(Baseline: str):
-    baseline_file = os.path.join(baseline_path, Baseline + ".xml.test")
-    baseline_result = os.path.join(baseline_path, Baseline + ".transform.ass.test")
+    baseline_file = os.path.join(baselinePath, Baseline + ".xml.test")
+    baseline_result = os.path.join(baselinePath, Baseline + ".transform.ass.test")
     result = baseline_file + ".ass"
 
     Run([baseline_file, "-x", "1920", "-y", "1080"])

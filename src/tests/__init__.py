@@ -10,6 +10,7 @@ import pytest
 basePath = os.path.dirname(__file__)
 testCasePath = os.path.join(basePath, "testCase")
 garbagePath = os.path.join(testCasePath, "garbage")
+baselinePath = os.path.join(testCasePath, "Baseline")
 
 _m = pytest.MonkeyPatch()
 

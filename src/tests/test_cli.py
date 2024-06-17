@@ -11,20 +11,17 @@ import pytest
 from Annotations2Sub import cli
 from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import Stderr
-
-base_path = os.path.dirname(__file__)
-test_case_path = os.path.join(base_path, "testCase")
-baseline_path = os.path.join(test_case_path, "Baseline")
+from tests import testCasePath, baselinePath
 
 baseline1_video_id = "29-q7YnyUmY"
 baseline2_video_id = "e8kKeUuytqA"
 
-baseline1_file = os.path.join(baseline_path, "29-q7YnyUmY.xml.test")
-baseline2_file = os.path.join(baseline_path, "e8kKeUuytqA.xml.test")
+baseline1_file = os.path.join(baselinePath, "29-q7YnyUmY.xml.test")
+baseline2_file = os.path.join(baselinePath, "e8kKeUuytqA.xml.test")
 
-empty_xml = os.path.join(test_case_path, "empty.xml.test")
-empty_annotations = os.path.join(test_case_path, "emptyAnnotations.xml.test")
-file_file = os.path.join(test_case_path, "file.ass.test")
+empty_xml = os.path.join(testCasePath, "empty.xml.test")
+empty_annotations = os.path.join(testCasePath, "emptyAnnotations.xml.test")
+file_file = os.path.join(testCasePath, "file.ass.test")
 
 
 def test_cli_failed():
@@ -232,10 +229,10 @@ def test_CheckNetwork():
     m.setattr(cli, "GetUrl", GetUrlMock)
 
     m.setattr(urllib.request, "urlopen", urlopenMock)
-    Run("-d 12345678911".split(" "))
+    Run("-d 12345678911".split(" "))  # type: ignore
 
     m.setattr(urllib.request, "urlopen", urlopenURLErrorMock)
-    Run("-d 12345678911".split(" "))
+    Run("-d 12345678911".split(" "))  # type: ignore
 
     with pytest.raises(pytest.fail.Exception):
         GetUrlMock("")
