@@ -124,8 +124,6 @@ def Convert(
             y1 = round(y1, 3)
             x2 = round(x2, 3)
             y2 = round(y2, 3)
-            _width = round(width, 3)
-            _height = round(height, 3)
 
             tags = Tag()
             tags.extend(
