@@ -164,8 +164,6 @@ def Convert(
             y_bottom = y_top + height
 
             def draw(x1, y1, x2, y2):
-                _sx = round(sx, 3)
-                _sy = round(sy, 3)
 
                 x1 = round(x1, 3)
                 y1 = round(y1, 3)
@@ -450,8 +448,8 @@ def Convert(
         # textSize = round(textSize, 3)
         _width = round(width, 3)
         _height = round(height, 3)
-        # sx = round(sx, 3)
-        # sy = round(sy, 3)
+        _sx = round(sx, 3)
+        _sy = round(sy, 3)
 
         if each.style == "popup":
             return popup()
