@@ -35,14 +35,13 @@ def Convert(
             # 为了可读性, 去掉多余的小数
             _x = round(_x, 3)
             _y = round(_y, 3)
-            _textSize = round(textSize, 3)
 
             tags = Tag()
             tags.extend(
                 [
                     Tag.Align(7),
                     Tag.Pos(_x, _y),
-                    Tag.Fontsize(_textSize),
+                    Tag.Fontsize(textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
                     Tag.Shadow(0),
@@ -63,7 +62,6 @@ def Convert(
 
             _x = round(_x, 3)
             _y = round(_y, 3)
-            _textSize = round(textSize, 3)
 
             shadow = Tag.Shadow(0)
             tags = Tag()
@@ -71,7 +69,7 @@ def Convert(
                 [
                     Tag.Align(5),
                     Tag.Pos(_x, _y),
-                    Tag.Fontsize(_textSize),
+                    Tag.Fontsize(textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
                     shadow,
@@ -433,9 +431,7 @@ def Convert(
         # 模拟换行行为
         if "\n" not in text:
             length = int(width / (textSize / 2)) + 1
-            text = "\n".join(
-                textwrap.wrap(text, width=length, drop_whitespace=False)
-            )
+            text = "\n".join(textwrap.wrap(text, width=length, drop_whitespace=False))
 
         # 让前导空格生效
         if text.startswith(" "):
@@ -449,6 +445,14 @@ def Convert(
         # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
         text = text.replace("{", r"\{")
         text = text.replace("}", r"\}")
+
+        # x = round(x, 3)
+        # y = round(y, 3)
+        textSize = round(textSize, 3)
+        # width = round(width, 3)
+        # height = round(height, 3)
+        # sx = round(sx, 3)
+        # sy = round(sy, 3)
 
         if each.style == "popup":
             return popup()
