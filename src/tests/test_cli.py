@@ -14,7 +14,6 @@ from Annotations2Sub.utils import Stderr
 from tests import baselinePath, testCasePath
 
 baseline1_video_id = "29-q7YnyUmY"
-baseline2_video_id = "e8kKeUuytqA"
 
 baseline1_file = os.path.join(baselinePath, "29-q7YnyUmY.xml.test")
 baseline2_file = os.path.join(baselinePath, "e8kKeUuytqA.xml.test")
