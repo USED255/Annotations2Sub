@@ -27,27 +27,6 @@ def Convert(
 
         def Text(event: Event) -> Event:
             """生成 Annotation 文本的 Event"""
-            text = each.text
-
-            # 模拟换行行为
-            if "\n" not in text:
-                length = int(width / (textSize / 2)) + 1
-                text = "\n".join(
-                    textwrap.wrap(text, width=length, drop_whitespace=False)
-                )
-
-            # 让前导空格生效
-            if text.startswith(" "):
-                text = "\u200b" + text
-
-            # SSA 用 "\N" 换行
-            text = text.replace("\n", r"\N")
-
-            # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
-            # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
-            # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
-            text = text.replace("{", r"\{")
-            text = text.replace("}", r"\}")
 
             # 文本与框保持一定距离
             _x = x + padding_x
@@ -77,21 +56,6 @@ def Convert(
 
         def CenterText(event: Event) -> Event:
             # 相比 Text, 文字会居中
-            text = each.text
-
-            if "\n" not in text:
-                length = int(width / (textSize / 2)) + 1
-                text = "\n".join(
-                    textwrap.wrap(text, width=length, drop_whitespace=False)
-                )
-
-            if text.startswith(" "):
-                text = "\u200b" + text
-
-            text = text.replace("\n", r"\N")
-
-            text = text.replace("{", r"\{")
-            text = text.replace("}", r"\}")
 
             # 模拟居中
             _x = x + (width / 2)
@@ -437,6 +401,7 @@ def Convert(
         height = each.height
         sx = each.sx
         sy = each.sy
+        text = each.text
 
         # 模拟 DPI 缩放
         if each.style == "title":
@@ -464,6 +429,26 @@ def Convert(
             height = TransformY(height)
             sy = TransformY(sy)
             padding_y = TransformY(padding_y)
+
+        # 模拟换行行为
+        if "\n" not in text:
+            length = int(width / (textSize / 2)) + 1
+            text = "\n".join(
+                textwrap.wrap(text, width=length, drop_whitespace=False)
+            )
+
+        # 让前导空格生效
+        if text.startswith(" "):
+            text = "\u200b" + text
+
+        # SSA 用 "\N" 换行
+        text = text.replace("\n", r"\N")
+
+        # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
+        # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
+        # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
+        text = text.replace("{", r"\{")
+        text = text.replace("}", r"\}")
 
         if each.style == "popup":
             return popup()
