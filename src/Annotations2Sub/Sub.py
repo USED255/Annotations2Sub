@@ -115,7 +115,11 @@ class Sub:
         self._events = self._Events()
 
         self.info = self._info.infos
+        """ 这个结构中会有一些脚本的配置 """
+
         self.comment = ""
+        """ 通常脚本中会有一些注释写了谁生成了这个脚本 """
+
         self.styles = self._styles.styles
         self.events = self._events.events
 
