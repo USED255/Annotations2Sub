@@ -75,6 +75,50 @@ def Convert(
             event.Text = str(tags) + text
             return event
 
+        def CenterText(event: Event) -> Event:
+            # 相比 Text, 文字会居中
+            text = each.text
+
+            if "\n" not in text:
+                length = int(width / (textSize / 2)) + 1
+                text = "\n".join(
+                    textwrap.wrap(text, width=length, drop_whitespace=False)
+                )
+
+            if text.startswith(" "):
+                text = "\u200b" + text
+
+            text = text.replace("\n", r"\N")
+
+            text = text.replace("{", r"\{")
+            text = text.replace("}", r"\}")
+
+            # 模拟居中
+            _x = x + (width / 2)
+            _y = y + (height / 2)
+
+            _x = round(_x, 3)
+            _y = round(_y, 3)
+            _textSize = round(textSize, 3)
+
+            shadow = Tag.Shadow(0)
+            tags = Tag()
+            tags.extend(
+                [
+                    Tag.Align(5),
+                    Tag.Pos(_x, _y),
+                    Tag.Fontsize(_textSize),
+                    Tag.PrimaryColour(each.fgColor),
+                    Tag.Bord(0),
+                    shadow,
+                ]
+            )
+            if each.fontWeight == "bold":
+                tags.append(Tag.Bold(1))
+
+            event.Text = str(tags) + text
+            return event
+
         def Box(event: Event) -> Event:
             """生成 Annotation 文本框的 Event"""
 
@@ -267,50 +311,6 @@ def Convert(
                 return _event
 
             return None
-
-        def CenterText(event: Event) -> Event:
-            # 相比 Text, 文字会居中
-            text = each.text
-
-            if "\n" not in text:
-                length = int(width / (textSize / 2)) + 1
-                text = "\n".join(
-                    textwrap.wrap(text, width=length, drop_whitespace=False)
-                )
-
-            if text.startswith(" "):
-                text = "\u200b" + text
-
-            text = text.replace("\n", r"\N")
-
-            text = text.replace("{", r"\{")
-            text = text.replace("}", r"\}")
-
-            # 模拟居中
-            _x = x + (width / 2)
-            _y = y + (height / 2)
-
-            _x = round(_x, 3)
-            _y = round(_y, 3)
-            _textSize = round(textSize, 3)
-
-            shadow = Tag.Shadow(0)
-            tags = Tag()
-            tags.extend(
-                [
-                    Tag.Align(5),
-                    Tag.Pos(_x, _y),
-                    Tag.Fontsize(_textSize),
-                    Tag.PrimaryColour(each.fgColor),
-                    Tag.Bord(0),
-                    shadow,
-                ]
-            )
-            if each.fontWeight == "bold":
-                tags.append(Tag.Bold(1))
-
-            event.Text = str(tags) + text
-            return event
 
         def popup_text() -> Event:
             _event = copy.copy(event)
