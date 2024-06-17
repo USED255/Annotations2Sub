@@ -268,7 +268,7 @@ def Convert(
 
             return None
 
-        def Title(event: Event) -> Event:
+        def CenterText(event: Event) -> Event:
             # 相比 Text, 文字会居中
             text = each.text
 
@@ -328,13 +328,13 @@ def Convert(
             _event = copy.copy(event)
             _event.Name += "title;"
 
-            return Title(_event)
+            return CenterText(_event)
 
         def highlightText_text() -> Event:
             _event = copy.copy(event)
             _event.Name += "highlightText_text;"
 
-            return Text(_event)
+            return CenterText(_event)
 
         def highlightText_box() -> Event:
             _event = copy.copy(event)
