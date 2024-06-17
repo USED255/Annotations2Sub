@@ -227,8 +227,8 @@ def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
             except (URLError, TimeoutError):
                 Warn(_("您好像无法访问 Google 🤔"))
 
-        Dummy([CheckNetwork])
         _thread.start_new_thread(CheckNetwork, ())
+        Dummy([CheckNetwork])
 
     for Task in queue:
         video_id = MakeSureStr(Task)

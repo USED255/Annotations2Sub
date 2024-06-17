@@ -10,10 +10,6 @@ from Annotations2Sub.Color import Alpha, Color, Rgba
 from Annotations2Sub.utils import _
 
 
-def Dummy(*args, **kwargs):
-    """用于 MonkeyPatch"""
-
-
 # 兼容 Python3.6, 3.7
 # Python3.6, 3.7 的 typing 没有 Literal
 try:
