@@ -6,8 +6,7 @@ import os
 
 from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import RedText, Stderr
-from tests import testCasePath, baselinePath
-
+from tests import baselinePath, testCasePath
 
 baselines = ["annotations", "e8kKeUuytqA", "29-q7YnyUmY"]
 

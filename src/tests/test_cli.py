@@ -11,7 +11,7 @@ import pytest
 from Annotations2Sub import cli
 from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import Stderr
-from tests import testCasePath, baselinePath
+from tests import baselinePath, testCasePath
 
 baseline1_video_id = "29-q7YnyUmY"
 baseline2_video_id = "e8kKeUuytqA"
