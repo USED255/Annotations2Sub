@@ -419,7 +419,7 @@ def Convert(
 
         # 模拟换行行为
         if "\n" not in text:
-            length = int(width / (textSize / 2)) + 1
+            length = int(width / (textSize / 4)) + 1
             text = "\n".join(textwrap.wrap(text, width=length, drop_whitespace=False))
 
         # 让前导空格生效
