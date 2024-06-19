@@ -15,4 +15,5 @@ src/tests/testCase/garbage/
 *.ass
 *.lnk
 *.ps1
+*.pyz
 mypy.ini
