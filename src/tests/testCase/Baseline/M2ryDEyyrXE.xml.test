@@ -81,7 +81,7 @@
 
     <annotation author="" id="annotation_2843969679" itct="CAgQs-UBGP___________wEiEwjW0of2q9zfAhUItZwKHUQdDKoo-B0yAml2SPHayuXEwby1Mw" log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_2843969679&amp;xble=1&amp;a-type=9&amp;a-v=M2ryDEyyrXE" style="label" type="text">
       <TEXT>THIS IS A NORMAL ANNOTATION
-  (Normal Mode)</TEXT>
+(Normal Mode)</TEXT>
       <segment>
         <movingRegion type="rect">
           <rectRegion d="0" h="17.7779998779" t="0:50.520" w="25.0" x="70.5230026245" y="0.282000005245" />
@@ -116,7 +116,7 @@
 
     <annotation id="annotation_3109885823" type="text" style="anchored" log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_3109885823&amp;xble=1&amp;a-type=8&amp;a-v=M2ryDEyyrXE" itct="">
       <TEXT>Hey, I&#39;m the last annotation on YouTube!
-  Good bye!</TEXT>
+Good bye!</TEXT>
       <segment>
         <movingRegion type="anchored">
           <anchoredRegion x="41.04600" y="3.66200" w="57.69100" h="39.02600" sx="43.0460014343" sy="1.66199994087" t="2:10.467" />
@@ -139,8 +139,8 @@
 
     <annotation author="" id="annotation_3533555619" log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_3533555619&amp;xble=1&amp;a-type=4&amp;a-v=M2ryDEyyrXE" style="title" type="text">
       <TEXT>Annotations
-  2008 - 2017
-  R.I.P.</TEXT>
+2008 - 2017
+R.I.P.</TEXT>
       <segment>
         <movingRegion type="rect">
           <rectRegion d="0" h="33.4370002747" t="1:58.800" w="76.2679977417" x="13.3120002747" y="3.09899997711" />
@@ -199,7 +199,7 @@
 
     <annotation author="" id="annotation_4225609537" log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_4225609537&amp;xble=1&amp;a-type=4&amp;a-v=M2ryDEyyrXE" style="title" type="text">
       <TEXT>TITLE
-  I can't do that! :((((</TEXT>
+I can't do that! :((((</TEXT>
       <segment>
         <movingRegion type="rect">
           <rectRegion d="0" h="12.3100004196" t="0:50.600" w="45.6809997559" x="0.791999995708" y="5.63399982452" />
