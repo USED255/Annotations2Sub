@@ -8,7 +8,7 @@ from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import RedText, Stderr
 from tests import baselinePath, testCasePath
 
-baselines = ["annotations", "e8kKeUuytqA", "29-q7YnyUmY"]
+baselines = ["annotations", "e8kKeUuytqA", "29-q7YnyUmY", "M2ryDEyyrXE"]
 
 
 def equal(file1: str, file2: str) -> bool:

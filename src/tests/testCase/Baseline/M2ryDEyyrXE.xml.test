@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+  <annotations itct="CAAQwOYBIhMI1tKH9qvc3wIVCLWcCh1EHQyqKPgdMgJpdkjx2srlxMG8tTM">
+    <annotation id="annotation_121025749" type="text" style="popup"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_121025749&amp;xble=1&amp;a-type=1&amp;a-v=M2ryDEyyrXE"
+      itct="CAEQs-UBGP___________wEiEwjW0of2q9zfAhUItZwKHUQdDKoo-B0yAml2SPHayuXEwby1Mw">
+      <TEXT>By the way, you couldn&#39;t use both annotations and end screens and cards in the same
+        video.</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion x="4.43700" y="5.07000" w="36.33100" h="18.73200" t="1:23.436" />
+          <rectRegion x="4.43700" y="5.07000" w="36.33100" h="18.73200" t="1:30.247" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.25" bgColor="0" fgColor="16777215" textSize="3.911599999999999"
+        effects="">
+
+      </appearance>
+
+    </annotation>
+    <annotation id="annotation_1243342941" type="text" style="anchored"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_1243342941&amp;xble=1&amp;a-type=8&amp;a-v=M2ryDEyyrXE"
+      itct="CAIQs-UBGP___________wEiEwjW0of2q9zfAhUItZwKHUQdDKoo-B0yAml2SPHayuXEwby1Mw">
+      <TEXT>ANOTHER EXAMPLE</TEXT>
+      <segment>
+        <movingRegion type="anchored">
+          <anchoredRegion x="38.82700" y="72.67600" w="29.95200" h="17.33800" sx="53.4099998474"
+            sy="92.013999939" t="0:50.574" />
+          <anchoredRegion x="38.82700" y="72.67600" w="29.95200" h="17.33800" sx="53.4099998474"
+            sy="92.013999939" t="0:55.033" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.600000023842" bgColor="11529425" fgColor="16777215"
+        textSize="4.814266666666667" effects="bevel dropshadow textdropshadow">
+
+      </appearance>
+
+    </annotation>
+    <annotation author="" id="annotation_1336159713"
+      itct="CAMQs-UBGP___________wEiEwjW0of2q9zfAhUItZwKHUQdDKoo-B0yAml2SPHayuXEwby1Mw"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_1336159713&amp;xble=1&amp;a-type=4&amp;a-v=M2ryDEyyrXE"
+      style="title" type="text">
+      <TEXT>Title</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion d="0" h="18.591999054" t="0:46.358" w="31.4179992676" x="48.811000824"
+            y="29.295999527" />
+          <rectRegion d="0" h="18.591999054" t="0:50.413" w="31.4179992676" x="48.811000824"
+            y="29.295999527" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects=""
+        fgColor="16777215" fontWeight="bold" textSize="21.6642" />
+    </annotation>
+    <annotation id="annotation_1476308891" type="text" style="popup"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_1476308891&amp;xble=1&amp;a-type=1&amp;a-v=M2ryDEyyrXE"
+      itct="CAQQs-UBGP___________wEiEwjW0of2q9zfAhUItZwKHUQdDKoo-B0yAml2SPHayuXEwby1Mw">
+      <TEXT>You could set if you wanted to open the link in a new tab or if you wanted to enter it
+        directly (replacing this video with the linked website or video).</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion x="3.17000" y="21.69000" w="15.41200" h="57.62000" t="1:11.307" />
+          <rectRegion x="3.17000" y="21.69000" w="15.41200" h="57.62000" t="1:15.877" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.600000023842" bgColor="16564776" fgColor="16777215"
+        textSize="3.911599999999999" effects="bevel dropshadow textdropshadow">
+
+      </appearance>
+
+    </annotation>
+    <annotation id="annotation_177747451" type="text" style="popup"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_177747451&amp;xble=1&amp;a-type=1&amp;a-v=M2ryDEyyrXE"
+      itct="CAUQs-UBGP___________wEiEwjW0of2q9zfAhUItZwKHUQdDKoo-B0yAml2SPHayuXEwby1Mw">
+      <TEXT>Many videos uploaders used annotations to correct mistakes which hadn&#39;t been
+        detected when the video had been editing (or recording).</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion x="5.62500" y="5.55600" w="44.89000" h="26.90900" t="1:30.912" />
+          <rectRegion x="5.62500" y="5.55600" w="44.89000" h="26.90900" t="1:37.723" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.600000023842" bgColor="4210330" fgColor="16777215"
+        textSize="4.814266666666667" effects="">
+
+      </appearance>
+
+    </annotation>
+    <annotation id="annotation_2448416493" type="text" style="popup"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_2448416493&amp;xble=1&amp;a-type=1&amp;a-v=M2ryDEyyrXE"
+      itct="CAYQs-UBGP___________wEiEwjW0of2q9zfAhUItZwKHUQdDKoo-B0yAml2SPHayuXEwby1Mw">
+      <TEXT>EXAMPLE</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion x="6.18100" y="73.52100" w="30.00000" h="17.05600" t="0:50.600" />
+          <rectRegion x="6.18100" y="73.52100" w="30.00000" h="17.05600" t="0:55.033" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.600000023842" bgColor="16636470" fgColor="16777215"
+        textSize="8.424966666666666" effects="bevel dropshadow textdropshadow">
+
+      </appearance>
+
+    </annotation>
+    <annotation id="annotation_2831017921" type="text" style="popup"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_2831017921&amp;xble=1&amp;a-type=1&amp;a-v=M2ryDEyyrXE"
+      itct="CAcQs-UBGP___________wEiEwjW0of2q9zfAhUItZwKHUQdDKoo-B0yAml2SPHayuXEwby1Mw">
+      <TEXT>A big problem related to annotations was that the most of the viewers turned them off as
+        soon as a video had started and because of that, a lot of useful information about the video
+        would be lost by the watcher.</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion x="3.96200" y="5.91500" w="42.67800" h="31.98600" t="1:39.891" />
+          <rectRegion x="3.96200" y="5.91500" w="42.67800" h="31.98600" t="1:46.702" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.600000023842" bgColor="14845777" fgColor="16777215"
+        textSize="3.911599999999999" effects="">
+
+      </appearance>
+
+    </annotation>
+    <annotation author="" id="annotation_2843969679"
+      itct="CAgQs-UBGP___________wEiEwjW0of2q9zfAhUItZwKHUQdDKoo-B0yAml2SPHayuXEwby1Mw"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_2843969679&amp;xble=1&amp;a-type=9&amp;a-v=M2ryDEyyrXE"
+      style="label" type="text">
+      <TEXT>THIS IS A NORMAL ANNOTATION
+        (Normal Mode)</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion d="0" h="17.7779998779" t="0:50.520" w="25.0" x="70.5230026245"
+            y="0.282000005245" />
+          <rectRegion d="0" h="17.7779998779" t="0:55.060" w="25.0" x="70.5230026245"
+            y="0.282000005245" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.600000023842" bgColor="8148142" effects="textdropshadow"
+        fgColor="16777215" highlightFontColor="16777215" textSize="3.911599999999999" />
+    </annotation>
+    <annotation id="annotation_2858215607" type="highlight"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_2858215607&amp;xble=1&amp;a-type=3&amp;a-v=M2ryDEyyrXE"
+      itct="CAkQs-UBGP___________wEiEwjW0of2q9zfAhUItZwKHUQdDKoo-B0yAml2SPHayuXEwby1Mw">
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion x="5.23000" y="54.64800" w="25.00000" h="27.77800" t="0:47.423" />
+          <rectRegion x="5.23000" y="54.64800" w="25.00000" h="27.77800" t="0:50.413" />
+        </movingRegion>
+      </segment>
+      <appearance bgColor="5670865" highlightWidth="3" borderAlpha="0.2" />
+
+    </annotation>
+
+    <annotation id="annotation_2979048273" type="text" style="anchored"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_2979048273&amp;xble=1&amp;a-type=8&amp;a-v=M2ryDEyyrXE"
+      itct="CAoQs-UBGP___________wEiEwjW0of2q9zfAhUItZwKHUQdDKoo-B0yAml2SPHayuXEwby1Mw">
+      <TEXT>This one was used to highlight a certain spot in your video.</TEXT>
+      <segment>
+        <movingRegion type="anchored">
+          <anchoredRegion x="32.17100" y="57.46500" w="30.11100" h="18.74600" sx="30.170999527"
+            sy="64.3539962769" t="0:47.449" />
+          <anchoredRegion x="32.17100" y="57.46500" w="30.11100" h="18.74600" sx="30.170999527"
+            sy="64.3539962769" t="0:50.440" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.600000023842" bgColor="13319742" fgColor="16777215"
+        textSize="3.911599999999999" effects="">
+
+      </appearance>
+
+    </annotation>
+
+    <annotation id="annotation_3109885823" type="text" style="anchored"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_3109885823&amp;xble=1&amp;a-type=8&amp;a-v=M2ryDEyyrXE"
+      itct="">
+      <TEXT>Hey, I&#39;m the last annotation on YouTube!
+        Good bye!</TEXT>
+      <segment>
+        <movingRegion type="anchored">
+          <anchoredRegion x="41.04600" y="3.66200" w="57.69100" h="39.02600" sx="43.0460014343"
+            sy="1.66199994087" t="2:10.467" />
+          <anchoredRegion x="41.04600" y="3.66200" w="57.69100" h="39.02600" sx="43.0460014343"
+            sy="1.66199994087" t="2:13.912" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.600000023842" bgColor="5218515" fgColor="1710618"
+        textSize="8.424966666666666" effects="bevel dropshadow textdropshadow">
+
+      </appearance>
+
+    </annotation>
+    <annotation author="" id="annotation_3266275345"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_3266275345&amp;xble=1&amp;a-type=9&amp;a-v=M2ryDEyyrXE"
+      style="label" type="text">
+      <TEXT>Label</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion d="0" h="17.7779998779" t="0:48.331" w="25.0" x="71.7910003662"
+            y="59.7179985046" />
+          <rectRegion d="0" h="17.7779998779" t="0:50.413" w="25.0" x="71.7910003662"
+            y="59.7179985046" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.600000023842" bgColor="6994293" effects="" textSize="8.424966666666666" />
+    </annotation>
+    <annotation author="" id="annotation_3533555619"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_3533555619&amp;xble=1&amp;a-type=4&amp;a-v=M2ryDEyyrXE"
+      style="title" type="text">
+      <TEXT>Annotations
+        2008 - 2017
+        R.I.P.</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion d="0" h="33.4370002747" t="1:58.800" w="76.2679977417" x="13.3120002747"
+            y="3.09899997711" />
+          <rectRegion d="0" h="33.4370002747" t="2:09.737" w="76.2679977417" x="13.3120002747"
+            y="3.09899997711" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects=""
+        fgColor="16777215" fontWeight="bold" textSize="30.089166666666667" />
+    </annotation>
+    <annotation id="annotation_3584638837" type="text" style="popup"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_3584638837&amp;xble=1&amp;a-type=1&amp;a-v=M2ryDEyyrXE"
+      itct="">
+      <TEXT>EXAMPLE</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion x="6.18100" y="59.71800" w="30.00000" h="8.88900" t="0:50.494" />
+          <rectRegion x="6.18100" y="59.71800" w="30.00000" h="8.88900" t="0:55.113" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.600000023842" bgColor="14573741" fgColor="16777215"
+        textSize="8.424966666666666" effects="bevel dropshadow textdropshadow">
+
+      </appearance>
+
+    </annotation>
+    <annotation id="annotation_3690447403" type="text" style="popup"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_3690447403&amp;xble=1&amp;a-type=1&amp;a-v=M2ryDEyyrXE"
+      itct="">
+      <TEXT>Sometimes, this kind of annotations was very fuckin&#39; annoying. A lot of spammers
+        used it to earn points on survey sites. Or to make view on other YouTube videos. It could be
+        turned to be invisible and when someone was trying to pause the video by clicking the screen
+        he would be immediately redirected to another site or video.</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion x="79.08100" y="21.69000" w="20.91900" h="57.32400" t="1:11.381" />
+          <rectRegion x="79.08100" y="21.69000" w="20.91900" h="57.32400" t="1:15.937" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.600000023842" bgColor="14573741" fgColor="16777215"
+        textSize="3.911599999999999" effects="bevel dropshadow textdropshadow">
+
+      </appearance>
+
+    </annotation>
+    <annotation author="" id="annotation_3841469293"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_3841469293&amp;xble=1&amp;a-type=9&amp;a-v=M2ryDEyyrXE"
+      style="label" type="text">
+      <TEXT>ANOTHER ONE</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion d="0" h="18.3379993439" t="0:50.494" w="25.9510002136" x="70.2060012817"
+            y="72.3939971924" />
+          <rectRegion d="0" h="18.3379993439" t="0:55.113" w="25.9510002136" x="70.2060012817"
+            y="72.3939971924" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.600000023842" bgColor="10415454"
+        effects="bevel dropshadow textdropshadow" textSize="3.911599999999999" />
+    </annotation>
+    <annotation author="" id="annotation_4030766477"
+      log_data="l-class=1&amp;xble=1&amp;a-id=annotation_4030766477&amp;a-type=9&amp;link=http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DscIAKX6Y-0I&amp;ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-v=M2ryDEyyrXE"
+      style="label" type="text">
+      <TEXT>Dicky's Life</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion d="0" h="55.5400009155" t="1:11.307" w="54.0149993896" x="22.9470005035"
+            y="21.408000946" />
+          <rectRegion d="0" h="55.5400009155" t="1:15.877" w="54.0149993896" x="22.9470005035"
+            y="21.408000946" />
+        </movingRegion>
+      </segment>
+      <action trigger="click" type="openUrl">
+        <url link_class="1" target="new" trusted="true"
+          value="https://www.youtube.com/watch?annotation_id=annotation_4030766477&amp;ei=K6AzXJaRJ4jq8gTEurDQCg&amp;feature=iv&amp;src_vid=M2ryDEyyrXE&amp;v=scIAKX6Y-0I" />
+      </action>
+      <appearance effects="textdropshadow" textSize="8.424966666666666" />
+    </annotation>
+    <annotation author="" id="annotation_4225609537"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_4225609537&amp;xble=1&amp;a-type=4&amp;a-v=M2ryDEyyrXE"
+      style="title" type="text">
+      <TEXT>TITLE
+        I can't do that! :((((</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion d="0" h="12.3100004196" t="0:50.600" w="45.6809997559" x="0.791999995708"
+            y="5.63399982452" />
+          <rectRegion d="0" h="12.3100004196" t="0:55.140" w="45.6809997559" x="0.791999995708"
+            y="5.63399982452" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.25" bgColor="0" borderAlpha="0.10000000149" effects=""
+        fgColor="16777215" fontWeight="bold" highlightFontColor="16777215" textSize="14.4428" />
+    </annotation>
+    <annotation id="annotation_525582757" type="text" style="anchored"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_525582757&amp;xble=1&amp;a-type=8&amp;a-v=M2ryDEyyrXE"
+      itct="">
+      <TEXT>Speech bubble</TEXT>
+      <segment>
+        <movingRegion type="anchored">
+          <anchoredRegion x="5.07100" y="9.29600" w="39.30300" h="31.14100" sx="19.6539993286"
+            sy="42.4370002747" t="0:44.880" />
+          <anchoredRegion x="5.07100" y="9.29600" w="39.30300" h="31.14100" sx="19.6539993286"
+            sy="42.4370002747" t="0:50.387" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.600000023842" bgColor="16777215" fgColor="1710618"
+        textSize="8.424966666666666" effects="">
+
+      </appearance>
+
+    </annotation>
+
+    <annotation id="annotation_840717619" type="text" style="highlightText" logable="false" itct="">
+      <TEXT>Spotlight</TEXT>
+      <segment spaceRelative="annotation_2858215607">
+        <movingRegion type="rect">
+          <rectRegion x="0.00000" y="29.57700" w="25.00000" h="6.14500" t="never" />
+          <rectRegion x="0.00000" y="29.57700" w="25.00000" h="6.14500" t="never" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0" textSize="3.911591666666667" highlightFontColor="16777215" />
+      <trigger>
+        <condition ref="annotation_2858215607" state="rollOver" />
+      </trigger>
+    </annotation>
+
+    <annotation id="annotation_860596767" type="text" style="popup"
+      log_data="ei=K6AzXJaRJ4jq8gTEurDQCg&amp;a-id=annotation_860596767&amp;xble=1&amp;a-type=1&amp;a-v=M2ryDEyyrXE"
+      itct="">
+      <TEXT>Note</TEXT>
+      <segment>
+        <movingRegion type="rect">
+          <rectRegion x="60.69700" y="5.07000" w="33.96200" h="18.45100" t="0:45.367" />
+          <rectRegion x="60.69700" y="5.07000" w="33.96200" h="18.45100" t="0:50.440" />
+        </movingRegion>
+      </segment>
+      <appearance bgAlpha="0.600000023842" bgColor="16636470" fgColor="16777215"
+        textSize="4.814266666666667" effects="">
+
+      </appearance>
+
+    </annotation>
+  </annotations>
+</document>
