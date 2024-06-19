@@ -2,9 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-import pytest
-
-from Annotations2Sub.Sub import Draw, DrawCommand, Sub
+from Annotations2Sub.Sub import Draw, DrawCommand
 
 
 def test_DrawDump():

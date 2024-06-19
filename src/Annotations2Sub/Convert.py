@@ -27,27 +27,6 @@ def Convert(
 
         def Text(event: Event) -> Event:
             """生成 Annotation 文本的 Event"""
-            text = each.text
-
-            # 模拟换行行为
-            if "\n" not in text:
-                length = int(width / (textSize / 2)) + 1
-                text = "\n".join(
-                    textwrap.wrap(text, width=length, drop_whitespace=False)
-                )
-
-            # 让前导空格生效
-            if text.startswith(" "):
-                text = "\u200b" + text
-
-            # SSA 用 "\N" 换行
-            text = text.replace("\n", r"\N")
-
-            # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
-            # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
-            # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
-            text = text.replace("{", r"\{")
-            text = text.replace("}", r"\}")
 
             # 文本与框保持一定距离
             _x = x + padding_x
@@ -56,14 +35,13 @@ def Convert(
             # 为了可读性, 去掉多余的小数
             _x = round(_x, 3)
             _y = round(_y, 3)
-            _textSize = round(textSize, 3)
 
             tags = Tag()
             tags.extend(
                 [
                     Tag.Align(7),
                     Tag.Pos(_x, _y),
-                    Tag.Fontsize(_textSize),
+                    Tag.Fontsize(textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
                     Tag.Shadow(0),
@@ -75,13 +53,36 @@ def Convert(
             event.Text = str(tags) + text
             return event
 
+        def CenterText(event: Event) -> Event:
+            # 相比 Text, 文字会居中
+
+            # 模拟居中
+            _x = x + (width / 2)
+            _y = y + (height / 2)
+
+            _x = round(_x, 3)
+            _y = round(_y, 3)
+
+            shadow = Tag.Shadow(0)
+            tags = Tag()
+            tags.extend(
+                [
+                    Tag.Align(5),
+                    Tag.Pos(_x, _y),
+                    Tag.Fontsize(textSize),
+                    Tag.PrimaryColour(each.fgColor),
+                    Tag.Bord(0),
+                    shadow,
+                ]
+            )
+            if each.fontWeight == "bold":
+                tags.append(Tag.Bold(1))
+
+            event.Text = str(tags) + text
+            return event
+
         def Box(event: Event) -> Event:
             """生成 Annotation 文本框的 Event"""
-
-            _x = round(x, 3)
-            _y = round(y, 3)
-            _width = round(width, 3)
-            _height = round(height, 3)
 
             tags = Tag()
             tags.extend(
@@ -110,21 +111,16 @@ def Convert(
             event.Text = str(tags) + box_tag
             return event
 
-        def HighlightBox(event: Event) -> Event:
-            # HighlightBox 是一个中空的框
+        def HollowBox(event: Event) -> Event:
             x1 = x + padding_x
             y1 = y + padding_y
             x2 = x + width - padding_x
             y2 = y + height - padding_y
 
-            _x = round(x, 3)
-            _y = round(y, 3)
             x1 = round(x1, 3)
             y1 = round(y1, 3)
             x2 = round(x2, 3)
             y2 = round(y2, 3)
-            _width = round(width, 3)
-            _height = round(height, 3)
 
             tags = Tag()
             tags.extend(
@@ -167,8 +163,6 @@ def Convert(
             y_bottom = y_top + height
 
             def draw(x1, y1, x2, y2):
-                _sx = round(sx, 3)
-                _sy = round(sy, 3)
 
                 x1 = round(x1, 3)
                 y1 = round(y1, 3)
@@ -268,50 +262,6 @@ def Convert(
 
             return None
 
-        def Title(event: Event) -> Event:
-            # 相比 Text, 文字会居中
-            text = each.text
-
-            if "\n" not in text:
-                length = int(width / (textSize / 2)) + 1
-                text = "\n".join(
-                    textwrap.wrap(text, width=length, drop_whitespace=False)
-                )
-
-            if text.startswith(" "):
-                text = "\u200b" + text
-
-            text = text.replace("\n", r"\N")
-
-            text = text.replace("{", r"\{")
-            text = text.replace("}", r"\}")
-
-            # 模拟居中
-            _x = x + (width / 2)
-            _y = y + (height / 2)
-
-            _x = round(_x, 3)
-            _y = round(_y, 3)
-            _textSize = round(textSize, 3)
-
-            shadow = Tag.Shadow(0)
-            tags = Tag()
-            tags.extend(
-                [
-                    Tag.Align(5),
-                    Tag.Pos(_x, _y),
-                    Tag.Fontsize(_textSize),
-                    Tag.PrimaryColour(each.fgColor),
-                    Tag.Bord(0),
-                    shadow,
-                ]
-            )
-            if each.fontWeight == "bold":
-                tags.append(Tag.Bold(1))
-
-            event.Text = str(tags) + text
-            return event
-
         def popup_text() -> Event:
             _event = copy.copy(event)
             _event.Name += "popup_text;"
@@ -328,13 +278,13 @@ def Convert(
             _event = copy.copy(event)
             _event.Name += "title;"
 
-            return Title(_event)
+            return CenterText(_event)
 
         def highlightText_text() -> Event:
             _event = copy.copy(event)
             _event.Name += "highlightText_text;"
 
-            return Text(_event)
+            return CenterText(_event)
 
         def highlightText_box() -> Event:
             _event = copy.copy(event)
@@ -389,7 +339,7 @@ def Convert(
         def highlight_box() -> Event:
             _event = copy.copy(event)
             _event.Name += "highlight_box;"
-            return HighlightBox(_event)
+            return HollowBox(_event)
 
         def popup() -> List[Event]:
             return [popup_box(), popup_text()]
@@ -437,6 +387,7 @@ def Convert(
         height = each.height
         sx = each.sx
         sy = each.sy
+        text = each.text
 
         # 模拟 DPI 缩放
         if each.style == "title":
@@ -464,6 +415,47 @@ def Convert(
             height = TransformY(height)
             sy = TransformY(sy)
             padding_y = TransformY(padding_y)
+
+        # 模拟换行行为
+        def wrap(text: str) -> str:
+            return "\n".join(textwrap.wrap(text, width=length, drop_whitespace=False))
+
+        _text = ""
+        lines = text.split("\n")
+        length = int(width / (textSize / 4)) + 1  # 不加一会有零
+        for line in lines[:-1]:
+            _text += wrap(line) + "\n"
+        _text += wrap(lines[-1])
+        text = _text
+
+        # 让前导空格生效
+        if text.startswith(" "):
+            text = "\u200b" + text
+
+        # SSA 用 "\N" 换行
+        text = text.replace("\n", r"\N")
+
+        # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
+        # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
+        # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
+        text = text.replace("{", r"\{")
+        text = text.replace("}", r"\}")
+
+        # x = round(x, 3)
+        # y = round(y, 3)
+        textSize = round(textSize, 3)
+        # width = round(width, 3)
+        # height = round(height, 3)
+        # sx = round(sx, 3)
+        # sy = round(sy, 3)
+
+        _x = round(x, 3)
+        _y = round(y, 3)
+        # textSize = round(textSize, 3)
+        _width = round(width, 3)
+        _height = round(height, 3)
+        _sx = round(sx, 3)
+        _sy = round(sy, 3)
 
         if each.style == "popup":
             return popup()

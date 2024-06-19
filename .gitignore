@@ -7,6 +7,7 @@ htmlcov
 dist
 Annotations2Sub.egg-info
 测试用例/
+src/tests/testCase/garbage/
 *.mp4
 *.mkv
 *.webm
@@ -14,4 +15,5 @@ Annotations2Sub.egg-info
 *.ass
 *.lnk
 *.ps1
+*.pyz
 mypy.ini

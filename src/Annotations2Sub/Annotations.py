@@ -22,6 +22,10 @@ def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
+class NotAnnotationsDocumentError(ValueError):
+    pass
+
+
 class Annotation:
     """Annotation 结构"""
 
@@ -190,8 +194,7 @@ def Parse(tree: Element) -> List[Annotation]:
         t1 = Segment[0].get("t", _Start)
         t2 = Segment[1].get("t", _End)
         if "never" in (t1, t2):
-            Info(_("{} 不显示, 跳过").format(_id))
-            return None
+            t1 = t2 = "0:00:00.00"
 
         Start = ParseTime(min(t1, t2))
         End = ParseTime(max(t1, t2))
@@ -244,11 +247,9 @@ def Parse(tree: Element) -> List[Annotation]:
 
         return annotation
 
-    Dummy([ParseAnnotationAlpha, ParseAnnotationColor])
-
     annotations_tree = tree.find("annotations")
     if annotations_tree is None:
-        raise ValueError(_("不是 Annotations 文档"))
+        raise NotAnnotationsDocumentError(_("不是 Annotations 文档"))
 
     annotations: List[Annotation] = []
     for each in annotations_tree.findall("annotation"):
@@ -256,4 +257,5 @@ def Parse(tree: Element) -> List[Annotation]:
         if annotation is not None:
             annotations.append(annotation)
 
+    Dummy([ParseAnnotationAlpha, ParseAnnotationColor])
     return annotations

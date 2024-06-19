@@ -18,6 +18,7 @@ from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
 from Annotations2Sub import Convert, Parse, Sub, version
+from Annotations2Sub.Annotations import NotAnnotationsDocumentError
 from Annotations2Sub.utils import (
     Err,
     Flags,
@@ -226,8 +227,8 @@ def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
             except (URLError, TimeoutError):
                 Warn(_("您好像无法访问 Google 🤔"))
 
-        Dummy([CheckNetwork])
         _thread.start_new_thread(CheckNetwork, ())
+        Dummy([CheckNetwork])
 
     for Task in queue:
         video_id = MakeSureStr(Task)
@@ -299,7 +300,7 @@ def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
 
         try:
             annotations = Parse(tree)
-        except ValueError:
+        except NotAnnotationsDocumentError:
             Err(_("{} 不是 Annotations 文件").format(annotations_file))
             exit_code = 1
             continue

@@ -9,11 +9,6 @@ from typing import Dict, List
 from Annotations2Sub.Color import Alpha, Color, Rgba
 from Annotations2Sub.utils import _
 
-
-def Dummy(*args, **kwargs):
-    """用于 MonkeyPatch"""
-
-
 # 兼容 Python3.6, 3.7
 # Python3.6, 3.7 的 typing 没有 Literal
 try:
@@ -67,7 +62,17 @@ class Style:
         # 直接抄 Aegisub 置为 1
         self.Encoding: int = 1
 
-    # Name 字段不在这里, 所以没有 __str__()
+    def __str__(self) -> str:
+        def DumpAABBGGRR(rgba: Rgba) -> str:
+            """转换为 SSA 颜色字符串"""
+
+            # "长整型 BGR（蓝绿红）值，还包含了 alpha 通道信息。"
+            # "该值的十六进制字节顺序为 AABBGGRR。例如，&H00FFFFFF。"
+            return "&H{:02X}{:02X}{:02X}{:02X}".format(
+                rgba.alpha, rgba.blue, rgba.green, rgba.red
+            )
+
+        return f"Style: {{}},{self.Fontname},{self.Fontsize},{DumpAABBGGRR(self.PrimaryColour)},{DumpAABBGGRR(self.SecondaryColour)},{DumpAABBGGRR(self.OutlineColour)},{DumpAABBGGRR(self.BackColour)},{self.Bold},{self.Italic},{self.Underline},{self.StrikeOut},{self.ScaleX},{self.ScaleY},{self.Spacing},{self.Angle},{self.BorderStyle},{self.Outline},{self.Shadow},{self.Alignment},{self.MarginL},{self.MarginR},{self.MarginV},{self.Encoding}\n"
 
 
 class Event:
@@ -110,7 +115,11 @@ class Sub:
         self._events = self._Events()
 
         self.info = self._info.infos
+        """ 这个结构中会有一些脚本的配置 """
+
         self.comment = ""
+        """ 通常脚本中会有一些注释写了谁生成了这个脚本 """
+
         self.styles = self._styles.styles
         self.events = self._events.events
 
@@ -158,21 +167,12 @@ class Sub:
             self.styles: Dict[str, Style] = {}
 
         def __str__(self) -> str:
-            def DumpAABBGGRR(rgba: Rgba) -> str:
-                """转换为 SSA 颜色字符串"""
-
-                # "长整型 BGR（蓝绿红）值，还包含了 alpha 通道信息。"
-                # "该值的十六进制字节顺序为 AABBGGRR。例如，&H00FFFFFF。"
-                return "&H{:02X}{:02X}{:02X}{:02X}".format(
-                    rgba.alpha, rgba.blue, rgba.green, rgba.red
-                )
-
             string = ""
             string += "[V4+ Styles]\n"
             string += "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n"
 
             for Name, Styles in self.styles.items():
-                string += f"Style: {Name},{Styles.Fontname},{Styles.Fontsize},{DumpAABBGGRR(Styles.PrimaryColour)},{DumpAABBGGRR(Styles.SecondaryColour)},{DumpAABBGGRR(Styles.OutlineColour)},{DumpAABBGGRR(Styles.BackColour)},{Styles.Bold},{Styles.Italic},{Styles.Underline},{Styles.StrikeOut},{Styles.ScaleX},{Styles.ScaleY},{Styles.Spacing},{Styles.Angle},{Styles.BorderStyle},{Styles.Outline},{Styles.Shadow},{Styles.Alignment},{Styles.MarginL},{Styles.MarginR},{Styles.MarginV},{Styles.Encoding}\n"
+                string += str(Styles).format(Name)
             string += "\n"
             return string
 
