@@ -423,7 +423,7 @@ def Convert(
 
         _text = ""
         lines = text.split("\n")
-        length = int(width / (textSize / 4)) + 1 #不加一会有零
+        length = int(width / (textSize / 4)) + 1  # 不加一会有零
         for line in lines[:-1]:
             _text += wrap(line) + "\n"
         _text += wrap(lines[-1])
