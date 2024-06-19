@@ -418,9 +418,16 @@ def Convert(
             padding_y = TransformY(padding_y)
 
         # 模拟换行行为
-        if "\n" not in text:
-            length = int(width / (textSize / 4)) + 1
-            text = "\n".join(textwrap.wrap(text, width=length, drop_whitespace=False))
+        def wrap(text: str) -> str:
+            return "\n".join(textwrap.wrap(text, width=length, drop_whitespace=False))
+
+        _text = ""
+        lines = text.split("\n")
+        length = int(width / (textSize / 4)) + 1 #不加一会有零
+        for line in lines[:-1]:
+            _text += wrap(line) + "\n"
+        _text += wrap(lines[-1])
+        text = _text
 
         # 让前导空格生效
         if text.startswith(" "):
