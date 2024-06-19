@@ -111,8 +111,7 @@ def Convert(
             event.Text = str(tags) + box_tag
             return event
 
-        def HighlightBox(event: Event) -> Event:
-            # HighlightBox 是一个中空的框
+        def HollowBox(event: Event) -> Event:
             x1 = x + padding_x
             y1 = y + padding_y
             x2 = x + width - padding_x
@@ -340,7 +339,7 @@ def Convert(
         def highlight_box() -> Event:
             _event = copy.copy(event)
             _event.Name += "highlight_box;"
-            return HighlightBox(_event)
+            return HollowBox(_event)
 
         def popup() -> List[Event]:
             return [popup_box(), popup_text()]
