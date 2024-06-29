@@ -99,6 +99,19 @@ class Annotation:
         # self.actionSeconds: datetime = datetime.strptime("0", "%S")
         # self.highlightId: str = ""
 
+    def __str__(self) -> str:
+        """模仿 https://github.com/isaackd/annotations-converter"""
+
+        def f(color: Color) -> int:
+            return (color.blue << 16) | (color.green << 8) | color.red
+
+        bgc = f(self.bgColor)
+        bgo = self.bgOpacity.alpha / 255
+        fgc = f(self.bgColor)
+        ts = datetime.strftime(self.timeStart, "%S")
+        te = datetime.strftime(self.timeStart, "%S")
+        return f"bgc={bgc},bgo={bgo},fgc={fgc},txsz={self.textSize},tp={self.type},x={self.x},y={self.y},w={self.width},h={self.height},ts={ts},te={te},s={self.style},t={self.text}"
+
 
 def Parse(tree: Element) -> List[Annotation]:
     """将 XML 树转换为 List[Annotation]"""
