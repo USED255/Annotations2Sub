@@ -113,6 +113,9 @@ class Annotation:
         te = datetime.strftime(self.timeStart, "%S")
         return f"bgc={bgc},bgo={bgo},fgc={fgc},txsz={self.textSize},tp={self.type},x={self.x},y={self.y},w={self.width},h={self.height},ts={ts},te={te},s={self.style},t={self.text}"
 
+    def __repr__(self) -> str:
+        return str(self)
+
 
 def Parse(tree: Element) -> List[Annotation]:
     """将 XML 树转换为 List[Annotation]"""

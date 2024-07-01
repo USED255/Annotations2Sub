@@ -137,6 +137,9 @@ class Sub:
         string += str(self._events)
         return string
 
+    def __repr__(self) -> str:
+        return str(self)
+
     def Dump(self) -> str:
         """转储为 SSA"""
         return str(self)
