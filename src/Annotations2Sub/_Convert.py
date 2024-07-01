@@ -472,7 +472,7 @@ def Convert(
         elif each.style == "" and each.type == "highlight":
             return highlight()
         else:
-            Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
+            Stderr(_('不支持 "{}" 样式 ({})').format(each.style, each.id))
             return []
 
     events = []

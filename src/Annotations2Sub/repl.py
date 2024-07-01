@@ -12,7 +12,7 @@ def AnnotationsXmlFileToSubtitleFile(
     font="Microsoft YaHei",
 ):
     if os.path.isfile(annotations_file) is False:
-        raise FileNotFoundError(_("{} 不是一个文件").format(annotations_file))
+        raise FileNotFoundError(_('"{}" 不是一个文件').format(annotations_file))
 
     with open(annotations_file, "r", encoding="utf-8") as f:
         annotations_string = f.read()

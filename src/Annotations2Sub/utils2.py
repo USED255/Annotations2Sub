@@ -40,7 +40,7 @@ def GetAnnotationsUrl(videoId: str) -> str:
 
 def GetMedia(videoId: str, instanceDomain: str):  # -> tuple[str, str]:
     url = f"https://{instanceDomain}/api/v1/videos/{videoId}"
-    Stderr(_("获取 {}").format(url))
+    Stderr(_('获取 "{}"').format(url))
     data = json.loads(GetUrl(url))
     videos = []
     audios = []
@@ -78,7 +78,7 @@ def AnnotationsXmlStringToSubtitleString(
     )
 
     if events == []:
-        Warn(_("{} 没有注释被转换").format(title))
+        Warn(_('"{}" 没有注释被转换').format(title))
 
     # Annotations 是无序的
     # 按时间重新排列字幕事件, 是为了人类可读

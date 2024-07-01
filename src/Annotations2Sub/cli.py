@@ -218,7 +218,7 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
                 video_id = video_id.replace("\\", "", 1)
 
             if re.match(r"[a-zA-Z0-9_-]{11}", video_id) == None:
-                Err(_("{} 不是一个有效的视频 ID").format(video_id))
+                Err(_('"{}" 不是一个有效的视频 ID').format(video_id))
                 exit_code = 1
                 continue
 
@@ -237,10 +237,10 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
 
             if not is_skip_download:
                 annotations_url = GetAnnotationsUrl(video_id)
-                Stderr(_("下载 {}").format(annotations_url))
+                Stderr(_('下载 "{}"').format(annotations_url))
                 annotations_string = GetUrl(annotations_url)
                 if annotations_string == "":
-                    Warn(_("{} 可能没有 Annotations").format(video_id))
+                    Warn(_('"{}" 可能没有 Annotations').format(video_id))
                     exit_code = 1
                     continue
                 if output_to_stdout:
@@ -253,7 +253,7 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
                 continue
 
         if os.path.isfile(annotations_file) is False:
-            Err(_("{} 不是一个文件").format(annotations_file))
+            Err(_('"{}" 不是一个文件').format(annotations_file))
             exit_code = 1
             continue
 
@@ -278,11 +278,11 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
                 os.path.basename(annotations_file),
             )
         except NotAnnotationsDocumentError:
-            Err(_("{} 不是 Annotations 文件").format(annotations_file))
+            Err(_('"{}" 不是 Annotations 文件').format(annotations_file))
             exit_code = 1
             continue
         except ParseError:
-            Err(_("{} 不是一个有效的 XML 文件").format(annotations_file))
+            Err(_('"{}" 不是一个有效的 XML 文件').format(annotations_file))
             Info(traceback.format_exc())
             exit_code = 1
             continue
@@ -298,13 +298,13 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
                 is_no_save = True
 
         if enable_no_keep_intermediate_files:
-            Stderr(_("删除 {}").format(annotations_file))
+            Stderr(_('删除 "{}"').format(annotations_file))
             os.remove(annotations_file)
 
         if not is_no_save:
             with open(subtitle_file, "w", encoding="utf-8") as f:
                 f.write(subtitle_string)
-            Stderr(_("保存于: {}").format(subtitle_file))
+            Stderr(_('保存于: "{}"').format(subtitle_file))
 
         def function2():
             Err(_("无法获取视频"))
@@ -346,12 +346,12 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
 
             _exit_code = subprocess.run(commands).returncode
             if _exit_code != 0:
-                Stderr(YellowText("exit with {}".format(_exit_code)))
+                Stderr(YellowText('exit with "{}"'.format(_exit_code)))
                 nonlocal exit_code
                 exit_code = 1
 
             if enable_no_keep_intermediate_files:
-                Stderr(_("删除 {}").format(subtitle_file))
+                Stderr(_('删除 "{}"').format(subtitle_file))
                 os.remove(subtitle_file)
 
         if enable_preview_video:

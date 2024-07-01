@@ -166,13 +166,13 @@ def Parse(tree: Element) -> List[Annotation]:
         if _type == "":
             return None
         if _type not in ("text", "highlight", "branding"):
-            Stderr(_("不支持 {} 类型 ({})").format(_type, _id))
+            Stderr(_('不支持 "{}" 类型 ({})').format(_type, _id))
             return None
 
         style = each.get("style", "")
 
         if style == "" and _type != "highlight":
-            Info(_("{} 没有 style, 跳过").format(_id))
+            Info(_('"{}" 没有 style, 跳过').format(_id))
             return None
 
         text = ""
@@ -183,19 +183,19 @@ def Parse(tree: Element) -> List[Annotation]:
 
         _Segment = each.find("segment")
         if _Segment is None:
-            Info(_("{} 没有 segment, 跳过").format(_id))
+            Info(_('"{}" 没有 segment, 跳过').format(_id))
             return None
 
         _Segment = _Segment.find("movingRegion")
         if _Segment is None:
-            Info(_("{} 没有 movingRegion, 跳过").format(_id))
+            Info(_('"{}" 没有 movingRegion, 跳过').format(_id))
             return None
 
         Segment = _Segment.findall("rectRegion")
         if len(Segment) == 0:
             Segment = _Segment.findall("anchoredRegion")
         if len(Segment) == 0 and style != "highlightText":
-            Info(_("{} 没有时间, 跳过").format(_id))
+            Info(_('"{}" 没有时间, 跳过').format(_id))
             return None
 
         _Start = _End = "0:00:00.00"
