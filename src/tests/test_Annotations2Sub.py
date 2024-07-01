@@ -4,7 +4,15 @@
 import os
 import xml.etree.ElementTree
 
-from Annotations2Sub import Convert, Parse, Sub
+from Annotations2Sub import (
+    Annotation,
+    AnnotationsXmlFileToSubtitleFile,
+    AnnotationsXmlStringToSubtitleString,
+    Convert,
+    Parse,
+    Sub,
+    version,
+)
 from Annotations2Sub.utils import _
 from tests import garbagePath, testCasePath
 
@@ -29,3 +37,19 @@ def test_Annotations2Sub():
     sub = subtitle.Dump()
     with open(filePath2, "w", encoding="utf-8") as f:
         f.write(sub)
+
+
+def test_Annotation():
+    assert Annotation()
+
+
+def test_AnnotationsXmlFileToSubtitleFile():
+    AnnotationsXmlFileToSubtitleFile(filePath, filePath2)
+
+
+def test_AnnotationsXmlStringToSubtitleString():
+    pass
+
+
+def test_version():
+    assert version

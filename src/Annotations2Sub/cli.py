@@ -147,8 +147,8 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
     args = parser.parse_args(argv)
 
     queue = []
-    for i in args.queue:
-        queue.append(str(i))
+    for task in args.queue:
+        queue.append(str(task))
 
     transform_resolution_x: int = args.transform_resolution_x
     transform_resolution_y: int = args.transform_resolution_y

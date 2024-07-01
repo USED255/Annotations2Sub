@@ -13,3 +13,11 @@ def test_GetAnnotationsUrl():
 def test_GetAnnotationsUrl_ValueError():
     with pytest.raises(ValueError):
         GetAnnotationsUrl("")
+
+
+def test_GetMedia():
+    pass
+
+
+def test_AnnotationsXmlStringToSubtitleString():
+    pass

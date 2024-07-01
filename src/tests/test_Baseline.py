@@ -43,7 +43,7 @@ def test_not_equal():
     )
 
 
-def run_baseline(Baseline: str):
+def baseline(Baseline: str):
     baseline_file = os.path.join(baselinePath, Baseline + ".xml.test")
     baseline_result = os.path.join(baselinePath, Baseline + ".ass.test")
     result = baseline_file + ".ass"
@@ -52,7 +52,7 @@ def run_baseline(Baseline: str):
     assert equal(baseline_result, result)
 
 
-def run_baseline_transform(Baseline: str):
+def baseline_transform(Baseline: str):
     baseline_file = os.path.join(baselinePath, Baseline + ".xml.test")
     baseline_result = os.path.join(baselinePath, Baseline + ".transform.ass.test")
     result = baseline_file + ".ass"
@@ -62,6 +62,6 @@ def run_baseline_transform(Baseline: str):
 
 
 def test_baselines():
-    for i in baselines:
-        run_baseline(i)
-        run_baseline_transform(i)
+    for cases in baselines:
+        baseline(cases)
+        baseline_transform(cases)

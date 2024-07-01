@@ -8,7 +8,7 @@ from urllib.error import URLError
 
 import pytest
 
-from Annotations2Sub import cli, utils, utils2
+from Annotations2Sub import cli, utils2
 from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import Stderr
 from tests import baselinePath, testCasePath
