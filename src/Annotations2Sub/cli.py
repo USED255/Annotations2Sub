@@ -47,7 +47,7 @@ def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
-def Run(argv: Optional[List[LiteralString] | List[str]] = None):  # -> Literal[1, 0]:
+def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0]:
     """跑起来🐎🐎🐎"""
 
     exit_code = 0
