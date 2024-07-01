@@ -7,8 +7,8 @@ import copy
 import textwrap
 from typing import List, Optional
 
-from Annotations2Sub import Annotation
-from Annotations2Sub.Sub import Draw, DrawCommand, Event, Tag
+from Annotations2Sub._Sub import Draw, DrawCommand, Event, Tag
+from Annotations2Sub.Annotations import Annotation
 from Annotations2Sub.utils import Stderr, _
 
 

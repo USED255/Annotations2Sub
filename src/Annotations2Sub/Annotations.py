@@ -8,7 +8,8 @@ from typing import List, Optional, Union
 from xml.etree.ElementTree import Element
 
 from Annotations2Sub.Color import Alpha, Color
-from Annotations2Sub.utils import Info, Stderr, _
+from Annotations2Sub.i18n import _
+from Annotations2Sub.utils import Info, Stderr
 
 # 兼容 Python3.6, 3.7
 # Python3.6, 3.7 的 typing 没有 Literal

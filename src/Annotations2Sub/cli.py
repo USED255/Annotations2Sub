@@ -13,12 +13,14 @@ import traceback
 import urllib.request
 import xml.etree.ElementTree
 from http.client import IncompleteRead
-from typing import List, Optional
+from typing import List, LiteralString, Optional
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
-from Annotations2Sub import Convert, Parse, Sub, version
-from Annotations2Sub.Annotations import NotAnnotationsDocumentError
+from Annotations2Sub import version
+from Annotations2Sub._Convert import Convert
+from Annotations2Sub._Sub import Sub
+from Annotations2Sub.Annotations import NotAnnotationsDocumentError, Parse
 from Annotations2Sub.utils import (
     Err,
     Flags,
@@ -45,7 +47,7 @@ def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
-def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
+def Run(argv: Optional[List[LiteralString] | List[str]] = None):  # -> Literal[1, 0]:
     """跑起来🐎🐎🐎"""
 
     exit_code = 0

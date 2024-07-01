@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from Annotations2Sub.Sub import Draw, DrawCommand
+from Annotations2Sub._Sub import Draw, DrawCommand
 
 
 def test_DrawDump():

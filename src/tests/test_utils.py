@@ -13,35 +13,12 @@ from Annotations2Sub.utils import (
     GetAnnotationsUrl,
     GetUrl,
     Info,
-    Internationalization,
     MakeSureStr,
     RedText,
     Stderr,
     Warn,
     YellowText,
 )
-
-
-def test_internationalization():
-    Internationalization()
-
-
-def test_internationalization_FileNotFoundError():
-    def f(*args, **kwargs):
-        raise FileNotFoundError
-
-    m = pytest.MonkeyPatch()
-    m.setattr(gettext, "translation", f)
-
-    Internationalization()
-
-
-def test_internationalization_win32():
-    m = pytest.MonkeyPatch()
-    m.setattr(sys, "platform", "win32")
-    m.setattr(os, "getenv", lambda x: None)
-    Internationalization()
-    m.undo()
 
 
 def test_YellowText():

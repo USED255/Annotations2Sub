@@ -3,14 +3,13 @@
 
 """工具类"""
 
-import gettext
 import json
-import locale
-import os
 import re
 import sys
 import urllib.request
 from typing import Any
+
+from Annotations2Sub.i18n import _
 
 
 class flags:
@@ -19,27 +18,6 @@ class flags:
 
 
 Flags = flags()
-
-
-def Internationalization():
-    """On n'habite pas un pays, on habite une langue. Une patrie, c'est cela et rien d'autre."""
-    try:
-        # 配合 __main__.py
-        locales = os.path.join(os.path.split(os.path.realpath(__file__))[0], "locales")
-
-        # https://stackoverflow.com/a/8377533
-        if sys.platform == "win32":
-            if os.getenv("LANG") == None:
-                os.environ["LANG"], __ = locale.getdefaultlocale()  # type: ignore
-
-        translate = gettext.translation(
-            "Annotations2Sub",
-            locales,
-        )
-        return translate.gettext
-    except FileNotFoundError:
-        Stderr("翻译文件加载失败")
-        return gettext.gettext
 
 
 def YellowText(string: str) -> str:
@@ -132,6 +110,3 @@ def GetMedia(videoId: str, instanceDomain: str):  # -> tuple[str, str]:
     if not audio.startswith("http"):
         raise ValueError(_("没有 Audio"))
     return video, audio
-
-
-_ = Internationalization()
