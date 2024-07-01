@@ -54,3 +54,7 @@ def test_str_Annotation():
         str(Annotations.Annotation())
         == "bgc=16777215,bgo=0.8,fgc=16777215,txsz=3.15,tp=text,x=0.0,y=0.0,w=0.0,h=0.0,ts=00,te=00,s=popup,t="
     )
+
+
+def test_repr_Annotation():
+    assert repr(Annotations.Annotation()) == str(Annotations.Annotation())
