@@ -11,18 +11,14 @@ import subprocess
 import sys
 import traceback
 import urllib.request
-import xml.etree.ElementTree
 from http.client import IncompleteRead
 from typing import List, LiteralString, Optional
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
 from Annotations2Sub import version
-from Annotations2Sub._Convert import Convert
 from Annotations2Sub._flags import Flags
-from Annotations2Sub._Sub import Sub
-from Annotations2Sub.Annotations import NotAnnotationsDocumentError, Parse
-from Annotations2Sub.repl import AnnotationsXmlStringToSubtitleString
+from Annotations2Sub.Annotations import NotAnnotationsDocumentError
 from Annotations2Sub.utils import (
     Err,
     GetUrl,
@@ -33,7 +29,11 @@ from Annotations2Sub.utils import (
     YellowText,
     _,
 )
-from Annotations2Sub.utils2 import GetAnnotationsUrl, GetMedia
+from Annotations2Sub.utils2 import (
+    AnnotationsXmlStringToSubtitleString,
+    GetAnnotationsUrl,
+    GetMedia,
+)
 
 # 兼容 Python 3.6, 3.7
 # Python 3.6, 3.7 的 typing 没有 Literal
