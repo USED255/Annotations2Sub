@@ -150,19 +150,19 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
     for i in args.queue:
         queue.append(str(i))
 
-    transform_resolution_x = args.transform_resolution_x
-    transform_resolution_y = args.transform_resolution_y
-    font = args.font
-    enable_download_for_archive = args.download_for_archive
-    enable_download_annotations_only = args.download_annotations_only
-    invidious_instances = args.invidious_instances
-    enable_preview_video = args.preview_video
-    enable_generate_video = args.generate_video
-    enable_no_overwrite_files = args.no_overwrite_files
-    enable_no_keep_intermediate_files = args.no_keep_intermediate_files
-    output = args.output
-    output_directory = args.output_directory
-    enable_verbose = args.verbose
+    transform_resolution_x: int = args.transform_resolution_x
+    transform_resolution_y: int = args.transform_resolution_y
+    font: str = args.font
+    enable_download_for_archive: bool = args.download_for_archive
+    enable_download_annotations_only: bool = args.download_annotations_only
+    invidious_instances: str | None = args.invidious_instances
+    enable_preview_video: bool = args.preview_video
+    enable_generate_video: bool = args.generate_video
+    enable_no_overwrite_files: bool = args.no_overwrite_files
+    enable_no_keep_intermediate_files: bool = args.no_keep_intermediate_files
+    output: str | None = args.output
+    output_directory: str | None = args.output_directory
+    enable_verbose: bool = args.verbose
 
     output_to_stdout = False
 
@@ -179,7 +179,7 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
         if args.output == "-":
             output_to_stdout = True
 
-    if output_directory != None:
+    if output_directory is not None:
         if os.path.isdir(output_directory) is False:
             Err(_("转换后文件输出目录应该指定一个文件夹"))
             return 1
@@ -221,7 +221,7 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
             if enable_download_annotations_only and output:
                 annotations_file = output
 
-            if output_directory != None:
+            if output_directory is not None:
                 annotations_file = os.path.join(output_directory, annotations_file)
 
             is_skip_download = False
@@ -253,12 +253,12 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
             continue
 
         subtitle_file = annotations_file + ".ass"
-        if output_directory != None:
+        if output_directory is not None:
             file_name = os.path.basename(annotations_file)
             file_name = file_name + ".ass"
             subtitle_file = os.path.join(output_directory, file_name)
 
-        if output != None:
+        if output is not None:
             subtitle_file = output
 
         with open(annotations_file, "r", encoding="utf-8") as f:
@@ -331,7 +331,7 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
                     continue
             else:
                 try:
-                    video, audio = GetMedia(video_id, invidious_instances)
+                    video, audio = GetMedia(video_id, str(invidious_instances))
                 except (json.JSONDecodeError, URLError, ValueError):
                     function2()
                     continue
