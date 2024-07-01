@@ -19,16 +19,7 @@ from xml.etree.ElementTree import ParseError
 from Annotations2Sub import version
 from Annotations2Sub._flags import Flags
 from Annotations2Sub.Annotations import NotAnnotationsDocumentError
-from Annotations2Sub.utils import (
-    Err,
-    GetUrl,
-    Info,
-    MakeSureStr,
-    Stderr,
-    Warn,
-    YellowText,
-    _,
-)
+from Annotations2Sub.utils import Err, GetUrl, Info, Stderr, Warn, YellowText, _
 from Annotations2Sub.utils2 import (
     AnnotationsXmlStringToSubtitleString,
     GetAnnotationsUrl,
@@ -155,7 +146,9 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
 
     args = parser.parse_args(argv)
 
-    queue = args.queue
+    queue = []
+    for i in args.queue:
+        queue.append(str(i))
 
     def _f(x) -> str:
         if x == None:
@@ -217,7 +210,7 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
         Dummy([CheckNetwork])
 
     for Task in queue:
-        video_id = MakeSureStr(Task)
+        video_id = Task
         annotations_file = Task
 
         if enable_download_for_archive:

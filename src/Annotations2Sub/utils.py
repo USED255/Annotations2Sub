@@ -6,7 +6,6 @@
 
 import sys
 import urllib.request
-from typing import Any
 
 from Annotations2Sub._flags import Flags
 from Annotations2Sub.i18n import _
@@ -38,13 +37,6 @@ def Warn(string: str):
 def Info(string: str):
     if Flags.verbose:
         Stderr(string)
-
-
-def MakeSureStr(string: Any) -> str:
-    """确保输入的是字符串"""
-    if isinstance(string, str):
-        return str(string)
-    raise TypeError(_("不是字符串"))
 
 
 def GetUrl(url: str) -> str:

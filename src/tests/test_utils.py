@@ -6,16 +6,7 @@ import urllib.request
 
 import pytest
 
-from Annotations2Sub.utils import (
-    Err,
-    GetUrl,
-    Info,
-    MakeSureStr,
-    RedText,
-    Stderr,
-    Warn,
-    YellowText,
-)
+from Annotations2Sub.utils import Err, GetUrl, Info, RedText, Stderr, Warn, YellowText
 
 
 def test_YellowText():
@@ -40,15 +31,6 @@ def test_Warn():
 
 def test_Info():
     Info("Test")
-
-
-def test_MakeSureStr():
-    assert MakeSureStr("Test") == "Test"
-
-
-def test_MakeSureStr_TypeError():
-    with pytest.raises(TypeError):
-        MakeSureStr(0)
 
 
 def test_GetUrl():

@@ -7,7 +7,7 @@ from Annotations2Sub._Convert import Convert
 from Annotations2Sub._Sub import Sub
 from Annotations2Sub.Annotations import Parse
 from Annotations2Sub.i18n import _
-from Annotations2Sub.utils import GetUrl, MakeSureStr, Stderr, Warn
+from Annotations2Sub.utils import GetUrl, Stderr, Warn
 
 
 def GetAnnotationsUrl(videoId: str) -> str:
@@ -51,8 +51,8 @@ def GetMedia(videoId: str, instanceDomain: str):  # -> tuple[str, str]:
             audios.append(i)
     videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
     audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-    video = MakeSureStr(videos[0]["url"])
-    audio = MakeSureStr(audios[0]["url"])
+    video = str(videos[0]["url"])
+    audio = str(audios[0]["url"])
     if not video.startswith("http"):
         raise ValueError(_("没有 Video"))
     if not audio.startswith("http"):
