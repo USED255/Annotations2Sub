@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import gettext
-import os
-import sys
+
 import urllib.request
 
 import pytest
 
 from Annotations2Sub.utils import (
     Err,
-    GetAnnotationsUrl,
     GetUrl,
     Info,
     MakeSureStr,
@@ -77,15 +74,3 @@ def test_GetUrl():
 def test_GetUrl_ValueError():
     with pytest.raises(ValueError):
         GetUrl("file://c:/windows/system32/drivers/config")
-
-
-def test_GetAnnotationsUrl():
-    assert (
-        GetAnnotationsUrl("-8kKeUuytqA")
-        == "https://archive.org/download/youtubeannotations_64/-8.tar/-8k/-8kKeUuytqA.xml"
-    )
-
-
-def test_GetAnnotationsUrl_ValueError():
-    with pytest.raises(ValueError):
-        GetAnnotationsUrl("")

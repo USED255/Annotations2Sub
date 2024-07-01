@@ -19,13 +19,11 @@ from xml.etree.ElementTree import ParseError
 
 from Annotations2Sub import version
 from Annotations2Sub._Convert import Convert
+from Annotations2Sub._flags import Flags
 from Annotations2Sub._Sub import Sub
 from Annotations2Sub.Annotations import NotAnnotationsDocumentError, Parse
 from Annotations2Sub.utils import (
     Err,
-    Flags,
-    GetAnnotationsUrl,
-    GetMedia,
     GetUrl,
     Info,
     MakeSureStr,
@@ -34,6 +32,7 @@ from Annotations2Sub.utils import (
     YellowText,
     _,
 )
+from Annotations2Sub.utils2 import GetAnnotationsUrl, GetMedia
 
 # 兼容 Python 3.6, 3.7
 # Python 3.6, 3.7 的 typing 没有 Literal
