@@ -150,23 +150,18 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
     for i in args.queue:
         queue.append(str(i))
 
-    def _f(x) -> str:
-        if x == None:
-            return ""
-        return x
-
     transform_resolution_x = args.transform_resolution_x
     transform_resolution_y = args.transform_resolution_y
     font = args.font
     enable_download_for_archive = args.download_for_archive
     enable_download_annotations_only = args.download_annotations_only
-    invidious_instances = _f(args.invidious_instances)
+    invidious_instances = args.invidious_instances
     enable_preview_video = args.preview_video
     enable_generate_video = args.generate_video
     enable_no_overwrite_files = args.no_overwrite_files
     enable_no_keep_intermediate_files = args.no_keep_intermediate_files
-    output = _f(args.output)
-    output_directory = _f(args.output_directory)
+    output = args.output
+    output_directory = args.output_directory
     enable_verbose = args.verbose
 
     output_to_stdout = False
@@ -174,8 +169,8 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
     if enable_verbose:
         Flags.verbose = True
 
-    if output != "":
-        if output_directory != "":
+    if output != None:
+        if output_directory != None:
             Err(_("--output 不能与 --output--directory 选项同时使用"))
             return 1
         if len(queue) > 1:
@@ -184,7 +179,7 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
         if args.output == "-":
             output_to_stdout = True
 
-    if output_directory != "":
+    if output_directory != None:
         if os.path.isdir(output_directory) is False:
             Err(_("转换后文件输出目录应该指定一个文件夹"))
             return 1
@@ -226,7 +221,7 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
             if enable_download_annotations_only and output:
                 annotations_file = output
 
-            if output_directory != "":
+            if output_directory != None:
                 annotations_file = os.path.join(output_directory, annotations_file)
 
             is_skip_download = False
@@ -258,12 +253,12 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
             continue
 
         subtitle_file = annotations_file + ".ass"
-        if output_directory != "":
+        if output_directory != None:
             file_name = os.path.basename(annotations_file)
             file_name = file_name + ".ass"
             subtitle_file = os.path.join(output_directory, file_name)
 
-        if output != "":
+        if output != None:
             subtitle_file = output
 
         with open(annotations_file, "r", encoding="utf-8") as f:
