@@ -3,8 +3,9 @@ import xml.etree.ElementTree
 
 from Annotations2Sub._Convert import Convert
 from Annotations2Sub._Sub import Sub
-from Annotations2Sub.Annotations import NotAnnotationsDocumentError, Parse
+from Annotations2Sub.Annotations import Parse
 from Annotations2Sub.i18n import _
+from Annotations2Sub.utils import Warn
 
 
 def AnnotationsXmlFileToSubtitleFile(
@@ -48,6 +49,9 @@ def AnnotationsXmlStringToSubtitleString(
         transform_resolution_x,
         transform_resolution_y,
     )
+
+    if events == []:
+        Warn(_("{} 没有注释被转换").format(title))
 
     # Annotations 是无序的
     # 按时间重新排列字幕事件, 是为了人类可读

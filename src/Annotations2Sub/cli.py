@@ -22,6 +22,7 @@ from Annotations2Sub._Convert import Convert
 from Annotations2Sub._flags import Flags
 from Annotations2Sub._Sub import Sub
 from Annotations2Sub.Annotations import NotAnnotationsDocumentError, Parse
+from Annotations2Sub.repl import AnnotationsXmlStringToSubtitleString
 from Annotations2Sub.utils import (
     Err,
     GetUrl,
@@ -271,41 +272,22 @@ def Run(argv: Optional[List[LiteralString] | List[str]] = None):  # -> Literal[1
             annotations_string = f.read()
 
         try:
-            tree = xml.etree.ElementTree.fromstring(annotations_string)
+            subtitle_string = AnnotationsXmlStringToSubtitleString(
+                annotations_string,
+                transform_resolution_x,
+                transform_resolution_y,
+                font,
+                os.path.basename(annotations_file),
+            )
+        except NotAnnotationsDocumentError:
+            Err(_("{} 不是 Annotations 文件").format(annotations_file))
+            exit_code = 1
+            continue
         except ParseError:
             Err(_("{} 不是一个有效的 XML 文件").format(annotations_file))
             Info(traceback.format_exc())
             exit_code = 1
             continue
-
-        try:
-            annotations = Parse(tree)
-        except NotAnnotationsDocumentError:
-            Err(_("{} 不是 Annotations 文件").format(annotations_file))
-            exit_code = 1
-            continue
-
-        events = Convert(
-            annotations,
-            transform_resolution_x,
-            transform_resolution_y,
-        )
-        if events == []:
-            Warn(_("{} 没有注释被转换").format(annotations_file))
-        # Annotations 是无序的
-        # 按时间重新排列字幕事件, 是为了人类可读
-        events.sort(key=lambda event: event.Start)
-
-        subtitle = Sub()
-        subtitle.comment += _("此脚本使用 Annotations2Sub 生成") + "\n"
-        subtitle.comment += "https://github.com/USED255/Annotations2Sub"
-        subtitle.info["Title"] = os.path.basename(annotations_file)
-        subtitle.info["PlayResX"] = transform_resolution_x
-        subtitle.info["PlayResY"] = transform_resolution_y
-        subtitle.info["WrapStyle"] = "2"
-        subtitle.styles["Default"].Fontname = font
-        subtitle.events.extend(events)
-        subtitle_string = subtitle.Dump()
 
         is_no_save = False
         if output_to_stdout:
