@@ -52,10 +52,10 @@ class Annotation:
                 "speech",
                 "highlightText",
                 "anchored",
+                "label",
                 # branding
                 # channel
                 # cta
-                # label
                 # playlist
                 # subscribe
                 # video
