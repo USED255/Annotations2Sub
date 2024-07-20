@@ -35,34 +35,6 @@ def test_Pares():
     assert Annotations.Parse(tree)
 
 
-def test_ParseAnnotationAlpha_ValueError():
-    def f(x):
-        for i in x:
-            if i.__name__ == "ParseAnnotationAlpha":
-                i(None)
-
-    m = pytest.MonkeyPatch()
-    m.setattr(Annotations, "Dummy", f)
-    with pytest.raises(ValueError):
-        Annotations.Parse(tree)
-
-    m.undo()
-
-
-def test_ParseAnnotationColor_ValueError():
-    def f(x):
-        for i in x:
-            if i.__name__ == "ParseAnnotationColor":
-                i(None)
-
-    m = pytest.MonkeyPatch()
-    m.setattr(Annotations, "Dummy", f)
-    with pytest.raises(ValueError):
-        Annotations.Parse(tree)
-
-    m.undo()
-
-
 def test_Parse_ValueError():
     with pytest.raises(ValueError):
         Annotations.Parse(Element(""))

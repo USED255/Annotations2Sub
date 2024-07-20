@@ -4,6 +4,7 @@
 """Annotations 相关"""
 
 from datetime import datetime
+import datetime as dt
 from typing import List, Optional, Union
 from xml.etree.ElementTree import Element
 
@@ -94,9 +95,10 @@ class Annotation:
         self.effects: str = ""
         # SSA 不能实现交互,
         # 处理 action 没有意义
+        # self.trigger
         # self.actionType: Literal["time", "url"] = "time"
-        # self.actionUrl: str = ""
-        # self.actionUrlTarget: str = ""
+        # self.target: str = ""
+        # self.url: str = ""
         # self.actionSeconds: datetime = datetime.strptime("0", "%S")
         # self.highlightId: str = ""
 
@@ -128,8 +130,6 @@ def Parse(tree: Element) -> List[Annotation]:
         解析 Annotation 的透明度
         "0.600000023842" -> Alpha(alpha=102)
         """
-        if alpha == None:
-            raise ValueError(_('"alpha" 不应为 None'))
         variable1 = float(alpha) * 255
         return Alpha(alpha=int(variable1))
 
@@ -138,24 +138,46 @@ def Parse(tree: Element) -> List[Annotation]:
         解析 Annotation 的颜色值
         "4210330" -> Color(red=154, green=62, blue=64)
         """
-        if color == None:
-            raise ValueError(_('"color" 不应为 None'))
         integer = int(color)
         r = integer & 255
         g = (integer >> 8) & 255
         b = integer >> 16
         return Color(red=r, green=g, blue=b)
 
-    def ParseTime(timeString: str) -> datetime:
-        colon_count = timeString.count(":")
-        time_format = ""
-        if colon_count == 2:
-            time_format += "%H:"
-        time_format += "%M:%S"
-        if "." in timeString:
-            time_format += ".%f"
-        time = datetime.strptime(timeString, time_format)
-        return time
+    def ParseTime(timeString: str | None) -> datetime:
+        if timeString == None:
+            return datetime.strptime("0", "%S")
+        if timeString == "":
+            return datetime.strptime("0", "%S")
+        if timeString == "never":
+            return datetime.strptime("0", "%S")
+        if timeString == "undefined":
+            return datetime.strptime("0", "%S")
+        
+        timeString = timeString.replace("s", "")
+        timeString = timeString.replace("-", "")
+
+        parts = timeString.split(":")
+        if len(parts) > 3:
+            return datetime.strptime("0", "%S")
+        if "NaN" in parts:
+            return datetime.strptime("0", "%S")
+
+        seconds = 0.0
+
+        for part in parts:
+            v1 = part.split(".")
+            if len(v1) > 1:
+                part = v1[0] + "." + v1[1]
+
+            part = float(part)
+            seconds = 60 * seconds + abs(part)
+
+        return datetime.fromtimestamp(seconds,dt.UTC).replace(tzinfo=None)
+
+    def ParseFloat(string: str) -> float:
+        string = string.replace(",", ".")
+        return float(string)
 
     def ParseAnnotation(each: Element) -> Optional[Annotation]:
         """解析 Annotation"""
@@ -164,6 +186,8 @@ def Parse(tree: Element) -> List[Annotation]:
         #    & https://github.com/isaackd/annotationlib
 
         _id = each.get("id", "")
+        if _id == "":
+            return None
 
         _type = each.get("type", "")
         if _type == "":
@@ -180,7 +204,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
         text = ""
         text_element = each.find("TEXT")
-        if isinstance(text_element, Element):
+        if text_element is not None:
             if isinstance(text_element.text, str):
                 text = text_element.text
 
@@ -189,35 +213,33 @@ def Parse(tree: Element) -> List[Annotation]:
             Info(_('"{}" 没有 segment, 跳过').format(_id))
             return None
 
-        _Segment = _Segment.find("movingRegion")
-        if _Segment is None:
+        MovingRegion = _Segment.find("movingRegion")
+        if MovingRegion is None:
             Info(_('"{}" 没有 movingRegion, 跳过').format(_id))
             return None
 
-        Segment = _Segment.findall("rectRegion")
+        Segment = MovingRegion.findall("rectRegion")
         if len(Segment) == 0:
-            Segment = _Segment.findall("anchoredRegion")
+            Segment = MovingRegion.findall("anchoredRegion")
         if len(Segment) == 0 and style != "highlightText":
             Info(_('"{}" 没有时间, 跳过').format(_id))
             return None
 
-        _Start = _End = "0:00:00.00"
-        if style == "highlightText":
-            # fmt: off
-            _Start = "0:00:00.00"
-            _End   = "9:00:00.00"
-            # fmt: on
-
-        t1 = Segment[0].get("t", _Start)
-        t2 = Segment[1].get("t", _End)
-        if "never" in (t1, t2):
-            t1 = t2 = "0:00:00.00"
+        t1 = Segment[0].get("t", "")
+        t2 = Segment[1].get("t", "")
 
         Start = ParseTime(min(t1, t2))
         End = ParseTime(max(t1, t2))
 
-        x = float(Segment[0].get("x", "0"))
-        y = float(Segment[0].get("y", "0"))
+        # 两个 Segment 只有时间差别
+        x = ParseFloat(Segment[0].get("x", "0"))
+        y = ParseFloat(Segment[0].get("y", "0"))
+        w = ParseFloat(Segment[0].get("w", "0"))
+        h = ParseFloat(Segment[0].get("h", "0"))
+        sx = ParseFloat(Segment[0].get("sx", "0"))
+        sy = ParseFloat(Segment[0].get("sy", "0"))
+
+        author = each.get("author", "")
 
         annotation = Annotation()
 
@@ -229,17 +251,11 @@ def Parse(tree: Element) -> List[Annotation]:
         annotation.timeEnd = End
         annotation.x = x
         annotation.y = y
-
-        # 两个 Segment 只有时间差别
-        w = float(Segment[0].get("w", "0"))
-        h = float(Segment[0].get("h", "0"))
-        sx = float(Segment[0].get("sx", "0"))
-        sy = float(Segment[0].get("sy", "0"))
-
         annotation.width = w
         annotation.height = h
         annotation.sx = sx
         annotation.sy = sy
+        annotation.author = author
 
         Appearance = each.find("appearance")
 
@@ -255,12 +271,9 @@ def Parse(tree: Element) -> List[Annotation]:
             annotation.bgOpacity = ParseAnnotationAlpha(bgAlpha)
             annotation.bgColor = ParseAnnotationColor(bgColor)
             annotation.fgColor = ParseAnnotationColor(fgColor)
-            annotation.textSize = float(textSize)
+            annotation.textSize = ParseFloat(textSize)
             annotation.fontWeight = fontWeight
             annotation.effects = effects
-
-        author = each.get("author", "")
-        annotation.author = author
 
         return annotation
 
