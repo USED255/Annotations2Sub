@@ -3,8 +3,8 @@
 
 """Annotations 相关"""
 
-from datetime import datetime
 import datetime as dt
+from datetime import datetime
 from typing import List, Optional, Union
 from xml.etree.ElementTree import Element
 
@@ -145,7 +145,13 @@ def Parse(tree: Element) -> List[Annotation]:
         return Color(red=r, green=g, blue=b)
 
     def ParseTime(timeString: str | None) -> datetime:
-        if timeString == None:
+        def parseFloat(string: str) -> float:
+            part = string.split(".")
+            if len(part) > 1:
+                string = part[0] + "." + part[1]
+            return float(string)
+
+        if timeString is None:
             return datetime.strptime("0", "%S")
         if timeString == "":
             return datetime.strptime("0", "%S")
@@ -153,7 +159,7 @@ def Parse(tree: Element) -> List[Annotation]:
             return datetime.strptime("0", "%S")
         if timeString == "undefined":
             return datetime.strptime("0", "%S")
-        
+
         timeString = timeString.replace("s", "")
         timeString = timeString.replace("-", "")
 
@@ -166,14 +172,15 @@ def Parse(tree: Element) -> List[Annotation]:
         seconds = 0.0
 
         for part in parts:
-            v1 = part.split(".")
-            if len(v1) > 1:
-                part = v1[0] + "." + v1[1]
+            if part == "":
+                continue
+            time = parseFloat(part)
+            seconds = 60 * seconds + abs(time)
 
-            part = float(part)
-            seconds = 60 * seconds + abs(part)
-
-        return datetime.fromtimestamp(seconds,dt.UTC).replace(tzinfo=None)
+        try:
+            return datetime.fromtimestamp(seconds, dt.UTC).replace(tzinfo=None)
+        except ValueError:
+            return datetime.strptime("0", "%S")
 
     def ParseFloat(string: str) -> float:
         string = string.replace(",", ".")
