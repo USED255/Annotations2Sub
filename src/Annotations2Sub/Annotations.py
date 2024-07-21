@@ -146,6 +146,14 @@ def Parse(tree: Element) -> List[Annotation]:
 
     def ParseTime(timeString: str | None) -> datetime:
         def parseFloat(string: str) -> float:
+            def cleanInt(string: str) -> str:
+                if string == "NaN":
+                    return "0"
+                string = string.replace("s", "")
+                string = string.replace("-", "")
+                string = string.replace("%", "")
+                return string
+
             if string == "":
                 return 0
             if string == "4294967294":
@@ -156,9 +164,8 @@ def Parse(tree: Element) -> List[Annotation]:
                 return 0
 
             part = string.split(".")
+            part = list(map(cleanInt, part))
             if len(part) > 1:
-                if part[1] == "NaN":
-                    part[1] = "0"
                 string = part[0] + "." + part[1]
             return float(string)
 
@@ -171,10 +178,6 @@ def Parse(tree: Element) -> List[Annotation]:
         if timeString == "undefined":
             return datetime.strptime("0", "%S")
 
-        timeString = timeString.replace("s", "")
-        timeString = timeString.replace("-", "")
-        timeString = timeString.replace("%", "")
-
         parts = timeString.split(":")
         seconds = 0.0
 
@@ -182,10 +185,7 @@ def Parse(tree: Element) -> List[Annotation]:
             time = parseFloat(part)
             seconds = 60 * seconds + abs(time)
 
-        try:
-            return datetime.fromtimestamp(seconds, dt.UTC).replace(tzinfo=None)
-        except ValueError:
-            return datetime.strptime("0", "%S")
+        return datetime.fromtimestamp(seconds, dt.UTC).replace(tzinfo=None)
 
     def ParseFloat(string: str) -> float:
         string = string.replace(",", ".")
