@@ -7,7 +7,6 @@ import xml.etree.ElementTree
 from Annotations2Sub import (
     Annotation,
     AnnotationsXmlFileToSubtitleFile,
-    AnnotationsXmlStringToSubtitleString,
     Convert,
     Parse,
     Sub,

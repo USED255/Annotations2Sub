@@ -10,11 +10,6 @@ import pytest
 from Annotations2Sub import Annotation, Annotations
 from tests import testCasePath
 
-filePath = os.path.join(testCasePath, "annotations.xml.test")
-with open(filePath, "r", encoding="utf-8") as f:
-    string = f.read()
-tree = xml.etree.ElementTree.fromstring(string)
-
 
 def test_Annotation():
     assert Annotation()
@@ -32,6 +27,11 @@ def test_repr_Annotation():
 
 
 def test_Pares():
+    filePath = os.path.join(testCasePath, "annotations.xml.test")
+    with open(filePath, "r", encoding="utf-8") as f:
+        string = f.read()
+    tree = xml.etree.ElementTree.fromstring(string)
+
     assert Annotations.Parse(tree)
 
 
