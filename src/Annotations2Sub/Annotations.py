@@ -146,8 +146,19 @@ def Parse(tree: Element) -> List[Annotation]:
 
     def ParseTime(timeString: str | None) -> datetime:
         def parseFloat(string: str) -> float:
+            if string == "":
+                return 0
+            if string == "4294967294":
+                return 0
+            if string == "&":
+                return 0
+            if string == "NaN":
+                return 0
+
             part = string.split(".")
             if len(part) > 1:
+                if part[1] == "NaN":
+                    part[1] = "0"
                 string = part[0] + "." + part[1]
             return float(string)
 
@@ -162,18 +173,12 @@ def Parse(tree: Element) -> List[Annotation]:
 
         timeString = timeString.replace("s", "")
         timeString = timeString.replace("-", "")
+        timeString = timeString.replace("%", "")
 
         parts = timeString.split(":")
-        if len(parts) > 3:
-            return datetime.strptime("0", "%S")
-        if "NaN" in parts:
-            return datetime.strptime("0", "%S")
-
         seconds = 0.0
 
         for part in parts:
-            if part == "":
-                continue
             time = parseFloat(part)
             seconds = 60 * seconds + abs(time)
 
