@@ -167,13 +167,15 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
             cursor.execute("SELECT * FROM files")
         with tqdm(total=total_records) as pbar:
             if args.queue[0] != "":
-                pbar.update(int(args.queue[0]))
+                pbar.update(int(args.queue[0])-1)
             while True:
                 records = cursor.fetchmany(1000)
                 if records == []:
                     break
                 for record in records:
                     string = record[1]
+                    if string == "":
+                        continue
                     try:
                         AnnotationsXmlStringToSubtitleString(string)
                     except:

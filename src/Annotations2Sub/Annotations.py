@@ -125,20 +125,20 @@ def Parse(tree: Element) -> List[Annotation]:
     # Annotation 文件是一个 XML 文件
     # 详细结构可以看看 src/tests/testCase/annotation.xml.test
 
-    def ParseAnnotationAlpha(alpha: str) -> Alpha:
+    def ParseAnnotationAlpha(alphaString: str) -> Alpha:
         """
         解析 Annotation 的透明度
         "0.600000023842" -> Alpha(alpha=102)
         """
-        variable1 = float(alpha) * 255
-        return Alpha(alpha=int(variable1))
+        alpha = int(float(alphaString) * 255) & 255
+        return Alpha(alpha=alpha)
 
-    def ParseAnnotationColor(color: str) -> Color:
+    def ParseAnnotationColor(colorString: str) -> Color:
         """
         解析 Annotation 的颜色值
         "4210330" -> Color(red=154, green=62, blue=64)
         """
-        integer = int(color)
+        integer = int(colorString)
         r = integer & 255
         g = (integer >> 8) & 255
         b = integer >> 16

@@ -420,6 +420,9 @@ def Convert(
         def wrap(text: str) -> str:
             return "\n".join(textwrap.wrap(text, width=length, drop_whitespace=False))
 
+        if textSize == 0:
+            textSize = 3.5
+
         _text = ""
         lines = text.split("\n")
         length = int(width / (textSize / 4)) + 1  # 不加一会有零
