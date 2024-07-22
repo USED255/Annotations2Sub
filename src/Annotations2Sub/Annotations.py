@@ -150,8 +150,10 @@ def Parse(tree: Element) -> List[Annotation]:
                 string = string.replace("s", "")
                 string = string.replace("-", "")
                 string = string.replace("%", "")
-                
+
                 if string == "NaN":
+                    return "0"
+                if "#" in string:
                     return "0"
                 return string
 
@@ -168,7 +170,7 @@ def Parse(tree: Element) -> List[Annotation]:
             part = list(map(cleanInt, part))
             string = part[0]
             if len(part) > 1:
-                string = part[0] + "." + part[1]
+                string = string + "." + part[1]
             return float(string)
 
         if timeString is None:

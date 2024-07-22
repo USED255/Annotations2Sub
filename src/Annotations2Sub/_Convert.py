@@ -423,6 +423,9 @@ def Convert(
         if textSize == 0:
             textSize = 3.5
 
+        if width < 0:
+            width = 0
+
         _text = ""
         lines = text.split("\n")
         length = int(width / (textSize / 4)) + 1  # 不加一会有零
