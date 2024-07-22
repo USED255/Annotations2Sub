@@ -147,11 +147,12 @@ def Parse(tree: Element) -> List[Annotation]:
     def ParseTime(timeString: str | None) -> datetime:
         def parseFloat(string: str) -> float:
             def cleanInt(string: str) -> str:
-                if string == "NaN":
-                    return "0"
                 string = string.replace("s", "")
                 string = string.replace("-", "")
                 string = string.replace("%", "")
+                
+                if string == "NaN":
+                    return "0"
                 return string
 
             if string == "":
@@ -165,6 +166,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
             part = string.split(".")
             part = list(map(cleanInt, part))
+            string = part[0]
             if len(part) > 1:
                 string = part[0] + "." + part[1]
             return float(string)
@@ -233,12 +235,16 @@ def Parse(tree: Element) -> List[Annotation]:
         Segment = MovingRegion.findall("rectRegion")
         if len(Segment) == 0:
             Segment = MovingRegion.findall("anchoredRegion")
+        if len(Segment) == 0:
+            Segment = MovingRegion.findall("shapelessRegion")
         if len(Segment) == 0 and style != "highlightText":
             Info(_('"{}" 没有时间, 跳过').format(_id))
             return None
 
+        t1 = t2 = ""
         t1 = Segment[0].get("t", "")
-        t2 = Segment[1].get("t", "")
+        if len(Segment) >= 2:
+            t2 = Segment[1].get("t", "")
 
         Start = ParseTime(min(t1, t2))
         End = ParseTime(max(t1, t2))
