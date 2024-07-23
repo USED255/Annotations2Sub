@@ -178,6 +178,8 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
                         continue
                     try:
                         AnnotationsXmlStringToSubtitleString(string)
+                    except ParseError:
+                        pass
                     except:
                         print(traceback.format_exc())
                         print("\n")

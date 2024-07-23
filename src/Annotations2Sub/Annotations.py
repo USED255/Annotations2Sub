@@ -153,6 +153,8 @@ def Parse(tree: Element) -> List[Annotation]:
 
                 if string == "NaN":
                     return "0"
+                if string == "aN":
+                    return "0"
                 if "#" in string:
                     return "0"
                 return string
