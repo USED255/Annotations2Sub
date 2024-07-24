@@ -426,7 +426,7 @@ def Convert(
 
         if width < 0:
             width = 0
-        if math.isnan(width) :
+        if math.isnan(width):
             width = 0
 
         _text = ""

@@ -141,7 +141,7 @@ def Parse(tree: Element) -> List[Annotation]:
         integer = int(colorString)
         r = integer & 255
         g = (integer >> 8) & 255
-        b = integer >> 16
+        b = integer >> 16 & 255
         return Color(red=r, green=g, blue=b)
 
     def ParseTime(timeString: str | None) -> datetime:
