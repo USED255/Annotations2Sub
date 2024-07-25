@@ -2,6 +2,8 @@
 <document>
     <annotations itct="Test">
 
+        <annotation id=""></annotation>
+
         <annotation id="1" type=""></annotation>
 
         <annotation id="2" type="test"></annotation>
@@ -169,7 +171,7 @@
             </segment>
         </annotation>
 
-        <annotation id="21" type="text" style="test">
+        <annotation id="22" type="text" style="test">
             <segment>
                 <movingRegion>
                     <rectRegion x="0.00000" y="0.00000" w="0.00000" h="0.00000" t="0:00.000" />
@@ -178,6 +180,35 @@
             </segment>
         </annotation>
 
+        <annotation id="23" type="text" style="test">
+            <segment>
+                <movingRegion>
+                    <rectRegion x="0.00000" y="0.00000" w="-1.00000" h="0.00000" t="" />
+                    <rectRegion x="0.00000" y="0.00000" w="-1.00000" h="0.00000" t="undefined" />
+                </movingRegion>
+            </segment>
+            <appearance bgAlpha="0.600000023842" bgColor="9902361" fgColor="16777215" textSize="0" effects=""></appearance>
+        </annotation>
+
+        <annotation id="24" type="text" style="test">
+            <segment>
+                <movingRegion>
+                    <rectRegion x="0.00000" y="0.00000" w="NaN" h="0.00000" t="&amp;:NaN.NaN" />
+                    <rectRegion x="0.00000" y="0.00000" w="NaN" h="0.00000" t="4294967294:0.aN" />
+                </movingRegion>
+            </segment>
+            <appearance bgAlpha="0.600000023842" bgColor="9902361" fgColor="16777215" textSize="0" effects=""></appearance>
+        </annotation>
+
+        <annotation id="25" type="text" style="test">
+            <segment>
+                <movingRegion>
+                    <rectRegion x="0.00000" y="0.00000" w="NaN" h="0.00000" t=":NaN" />
+                    <rectRegion x="0.00000" y="0.00000" w="NaN" h="0.00000" t="#" />
+                </movingRegion>
+            </segment>
+            <appearance bgAlpha="0.600000023842" bgColor="9902361" fgColor="16777215" textSize="0" effects=""></appearance>
+        </annotation>
 
     </annotations>
 </document>

@@ -1,6 +1,9 @@
 import pytest
 
-from Annotations2Sub.utils2 import GetAnnotationsUrl
+from Annotations2Sub.utils2 import (
+    AnnotationsXmlStringToSubtitleString,
+    GetAnnotationsUrl,
+)
 
 
 def test_GetAnnotationsUrl():
@@ -21,3 +24,8 @@ def test_GetMedia():
 
 def test_AnnotationsXmlStringToSubtitleString():
     pass
+
+
+def test_AnnotationsXmlStringToSubtitleString_ValueError():
+    with pytest.raises(ValueError):
+        AnnotationsXmlStringToSubtitleString("")

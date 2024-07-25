@@ -145,7 +145,7 @@ def Parse(tree: Element) -> List[Annotation]:
         b = integer >> 16 & 255
         return Color(red=r, green=g, blue=b)
 
-    def ParseTime(timeString: str | None) -> datetime:
+    def ParseTime(timeString: str) -> datetime:
         def parseFloat(string: str) -> float:
             def cleanInt(string: str) -> str:
                 string = string.replace("s", "")
@@ -176,8 +176,6 @@ def Parse(tree: Element) -> List[Annotation]:
                 string = string + "." + part[1]
             return float(string)
 
-        if timeString is None:
-            return datetime.strptime("0", "%S")
         if timeString == "":
             return datetime.strptime("0", "%S")
         if timeString == "never":
