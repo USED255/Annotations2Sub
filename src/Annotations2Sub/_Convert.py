@@ -4,7 +4,6 @@
 """转换器"""
 
 import copy
-import math
 import textwrap
 from typing import List, Optional
 
@@ -423,11 +422,6 @@ def Convert(
 
         if textSize == 0:
             textSize = 3.5
-
-        if width < 0:
-            width = 0
-        if math.isnan(width):
-            width = 0
 
         _text = ""
         lines = text.split("\n")

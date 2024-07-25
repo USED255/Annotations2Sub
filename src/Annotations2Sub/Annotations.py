@@ -4,6 +4,7 @@
 """Annotations 相关"""
 
 import datetime as dt
+import math
 from datetime import datetime
 from typing import List, Optional, Union
 from xml.etree.ElementTree import Element
@@ -262,6 +263,11 @@ def Parse(tree: Element) -> List[Annotation]:
         sy = ParseFloat(Segment[0].get("sy", "0"))
 
         author = each.get("author", "")
+
+        if w < 0:
+            w = 0
+        if math.isnan(w):
+            w = 0
 
         annotation = Annotation()
 
