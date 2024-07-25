@@ -68,6 +68,9 @@ def AnnotationsXmlStringToSubtitleString(
     title=_("无标题"),
 ) -> str:
 
+    if annotations_string == "":
+        raise ValueError(_("annotations_string 不应为空字符串"))
+
     tree = xml.etree.ElementTree.fromstring(annotations_string)
     annotations = Parse(tree)
 

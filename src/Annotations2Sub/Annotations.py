@@ -125,33 +125,38 @@ def Parse(tree: Element) -> List[Annotation]:
     # Annotation 文件是一个 XML 文件
     # 详细结构可以看看 src/tests/testCase/annotation.xml.test
 
-    def ParseAnnotationAlpha(alpha: str) -> Alpha:
+    def ParseAnnotationAlpha(alphaString: str) -> Alpha:
         """
         解析 Annotation 的透明度
         "0.600000023842" -> Alpha(alpha=102)
         """
-        variable1 = float(alpha) * 255
-        return Alpha(alpha=int(variable1))
+        alpha = int(float(alphaString) * 255) & 255
+        return Alpha(alpha=alpha)
 
-    def ParseAnnotationColor(color: str) -> Color:
+    def ParseAnnotationColor(colorString: str) -> Color:
         """
         解析 Annotation 的颜色值
         "4210330" -> Color(red=154, green=62, blue=64)
         """
-        integer = int(color)
+        integer = int(colorString)
         r = integer & 255
         g = (integer >> 8) & 255
-        b = integer >> 16
+        b = integer >> 16 & 255
         return Color(red=r, green=g, blue=b)
 
     def ParseTime(timeString: str | None) -> datetime:
         def parseFloat(string: str) -> float:
             def cleanInt(string: str) -> str:
-                if string == "NaN":
-                    return "0"
                 string = string.replace("s", "")
                 string = string.replace("-", "")
                 string = string.replace("%", "")
+
+                if string == "NaN":
+                    return "0"
+                if string == "aN":
+                    return "0"
+                if "#" in string:
+                    return "0"
                 return string
 
             if string == "":
@@ -165,8 +170,9 @@ def Parse(tree: Element) -> List[Annotation]:
 
             part = string.split(".")
             part = list(map(cleanInt, part))
+            string = part[0]
             if len(part) > 1:
-                string = part[0] + "." + part[1]
+                string = string + "." + part[1]
             return float(string)
 
         if timeString is None:
@@ -233,12 +239,16 @@ def Parse(tree: Element) -> List[Annotation]:
         Segment = MovingRegion.findall("rectRegion")
         if len(Segment) == 0:
             Segment = MovingRegion.findall("anchoredRegion")
+        if len(Segment) == 0:
+            Segment = MovingRegion.findall("shapelessRegion")
         if len(Segment) == 0 and style != "highlightText":
             Info(_('"{}" 没有时间, 跳过').format(_id))
             return None
 
+        t1 = t2 = ""
         t1 = Segment[0].get("t", "")
-        t2 = Segment[1].get("t", "")
+        if len(Segment) >= 2:
+            t2 = Segment[1].get("t", "")
 
         Start = ParseTime(min(t1, t2))
         End = ParseTime(max(t1, t2))

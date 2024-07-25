@@ -143,8 +143,53 @@ def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0
         action="store_true",
         help=_("显示更多消息"),
     )
+    parser.add_argument(
+        "-X",
+        type=str,
+    )
 
     args = parser.parse_args(argv)
+    if args.X:
+        import sqlite3
+        from tqdm import tqdm
+
+        con = sqlite3.connect(args.X)
+        cursor = con.cursor()
+        cursor.execute("SELECT rowid FROM files ORDER BY rowid DESC LIMIT 1")
+        total_records = cursor.fetchone()[0]
+        cursor.close()
+        cursor = con.cursor()
+        if args.queue[0] != "":
+            cursor.execute(
+                "SELECT * FROM files WHERE rowid > ?", ((int(args.queue[0]) - 1),)
+            )
+        else:
+            cursor.execute("SELECT * FROM files")
+        with tqdm(total=total_records) as pbar:
+            if args.queue[0] != "":
+                pbar.update(int(args.queue[0]) - 1)
+            while True:
+                records = cursor.fetchmany(1000)
+                if records == []:
+                    break
+                for record in records:
+                    string = record[1]
+                    if string == "":
+                        continue
+                    try:
+                        AnnotationsXmlStringToSubtitleString(string)
+                    except ParseError:
+                        pass
+                    except:
+                        print(traceback.format_exc())
+                        print("\n")
+                        print("videoId: " + record[0])
+                        cursor.execute(
+                            "SELECT rowid FROM files WHERE filename = ?", ((record[0]),)
+                        )
+                        print("rowid: ", (cursor.fetchone()[0]))
+                        exit(0)
+                pbar.update(len(records))
 
     queue = []
     for task in args.queue:
