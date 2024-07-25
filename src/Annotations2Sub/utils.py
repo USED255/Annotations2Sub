@@ -22,7 +22,6 @@ def RedText(string: str) -> str:
 
 
 def Stderr(string: str):
-    return
     """打印到标准错误"""
     print(string, file=sys.stderr)
 
