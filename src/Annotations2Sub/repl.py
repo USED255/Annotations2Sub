@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 
 from Annotations2Sub.i18n import _
