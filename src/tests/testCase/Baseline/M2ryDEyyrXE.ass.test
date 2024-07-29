@@ -19,7 +19,7 @@ Dialogue: 0,00:00:44.88,00:00:50.38,Default,;annotation_525582757;anchored_box;,
 Dialogue: 0,00:00:44.88,00:00:50.38,Default,;annotation_525582757;anchored_text;,0,0,0,,{\an7\pos(6.071,10.296)\fs9.436\c&H1A1A1A&\bord0\shad0}Speech bubble
 Dialogue: 0,00:00:45.36,00:00:50.44,Default,;annotation_860596767;popup_box;,0,0,0,,{\an7\pos(60.697,5.07)\c&H36DAFD&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 33.962 0 l 33.962 18.451 l 0 18.451 {\p0}
 Dialogue: 0,00:00:45.36,00:00:50.44,Default,;annotation_860596767;popup_text;,0,0,0,,{\an7\pos(61.697,6.07)\fs5.392\c&HFFFFFF&\bord0\shad0}Note
-Dialogue: 0,00:00:46.35,00:00:50.41,Default,;annotation_1336159713;title;,0,0,0,,{\an5\pos(64.52,38.592)\fs5.055\c&HFFFFFF&\bord0\shad0\b1}Title
+Dialogue: 0,00:00:46.35,00:00:50.41,Default,;annotation_1336159713;title;,0,0,0,,{\an5\pos(64.52,38.592)\fs6.74\c&HFFFFFF&\bord0\shad0\b1}Title
 Dialogue: 0,00:00:47.42,00:00:50.41,Default,;annotation_2858215607;highlight_box;,0,0,0,,{\an7\pos(5.23,54.648)\c&HD18756&\1a&H33&\bord0\shad0\iclip(6.23,55.648,29.23,81.426)}{\p1}m 0 0 l 25.0 0 l 25.0 27.778 l 0 27.778 {\p0}
 Dialogue: 0,00:00:47.42,00:00:50.41,Default,;annotation_2858215607;highlight_text;,0,0,0,,{\an7\pos(6.23,55.648)\fs3.528\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:47.44,00:00:50.44,Default,;annotation_2979048273;anchored_box;,0,0,0,,{\an7\pos(32.171,57.465)\c&H3E3ECB&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 30.111 0 l 30.111 18.746 l 0 18.746 {\p0}
@@ -36,7 +36,7 @@ Dialogue: 0,00:00:50.57,00:00:55.03,Default,;annotation_1243342941;anchored_box;
 Dialogue: 0,00:00:50.57,00:00:55.03,Default,;annotation_1243342941;anchored_text;,0,0,0,,{\an7\pos(39.827,73.676)\fs5.392\c&HFFFFFF&\bord0\shad0}ANOTHER EXAMPLE
 Dialogue: 0,00:00:50.60,00:00:55.03,Default,;annotation_2448416493;popup_box;,0,0,0,,{\an7\pos(6.181,73.521)\c&H36DAFD&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 30.0 0 l 30.0 17.056 l 0 17.056 {\p0}
 Dialogue: 0,00:00:50.60,00:00:55.03,Default,;annotation_2448416493;popup_text;,0,0,0,,{\an7\pos(7.181,74.521)\fs9.436\c&HFFFFFF&\bord0\shad0}EXAMPLE
-Dialogue: 0,00:00:50.60,00:00:55.14,Default,;annotation_4225609537;title;,0,0,0,,{\an5\pos(23.632,11.789)\fs3.37\c&HFFFFFF&\bord0\shad0\b1}TITLE\NI can't do that! :((((
+Dialogue: 0,00:00:50.60,00:00:55.14,Default,;annotation_4225609537;title;,0,0,0,,{\an5\pos(23.632,11.789)\fs4.493\c&HFFFFFF&\bord0\shad0\b1}TITLE\NI can't do that! :((((
 Dialogue: 0,00:01:11.30,00:01:15.87,Default,;annotation_1476308891;popup_box;,0,0,0,,{\an7\pos(3.17,21.69)\c&H28C2FC&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 15.412 0 l 15.412 57.62 l 0 57.62 {\p0}
 Dialogue: 0,00:01:11.30,00:01:15.87,Default,;annotation_1476308891;popup_text;,0,0,0,,{\an7\pos(4.17,22.69)\fs4.381\c&HFFFFFF&\bord0\shad0}You could set \Nif you wanted \Nto open the \Nlink in a new \Ntab or if you \Nwanted to enter\N it directly \N(replacing this\N video with the\N linked website\N or video).
 Dialogue: 0,00:01:11.30,00:01:15.87,Default,;annotation_4030766477;label_box;,0,0,0,,{\an7\pos(22.947,21.408)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 54.015 0 l 54.015 55.54 l 0 55.54 {\p0}
@@ -49,7 +49,7 @@ Dialogue: 0,00:01:30.91,00:01:37.72,Default,;annotation_177747451;popup_box;,0,0
 Dialogue: 0,00:01:30.91,00:01:37.72,Default,;annotation_177747451;popup_text;,0,0,0,,{\an7\pos(6.625,6.556)\fs5.392\c&HFFFFFF&\bord0\shad0}Many videos uploaders used \Nannotations to correct mistakes \Nwhich hadn't been detected when \Nthe video had been editing (or \Nrecording).
 Dialogue: 0,00:01:39.89,00:01:46.70,Default,;annotation_2831017921;popup_box;,0,0,0,,{\an7\pos(3.962,5.915)\c&H5187E2&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 42.678 0 l 42.678 31.986 l 0 31.986 {\p0}
 Dialogue: 0,00:01:39.89,00:01:46.70,Default,;annotation_2831017921;popup_text;,0,0,0,,{\an7\pos(4.962,6.915)\fs4.381\c&HFFFFFF&\bord0\shad0}A big problem related to annotations \Nwas that the most of the viewers turned\N them off as soon as a video had \Nstarted and because of that, a lot of \Nuseful information about the video \Nwould be lost by the watcher.
-Dialogue: 0,00:01:58.80,00:02:09.73,Default,;annotation_3533555619;title;,0,0,0,,{\an5\pos(51.446,19.818)\fs7.021\c&HFFFFFF&\bord0\shad0\b1}Annotations\N2008 - 2017\NR.I.P.
+Dialogue: 0,00:01:58.80,00:02:09.73,Default,;annotation_3533555619;title;,0,0,0,,{\an5\pos(51.446,19.818)\fs9.361\c&HFFFFFF&\bord0\shad0\b1}Annotations\N2008 - 2017\NR.I.P.
 Dialogue: 0,00:02:10.46,00:02:13.91,Default,;annotation_3109885823;anchored_box;,0,0,0,,{\an7\pos(41.046,3.662)\c&HD3A04F&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 57.691 0 l 57.691 39.026 l 0 39.026 {\p0}
 Dialogue: 0,00:02:10.46,00:02:13.91,Default,;annotation_3109885823;anchored_text;,0,0,0,,{\an7\pos(42.046,4.662)\fs9.436\c&H1A1A1A&\bord0\shad0}Hey, I'm the last \Nannotation on YouTube!\NGood bye!
 

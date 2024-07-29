@@ -390,9 +390,8 @@ def Convert(
 
         textSize = textSize * 1.12
 
-        # 模拟 DPI 缩放
         if each.style == "title":
-            textSize = textSize * 100 / 480
+            textSize = textSize * 100 / 360
 
         if resolutionX != 100:
             transform_coefficient_x = resolutionX / 100
