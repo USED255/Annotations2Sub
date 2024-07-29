@@ -2,13 +2,13 @@
     "configurations": [
         {
             "name": "Annotations2Sub src/tests/testCase/annotations.xml.test",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "Annotations2Sub",
             "justMyCode": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/src",
             "args": [
-                "src/tests/testCase/annotations.xml.test"
+                "tests/testCase/annotations.xml.test"
             ]
         }
     ]

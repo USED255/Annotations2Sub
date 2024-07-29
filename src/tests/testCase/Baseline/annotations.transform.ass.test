@@ -25,7 +25,7 @@ Dialogue: 0,00:00:00.00,00:00:00.00,Default,Test;12;popup_box;,0,0,0,,{\an7\pos(
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,Test;12;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs38.102\c&H000000&\bord0\shad0\b1}​ \NT\Ne\Ns\Nt
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;13;highlightText_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;13;highlightText_text;,0,0,0,,{\an5\pos(0.0,0.0)\fs38.102\c&H000000&\bord0\shad0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;14;title;,0,0,0,,{\an5\pos(0.0,0.0)\fs10.584\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;14;title;,0,0,0,,{\an5\pos(0.0,0.0)\fs38.102\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;15;speech_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;15;speech_triangle;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0.0 l 0.0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;15;speech_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs38.102\c&H000000&\bord0\shad0}

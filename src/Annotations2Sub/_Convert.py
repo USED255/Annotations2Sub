@@ -388,10 +388,42 @@ def Convert(
         sy = each.sy
         text = each.text
 
-        textSize = textSize * 1.12
+        if textSize == 0:
+            textSize = 3.5
 
-        if each.style == "title":
-            textSize = textSize * 100 / 360
+        line_count = text.count("\n") + 1
+
+        v1 = height - padding_y * (1 + line_count)
+        if v1 > 0:
+            if textSize * line_count > v1:
+                textSize = v1 / line_count
+
+        # 模拟换行行为
+        def wrap(text: str) -> str:
+            return "\n".join(textwrap.wrap(text, width=length, drop_whitespace=False))
+
+        _text = ""
+        lines = text.split("\n")
+        length = int(width / (textSize / 4)) + 1  # 不加一会有零
+        for line in lines[:-1]:
+            _text += wrap(line) + "\n"
+        _text += wrap(lines[-1])
+        text = _text
+
+        # 让前导空格生效
+        if text.startswith(" "):
+            text = "\u200b" + text
+
+        # SSA 用 "\N" 换行
+        text = text.replace("\n", r"\N")
+
+        # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
+        # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
+        # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
+        text = text.replace("{", r"\{")
+        text = text.replace("}", r"\}")
+
+        textSize = textSize * 1.12
 
         if resolutionX != 100:
             transform_coefficient_x = resolutionX / 100
@@ -415,34 +447,6 @@ def Convert(
             height = TransformY(height)
             sy = TransformY(sy)
             padding_y = TransformY(padding_y)
-
-        # 模拟换行行为
-        def wrap(text: str) -> str:
-            return "\n".join(textwrap.wrap(text, width=length, drop_whitespace=False))
-
-        if textSize == 0:
-            textSize = 3.5
-
-        _text = ""
-        lines = text.split("\n")
-        length = int(width / (textSize / 4)) + 1  # 不加一会有零
-        for line in lines[:-1]:
-            _text += wrap(line) + "\n"
-        _text += wrap(lines[-1])
-        text = _text
-
-        # 让前导空格生效
-        if text.startswith(" "):
-            text = "\u200b" + text
-
-        # SSA 用 "\N" 换行
-        text = text.replace("\n", r"\N")
-
-        # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
-        # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
-        # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
-        text = text.replace("{", r"\{")
-        text = text.replace("}", r"\}")
 
         # x = round(x, 3)
         # y = round(y, 3)
