@@ -388,6 +388,8 @@ def Convert(
         sy = each.sy
         text = each.text
 
+        textSize = textSize * 1.12
+
         # 模拟 DPI 缩放
         if each.style == "title":
             textSize = textSize * 100 / 480
