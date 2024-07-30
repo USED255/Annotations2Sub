@@ -114,6 +114,9 @@ class Annotation:
     def __repr__(self) -> str:
         return str(self)
 
+    def __eq__(self, value: object) -> bool:
+        return str(self) == str(value)
+
 
 def Parse(tree: Element) -> List[Annotation]:
     """将 XML 树转换为 List[Annotation]"""

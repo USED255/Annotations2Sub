@@ -5,23 +5,27 @@ from Annotations2Sub._Sub import Draw, DrawCommand, Event, Style
 
 
 def test_Style():
-    Style()
+    assert Style()
 
 
 def test_Event():
-    Event()
+    assert Event()
 
 
 def test_Sub():
-    Sub()
+    assert Sub()
 
 
 def test_repr_Sub():
     assert repr(Sub()) == str(Sub())
 
 
+def test_eq_Sub():
+    assert Sub() == Sub()
+
+
 def test_DrawCommand():
-    DrawCommand(0, 0, "m")
+    assert str(DrawCommand(0, 0, "m")) == "m 0 0 "
 
 
 def test_Draw():

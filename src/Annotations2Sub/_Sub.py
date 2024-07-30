@@ -139,6 +139,9 @@ class Sub:
     def __repr__(self) -> str:
         return str(self)
 
+    def __eq__(self, value: object) -> bool:
+        return str(self) == str(value)
+
     def Dump(self) -> str:
         """转储为 SSA"""
         return str(self)

@@ -48,7 +48,9 @@ def test_GetUrl():
 
     m = pytest.MonkeyPatch()
     m.setattr(urllib.request, "urlopen", f)
+
     GetUrl("https://example.com/")
+
     m.undo()
 
 

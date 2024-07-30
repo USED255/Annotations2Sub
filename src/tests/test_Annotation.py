@@ -25,6 +25,10 @@ def test_repr_Annotation():
     assert repr(Annotation()) == str(Annotation())
 
 
+def test_eq_Annotation():
+    assert Annotation() == Annotation()
+
+
 def test_Pares():
     filePath = os.path.join(testCasePath, "annotations.xml.test")
     with open(filePath, "r", encoding="utf-8") as f:
