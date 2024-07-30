@@ -8,8 +8,19 @@ def test_Style():
     assert Style()
 
 
+def test_str_Style():
+    assert (
+        str(Style())
+        == "Style: {},Arial,20,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,2,2,2,10,10,10,1\n"
+    )
+
+
 def test_Event():
     assert Event()
+
+
+def test_str_Event():
+    assert str(Event()) == "Dialogue: 0,00:00:00.00,00:00:00.00,Default,,0,0,0,,\n"
 
 
 def test_Sub():
