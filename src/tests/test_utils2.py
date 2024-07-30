@@ -3,11 +3,12 @@ import os
 
 import pytest
 
+from Annotations2Sub import utils2
 from Annotations2Sub.utils2 import (
     AnnotationsXmlStringToSubtitleString,
     GetAnnotationsUrl,
 )
-from tests import garbagePath, testCasePath
+from tests import testCasePath
 
 
 def test_GetAnnotationsUrl():
@@ -23,7 +24,19 @@ def test_GetAnnotationsUrl_ValueError():
 
 
 def test_GetMedia():
-    pass
+    def GetUrlMock(url: str):
+        if url == "https://good.instance/api/v1/videos/-8kKeUuytqA":
+            return r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"https://1/video"},{"type":"audio","bitrate":1,"url":"https://1/audio"}]}'
+
+    m = pytest.MonkeyPatch()
+    m.setattr(utils2, "GetUrl", GetUrlMock)
+
+    assert utils2.GetMedia("-8kKeUuytqA", "good.instance") == (
+        "https://1/video",
+        "https://1/audio",
+    )
+
+    m.undo()
 
 
 def test_AnnotationsXmlStringToSubtitleString():
