@@ -25,22 +25,12 @@ from Annotations2Sub.utils2 import (
     GetMedia,
 )
 
-# 兼容 Python 3.6, 3.7
-try:
-    from typing import LiteralString
-except ImportError:
-
-    class a:
-        pass
-
-    exec("LiteralString = a")
-
 
 def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
-def Run(argv: List[LiteralString] | List[str] | None = None):  # -> Literal[1, 0]:
+def Run(argv=None):  # -> Literal[1, 0]:
     """跑起来🐎🐎🐎"""
 
     exit_code = 0
