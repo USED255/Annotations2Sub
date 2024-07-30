@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 
 import pytest
 
@@ -6,6 +7,7 @@ from Annotations2Sub.utils2 import (
     AnnotationsXmlStringToSubtitleString,
     GetAnnotationsUrl,
 )
+from tests import garbagePath, testCasePath
 
 
 def test_GetAnnotationsUrl():
@@ -25,7 +27,19 @@ def test_GetMedia():
 
 
 def test_AnnotationsXmlStringToSubtitleString():
-    pass
+    filePath = os.path.join(testCasePath, "annotations.xml.test")
+    filePath2 = os.path.join(testCasePath, "annotations.ass.test")
+
+    with open(filePath, "r", encoding="utf-8") as f:
+        string = f.read()
+
+    with open(filePath2, "r", encoding="utf-8") as f:
+        string2 = f.read()
+
+    assert (
+        AnnotationsXmlStringToSubtitleString(string, title="annotations.xml.test")
+        == string2
+    )
 
 
 def test_AnnotationsXmlStringToSubtitleString_ValueError():

@@ -16,6 +16,24 @@ def test_Sub():
     assert Sub()
 
 
+def test_str_Sub():
+    assert (
+        str(Sub())
+        == """[Script Info]
+ScriptType: v4.00+
+Title: Default File
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Arial,20,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,2,2,2,10,10,10,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+"""
+    )
+
+
 def test_repr_Sub():
     assert repr(Sub()) == str(Sub())
 
