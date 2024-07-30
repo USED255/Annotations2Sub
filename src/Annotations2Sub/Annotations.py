@@ -185,7 +185,7 @@ def Parse(tree: Element) -> List[Annotation]:
             time = parseFloat(part)
             seconds = 60 * seconds + abs(time)
 
-        return datetime.fromtimestamp(seconds, dt.UTC).replace(tzinfo=None)
+        return datetime.fromtimestamp(seconds, dt.timezone.utc).replace(tzinfo=None)
 
     def ParseFloat(string: str) -> float:
         string = string.replace(",", ".")
