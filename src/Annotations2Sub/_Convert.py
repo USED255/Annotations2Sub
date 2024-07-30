@@ -395,8 +395,9 @@ def Convert(
 
         v1 = height - padding_y * (1 + line_count)
         if v1 > 0:
-            if textSize * line_count > v1:
-                textSize = v1 / line_count
+            Max_textSize = v1 / line_count
+            if textSize > Max_textSize:
+                textSize = Max_textSize
 
         # 模拟换行行为
         def wrap(text: str) -> str:
