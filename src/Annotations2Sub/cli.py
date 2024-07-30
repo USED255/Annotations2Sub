@@ -33,7 +33,7 @@ except ImportError:
     class a:
         pass
 
-    exec("LiteralString = a()")
+    exec("LiteralString = a")
 
 
 def Dummy(*args, **kwargs):
