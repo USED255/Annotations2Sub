@@ -29,7 +29,11 @@ from Annotations2Sub.utils2 import (
 try:
     from typing import LiteralString
 except ImportError:
-    pass
+
+    class a:
+        pass
+
+    exec("LiteralString = a()")
 
 
 def Dummy(*args, **kwargs):
