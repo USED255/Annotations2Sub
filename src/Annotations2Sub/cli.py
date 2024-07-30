@@ -11,7 +11,7 @@ import sys
 import traceback
 import urllib.request
 from http.client import IncompleteRead
-from typing import List, LiteralString, Optional
+from typing import List
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
@@ -26,9 +26,8 @@ from Annotations2Sub.utils2 import (
 )
 
 # 兼容 Python 3.6, 3.7
-# Python 3.6, 3.7 的 typing 没有 Literal
 try:
-    from typing import Literal
+    from typing import LiteralString
 except ImportError:
     pass
 
