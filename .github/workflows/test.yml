@@ -14,6 +14,9 @@ on:
       - "**.test"
       - ".github/workflows/test.yml"
 
+permissions:
+  id-token: write
+
 jobs:
   fast-test:
     name: Test
@@ -41,6 +44,8 @@ jobs:
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
+        with:
+          use_oidc: true
 
   full-test:
     name: Test
