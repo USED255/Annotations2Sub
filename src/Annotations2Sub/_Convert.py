@@ -24,6 +24,21 @@ def Convert(
         # 致谢: https://github.com/nirbheek/youtube-ass &
         #       https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 
+        def Warp(text: str, length: int) -> str:
+            def wrap(text: str) -> str:
+                return "\n".join(
+                    textwrap.wrap(text, width=length, drop_whitespace=False)
+                )
+
+            _text = ""
+            lines = text.split("\n")
+
+            for line in lines[:-1]:
+                _text += wrap(line) + "\n"
+            _text += wrap(lines[-1])
+
+            return _text
+
         def Text(event: Event) -> Event:
             """生成 Annotation 文本的 Event"""
 
@@ -399,32 +414,12 @@ def Convert(
         if textSize > Max_textSize:
             textSize = Max_textSize
 
-        # 模拟换行行为
-        def warp(text: str, length: int) -> str:
-            def _wrap(text: str) -> str:
-                return "\n".join(
-                    textwrap.wrap(text, width=length, drop_whitespace=False)
-                )
-
-            _text = ""
-            lines = text.split("\n")
-
-            for line in lines[:-1]:
-                _text += _wrap(line) + "\n"
-            _text += _wrap(lines[-1])
-
-            return _text
-
-        v2 = width - padding_x * 2
-        if v2 <= 0:
-            v2 = width
-
+        # 模拟换行
         if textSize == 0:
             textSize = 3.5
 
-        length = int(v2 / (textSize / 4)) + 1
-
-        text = warp(text, length)
+        length = int(width / (textSize / 4)) + 1
+        text = Warp(text, length)
 
         # 让前导空格生效
         if text.startswith(" "):
