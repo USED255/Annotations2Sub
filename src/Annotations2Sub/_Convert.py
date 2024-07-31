@@ -400,8 +400,20 @@ def Convert(
             textSize = Max_textSize
 
         # 模拟换行行为
-        def wrap(text: str) -> str:
-            return "\n".join(textwrap.wrap(text, width=length, drop_whitespace=False))
+        def warp(text: str, length: int) -> str:
+            def _wrap(text: str) -> str:
+                return "\n".join(
+                    textwrap.wrap(text, width=length, drop_whitespace=False)
+                )
+
+            _text = ""
+            lines = text.split("\n")
+
+            for line in lines[:-1]:
+                _text += _wrap(line) + "\n"
+            _text += _wrap(lines[-1])
+
+            return _text
 
         v2 = width - padding_x * 2
         if v2 <= 0:
@@ -412,14 +424,7 @@ def Convert(
 
         length = int(v2 / (textSize / 4)) + 1
 
-        _text = ""
-        lines = text.split("\n")
-
-        for line in lines[:-1]:
-            _text += wrap(line) + "\n"
-        _text += wrap(lines[-1])
-
-        text = _text
+        text = warp(text, length)
 
         # 让前导空格生效
         if text.startswith(" "):
