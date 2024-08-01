@@ -1,47 +1,11 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import gettext
-import os
-import sys
+
 import urllib.request
 
 import pytest
 
-from Annotations2Sub.utils import (
-    Err,
-    GetAnnotationsUrl,
-    GetUrl,
-    Info,
-    Internationalization,
-    MakeSureStr,
-    RedText,
-    Stderr,
-    Warn,
-    YellowText,
-)
-
-
-def test_internationalization():
-    Internationalization()
-
-
-def test_internationalization_FileNotFoundError():
-    def f(*args, **kwargs):
-        raise FileNotFoundError
-
-    m = pytest.MonkeyPatch()
-    m.setattr(gettext, "translation", f)
-
-    Internationalization()
-
-
-def test_internationalization_win32():
-    m = pytest.MonkeyPatch()
-    m.setattr(sys, "platform", "win32")
-    m.setattr(os, "getenv", lambda x: None)
-    Internationalization()
-    m.undo()
+from Annotations2Sub.utils import Err, GetUrl, Info, RedText, Stderr, Warn, YellowText
 
 
 def test_YellowText():
@@ -68,15 +32,6 @@ def test_Info():
     Info("Test")
 
 
-def test_MakeSureStr():
-    assert MakeSureStr("Test") == "Test"
-
-
-def test_MakeSureStr_TypeError():
-    with pytest.raises(TypeError):
-        MakeSureStr(0)
-
-
 def test_GetUrl():
     def f(x):
         class mock:
@@ -93,22 +48,12 @@ def test_GetUrl():
 
     m = pytest.MonkeyPatch()
     m.setattr(urllib.request, "urlopen", f)
+
     GetUrl("https://example.com/")
+
     m.undo()
 
 
 def test_GetUrl_ValueError():
     with pytest.raises(ValueError):
         GetUrl("file://c:/windows/system32/drivers/config")
-
-
-def test_GetAnnotationsUrl():
-    assert (
-        GetAnnotationsUrl("-8kKeUuytqA")
-        == "https://archive.org/download/youtubeannotations_64/-8.tar/-8k/-8kKeUuytqA.xml"
-    )
-
-
-def test_GetAnnotationsUrl_ValueError():
-    with pytest.raises(ValueError):
-        GetAnnotationsUrl("")

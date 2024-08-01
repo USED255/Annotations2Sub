@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """转换器"""
@@ -7,8 +6,8 @@ import copy
 import textwrap
 from typing import List, Optional
 
-from Annotations2Sub import Annotation
-from Annotations2Sub.Sub import Draw, DrawCommand, Event, Tag
+from Annotations2Sub._Sub import Draw, DrawCommand, Event, Tag
+from Annotations2Sub.Annotations import Annotation
 from Annotations2Sub.utils import Stderr, _
 
 
@@ -24,6 +23,21 @@ def Convert(
 
         # 致谢: https://github.com/nirbheek/youtube-ass &
         #       https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
+
+        def Warp(text: str, length: int) -> str:
+            def wrap(text: str) -> str:
+                return "\n".join(
+                    textwrap.wrap(text, width=length, drop_whitespace=False)
+                )
+
+            _text = ""
+            lines = text.split("\n")
+
+            for line in lines[:-1]:
+                _text += wrap(line) + "\n"
+            _text += wrap(lines[-1])
+
+            return _text
 
         def Text(event: Event) -> Event:
             """生成 Annotation 文本的 Event"""
@@ -389,9 +403,38 @@ def Convert(
         sy = each.sy
         text = each.text
 
-        # 模拟 DPI 缩放
-        if each.style == "title":
-            textSize = textSize * 100 / 480
+        # 钳制字体大小
+        line_count = text.count("\n") + 1
+
+        _height = height - padding_y * (1 + line_count)
+        if _height <= 0:
+            _height = height
+
+        Max_textSize = _height / line_count
+        if textSize > Max_textSize:
+            textSize = Max_textSize
+
+        # 模拟换行
+        if textSize == 0:
+            textSize = 3.5
+
+        length = int(width / (textSize / 4)) + 1
+        text = Warp(text, length)
+
+        # 让前导空格生效
+        if text.startswith(" "):
+            text = "\u200b" + text
+
+        # SSA 用 "\N" 换行
+        text = text.replace("\n", r"\N")
+
+        # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
+        # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
+        # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
+        text = text.replace("{", r"\{")
+        text = text.replace("}", r"\}")
+
+        textSize = textSize * 1.12
 
         if resolutionX != 100:
             transform_coefficient_x = resolutionX / 100
@@ -415,31 +458,6 @@ def Convert(
             height = TransformY(height)
             sy = TransformY(sy)
             padding_y = TransformY(padding_y)
-
-        # 模拟换行行为
-        def wrap(text: str) -> str:
-            return "\n".join(textwrap.wrap(text, width=length, drop_whitespace=False))
-
-        _text = ""
-        lines = text.split("\n")
-        length = int(width / (textSize / 4)) + 1  # 不加一会有零
-        for line in lines[:-1]:
-            _text += wrap(line) + "\n"
-        _text += wrap(lines[-1])
-        text = _text
-
-        # 让前导空格生效
-        if text.startswith(" "):
-            text = "\u200b" + text
-
-        # SSA 用 "\N" 换行
-        text = text.replace("\n", r"\N")
-
-        # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
-        # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
-        # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
-        text = text.replace("{", r"\{")
-        text = text.replace("}", r"\}")
 
         # x = round(x, 3)
         # y = round(y, 3)
@@ -472,7 +490,7 @@ def Convert(
         elif each.style == "" and each.type == "highlight":
             return highlight()
         else:
-            Stderr(_("不支持 {} 样式 ({})").format(each.style, each.id))
+            Stderr(_('不支持 "{}" 样式 ({})').format(each.style, each.id))
             return []
 
     events = []

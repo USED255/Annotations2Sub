@@ -14,469 +14,469 @@ Style: Default,Microsoft YaHei,20,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_1033244203;popup_box;,0,0,0,,{\an7\pos(0.0,899.651)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 959.712 0 l 959.712 180.349 l 0 180.349 {\p0}
-Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_1033244203;popup_text;,0,0,0,,{\an7\pos(19.2,910.451)\fs42.245\c&HFFFFFF&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_1033244203;popup_text;,0,0,0,,{\an7\pos(19.2,910.451)\fs47.315\c&HFFFFFF&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_1642460267;popup_box;,0,0,0,,{\an7\pos(959.923,0.0)\c&H36DAFD&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 960.077 0 l 960.077 195.674 l 0 195.674 {\p0}
-Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_1642460267;popup_text;,0,0,0,,{\an7\pos(979.123,10.8)\fs51.994\c&HFFFFFF&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_1642460267;popup_text;,0,0,0,,{\an7\pos(979.123,10.8)\fs58.233\c&HFFFFFF&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_1951424657;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H75B96A&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 960.0 0 l 960.0 196.387 l 0 196.387 {\p0}
-Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_1951424657;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs51.994\c&HFFFFFF&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_1951424657;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs58.233\c&HFFFFFF&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_3031980063;popup_box;,0,0,0,,{\an7\pos(958.867,899.575)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 961.133 0 l 961.133 180.425 l 0 180.425 {\p0}
-Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_3031980063;popup_text;,0,0,0,,{\an7\pos(978.067,910.375)\fs42.245\c&HFFFFFF&\bord0\shad0}
-Dialogue: 0,00:00:00.10,00:00:23.20,Default,;annotation_2200715567;title;,0,0,0,,{\an5\pos(1440.0,94.149)\fs48.744\c&H000000&\bord0\shad0\b1}世界中的人們
-Dialogue: 0,00:00:00.10,00:00:23.20,Default,;annotation_939591749;title;,0,0,0,,{\an5\pos(1440.355,985.846)\fs48.744\c&HFFFFFF&\bord0\shad0\b1}Luca_Truelywaath\N霜月はるか
-Dialogue: 0,00:00:00.10,00:00:23.23,Default,;annotation_99707445;title;,0,0,0,,{\an5\pos(478.56,93.658)\fs48.744\c&HFFFFFF&\bord0\shad0\b1}合唱
-Dialogue: 0,00:00:00.10,00:00:23.23,Default,;annotation_470221101;title;,0,0,0,,{\an5\pos(479.616,985.846)\fs48.744\c&HFFFFFF&\bord0\shad0\b1}Chroche_Latel_Pastalie\N志方あきこ
+Dialogue: 0,00:00:00.00,00:00:23.20,Default,;annotation_3031980063;popup_text;,0,0,0,,{\an7\pos(978.067,910.375)\fs47.315\c&HFFFFFF&\bord0\shad0}
+Dialogue: 0,00:00:00.10,00:00:23.20,Default,;annotation_2200715567;title;,0,0,0,,{\an5\pos(1440.0,94.149)\fs67.0\c&H000000&\bord0\shad0\b1}世界中的人們
+Dialogue: 0,00:00:00.10,00:00:23.20,Default,;annotation_939591749;title;,0,0,0,,{\an5\pos(1440.355,985.846)\fs54.384\c&HFFFFFF&\bord0\shad0\b1}Luca_Truelywaath\N霜月はるか
+Dialogue: 0,00:00:00.10,00:00:23.23,Default,;annotation_99707445;title;,0,0,0,,{\an5\pos(478.56,93.658)\fs65.899\c&HFFFFFF&\bord0\shad0\b1}合唱
+Dialogue: 0,00:00:00.10,00:00:23.23,Default,;annotation_470221101;title;,0,0,0,,{\an5\pos(479.616,985.846)\fs54.384\c&HFFFFFF&\bord0\shad0\b1}Chroche_Latel_Pastalie\N志方あきこ
 Dialogue: 0,00:00:01.58,00:00:09.40,Default,;annotation_1266590287;popup_box;,0,0,0,,{\an7\pos(0.0,223.528)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 220.99 l 0 220.99 {\p0}
-Dialogue: 0,00:00:01.58,00:00:09.40,Default,;annotation_1266590287;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs51.994\c&HFFFFFF&\bord0\shad0}Was yea ra chs leeya fhyu en xest eazas yanyaue yor\N（私は希望の風になる、そして大切な貴方と互いに変換する）\N（我化身為希望之風、然後與最重要的您互相變換）
+Dialogue: 0,00:00:01.58,00:00:09.40,Default,;annotation_1266590287;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs58.233\c&HFFFFFF&\bord0\shad0}Was yea ra chs leeya fhyu en xest eazas yanyaue yor\N（私は希望の風になる、そして大切な貴方と互いに変換する）\N（我化身為希望之風、然後與最重要的您互相變換）
 Dialogue: 0,00:00:02.78,00:00:09.40,Default,;annotation_3538433031;popup_box;,0,0,0,,{\an7\pos(0.0,648.281)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 226.973 l 0 226.973 {\p0}
-Dialogue: 0,00:00:02.78,00:00:09.40,Default,;annotation_3538433031;popup_text;,0,0,0,,{\an7\pos(19.2,659.081)\fs51.994\c&HFFFFFF&\bord0\shad0}Wee ki ra chs wasara dor en xest eazas yanyaue yor\N（私は豊かな大地になる、そして大切な貴方と互いに変換する）\N（我化身為豐壤的大地、然後與最重要的您互相變換）
+Dialogue: 0,00:00:02.78,00:00:09.40,Default,;annotation_3538433031;popup_text;,0,0,0,,{\an7\pos(19.2,659.081)\fs58.233\c&HFFFFFF&\bord0\shad0}Wee ki ra chs wasara dor en xest eazas yanyaue yor\N（私は豊かな大地になる、そして大切な貴方と互いに変換する）\N（我化身為豐壤的大地、然後與最重要的您互相變換）
 Dialogue: 0,00:00:06.31,00:00:11.60,Default,;annotation_3723999841;popup_box;,0,0,0,,{\an7\pos(0.0,444.377)\c&H75B96A&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 200.74 l 0 200.74 {\p0}
-Dialogue: 0,00:00:06.31,00:00:11.60,Default,;annotation_3723999841;popup_text;,0,0,0,,{\an7\pos(19.2,455.177)\fs51.994\c&HFFFFFF&\bord0\shad0}
-Dialogue: 0,00:00:06.35,00:00:11.60,Default,;annotation_3208875289;title;,0,0,0,,{\an5\pos(960.0,541.69)\fs32.496\c&HFFFFFF&\bord0\shad0\b1}enne yanje yehah...\N永久の幸せを願わん\N祈求永遠的幸福
+Dialogue: 0,00:00:06.31,00:00:11.60,Default,;annotation_3723999841;popup_text;,0,0,0,,{\an7\pos(19.2,455.177)\fs58.233\c&HFFFFFF&\bord0\shad0}
+Dialogue: 0,00:00:06.35,00:00:11.60,Default,;annotation_3208875289;title;,0,0,0,,{\an5\pos(960.0,541.69)\fs59.686\c&HFFFFFF&\bord0\shad0\b1}enne yanje yehah...\N永久の幸せを願わん\N祈求永遠的幸福
 Dialogue: 0,00:00:09.40,00:00:23.20,Default,;annotation_893311481;popup_box;,0,0,0,,{\an7\pos(0.0,648.281)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 226.649 l 0 226.649 {\p0}
-Dialogue: 0,00:00:09.40,00:00:23.20,Default,;annotation_893311481;popup_text;,0,0,0,,{\an7\pos(19.2,659.081)\fs51.994\c&HFFFFFF&\bord0\shad0}xest 1x1101101001100110111000 >> syec mea.\N（私は豊かな大地になる、そして大切な貴方と互いに変換する）\N（我化身為豐壤的大地、然後與最重要的您互相變換）
+Dialogue: 0,00:00:09.40,00:00:23.20,Default,;annotation_893311481;popup_text;,0,0,0,,{\an7\pos(19.2,659.081)\fs58.233\c&HFFFFFF&\bord0\shad0}xest 1x1101101001100110111000 >> syec mea.\N（私は豊かな大地になる、そして大切な貴方と互いに変換する）\N（我化身為豐壤的大地、然後與最重要的您互相變換）
 Dialogue: 0,00:00:09.40,00:00:23.22,Default,;annotation_51648431;popup_box;,0,0,0,,{\an7\pos(0.0,223.528)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 220.99 l 0 220.99 {\p0}
-Dialogue: 0,00:00:09.40,00:00:23.22,Default,;annotation_51648431;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs51.994\c&HFFFFFF&\bord0\shad0}xest 1x1101101001100110111000 >> syec mea.\N（私は希望の風になる、そして大切な貴方と互いに変換する）\N（我化身為希望之風、然後與最重要的您互相變換）
+Dialogue: 0,00:00:09.40,00:00:23.22,Default,;annotation_51648431;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs58.233\c&HFFFFFF&\bord0\shad0}xest 1x1101101001100110111000 >> syec mea.\N（私は希望の風になる、そして大切な貴方と互いに変換する）\N（我化身為希望之風、然後與最重要的您互相變換）
 Dialogue: 0,00:00:11.70,00:00:23.20,Default,;annotation_1968303519;popup_box;,0,0,0,,{\an7\pos(68.87,489.38)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.699 l 0 122.699 {\p0}
-Dialogue: 0,00:00:11.70,00:00:23.20,Default,;annotation_1968303519;popup_text;,0,0,0,,{\an7\pos(88.07,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}1
+Dialogue: 0,00:00:11.70,00:00:23.20,Default,;annotation_1968303519;popup_text;,0,0,0,,{\an7\pos(88.07,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}1
 Dialogue: 0,00:00:12.13,00:00:23.20,Default,;annotation_1055393261;popup_box;,0,0,0,,{\an7\pos(144.768,489.38)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.699 l 0 122.699 {\p0}
-Dialogue: 0,00:00:12.13,00:00:23.20,Default,;annotation_1055393261;popup_text;,0,0,0,,{\an7\pos(163.968,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}x
+Dialogue: 0,00:00:12.13,00:00:23.20,Default,;annotation_1055393261;popup_text;,0,0,0,,{\an7\pos(163.968,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}x
 Dialogue: 0,00:00:12.28,00:00:23.20,Default,;annotation_2543449719;popup_box;,0,0,0,,{\an7\pos(219.264,489.38)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.699 l 0 122.699 {\p0}
-Dialogue: 0,00:00:12.28,00:00:23.20,Default,;annotation_2543449719;popup_text;,0,0,0,,{\an7\pos(238.464,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}1
+Dialogue: 0,00:00:12.28,00:00:23.20,Default,;annotation_2543449719;popup_text;,0,0,0,,{\an7\pos(238.464,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}1
 Dialogue: 0,00:00:12.50,00:00:23.20,Default,;annotation_2223401619;popup_box;,0,0,0,,{\an7\pos(293.76,489.38)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.699 l 0 122.699 {\p0}
-Dialogue: 0,00:00:12.50,00:00:23.20,Default,;annotation_2223401619;popup_text;,0,0,0,,{\an7\pos(312.96,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}1
+Dialogue: 0,00:00:12.50,00:00:23.20,Default,;annotation_2223401619;popup_text;,0,0,0,,{\an7\pos(312.96,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}1
 Dialogue: 0,00:00:12.70,00:00:23.20,Default,;annotation_540913095;popup_box;,0,0,0,,{\an7\pos(366.854,489.38)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.656 l 0 122.656 {\p0}
-Dialogue: 0,00:00:12.70,00:00:23.20,Default,;annotation_540913095;popup_text;,0,0,0,,{\an7\pos(386.054,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}0
+Dialogue: 0,00:00:12.70,00:00:23.20,Default,;annotation_540913095;popup_text;,0,0,0,,{\an7\pos(386.054,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}0
 Dialogue: 0,00:00:13.00,00:00:23.20,Default,;annotation_3879778889;popup_box;,0,0,0,,{\an7\pos(441.35,489.38)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.623 l 0 122.623 {\p0}
-Dialogue: 0,00:00:13.00,00:00:23.20,Default,;annotation_3879778889;popup_text;,0,0,0,,{\an7\pos(460.55,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}1
+Dialogue: 0,00:00:13.00,00:00:23.20,Default,;annotation_3879778889;popup_text;,0,0,0,,{\an7\pos(460.55,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}1
 Dialogue: 0,00:00:13.20,00:00:23.20,Default,;annotation_1182306657;popup_box;,0,0,0,,{\an7\pos(515.846,489.38)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.699 l 0 122.699 {\p0}
-Dialogue: 0,00:00:13.20,00:00:23.20,Default,;annotation_1182306657;popup_text;,0,0,0,,{\an7\pos(535.046,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}1
+Dialogue: 0,00:00:13.20,00:00:23.20,Default,;annotation_1182306657;popup_text;,0,0,0,,{\an7\pos(535.046,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}1
 Dialogue: 0,00:00:13.50,00:00:23.20,Default,;annotation_1587721733;popup_box;,0,0,0,,{\an7\pos(590.342,489.38)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.699 l 0 122.699 {\p0}
-Dialogue: 0,00:00:13.50,00:00:23.20,Default,;annotation_1587721733;popup_text;,0,0,0,,{\an7\pos(609.542,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}0
+Dialogue: 0,00:00:13.50,00:00:23.20,Default,;annotation_1587721733;popup_text;,0,0,0,,{\an7\pos(609.542,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}0
 Dialogue: 0,00:00:13.70,00:00:23.20,Default,;annotation_1860532851;popup_box;,0,0,0,,{\an7\pos(664.838,489.38)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.623 l 0 122.623 {\p0}
-Dialogue: 0,00:00:13.70,00:00:23.20,Default,;annotation_1860532851;popup_text;,0,0,0,,{\an7\pos(684.038,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}1
+Dialogue: 0,00:00:13.70,00:00:23.20,Default,;annotation_1860532851;popup_text;,0,0,0,,{\an7\pos(684.038,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}1
 Dialogue: 0,00:00:14.00,00:00:23.20,Default,;annotation_4212620443;popup_box;,0,0,0,,{\an7\pos(739.334,489.38)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.623 l 0 122.623 {\p0}
-Dialogue: 0,00:00:14.00,00:00:23.20,Default,;annotation_4212620443;popup_text;,0,0,0,,{\an7\pos(758.534,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}0
+Dialogue: 0,00:00:14.00,00:00:23.20,Default,;annotation_4212620443;popup_text;,0,0,0,,{\an7\pos(758.534,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}0
 Dialogue: 0,00:00:14.20,00:00:23.20,Default,;annotation_1096063725;popup_box;,0,0,0,,{\an7\pos(813.83,489.38)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.623 l 0 122.623 {\p0}
-Dialogue: 0,00:00:14.20,00:00:23.20,Default,;annotation_1096063725;popup_text;,0,0,0,,{\an7\pos(833.03,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}0
+Dialogue: 0,00:00:14.20,00:00:23.20,Default,;annotation_1096063725;popup_text;,0,0,0,,{\an7\pos(833.03,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}0
 Dialogue: 0,00:00:14.40,00:00:23.20,Default,;annotation_1303960537;popup_box;,0,0,0,,{\an7\pos(888.307,489.38)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.623 l 0 122.623 {\p0}
-Dialogue: 0,00:00:14.40,00:00:23.20,Default,;annotation_1303960537;popup_text;,0,0,0,,{\an7\pos(907.507,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}1
+Dialogue: 0,00:00:14.40,00:00:23.20,Default,;annotation_1303960537;popup_text;,0,0,0,,{\an7\pos(907.507,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}1
 Dialogue: 0,00:00:14.70,00:00:23.20,Default,;annotation_4215096085;popup_box;,0,0,0,,{\an7\pos(962.803,489.38)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.656 l 0 122.656 {\p0}
-Dialogue: 0,00:00:14.70,00:00:23.20,Default,;annotation_4215096085;popup_text;,0,0,0,,{\an7\pos(982.003,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}1
+Dialogue: 0,00:00:14.70,00:00:23.20,Default,;annotation_4215096085;popup_text;,0,0,0,,{\an7\pos(982.003,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}1
 Dialogue: 0,00:00:15.00,00:00:23.20,Default,;annotation_3726588507;popup_box;,0,0,0,,{\an7\pos(1037.299,489.38)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.699 l 0 122.699 {\p0}
-Dialogue: 0,00:00:15.00,00:00:23.20,Default,;annotation_3726588507;popup_text;,0,0,0,,{\an7\pos(1056.499,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}0
+Dialogue: 0,00:00:15.00,00:00:23.20,Default,;annotation_3726588507;popup_text;,0,0,0,,{\an7\pos(1056.499,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}0
 Dialogue: 0,00:00:15.22,00:00:23.20,Default,;annotation_2230196847;popup_box;,0,0,0,,{\an7\pos(1111.795,489.38)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 78.048 0 l 78.048 122.71 l 0 122.71 {\p0}
-Dialogue: 0,00:00:15.22,00:00:23.20,Default,;annotation_2230196847;popup_text;,0,0,0,,{\an7\pos(1130.995,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}0
+Dialogue: 0,00:00:15.22,00:00:23.20,Default,;annotation_2230196847;popup_text;,0,0,0,,{\an7\pos(1130.995,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}0
 Dialogue: 0,00:00:15.50,00:00:23.20,Default,;annotation_2267529861;popup_box;,0,0,0,,{\an7\pos(1187.693,489.38)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 78.72 0 l 78.72 122.699 l 0 122.699 {\p0}
-Dialogue: 0,00:00:15.50,00:00:23.20,Default,;annotation_2267529861;popup_text;,0,0,0,,{\an7\pos(1206.893,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}1
+Dialogue: 0,00:00:15.50,00:00:23.20,Default,;annotation_2267529861;popup_text;,0,0,0,,{\an7\pos(1206.893,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}1
 Dialogue: 0,00:00:15.70,00:00:23.20,Default,;annotation_2267117337;popup_box;,0,0,0,,{\an7\pos(1266.413,489.38)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.677 l 0 122.677 {\p0}
-Dialogue: 0,00:00:15.70,00:00:23.20,Default,;annotation_2267117337;popup_text;,0,0,0,,{\an7\pos(1285.613,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}1
+Dialogue: 0,00:00:15.70,00:00:23.20,Default,;annotation_2267117337;popup_text;,0,0,0,,{\an7\pos(1285.613,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}1
 Dialogue: 0,00:00:16.00,00:00:23.20,Default,;annotation_1316992073;popup_box;,0,0,0,,{\an7\pos(1339.507,489.38)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 75.898 0 l 75.898 122.731 l 0 122.731 {\p0}
-Dialogue: 0,00:00:16.00,00:00:23.20,Default,;annotation_1316992073;popup_text;,0,0,0,,{\an7\pos(1358.707,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}0
+Dialogue: 0,00:00:16.00,00:00:23.20,Default,;annotation_1316992073;popup_text;,0,0,0,,{\an7\pos(1358.707,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}0
 Dialogue: 0,00:00:16.20,00:00:23.20,Default,;annotation_3921076889;popup_box;,0,0,0,,{\an7\pos(1415.405,489.38)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 77.299 0 l 77.299 122.699 l 0 122.699 {\p0}
-Dialogue: 0,00:00:16.20,00:00:23.20,Default,;annotation_3921076889;popup_text;,0,0,0,,{\an7\pos(1434.605,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}1
+Dialogue: 0,00:00:16.20,00:00:23.20,Default,;annotation_3921076889;popup_text;,0,0,0,,{\an7\pos(1434.605,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}1
 Dialogue: 0,00:00:16.50,00:00:23.20,Default,;annotation_2276757225;popup_box;,0,0,0,,{\an7\pos(1491.302,489.38)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 77.299 0 l 77.299 122.699 l 0 122.699 {\p0}
-Dialogue: 0,00:00:16.50,00:00:23.20,Default,;annotation_2276757225;popup_text;,0,0,0,,{\an7\pos(1510.502,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}1
+Dialogue: 0,00:00:16.50,00:00:23.20,Default,;annotation_2276757225;popup_text;,0,0,0,,{\an7\pos(1510.502,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}1
 Dialogue: 0,00:00:16.70,00:00:23.20,Default,;annotation_675918343;popup_box;,0,0,0,,{\an7\pos(1565.798,489.38)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 77.299 0 l 77.299 122.699 l 0 122.699 {\p0}
-Dialogue: 0,00:00:16.70,00:00:23.20,Default,;annotation_675918343;popup_text;,0,0,0,,{\an7\pos(1584.998,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}1
+Dialogue: 0,00:00:16.70,00:00:23.20,Default,;annotation_675918343;popup_text;,0,0,0,,{\an7\pos(1584.998,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}1
 Dialogue: 0,00:00:17.00,00:00:23.20,Default,;annotation_2303070607;popup_box;,0,0,0,,{\an7\pos(1641.696,489.38)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 77.299 0 l 77.299 122.699 l 0 122.699 {\p0}
-Dialogue: 0,00:00:17.00,00:00:23.20,Default,;annotation_2303070607;popup_text;,0,0,0,,{\an7\pos(1660.896,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}0
+Dialogue: 0,00:00:17.00,00:00:23.20,Default,;annotation_2303070607;popup_text;,0,0,0,,{\an7\pos(1660.896,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}0
 Dialogue: 0,00:00:17.20,00:00:23.20,Default,;annotation_936552089;popup_box;,0,0,0,,{\an7\pos(1717.594,489.38)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 77.299 0 l 77.299 122.699 l 0 122.699 {\p0}
-Dialogue: 0,00:00:17.20,00:00:23.20,Default,;annotation_936552089;popup_text;,0,0,0,,{\an7\pos(1736.794,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}0
+Dialogue: 0,00:00:17.20,00:00:23.20,Default,;annotation_936552089;popup_text;,0,0,0,,{\an7\pos(1736.794,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}0
 Dialogue: 0,00:00:17.40,00:00:23.20,Default,;annotation_1802632491;popup_box;,0,0,0,,{\an7\pos(1793.491,489.38)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 77.299 0 l 77.299 122.699 l 0 122.699 {\p0}
-Dialogue: 0,00:00:17.40,00:00:23.20,Default,;annotation_1802632491;popup_text;,0,0,0,,{\an7\pos(1812.691,500.18)\fs51.994\c&HFFFFFF&\bord0\shad0}0
+Dialogue: 0,00:00:17.40,00:00:23.20,Default,;annotation_1802632491;popup_text;,0,0,0,,{\an7\pos(1812.691,500.18)\fs58.233\c&HFFFFFF&\bord0\shad0}0
 Dialogue: 0,00:00:23.61,00:00:31.10,Default,;annotation_3356290413;popup_box;,0,0,0,,{\an7\pos(0.0,223.528)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 365.453 0 l 365.453 220.363 l 0 220.363 {\p0}
-Dialogue: 0,00:00:23.61,00:00:31.10,Default,;annotation_3356290413;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs51.994\c&HFFFFFF&\bord0\shad0}天に満てよ\N從天上溢流
+Dialogue: 0,00:00:23.61,00:00:31.10,Default,;annotation_3356290413;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs58.233\c&HFFFFFF&\bord0\shad0}天に満てよ\N從天上溢流
 Dialogue: 0,00:00:26.87,00:00:31.10,Default,;annotation_2272824977;popup_box;,0,0,0,,{\an7\pos(364.742,223.387)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1555.258 0 l 1555.258 220.504 l 0 220.504 {\p0}
-Dialogue: 0,00:00:26.87,00:00:31.10,Default,;annotation_2272824977;popup_text;,0,0,0,,{\an7\pos(383.942,234.187)\fs51.994\c&HFFFFFF&\bord0\shad0}地に降り注げ\N灌注入大地吧
+Dialogue: 0,00:00:26.87,00:00:31.10,Default,;annotation_2272824977;popup_text;,0,0,0,,{\an7\pos(383.942,234.187)\fs58.233\c&HFFFFFF&\bord0\shad0}地に降り注げ\N灌注入大地吧
 Dialogue: 0,00:00:31.10,00:00:40.60,Default,;annotation_3007122973;popup_box;,0,0,0,,{\an7\pos(0.0,223.528)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 576.288 0 l 576.288 220.504 l 0 220.504 {\p0}
-Dialogue: 0,00:00:31.10,00:00:40.60,Default,;annotation_3007122973;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs51.994\c&HFFFFFF&\bord0\shad0}眠る小さき種子に\N為沉睡着的小小種子
+Dialogue: 0,00:00:31.10,00:00:40.60,Default,;annotation_3007122973;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs58.233\c&HFFFFFF&\bord0\shad0}眠る小さき種子に\N為沉睡着的小小種子
 Dialogue: 0,00:00:35.46,00:00:40.60,Default,;annotation_2487217367;popup_box;,0,0,0,,{\an7\pos(575.155,222.394)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1344.845 0 l 1344.845 220.784 l 0 220.784 {\p0}
-Dialogue: 0,00:00:35.46,00:00:40.60,Default,;annotation_2487217367;popup_text;,0,0,0,,{\an7\pos(594.355,233.194)\fs51.994\c&HFFFFFF&\bord0\shad0}恵み与えん\N賜予恩澤
+Dialogue: 0,00:00:35.46,00:00:40.60,Default,;annotation_2487217367;popup_text;,0,0,0,,{\an7\pos(594.355,233.194)\fs58.233\c&HFFFFFF&\bord0\shad0}恵み与えん\N賜予恩澤
 Dialogue: 0,00:00:40.60,00:00:48.00,Default,;annotation_2915802241;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 420.269 0 l 420.269 220.428 l 0 220.428 {\p0}
-Dialogue: 0,00:00:40.60,00:00:48.00,Default,;annotation_2915802241;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}瑠璃の雫\N琉璃般的水珠
+Dialogue: 0,00:00:40.60,00:00:48.00,Default,;annotation_2915802241;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}瑠璃の雫\N琉璃般的水珠
 Dialogue: 0,00:00:43.80,00:00:48.00,Default,;annotation_2302363499;popup_box;,0,0,0,,{\an7\pos(419.078,224.435)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1500.922 0 l 1500.922 219.726 l 0 219.726 {\p0}
-Dialogue: 0,00:00:43.80,00:00:48.00,Default,;annotation_2302363499;popup_text;,0,0,0,,{\an7\pos(438.278,235.235)\fs51.994\c&HFFFFFF&\bord0\shad0}碧玉の雨\N碧玉般的雨水
+Dialogue: 0,00:00:43.80,00:00:48.00,Default,;annotation_2302363499;popup_text;,0,0,0,,{\an7\pos(438.278,235.235)\fs58.233\c&HFFFFFF&\bord0\shad0}碧玉の雨\N碧玉般的雨水
 Dialogue: 0,00:00:48.00,00:00:56.70,Default,;annotation_2773284389;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 514.445 0 l 514.445 221.832 l 0 221.832 {\p0}
-Dialogue: 0,00:00:48.00,00:00:56.70,Default,;annotation_2773284389;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}始まりの朝告げる\N聆聽著宣告
+Dialogue: 0,00:00:48.00,00:00:56.70,Default,;annotation_2773284389;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}始まりの朝告げる\N聆聽著宣告
 Dialogue: 0,00:00:52.56,00:00:56.70,Default,;annotation_2669590617;popup_box;,0,0,0,,{\an7\pos(513.178,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1406.822 0 l 1406.822 222.545 l 0 222.545 {\p0}
-Dialogue: 0,00:00:52.56,00:00:56.70,Default,;annotation_2669590617;popup_text;,0,0,0,,{\an7\pos(532.378,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}唄聲を聴いて\N晨曦的來臨歌聲
+Dialogue: 0,00:00:52.56,00:00:56.70,Default,;annotation_2669590617;popup_text;,0,0,0,,{\an7\pos(532.378,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}唄聲を聴いて\N晨曦的來臨歌聲
 Dialogue: 0,00:00:56.70,00:01:05.30,Default,;annotation_4126172037;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 302.189 0 l 302.189 220.504 l 0 220.504 {\p0}
-Dialogue: 0,00:00:56.70,00:01:05.30,Default,;annotation_4126172037;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}この身\N點燃
+Dialogue: 0,00:00:56.70,00:01:05.30,Default,;annotation_4126172037;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}この身\N點燃
 Dialogue: 0,00:00:58.55,00:01:05.30,Default,;annotation_3084849095;popup_box;,0,0,0,,{\an7\pos(300.787,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 294.893 0 l 294.893 221.065 l 0 221.065 {\p0}
-Dialogue: 0,00:00:58.55,00:01:05.30,Default,;annotation_3084849095;popup_text;,0,0,0,,{\an7\pos(319.987,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}灯して\N此身以
+Dialogue: 0,00:00:58.55,00:01:05.30,Default,;annotation_3084849095;popup_text;,0,0,0,,{\an7\pos(319.987,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}灯して\N此身以
 Dialogue: 0,00:01:00.97,00:01:05.30,Default,;annotation_1242336975;popup_box;,0,0,0,,{\an7\pos(595.968,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1324.243 0 l 1324.243 220.99 l 0 220.99 {\p0}
-Dialogue: 0,00:01:00.97,00:01:05.30,Default,;annotation_1242336975;popup_text;,0,0,0,,{\an7\pos(615.168,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}眠り辺を照らす\N照亮沉睡的四周
+Dialogue: 0,00:01:00.97,00:01:05.30,Default,;annotation_1242336975;popup_text;,0,0,0,,{\an7\pos(615.168,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}眠り辺を照らす\N照亮沉睡的四周
 Dialogue: 0,00:01:05.30,00:01:14.30,Default,;annotation_1847048169;popup_box;,0,0,0,,{\an7\pos(0.0,223.528)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 389.338 0 l 389.338 220.849 l 0 220.849 {\p0}
-Dialogue: 0,00:01:05.30,00:01:14.30,Default,;annotation_1847048169;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs51.994\c&HFFFFFF&\bord0\shad0}淡き\N成為散發出
+Dialogue: 0,00:01:05.30,00:01:14.30,Default,;annotation_1847048169;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs58.233\c&HFFFFFF&\bord0\shad0}淡き\N成為散發出
 Dialogue: 0,00:01:07.10,00:01:14.30,Default,;annotation_2975794479;popup_box;,0,0,0,,{\an7\pos(387.936,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 389.261 0 l 389.261 221.162 l 0 221.162 {\p0}
-Dialogue: 0,00:01:07.10,00:01:14.30,Default,;annotation_2975794479;popup_text;,0,0,0,,{\an7\pos(407.136,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}焔の\N淡淡火焰的
+Dialogue: 0,00:01:07.10,00:01:14.30,Default,;annotation_2975794479;popup_text;,0,0,0,,{\an7\pos(407.136,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}焔の\N淡淡火焰的
 Dialogue: 0,00:01:09.50,00:01:14.30,Default,;annotation_3501951777;popup_box;,0,0,0,,{\an7\pos(776.16,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1143.84 0 l 1143.84 221.13 l 0 221.13 {\p0}
-Dialogue: 0,00:01:09.50,00:01:14.30,Default,;annotation_3501951777;popup_text;,0,0,0,,{\an7\pos(795.36,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}朝陽とならん\N朝陽
+Dialogue: 0,00:01:09.50,00:01:14.30,Default,;annotation_3501951777;popup_text;,0,0,0,,{\an7\pos(795.36,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}朝陽とならん\N朝陽
 Dialogue: 0,00:01:14.30,00:01:16.50,Default,;annotation_2688621201;popup_box;,0,0,0,,{\an7\pos(0.0,434.527)\c&H75B96A&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 217.825 l 0 217.825 {\p0}
-Dialogue: 0,00:01:14.30,00:01:16.50,Default,;annotation_2688621201;popup_text;,0,0,0,,{\an7\pos(19.2,445.327)\fs51.994\c&HFFFFFF&\bord0\shad0}Was yea ra hymme ar ciel\N（謳って世界を）\N（謳歌的世界）
+Dialogue: 0,00:01:14.30,00:01:16.50,Default,;annotation_2688621201;popup_text;,0,0,0,,{\an7\pos(19.2,445.327)\fs58.233\c&HFFFFFF&\bord0\shad0}Was yea ra hymme ar ciel\N（謳って世界を）\N（謳歌的世界）
 Dialogue: 0,00:01:16.50,00:01:18.67,Default,;annotation_4088542295;popup_box;,0,0,0,,{\an7\pos(0.0,434.527)\c&H75B96A&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 217.825 l 0 217.825 {\p0}
-Dialogue: 0,00:01:16.50,00:01:18.67,Default,;annotation_4088542295;popup_text;,0,0,0,,{\an7\pos(19.2,445.327)\fs51.994\c&HFFFFFF&\bord0\shad0}Was paks ra kiafa hynne mea\N（聞いてこの声を）\N（聽到的聲音）
+Dialogue: 0,00:01:16.50,00:01:18.67,Default,;annotation_4088542295;popup_text;,0,0,0,,{\an7\pos(19.2,445.327)\fs58.233\c&HFFFFFF&\bord0\shad0}Was paks ra kiafa hynne mea\N（聞いてこの声を）\N（聽到的聲音）
 Dialogue: 0,00:01:18.70,00:01:20.70,Default,;annotation_1624835623;popup_box;,0,0,0,,{\an7\pos(0.0,434.527)\c&H75B96A&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 217.825 l 0 217.825 {\p0}
-Dialogue: 0,00:01:18.70,00:01:20.70,Default,;annotation_1624835623;popup_text;,0,0,0,,{\an7\pos(19.2,445.327)\fs51.994\c&HFFFFFF&\bord0\shad0}Was yea ra hymme ar ciel\N（謳って世界を）\N（謳歌的世界）
+Dialogue: 0,00:01:18.70,00:01:20.70,Default,;annotation_1624835623;popup_text;,0,0,0,,{\an7\pos(19.2,445.327)\fs58.233\c&HFFFFFF&\bord0\shad0}Was yea ra hymme ar ciel\N（謳って世界を）\N（謳歌的世界）
 Dialogue: 0,00:01:20.70,00:01:22.98,Default,;annotation_4049048901;popup_box;,0,0,0,,{\an7\pos(0.0,434.527)\c&H75B96A&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 218.009 l 0 218.009 {\p0}
-Dialogue: 0,00:01:20.70,00:01:22.98,Default,;annotation_4049048901;popup_text;,0,0,0,,{\an7\pos(19.2,445.327)\fs51.994\c&HFFFFFF&\bord0\shad0}Was paks ra ates omnis\N（全てを受け入れて）\N（我會接納這一切）
+Dialogue: 0,00:01:20.70,00:01:22.98,Default,;annotation_4049048901;popup_text;,0,0,0,,{\an7\pos(19.2,445.327)\fs58.233\c&HFFFFFF&\bord0\shad0}Was paks ra ates omnis\N（全てを受け入れて）\N（我會接納這一切）
 Dialogue: 0,00:01:23.00,00:01:31.48,Default,;annotation_4133992841;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 274.08 0 l 274.08 218.182 l 0 218.182 {\p0}
-Dialogue: 0,00:01:23.00,00:01:31.48,Default,;annotation_4133992841;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}幽けき\N幽幽的
+Dialogue: 0,00:01:23.00,00:01:31.48,Default,;annotation_4133992841;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}幽けき\N幽幽的
 Dialogue: 0,00:01:26.10,00:01:31.50,Default,;annotation_1644218909;popup_box;,0,0,0,,{\an7\pos(272.966,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 304.723 0 l 304.723 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:01:26.10,00:01:31.50,Default,;annotation_1644218909;popup_text;,0,0,0,,{\an7\pos(292.166,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}深淵の底\N深淵之底
+Dialogue: 0,00:01:26.10,00:01:31.50,Default,;annotation_1644218909;popup_text;,0,0,0,,{\an7\pos(292.166,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}深淵の底\N深淵之底
 Dialogue: 0,00:01:30.49,00:01:31.50,Default,;annotation_2076056661;popup_box;,0,0,0,,{\an7\pos(576.557,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1343.443 0 l 1343.443 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:01:30.49,00:01:31.50,Default,;annotation_2076056661;popup_text;,0,0,0,,{\an7\pos(595.757,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}聴こえ…\N傳來…
+Dialogue: 0,00:01:30.49,00:01:31.50,Default,;annotation_2076056661;popup_text;,0,0,0,,{\an7\pos(595.757,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}聴こえ…\N傳來…
 Dialogue: 0,00:01:31.50,00:01:36.82,Default,;annotation_3417354755;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:01:31.50,00:01:36.82,Default,;annotation_3417354755;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}Was yea ra hymme ar ciel\N（謳って世界を）\N（謳歌的世界）
+Dialogue: 0,00:01:31.50,00:01:36.82,Default,;annotation_3417354755;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}Was yea ra hymme ar ciel\N（謳って世界を）\N（謳歌的世界）
 Dialogue: 0,00:01:36.90,00:01:45.78,Default,;annotation_3911885861;popup_box;,0,0,0,,{\an7\pos(0.0,224.996)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 220.223 l 0 220.223 {\p0}
-Dialogue: 0,00:01:36.90,00:01:45.78,Default,;annotation_3911885861;popup_text;,0,0,0,,{\an7\pos(19.2,235.796)\fs51.994\c&HFFFFFF&\bord0\shad0}Was Paks ga suwant,mea irs here an yor\N（大丈夫　一緒にいるから）\N（放心吧  我們都在身邊）
+Dialogue: 0,00:01:36.90,00:01:45.78,Default,;annotation_3911885861;popup_text;,0,0,0,,{\an7\pos(19.2,235.796)\fs58.233\c&HFFFFFF&\bord0\shad0}Was Paks ga suwant,mea irs here an yor\N（大丈夫　一緒にいるから）\N（放心吧  我們都在身邊）
 Dialogue: 0,00:01:45.80,00:01:53.04,Default,;annotation_4154530031;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 217.199 l 0 217.199 {\p0}
-Dialogue: 0,00:01:45.80,00:01:53.04,Default,;annotation_4154530031;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}来たれや…\N來臨吧…
+Dialogue: 0,00:01:45.80,00:01:53.04,Default,;annotation_4154530031;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}来たれや…\N來臨吧…
 Dialogue: 0,00:01:56.18,00:02:14.10,Default,;annotation_2623518017;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 217.199 l 0 217.199 {\p0}
-Dialogue: 0,00:01:56.18,00:02:14.10,Default,;annotation_2623518017;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}vEsEK sarr, arhou nafa, infel...\N（流れてくる… 温かさ、希望、優しさ、愛する心…）\N（流過來了… 溫暖、希望、溫柔、愛意…）
+Dialogue: 0,00:01:56.18,00:02:14.10,Default,;annotation_2623518017;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}vEsEK sarr, arhou nafa, infel...\N（流れてくる… 温かさ、希望、優しさ、愛する心…）\N（流過來了… 溫暖、希望、溫柔、愛意…）
 Dialogue: 0,00:02:14.20,00:02:30.69,Default,;annotation_1343240223;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1916.966 0 l 1916.966 217.199 l 0 217.199 {\p0}
-Dialogue: 0,00:02:14.20,00:02:30.69,Default,;annotation_1343240223;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}fEwErYEneh yor, herr en harr, mea, infel...\N（包まれる… 貴方に、みんなに、私に、愛に…）\N（被包圍着… 被您、大家、我、愛…）
+Dialogue: 0,00:02:14.20,00:02:30.69,Default,;annotation_1343240223;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}fEwErYEneh yor, herr en harr, mea, infel...\N（包まれる… 貴方に、みんなに、私に、愛に…）\N（被包圍着… 被您、大家、我、愛…）
 Dialogue: 0,00:02:34.30,00:02:50.80,Default,;annotation_3161833603;popup_box;,0,0,0,,{\an7\pos(0.0,648.0)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 244.992 0 l 244.992 217.123 l 0 217.123 {\p0}
-Dialogue: 0,00:02:34.30,00:02:50.80,Default,;annotation_3161833603;popup_text;,0,0,0,,{\an7\pos(19.2,658.8)\fs51.994\c&HFFFFFF&\bord0\shad0}幽けき\N幽幽的
+Dialogue: 0,00:02:34.30,00:02:50.80,Default,;annotation_3161833603;popup_text;,0,0,0,,{\an7\pos(19.2,658.8)\fs58.233\c&HFFFFFF&\bord0\shad0}幽けき\N幽幽的
 Dialogue: 0,00:02:36.75,00:02:50.80,Default,;annotation_4066931779;popup_box;,0,0,0,,{\an7\pos(0.0,225.126)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 441.197 0 l 441.197 218.192 l 0 218.192 {\p0}
-Dialogue: 0,00:02:36.75,00:02:50.80,Default,;annotation_4066931779;popup_text;,0,0,0,,{\an7\pos(19.2,235.926)\fs51.994\c&HFFFFFF&\bord0\shad0}光\N光
+Dialogue: 0,00:02:36.75,00:02:50.80,Default,;annotation_4066931779;popup_text;,0,0,0,,{\an7\pos(19.2,235.926)\fs58.233\c&HFFFFFF&\bord0\shad0}光\N光
 Dialogue: 0,00:02:37.57,00:02:50.80,Default,;annotation_2950199333;popup_box;,0,0,0,,{\an7\pos(243.379,648.0)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 278.784 0 l 278.784 216.842 l 0 216.842 {\p0}
-Dialogue: 0,00:02:37.57,00:02:50.80,Default,;annotation_2950199333;popup_text;,0,0,0,,{\an7\pos(262.579,658.8)\fs51.994\c&HFFFFFF&\bord0\shad0}深淵の底\N深淵之底
+Dialogue: 0,00:02:37.57,00:02:50.80,Default,;annotation_2950199333;popup_text;,0,0,0,,{\an7\pos(262.579,658.8)\fs58.233\c&HFFFFFF&\bord0\shad0}深淵の底\N深淵之底
 Dialogue: 0,00:02:40.62,00:02:50.80,Default,;annotation_2572454803;popup_box;,0,0,0,,{\an7\pos(440.582,225.126)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1479.418 0 l 1479.418 218.128 l 0 218.128 {\p0}
-Dialogue: 0,00:02:40.62,00:02:50.80,Default,;annotation_2572454803;popup_text;,0,0,0,,{\an7\pos(459.782,235.926)\fs51.994\c&HFFFFFF&\bord0\shad0}授予\N授予
+Dialogue: 0,00:02:40.62,00:02:50.80,Default,;annotation_2572454803;popup_text;,0,0,0,,{\an7\pos(459.782,235.926)\fs58.233\c&HFFFFFF&\bord0\shad0}授予\N授予
 Dialogue: 0,00:02:41.65,00:02:50.80,Default,;annotation_2533844995;popup_box;,0,0,0,,{\an7\pos(520.262,648.0)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 358.387 0 l 358.387 216.983 l 0 216.983 {\p0}
-Dialogue: 0,00:02:41.65,00:02:50.80,Default,;annotation_2533844995;popup_text;,0,0,0,,{\an7\pos(539.462,658.8)\fs51.994\c&HFFFFFF&\bord0\shad0}聴こえ来るは\N傳來的是
+Dialogue: 0,00:02:41.65,00:02:50.80,Default,;annotation_2533844995;popup_text;,0,0,0,,{\an7\pos(539.462,658.8)\fs58.233\c&HFFFFFF&\bord0\shad0}聴こえ来るは\N傳來的是
 Dialogue: 0,00:02:44.52,00:02:50.80,Default,;annotation_1775774015;popup_box;,0,0,0,,{\an7\pos(877.978,648.0)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1042.022 0 l 1042.022 216.918 l 0 216.918 {\p0}
-Dialogue: 0,00:02:44.52,00:02:50.80,Default,;annotation_1775774015;popup_text;,0,0,0,,{\an7\pos(897.178,658.8)\fs51.994\c&HFFFFFF&\bord0\shad0}深き息吹\N深深的呼息
+Dialogue: 0,00:02:44.52,00:02:50.80,Default,;annotation_1775774015;popup_text;,0,0,0,,{\an7\pos(897.178,658.8)\fs58.233\c&HFFFFFF&\bord0\shad0}深き息吹\N深深的呼息
 Dialogue: 0,00:02:51.00,00:02:59.54,Default,;annotation_3524315149;popup_box;,0,0,0,,{\an7\pos(0.0,222.08)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 225.101 0 l 225.101 222.372 l 0 222.372 {\p0}
-Dialogue: 0,00:02:51.00,00:02:59.54,Default,;annotation_3524315149;popup_text;,0,0,0,,{\an7\pos(19.2,232.88)\fs51.994\c&HFFFFFF&\bord0\shad0}いざや\N來吧
+Dialogue: 0,00:02:51.00,00:02:59.54,Default,;annotation_3524315149;popup_text;,0,0,0,,{\an7\pos(19.2,232.88)\fs58.233\c&HFFFFFF&\bord0\shad0}いざや\N來吧
 Dialogue: 0,00:02:51.70,00:03:07.30,Default,;annotation_4032151647;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 217.674 l 0 217.674 {\p0}
-Dialogue: 0,00:02:51.70,00:03:07.30,Default,;annotation_4032151647;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs51.994\c&HFFFFFF&\bord0\shad0}Rra ki ra chs hymmnos, aulla mea tes ciel\N（想いを開きわたしは謳になる）\N（釋放意念化身為詩）
+Dialogue: 0,00:02:51.70,00:03:07.30,Default,;annotation_4032151647;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs58.233\c&HFFFFFF&\bord0\shad0}Rra ki ra chs hymmnos, aulla mea tes ciel\N（想いを開きわたしは謳になる）\N（釋放意念化身為詩）
 Dialogue: 0,00:02:51.73,00:02:59.00,Default,;annotation_2362645495;popup_box;,0,0,0,,{\an7\pos(0.0,647.222)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 494.477 0 l 494.477 218.398 l 0 218.398 {\p0}
-Dialogue: 0,00:02:51.73,00:02:59.00,Default,;annotation_2362645495;popup_text;,0,0,0,,{\an7\pos(19.2,658.022)\fs51.994\c&HFFFFFF&\bord0\shad0}来たれや\N來臨吧
+Dialogue: 0,00:02:51.73,00:02:59.00,Default,;annotation_2362645495;popup_text;,0,0,0,,{\an7\pos(19.2,658.022)\fs58.233\c&HFFFFFF&\bord0\shad0}来たれや\N來臨吧
 Dialogue: 0,00:02:52.70,00:02:59.54,Default,;annotation_2583813289;popup_box;,0,0,0,,{\an7\pos(223.488,222.08)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 271.123 0 l 271.123 221.778 l 0 221.778 {\p0}
-Dialogue: 0,00:02:52.70,00:02:59.54,Default,;annotation_2583813289;popup_text;,0,0,0,,{\an7\pos(242.688,232.88)\fs51.994\c&HFFFFFF&\bord0\shad0}目覚めよ\N甦醒吧
+Dialogue: 0,00:02:52.70,00:02:59.54,Default,;annotation_2583813289;popup_text;,0,0,0,,{\an7\pos(242.688,232.88)\fs58.233\c&HFFFFFF&\bord0\shad0}目覚めよ\N甦醒吧
 Dialogue: 0,00:02:55.16,00:02:59.54,Default,;annotation_1751356929;popup_box;,0,0,0,,{\an7\pos(493.421,222.08)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1426.579 0 l 1426.579 222.005 l 0 222.005 {\p0}
-Dialogue: 0,00:02:55.16,00:02:59.54,Default,;annotation_1751356929;popup_text;,0,0,0,,{\an7\pos(512.621,232.88)\fs51.994\c&HFFFFFF&\bord0\shad0}明き黎明に\N在黎明破曉之時
+Dialogue: 0,00:02:55.16,00:02:59.54,Default,;annotation_1751356929;popup_text;,0,0,0,,{\an7\pos(512.621,232.88)\fs58.233\c&HFFFFFF&\bord0\shad0}明き黎明に\N在黎明破曉之時
 Dialogue: 0,00:02:55.20,00:02:59.00,Default,;annotation_2169209863;popup_box;,0,0,0,,{\an7\pos(493.709,647.222)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1426.291 0 l 1426.291 218.398 l 0 218.398 {\p0}
-Dialogue: 0,00:02:55.20,00:02:59.00,Default,;annotation_2169209863;popup_text;,0,0,0,,{\an7\pos(512.909,658.022)\fs51.994\c&HFFFFFF&\bord0\shad0}開かれし刻\N開啟之刻
+Dialogue: 0,00:02:55.20,00:02:59.00,Default,;annotation_2169209863;popup_text;,0,0,0,,{\an7\pos(512.909,658.022)\fs58.233\c&HFFFFFF&\bord0\shad0}開かれし刻\N開啟之刻
 Dialogue: 0,00:02:59.00,00:03:07.30,Default,;annotation_3125986459;popup_box;,0,0,0,,{\an7\pos(0.0,647.222)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 387.802 0 l 387.802 217.76 l 0 217.76 {\p0}
-Dialogue: 0,00:02:59.00,00:03:07.30,Default,;annotation_3125986459;popup_text;,0,0,0,,{\an7\pos(19.2,658.022)\fs51.994\c&HFFFFFF&\bord0\shad0}全て捨てて\N捨棄一切
+Dialogue: 0,00:02:59.00,00:03:07.30,Default,;annotation_3125986459;popup_text;,0,0,0,,{\an7\pos(19.2,658.022)\fs58.233\c&HFFFFFF&\bord0\shad0}全て捨てて\N捨棄一切
 Dialogue: 0,00:02:59.54,00:03:07.30,Default,;annotation_571262541;popup_box;,0,0,0,,{\an7\pos(0.0,220.784)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 190.944 0 l 190.944 221.832 l 0 221.832 {\p0}
-Dialogue: 0,00:02:59.54,00:03:07.30,Default,;annotation_571262541;popup_text;,0,0,0,,{\an7\pos(19.2,231.584)\fs51.994\c&HFFFFFF&\bord0\shad0}我ぞ\N我將
+Dialogue: 0,00:02:59.54,00:03:07.30,Default,;annotation_571262541;popup_text;,0,0,0,,{\an7\pos(19.2,231.584)\fs58.233\c&HFFFFFF&\bord0\shad0}我ぞ\N我將
 Dialogue: 0,00:03:01.33,00:03:07.30,Default,;annotation_3962916051;popup_box;,0,0,0,,{\an7\pos(189.754,220.784)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 327.782 0 l 327.782 221.832 l 0 221.832 {\p0}
-Dialogue: 0,00:03:01.33,00:03:07.30,Default,;annotation_3962916051;popup_text;,0,0,0,,{\an7\pos(208.954,231.584)\fs51.994\c&HFFFFFF&\bord0\shad0}生命を与え\N賦予生命
+Dialogue: 0,00:03:01.33,00:03:07.30,Default,;annotation_3962916051;popup_text;,0,0,0,,{\an7\pos(208.954,231.584)\fs58.233\c&HFFFFFF&\bord0\shad0}生命を与え\N賦予生命
 Dialogue: 0,00:03:01.64,00:03:07.30,Default,;annotation_210719619;popup_box;,0,0,0,,{\an7\pos(386.534,648.14)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 349.075 0 l 349.075 216.076 l 0 216.076 {\p0}
-Dialogue: 0,00:03:01.64,00:03:07.30,Default,;annotation_210719619;popup_text;,0,0,0,,{\an7\pos(405.734,658.94)\fs51.994\c&HFFFFFF&\bord0\shad0}この身よ\N此身啊
+Dialogue: 0,00:03:01.64,00:03:07.30,Default,;annotation_210719619;popup_text;,0,0,0,,{\an7\pos(405.734,658.94)\fs58.233\c&HFFFFFF&\bord0\shad0}この身よ\N此身啊
 Dialogue: 0,00:03:03.80,00:03:07.30,Default,;annotation_3882530823;popup_box;,0,0,0,,{\an7\pos(515.846,220.784)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 221.645 0 l 221.645 221.562 l 0 221.562 {\p0}
-Dialogue: 0,00:03:03.80,00:03:07.30,Default,;annotation_3882530823;popup_text;,0,0,0,,{\an7\pos(535.046,231.584)\fs51.994\c&HFFFFFF&\bord0\shad0}嗚呼\N嗚呼
+Dialogue: 0,00:03:03.80,00:03:07.30,Default,;annotation_3882530823;popup_text;,0,0,0,,{\an7\pos(535.046,231.584)\fs58.233\c&HFFFFFF&\bord0\shad0}嗚呼\N嗚呼
 Dialogue: 0,00:03:04.30,00:03:07.30,Default,;annotation_31097409;popup_box;,0,0,0,,{\an7\pos(733.766,648.14)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1186.234 0 l 1186.234 215.86 l 0 215.86 {\p0}
-Dialogue: 0,00:03:04.30,00:03:07.30,Default,;annotation_31097409;popup_text;,0,0,0,,{\an7\pos(752.966,658.94)\fs51.994\c&HFFFFFF&\bord0\shad0}謳になれ\N化作為詩吧
+Dialogue: 0,00:03:04.30,00:03:07.30,Default,;annotation_31097409;popup_text;,0,0,0,,{\an7\pos(752.966,658.94)\fs58.233\c&HFFFFFF&\bord0\shad0}謳になれ\N化作為詩吧
 Dialogue: 0,00:03:04.30,00:03:07.30,Default,;annotation_2858130745;popup_box;,0,0,0,,{\an7\pos(737.069,220.784)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1182.931 0 l 1182.931 221.335 l 0 221.335 {\p0}
-Dialogue: 0,00:03:04.30,00:03:07.30,Default,;annotation_2858130745;popup_text;,0,0,0,,{\an7\pos(756.269,231.584)\fs51.994\c&HFFFFFF&\bord0\shad0}謳になれ\N化作為詩吧
+Dialogue: 0,00:03:04.30,00:03:07.30,Default,;annotation_2858130745;popup_text;,0,0,0,,{\an7\pos(756.269,231.584)\fs58.233\c&HFFFFFF&\bord0\shad0}謳になれ\N化作為詩吧
 Dialogue: 0,00:03:07.30,00:03:17.21,Default,;annotation_2068615359;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 530.246 0 l 530.246 220.363 l 0 220.363 {\p0}
-Dialogue: 0,00:03:07.30,00:03:17.21,Default,;annotation_2068615359;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}ともに愛しき大地\N一起在鐘愛的大地上
+Dialogue: 0,00:03:07.30,00:03:17.21,Default,;annotation_2068615359;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}ともに愛しき大地\N一起在鐘愛的大地上
 Dialogue: 0,00:03:07.30,00:03:17.21,Default,;annotation_25980907;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 526.042 0 l 526.042 216.918 l 0 216.918 {\p0}
-Dialogue: 0,00:03:07.30,00:03:17.21,Default,;annotation_25980907;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}ともに愛しき大地\N一起在鐘愛的大地上
+Dialogue: 0,00:03:07.30,00:03:17.21,Default,;annotation_25980907;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}ともに愛しき大地\N一起在鐘愛的大地上
 Dialogue: 0,00:03:12.70,00:03:17.20,Default,;annotation_3553676171;popup_box;,0,0,0,,{\an7\pos(528.499,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 206.976 0 l 206.976 220.363 l 0 220.363 {\p0}
-Dialogue: 0,00:03:12.70,00:03:17.20,Default,;annotation_3553676171;popup_text;,0,0,0,,{\an7\pos(547.699,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}一歩\N踏上
+Dialogue: 0,00:03:12.70,00:03:17.20,Default,;annotation_3553676171;popup_text;,0,0,0,,{\an7\pos(547.699,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}一歩\N踏上
 Dialogue: 0,00:03:12.70,00:03:17.21,Default,;annotation_4237720093;popup_box;,0,0,0,,{\an7\pos(525.677,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 208.032 0 l 208.032 216.929 l 0 216.929 {\p0}
-Dialogue: 0,00:03:12.70,00:03:17.21,Default,;annotation_4237720093;popup_text;,0,0,0,,{\an7\pos(544.877,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}一歩\N踏上
+Dialogue: 0,00:03:12.70,00:03:17.21,Default,;annotation_4237720093;popup_text;,0,0,0,,{\an7\pos(544.877,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}一歩\N踏上
 Dialogue: 0,00:03:13.60,00:03:17.20,Default,;annotation_1666795177;popup_box;,0,0,0,,{\an7\pos(733.709,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 201.35 0 l 201.35 220.363 l 0 220.363 {\p0}
-Dialogue: 0,00:03:13.60,00:03:17.20,Default,;annotation_1666795177;popup_text;,0,0,0,,{\an7\pos(752.909,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}靭く\N紮實的
+Dialogue: 0,00:03:13.60,00:03:17.20,Default,;annotation_1666795177;popup_text;,0,0,0,,{\an7\pos(752.909,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}靭く\N紮實的
 Dialogue: 0,00:03:13.60,00:03:17.21,Default,;annotation_2621924465;popup_box;,0,0,0,,{\an7\pos(732.23,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 202.541 0 l 202.541 216.983 l 0 216.983 {\p0}
-Dialogue: 0,00:03:13.60,00:03:17.21,Default,;annotation_2621924465;popup_text;,0,0,0,,{\an7\pos(751.43,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}靭く\N紮實的
+Dialogue: 0,00:03:13.60,00:03:17.21,Default,;annotation_2621924465;popup_text;,0,0,0,,{\an7\pos(751.43,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}靭く\N紮實的
 Dialogue: 0,00:03:14.90,00:03:17.21,Default,;annotation_2090740271;popup_box;,0,0,0,,{\an7\pos(932.179,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 987.821 0 l 987.821 216.929 l 0 216.929 {\p0}
-Dialogue: 0,00:03:14.90,00:03:17.21,Default,;annotation_2090740271;popup_text;,0,0,0,,{\an7\pos(951.379,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}踏みしめて\N一步
+Dialogue: 0,00:03:14.90,00:03:17.21,Default,;annotation_2090740271;popup_text;,0,0,0,,{\an7\pos(951.379,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}踏みしめて\N一步
 Dialogue: 0,00:03:14.90,00:03:17.20,Default,;annotation_4172187977;popup_box;,0,0,0,,{\an7\pos(933.427,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 986.573 0 l 986.573 220.082 l 0 220.082 {\p0}
-Dialogue: 0,00:03:14.90,00:03:17.20,Default,;annotation_4172187977;popup_text;,0,0,0,,{\an7\pos(952.627,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}踏みしめて\N一步
+Dialogue: 0,00:03:14.90,00:03:17.20,Default,;annotation_4172187977;popup_text;,0,0,0,,{\an7\pos(952.627,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}踏みしめて\N一步
 Dialogue: 0,00:03:17.30,00:03:26.00,Default,;annotation_4097923819;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 420.902 0 l 420.902 220.504 l 0 220.504 {\p0}
-Dialogue: 0,00:03:17.30,00:03:26.00,Default,;annotation_4097923819;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}揺るがずにただ\N堅定不移地
+Dialogue: 0,00:03:17.30,00:03:26.00,Default,;annotation_4097923819;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}揺るがずにただ\N堅定不移地
 Dialogue: 0,00:03:17.30,00:03:26.00,Default,;annotation_640828623;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 417.6 0 l 417.6 216.713 l 0 216.713 {\p0}
-Dialogue: 0,00:03:17.30,00:03:26.00,Default,;annotation_640828623;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}揺るがずにただ\N堅定不移地
+Dialogue: 0,00:03:17.30,00:03:26.00,Default,;annotation_640828623;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}揺るがずにただ\N堅定不移地
 Dialogue: 0,00:03:21.50,00:03:26.00,Default,;annotation_1937322503;popup_box;,0,0,0,,{\an7\pos(420.269,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 295.507 0 l 295.507 220.644 l 0 220.644 {\p0}
-Dialogue: 0,00:03:21.50,00:03:26.00,Default,;annotation_1937322503;popup_text;,0,0,0,,{\an7\pos(439.469,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}進む\N以這雙腳
+Dialogue: 0,00:03:21.50,00:03:26.00,Default,;annotation_1937322503;popup_text;,0,0,0,,{\an7\pos(439.469,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}進む\N以這雙腳
 Dialogue: 0,00:03:21.50,00:03:26.00,Default,;annotation_2423808973;popup_box;,0,0,0,,{\an7\pos(417.389,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 298.195 0 l 298.195 216.281 l 0 216.281 {\p0}
-Dialogue: 0,00:03:21.50,00:03:26.00,Default,;annotation_2423808973;popup_text;,0,0,0,,{\an7\pos(436.589,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}進む\N以這雙腳
+Dialogue: 0,00:03:21.50,00:03:26.00,Default,;annotation_2423808973;popup_text;,0,0,0,,{\an7\pos(436.589,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}進む\N以這雙腳
 Dialogue: 0,00:03:23.00,00:03:26.00,Default,;annotation_4227386071;popup_box;,0,0,0,,{\an7\pos(714.451,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1205.549 0 l 1205.549 220.504 l 0 220.504 {\p0}
-Dialogue: 0,00:03:23.00,00:03:26.00,Default,;annotation_4227386071;popup_text;,0,0,0,,{\an7\pos(733.651,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}この脚で\N邁步前進
+Dialogue: 0,00:03:23.00,00:03:26.00,Default,;annotation_4227386071;popup_text;,0,0,0,,{\an7\pos(733.651,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}この脚で\N邁步前進
 Dialogue: 0,00:03:23.01,00:03:26.00,Default,;annotation_1178398011;popup_box;,0,0,0,,{\an7\pos(713.741,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1206.259 0 l 1206.259 216.281 l 0 216.281 {\p0}
-Dialogue: 0,00:03:23.01,00:03:26.00,Default,;annotation_1178398011;popup_text;,0,0,0,,{\an7\pos(732.941,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}この脚で\N邁步前進
+Dialogue: 0,00:03:23.01,00:03:26.00,Default,;annotation_1178398011;popup_text;,0,0,0,,{\an7\pos(732.941,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}この脚で\N邁步前進
 Dialogue: 0,00:03:26.00,00:03:34.80,Default,;annotation_1295750907;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 403.258 0 l 403.258 219.024 l 0 219.024 {\p0}
-Dialogue: 0,00:03:26.00,00:03:34.80,Default,;annotation_1295750907;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}踏みしめられた\N跟隨被踏實的
+Dialogue: 0,00:03:26.00,00:03:34.80,Default,;annotation_1295750907;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}踏みしめられた\N跟隨被踏實的
 Dialogue: 0,00:03:26.00,00:03:34.80,Default,;annotation_4068341051;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 403.046 0 l 403.046 217.912 l 0 217.912 {\p0}
-Dialogue: 0,00:03:26.00,00:03:34.80,Default,;annotation_4068341051;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}踏みしめられた\N跟隨被踏實的
+Dialogue: 0,00:03:26.00,00:03:34.80,Default,;annotation_4068341051;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}踏みしめられた\N跟隨被踏實的
 Dialogue: 0,00:03:26.90,00:03:31.20,Default,;annotation_1129752479;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 220.72 l 0 220.72 {\p0}
-Dialogue: 0,00:03:26.90,00:03:31.20,Default,;annotation_1129752479;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs51.994\c&HFFFFFF&\bord0\shad0}Was yea ra, Rra yea ra synk mahin yor en mea\N（手をつなぎ　貴方と共に）\N（牽手相連　與您和）
+Dialogue: 0,00:03:26.90,00:03:31.20,Default,;annotation_1129752479;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs58.233\c&HFFFFFF&\bord0\shad0}Was yea ra, Rra yea ra synk mahin yor en mea\N（手をつなぎ　貴方と共に）\N（牽手相連　與您和）
 Dialogue: 0,00:03:30.42,00:03:34.80,Default,;annotation_2469796133;popup_box;,0,0,0,,{\an7\pos(401.99,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 209.99 0 l 209.99 217.901 l 0 217.901 {\p0}
-Dialogue: 0,00:03:30.42,00:03:34.80,Default,;annotation_2469796133;popup_text;,0,0,0,,{\an7\pos(421.19,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}足跡\N足跡
+Dialogue: 0,00:03:30.42,00:03:34.80,Default,;annotation_2469796133;popup_text;,0,0,0,,{\an7\pos(421.19,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}足跡\N足跡
 Dialogue: 0,00:03:30.42,00:03:34.80,Default,;annotation_2700584797;popup_box;,0,0,0,,{\an7\pos(401.99,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 210.758 0 l 210.758 219.024 l 0 219.024 {\p0}
-Dialogue: 0,00:03:30.42,00:03:34.80,Default,;annotation_2700584797;popup_text;,0,0,0,,{\an7\pos(421.19,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}足跡\N足跡
+Dialogue: 0,00:03:30.42,00:03:34.80,Default,;annotation_2700584797;popup_text;,0,0,0,,{\an7\pos(421.19,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}足跡\N足跡
 Dialogue: 0,00:03:31.20,00:03:35.50,Default,;annotation_702014493;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 221.13 l 0 221.13 {\p0}
-Dialogue: 0,00:03:31.20,00:03:35.50,Default,;annotation_702014493;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs51.994\c&HFFFFFF&\bord0\shad0}Was yea ra, Rra yea ra irs an ar ciel, ee\N（美しいこの世界と共に）\N（這個美麗的世界一起）
+Dialogue: 0,00:03:31.20,00:03:35.50,Default,;annotation_702014493;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs58.233\c&HFFFFFF&\bord0\shad0}Was yea ra, Rra yea ra irs an ar ciel, ee\N（美しいこの世界と共に）\N（這個美麗的世界一起）
 Dialogue: 0,00:03:31.98,00:03:34.80,Default,;annotation_2148365783;popup_box;,0,0,0,,{\an7\pos(611.846,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1308.154 0 l 1308.154 219.229 l 0 219.229 {\p0}
-Dialogue: 0,00:03:31.98,00:03:34.80,Default,;annotation_2148365783;popup_text;,0,0,0,,{\an7\pos(631.046,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}繋がり行く\N相連而走
+Dialogue: 0,00:03:31.98,00:03:34.80,Default,;annotation_2148365783;popup_text;,0,0,0,,{\an7\pos(631.046,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}繋がり行く\N相連而走
 Dialogue: 0,00:03:31.98,00:03:34.80,Default,;annotation_3296137385;popup_box;,0,0,0,,{\an7\pos(611.424,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1308.576 0 l 1308.576 217.901 l 0 217.901 {\p0}
-Dialogue: 0,00:03:31.98,00:03:34.80,Default,;annotation_3296137385;popup_text;,0,0,0,,{\an7\pos(630.624,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}繋がり行く\N相連而走
+Dialogue: 0,00:03:31.98,00:03:34.80,Default,;annotation_3296137385;popup_text;,0,0,0,,{\an7\pos(630.624,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}繋がり行く\N相連而走
 Dialogue: 0,00:03:34.90,00:03:45.50,Default,;annotation_3026474379;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 341.683 0 l 341.683 219.164 l 0 219.164 {\p0}
-Dialogue: 0,00:03:34.90,00:03:45.50,Default,;annotation_3026474379;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}歩みの軌跡\N一步一步
+Dialogue: 0,00:03:34.90,00:03:45.50,Default,;annotation_3026474379;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}歩みの軌跡\N一步一步
 Dialogue: 0,00:03:34.90,00:03:45.50,Default,;annotation_3160059123;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 338.669 0 l 338.669 218.106 l 0 218.106 {\p0}
-Dialogue: 0,00:03:34.90,00:03:45.50,Default,;annotation_3160059123;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}歩みの軌跡\N一步一步
+Dialogue: 0,00:03:34.90,00:03:45.50,Default,;annotation_3160059123;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}歩みの軌跡\N一步一步
 Dialogue: 0,00:03:35.50,00:03:45.50,Default,;annotation_3548897809;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 221.13 l 0 221.13 {\p0}
-Dialogue: 0,00:03:35.50,00:03:45.50,Default,;annotation_3548897809;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs51.994\c&HFFFFFF&\bord0\shad0}Was yea ra, Rra yea ra synk sphilar yor en mea exec hymme METAFALICA\N（心を重ね　貴方と共に謳おう　この謳を）\N（心心相印　與您一起謳歌　這首　梅塔法利卡 [METAFALICA]）
+Dialogue: 0,00:03:35.50,00:03:45.50,Default,;annotation_3548897809;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs58.233\c&HFFFFFF&\bord0\shad0}Was yea ra, Rra yea ra synk sphilar yor en mea exec hymme METAFALICA\N（心を重ね　貴方と共に謳おう　この謳を）\N（心心相印　與您一起謳歌　這首　梅塔法利卡 [METAFALICA]）
 Dialogue: 0,00:03:39.30,00:03:45.50,Default,;annotation_3708804389;popup_box;,0,0,0,,{\an7\pos(340.147,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 222.778 0 l 222.778 218.948 l 0 218.948 {\p0}
-Dialogue: 0,00:03:39.30,00:03:45.50,Default,;annotation_3708804389;popup_text;,0,0,0,,{\an7\pos(359.347,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}記す\N留下
+Dialogue: 0,00:03:39.30,00:03:45.50,Default,;annotation_3708804389;popup_text;,0,0,0,,{\an7\pos(359.347,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}記す\N留下
 Dialogue: 0,00:03:39.30,00:03:45.50,Default,;annotation_4049420881;popup_box;,0,0,0,,{\an7\pos(337.344,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 224.179 0 l 224.179 218.106 l 0 218.106 {\p0}
-Dialogue: 0,00:03:39.30,00:03:45.50,Default,;annotation_4049420881;popup_text;,0,0,0,,{\an7\pos(356.544,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}記す\N留下
+Dialogue: 0,00:03:39.30,00:03:45.50,Default,;annotation_4049420881;popup_text;,0,0,0,,{\an7\pos(356.544,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}記す\N留下
 Dialogue: 0,00:03:40.50,00:03:45.50,Default,;annotation_3296750771;popup_box;,0,0,0,,{\an7\pos(562.022,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1357.978 0 l 1357.978 218.948 l 0 218.948 {\p0}
-Dialogue: 0,00:03:40.50,00:03:45.50,Default,;annotation_3296750771;popup_text;,0,0,0,,{\an7\pos(581.222,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}ひとつずつ\N步行的足跡
+Dialogue: 0,00:03:40.50,00:03:45.50,Default,;annotation_3296750771;popup_text;,0,0,0,,{\an7\pos(581.222,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}ひとつずつ\N步行的足跡
 Dialogue: 0,00:03:40.52,00:03:45.50,Default,;annotation_2186317993;popup_box;,0,0,0,,{\an7\pos(560.678,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1359.322 0 l 1359.322 218.106 l 0 218.106 {\p0}
-Dialogue: 0,00:03:40.52,00:03:45.50,Default,;annotation_2186317993;popup_text;,0,0,0,,{\an7\pos(579.878,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}ひとつずつ\N步行的足跡
+Dialogue: 0,00:03:40.52,00:03:45.50,Default,;annotation_2186317993;popup_text;,0,0,0,,{\an7\pos(579.878,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}ひとつずつ\N步行的足跡
 Dialogue: 0,00:03:45.60,00:03:47.10,Default,;annotation_2916883851;popup_box;,0,0,0,,{\an7\pos(0.0,382.504)\c&H75B96A&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 301.288 l 0 301.288 {\p0}
-Dialogue: 0,00:03:45.60,00:03:47.10,Default,;annotation_2916883851;popup_text;,0,0,0,,{\an7\pos(19.2,393.304)\fs90.99\c&HFFFFFF&\bord0\shad0}
-Dialogue: 0,00:03:45.61,00:03:47.10,Default,;annotation_2505354063;title;,0,0,0,,{\an5\pos(960.0,524.707)\fs32.496\c&HFFFFFF&\bord0\shad0\b1}Waath！\N再生を！\N再生吧！
+Dialogue: 0,00:03:45.60,00:03:47.10,Default,;annotation_2916883851;popup_text;,0,0,0,,{\an7\pos(19.2,393.304)\fs101.908\c&HFFFFFF&\bord0\shad0}
+Dialogue: 0,00:03:45.61,00:03:47.10,Default,;annotation_2505354063;title;,0,0,0,,{\an5\pos(960.0,524.707)\fs86.906\c&HFFFFFF&\bord0\shad0\b1}Waath！\N再生を！\N再生吧！
 Dialogue: 0,00:03:53.80,00:04:01.50,Default,;annotation_3539282655;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 494.765 0 l 494.765 217.685 l 0 217.685 {\p0}
-Dialogue: 0,00:03:53.80,00:04:01.50,Default,;annotation_3539282655;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}謳は胸を溢れて\N詩於心中洋溢並
+Dialogue: 0,00:03:53.80,00:04:01.50,Default,;annotation_3539282655;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}謳は胸を溢れて\N詩於心中洋溢並
 Dialogue: 0,00:03:57.70,00:04:01.50,Default,;annotation_363137815;popup_box;,0,0,0,,{\an7\pos(494.688,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1425.312 0 l 1425.312 217.685 l 0 217.685 {\p0}
-Dialogue: 0,00:03:57.70,00:04:01.50,Default,;annotation_363137815;popup_text;,0,0,0,,{\an7\pos(513.888,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}地に渓に湖に満てる\N滿布於大地 溪流 湖泊
+Dialogue: 0,00:03:57.70,00:04:01.50,Default,;annotation_363137815;popup_text;,0,0,0,,{\an7\pos(513.888,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}地に渓に湖に満てる\N滿布於大地 溪流 湖泊
 Dialogue: 0,00:04:01.50,00:04:14.10,Default,;annotation_2363092541;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 836.314 0 l 836.314 217.339 l 0 217.339 {\p0}
-Dialogue: 0,00:04:01.50,00:04:14.10,Default,;annotation_2363092541;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}やがて生いし木は深く\N不久之後生機勃勃的樹木深深地
+Dialogue: 0,00:04:01.50,00:04:14.10,Default,;annotation_2363092541;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}やがて生いし木は深く\N不久之後生機勃勃的樹木深深地
 Dialogue: 0,00:04:05.70,00:04:14.10,Default,;annotation_270939397;popup_box;,0,0,0,,{\an7\pos(836.237,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 430.176 0 l 430.176 217.404 l 0 217.404 {\p0}
-Dialogue: 0,00:04:05.70,00:04:14.10,Default,;annotation_270939397;popup_text;,0,0,0,,{\an7\pos(855.437,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}土に根ざし大地\N紮根於土壤
+Dialogue: 0,00:04:05.70,00:04:14.10,Default,;annotation_270939397;popup_text;,0,0,0,,{\an7\pos(855.437,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}土に根ざし大地\N紮根於土壤
 Dialogue: 0,00:04:09.60,00:04:14.10,Default,;annotation_96822043;popup_box;,0,0,0,,{\an7\pos(1264.934,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 655.066 0 l 655.066 218.387 l 0 218.387 {\p0}
-Dialogue: 0,00:04:09.60,00:04:14.10,Default,;annotation_96822043;popup_text;,0,0,0,,{\an7\pos(1284.134,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}抱く\N懷抱大地
+Dialogue: 0,00:04:09.60,00:04:14.10,Default,;annotation_96822043;popup_text;,0,0,0,,{\an7\pos(1284.134,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}抱く\N懷抱大地
 Dialogue: 0,00:04:12.03,00:04:22.50,Default,;annotation_2771657641;popup_box;,0,0,0,,{\an7\pos(0.0,223.528)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 189.754 0 l 189.754 221.897 l 0 221.897 {\p0}
-Dialogue: 0,00:04:12.03,00:04:22.50,Default,;annotation_2771657641;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs51.994\c&HFFFFFF&\bord0\shad0}AH\NAH
+Dialogue: 0,00:04:12.03,00:04:22.50,Default,;annotation_2771657641;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs58.233\c&HFFFFFF&\bord0\shad0}AH\NAH
 Dialogue: 0,00:04:15.41,00:04:22.50,Default,;annotation_3606526569;popup_box;,0,0,0,,{\an7\pos(188.621,223.528)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 271.142 0 l 271.142 222.469 l 0 222.469 {\p0}
-Dialogue: 0,00:04:15.41,00:04:22.50,Default,;annotation_3606526569;popup_text;,0,0,0,,{\an7\pos(207.821,234.328)\fs51.994\c&HFFFFFF&\bord0\shad0}目眩き\N耀眼的
+Dialogue: 0,00:04:15.41,00:04:22.50,Default,;annotation_3606526569;popup_text;,0,0,0,,{\an7\pos(207.821,234.328)\fs58.233\c&HFFFFFF&\bord0\shad0}目眩き\N耀眼的
 Dialogue: 0,00:04:17.70,00:04:22.50,Default,;annotation_1761798153;popup_box;,0,0,0,,{\an7\pos(458.208,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 270.989 0 l 270.989 222.534 l 0 222.534 {\p0}
-Dialogue: 0,00:04:17.70,00:04:22.50,Default,;annotation_1761798153;popup_text;,0,0,0,,{\an7\pos(477.408,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}蒼穹の\N蒼穹
+Dialogue: 0,00:04:17.70,00:04:22.50,Default,;annotation_1761798153;popup_text;,0,0,0,,{\an7\pos(477.408,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}蒼穹の\N蒼穹
 Dialogue: 0,00:04:19.63,00:04:22.50,Default,;annotation_3004920439;popup_box;,0,0,0,,{\an7\pos(729.408,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1190.592 0 l 1190.592 222.394 l 0 222.394 {\p0}
-Dialogue: 0,00:04:19.63,00:04:22.50,Default,;annotation_3004920439;popup_text;,0,0,0,,{\an7\pos(748.608,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}砕けし欠片\N碎片
+Dialogue: 0,00:04:19.63,00:04:22.50,Default,;annotation_3004920439;popup_text;,0,0,0,,{\an7\pos(748.608,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}砕けし欠片\N碎片
 Dialogue: 0,00:04:22.50,00:04:30.70,Default,;annotation_3841306267;popup_box;,0,0,0,,{\an7\pos(0.0,223.528)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 191.155 0 l 191.155 221.832 l 0 221.832 {\p0}
-Dialogue: 0,00:04:22.50,00:04:30.70,Default,;annotation_3841306267;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs51.994\c&HFFFFFF&\bord0\shad0}AH\NAH
+Dialogue: 0,00:04:22.50,00:04:30.70,Default,;annotation_3841306267;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs58.233\c&HFFFFFF&\bord0\shad0}AH\NAH
 Dialogue: 0,00:04:23.99,00:04:30.70,Default,;annotation_3700473987;popup_box;,0,0,0,,{\an7\pos(189.754,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 441.062 0 l 441.062 222.534 l 0 222.534 {\p0}
-Dialogue: 0,00:04:23.99,00:04:30.70,Default,;annotation_3700473987;popup_text;,0,0,0,,{\an7\pos(208.954,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}この手の上\N現在它寄宿於
+Dialogue: 0,00:04:23.99,00:04:30.70,Default,;annotation_3700473987;popup_text;,0,0,0,,{\an7\pos(208.954,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}この手の上\N現在它寄宿於
 Dialogue: 0,00:04:26.31,00:04:30.70,Default,;annotation_4187302231;popup_box;,0,0,0,,{\an7\pos(629.971,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1290.029 0 l 1290.029 222.534 l 0 222.534 {\p0}
-Dialogue: 0,00:04:26.31,00:04:30.70,Default,;annotation_4187302231;popup_text;,0,0,0,,{\an7\pos(649.171,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}いま宿れ\N我的手上
+Dialogue: 0,00:04:26.31,00:04:30.70,Default,;annotation_4187302231;popup_text;,0,0,0,,{\an7\pos(649.171,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}いま宿れ\N我的手上
 Dialogue: 0,00:04:30.70,00:04:34.95,Default,;annotation_1294423809;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 374.304 0 l 374.304 221.346 l 0 221.346 {\p0}
-Dialogue: 0,00:04:30.70,00:04:34.95,Default,;annotation_1294423809;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}降り注げ\N灌注而下吧
+Dialogue: 0,00:04:30.70,00:04:34.95,Default,;annotation_1294423809;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}降り注げ\N灌注而下吧
 Dialogue: 0,00:04:31.60,00:04:35.99,Default,;annotation_370732061;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 370.022 0 l 370.022 217.62 l 0 217.62 {\p0}
-Dialogue: 0,00:04:31.60,00:04:35.99,Default,;annotation_370732061;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}降り注げ\N灌注而下吧
+Dialogue: 0,00:04:31.60,00:04:35.99,Default,;annotation_370732061;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}降り注げ\N灌注而下吧
 Dialogue: 0,00:04:32.50,00:04:34.95,Default,;annotation_2694045437;popup_box;,0,0,0,,{\an7\pos(373.536,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1546.464 0 l 1546.464 221.627 l 0 221.627 {\p0}
-Dialogue: 0,00:04:32.50,00:04:34.95,Default,;annotation_2694045437;popup_text;,0,0,0,,{\an7\pos(392.736,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}光よ\N光啊
+Dialogue: 0,00:04:32.50,00:04:34.95,Default,;annotation_2694045437;popup_text;,0,0,0,,{\an7\pos(392.736,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}光よ\N光啊
 Dialogue: 0,00:04:32.50,00:04:35.97,Default,;annotation_531464199;popup_box;,0,0,0,,{\an7\pos(369.523,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1550.477 0 l 1550.477 217.685 l 0 217.685 {\p0}
-Dialogue: 0,00:04:32.50,00:04:35.97,Default,;annotation_531464199;popup_text;,0,0,0,,{\an7\pos(388.723,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}光の環よ\N光之環啊
+Dialogue: 0,00:04:32.50,00:04:35.97,Default,;annotation_531464199;popup_text;,0,0,0,,{\an7\pos(388.723,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}光の環よ\N光之環啊
 Dialogue: 0,00:04:35.00,00:04:39.80,Default,;annotation_2171287399;popup_box;,0,0,0,,{\an7\pos(0.0,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 329.395 0 l 329.395 221.27 l 0 221.27 {\p0}
-Dialogue: 0,00:04:35.00,00:04:39.80,Default,;annotation_2171287399;popup_text;,0,0,0,,{\an7\pos(19.2,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}舞い降りよ\N降臨在
+Dialogue: 0,00:04:35.00,00:04:39.80,Default,;annotation_2171287399;popup_text;,0,0,0,,{\an7\pos(19.2,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}舞い降りよ\N降臨在
 Dialogue: 0,00:04:36.00,00:04:39.70,Default,;annotation_516710079;popup_box;,0,0,0,,{\an7\pos(0.0,648.281)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 328.685 0 l 328.685 216.497 l 0 216.497 {\p0}
-Dialogue: 0,00:04:36.00,00:04:39.70,Default,;annotation_516710079;popup_text;,0,0,0,,{\an7\pos(19.2,659.081)\fs51.994\c&HFFFFFF&\bord0\shad0}舞い降りよ\N降臨在
+Dialogue: 0,00:04:36.00,00:04:39.70,Default,;annotation_516710079;popup_text;,0,0,0,,{\an7\pos(19.2,659.081)\fs58.233\c&HFFFFFF&\bord0\shad0}舞い降りよ\N降臨在
 Dialogue: 0,00:04:36.80,00:04:39.80,Default,;annotation_2082768647;popup_box;,0,0,0,,{\an7\pos(328.838,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1591.162 0 l 1591.162 221.27 l 0 221.27 {\p0}
-Dialogue: 0,00:04:36.80,00:04:39.80,Default,;annotation_2082768647;popup_text;,0,0,0,,{\an7\pos(348.038,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}この胸の中\N我心中吧
+Dialogue: 0,00:04:36.80,00:04:39.80,Default,;annotation_2082768647;popup_text;,0,0,0,,{\an7\pos(348.038,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}この胸の中\N我心中吧
 Dialogue: 0,00:04:36.80,00:04:39.70,Default,;annotation_2341988029;popup_box;,0,0,0,,{\an7\pos(328.896,648.281)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1590.182 0 l 1590.182 216.702 l 0 216.702 {\p0}
-Dialogue: 0,00:04:36.80,00:04:39.70,Default,;annotation_2341988029;popup_text;,0,0,0,,{\an7\pos(348.096,659.081)\fs51.994\c&HFFFFFF&\bord0\shad0}この胸の中\N我心中吧
+Dialogue: 0,00:04:36.80,00:04:39.70,Default,;annotation_2341988029;popup_text;,0,0,0,,{\an7\pos(348.096,659.081)\fs58.233\c&HFFFFFF&\bord0\shad0}この胸の中\N我心中吧
 Dialogue: 0,00:04:39.80,00:04:48.18,Default,;annotation_145472553;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 296.294 0 l 296.294 221.27 l 0 221.27 {\p0}
-Dialogue: 0,00:04:39.80,00:04:48.18,Default,;annotation_145472553;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}AH\NAH
+Dialogue: 0,00:04:39.80,00:04:48.18,Default,;annotation_145472553;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}AH\NAH
 Dialogue: 0,00:04:40.24,00:04:48.20,Default,;annotation_1419895517;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 296.006 0 l 296.006 219.38 l 0 219.38 {\p0}
-Dialogue: 0,00:04:40.24,00:04:48.20,Default,;annotation_1419895517;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}解き放て\N釋放出來
+Dialogue: 0,00:04:40.24,00:04:48.20,Default,;annotation_1419895517;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}解き放て\N釋放出來
 Dialogue: 0,00:04:41.26,00:04:48.18,Default,;annotation_2558774551;popup_box;,0,0,0,,{\an7\pos(295.162,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 391.238 0 l 391.238 221.27 l 0 221.27 {\p0}
-Dialogue: 0,00:04:41.26,00:04:48.18,Default,;annotation_2558774551;popup_text;,0,0,0,,{\an7\pos(314.362,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}響きわたれや\N響徹雲霄吧
+Dialogue: 0,00:04:41.26,00:04:48.18,Default,;annotation_2558774551;popup_text;,0,0,0,,{\an7\pos(314.362,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}響きわたれや\N響徹雲霄吧
 Dialogue: 0,00:04:41.30,00:04:48.20,Default,;annotation_1647928039;popup_box;,0,0,0,,{\an7\pos(295.162,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 389.549 0 l 389.549 220.568 l 0 220.568 {\p0}
-Dialogue: 0,00:04:41.30,00:04:48.20,Default,;annotation_1647928039;popup_text;,0,0,0,,{\an7\pos(314.362,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}響きわたれや\N響徹雲霄吧
+Dialogue: 0,00:04:41.30,00:04:48.20,Default,;annotation_1647928039;popup_text;,0,0,0,,{\an7\pos(314.362,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}響きわたれや\N響徹雲霄吧
 Dialogue: 0,00:04:44.10,00:04:48.18,Default,;annotation_103040153;popup_box;,0,0,0,,{\an7\pos(684.518,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1235.482 0 l 1235.482 221.27 l 0 221.27 {\p0}
-Dialogue: 0,00:04:44.10,00:04:48.18,Default,;annotation_103040153;popup_text;,0,0,0,,{\an7\pos(703.718,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}紡ぎ謳よ\N創世之詩啊
+Dialogue: 0,00:04:44.10,00:04:48.18,Default,;annotation_103040153;popup_text;,0,0,0,,{\an7\pos(703.718,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}紡ぎ謳よ\N創世之詩啊
 Dialogue: 0,00:04:44.10,00:04:48.20,Default,;annotation_782958979;popup_box;,0,0,0,,{\an7\pos(684.23,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1235.77 0 l 1235.77 220.428 l 0 220.428 {\p0}
-Dialogue: 0,00:04:44.10,00:04:48.20,Default,;annotation_782958979;popup_text;,0,0,0,,{\an7\pos(703.43,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}紡ぎ謳よ\N創世之詩啊
+Dialogue: 0,00:04:44.10,00:04:48.20,Default,;annotation_782958979;popup_text;,0,0,0,,{\an7\pos(703.43,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}紡ぎ謳よ\N創世之詩啊
 Dialogue: 0,00:04:48.20,00:04:52.60,Default,;annotation_169547923;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 208.09 0 l 208.09 218.106 l 0 218.106 {\p0}
-Dialogue: 0,00:04:48.20,00:04:52.60,Default,;annotation_169547923;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}Was\NWas
+Dialogue: 0,00:04:48.20,00:04:52.60,Default,;annotation_169547923;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}Was\NWas
 Dialogue: 0,00:04:48.20,00:05:05.90,Default,;annotation_683694383;popup_box;,0,0,0,,{\an7\pos(664.838,444.377)\c&HD368C0&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 170.707 0 l 170.707 197.575 l 0 197.575 {\p0}
-Dialogue: 0,00:04:48.20,00:05:05.90,Default,;annotation_683694383;popup_text;,0,0,0,,{\an7\pos(684.038,455.177)\fs51.994\c&HFFFFFF&\bord0\shad0}Was
+Dialogue: 0,00:04:48.20,00:05:05.90,Default,;annotation_683694383;popup_text;,0,0,0,,{\an7\pos(684.038,455.177)\fs58.233\c&HFFFFFF&\bord0\shad0}Was
 Dialogue: 0,00:04:48.20,00:04:52.60,Default,;annotation_917853957;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 209.645 0 l 209.645 221.13 l 0 221.13 {\p0}
-Dialogue: 0,00:04:48.20,00:04:52.60,Default,;annotation_917853957;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}Was\NWas
+Dialogue: 0,00:04:48.20,00:04:52.60,Default,;annotation_917853957;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}Was\NWas
 Dialogue: 0,00:04:48.54,00:04:52.60,Default,;annotation_1147934531;popup_box;,0,0,0,,{\an7\pos(206.611,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 318.931 0 l 318.931 216.702 l 0 216.702 {\p0}
-Dialogue: 0,00:04:48.54,00:04:52.60,Default,;annotation_1147934531;popup_text;,0,0,0,,{\an7\pos(225.811,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}高く\N向遼遠的
+Dialogue: 0,00:04:48.54,00:04:52.60,Default,;annotation_1147934531;popup_text;,0,0,0,,{\an7\pos(225.811,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}高く\N向遼遠的
 Dialogue: 0,00:04:49.20,00:04:52.60,Default,;annotation_227190963;popup_box;,0,0,0,,{\an7\pos(208.032,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 314.419 0 l 314.419 221.13 l 0 221.13 {\p0}
-Dialogue: 0,00:04:49.20,00:04:52.60,Default,;annotation_227190963;popup_text;,0,0,0,,{\an7\pos(227.232,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}遠く\N展開
+Dialogue: 0,00:04:49.20,00:04:52.60,Default,;annotation_227190963;popup_text;,0,0,0,,{\an7\pos(227.232,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}遠く\N展開
 Dialogue: 0,00:04:49.59,00:04:52.60,Default,;annotation_1288197025;popup_box;,0,0,0,,{\an7\pos(524.198,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 237.888 0 l 237.888 216.702 l 0 216.702 {\p0}
-Dialogue: 0,00:04:49.59,00:04:52.60,Default,;annotation_1288197025;popup_text;,0,0,0,,{\an7\pos(543.398,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}空に\N天空
+Dialogue: 0,00:04:49.59,00:04:52.60,Default,;annotation_1288197025;popup_text;,0,0,0,,{\an7\pos(543.398,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}空に\N天空
 Dialogue: 0,00:04:50.11,00:04:52.60,Default,;annotation_3879777361;popup_box;,0,0,0,,{\an7\pos(521.472,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 238.522 0 l 238.522 219.942 l 0 219.942 {\p0}
-Dialogue: 0,00:04:50.11,00:04:52.60,Default,;annotation_3879777361;popup_text;,0,0,0,,{\an7\pos(540.672,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}羽を\N長遠的
+Dialogue: 0,00:04:50.11,00:04:52.60,Default,;annotation_3879777361;popup_text;,0,0,0,,{\an7\pos(540.672,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}羽を\N長遠的
 Dialogue: 0,00:04:50.68,00:04:52.60,Default,;annotation_144144535;popup_box;,0,0,0,,{\an7\pos(759.629,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1160.371 0 l 1160.371 216.702 l 0 216.702 {\p0}
-Dialogue: 0,00:04:50.68,00:04:52.60,Default,;annotation_144144535;popup_text;,0,0,0,,{\an7\pos(778.829,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}枝をのばし\N伸長出枝葉
+Dialogue: 0,00:04:50.68,00:04:52.60,Default,;annotation_144144535;popup_text;,0,0,0,,{\an7\pos(778.829,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}枝をのばし\N伸長出枝葉
 Dialogue: 0,00:04:50.68,00:04:52.60,Default,;annotation_3577573367;popup_box;,0,0,0,,{\an7\pos(759.782,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1160.218 0 l 1160.218 219.942 l 0 219.942 {\p0}
-Dialogue: 0,00:04:50.68,00:04:52.60,Default,;annotation_3577573367;popup_text;,0,0,0,,{\an7\pos(778.982,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}のばして\N 翅膀
+Dialogue: 0,00:04:50.68,00:04:52.60,Default,;annotation_3577573367;popup_text;,0,0,0,,{\an7\pos(778.982,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}のばして\N 翅膀
 Dialogue: 0,00:04:52.60,00:04:56.70,Default,;annotation_156079683;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 179.078 0 l 179.078 217.901 l 0 217.901 {\p0}
-Dialogue: 0,00:04:52.60,00:04:56.70,Default,;annotation_156079683;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}yea\Nyea
+Dialogue: 0,00:04:52.60,00:04:56.70,Default,;annotation_156079683;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}yea\Nyea
 Dialogue: 0,00:04:52.60,00:05:05.90,Default,;annotation_1593523519;popup_box;,0,0,0,,{\an7\pos(836.237,444.377)\c&HD368C0&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 151.45 0 l 151.45 197.51 l 0 197.51 {\p0}
-Dialogue: 0,00:04:52.60,00:05:05.90,Default,;annotation_1593523519;popup_text;,0,0,0,,{\an7\pos(855.437,455.177)\fs51.994\c&HFFFFFF&\bord0\shad0}yea
+Dialogue: 0,00:04:52.60,00:05:05.90,Default,;annotation_1593523519;popup_text;,0,0,0,,{\an7\pos(855.437,455.177)\fs58.233\c&HFFFFFF&\bord0\shad0}yea
 Dialogue: 0,00:04:52.94,00:04:56.70,Default,;annotation_3647276479;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 313.728 0 l 313.728 220.99 l 0 220.99 {\p0}
-Dialogue: 0,00:04:52.94,00:04:56.70,Default,;annotation_3647276479;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}遥か\N向遙遠的
+Dialogue: 0,00:04:52.94,00:04:56.70,Default,;annotation_3647276479;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}遥か\N向遙遠的
 Dialogue: 0,00:04:53.36,00:04:56.70,Default,;annotation_2664261333;popup_box;,0,0,0,,{\an7\pos(178.502,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 320.179 0 l 320.179 218.041 l 0 218.041 {\p0}
-Dialogue: 0,00:04:53.36,00:04:56.70,Default,;annotation_2664261333;popup_text;,0,0,0,,{\an7\pos(197.702,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}広き\N向遼闊的
+Dialogue: 0,00:04:53.36,00:04:56.70,Default,;annotation_2664261333;popup_text;,0,0,0,,{\an7\pos(197.702,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}広き\N向遼闊的
 Dialogue: 0,00:04:53.90,00:04:56.70,Default,;annotation_3091418463;popup_box;,0,0,0,,{\an7\pos(312.038,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 512.045 0 l 512.045 220.849 l 0 220.849 {\p0}
-Dialogue: 0,00:04:53.90,00:04:56.70,Default,;annotation_3091418463;popup_text;,0,0,0,,{\an7\pos(331.238,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}風に\N風
+Dialogue: 0,00:04:53.90,00:04:56.70,Default,;annotation_3091418463;popup_text;,0,0,0,,{\an7\pos(331.238,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}風に\N風
 Dialogue: 0,00:04:54.50,00:04:56.70,Default,;annotation_3345977633;popup_box;,0,0,0,,{\an7\pos(498.97,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 326.17 0 l 326.17 217.901 l 0 217.901 {\p0}
-Dialogue: 0,00:04:54.50,00:04:56.70,Default,;annotation_3345977633;popup_text;,0,0,0,,{\an7\pos(518.17,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}大地に\N大地
+Dialogue: 0,00:04:54.50,00:04:56.70,Default,;annotation_3345977633;popup_text;,0,0,0,,{\an7\pos(518.17,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}大地に\N大地
 Dialogue: 0,00:04:55.00,00:04:56.70,Default,;annotation_1274158853;popup_box;,0,0,0,,{\an7\pos(823.162,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1096.838 0 l 1096.838 218.041 l 0 218.041 {\p0}
-Dialogue: 0,00:04:55.00,00:04:56.70,Default,;annotation_1274158853;popup_text;,0,0,0,,{\an7\pos(842.362,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}想い託して\N寄託意念
+Dialogue: 0,00:04:55.00,00:04:56.70,Default,;annotation_1274158853;popup_text;,0,0,0,,{\an7\pos(842.362,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}想い託して\N寄託意念
 Dialogue: 0,00:04:55.00,00:04:56.70,Default,;annotation_1429467111;popup_box;,0,0,0,,{\an7\pos(822.259,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1097.683 0 l 1097.683 220.849 l 0 220.849 {\p0}
-Dialogue: 0,00:04:55.00,00:04:56.70,Default,;annotation_1429467111;popup_text;,0,0,0,,{\an7\pos(841.459,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}想い託して\N寄託意念
+Dialogue: 0,00:04:55.00,00:04:56.70,Default,;annotation_1429467111;popup_text;,0,0,0,,{\an7\pos(841.459,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}想い託して\N寄託意念
 Dialogue: 0,00:04:56.70,00:05:05.90,Default,;annotation_2141567653;popup_box;,0,0,0,,{\an7\pos(985.306,445.716)\c&HD368C0&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 120.979 0 l 120.979 197.64 l 0 197.64 {\p0}
-Dialogue: 0,00:04:56.70,00:05:05.90,Default,;annotation_2141567653;popup_text;,0,0,0,,{\an7\pos(1004.506,456.516)\fs51.994\c&HFFFFFF&\bord0\shad0}ra
+Dialogue: 0,00:04:56.70,00:05:05.90,Default,;annotation_2141567653;popup_text;,0,0,0,,{\an7\pos(1004.506,456.516)\fs58.233\c&HFFFFFF&\bord0\shad0}ra
 Dialogue: 0,00:04:56.70,00:05:01.20,Default,;annotation_2533002007;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 201.984 0 l 201.984 218.106 l 0 218.106 {\p0}
-Dialogue: 0,00:04:56.70,00:05:01.20,Default,;annotation_2533002007;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}ra\Nra
+Dialogue: 0,00:04:56.70,00:05:01.20,Default,;annotation_2533002007;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}ra\Nra
 Dialogue: 0,00:04:56.70,00:05:01.20,Default,;annotation_3185676679;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 202.195 0 l 202.195 219.802 l 0 219.802 {\p0}
-Dialogue: 0,00:04:56.70,00:05:01.20,Default,;annotation_3185676679;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}ra\Nra
+Dialogue: 0,00:04:56.70,00:05:01.20,Default,;annotation_3185676679;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}ra\Nra
 Dialogue: 0,00:04:57.10,00:05:01.20,Default,;annotation_1233356739;popup_box;,0,0,0,,{\an7\pos(201.005,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 293.126 0 l 293.126 218.041 l 0 218.041 {\p0}
-Dialogue: 0,00:04:57.10,00:05:01.20,Default,;annotation_1233356739;popup_text;,0,0,0,,{\an7\pos(220.205,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}澪の\N將水脈的
+Dialogue: 0,00:04:57.10,00:05:01.20,Default,;annotation_1233356739;popup_text;,0,0,0,,{\an7\pos(220.205,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}澪の\N將水脈的
 Dialogue: 0,00:04:57.72,00:05:01.20,Default,;annotation_1601347413;popup_box;,0,0,0,,{\an7\pos(201.005,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 375.418 0 l 375.418 219.586 l 0 219.586 {\p0}
-Dialogue: 0,00:04:57.72,00:05:01.20,Default,;annotation_1601347413;popup_text;,0,0,0,,{\an7\pos(220.205,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}螺旋\N描繪
+Dialogue: 0,00:04:57.72,00:05:01.20,Default,;annotation_1601347413;popup_text;,0,0,0,,{\an7\pos(220.205,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}螺旋\N描繪
 Dialogue: 0,00:04:58.10,00:05:01.20,Default,;annotation_178724489;popup_box;,0,0,0,,{\an7\pos(493.344,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 206.342 0 l 206.342 218.041 l 0 218.041 {\p0}
-Dialogue: 0,00:04:58.10,00:05:01.20,Default,;annotation_178724489;popup_text;,0,0,0,,{\an7\pos(512.544,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}軌跡\N軌跡
+Dialogue: 0,00:04:58.10,00:05:01.20,Default,;annotation_178724489;popup_text;,0,0,0,,{\an7\pos(512.544,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}軌跡\N軌跡
 Dialogue: 0,00:04:58.80,00:05:01.20,Default,;annotation_3787297657;popup_box;,0,0,0,,{\an7\pos(574.867,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 402.624 0 l 402.624 219.521 l 0 219.521 {\p0}
-Dialogue: 0,00:04:58.80,00:05:01.20,Default,;annotation_3787297657;popup_text;,0,0,0,,{\an7\pos(594.067,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}描き\N並傳遞
+Dialogue: 0,00:04:58.80,00:05:01.20,Default,;annotation_3787297657;popup_text;,0,0,0,,{\an7\pos(594.067,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}描き\N並傳遞
 Dialogue: 0,00:04:59.20,00:05:01.20,Default,;annotation_1882157369;popup_box;,0,0,0,,{\an7\pos(698.573,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 279.571 0 l 279.571 217.901 l 0 217.901 {\p0}
-Dialogue: 0,00:04:59.20,00:05:01.20,Default,;annotation_1882157369;popup_text;,0,0,0,,{\an7\pos(717.773,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}天へ\N傳遞到
+Dialogue: 0,00:04:59.20,00:05:01.20,Default,;annotation_1882157369;popup_text;,0,0,0,,{\an7\pos(717.773,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}天へ\N傳遞到
 Dialogue: 0,00:04:59.90,00:05:01.20,Default,;annotation_2536197291;popup_box;,0,0,0,,{\an7\pos(977.491,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 942.509 0 l 942.509 218.041 l 0 218.041 {\p0}
-Dialogue: 0,00:04:59.90,00:05:01.20,Default,;annotation_2536197291;popup_text;,0,0,0,,{\an7\pos(996.691,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}届け\N天上吧
+Dialogue: 0,00:04:59.90,00:05:01.20,Default,;annotation_2536197291;popup_text;,0,0,0,,{\an7\pos(996.691,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}届け\N天上吧
 Dialogue: 0,00:04:59.90,00:05:01.20,Default,;annotation_3470031451;popup_box;,0,0,0,,{\an7\pos(978.202,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 941.798 0 l 941.798 219.521 l 0 219.521 {\p0}
-Dialogue: 0,00:04:59.90,00:05:01.20,Default,;annotation_3470031451;popup_text;,0,0,0,,{\an7\pos(997.402,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}届けや\N螺旋吧
+Dialogue: 0,00:04:59.90,00:05:01.20,Default,;annotation_3470031451;popup_text;,0,0,0,,{\an7\pos(997.402,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}届けや\N螺旋吧
 Dialogue: 0,00:05:01.20,00:05:05.80,Default,;annotation_2923327851;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 211.123 0 l 211.123 217.685 l 0 217.685 {\p0}
-Dialogue: 0,00:05:01.20,00:05:05.80,Default,;annotation_2923327851;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}wael\Nwael
+Dialogue: 0,00:05:01.20,00:05:05.80,Default,;annotation_2923327851;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}wael\Nwael
 Dialogue: 0,00:05:01.20,00:05:05.90,Default,;annotation_389704765;popup_box;,0,0,0,,{\an7\pos(1106.112,445.716)\c&HD368C0&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 168.614 0 l 168.614 197.64 l 0 197.64 {\p0}
-Dialogue: 0,00:05:01.20,00:05:05.90,Default,;annotation_389704765;popup_text;,0,0,0,,{\an7\pos(1125.312,456.516)\fs51.994\c&HFFFFFF&\bord0\shad0}wael
-Dialogue: 0,00:05:01.21,00:05:05.90,Default,;annotation_894810579;title;,0,0,0,,{\an5\pos(960.0,575.294)\fs32.496\c&HFFFFFF&\bord0\shad0\b1}歡欣吧
+Dialogue: 0,00:05:01.20,00:05:05.90,Default,;annotation_389704765;popup_text;,0,0,0,,{\an7\pos(1125.312,456.516)\fs58.233\c&HFFFFFF&\bord0\shad0}wael
+Dialogue: 0,00:05:01.21,00:05:05.90,Default,;annotation_894810579;title;,0,0,0,,{\an5\pos(960.0,575.294)\fs71.899\c&HFFFFFF&\bord0\shad0\b1}歡欣吧
 Dialogue: 0,00:05:01.60,00:05:05.80,Default,;annotation_3011930069;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 269.376 0 l 269.376 218.948 l 0 218.948 {\p0}
-Dialogue: 0,00:05:01.60,00:05:05.80,Default,;annotation_3011930069;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}果てぬ\N無盡
+Dialogue: 0,00:05:01.60,00:05:05.80,Default,;annotation_3011930069;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}果てぬ\N無盡
 Dialogue: 0,00:05:02.20,00:05:05.80,Default,;annotation_2025933989;popup_box;,0,0,0,,{\an7\pos(209.434,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 369.734 0 l 369.734 217.901 l 0 217.901 {\p0}
-Dialogue: 0,00:05:02.20,00:05:05.80,Default,;annotation_2025933989;popup_text;,0,0,0,,{\an7\pos(228.634,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}枯れぬ\N不會凋零的
+Dialogue: 0,00:05:02.20,00:05:05.80,Default,;annotation_2025933989;popup_text;,0,0,0,,{\an7\pos(228.634,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}枯れぬ\N不會凋零的
 Dialogue: 0,00:05:02.66,00:05:05.80,Default,;annotation_4034666381;popup_box;,0,0,0,,{\an7\pos(269.798,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 308.525 0 l 308.525 219.164 l 0 219.164 {\p0}
-Dialogue: 0,00:05:02.66,00:05:05.80,Default,;annotation_4034666381;popup_text;,0,0,0,,{\an7\pos(288.998,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}祈り\N祈願的
+Dialogue: 0,00:05:02.66,00:05:05.80,Default,;annotation_4034666381;popup_text;,0,0,0,,{\an7\pos(288.998,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}祈り\N祈願的
 Dialogue: 0,00:05:03.20,00:05:05.80,Default,;annotation_1175151477;popup_box;,0,0,0,,{\an7\pos(578.669,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1341.331 0 l 1341.331 217.901 l 0 217.901 {\p0}
-Dialogue: 0,00:05:03.20,00:05:05.80,Default,;annotation_1175151477;popup_text;,0,0,0,,{\an7\pos(597.869,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}希い謳よ\N希望之詩啊
+Dialogue: 0,00:05:03.20,00:05:05.80,Default,;annotation_1175151477;popup_text;,0,0,0,,{\an7\pos(597.869,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}希い謳よ\N希望之詩啊
 Dialogue: 0,00:05:03.77,00:05:05.80,Default,;annotation_2506721273;popup_box;,0,0,0,,{\an7\pos(577.056,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1342.944 0 l 1342.944 219.521 l 0 219.521 {\p0}
-Dialogue: 0,00:05:03.77,00:05:05.80,Default,;annotation_2506721273;popup_text;,0,0,0,,{\an7\pos(596.256,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}この謳よ\N這首詩啊
+Dialogue: 0,00:05:03.77,00:05:05.80,Default,;annotation_2506721273;popup_text;,0,0,0,,{\an7\pos(596.256,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}この謳よ\N這首詩啊
 Dialogue: 0,00:05:05.90,00:05:13.50,Default,;annotation_2410219913;popup_box;,0,0,0,,{\an7\pos(0.0,223.528)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 400.589 0 l 400.589 220.99 l 0 220.99 {\p0}
-Dialogue: 0,00:05:05.90,00:05:13.50,Default,;annotation_2410219913;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs51.994\c&HFFFFFF&\bord0\shad0}緑萌え出ずる\N萌芽出翠綠
+Dialogue: 0,00:05:05.90,00:05:13.50,Default,;annotation_2410219913;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs58.233\c&HFFFFFF&\bord0\shad0}緑萌え出ずる\N萌芽出翠綠
 Dialogue: 0,00:05:05.90,00:05:13.50,Default,;annotation_54793291;popup_box;,0,0,0,,{\an7\pos(0.0,866.808)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 213.192 l 0 213.192 {\p0}
-Dialogue: 0,00:05:05.90,00:05:13.50,Default,;annotation_54793291;popup_text;,0,0,0,,{\an7\pos(19.2,877.608)\fs51.994\c&HFFFFFF&\bord0\shad0}xE rre sor a.u.k. akata rhaplanca.\N（ラプランカという少女の物語）\N（一位名為拉普蘭卡的少女的物語）
+Dialogue: 0,00:05:05.90,00:05:13.50,Default,;annotation_54793291;popup_text;,0,0,0,,{\an7\pos(19.2,877.608)\fs58.233\c&HFFFFFF&\bord0\shad0}xE rre sor a.u.k. akata rhaplanca.\N（ラプランカという少女の物語）\N（一位名為拉普蘭卡的少女的物語）
 Dialogue: 0,00:05:09.62,00:05:13.50,Default,;annotation_1968430711;popup_box;,0,0,0,,{\an7\pos(399.456,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1520.544 0 l 1520.544 221.162 l 0 221.162 {\p0}
-Dialogue: 0,00:05:09.62,00:05:13.50,Default,;annotation_1968430711;popup_text;,0,0,0,,{\an7\pos(418.656,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}草と花たちの色\N花草們的顏色
+Dialogue: 0,00:05:09.62,00:05:13.50,Default,;annotation_1968430711;popup_text;,0,0,0,,{\an7\pos(418.656,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}草と花たちの色\N花草們的顏色
 Dialogue: 0,00:05:13.50,00:05:22.18,Default,;annotation_2951934007;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 249.907 0 l 249.907 220.644 l 0 220.644 {\p0}
-Dialogue: 0,00:05:13.50,00:05:22.18,Default,;annotation_2951934007;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}今日も\N今日也
+Dialogue: 0,00:05:13.50,00:05:22.18,Default,;annotation_2951934007;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}今日も\N今日也
 Dialogue: 0,00:05:14.30,00:05:22.18,Default,;annotation_3452163717;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 221.13 l 0 221.13 {\p0}
-Dialogue: 0,00:05:14.30,00:05:22.18,Default,;annotation_3452163717;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs51.994\c&HFFFFFF&\bord0\shad0}Harr selena phira, ciel accroad 0 papana\N（少女はひとり、小さな種を育てる　その国に雨は降らなかった）\N（少女獨自栽培、小小的種子　那個國度不曾下雨）
+Dialogue: 0,00:05:14.30,00:05:22.18,Default,;annotation_3452163717;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs58.233\c&HFFFFFF&\bord0\shad0}Harr selena phira, ciel accroad 0 papana\N（少女はひとり、小さな種を育てる　その国に雨は降らなかった）\N（少女獨自栽培、小小的種子　那個國度不曾下雨）
 Dialogue: 0,00:05:14.33,00:05:22.18,Default,;annotation_2647408751;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 249.773 0 l 249.773 218.603 l 0 218.603 {\p0}
-Dialogue: 0,00:05:14.33,00:05:22.18,Default,;annotation_2647408751;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}明日も\N明天也
+Dialogue: 0,00:05:14.33,00:05:22.18,Default,;annotation_2647408751;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}明日も\N明天也
 Dialogue: 0,00:05:16.58,00:05:22.18,Default,;annotation_654545219;popup_box;,0,0,0,,{\an7\pos(249.35,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1670.65 0 l 1670.65 221.065 l 0 221.065 {\p0}
-Dialogue: 0,00:05:16.58,00:05:22.18,Default,;annotation_654545219;popup_text;,0,0,0,,{\an7\pos(268.55,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}恵み溢れ\N洋溢着恩澤
+Dialogue: 0,00:05:16.58,00:05:22.18,Default,;annotation_654545219;popup_text;,0,0,0,,{\an7\pos(268.55,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}恵み溢れ\N洋溢着恩澤
 Dialogue: 0,00:05:16.60,00:05:22.18,Default,;annotation_2711429117;popup_box;,0,0,0,,{\an7\pos(249.35,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1670.65 0 l 1670.65 218.603 l 0 218.603 {\p0}
-Dialogue: 0,00:05:16.60,00:05:22.18,Default,;annotation_2711429117;popup_text;,0,0,0,,{\an7\pos(268.55,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}恵み溢れるよう\N會洋溢着恩澤
+Dialogue: 0,00:05:16.60,00:05:22.18,Default,;annotation_2711429117;popup_text;,0,0,0,,{\an7\pos(268.55,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}恵み溢れるよう\N會洋溢着恩澤
 Dialogue: 0,00:05:22.20,00:05:30.60,Default,;annotation_2165530577;popup_box;,0,0,0,,{\an7\pos(0.0,867.726)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 212.274 l 0 212.274 {\p0}
-Dialogue: 0,00:05:22.20,00:05:30.60,Default,;annotation_2165530577;popup_text;,0,0,0,,{\an7\pos(19.2,878.526)\fs51.994\c&HFFFFFF&\bord0\shad0}xA rre maoh w.n.s. sasye, tYAnAmLYEn phira.\N（少年は少女と出会う。少年は名をマオといった　少年は共に種を育てることに決めた）\N（少年與少女相遇。少年的名字叫瑪奧　少年決定與她一起栽培種子）
+Dialogue: 0,00:05:22.20,00:05:30.60,Default,;annotation_2165530577;popup_text;,0,0,0,,{\an7\pos(19.2,878.526)\fs58.233\c&HFFFFFF&\bord0\shad0}xA rre maoh w.n.s. sasye, tYAnAmLYEn phira.\N（少年は少女と出会う。少年は名をマオといった　少年は共に種を育てることに決めた）\N（少年與少女相遇。少年的名字叫瑪奧　少年決定與她一起栽培種子）
 Dialogue: 0,00:05:22.73,00:05:30.60,Default,;annotation_2866642823;popup_box;,0,0,0,,{\an7\pos(0.0,223.528)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 438.528 0 l 438.528 221.27 l 0 221.27 {\p0}
-Dialogue: 0,00:05:22.73,00:05:30.60,Default,;annotation_2866642823;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs51.994\c&HFFFFFF&\bord0\shad0}ささやく\N連竊竊私語的
+Dialogue: 0,00:05:22.73,00:05:30.60,Default,;annotation_2866642823;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs58.233\c&HFFFFFF&\bord0\shad0}ささやく\N連竊竊私語的
 Dialogue: 0,00:05:22.73,00:05:30.60,Default,;annotation_948629057;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 438.528 0 l 438.528 218.743 l 0 218.743 {\p0}
-Dialogue: 0,00:05:22.73,00:05:30.60,Default,;annotation_948629057;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}ささやく\N連竊竊私語的
+Dialogue: 0,00:05:22.73,00:05:30.60,Default,;annotation_948629057;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}ささやく\N連竊竊私語的
 Dialogue: 0,00:05:25.10,00:05:30.60,Default,;annotation_3141948043;popup_box;,0,0,0,,{\an7\pos(437.414,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 335.578 0 l 335.578 221.13 l 0 221.13 {\p0}
-Dialogue: 0,00:05:25.10,00:05:30.60,Default,;annotation_3141948043;popup_text;,0,0,0,,{\an7\pos(456.614,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}水も木も\N水和樹木
+Dialogue: 0,00:05:25.10,00:05:30.60,Default,;annotation_3141948043;popup_text;,0,0,0,,{\an7\pos(456.614,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}水も木も\N水和樹木
 Dialogue: 0,00:05:25.10,00:05:30.60,Default,;annotation_3722025523;popup_box;,0,0,0,,{\an7\pos(438.47,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 334.234 0 l 334.234 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:05:25.10,00:05:30.60,Default,;annotation_3722025523;popup_text;,0,0,0,,{\an7\pos(457.67,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}水も木も\N水和樹木
+Dialogue: 0,00:05:25.10,00:05:30.60,Default,;annotation_3722025523;popup_text;,0,0,0,,{\an7\pos(457.67,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}水も木も\N水和樹木
 Dialogue: 0,00:05:26.98,00:05:30.60,Default,;annotation_3755091035;popup_box;,0,0,0,,{\an7\pos(771.59,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1148.41 0 l 1148.41 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:05:26.98,00:05:30.60,Default,;annotation_3755091035;popup_text;,0,0,0,,{\an7\pos(790.79,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}こんなにも優しい\N也如此溫柔
+Dialogue: 0,00:05:26.98,00:05:30.60,Default,;annotation_3755091035;popup_text;,0,0,0,,{\an7\pos(790.79,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}こんなにも優しい\N也如此溫柔
 Dialogue: 0,00:05:26.98,00:05:30.60,Default,;annotation_4100448897;popup_box;,0,0,0,,{\an7\pos(771.936,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1148.064 0 l 1148.064 221.13 l 0 221.13 {\p0}
-Dialogue: 0,00:05:26.98,00:05:30.60,Default,;annotation_4100448897;popup_text;,0,0,0,,{\an7\pos(791.136,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}こんなにも優しい\N也如此溫柔
+Dialogue: 0,00:05:26.98,00:05:30.60,Default,;annotation_4100448897;popup_text;,0,0,0,,{\an7\pos(791.136,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}こんなにも優しい\N也如此溫柔
 Dialogue: 0,00:05:30.60,00:05:39.27,Default,;annotation_1057048005;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 267.053 0 l 267.053 221.206 l 0 221.206 {\p0}
-Dialogue: 0,00:05:30.60,00:05:39.27,Default,;annotation_1057048005;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}空よ\N天空啊
+Dialogue: 0,00:05:30.60,00:05:39.27,Default,;annotation_1057048005;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}空よ\N天空啊
 Dialogue: 0,00:05:30.60,00:05:39.27,Default,;annotation_2251423711;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 265.306 0 l 265.306 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:05:30.60,00:05:39.27,Default,;annotation_2251423711;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}大地よ\N大地啊
+Dialogue: 0,00:05:30.60,00:05:39.27,Default,;annotation_2251423711;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}大地よ\N大地啊
 Dialogue: 0,00:05:30.60,00:05:39.28,Default,;annotation_2304276429;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 219.942 l 0 219.942 {\p0}
-Dialogue: 0,00:05:30.60,00:05:39.28,Default,;annotation_2304276429;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs51.994\c&HFFFFFF&\bord0\shad0}Harr crannidale infel en kapa\N（彼女は種に水を分け与え育てた）\N（少女將水分給予種子來栽培它）
+Dialogue: 0,00:05:30.60,00:05:39.28,Default,;annotation_2304276429;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs58.233\c&HFFFFFF&\bord0\shad0}Harr crannidale infel en kapa\N（彼女は種に水を分け与え育てた）\N（少女將水分給予種子來栽培它）
 Dialogue: 0,00:05:33.70,00:05:39.27,Default,;annotation_1528353471;popup_box;,0,0,0,,{\an7\pos(264.25,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 259.104 0 l 259.104 218.603 l 0 218.603 {\p0}
-Dialogue: 0,00:05:33.70,00:05:39.27,Default,;annotation_1528353471;popup_text;,0,0,0,,{\an7\pos(283.45,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}穣りよ\N豐穰啊
+Dialogue: 0,00:05:33.70,00:05:39.27,Default,;annotation_1528353471;popup_text;,0,0,0,,{\an7\pos(283.45,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}穣りよ\N豐穰啊
 Dialogue: 0,00:05:33.70,00:05:39.27,Default,;annotation_2870835573;popup_box;,0,0,0,,{\an7\pos(265.651,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 260.525 0 l 260.525 221.206 l 0 221.206 {\p0}
-Dialogue: 0,00:05:33.70,00:05:39.27,Default,;annotation_2870835573;popup_text;,0,0,0,,{\an7\pos(284.851,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}祈りよ\N祈願啊
+Dialogue: 0,00:05:33.70,00:05:39.27,Default,;annotation_2870835573;popup_text;,0,0,0,,{\an7\pos(284.851,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}祈りよ\N祈願啊
 Dialogue: 0,00:05:35.40,00:05:39.27,Default,;annotation_3564176531;popup_box;,0,0,0,,{\an7\pos(522.874,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1396.493 0 l 1396.493 221.206 l 0 221.206 {\p0}
-Dialogue: 0,00:05:35.40,00:05:39.27,Default,;annotation_3564176531;popup_text;,0,0,0,,{\an7\pos(542.074,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}とこしえに\N永恆吧
+Dialogue: 0,00:05:35.40,00:05:39.27,Default,;annotation_3564176531;popup_text;,0,0,0,,{\an7\pos(542.074,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}とこしえに\N永恆吧
 Dialogue: 0,00:05:35.88,00:05:39.27,Default,;annotation_1865749955;popup_box;,0,0,0,,{\an7\pos(521.472,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1397.626 0 l 1397.626 218.603 l 0 218.603 {\p0}
-Dialogue: 0,00:05:35.88,00:05:39.27,Default,;annotation_1865749955;popup_text;,0,0,0,,{\an7\pos(540.672,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}嗚呼\N嗚呼
+Dialogue: 0,00:05:35.88,00:05:39.27,Default,;annotation_1865749955;popup_text;,0,0,0,,{\an7\pos(540.672,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}嗚呼\N嗚呼
 Dialogue: 0,00:05:39.30,00:05:47.67,Default,;annotation_1367421693;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 411.821 0 l 411.821 218.182 l 0 218.182 {\p0}
-Dialogue: 0,00:05:39.30,00:05:47.67,Default,;annotation_1367421693;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}かけがえない\N以雙手擁抱
+Dialogue: 0,00:05:39.30,00:05:47.67,Default,;annotation_1367421693;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}かけがえない\N以雙手擁抱
 Dialogue: 0,00:05:39.30,00:05:47.70,Default,;annotation_3320098849;popup_box;,0,0,0,,{\an7\pos(0.0,866.808)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 213.192 l 0 213.192 {\p0}
-Dialogue: 0,00:05:39.30,00:05:47.70,Default,;annotation_3320098849;popup_text;,0,0,0,,{\an7\pos(19.2,877.608)\fs51.994\c&HFFFFFF&\bord0\shad0}xE rre herr en harr yEyYE phira art kapa enrer.\N（いつしか人々も苗に水を与えようになった）\N（不知從何時開始人們也將水分給予種子）
+Dialogue: 0,00:05:39.30,00:05:47.70,Default,;annotation_3320098849;popup_text;,0,0,0,,{\an7\pos(19.2,877.608)\fs58.233\c&HFFFFFF&\bord0\shad0}xE rre herr en harr yEyYE phira art kapa enrer.\N（いつしか人々も苗に水を与えようになった）\N（不知從何時開始人們也將水分給予種子）
 Dialogue: 0,00:05:39.89,00:05:55.04,Default,;annotation_3931061025;popup_box;,0,0,0,,{\an7\pos(0.0,445.781)\c&H36DAFD&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 200.178 l 0 200.178 {\p0}
-Dialogue: 0,00:05:39.89,00:05:55.04,Default,;annotation_3931061025;popup_text;,0,0,0,,{\an7\pos(19.2,456.581)\fs51.994\c&H000000&\bord0\shad0}
-Dialogue: 0,00:05:39.90,00:05:55.00,Default,;annotation_2281726627;title;,0,0,0,,{\an5\pos(960.0,545.778)\fs32.496\c&H000000&\bord0\shad0\b1}Was yea ra hymme ieeya en rannef,\N称えや、かけがえなき世界\N歌頌、無可替代的世界吧
+Dialogue: 0,00:05:39.89,00:05:55.04,Default,;annotation_3931061025;popup_text;,0,0,0,,{\an7\pos(19.2,456.581)\fs58.233\c&H000000&\bord0\shad0}
+Dialogue: 0,00:05:39.90,00:05:55.00,Default,;annotation_2281726627;title;,0,0,0,,{\an5\pos(960.0,545.778)\fs62.012\c&H000000&\bord0\shad0\b1}Was yea ra hymme ieeya en rannef,\N称えや、かけがえなき世界\N歌頌、無可替代的世界吧
 Dialogue: 0,00:05:42.84,00:05:47.70,Default,;annotation_3079441333;popup_box;,0,0,0,,{\an7\pos(410.707,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 473.318 0 l 473.318 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:05:42.84,00:05:47.70,Default,;annotation_3079441333;popup_text;,0,0,0,,{\an7\pos(429.907,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}この世界\N這個無可替代的
+Dialogue: 0,00:05:42.84,00:05:47.70,Default,;annotation_3079441333;popup_text;,0,0,0,,{\an7\pos(429.907,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}この世界\N這個無可替代的
 Dialogue: 0,00:05:45.19,00:05:47.70,Default,;annotation_1533412915;popup_box;,0,0,0,,{\an7\pos(882.97,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1037.03 0 l 1037.03 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:05:45.19,00:05:47.70,Default,;annotation_1533412915;popup_text;,0,0,0,,{\an7\pos(902.17,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}両手に抱いて\N世界
+Dialogue: 0,00:05:45.19,00:05:47.70,Default,;annotation_1533412915;popup_text;,0,0,0,,{\an7\pos(902.17,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}両手に抱いて\N世界
 Dialogue: 0,00:05:47.70,00:05:56.90,Default,;annotation_3146610255;popup_box;,0,0,0,,{\an7\pos(0.0,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 453.85 0 l 453.85 220.082 l 0 220.082 {\p0}
-Dialogue: 0,00:05:47.70,00:05:56.90,Default,;annotation_3146610255;popup_text;,0,0,0,,{\an7\pos(19.2,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}たいせつなこの\N以雙手擁抱
+Dialogue: 0,00:05:47.70,00:05:56.90,Default,;annotation_3146610255;popup_text;,0,0,0,,{\an7\pos(19.2,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}たいせつなこの\N以雙手擁抱
 Dialogue: 0,00:05:47.78,00:05:56.90,Default,;annotation_3896577773;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 218.527 l 0 218.527 {\p0}
-Dialogue: 0,00:05:47.78,00:05:56.90,Default,;annotation_3896577773;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs51.994\c&HFFFFFF&\bord0\shad0}Phira selena infel, ciel accroad 0 papana\N（ その国に雨は降らなかった）\N（那個國度不曾下雨）
+Dialogue: 0,00:05:47.78,00:05:56.90,Default,;annotation_3896577773;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs58.233\c&HFFFFFF&\bord0\shad0}Phira selena infel, ciel accroad 0 papana\N（ その国に雨は降らなかった）\N（那個國度不曾下雨）
 Dialogue: 0,00:05:49.55,00:05:56.90,Default,;annotation_320978197;popup_box;,0,0,0,,{\an7\pos(0.0,649.685)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 638.611 0 l 638.611 214.38 l 0 214.38 {\p0}
-Dialogue: 0,00:05:49.55,00:05:56.90,Default,;annotation_320978197;popup_text;,0,0,0,,{\an7\pos(19.2,660.485)\fs51.994\c&HFFFFFF&\bord0\shad0}清き日々を\N步行於
+Dialogue: 0,00:05:49.55,00:05:56.90,Default,;annotation_320978197;popup_text;,0,0,0,,{\an7\pos(19.2,660.485)\fs58.233\c&HFFFFFF&\bord0\shad0}清き日々を\N步行於
 Dialogue: 0,00:05:50.50,00:05:56.90,Default,;annotation_476494933;popup_box;,0,0,0,,{\an7\pos(452.582,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 385.766 0 l 385.766 219.942 l 0 219.942 {\p0}
-Dialogue: 0,00:05:50.50,00:05:56.90,Default,;annotation_476494933;popup_text;,0,0,0,,{\an7\pos(471.782,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}日々を\N這段珍貴的
+Dialogue: 0,00:05:50.50,00:05:56.90,Default,;annotation_476494933;popup_text;,0,0,0,,{\an7\pos(471.782,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}日々を\N這段珍貴的
 Dialogue: 0,00:05:51.90,00:05:56.90,Default,;annotation_2098184997;popup_box;,0,0,0,,{\an7\pos(636.787,649.685)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1283.213 0 l 1283.213 214.38 l 0 214.38 {\p0}
-Dialogue: 0,00:05:51.90,00:05:56.90,Default,;annotation_2098184997;popup_text;,0,0,0,,{\an7\pos(655.987,660.485)\fs51.994\c&HFFFFFF&\bord0\shad0}歩む\N清淨的日子
+Dialogue: 0,00:05:51.90,00:05:56.90,Default,;annotation_2098184997;popup_text;,0,0,0,,{\an7\pos(655.987,660.485)\fs58.233\c&HFFFFFF&\bord0\shad0}歩む\N清淨的日子
 Dialogue: 0,00:05:51.90,00:05:56.90,Default,;annotation_2953876181;popup_box;,0,0,0,,{\an7\pos(836.371,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1083.629 0 l 1083.629 219.942 l 0 219.942 {\p0}
-Dialogue: 0,00:05:51.90,00:05:56.90,Default,;annotation_2953876181;popup_text;,0,0,0,,{\an7\pos(855.571,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}両手に抱いて\N日子
+Dialogue: 0,00:05:51.90,00:05:56.90,Default,;annotation_2953876181;popup_text;,0,0,0,,{\an7\pos(855.571,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}両手に抱いて\N日子
 Dialogue: 0,00:05:56.90,00:06:04.50,Default,;annotation_3406613253;popup_box;,0,0,0,,{\an7\pos(0.0,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 196.147 0 l 196.147 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:05:56.90,00:06:04.50,Default,;annotation_3406613253;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}ただ\N只是
+Dialogue: 0,00:05:56.90,00:06:04.50,Default,;annotation_3406613253;popup_text;,0,0,0,,{\an7\pos(19.2,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}ただ\N只是
 Dialogue: 0,00:05:57.00,00:06:15.60,Default,;annotation_2075155237;popup_box;,0,0,0,,{\an7\pos(0.0,444.377)\c&H36DAFD&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 200.254 l 0 200.254 {\p0}
-Dialogue: 0,00:05:57.00,00:06:15.60,Default,;annotation_2075155237;popup_text;,0,0,0,,{\an7\pos(19.2,455.177)\fs51.994\c&H000000&\bord0\shad0}
-Dialogue: 0,00:05:57.03,00:06:15.60,Default,;annotation_559346629;title;,0,0,0,,{\an5\pos(960.0,539.692)\fs32.496\c&H000000&\bord0\shad0\b1}chanti ee ar ciel, infel yor.\N謳えや、希望と感謝の詩\N謳歌、希望與感謝的詩吧
+Dialogue: 0,00:05:57.00,00:06:15.60,Default,;annotation_2075155237;popup_text;,0,0,0,,{\an7\pos(19.2,455.177)\fs58.233\c&H000000&\bord0\shad0}
+Dialogue: 0,00:05:57.03,00:06:15.60,Default,;annotation_559346629;title;,0,0,0,,{\an5\pos(960.0,539.692)\fs59.742\c&H000000&\bord0\shad0\b1}chanti ee ar ciel, infel yor.\N謳えや、希望と感謝の詩\N謳歌、希望與感謝的詩吧
 Dialogue: 0,00:05:57.30,00:06:04.50,Default,;annotation_3776804407;popup_box;,0,0,0,,{\an7\pos(0.0,867.229)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 212.771 l 0 212.771 {\p0}
-Dialogue: 0,00:05:57.30,00:06:04.50,Default,;annotation_3776804407;popup_text;,0,0,0,,{\an7\pos(19.2,878.029)\fs51.994\c&HFFFFFF&\bord0\shad0}den, xA rre LYAglansse r.w. walasye lmplanta.\N（けれど神の大樹インプランタがあった）\N（但是卻擁有一棵神之大樹 Implanta）
+Dialogue: 0,00:05:57.30,00:06:04.50,Default,;annotation_3776804407;popup_text;,0,0,0,,{\an7\pos(19.2,878.029)\fs58.233\c&HFFFFFF&\bord0\shad0}den, xA rre LYAglansse r.w. walasye lmplanta.\N（けれど神の大樹インプランタがあった）\N（但是卻擁有一棵神之大樹 Implanta）
 Dialogue: 0,00:05:57.51,00:06:04.50,Default,;annotation_1354241607;popup_box;,0,0,0,,{\an7\pos(0.0,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 196.147 0 l 196.147 220.363 l 0 220.363 {\p0}
-Dialogue: 0,00:05:57.51,00:06:04.50,Default,;annotation_1354241607;popup_text;,0,0,0,,{\an7\pos(19.2,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}嗚呼\N嗚呼
+Dialogue: 0,00:05:57.51,00:06:04.50,Default,;annotation_1354241607;popup_text;,0,0,0,,{\an7\pos(19.2,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}嗚呼\N嗚呼
 Dialogue: 0,00:05:58.56,00:06:04.50,Default,;annotation_1337469837;popup_box;,0,0,0,,{\an7\pos(195.379,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 271.488 0 l 271.488 220.363 l 0 220.363 {\p0}
-Dialogue: 0,00:05:58.56,00:06:04.50,Default,;annotation_1337469837;popup_text;,0,0,0,,{\an7\pos(214.579,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}あまねく\N接受
+Dialogue: 0,00:05:58.56,00:06:04.50,Default,;annotation_1337469837;popup_text;,0,0,0,,{\an7\pos(214.579,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}あまねく\N接受
 Dialogue: 0,00:05:58.56,00:06:04.50,Default,;annotation_3774646213;popup_box;,0,0,0,,{\an7\pos(195.379,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 269.165 0 l 269.165 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:05:58.56,00:06:04.50,Default,;annotation_3774646213;popup_text;,0,0,0,,{\an7\pos(214.579,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}あまねく\N接受
+Dialogue: 0,00:05:58.56,00:06:04.50,Default,;annotation_3774646213;popup_text;,0,0,0,,{\an7\pos(214.579,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}あまねく\N接受
 Dialogue: 0,00:06:00.00,00:06:04.50,Default,;annotation_123508863;popup_box;,0,0,0,,{\an7\pos(465.235,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 254.688 0 l 254.688 220.363 l 0 220.363 {\p0}
-Dialogue: 0,00:06:00.00,00:06:04.50,Default,;annotation_123508863;popup_text;,0,0,0,,{\an7\pos(484.435,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}祝福を\N普天的
+Dialogue: 0,00:06:00.00,00:06:04.50,Default,;annotation_123508863;popup_text;,0,0,0,,{\an7\pos(484.435,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}祝福を\N普天的
 Dialogue: 0,00:06:00.00,00:06:04.50,Default,;annotation_525871701;popup_box;,0,0,0,,{\an7\pos(463.834,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 258.278 0 l 258.278 218.387 l 0 218.387 {\p0}
-Dialogue: 0,00:06:00.00,00:06:04.50,Default,;annotation_525871701;popup_text;,0,0,0,,{\an7\pos(483.034,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}祝福を\N普天的
+Dialogue: 0,00:06:00.00,00:06:04.50,Default,;annotation_525871701;popup_text;,0,0,0,,{\an7\pos(483.034,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}祝福を\N普天的
 Dialogue: 0,00:06:02.26,00:06:04.50,Default,;annotation_1589914361;popup_box;,0,0,0,,{\an7\pos(718.234,222.966)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1201.766 0 l 1201.766 220.363 l 0 220.363 {\p0}
-Dialogue: 0,00:06:02.26,00:06:04.50,Default,;annotation_1589914361;popup_text;,0,0,0,,{\an7\pos(737.434,233.766)\fs51.994\c&HFFFFFF&\bord0\shad0}受け止めて\N祝福
+Dialogue: 0,00:06:02.26,00:06:04.50,Default,;annotation_1589914361;popup_text;,0,0,0,,{\an7\pos(737.434,233.766)\fs58.233\c&HFFFFFF&\bord0\shad0}受け止めて\N祝福
 Dialogue: 0,00:06:02.26,00:06:04.50,Default,;annotation_2005242789;popup_box;,0,0,0,,{\an7\pos(722.458,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1197.542 0 l 1197.542 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:06:02.26,00:06:04.50,Default,;annotation_2005242789;popup_text;,0,0,0,,{\an7\pos(741.658,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}受け止めて\N祝福
+Dialogue: 0,00:06:02.26,00:06:04.50,Default,;annotation_2005242789;popup_text;,0,0,0,,{\an7\pos(741.658,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}受け止めて\N祝福
 Dialogue: 0,00:06:04.50,00:06:15.59,Default,;annotation_3980613311;popup_box;,0,0,0,,{\an7\pos(0.0,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 340.704 0 l 340.704 218.743 l 0 218.743 {\p0}
-Dialogue: 0,00:06:04.50,00:06:15.59,Default,;annotation_3980613311;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}輝く\N朝向光輝的
+Dialogue: 0,00:06:04.50,00:06:15.59,Default,;annotation_3980613311;popup_text;,0,0,0,,{\an7\pos(19.2,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}輝く\N朝向光輝的
 Dialogue: 0,00:06:05.57,00:06:15.59,Default,;annotation_3826251321;popup_box;,0,0,0,,{\an7\pos(0.0,648.281)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 346.253 0 l 346.253 219.521 l 0 219.521 {\p0}
-Dialogue: 0,00:06:05.57,00:06:15.59,Default,;annotation_3826251321;popup_text;,0,0,0,,{\an7\pos(19.2,659.081)\fs51.994\c&HFFFFFF&\bord0\shad0}輝く\N朝向光輝的
+Dialogue: 0,00:06:05.57,00:06:15.59,Default,;annotation_3826251321;popup_text;,0,0,0,,{\an7\pos(19.2,659.081)\fs58.233\c&HFFFFFF&\bord0\shad0}輝く\N朝向光輝的
 Dialogue: 0,00:06:05.59,00:06:15.59,Default,;annotation_2645591545;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 221.346 l 0 221.346 {\p0}
-Dialogue: 0,00:06:05.59,00:06:15.59,Default,;annotation_2645591545;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs51.994\c&HFFFFFF&\bord0\shad0}AH, infel sos ar ciel\N（人々がみんなで育てた大樹。大樹は皆を潤した）\N（人們共同栽培大樹。而大樹則滋養眾人）
+Dialogue: 0,00:06:05.59,00:06:15.59,Default,;annotation_2645591545;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs58.233\c&HFFFFFF&\bord0\shad0}AH, infel sos ar ciel\N（人々がみんなで育てた大樹。大樹は皆を潤した）\N（人們共同栽培大樹。而大樹則滋養眾人）
 Dialogue: 0,00:06:07.80,00:06:15.59,Default,;annotation_3397628789;popup_box;,0,0,0,,{\an7\pos(341.549,223.592)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1578.451 0 l 1578.451 218.808 l 0 218.808 {\p0}
-Dialogue: 0,00:06:07.80,00:06:15.59,Default,;annotation_3397628789;popup_text;,0,0,0,,{\an7\pos(360.749,234.392)\fs51.994\c&HFFFFFF&\bord0\shad0}明日へ\N明日
+Dialogue: 0,00:06:07.80,00:06:15.59,Default,;annotation_3397628789;popup_text;,0,0,0,,{\an7\pos(360.749,234.392)\fs58.233\c&HFFFFFF&\bord0\shad0}明日へ\N明日
 Dialogue: 0,00:06:07.80,00:06:15.59,Default,;annotation_3492153139;popup_box;,0,0,0,,{\an7\pos(345.005,648.281)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1574.995 0 l 1574.995 221.065 l 0 221.065 {\p0}
-Dialogue: 0,00:06:07.80,00:06:15.59,Default,;annotation_3492153139;popup_text;,0,0,0,,{\an7\pos(364.205,659.081)\fs51.994\c&HFFFFFF&\bord0\shad0}明日へ\N明日
+Dialogue: 0,00:06:07.80,00:06:15.59,Default,;annotation_3492153139;popup_text;,0,0,0,,{\an7\pos(364.205,659.081)\fs58.233\c&HFFFFFF&\bord0\shad0}明日へ\N明日
 Dialogue: 0,00:06:15.60,00:06:23.10,Default,;annotation_1693286335;popup_box;,0,0,0,,{\an7\pos(0.0,867.521)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 212.479 l 0 212.479 {\p0}
-Dialogue: 0,00:06:15.60,00:06:23.10,Default,;annotation_1693286335;popup_text;,0,0,0,,{\an7\pos(19.2,878.321)\fs51.994\c&HFFFFFF&\bord0\shad0}ar ciel, en echrra eje.\N（世界はひとつ、心もひとつ）\N（世界是為一體、心意亦為一意）
+Dialogue: 0,00:06:15.60,00:06:23.10,Default,;annotation_1693286335;popup_text;,0,0,0,,{\an7\pos(19.2,878.321)\fs58.233\c&HFFFFFF&\bord0\shad0}ar ciel, en echrra eje.\N（世界はひとつ、心もひとつ）\N（世界是為一體、心意亦為一意）
 Dialogue: 0,00:06:23.17,00:06:32.64,Default,;annotation_1819586861;popup_box;,0,0,0,,{\an7\pos(0.0,867.586)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 212.414 l 0 212.414 {\p0}
-Dialogue: 0,00:06:23.17,00:06:32.64,Default,;annotation_1819586861;popup_text;,0,0,0,,{\an7\pos(19.2,878.386)\fs51.994\c&HFFFFFF&\bord0\shad0}wLYEnYAs rhaplanca ween fandel walasye...\N（ラプランカの心は誰にも宿っている）\N（拉普蘭卡的意志存在於每個人的心中）
+Dialogue: 0,00:06:23.17,00:06:32.64,Default,;annotation_1819586861;popup_text;,0,0,0,,{\an7\pos(19.2,878.386)\fs58.233\c&HFFFFFF&\bord0\shad0}wLYEnYAs rhaplanca ween fandel walasye...\N（ラプランカの心は誰にも宿っている）\N（拉普蘭卡的意志存在於每個人的心中）
 Dialogue: 0,00:06:32.70,00:06:51.43,Default,;annotation_119518121;popup_box;,0,0,0,,{\an7\pos(0.0,648.14)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 354.202 0 l 354.202 218.462 l 0 218.462 {\p0}
-Dialogue: 0,00:06:32.70,00:06:51.43,Default,;annotation_119518121;popup_text;,0,0,0,,{\an7\pos(19.2,658.94)\fs51.994\c&HFFFFFF&\bord0\shad0}恵みあれえ\N恩澤降臨吧
+Dialogue: 0,00:06:32.70,00:06:51.43,Default,;annotation_119518121;popup_text;,0,0,0,,{\an7\pos(19.2,658.94)\fs58.233\c&HFFFFFF&\bord0\shad0}恵みあれえ\N恩澤降臨吧
 Dialogue: 0,00:06:34.00,00:06:51.43,Default,;annotation_1920255093;popup_box;,0,0,0,,{\an7\pos(354.202,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 251.309 0 l 251.309 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:06:34.00,00:06:51.43,Default,;annotation_1920255093;popup_text;,0,0,0,,{\an7\pos(373.402,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}この\N在這塊
+Dialogue: 0,00:06:34.00,00:06:51.43,Default,;annotation_1920255093;popup_text;,0,0,0,,{\an7\pos(373.402,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}この\N在這塊
 Dialogue: 0,00:06:36.67,00:06:51.43,Default,;annotation_3035098111;popup_box;,0,0,0,,{\an7\pos(602.995,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 396.096 0 l 396.096 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:06:36.67,00:06:51.43,Default,;annotation_3035098111;popup_text;,0,0,0,,{\an7\pos(622.195,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}愛しき地に\N鐘愛的大地上
+Dialogue: 0,00:06:36.67,00:06:51.43,Default,;annotation_3035098111;popup_text;,0,0,0,,{\an7\pos(622.195,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}愛しき地に\N鐘愛的大地上
 Dialogue: 0,00:06:41.36,00:06:51.43,Default,;annotation_2993691931;popup_box;,0,0,0,,{\an7\pos(997.958,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 306.067 0 l 306.067 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:06:41.36,00:06:51.43,Default,;annotation_2993691931;popup_text;,0,0,0,,{\an7\pos(1017.158,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}紡がれし\N編織出
+Dialogue: 0,00:06:41.36,00:06:51.43,Default,;annotation_2993691931;popup_text;,0,0,0,,{\an7\pos(1017.158,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}紡がれし\N編織出
 Dialogue: 0,00:06:45.66,00:06:51.43,Default,;annotation_3977228887;popup_box;,0,0,0,,{\an7\pos(1303.238,646.877)\c&H9A3E40&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 616.762 0 l 616.762 218.322 l 0 218.322 {\p0}
-Dialogue: 0,00:06:45.66,00:06:51.43,Default,;annotation_3977228887;popup_text;,0,0,0,,{\an7\pos(1322.438,657.677)\fs51.994\c&HFFFFFF&\bord0\shad0}想い湛え\N滿溢的感念
+Dialogue: 0,00:06:45.66,00:06:51.43,Default,;annotation_3977228887;popup_text;,0,0,0,,{\an7\pos(1322.438,657.677)\fs58.233\c&HFFFFFF&\bord0\shad0}想い湛え\N滿溢的感念
 Dialogue: 0,00:06:51.43,00:07:06.10,Default,;annotation_1219913949;popup_box;,0,0,0,,{\an7\pos(0.0,223.528)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 382.31 0 l 382.31 218.873 l 0 218.873 {\p0}
-Dialogue: 0,00:06:51.43,00:07:06.10,Default,;annotation_1219913949;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs51.994\c&HFFFFFF&\bord0\shad0}光あれ\N賜予光輝吧
+Dialogue: 0,00:06:51.43,00:07:06.10,Default,;annotation_1219913949;popup_text;,0,0,0,,{\an7\pos(19.2,234.328)\fs58.233\c&HFFFFFF&\bord0\shad0}光あれ\N賜予光輝吧
 Dialogue: 0,00:06:52.80,00:07:06.10,Default,;annotation_3395587889;popup_box;,0,0,0,,{\an7\pos(381.197,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 216.096 0 l 216.096 219.726 l 0 219.726 {\p0}
-Dialogue: 0,00:06:52.80,00:07:06.10,Default,;annotation_3395587889;popup_text;,0,0,0,,{\an7\pos(400.397,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}この\N這片
+Dialogue: 0,00:06:52.80,00:07:06.10,Default,;annotation_3395587889;popup_text;,0,0,0,,{\an7\pos(400.397,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}この\N這片
 Dialogue: 0,00:06:55.56,00:07:06.10,Default,;annotation_47687113;popup_box;,0,0,0,,{\an7\pos(595.968,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 370.79 0 l 370.79 219.748 l 0 219.748 {\p0}
-Dialogue: 0,00:06:55.56,00:07:06.10,Default,;annotation_47687113;popup_text;,0,0,0,,{\an7\pos(615.168,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}優しき天\N溫柔的天空
+Dialogue: 0,00:06:55.56,00:07:06.10,Default,;annotation_47687113;popup_text;,0,0,0,,{\an7\pos(615.168,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}優しき天\N溫柔的天空
 Dialogue: 0,00:07:00.20,00:07:06.10,Default,;annotation_1683072517;popup_box;,0,0,0,,{\an7\pos(965.76,222.188)\c&H191997&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 954.24 0 l 954.24 219.726 l 0 219.726 {\p0}
-Dialogue: 0,00:07:00.20,00:07:06.10,Default,;annotation_1683072517;popup_text;,0,0,0,,{\an7\pos(984.96,232.988)\fs51.994\c&HFFFFFF&\bord0\shad0}生くる者に\N為活下去的人們
+Dialogue: 0,00:07:00.20,00:07:06.10,Default,;annotation_1683072517;popup_text;,0,0,0,,{\an7\pos(984.96,232.988)\fs58.233\c&HFFFFFF&\bord0\shad0}生くる者に\N為活下去的人們
 Dialogue: 0,00:07:06.10,00:07:15.00,Default,;annotation_60903519;popup_box;,0,0,0,,{\an7\pos(0.0,444.377)\c&H75B96A&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 205.502 l 0 205.502 {\p0}
-Dialogue: 0,00:07:06.10,00:07:15.00,Default,;annotation_60903519;popup_text;,0,0,0,,{\an7\pos(19.2,455.177)\fs51.994\c&HFFFFFF&\bord0\shad0}
-Dialogue: 0,00:07:06.16,00:07:15.00,Default,;annotation_2554772065;title;,0,0,0,,{\an5\pos(960.0,541.145)\fs32.496\c&HFFFFFF&\bord0\shad0\b1}愛を　永久に\N永遠地  賦予愛
+Dialogue: 0,00:07:06.10,00:07:15.00,Default,;annotation_60903519;popup_text;,0,0,0,,{\an7\pos(19.2,455.177)\fs58.233\c&HFFFFFF&\bord0\shad0}
+Dialogue: 0,00:07:06.16,00:07:15.00,Default,;annotation_2554772065;title;,0,0,0,,{\an5\pos(960.0,541.145)\fs76.834\c&HFFFFFF&\bord0\shad0\b1}愛を　永久に\N永遠地  賦予愛
 

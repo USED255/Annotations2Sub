@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 
@@ -11,62 +10,27 @@ import subprocess
 import sys
 import traceback
 import urllib.request
-import xml.etree.ElementTree
 from http.client import IncompleteRead
-from typing import List, Optional
+from typing import List
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
-from Annotations2Sub import Convert, Parse, Sub, version
+from Annotations2Sub import version
+from Annotations2Sub._flags import Flags
 from Annotations2Sub.Annotations import NotAnnotationsDocumentError
-from Annotations2Sub.utils import (
-    Err,
-    Flags,
+from Annotations2Sub.utils import Err, GetUrl, Info, Stderr, Warn, YellowText, _
+from Annotations2Sub.utils2 import (
+    AnnotationsXmlStringToSubtitleString,
     GetAnnotationsUrl,
-    GetUrl,
-    Info,
-    MakeSureStr,
-    Stderr,
-    Warn,
-    YellowText,
-    _,
+    GetMedia,
 )
-
-# 兼容 Python 3.6, 3.7
-# Python 3.6, 3.7 的 typing 没有 Literal
-try:
-    from typing import Literal
-except ImportError:
-    pass
 
 
 def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
-def GetMedia(videoId: str, instanceDomain: str):  # -> tuple[str, str]:
-    url = f"https://{instanceDomain}/api/v1/videos/{videoId}"
-    Stderr(_("获取 {}").format(url))
-    data = json.loads(GetUrl(url))
-    videos = []
-    audios = []
-    for i in data.get("adaptiveFormats"):
-        if re.match("video", i.get("type")) != None:
-            videos.append(i)
-        if re.match("audio", i.get("type")) != None:
-            audios.append(i)
-    videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-    audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-    video = MakeSureStr(videos[0]["url"])
-    audio = MakeSureStr(audios[0]["url"])
-    if not video.startswith("http"):
-        raise ValueError(_("没有 Video"))
-    if not audio.startswith("http"):
-        raise ValueError(_("没有 Audio"))
-    return video, audio
-
-
-def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
+def Run(argv=None):  # -> Literal[1, 0]:
     """跑起来🐎🐎🐎"""
 
     exit_code = 0
@@ -173,22 +137,21 @@ def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
     )
 
     args = parser.parse_args(argv)
+    queue = list(map(str, args.queue))
 
-    queue = args.queue
-
-    transform_resolution_x = args.transform_resolution_x
-    transform_resolution_y = args.transform_resolution_y
-    font = args.font
-    enable_download_for_archive = args.download_for_archive
-    enable_download_annotations_only = args.download_annotations_only
-    invidious_instances = args.invidious_instances
-    enable_preview_video = args.preview_video
-    enable_generate_video = args.generate_video
-    enable_no_overwrite_files = args.no_overwrite_files
-    enable_no_keep_intermediate_files = args.no_keep_intermediate_files
-    output = args.output
-    output_directory = args.output_directory
-    enable_verbose = args.verbose
+    transform_resolution_x: int = args.transform_resolution_x
+    transform_resolution_y: int = args.transform_resolution_y
+    font: str = args.font
+    enable_download_for_archive: bool = args.download_for_archive
+    enable_download_annotations_only: bool = args.download_annotations_only
+    invidious_instances: str | None = args.invidious_instances
+    enable_preview_video: bool = args.preview_video
+    enable_generate_video: bool = args.generate_video
+    enable_no_overwrite_files: bool = args.no_overwrite_files
+    enable_no_keep_intermediate_files: bool = args.no_keep_intermediate_files
+    output: str | None = args.output
+    output_directory: str | None = args.output_directory
+    enable_verbose: bool = args.verbose
 
     output_to_stdout = False
 
@@ -205,7 +168,7 @@ def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
         if args.output == "-":
             output_to_stdout = True
 
-    if output_directory != None:
+    if output_directory is not None:
         if os.path.isdir(output_directory) is False:
             Err(_("转换后文件输出目录应该指定一个文件夹"))
             return 1
@@ -231,7 +194,7 @@ def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
         Dummy([CheckNetwork])
 
     for Task in queue:
-        video_id = MakeSureStr(Task)
+        video_id = Task
         annotations_file = Task
 
         if enable_download_for_archive:
@@ -239,7 +202,7 @@ def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
                 video_id = video_id.replace("\\", "", 1)
 
             if re.match(r"[a-zA-Z0-9_-]{11}", video_id) == None:
-                Err(_("{} 不是一个有效的视频 ID").format(video_id))
+                Err(_('"{}" 不是一个有效的视频 ID').format(video_id))
                 exit_code = 1
                 continue
 
@@ -247,7 +210,7 @@ def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
             if enable_download_annotations_only and output:
                 annotations_file = output
 
-            if output_directory != None:
+            if output_directory is not None:
                 annotations_file = os.path.join(output_directory, annotations_file)
 
             is_skip_download = False
@@ -258,10 +221,10 @@ def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
 
             if not is_skip_download:
                 annotations_url = GetAnnotationsUrl(video_id)
-                Stderr(_("下载 {}").format(annotations_url))
+                Stderr(_('下载 "{}"').format(annotations_url))
                 annotations_string = GetUrl(annotations_url)
                 if annotations_string == "":
-                    Warn(_("{} 可能没有 Annotations").format(video_id))
+                    Warn(_('"{}" 可能没有 Annotations').format(video_id))
                     exit_code = 1
                     continue
                 if output_to_stdout:
@@ -274,58 +237,39 @@ def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
                 continue
 
         if os.path.isfile(annotations_file) is False:
-            Err(_("{} 不是一个文件").format(annotations_file))
+            Err(_('"{}" 不是一个文件').format(annotations_file))
             exit_code = 1
             continue
 
         subtitle_file = annotations_file + ".ass"
-        if output_directory != None:
+        if output_directory is not None:
             file_name = os.path.basename(annotations_file)
             file_name = file_name + ".ass"
             subtitle_file = os.path.join(output_directory, file_name)
 
-        if output != None:
+        if output is not None:
             subtitle_file = output
 
         with open(annotations_file, "r", encoding="utf-8") as f:
             annotations_string = f.read()
 
         try:
-            tree = xml.etree.ElementTree.fromstring(annotations_string)
+            subtitle_string = AnnotationsXmlStringToSubtitleString(
+                annotations_string,
+                transform_resolution_x,
+                transform_resolution_y,
+                font,
+                os.path.basename(annotations_file),
+            )
+        except NotAnnotationsDocumentError:
+            Err(_('"{}" 不是 Annotations 文件').format(annotations_file))
+            exit_code = 1
+            continue
         except ParseError:
-            Err(_("{} 不是一个有效的 XML 文件").format(annotations_file))
+            Err(_('"{}" 不是一个有效的 XML 文件').format(annotations_file))
             Info(traceback.format_exc())
             exit_code = 1
             continue
-
-        try:
-            annotations = Parse(tree)
-        except NotAnnotationsDocumentError:
-            Err(_("{} 不是 Annotations 文件").format(annotations_file))
-            exit_code = 1
-            continue
-
-        events = Convert(
-            annotations,
-            transform_resolution_x,
-            transform_resolution_y,
-        )
-        if events == []:
-            Warn(_("{} 没有注释被转换").format(annotations_file))
-        # Annotations 是无序的
-        # 按时间重新排列字幕事件, 是为了人类可读
-        events.sort(key=lambda event: event.Start)
-
-        subtitle = Sub()
-        subtitle.comment += _("此脚本使用 Annotations2Sub 生成") + "\n"
-        subtitle.comment += "https://github.com/USED255/Annotations2Sub"
-        subtitle.info["Title"] = os.path.basename(annotations_file)
-        subtitle.info["PlayResX"] = transform_resolution_x
-        subtitle.info["PlayResY"] = transform_resolution_y
-        subtitle.info["WrapStyle"] = "2"
-        subtitle.styles["Default"].Fontname = font
-        subtitle.events.extend(events)
-        subtitle_string = subtitle.Dump()
 
         is_no_save = False
         if output_to_stdout:
@@ -338,13 +282,13 @@ def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
                 is_no_save = True
 
         if enable_no_keep_intermediate_files:
-            Stderr(_("删除 {}").format(annotations_file))
+            Stderr(_('删除 "{}"').format(annotations_file))
             os.remove(annotations_file)
 
         if not is_no_save:
             with open(subtitle_file, "w", encoding="utf-8") as f:
                 f.write(subtitle_string)
-            Stderr(_("保存于: {}").format(subtitle_file))
+            Stderr(_('保存于: "{}"').format(subtitle_file))
 
         def function2():
             Err(_("无法获取视频"))
@@ -376,7 +320,7 @@ def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
                     continue
             else:
                 try:
-                    video, audio = GetMedia(video_id, invidious_instances)
+                    video, audio = GetMedia(video_id, str(invidious_instances))
                 except (json.JSONDecodeError, URLError, ValueError):
                     function2()
                     continue
@@ -386,12 +330,12 @@ def Run(argv: Optional[List[str]] = None):  # -> Literal[1, 0]:
 
             _exit_code = subprocess.run(commands).returncode
             if _exit_code != 0:
-                Stderr(YellowText("exit with {}".format(_exit_code)))
+                Stderr(YellowText('exit with "{}"'.format(_exit_code)))
                 nonlocal exit_code
                 exit_code = 1
 
             if enable_no_keep_intermediate_files:
-                Stderr(_("删除 {}").format(subtitle_file))
+                Stderr(_('删除 "{}"').format(subtitle_file))
                 os.remove(subtitle_file)
 
         if enable_preview_video:

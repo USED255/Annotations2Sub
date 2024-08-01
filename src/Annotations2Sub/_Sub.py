@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """SSA 相关"""
@@ -136,6 +135,12 @@ class Sub:
         string += str(self._styles)
         string += str(self._events)
         return string
+
+    def __repr__(self) -> str:
+        return str(self)
+
+    def __eq__(self, value: object) -> bool:
+        return str(self) == str(value)
 
     def Dump(self) -> str:
         """转储为 SSA"""

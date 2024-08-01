@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import os
@@ -8,7 +7,7 @@ from urllib.error import URLError
 
 import pytest
 
-from Annotations2Sub import cli
+from Annotations2Sub import cli, utils2
 from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import Stderr
 from tests import baselinePath, testCasePath
@@ -101,6 +100,7 @@ def test_cli_network_failed():
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "GetUrl", GetUrlMock)
+    m.setattr(utils2, "GetUrl", GetUrlMock)
     m.setattr(subprocess, "run", subprocessMock)
 
     for command in commands.splitlines():
@@ -179,6 +179,7 @@ def test_cli_network_success():
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "GetUrl", GetUrlMock)
+    m.setattr(utils2, "GetUrl", GetUrlMock)
     m.setattr(subprocess, "run", subprocessMock)
 
     for command in commands.splitlines():
@@ -228,10 +229,10 @@ def test_CheckNetwork():
     m.setattr(cli, "GetUrl", GetUrlMock)
 
     m.setattr(urllib.request, "urlopen", urlopenMock)
-    Run("-d 12345678911".split(" "))  # type: ignore
+    Run("-d 12345678911".split(" "))
 
     m.setattr(urllib.request, "urlopen", urlopenURLErrorMock)
-    Run("-d 12345678911".split(" "))  # type: ignore
+    Run("-d 12345678911".split(" "))
 
     with pytest.raises(pytest.fail.Exception):
         GetUrlMock("")

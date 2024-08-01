@@ -1,9 +1,8 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """Annotations2Sub, 一个能把 Youtube 注释转换成 Advanced SubStation Alpha 字幕文件的脚本"""
 
-__version__ = "2.17.0"
+__version__ = "2.18.0"
 
 """
                                              xml.
@@ -86,17 +85,38 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 您可以在这里找到成品: https://github.com/USED255/youtube_annotations_hack
 
 ---
+
+失业闲的没事干我把 https://archive.omar.yt/youtubeannotations.tar.zstd 下载了下来并处理成了一个SQLite数据库
+把程序过了一遍, 现在更具有健壮性.
+
+---
 - 注释(Annotations): YouTube 的功能
 - SSA(Sub Station Alpha): 字幕格式
 - ASS(Advanced SubStation Alpha): 字幕格式
 - invidious(https://invidious.io/): 开源 YouTube 前端
 - Internet Archive(https://archive.org/): 互联网档案馆
-
+---
+本文件第47行: 随着 Youtube 的改版 invidious 已经逐渐变得不可用
+本文件49至57行: 问题已解决, 但不是 CSS 的问题, 是字体的问题😅
+---
 """
 version = __version__
 
-from Annotations2Sub.Annotations import Annotation, Parse
-from Annotations2Sub.Convert import Convert
-from Annotations2Sub.Sub import Sub
+from Annotations2Sub._Convert import Convert
+from Annotations2Sub._Sub import Sub
+from Annotations2Sub.Annotations import Annotation, NotAnnotationsDocumentError, Parse
+from Annotations2Sub.repl import (
+    AnnotationsXmlFileToSubtitleFile,
+    AnnotationsXmlStringToSubtitleString,
+)
 
-__all__ = ["Parse", "Annotation", "Convert", "Sub", "version"]
+__all__ = [
+    "Parse",
+    "Annotation",
+    "Convert",
+    "Sub",
+    "version",
+    "NotAnnotationsDocumentError",
+    "AnnotationsXmlFileToSubtitleFile",
+    "AnnotationsXmlStringToSubtitleString",
+]
