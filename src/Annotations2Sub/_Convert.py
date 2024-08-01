@@ -406,11 +406,11 @@ def Convert(
         # 钳制字体大小
         line_count = text.count("\n") + 1
 
-        v1 = height - padding_y * (1 + line_count)
-        if v1 <= 0:
-            v1 = height
+        _height = height - padding_y * (1 + line_count)
+        if _height <= 0:
+            _height = height
 
-        Max_textSize = v1 / line_count
+        Max_textSize = _height / line_count
         if textSize > Max_textSize:
             textSize = Max_textSize
 
