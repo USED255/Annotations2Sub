@@ -335,6 +335,11 @@ def Convert(
 
             return Box(_event)
 
+        def anchored_triangle() -> Optional[Event]:
+            _event = copy.copy(event)
+            _event.Name += "anchored_triangle;"
+            return Triangle(_event)
+
         def label_text() -> Event:
             _event = copy.copy(event)
             _event.Name += "label_text;"
@@ -371,7 +376,13 @@ def Convert(
             return events
 
         def anchored() -> List[Event]:
-            return [anchored_box(), anchored_text()]
+            events: List[Event] = []
+            events.append(anchored_box())
+            _event = anchored_triangle()
+            if _event is not None:
+                events.append(_event)
+            events.append(anchored_text())
+            return events
 
         def label() -> List[Event]:
             return [label_box(), label_text()]

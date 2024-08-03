@@ -23,6 +23,7 @@ Dialogue: 0,00:00:47.42,00:00:50.41,Default,;annotation_2858215607;highlight_tex
 Dialogue: 0,00:00:47.42,00:00:50.41,Default,;annotation_840717619;highlightText_box;,0,0,0,,{\an7\pos(0.0,319.432)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 480.0 0 l 480.0 66.366 l 0 66.366 {\p0}
 Dialogue: 0,00:00:47.42,00:00:50.41,Default,;annotation_840717619;highlightText_text;,0,0,0,,{\an5\pos(240.0,352.615)\fs47.315\c&H000000&\bord0\shad0}Spotlight
 Dialogue: 0,00:00:47.44,00:00:50.44,Default,;annotation_2979048273;anchored_box;,0,0,0,,{\an7\pos(617.683,620.622)\c&H3E3ECB&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 578.131 0 l 578.131 202.457 l 0 202.457 {\p0}
+Dialogue: 0,00:00:47.44,00:00:50.44,Default,;annotation_2979048273;anchored_triangle;,0,0,0,,{\an7\pos(579.283,695.023)\c&H3E3ECB&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 38.4 -50.106 l 38.4 10.631 {\p0}
 Dialogue: 0,00:00:47.44,00:00:50.44,Default,;annotation_2979048273;anchored_text;,0,0,0,,{\an7\pos(636.883,631.422)\fs47.315\c&HFFFFFF&\bord0\shad0}This one was used to highlight \Na certain spot in your video.
 Dialogue: 0,00:00:48.33,00:00:50.41,Default,;annotation_3266275345;label_box;,0,0,0,,{\an7\pos(1378.387,644.954)\c&H75B96A&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 480.0 0 l 480.0 192.002 l 0 192.002 {\p0}
 Dialogue: 0,00:00:48.33,00:00:50.41,Default,;annotation_3266275345;label_text;,0,0,0,,{\an7\pos(1397.587,655.754)\fs101.908\c&H000000&\bord0\shad0}Label
