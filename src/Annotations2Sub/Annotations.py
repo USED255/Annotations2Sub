@@ -41,7 +41,6 @@ class Annotation:
         self.id: str = ""
         # 这里仅列出需要的 type 和 style, 且 Literal 仅做提醒作用
         self.type: Union[Literal["text", "highlight", "branding"], str] = "text"
-        # 现在就遇到这几个样式
         self.style: Union[
             Literal[
                 "popup",
@@ -61,6 +60,7 @@ class Annotation:
             ],
             str,
         ] = "popup"
+        self.author: str = ""
         self.text: str = ""
         # fmt: off
         self.timeStart: datetime = datetime.strptime("0", "%S")
@@ -86,12 +86,10 @@ class Annotation:
         self.fgColor: Color = Color(red=0, green=0, blue=0)
         # textSize 是 "文字占画布的百分比", 而在 title 样式中才是熟悉的 "字体大小"
         self.textSize: float = 3.15
-        self.author: str = ""
         self.fontWeight: str = ""
-        self.effects: str = ""
+        self.ref: str = ""
         # SSA 不能实现交互,
         # 处理 action 没有意义
-        # self.trigger
         # self.actionType: Literal["time", "url"] = "time"
         # self.target: str = ""
         # self.url: str = ""
@@ -283,21 +281,27 @@ def Parse(tree: Element) -> List[Annotation]:
 
         Appearance = each.find("appearance")
 
-        # 如果没有 Appearance 下面这些都是有默认值的
         if Appearance is not None:
             bgAlpha = Appearance.get("bgAlpha", "0.8")
             bgColor = Appearance.get("bgColor", "16777215")
             fgColor = Appearance.get("fgColor", "0")
             textSize = Appearance.get("textSize", "3.15")
             fontWeight = Appearance.get("fontWeight", "")
-            effects = Appearance.get("effects", "")
 
             annotation.bgOpacity = ParseAnnotationAlpha(bgAlpha)
             annotation.bgColor = ParseAnnotationColor(bgColor)
             annotation.fgColor = ParseAnnotationColor(fgColor)
             annotation.textSize = ParseFloat(textSize)
             annotation.fontWeight = fontWeight
-            annotation.effects = effects
+
+        ref = ""
+        Trigger = each.find("trigger")
+        if Trigger is not None:
+            Condition = Trigger.find("condition")
+            if Condition is not None:
+                ref = Condition.get("ref", "")
+
+        annotation.ref = ref
 
         return annotation
 

@@ -13,8 +13,6 @@ Style: Default,Microsoft YaHei,20,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;annotation_840717619;highlightText_box;,0,0,0,,{\an7\pos(0.0,319.432)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 480.0 0 l 480.0 66.366 l 0 66.366 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;annotation_840717619;highlightText_text;,0,0,0,,{\an5\pos(240.0,352.615)\fs47.315\c&H000000&\bord0\shad0}Spotlight
 Dialogue: 0,00:00:44.88,00:00:50.38,Default,;annotation_525582757;anchored_box;,0,0,0,,{\an7\pos(97.363,100.397)\c&HFFFFFF&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 754.618 0 l 754.618 336.323 l 0 336.323 {\p0}
 Dialogue: 0,00:00:44.88,00:00:50.38,Default,;annotation_525582757;anchored_text;,0,0,0,,{\an7\pos(116.563,111.197)\fs101.908\c&H1A1A1A&\bord0\shad0}Speech bubble
 Dialogue: 0,00:00:45.36,00:00:50.44,Default,;annotation_860596767;popup_box;,0,0,0,,{\an7\pos(1165.382,54.756)\c&H36DAFD&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 652.07 0 l 652.07 199.271 l 0 199.271 {\p0}
@@ -22,6 +20,8 @@ Dialogue: 0,00:00:45.36,00:00:50.44,Default,;annotation_860596767;popup_text;,0,
 Dialogue: 0,00:00:46.35,00:00:50.41,Default,;annotation_1336159713;title;,0,0,0,,{\an5\pos(1238.784,416.794)\fs200.697\c&HFFFFFF&\bord0\shad0\b1}Title
 Dialogue: 0,00:00:47.42,00:00:50.41,Default,;annotation_2858215607;highlight_box;,0,0,0,,{\an7\pos(100.416,590.198)\c&HD18756&\1a&H33&\bord0\shad0\iclip(119.616,600.998,561.216,879.401)}{\p1}m 0 0 l 480.0 0 l 480.0 300.002 l 0 300.002 {\p0}
 Dialogue: 0,00:00:47.42,00:00:50.41,Default,;annotation_2858215607;highlight_text;,0,0,0,,{\an7\pos(119.616,600.998)\fs38.102\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:47.42,00:00:50.41,Default,;annotation_840717619;highlightText_box;,0,0,0,,{\an7\pos(0.0,319.432)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 480.0 0 l 480.0 66.366 l 0 66.366 {\p0}
+Dialogue: 0,00:00:47.42,00:00:50.41,Default,;annotation_840717619;highlightText_text;,0,0,0,,{\an5\pos(240.0,352.615)\fs47.315\c&H000000&\bord0\shad0}Spotlight
 Dialogue: 0,00:00:47.44,00:00:50.44,Default,;annotation_2979048273;anchored_box;,0,0,0,,{\an7\pos(617.683,620.622)\c&H3E3ECB&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 578.131 0 l 578.131 202.457 l 0 202.457 {\p0}
 Dialogue: 0,00:00:47.44,00:00:50.44,Default,;annotation_2979048273;anchored_text;,0,0,0,,{\an7\pos(636.883,631.422)\fs47.315\c&HFFFFFF&\bord0\shad0}This one was used to highlight \Na certain spot in your video.
 Dialogue: 0,00:00:48.33,00:00:50.41,Default,;annotation_3266275345;label_box;,0,0,0,,{\an7\pos(1378.387,644.954)\c&H75B96A&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 480.0 0 l 480.0 192.002 l 0 192.002 {\p0}

@@ -493,7 +493,22 @@ def Convert(
             Stderr(_('不支持 "{}" 样式 ({})').format(each.style, each.id))
             return []
 
+    patch: dict[str, dict] = {}
     events = []
+
+    for each in annotations:
+        if each.ref != "":
+            patch[each.ref] = {}
+
+    for each in annotations:
+        if each.id in patch:
+            patch[each.id] = {"timeStart": each.timeStart, "timeEnd": each.timeEnd}
+
+    for each in annotations:
+        if each.ref in patch:
+            each.timeStart = patch[each.ref]["timeStart"]
+            each.timeEnd = patch[each.ref]["timeEnd"]
+
     for each in annotations:
         events.extend(ConvertAnnotation(each))
 
