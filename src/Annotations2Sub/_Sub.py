@@ -20,6 +20,12 @@ except ImportError:
 
     exec("Literal = a()")
 
+accuracy = 3
+
+
+def _round(x: float) -> float:
+    return round(x, accuracy)
+
 
 class Style:
     """SSA 样式(Style) 结构"""
@@ -200,8 +206,8 @@ class DrawCommand:
     """绘图指令结构"""
 
     def __init__(self, x: float = 0, y: float = 0, command: Literal["m", "l"] = "m"):
-        self.x: float = x
-        self.y: float = y
+        self.x: float = _round(x)
+        self.y: float = _round(y)
         # 命令有 m, n, l, b, s, p, c
         # 这里仅列出需要的命令
         self.command: Literal["m", "l"] = command
@@ -266,8 +272,8 @@ class Tag(list):
         # "将字幕定位在坐标点 <x>,<y>。"
         # SSA 和 Annotations 坐标系一致, y 向下(左手取向).
         def __init__(self, x: float, y: float):
-            self.x = x
-            self.y = y
+            self.x = _round(x)
+            self.y = _round(y)
 
         def __str__(self) -> str:
             return rf"\pos({self.x},{self.y})"
@@ -280,7 +286,7 @@ class Tag(list):
         # "而是指其行高（line-height）为 20px，主要归咎于 VSFilter 使用的 Windows GDI 的字体接口。"
         # 不明白字体大小和行高有什么区别
         def __init__(self, size: float):
-            self.size = size
+            self.size = _round(size)
 
         def __str__(self) -> str:
             return rf"\fs{str(self.size)}"
@@ -348,10 +354,10 @@ class Tag(list):
         # "<x1>,<y1> 为矩形的左上角，<x2>,<y2> 为矩形的右下角。"
         # "当一行中有多个 \[i]clip 时，以__最后一个__为准。"
         def __init__(self, x: float, y: float, x1: float, y1: float):
-            self.x = x
-            self.y = y
-            self.x1 = x1
-            self.y1 = y1
+            self.x = _round(x)
+            self.y = _round(y)
+            self.x1 = _round(x1)
+            self.y1 = _round(y1)
 
         def __str__(self) -> str:
             return rf"\iclip({self.x},{self.y},{self.x1},{self.y1})"

@@ -46,10 +46,6 @@ def Convert(
             _x = x + padding_x
             _y = y + padding_y
 
-            # 为了可读性, 去掉多余的小数
-            _x = round(_x, 3)
-            _y = round(_y, 3)
-
             tags = Tag()
             tags.extend(
                 [
@@ -73,9 +69,6 @@ def Convert(
             # 模拟居中
             _x = x + (width / 2)
             _y = y + (height / 2)
-
-            _x = round(_x, 3)
-            _y = round(_y, 3)
 
             shadow = Tag.Shadow(0)
             tags = Tag()
@@ -131,11 +124,6 @@ def Convert(
             x2 = x + width - padding_x
             y2 = y + height - padding_y
 
-            x1 = round(x1, 3)
-            y1 = round(y1, 3)
-            x2 = round(x2, 3)
-            y2 = round(y2, 3)
-
             tags = Tag()
             tags.extend(
                 [
@@ -177,11 +165,6 @@ def Convert(
             y_bottom = y_top + height
 
             def draw(x1, y1, x2, y2):
-
-                x1 = round(x1, 3)
-                y1 = round(y1, 3)
-                x2 = round(x2, 3)
-                y2 = round(y2, 3)
 
                 tags = Tag()
                 tags.extend(
@@ -470,21 +453,12 @@ def Convert(
             sy = TransformY(sy)
             padding_y = TransformY(padding_y)
 
-        # x = round(x, 3)
-        # y = round(y, 3)
-        textSize = round(textSize, 3)
-        # width = round(width, 3)
-        # height = round(height, 3)
-        # sx = round(sx, 3)
-        # sy = round(sy, 3)
-
-        _x = round(x, 3)
-        _y = round(y, 3)
-        # textSize = round(textSize, 3)
-        _width = round(width, 3)
-        _height = round(height, 3)
-        _sx = round(sx, 3)
-        _sy = round(sy, 3)
+        _x = x
+        _y = y
+        _width = width
+        _height = height
+        _sx = sx
+        _sy = sy
 
         if each.style == "popup":
             return popup()
