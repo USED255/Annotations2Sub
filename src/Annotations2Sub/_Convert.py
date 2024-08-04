@@ -4,7 +4,7 @@
 
 import copy
 import textwrap
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from Annotations2Sub._Sub import Draw, DrawCommand, Event, Tag
 from Annotations2Sub.Annotations import Annotation
@@ -43,18 +43,17 @@ def Convert(
             """生成 Annotation 文本的 Event"""
 
             # 文本与框保持一定距离
-            _x = x + padding_x
-            _y = y + padding_y
+            nonlocal x  # type: ignore
+            nonlocal y  # type: ignore
 
-            # 为了可读性, 去掉多余的小数
-            _x = round(_x, 3)
-            _y = round(_y, 3)
+            x = x + padding_x
+            y = y + padding_y
 
             tags = Tag()
             tags.extend(
                 [
                     Tag.Align(7),
-                    Tag.Pos(_x, _y),
+                    Tag.Pos(x, y),
                     Tag.Fontsize(textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
@@ -71,18 +70,18 @@ def Convert(
             # 相比 Text, 文字会居中
 
             # 模拟居中
-            _x = x + (width / 2)
-            _y = y + (height / 2)
+            nonlocal x  # type: ignore
+            nonlocal y  # type: ignore
 
-            _x = round(_x, 3)
-            _y = round(_y, 3)
+            x = x + (width / 2)
+            y = y + (height / 2)
 
             shadow = Tag.Shadow(0)
             tags = Tag()
             tags.extend(
                 [
                     Tag.Align(5),
-                    Tag.Pos(_x, _y),
+                    Tag.Pos(x, y),
                     Tag.Fontsize(textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
@@ -102,7 +101,7 @@ def Convert(
             tags.extend(
                 [
                     Tag.Align(7),
-                    Tag.Pos(_x, _y),
+                    Tag.Pos(x, y),
                     Tag.PrimaryColour(each.bgColor),
                     Tag.PrimaryAlpha(each.bgOpacity),
                     Tag.Bord(0),
@@ -114,9 +113,9 @@ def Convert(
             draws.extend(
                 [
                     DrawCommand(0, 0, "m"),
-                    DrawCommand(_width, 0, "l"),
-                    DrawCommand(_width, _height, "l"),
-                    DrawCommand(0, _height, "l"),
+                    DrawCommand(width, 0, "l"),
+                    DrawCommand(width, height, "l"),
+                    DrawCommand(0, height, "l"),
                 ]
             )
             # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
@@ -126,21 +125,22 @@ def Convert(
             return event
 
         def HollowBox(event: Event) -> Event:
+            nonlocal padding_x  # type: ignore
+            nonlocal padding_y  # type: ignore
+
+            padding_x = padding_x * 0.3
+            padding_y = padding_y * 0.3
+
             x1 = x + padding_x
             y1 = y + padding_y
             x2 = x + width - padding_x
             y2 = y + height - padding_y
 
-            x1 = round(x1, 3)
-            y1 = round(y1, 3)
-            x2 = round(x2, 3)
-            y2 = round(y2, 3)
-
             tags = Tag()
             tags.extend(
                 [
                     Tag.Align(7),
-                    Tag.Pos(_x, _y),
+                    Tag.Pos(x, y),
                     Tag.PrimaryColour(each.bgColor),
                     Tag.PrimaryAlpha(each.bgOpacity),
                     Tag.Bord(0),
@@ -154,9 +154,9 @@ def Convert(
             draws.extend(
                 [
                     DrawCommand(0, 0, "m"),
-                    DrawCommand(_width, 0, "l"),
-                    DrawCommand(_width, _height, "l"),
-                    DrawCommand(0, _height, "l"),
+                    DrawCommand(width, 0, "l"),
+                    DrawCommand(width, height, "l"),
+                    DrawCommand(0, height, "l"),
                 ]
             )
             box_tag = r"{\p1}" + str(draws) + r"{\p0}"
@@ -178,16 +178,11 @@ def Convert(
 
             def draw(x1, y1, x2, y2):
 
-                x1 = round(x1, 3)
-                y1 = round(y1, 3)
-                x2 = round(x2, 3)
-                y2 = round(y2, 3)
-
                 tags = Tag()
                 tags.extend(
                     [
                         Tag.Align(7),
-                        Tag.Pos(_sx, _sy),
+                        Tag.Pos(sx, sy),
                         Tag.PrimaryColour(each.bgColor),
                         Tag.PrimaryAlpha(each.bgOpacity),
                         Tag.Bord(0),
@@ -335,6 +330,11 @@ def Convert(
 
             return Box(_event)
 
+        def anchored_triangle() -> Optional[Event]:
+            _event = copy.copy(event)
+            _event.Name += "anchored_triangle;"
+            return Triangle(_event)
+
         def label_text() -> Event:
             _event = copy.copy(event)
             _event.Name += "label_text;"
@@ -344,6 +344,11 @@ def Convert(
             _event = copy.copy(event)
             _event.Name += "label_box;"
             return Box(_event)
+
+        def label_hollow_box() -> Event:
+            _event = copy.copy(event)
+            _event.Name += "label_hollow_box;"
+            return HollowBox(_event)
 
         def highlight_text() -> Event:
             _event = copy.copy(event)
@@ -371,10 +376,30 @@ def Convert(
             return events
 
         def anchored() -> List[Event]:
-            return [anchored_box(), anchored_text()]
+            events: List[Event] = []
+            events.append(anchored_box())
+            _event = anchored_triangle()
+            if _event is not None:
+                events.append(_event)
+            events.append(anchored_text())
+            return events
 
         def label() -> List[Event]:
-            return [label_box(), label_text()]
+            events: List[Event] = []
+            events.append(label_hollow_box())
+
+            line_count = text.count(r"\N") + 1
+            _height = textSize * line_count
+
+            nonlocal y  # type: ignore
+            nonlocal height  # type: ignore
+
+            y = y + height - _height - padding_y * 2
+            height = _height + padding_y * 2
+
+            events.append(label_box())
+            events.append(label_text())
+            return events
 
         def highlight() -> List[Event]:
             return [highlight_box(), highlight_text()]
@@ -459,22 +484,6 @@ def Convert(
             sy = TransformY(sy)
             padding_y = TransformY(padding_y)
 
-        # x = round(x, 3)
-        # y = round(y, 3)
-        textSize = round(textSize, 3)
-        # width = round(width, 3)
-        # height = round(height, 3)
-        # sx = round(sx, 3)
-        # sy = round(sy, 3)
-
-        _x = round(x, 3)
-        _y = round(y, 3)
-        # textSize = round(textSize, 3)
-        _width = round(width, 3)
-        _height = round(height, 3)
-        _sx = round(sx, 3)
-        _sy = round(sy, 3)
-
         if each.style == "popup":
             return popup()
         elif each.style == "title":
@@ -493,7 +502,22 @@ def Convert(
             Stderr(_('不支持 "{}" 样式 ({})').format(each.style, each.id))
             return []
 
+    patch: Dict[str, Dict] = {}
     events = []
+
+    for each in annotations:
+        if each.ref != "":
+            patch[each.ref] = {}
+
+    for each in annotations:
+        if each.id in patch:
+            patch[each.id] = {"timeStart": each.timeStart, "timeEnd": each.timeEnd}
+
+    for each in annotations:
+        if each.ref in patch:
+            each.timeStart = patch[each.ref]["timeStart"]
+            each.timeEnd = patch[each.ref]["timeEnd"]
+
     for each in annotations:
         events.extend(ConvertAnnotation(each))
 

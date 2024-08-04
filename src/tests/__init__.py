@@ -19,6 +19,6 @@ _m.chdir(garbagePath)
 if sys.version_info.major == 3 and sys.version_info.minor > 7:
     _m.delattr(typing, "Literal")
 
-from Annotations2Sub.utils import Flags
+from Annotations2Sub._flags import Flags
 
 Flags.verbose = True
