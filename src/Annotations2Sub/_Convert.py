@@ -119,6 +119,12 @@ def Convert(
             return event
 
         def HollowBox(event: Event) -> Event:
+            nonlocal padding_x
+            nonlocal padding_y
+
+            padding_x = padding_x * 0.2
+            padding_y = padding_y * 0.2
+
             x1 = x + padding_x
             y1 = y + padding_y
             x2 = x + width - padding_x
@@ -381,7 +387,8 @@ def Convert(
             nonlocal y
             nonlocal height
 
-            v1 = height - textSize * (1 + line_count)
+            v1 = height - textSize * line_count
+            v1 = v1 - padding_y * 2
             y = y + v1
             height = height - v1
 
