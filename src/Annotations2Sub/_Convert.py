@@ -95,7 +95,7 @@ def Convert(
             tags.extend(
                 [
                     Tag.Align(7),
-                    Tag.Pos(_x, _y),
+                    Tag.Pos(x, y),
                     Tag.PrimaryColour(each.bgColor),
                     Tag.PrimaryAlpha(each.bgOpacity),
                     Tag.Bord(0),
@@ -107,9 +107,9 @@ def Convert(
             draws.extend(
                 [
                     DrawCommand(0, 0, "m"),
-                    DrawCommand(_width, 0, "l"),
-                    DrawCommand(_width, _height, "l"),
-                    DrawCommand(0, _height, "l"),
+                    DrawCommand(width, 0, "l"),
+                    DrawCommand(width, height, "l"),
+                    DrawCommand(0, height, "l"),
                 ]
             )
             # "绘图命令必须被包含在 {\p<等级>} 和 {\p0} 之间。"
@@ -128,7 +128,7 @@ def Convert(
             tags.extend(
                 [
                     Tag.Align(7),
-                    Tag.Pos(_x, _y),
+                    Tag.Pos(x, y),
                     Tag.PrimaryColour(each.bgColor),
                     Tag.PrimaryAlpha(each.bgOpacity),
                     Tag.Bord(0),
@@ -142,9 +142,9 @@ def Convert(
             draws.extend(
                 [
                     DrawCommand(0, 0, "m"),
-                    DrawCommand(_width, 0, "l"),
-                    DrawCommand(_width, _height, "l"),
-                    DrawCommand(0, _height, "l"),
+                    DrawCommand(width, 0, "l"),
+                    DrawCommand(width, height, "l"),
+                    DrawCommand(0, height, "l"),
                 ]
             )
             box_tag = r"{\p1}" + str(draws) + r"{\p0}"
@@ -170,7 +170,7 @@ def Convert(
                 tags.extend(
                     [
                         Tag.Align(7),
-                        Tag.Pos(_sx, _sy),
+                        Tag.Pos(sx, sy),
                         Tag.PrimaryColour(each.bgColor),
                         Tag.PrimaryAlpha(each.bgOpacity),
                         Tag.Bord(0),
@@ -452,13 +452,6 @@ def Convert(
             height = TransformY(height)
             sy = TransformY(sy)
             padding_y = TransformY(padding_y)
-
-        _x = x
-        _y = y
-        _width = width
-        _height = height
-        _sx = sx
-        _sy = sy
 
         if each.style == "popup":
             return popup()
