@@ -2,7 +2,7 @@
 
 """Annotations2Sub, 一个能把 Youtube 注释转换成 Advanced SubStation Alpha 字幕文件的脚本"""
 
-__version__ = "2.18.0"
+__version__ = "2.19.0"
 
 """
                                              xml.
