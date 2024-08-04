@@ -3,6 +3,8 @@
 import difflib
 import os
 
+import pytest
+
 from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import RedText, Stderr
 from tests import baselinePath, testCasePath
@@ -42,7 +44,8 @@ def test_not_equal():
     )
 
 
-def baseline(Baseline: str):
+@pytest.mark.parametrize("Baseline", baselines)
+def test_baseline(Baseline: str):
     baseline_file = os.path.join(baselinePath, Baseline + ".xml.test")
     baseline_result = os.path.join(baselinePath, Baseline + ".ass.test")
     result = baseline_file + ".ass"
@@ -51,16 +54,11 @@ def baseline(Baseline: str):
     assert equal(baseline_result, result)
 
 
-def baseline_transform(Baseline: str):
+@pytest.mark.parametrize("Baseline", baselines)
+def test_baseline_transform(Baseline: str):
     baseline_file = os.path.join(baselinePath, Baseline + ".xml.test")
     baseline_result = os.path.join(baselinePath, Baseline + ".transform.ass.test")
     result = baseline_file + ".ass"
 
     Run([baseline_file, "-x", "1920", "-y", "1080"])
     assert equal(baseline_result, result)
-
-
-def test_baselines():
-    for cases in baselines:
-        baseline(cases)
-        baseline_transform(cases)
