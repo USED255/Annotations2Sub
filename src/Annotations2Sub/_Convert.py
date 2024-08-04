@@ -333,6 +333,11 @@ def Convert(
             _event.Name += "label_box;"
             return Box(_event)
 
+        def label_hollow_box() -> Event:
+            _event = copy.copy(event)
+            _event.Name += "label_hollow_box;"
+            return HollowBox(_event)
+
         def highlight_text() -> Event:
             _event = copy.copy(event)
             _event.Name += "highlight_text;"
@@ -368,7 +373,21 @@ def Convert(
             return events
 
         def label() -> List[Event]:
-            return [label_box(), label_text()]
+            events: List[Event] = []
+            events.append(label_hollow_box())
+
+            line_count = text.count("\n") + 1
+
+            nonlocal y
+            nonlocal height
+
+            v1 = height - textSize * (1 + line_count)
+            y = y + v1
+            height = height - v1
+
+            events.append(label_box())
+            events.append(label_text())
+            return events
 
         def highlight() -> List[Event]:
             return [highlight_box(), highlight_text()]
