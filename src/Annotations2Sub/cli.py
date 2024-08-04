@@ -11,7 +11,7 @@ import sys
 import traceback
 import urllib.request
 from http.client import IncompleteRead
-from typing import List
+from typing import Optional
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
@@ -144,13 +144,13 @@ def Run(argv=None):  # -> Literal[1, 0]:
     font: str = args.font
     enable_download_for_archive: bool = args.download_for_archive
     enable_download_annotations_only: bool = args.download_annotations_only
-    invidious_instances: str | None = args.invidious_instances
+    invidious_instances: Optional[str] = args.invidious_instances
     enable_preview_video: bool = args.preview_video
     enable_generate_video: bool = args.generate_video
     enable_no_overwrite_files: bool = args.no_overwrite_files
     enable_no_keep_intermediate_files: bool = args.no_keep_intermediate_files
-    output: str | None = args.output
-    output_directory: str | None = args.output_directory
+    output: Optional[str] = args.output
+    output_directory: Optional[str] = args.output_directory
     enable_verbose: bool = args.verbose
 
     output_to_stdout = False

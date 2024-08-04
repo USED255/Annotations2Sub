@@ -4,7 +4,7 @@
 
 import copy
 import textwrap
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from Annotations2Sub._Sub import Draw, DrawCommand, Event, Tag
 from Annotations2Sub.Annotations import Annotation
@@ -43,8 +43,8 @@ def Convert(
             """生成 Annotation 文本的 Event"""
 
             # 文本与框保持一定距离
-            nonlocal x
-            nonlocal y
+            nonlocal x  # type: ignore
+            nonlocal y  # type: ignore
 
             x = x + padding_x
             y = y + padding_y
@@ -70,8 +70,8 @@ def Convert(
             # 相比 Text, 文字会居中
 
             # 模拟居中
-            nonlocal x
-            nonlocal y
+            nonlocal x  # type: ignore
+            nonlocal y  # type: ignore
 
             x = x + (width / 2)
             y = y + (height / 2)
@@ -125,8 +125,8 @@ def Convert(
             return event
 
         def HollowBox(event: Event) -> Event:
-            nonlocal padding_x
-            nonlocal padding_y
+            nonlocal padding_x  # type: ignore
+            nonlocal padding_y  # type: ignore
 
             padding_x = padding_x * 0.3
             padding_y = padding_y * 0.3
@@ -391,8 +391,8 @@ def Convert(
             line_count = text.count(r"\N") + 1
             _height = textSize * line_count
 
-            nonlocal y
-            nonlocal height
+            nonlocal y  # type: ignore
+            nonlocal height  # type: ignore
 
             y = y + height - _height - padding_y * 2
             height = _height + padding_y * 2
@@ -502,7 +502,7 @@ def Convert(
             Stderr(_('不支持 "{}" 样式 ({})').format(each.style, each.id))
             return []
 
-    patch: dict[str, dict] = {}
+    patch: Dict[str, Dict] = {}
     events = []
 
     for each in annotations:
