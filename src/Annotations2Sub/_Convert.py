@@ -43,14 +43,17 @@ def Convert(
             """生成 Annotation 文本的 Event"""
 
             # 文本与框保持一定距离
-            _x = x + padding_x
-            _y = y + padding_y
+            nonlocal x
+            nonlocal y
+
+            x = x + padding_x
+            y = y + padding_y
 
             tags = Tag()
             tags.extend(
                 [
                     Tag.Align(7),
-                    Tag.Pos(_x, _y),
+                    Tag.Pos(x, y),
                     Tag.Fontsize(textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
@@ -67,15 +70,18 @@ def Convert(
             # 相比 Text, 文字会居中
 
             # 模拟居中
-            _x = x + (width / 2)
-            _y = y + (height / 2)
+            nonlocal x
+            nonlocal y
+
+            x = x + (width / 2)
+            y = y + (height / 2)
 
             shadow = Tag.Shadow(0)
             tags = Tag()
             tags.extend(
                 [
                     Tag.Align(5),
-                    Tag.Pos(_x, _y),
+                    Tag.Pos(x, y),
                     Tag.Fontsize(textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
