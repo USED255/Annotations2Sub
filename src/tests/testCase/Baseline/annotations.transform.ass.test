@@ -44,9 +44,9 @@ Dialogue: 0,00:00:00.00,00:00:00.00,Default,;18;speech_text;,0,0,0,,{\an7\pos(97
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_triangle;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0.0 l 0.0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs42.336\c&H000000&\bord0\shad0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_hollow_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(3.84,2.16,-3.84,-2.16)}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_box;,0,0,0,,{\an7\pos(0.0,-46.656)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 46.656 l 0 46.656 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_text;,0,0,0,,{\an7\pos(3.84,-44.496)\fs42.336\c&H000000&\bord0\shad0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(3.84,2.16,-3.84,-2.16)}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_text;,0,0,0,,{\an7\pos(3.84,2.16)\fs42.336\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_hollow_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(5.76,3.24,-5.76,-3.24)}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_box;,0,0,0,,{\an7\pos(0.0,-48.816)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 48.816 l 0 48.816 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_text;,0,0,0,,{\an7\pos(5.76,-45.576)\fs42.336\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(5.76,3.24,-5.76,-3.24)}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_text;,0,0,0,,{\an7\pos(5.76,3.24)\fs42.336\c&H000000&\bord0\shad0}
 

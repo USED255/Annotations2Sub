@@ -44,9 +44,9 @@ Dialogue: 0,00:00:00.00,00:00:00.00,Default,;18;speech_text;,0,0,0,,{\an7\pos(51
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_triangle;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0.0 l 0.0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_text;,0,0,0,,{\an7\pos(1.0,1.0)\fs3.92\c&H000000&\bord0\shad0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_hollow_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(0.2,0.2,-0.2,-0.2)}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_box;,0,0,0,,{\an7\pos(0.0,-4.32)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 4.32 l 0 4.32 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_text;,0,0,0,,{\an7\pos(0.2,-4.12)\fs3.92\c&H000000&\bord0\shad0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(0.2,0.2,-0.2,-0.2)}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_text;,0,0,0,,{\an7\pos(0.2,0.2)\fs3.92\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_hollow_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(0.3,0.3,-0.3,-0.3)}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_box;,0,0,0,,{\an7\pos(0.0,-4.52)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 4.52 l 0 4.52 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_text;,0,0,0,,{\an7\pos(0.3,-4.22)\fs3.92\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(0.3,0.3,-0.3,-0.3)}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_text;,0,0,0,,{\an7\pos(0.3,0.3)\fs3.92\c&H000000&\bord0\shad0}
 

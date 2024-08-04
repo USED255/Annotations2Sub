@@ -128,8 +128,8 @@ def Convert(
             nonlocal padding_x
             nonlocal padding_y
 
-            padding_x = padding_x * 0.2
-            padding_y = padding_y * 0.2
+            padding_x = padding_x * 0.3
+            padding_y = padding_y * 0.3
 
             x1 = x + padding_x
             y1 = y + padding_y
@@ -388,15 +388,14 @@ def Convert(
             events: List[Event] = []
             events.append(label_hollow_box())
 
-            line_count = text.count("\n") + 1
+            line_count = text.count(r"\N") + 1
+            _height = textSize * line_count
 
             nonlocal y
             nonlocal height
 
-            v1 = height - textSize * line_count
-            v1 = v1 - padding_y * 2
-            y = y + v1
-            height = height - v1
+            y = y + height - _height - padding_y * 2
+            height = _height + padding_y * 2
 
             events.append(label_box())
             events.append(label_text())
