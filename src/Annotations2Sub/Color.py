@@ -2,7 +2,7 @@
 
 """颜色数据类"""
 
-from Annotations2Sub.utils import _
+from Annotations2Sub.i18n import _
 
 
 class Color:

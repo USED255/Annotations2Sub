@@ -18,7 +18,8 @@ from xml.etree.ElementTree import ParseError
 from Annotations2Sub import version
 from Annotations2Sub._flags import Flags
 from Annotations2Sub.Annotations import NotAnnotationsDocumentError
-from Annotations2Sub.utils import Err, GetUrl, Info, Stderr, Warn, YellowText, _
+from Annotations2Sub.i18n import _
+from Annotations2Sub.utils import Err, GetUrl, Info, Stderr, Warn, YellowText
 from Annotations2Sub.utils2 import (
     AnnotationsXmlStringToSubtitleString,
     GetAnnotationsUrl,
