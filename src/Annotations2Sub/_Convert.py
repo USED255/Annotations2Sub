@@ -436,8 +436,7 @@ def Convert(
             _height = height
 
         Max_textSize = _height / line_count
-        if textSize > Max_textSize:
-            textSize = Max_textSize
+        textSize = min(textSize, Max_textSize)
 
         # 模拟换行
         if textSize == 0:

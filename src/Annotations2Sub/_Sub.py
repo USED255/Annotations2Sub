@@ -6,7 +6,6 @@ from datetime import datetime
 from typing import Dict, List
 
 from Annotations2Sub.Color import Alpha, Color, Rgba
-from Annotations2Sub.i18n import _
 
 # 兼容 Python3.6, 3.7
 # Python3.6, 3.7 的 typing 没有 Literal
@@ -196,8 +195,8 @@ class Sub:
             string += "[Events]\n"
             string += "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
 
-            for Event in self.events:
-                string += str(Event)
+            for event in self.events:
+                string += str(event)
             string += "\n"
             return string
 
