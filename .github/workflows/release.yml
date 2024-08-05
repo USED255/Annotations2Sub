@@ -34,4 +34,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: Annotations2Sub.pyz
+          files: src/Annotations2Sub.pyz
