@@ -11,7 +11,7 @@ def AnnotationsXmlFileToSubtitleFile(
     output_file: str,
     transform_resolution_x: int = 100,
     transform_resolution_y: int = 100,
-    font="Microsoft YaHei",
+    font=_("Microsoft YaHei"),
 ):
     if os.path.isfile(annotations_file) is False:
         raise FileNotFoundError(_('"{}" 不是一个文件').format(annotations_file))

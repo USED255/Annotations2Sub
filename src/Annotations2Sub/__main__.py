@@ -1,7 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""在 src 目录运行 python __main__.py 或 python -m Annotations2Sub"""
+""" 程序入口 """
+
+import sys
+from typing import NoReturn
+
+from Annotations2Sub.cli import Run
+
+
+def main() -> NoReturn:
+    sys.exit(Run())
+
 
 if not __package__:
     import os
@@ -13,6 +23,4 @@ if not __package__:
     sys.path.append(path)
 
 if __name__ == "__main__":
-    from Annotations2Sub.main import main
-
     main()

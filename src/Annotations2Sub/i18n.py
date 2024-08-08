@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
+"""On n'habite pas un pays, on habite une langue. Une patrie, c'est cela et rien d'autre."""
+
 import gettext
 import locale
 import os
 import sys
 
 
-def Internationalization():
-    """On n'habite pas un pays, on habite une langue. Une patrie, c'est cela et rien d'autre."""
+def internationalization():
     try:
         # 配合 __main__.py
         locales = os.path.join(os.path.split(os.path.realpath(__file__))[0], "locales")
@@ -29,4 +30,4 @@ def Internationalization():
         return gettext.gettext
 
 
-_ = Internationalization()
+_ = internationalization()

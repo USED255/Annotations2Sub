@@ -13,12 +13,13 @@ from Annotations2Sub.utils import GetUrl, Stderr, Warn
 
 
 def GetAnnotationsUrl(videoId: str) -> str:
+    """返回注释在互联网档案馆的存档网址"""
     # 移植自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
     # 向 https://archive.org/details/youtubeannotations 致敬
     # 如果你对你的数据在意, 就不要把它们托付给他人
     # Rain Shimotsuki 不仅是个打歌词的, 他更是一位创作者
     # 自己作品消失, 我相信没人愿意看到
-    """返回注释在互联网档案馆的网址"""
+
     ARCHIVE_URL = "https://archive.org"
     CHARS_SAFE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
 
@@ -98,4 +99,4 @@ def AnnotationsXmlStringToSubtitleString(
     subtitle.info["WrapStyle"] = "2"
     subtitle.styles["Default"].Fontname = font
     subtitle.events.extend(events)
-    return subtitle.Dump()
+    return str(subtitle)

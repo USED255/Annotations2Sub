@@ -11,11 +11,11 @@ import sys
 import traceback
 import urllib.request
 from http.client import IncompleteRead
-from typing import Optional
+from typing import List, Optional
 from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
-from Annotations2Sub import version
+from Annotations2Sub import __version__ as version
 from Annotations2Sub._flags import Flags
 from Annotations2Sub.Annotations import NotAnnotationsDocumentError
 from Annotations2Sub.i18n import _
@@ -48,7 +48,7 @@ def Run(argv=None):  # -> Literal[1, 0]:
         "--transform-resolution-x",
         default=100,
         type=int,
-        metavar="100",
+        metavar="1920",
         help=_("变换分辨率X"),
     )
     parser.add_argument(
@@ -56,7 +56,7 @@ def Run(argv=None):  # -> Literal[1, 0]:
         "--transform-resolution-y",
         default=100,
         type=int,
-        metavar="100",
+        metavar="1080",
         help=_("变换分辨率Y"),
     )
     # 应该使用非衬线字体, 但是 SSA 不能方便的指定字体家族
@@ -291,12 +291,6 @@ def Run(argv=None):  # -> Literal[1, 0]:
                 f.write(subtitle_string)
             Stderr(_('保存于: "{}"').format(subtitle_file))
 
-        def function2():
-            Err(_("无法获取视频"))
-            Stderr(traceback.format_exc())
-            nonlocal exit_code
-            exit_code = 1
-
         video = audio = ""
         if enable_preview_video or enable_generate_video:
             if invidious_instances == "":
@@ -317,16 +311,19 @@ def Run(argv=None):  # -> Literal[1, 0]:
                         continue
 
                 if video == "" or audio == "":
-                    function2()
+                    Err(_("无法获取视频"))
+                    exit_code = 1
                     continue
             else:
                 try:
                     video, audio = GetMedia(video_id, str(invidious_instances))
                 except (json.JSONDecodeError, URLError, ValueError):
-                    function2()
+                    Err(_("无法获取视频"))
+                    Stderr(traceback.format_exc())
+                    exit_code = 1
                     continue
 
-        def function1():
+        def run(commands: List[str]):
             Info(" ".join(commands))
 
             _exit_code = subprocess.run(commands).returncode
@@ -346,7 +343,7 @@ def Run(argv=None):  # -> Literal[1, 0]:
                 f"--audio-file={audio}",
                 f"--sub-file={subtitle_file}",
             ]
-            function1()
+            run(commands)
 
         if enable_generate_video:
             commands = [
@@ -359,6 +356,6 @@ def Run(argv=None):  # -> Literal[1, 0]:
                 f"ass={subtitle_file}",
                 f"{subtitle_file}.mp4",
             ]
-            function1()
+            run(commands)
 
     return exit_code

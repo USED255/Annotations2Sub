@@ -97,7 +97,7 @@ class Annotation:
         # self.highlightId: str = ""
 
     def __str__(self) -> str:
-        """模仿 https://github.com/isaackd/annotations-converter"""
+        # 模仿 https://github.com/isaackd/annotations-converter
 
         def f(color: Color) -> int:
             return (color.blue << 16) | (color.green << 8) | color.red
@@ -117,7 +117,7 @@ class Annotation:
 
 
 def Parse(tree: Element) -> List[Annotation]:
-    """将 XML 树转换为 List[Annotation]"""
+    """解析 Annotations 树"""
 
     # Annotation 文件是一个 XML 文件
     # 详细结构可以看看 src/tests/testCase/annotation.xml.test
@@ -193,8 +193,6 @@ def Parse(tree: Element) -> List[Annotation]:
         return float(string)
 
     def ParseAnnotation(each: Element) -> Optional[Annotation]:
-        """解析 Annotation"""
-
         # 致谢: https://github.com/nirbheek/youtube-ass
         #    & https://github.com/isaackd/annotationlib
 

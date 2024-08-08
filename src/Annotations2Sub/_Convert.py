@@ -19,7 +19,6 @@ def Convert(
     """转换 Annotations"""
 
     def ConvertAnnotation(each: Annotation) -> List[Event]:
-        """将 Annotation 转换为 List[Event]"""
 
         # 致谢: https://github.com/nirbheek/youtube-ass &
         #       https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
@@ -40,14 +39,13 @@ def Convert(
             return _text
 
         def Text(event: Event) -> Event:
-            """生成 Annotation 文本的 Event"""
-
             # 文本与框保持一定距离
             nonlocal x  # type: ignore
             nonlocal y  # type: ignore
 
             x = x + padding_x
             y = y + padding_y
+            #
 
             tags = Tag()
             tags.extend(
@@ -75,6 +73,7 @@ def Convert(
 
             x = x + (width / 2)
             y = y + (height / 2)
+            #
 
             shadow = Tag.Shadow(0)
             tags = Tag()
@@ -95,8 +94,6 @@ def Convert(
             return event
 
         def Box(event: Event) -> Event:
-            """生成 Annotation 文本框的 Event"""
-
             tags = Tag()
             tags.extend(
                 [
@@ -437,6 +434,7 @@ def Convert(
 
         Max_textSize = _height / line_count
         textSize = min(textSize, Max_textSize)
+        #
 
         # 模拟换行
         if textSize == 0:
@@ -444,6 +442,7 @@ def Convert(
 
         length = int(width / (textSize / 4)) + 1
         text = Warp(text, length)
+        #
 
         # 让前导空格生效
         if text.startswith(" "):
