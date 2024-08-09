@@ -3,8 +3,8 @@
 ; https://github.com/USED255/Annotations2Sub
 ScriptType: v4.00+
 Title: annotations.xml.test
-PlayResX: 100
-PlayResY: 100
+PlayResX: 1000
+PlayResY: 1000
 WrapStyle: 2
 
 [V4+ Styles]
@@ -14,39 +14,39 @@ Style: Default,Microsoft YaHei,20,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;8;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;8;popup_text;,0,0,0,,{\an7\pos(1.0,1.0)\fs3.92\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;8;popup_text;,0,0,0,,{\an7\pos(10.0,10.0)\fs39.2\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;9;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;9;popup_text;,0,0,0,,{\an7\pos(1.0,1.0)\fs3.92\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;9;popup_text;,0,0,0,,{\an7\pos(10.0,10.0)\fs39.2\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;10;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;10;popup_text;,0,0,0,,{\an7\pos(1.0,1.0)\fs3.92\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;10;popup_text;,0,0,0,,{\an7\pos(10.0,10.0)\fs39.2\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;11;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;11;popup_text;,0,0,0,,{\an7\pos(1.0,1.0)\fs3.92\c&H000000&\bord0\shad0}T\Ne\Ns\Nt
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;11;popup_text;,0,0,0,,{\an7\pos(10.0,10.0)\fs39.2\c&H000000&\bord0\shad0}T\Ne\Ns\Nt
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,Test;12;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,Test;12;popup_text;,0,0,0,,{\an7\pos(1.0,1.0)\fs3.92\c&H000000&\bord0\shad0\b1}​ \NT\Ne\Ns\Nt
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,Test;12;popup_text;,0,0,0,,{\an7\pos(10.0,10.0)\fs39.2\c&H000000&\bord0\shad0\b1}​ \NT\Ne\Ns\Nt
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;13;highlightText_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;13;highlightText_text;,0,0,0,,{\an5\pos(0.0,0.0)\fs3.92\c&H000000&\bord0\shad0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;14;title;,0,0,0,,{\an5\pos(0.0,0.0)\fs3.92\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;13;highlightText_text;,0,0,0,,{\an5\pos(0.0,0.0)\fs39.2\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;14;title;,0,0,0,,{\an5\pos(0.0,0.0)\fs39.2\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;15;speech_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;15;speech_triangle;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0.0 l 0.0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;15;speech_text;,0,0,0,,{\an7\pos(1.0,1.0)\fs3.92\c&H000000&\bord0\shad0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_box;,0,0,0,,{\an7\pos(50.0,50.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 20.0 0 l 20.0 10.0 l 0 10.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_triangle;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 53.48 50.0 l 56.46 50.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_text;,0,0,0,,{\an7\pos(51.0,51.0)\fs3.528\c&H000000&\bord0\shad0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_box;,0,0,0,,{\an7\pos(50.0,50.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 20.0 0 l 20.0 10.0 l 0 10.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_triangle;,0,0,0,,{\an7\pos(0.0,61.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 53.48 -1.0 l 56.46 -1.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_text;,0,0,0,,{\an7\pos(51.0,51.0)\fs3.528\c&H000000&\bord0\shad0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;17;speech_box;,0,0,0,,{\an7\pos(50.0,50.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 20.0 0 l 20.0 10.0 l 0 10.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;17;speech_triangle;,0,0,0,,{\an7\pos(0.0,50.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 50.0 1.2 l 50.0 4.2 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;17;speech_text;,0,0,0,,{\an7\pos(51.0,51.0)\fs3.528\c&H000000&\bord0\shad0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;18;speech_box;,0,0,0,,{\an7\pos(50.0,50.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 20.0 0 l 20.0 10.0 l 0 10.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;18;speech_triangle;,0,0,0,,{\an7\pos(100.0,50.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l -30.0 1.2 l -30.0 4.2 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;18;speech_text;,0,0,0,,{\an7\pos(51.0,51.0)\fs3.528\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;15;speech_text;,0,0,0,,{\an7\pos(10.0,10.0)\fs39.2\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_box;,0,0,0,,{\an7\pos(500.0,500.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 200.0 0 l 200.0 100.0 l 0 100.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_triangle;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 534.8 500.0 l 564.6 500.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_text;,0,0,0,,{\an7\pos(510.0,510.0)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_box;,0,0,0,,{\an7\pos(500.0,500.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 200.0 0 l 200.0 100.0 l 0 100.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_triangle;,0,0,0,,{\an7\pos(0.0,610.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 534.8 -10.0 l 564.6 -10.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_text;,0,0,0,,{\an7\pos(510.0,510.0)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;17;speech_box;,0,0,0,,{\an7\pos(500.0,500.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 200.0 0 l 200.0 100.0 l 0 100.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;17;speech_triangle;,0,0,0,,{\an7\pos(0.0,500.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 500.0 12.0 l 500.0 42.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;17;speech_text;,0,0,0,,{\an7\pos(510.0,510.0)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;18;speech_box;,0,0,0,,{\an7\pos(500.0,500.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 200.0 0 l 200.0 100.0 l 0 100.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;18;speech_triangle;,0,0,0,,{\an7\pos(1000.0,500.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l -300.0 12.0 l -300.0 42.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;18;speech_text;,0,0,0,,{\an7\pos(510.0,510.0)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_triangle;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0.0 l 0.0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_text;,0,0,0,,{\an7\pos(1.0,1.0)\fs3.92\c&H000000&\bord0\shad0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_hollow_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(0.3,0.3,-0.3,-0.3)}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_box;,0,0,0,,{\an7\pos(0.0,-4.52)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 4.52 l 0 4.52 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_text;,0,0,0,,{\an7\pos(0.3,-4.22)\fs3.92\c&H000000&\bord0\shad0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(0.3,0.3,-0.3,-0.3)}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_text;,0,0,0,,{\an7\pos(0.3,0.3)\fs3.92\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_text;,0,0,0,,{\an7\pos(10.0,10.0)\fs39.2\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_hollow_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(3.0,3.0,-3.0,-3.0)}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_box;,0,0,0,,{\an7\pos(0.0,-45.2)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 45.2 l 0 45.2 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_text;,0,0,0,,{\an7\pos(3.0,-42.2)\fs39.2\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(3.0,3.0,-3.0,-3.0)}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_text;,0,0,0,,{\an7\pos(3.0,3.0)\fs39.2\c&H000000&\bord0\shad0}
 

@@ -46,7 +46,7 @@ def Run(argv=None):  # -> Literal[1, 0]:
     parser.add_argument(
         "-x",
         "--transform-resolution-x",
-        default=100,
+        default=1000,
         type=int,
         metavar="1920",
         help=_("变换分辨率X"),
@@ -54,7 +54,7 @@ def Run(argv=None):  # -> Literal[1, 0]:
     parser.add_argument(
         "-y",
         "--transform-resolution-y",
-        default=100,
+        default=1000,
         type=int,
         metavar="1080",
         help=_("变换分辨率Y"),
