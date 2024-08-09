@@ -125,6 +125,14 @@ def Convert(
             nonlocal padding_x  # type: ignore
             nonlocal padding_y  # type: ignore
 
+            if resolutionX > resolutionY:
+                ratio = resolutionX / resolutionY
+                padding_y = padding_y * ratio
+
+            if resolutionY > resolutionX:
+                ratio = resolutionY / resolutionX
+                padding_x = padding_x * ratio
+
             padding_x = padding_x * 0.3
             padding_y = padding_y * 0.3
 
@@ -401,21 +409,6 @@ def Convert(
         def highlight() -> List[Event]:
             return [highlight_box(), highlight_text()]
 
-        # 框与文本之间有填充距离
-        padding_x = 1.0
-        padding_y = 1.0
-
-        event = Event()
-
-        event.Start = each.timeStart
-        event.End = each.timeEnd
-
-        # Name 在 Aegisub 里是 "说话人"
-        # 这里用于调试
-        # author;id;function;alternative
-        event.Name += each.author + ";"
-        event.Name += each.id + ";"
-
         x = each.x
         y = each.y
         textSize = each.textSize
@@ -424,6 +417,10 @@ def Convert(
         sx = each.sx
         sy = each.sy
         text = each.text
+
+        # 框与文本之间有填充距离
+        padding_x = 1.0
+        padding_y = 1.0
 
         # 钳制字体大小
         line_count = text.count("\n") + 1
@@ -481,6 +478,17 @@ def Convert(
             height = TransformY(height)
             sy = TransformY(sy)
             padding_y = TransformY(padding_y)
+
+        event = Event()
+
+        event.Start = each.timeStart
+        event.End = each.timeEnd
+
+        # Name 在 Aegisub 里是 "说话人"
+        # 这里用于调试
+        # author;id;function;alternative
+        event.Name += each.author + ";"
+        event.Name += each.id + ";"
 
         if each.style == "popup":
             return popup()
