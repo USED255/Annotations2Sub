@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <annotations>
+
+        <annotation id="1" type="text" style="popup">
+            <segment>
+                <movingRegion>
+                    <rectRegion/>
+                </movingRegion>
+            </segment>
+            <trigger>
+                <condition ref="None"/>
+            </trigger>
+        </annotation>
+
+        <annotation id="2" type="text" style="test">
+            <segment>
+                <movingRegion>
+                    <rectRegion/>
+                </movingRegion>
+            </segment>
+        </annotation>
+
+        <annotation id="3" type="text" style="popup">
+            <segment>
+                <movingRegion>
+                    <rectRegion/>
+                </movingRegion>
+            </segment>
+            <appearance fontWeight="bold"></appearance>
+        </annotation>
+
+    </annotations>
+</document>

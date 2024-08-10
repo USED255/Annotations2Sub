@@ -11,6 +11,8 @@ from tests import baselinePath, testCasePath
 
 baselines = [
     "annotations",
+    "annotations2",
+    "annotations3",
     "e8kKeUuytqA",
     "29-q7YnyUmY",
     "M2ryDEyyrXE",
