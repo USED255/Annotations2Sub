@@ -14,21 +14,21 @@ Style: Default,Microsoft YaHei,20,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;8;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;8;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs42.336\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;8;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs6.048\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;9;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;9;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs42.336\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;9;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs6.048\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;10;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;10;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs42.336\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;10;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs6.048\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;11;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;11;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs42.336\c&H000000&\bord0\shad0}T\Ne\Ns\Nt
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;11;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs6.048\c&H000000&\bord0\shad0}T\Ne\Ns\Nt
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,Test;12;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,Test;12;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs42.336\c&H000000&\bord0\shad0\b1}​ \NT\Ne\Ns\Nt
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,Test;12;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs6.048\c&H000000&\bord0\shad0\b1}​ \NT\Ne\Ns\Nt
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;13;highlightText_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;13;highlightText_text;,0,0,0,,{\an5\pos(0.0,0.0)\fs42.336\c&H000000&\bord0\shad0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;14;title;,0,0,0,,{\an5\pos(0.0,0.0)\fs42.336\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;13;highlightText_text;,0,0,0,,{\an5\pos(0.0,0.0)\fs6.048\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;14;title;,0,0,0,,{\an5\pos(0.0,0.0)\fs6.048\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;15;speech_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;15;speech_triangle;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0.0 l 0.0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;15;speech_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs42.336\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;15;speech_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs6.048\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_box;,0,0,0,,{\an7\pos(960.0,540.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 384.0 0 l 384.0 108.0 l 0 108.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_triangle;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 1026.816 540.0 l 1084.032 540.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;16;speech_text;,0,0,0,,{\an7\pos(979.2,550.8)\fs38.102\c&H000000&\bord0\shad0}
@@ -43,10 +43,10 @@ Dialogue: 0,00:00:00.00,00:00:00.00,Default,;18;speech_triangle;,0,0,0,,{\an7\po
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;18;speech_text;,0,0,0,,{\an7\pos(979.2,550.8)\fs38.102\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_triangle;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0.0 l 0.0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs42.336\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;19;anchored_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs6.048\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_hollow_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(5.76,5.76,-5.76,-5.76)}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_box;,0,0,0,,{\an7\pos(0.0,-53.856)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 53.856 l 0 53.856 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_text;,0,0,0,,{\an7\pos(5.76,-48.096)\fs42.336\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_box;,0,0,0,,{\an7\pos(0.0,-17.568)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 0.0 0 l 0.0 17.568 l 0 17.568 {\p0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;20;label_text;,0,0,0,,{\an7\pos(5.76,-11.808)\fs6.048\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(5.76,5.76,-5.76,-5.76)}{\p1}m 0 0 l 0.0 0 l 0.0 0.0 l 0 0.0 {\p0}
-Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_text;,0,0,0,,{\an7\pos(5.76,5.76)\fs42.336\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:00.00,00:00:00.00,Default,;21;highlight_text;,0,0,0,,{\an7\pos(5.76,5.76)\fs6.048\c&H000000&\bord0\shad0}
 
