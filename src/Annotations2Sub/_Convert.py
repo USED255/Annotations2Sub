@@ -436,7 +436,7 @@ def Convert(
         def is_width_overflow() -> bool:
             l = []
             for line in _text.split("\n"):
-                l.append(len(line) * (textSize * 1.12 / 4))
+                l.append(len(line) * (textSize / 4))
             return max(l) > width
 
         if is_length_overflow() or is_width_overflow():
@@ -457,7 +457,7 @@ def Convert(
                 _width = width - padding_x * 2
                 if _width < 0:
                     _width = width
-                length = int(_width / (textSize * 1.12 / 4)) + 1
+                length = int(_width / (textSize / 4)) + 1
                 _text = Warp(text, length)
 
         text = _text

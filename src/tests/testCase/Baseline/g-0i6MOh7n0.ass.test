@@ -192,7 +192,7 @@ Dialogue: 0,00:01:11.55,00:01:24.50,Default,;annotation_209436793;popup_text;,0,
 Dialogue: 0,00:01:12.40,00:01:24.50,Default,;annotation_4117532391;popup_box;,0,0,0,,{\an7\pos(103.95,549.48)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 299.27 0 l 299.27 88.87 l 0 88.87 {\p0}
 Dialogue: 0,00:01:12.40,00:01:24.50,Default,;annotation_4117532391;popup_text;,0,0,0,,{\an7\pos(113.95,559.48)\fs53.92\c&HFFFFFF&\bord0\shad0}-ne
 Dialogue: 0,00:01:12.50,00:01:24.50,Default,;annotation_3923878025;popup_box;,0,0,0,,{\an7\pos(0.0,312.5)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 999.12 0 l 999.12 217.77 l 0 217.77 {\p0}
-Dialogue: 0,00:01:12.50,00:01:24.50,Default,;annotation_3923878025;popup_text;,0,0,0,,{\an7\pos(10.0,322.5)\fs48.865\c&H000000&\bord0\shad0}koh-ne tyoi-ne ih-iz-ne aa-fao rei-du reth-i, soh-nh yal euz fao-iz pau-fao-ir;\N\N（我知道此地的人有着溫柔的心腸、我為了守護他們而祈求意念）
+Dialogue: 0,00:01:12.50,00:01:24.50,Default,;annotation_3923878025;popup_text;,0,0,0,,{\an7\pos(10.0,322.5)\fs53.92\c&H000000&\bord0\shad0}koh-ne tyoi-ne ih-iz-ne aa-fao rei-du reth-i, soh-nh yal euz fao-iz pau-fao-ir;\N\N（我知道此地的人有着溫柔的心腸、我為了守護他們而祈求意念）
 Dialogue: 0,00:01:12.51,00:01:24.50,Default,;annotation_1934864563;popup_box;,0,0,0,,{\an7\pos(0.0,312.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 999.12 0 l 999.12 228.19 l 0 228.19 {\p0}
 Dialogue: 0,00:01:12.51,00:01:24.50,Default,;annotation_1934864563;popup_text;,0,0,0,,{\an7\pos(10.0,322.5)\fs53.92\c&HFFFFFF&\bord0\shad0}koh\N\N（我知道此地的人有着溫柔的心腸、我為了守護他們而祈求意念）
 Dialogue: 0,00:01:12.90,00:01:24.50,Default,;annotation_276441049;popup_box;,0,0,0,,{\an7\pos(43.92,312.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 306.59 0 l 306.59 87.57 l 0 87.57 {\p0}
@@ -528,7 +528,7 @@ Dialogue: 0,00:02:35.20,00:02:52.35,Default,;annotation_1150607959;popup_text;,0
 Dialogue: 0,00:02:35.21,00:02:52.35,Default,;annotation_128029765;popup_box;,0,0,0,,{\an7\pos(0.0,386.72)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1000.0 0 l 1000.0 219.08 l 0 219.08 {\p0}
 Dialogue: 0,00:02:35.21,00:02:52.35,Default,;annotation_128029765;popup_text;,0,0,0,,{\an7\pos(10.0,396.72)\fs53.92\c&HFFFFFF&\bord0\shad0}zu\N\N（我要捨棄故鄉、成為這個世界的 Ra Ciela 皇帝嗎）
 Dialogue: 0,00:02:35.78,00:02:52.35,Default,;annotation_4178850157;popup_box;,0,0,0,,{\an7\pos(0.0,614.58)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1000.0 0 l 1000.0 217.77 l 0 217.77 {\p0}
-Dialogue: 0,00:02:35.78,00:02:52.35,Default,;annotation_4178850157;popup_text;,0,0,0,,{\an7\pos(10.0,624.58)\fs48.865\c&H000000&\bord0\shad0}soh-za-chei, koh-ne wa-fen-du beg-ih-iz soh-nh, zu-fao-tyoi-ny andi-din-i ro-fan;\N\N（還是反過來、要犠牲這個世界、以使自己能返抵故鄉嗎）
+Dialogue: 0,00:02:35.78,00:02:52.35,Default,;annotation_4178850157;popup_text;,0,0,0,,{\an7\pos(10.0,624.58)\fs53.92\c&H000000&\bord0\shad0}soh-za-chei, koh-ne wa-fen-du beg-ih-iz soh-nh, zu-fao-tyoi-ny andi-din-i ro-fan;\N\N（還是反過來、要犠牲這個世界、以使自己能返抵故鄉嗎）
 Dialogue: 0,00:02:35.80,00:02:52.35,Default,;annotation_1434063407;popup_box;,0,0,0,,{\an7\pos(0.18,161.46)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 999.82 0 l 999.82 217.71 l 0 217.71 {\p0}
 Dialogue: 0,00:02:35.80,00:02:52.35,Default,;annotation_1434063407;popup_text;,0,0,0,,{\an7\pos(10.18,171.46)\fs53.92\c&H000000&\bord0\shad0}soh, on-oi ih-ne nay-du rei-ihzu oz, koh-ne wa-fen-ne iz-du refu-i ro-fan;\N\N（那是、即使我要奉獻出自已的性命、亦要拯救這個世界的人們嗎）
 Dialogue: 0,00:02:35.81,00:02:52.35,Default,;annotation_3009055989;popup_box;,0,0,0,,{\an7\pos(0.0,613.28)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 999.85 0 l 999.85 217.77 l 0 217.77 {\p0}
