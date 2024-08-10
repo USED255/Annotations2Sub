@@ -5,7 +5,7 @@ import os
 import pytest
 
 from Annotations2Sub import AnnotationsXmlFileToSubtitleFile
-from tests import garbagePath, baselinePath
+from tests import baselinePath, garbagePath
 
 
 def test_AnnotationsXmlFileToSubtitleFile():
