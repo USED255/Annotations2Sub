@@ -540,6 +540,8 @@ def Convert(
 
     for each in annotations:
         if each.ref in patch:
+            if patch[each.ref] == {}:
+                continue
             each.timeStart = patch[each.ref]["timeStart"]
             each.timeEnd = patch[each.ref]["timeEnd"]
 
