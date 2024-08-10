@@ -187,7 +187,7 @@
                     <rectRegion x="0.00000" y="0.00000" w="-1.00000" h="0.00000" t="undefined" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.600000023842" bgColor="9902361" fgColor="16777215" textSize="0" effects=""></appearance>
+            <appearance textSize="0"></appearance>
         </annotation>
 
         <annotation id="24" type="text" style="test">
@@ -197,7 +197,6 @@
                     <rectRegion x="0.00000" y="0.00000" w="NaN" h="0.00000" t="4294967294:0.aN" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.600000023842" bgColor="9902361" fgColor="16777215" textSize="0" effects=""></appearance>
         </annotation>
 
         <annotation id="25" type="text" style="test">
@@ -207,7 +206,18 @@
                     <rectRegion x="0.00000" y="0.00000" w="NaN" h="0.00000" t="#" />
                 </movingRegion>
             </segment>
-            <appearance bgAlpha="0.600000023842" bgColor="9902361" fgColor="16777215" textSize="0" effects=""></appearance>
+        </annotation>
+
+        <annotation id="26" type="text" style="popup">
+            <segment>
+                <movingRegion>
+                    <rectRegion x="0.00000" y="0.00000" w="0" h="0.00000" t="" />
+                    <rectRegion x="0.00000" y="0.00000" w="0" h="0.00000" t="" />
+                </movingRegion>
+            </segment>
+            <trigger>
+                <condition ref="None"/>
+            </trigger>
         </annotation>
 
     </annotations>

@@ -42,7 +42,7 @@ def test_cli_failed():
 
 def test_cli_success():
     """预期成功的命令"""
-    commands = f"""{baseline1_file} {baseline2_file} -x 1920 -y 1080 -f Microsoft -V -O .
+    commands = f"""{baseline1_file} {baseline2_file} -x 1080 -y 1920 -f Microsoft -V -O .
 {baseline1_file} -o annotations.ass
 {baseline1_file} -o -
 {baseline1_file} -n

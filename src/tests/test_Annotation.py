@@ -7,7 +7,7 @@ from xml.etree.ElementTree import Element
 import pytest
 
 from Annotations2Sub import Annotation, Annotations
-from tests import testCasePath
+from tests import baselinePath
 
 
 def test_Annotation():
@@ -30,7 +30,7 @@ def test_eq_Annotation():
 
 
 def test_Pares():
-    filePath = os.path.join(testCasePath, "annotations.xml.test")
+    filePath = os.path.join(baselinePath, "annotations.xml.test")
     with open(filePath, "r", encoding="utf-8") as f:
         string = f.read()
     tree = xml.etree.ElementTree.fromstring(string)

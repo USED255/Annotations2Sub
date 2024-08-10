@@ -8,7 +8,7 @@ from Annotations2Sub.utils2 import (
     AnnotationsXmlStringToSubtitleString,
     GetAnnotationsUrl,
 )
-from tests import testCasePath
+from tests import baselinePath
 
 
 def test_GetAnnotationsUrl():
@@ -40,8 +40,8 @@ def test_GetMedia():
 
 
 def test_AnnotationsXmlStringToSubtitleString():
-    filePath = os.path.join(testCasePath, "annotations.xml.test")
-    filePath2 = os.path.join(testCasePath, "annotations.ass.test")
+    filePath = os.path.join(baselinePath, "annotations.xml.test")
+    filePath2 = os.path.join(baselinePath, "annotations.ass.test")
 
     with open(filePath, "r", encoding="utf-8") as f:
         string = f.read()
