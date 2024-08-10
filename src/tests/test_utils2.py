@@ -50,7 +50,9 @@ def test_AnnotationsXmlStringToSubtitleString():
         string2 = f.read()
 
     assert (
-        AnnotationsXmlStringToSubtitleString(string, title="annotations.xml.test")
+        AnnotationsXmlStringToSubtitleString(
+            string, 1000, 1000, "Arial", "annotations.xml.test"
+        )
         == string2
     )
 

@@ -3,6 +3,7 @@
 """转换器"""
 
 import copy
+import math
 import textwrap
 from typing import Dict, List, Optional
 
@@ -422,23 +423,44 @@ def Convert(
         padding_x = 1.0
         padding_y = 1.0
 
-        # 钳制字体大小
-        line_count = text.count("\n") + 1
-
-        _height = height - padding_y * (1 + line_count)
-        if _height <= 0:
-            _height = height
-
-        Max_textSize = _height / line_count
-        textSize = min(textSize, Max_textSize)
-        #
-
-        # 模拟换行
+        # 自适应文本
+        # 参考 https://github.com/USED255/youtube_annotations_hack/blob/50db2b95133ddb0283ce6adb2ccadc11510caf27/web/yts/jsbin/player-vflpusdz-/en_US/annotations_module.js#L2509
+        _text = text
         if textSize == 0:
-            textSize = 3.5
+            textSize = 0.5
 
-        length = int(width / (textSize / 4)) + 1
-        text = Warp(text, length)
+        def is_length_overflow() -> bool:
+            line_count = _text.count("\n") + 1
+            return textSize * 1.12 * line_count > height - padding_y * 2
+
+        def is_width_overflow() -> bool:
+            l = []
+            for line in _text.split("\n"):
+                l.append(len(line) * (textSize / 4))
+            return max(l) > width
+
+        if is_length_overflow() or is_width_overflow():
+            min_font_size = 0.5
+            max_font_size = textSize
+            step = textSize
+            while True:
+                step = step / 2
+
+                if step < 0.1:
+                    break
+
+                if is_length_overflow():
+                    textSize = max(textSize - step, min_font_size)
+                else:
+                    textSize = min(textSize + step, max_font_size)
+
+                _width = width - padding_x * 2
+                if _width < 0:
+                    _width = width
+                length = int(_width / (textSize / 4)) + 1
+                _text = Warp(text, length)
+
+        text = _text
         #
 
         # 让前导空格生效
@@ -521,6 +543,8 @@ def Convert(
 
     for each in annotations:
         if each.ref in patch:
+            if patch[each.ref] == {}:
+                continue
             each.timeStart = patch[each.ref]["timeStart"]
             each.timeEnd = patch[each.ref]["timeEnd"]
 
