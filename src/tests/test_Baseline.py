@@ -14,7 +14,7 @@ baselines = [
     "e8kKeUuytqA",
     "29-q7YnyUmY",
     "M2ryDEyyrXE",
-    "g-0i6MOh7n0.xml",
+    "g-0i6MOh7n0",
 ]
 
 
