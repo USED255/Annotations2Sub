@@ -423,14 +423,15 @@ def Convert(
         padding_x = 1.0
         padding_y = 1.0
 
-        # todo
+        # 自适应文本
+        # 参考 https://github.com/USED255/youtube_annotations_hack/blob/50db2b95133ddb0283ce6adb2ccadc11510caf27/web/yts/jsbin/player-vflpusdz-/en_US/annotations_module.js#L2509
         _text = text
         if textSize == 0:
             textSize = 0.5
 
         def is_length_overflow() -> bool:
             line_count = _text.count("\n") + 1
-            return textSize * line_count > height - padding_y * 2
+            return textSize * 1.2 * line_count > height - padding_y * 2
 
         def is_width_overflow() -> bool:
             l = []
@@ -455,6 +456,7 @@ def Convert(
 
                 length = int(width / (textSize / 4)) + 1
                 _text = Warp(text, length)
+
         text = _text
         #
 
