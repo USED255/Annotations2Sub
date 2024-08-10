@@ -1,0 +1,662 @@
+[Script Info]
+; 此脚本使用 Annotations2Sub 生成
+; https://github.com/USED255/Annotations2Sub
+ScriptType: v4.00+
+Title: g-0i6MOh7n0.xml.test
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Arial,20,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,2,2,2,10,10,10,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,00:00:00.00,00:00:26.97,Default,;annotation_2288677365;popup_box;,0,0,0,,{\an7\pos(0.0,1000.901)\c&H000000&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 77.576 l 0 77.576 {\p0}
+Dialogue: 0,00:00:00.00,00:00:26.97,Default,;annotation_2288677365;popup_text;,0,0,0,,{\an7\pos(19.2,1011.701)\fs47.315\c&HFFFFFF&\bord0\shad0}　　　　　※ 動態字幕並不準確。　灰色字幕的歌詞不存在於歌詞本上。　劇透注意。
+Dialogue: 0,00:00:00.00,00:00:27.00,Default,;annotation_609034617;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H000000&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 71.723 l 0 71.723 {\p0}
+Dialogue: 0,00:00:00.00,00:00:27.00,Default,;annotation_609034617;popup_text;,0,0,0,,{\an7\pos(19.2,10.8)\fs45.836\c&HFFFFFF&\bord0\shad0}　※ この字幕は日本語に対応していません。別の言語（英語／繁体字）のYOUTUBEに切り替えをお願いします。
+Dialogue: 0,00:00:08.70,00:00:17.80,Default,;annotation_3334890995;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 234.284 l 0 234.284 {\p0}
+Dialogue: 0,00:00:08.70,00:00:17.80,Default,;annotation_3334890995;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&H000000&\bord0\shad0}wa-fen, tes, ye-ra jec, aru-yan, gin-wa-fen;\N（空間、時間、可能性、融合、多元）
+Dialogue: 0,00:00:08.71,00:00:17.80,Default,;annotation_2137235727;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:00:08.71,00:00:17.80,Default,;annotation_2137235727;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}wa\N（空間、時間、可能性、融合、多元）
+Dialogue: 0,00:00:10.50,00:00:17.80,Default,;annotation_2625799549;popup_box;,0,0,0,,{\an7\pos(67.469,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 625.19 0 l 625.19 88.949 l 0 88.949 {\p0}
+Dialogue: 0,00:00:10.50,00:00:17.80,Default,;annotation_2625799549;popup_text;,0,0,0,,{\an7\pos(86.669,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-fen,
+Dialogue: 0,00:00:10.98,00:00:17.80,Default,;annotation_2152845409;popup_box;,0,0,0,,{\an7\pos(185.53,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 595.68 0 l 595.68 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:00:10.98,00:00:17.80,Default,;annotation_2152845409;popup_text;,0,0,0,,{\an7\pos(204.73,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}tes,
+Dialogue: 0,00:00:11.40,00:00:17.80,Default,;annotation_1419791195;popup_box;,0,0,0,,{\an7\pos(283.93,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 531.014 0 l 531.014 88.949 l 0 88.949 {\p0}
+Dialogue: 0,00:00:11.40,00:00:17.80,Default,;annotation_1419791195;popup_text;,0,0,0,,{\an7\pos(303.13,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ye
+Dialogue: 0,00:00:11.70,00:00:17.80,Default,;annotation_1390057429;popup_box;,0,0,0,,{\an7\pos(338.746,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 598.483 0 l 598.483 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:00:11.70,00:00:17.80,Default,;annotation_1390057429;popup_text;,0,0,0,,{\an7\pos(357.946,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ra
+Dialogue: 0,00:00:12.00,00:00:17.80,Default,;annotation_3822440865;popup_box;,0,0,0,,{\an7\pos(417.446,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 578.803 0 l 578.803 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:12.00,00:00:17.80,Default,;annotation_3822440865;popup_text;,0,0,0,,{\an7\pos(436.646,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}jec,
+Dialogue: 0,00:00:13.20,00:00:17.80,Default,;annotation_2429742309;popup_box;,0,0,0,,{\an7\pos(511.622,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 588.653 0 l 588.653 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:13.20,00:00:17.80,Default,;annotation_2429742309;popup_text;,0,0,0,,{\an7\pos(530.822,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}aru
+Dialogue: 0,00:00:14.90,00:00:17.80,Default,;annotation_4204819961;popup_box;,0,0,0,,{\an7\pos(588.922,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 560.544 0 l 560.544 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:00:14.90,00:00:17.80,Default,;annotation_4204819961;popup_text;,0,0,0,,{\an7\pos(608.122,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-yan,
+Dialogue: 0,00:00:15.60,00:00:17.80,Default,;annotation_4047017327;popup_box;,0,0,0,,{\an7\pos(718.176,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 588.71 0 l 588.71 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:15.60,00:00:17.80,Default,;annotation_4047017327;popup_text;,0,0,0,,{\an7\pos(737.376,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}gin
+Dialogue: 0,00:00:16.10,00:00:17.80,Default,;annotation_3673915907;popup_box;,0,0,0,,{\an7\pos(787.123,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 494.477 0 l 494.477 100.192 l 0 100.192 {\p0}
+Dialogue: 0,00:00:16.10,00:00:17.80,Default,;annotation_3673915907;popup_text;,0,0,0,,{\an7\pos(806.323,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-wa
+Dialogue: 0,00:00:16.60,00:00:17.80,Default,;annotation_2922420897;popup_box;,0,0,0,,{\an7\pos(871.45,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 525.408 0 l 525.408 93.161 l 0 93.161 {\p0}
+Dialogue: 0,00:00:16.60,00:00:17.80,Default,;annotation_2922420897;popup_text;,0,0,0,,{\an7\pos(890.65,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-fen;
+Dialogue: 0,00:00:17.80,00:00:27.00,Default,;annotation_3037239975;popup_box;,0,0,0,,{\an7\pos(0.0,338.904)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:00:17.80,00:00:27.00,Default,;annotation_3037239975;popup_text;,0,0,0,,{\an7\pos(19.2,349.704)\fs58.233\c&H000000&\bord0\shad0}a-z wa-fen-du chef-in yan=koh wa-fen-du refu;\N（全ての世界を越える波動こそが、この世界を救う）\N（只有穿越了所有世界的波動、才能拯救這個世界）
+Dialogue: 0,00:00:17.81,00:00:27.00,Default,;annotation_210070457;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 267.538 l 0 267.538 {\p0}
+Dialogue: 0,00:00:17.81,00:00:27.00,Default,;annotation_210070457;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}a\N（全ての世界を越える波動こそが、この世界を救う）\N（只有穿越了所有世界的波動、才能拯救這個世界）
+Dialogue: 0,00:00:19.05,00:00:27.00,Default,;annotation_3334655733;popup_box;,0,0,0,,{\an7\pos(29.51,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 646.272 0 l 646.272 90.353 l 0 90.353 {\p0}
+Dialogue: 0,00:00:19.05,00:00:27.00,Default,;annotation_3334655733;popup_text;,0,0,0,,{\an7\pos(48.71,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-z
+Dialogue: 0,00:00:20.20,00:00:27.00,Default,;annotation_3200818609;popup_box;,0,0,0,,{\an7\pos(85.747,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 866.957 0 l 866.957 84.726 l 0 84.726 {\p0}
+Dialogue: 0,00:00:20.20,00:00:27.00,Default,;annotation_3200818609;popup_text;,0,0,0,,{\an7\pos(104.947,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}wa
+Dialogue: 0,00:00:20.70,00:00:27.00,Default,;annotation_4286117823;popup_box;,0,0,0,,{\an7\pos(154.618,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 688.454 0 l 688.454 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:00:20.70,00:00:27.00,Default,;annotation_4286117823;popup_text;,0,0,0,,{\an7\pos(173.818,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-fen
+Dialogue: 0,00:00:21.20,00:00:27.00,Default,;annotation_1518294941;popup_box;,0,0,0,,{\an7\pos(243.168,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 643.469 0 l 643.469 90.353 l 0 90.353 {\p0}
+Dialogue: 0,00:00:21.20,00:00:27.00,Default,;annotation_1518294941;popup_text;,0,0,0,,{\an7\pos(262.368,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:00:21.70,00:00:27.00,Default,;annotation_2189897085;popup_box;,0,0,0,,{\an7\pos(333.12,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 637.843 0 l 637.843 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:21.70,00:00:27.00,Default,;annotation_2189897085;popup_text;,0,0,0,,{\an7\pos(352.32,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}chef
+Dialogue: 0,00:00:22.90,00:00:27.00,Default,;annotation_2196914419;popup_box;,0,0,0,,{\an7\pos(431.501,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 635.04 0 l 635.04 91.757 l 0 91.757 {\p0}
+Dialogue: 0,00:00:22.90,00:00:27.00,Default,;annotation_2196914419;popup_text;,0,0,0,,{\an7\pos(450.701,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-in
+Dialogue: 0,00:00:23.71,00:00:27.00,Default,;annotation_388972329;popup_box;,0,0,0,,{\an7\pos(503.117,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 633.696 0 l 633.696 93.096 l 0 93.096 {\p0}
+Dialogue: 0,00:00:23.71,00:00:27.00,Default,;annotation_388972329;popup_text;,0,0,0,,{\an7\pos(522.317,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}yan
+Dialogue: 0,00:00:24.20,00:00:27.00,Default,;annotation_3524716079;popup_box;,0,0,0,,{\an7\pos(587.52,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 599.904 0 l 599.904 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:00:24.20,00:00:27.00,Default,;annotation_3524716079;popup_text;,0,0,0,,{\an7\pos(606.72,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}=koh
+Dialogue: 0,00:00:24.78,00:00:27.00,Default,;annotation_3781564367;popup_box;,0,0,0,,{\an7\pos(716.774,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 584.486 0 l 584.486 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:00:24.78,00:00:27.00,Default,;annotation_3781564367;popup_text;,0,0,0,,{\an7\pos(735.974,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}wa
+Dialogue: 0,00:00:25.32,00:00:27.00,Default,;annotation_513358807;popup_box;,0,0,0,,{\an7\pos(782.822,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 605.587 0 l 605.587 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:25.32,00:00:27.00,Default,;annotation_513358807;popup_text;,0,0,0,,{\an7\pos(802.022,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-fen
+Dialogue: 0,00:00:25.60,00:00:27.00,Default,;annotation_732292989;popup_box;,0,0,0,,{\an7\pos(871.45,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 450.912 0 l 450.912 98.788 l 0 98.788 {\p0}
+Dialogue: 0,00:00:25.60,00:00:27.00,Default,;annotation_732292989;popup_text;,0,0,0,,{\an7\pos(890.65,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:00:25.90,00:00:27.00,Default,;annotation_1856419645;popup_box;,0,0,0,,{\an7\pos(960.0,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 674.381 0 l 674.381 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:00:25.90,00:00:27.00,Default,;annotation_1856419645;popup_text;,0,0,0,,{\an7\pos(979.2,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}refu;
+Dialogue: 0,00:00:27.00,00:00:31.90,Default,;annotation_3446315093;popup_box;,0,0,0,,{\an7\pos(0.0,427.496)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 274.601 l 0 274.601 {\p0}
+Dialogue: 0,00:00:27.00,00:00:31.90,Default,;annotation_3446315093;popup_text;,0,0,0,,{\an7\pos(19.2,438.296)\fs58.233\c&HFFFFFF&\bord0\shad0}
+Dialogue: 0,00:00:27.01,00:00:31.90,Default,;annotation_512144927;title;,0,0,0,,{\an5\pos(960.0,562.567)\fs67.56\c&H000000&\bord0\shad0\b1}hyu-me!\N謳え！\N謳歌吧！
+Dialogue: 0,00:00:27.03,00:00:31.90,Default,;annotation_1823552423;title;,0,0,0,,{\an5\pos(960.0,558.317)\fs67.56\c&HFFFFFF&\bord0\shad0\b1}hyu-me!\N謳え！\N謳歌吧！
+Dialogue: 0,00:00:36.80,00:00:41.90,Default,;annotation_3947136823;popup_box;,0,0,0,,{\an7\pos(0.0,338.904)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1915.507 0 l 1915.507 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:00:36.80,00:00:41.90,Default,;annotation_3947136823;popup_text;,0,0,0,,{\an7\pos(19.2,349.704)\fs58.233\c&H000000&\bord0\shad0}ahih yei chei, ah-ih-cyen-du kog var-i\N　　　　　　　　　　　　　　　　　　　　　　　　【初次共嗚】\N（我脫胎換骨　注視彼此）
+Dialogue: 0,00:00:36.81,00:00:41.90,Default,;annotation_1011893165;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 238.01 l 0 238.01 {\p0}
+Dialogue: 0,00:00:36.81,00:00:41.90,Default,;annotation_1011893165;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ahih\N　　　　　　　　　　　　　　　　　　　　　　　　【初次共嗚】\N（我脫胎換骨　注視彼此）
+Dialogue: 0,00:00:37.27,00:00:41.90,Default,;annotation_2151460837;popup_box;,0,0,0,,{\an7\pos(112.454,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 612.538 0 l 612.538 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:00:37.27,00:00:41.90,Default,;annotation_2151460837;popup_text;,0,0,0,,{\an7\pos(131.654,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}yei
+Dialogue: 0,00:00:37.87,00:00:46.30,Default,;annotation_1416822735;popup_box;,0,0,0,,{\an7\pos(0.0,593.438)\c&H999999&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1916.909 0 l 1916.909 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:00:37.87,00:00:46.30,Default,;annotation_1416822735;popup_text;,0,0,0,,{\an7\pos(19.2,604.238)\fs58.233\c&H000000&\bord0\shad0}ih-ne fao iyon-ny rei-yah-i;\N\N（將我的意念傳遞給您）
+Dialogue: 0,00:00:37.88,00:00:46.30,Default,;annotation_845208919;popup_box;,0,0,0,,{\an7\pos(0.0,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1919.712 0 l 1919.712 242.222 l 0 242.222 {\p0}
+Dialogue: 0,00:00:37.88,00:00:46.30,Default,;annotation_845208919;popup_text;,0,0,0,,{\an7\pos(19.2,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}ih\N\N（將我的意念傳遞給您）
+Dialogue: 0,00:00:38.19,00:00:41.90,Default,;annotation_3417832811;popup_box;,0,0,0,,{\an7\pos(193.958,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 585.83 0 l 585.83 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:38.19,00:00:41.90,Default,;annotation_3417832811;popup_text;,0,0,0,,{\an7\pos(213.158,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}chei,
+Dialogue: 0,00:00:38.80,00:00:41.90,Default,;annotation_1987951529;popup_box;,0,0,0,,{\an7\pos(319.066,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 581.626 0 l 581.626 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:38.80,00:00:41.90,Default,;annotation_1987951529;popup_text;,0,0,0,,{\an7\pos(338.266,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ah
+Dialogue: 0,00:00:38.90,00:00:46.30,Default,;annotation_1375730065;popup_box;,0,0,0,,{\an7\pos(40.762,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 646.272 0 l 646.272 87.534 l 0 87.534 {\p0}
+Dialogue: 0,00:00:38.90,00:00:46.30,Default,;annotation_1375730065;popup_text;,0,0,0,,{\an7\pos(59.962,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:00:39.00,00:00:41.90,Default,;annotation_415553207;popup_box;,0,0,0,,{\an7\pos(376.685,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 594.278 0 l 594.278 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:39.00,00:00:41.90,Default,;annotation_415553207;popup_text;,0,0,0,,{\an7\pos(395.885,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ih
+Dialogue: 0,00:00:39.20,00:00:41.90,Default,;annotation_2950741783;popup_box;,0,0,0,,{\an7\pos(434.323,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 623.789 0 l 623.789 91.757 l 0 91.757 {\p0}
+Dialogue: 0,00:00:39.20,00:00:41.90,Default,;annotation_2950741783;popup_text;,0,0,0,,{\an7\pos(453.523,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-cyen
+Dialogue: 0,00:00:39.80,00:00:41.90,Default,;annotation_3908069949;popup_box;,0,0,0,,{\an7\pos(560.813,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 597.082 0 l 597.082 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:39.80,00:00:41.90,Default,;annotation_3908069949;popup_text;,0,0,0,,{\an7\pos(580.013,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:00:40.28,00:00:41.90,Default,;annotation_2133401547;popup_box;,0,0,0,,{\an7\pos(650.784,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 490.253 0 l 490.253 98.788 l 0 98.788 {\p0}
+Dialogue: 0,00:00:40.28,00:00:41.90,Default,;annotation_2133401547;popup_text;,0,0,0,,{\an7\pos(669.984,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}kog
+Dialogue: 0,00:00:40.50,00:00:41.90,Default,;annotation_4090783345;popup_box;,0,0,0,,{\an7\pos(750.509,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 567.629 0 l 567.629 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:40.50,00:00:41.90,Default,;annotation_4090783345;popup_text;,0,0,0,,{\an7\pos(769.709,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}var
+Dialogue: 0,00:00:40.80,00:00:46.30,Default,;annotation_1413737655;popup_box;,0,0,0,,{\an7\pos(130.656,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 580.282 0 l 580.282 94.565 l 0 94.565 {\p0}
+Dialogue: 0,00:00:40.80,00:00:46.30,Default,;annotation_1413737655;popup_text;,0,0,0,,{\an7\pos(149.856,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}fao
+Dialogue: 0,00:00:40.84,00:00:41.90,Default,;annotation_973650857;popup_box;,0,0,0,,{\an7\pos(820.858,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 504.307 0 l 504.307 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:40.84,00:00:41.90,Default,;annotation_973650857;popup_text;,0,0,0,,{\an7\pos(840.058,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-i
+Dialogue: 0,00:00:41.80,00:00:46.30,Default,;annotation_2983351647;popup_box;,0,0,0,,{\an7\pos(217.786,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 583.104 0 l 583.104 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:41.80,00:00:46.30,Default,;annotation_2983351647;popup_text;,0,0,0,,{\an7\pos(236.986,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}iyon
+Dialogue: 0,00:00:41.90,00:00:45.40,Default,;annotation_3446086381;popup_box;,0,0,0,,{\an7\pos(0.0,338.839)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 235.256 l 0 235.256 {\p0}
+Dialogue: 0,00:00:41.90,00:00:45.40,Default,;annotation_3446086381;popup_text;,0,0,0,,{\an7\pos(19.2,349.639)\fs58.233\c&H000000&\bord0\shad0}ahih rei-yah, ah-ih-cyen-du reth-i\N　　　　　　　　　　　　　　　　　　　　　　　　　【同調】\N（我傳意　認識彼此）
+Dialogue: 0,00:00:41.90,00:00:45.40,Default,;annotation_577431347;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1918.31 0 l 1918.31 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:00:41.90,00:00:45.40,Default,;annotation_577431347;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ahih \N　　　　　　　　　　　　　　　　　　　　　　　　　【同調】\N（我傳意　認識彼此）
+Dialogue: 0,00:00:42.29,00:00:45.40,Default,;annotation_1447050287;popup_box;,0,0,0,,{\an7\pos(112.454,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 598.483 0 l 598.483 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:42.29,00:00:45.40,Default,;annotation_1447050287;popup_text;,0,0,0,,{\an7\pos(131.654,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}rei
+Dialogue: 0,00:00:42.70,00:00:45.40,Default,;annotation_3284086795;popup_box;,0,0,0,,{\an7\pos(171.475,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 644.87 0 l 644.87 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:42.70,00:00:45.40,Default,;annotation_3284086795;popup_text;,0,0,0,,{\an7\pos(190.675,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-yah,
+Dialogue: 0,00:00:43.30,00:00:45.40,Default,;annotation_4272110813;popup_box;,0,0,0,,{\an7\pos(302.189,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 591.456 0 l 591.456 88.949 l 0 88.949 {\p0}
+Dialogue: 0,00:00:43.30,00:00:45.40,Default,;annotation_4272110813;popup_text;,0,0,0,,{\an7\pos(321.389,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ah
+Dialogue: 0,00:00:43.53,00:00:45.40,Default,;annotation_2575468407;popup_box;,0,0,0,,{\an7\pos(359.827,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 636.442 0 l 636.442 93.161 l 0 93.161 {\p0}
+Dialogue: 0,00:00:43.53,00:00:45.40,Default,;annotation_2575468407;popup_text;,0,0,0,,{\an7\pos(379.027,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ih
+Dialogue: 0,00:00:43.60,00:00:46.30,Default,;annotation_3864941213;popup_box;,0,0,0,,{\an7\pos(312.038,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 613.958 0 l 613.958 91.757 l 0 91.757 {\p0}
+Dialogue: 0,00:00:43.60,00:00:46.30,Default,;annotation_3864941213;popup_text;,0,0,0,,{\an7\pos(331.238,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ny
+Dialogue: 0,00:00:43.72,00:00:45.40,Default,;annotation_993311105;popup_box;,0,0,0,,{\an7\pos(417.446,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 598.483 0 l 598.483 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:43.72,00:00:45.40,Default,;annotation_993311105;popup_text;,0,0,0,,{\an7\pos(436.646,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-cyen
+Dialogue: 0,00:00:44.20,00:00:45.40,Default,;annotation_2389778337;popup_box;,0,0,0,,{\an7\pos(543.955,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 585.83 0 l 585.83 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:00:44.20,00:00:45.40,Default,;annotation_2389778337;popup_text;,0,0,0,,{\an7\pos(563.155,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:00:44.40,00:00:45.40,Default,;annotation_528239117;popup_box;,0,0,0,,{\an7\pos(633.907,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 531.014 0 l 531.014 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:44.40,00:00:45.40,Default,;annotation_528239117;popup_text;,0,0,0,,{\an7\pos(653.107,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}reth-i
+Dialogue: 0,00:00:44.79,00:00:46.30,Default,;annotation_1635435165;popup_box;,0,0,0,,{\an7\pos(399.187,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 494.477 0 l 494.477 104.414 l 0 104.414 {\p0}
+Dialogue: 0,00:00:44.79,00:00:46.30,Default,;annotation_1635435165;popup_text;,0,0,0,,{\an7\pos(418.387,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}rei
+Dialogue: 0,00:00:45.30,00:00:46.30,Default,;annotation_2377610487;popup_box;,0,0,0,,{\an7\pos(456.806,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 612.595 0 l 612.595 94.424 l 0 94.424 {\p0}
+Dialogue: 0,00:00:45.30,00:00:46.30,Default,;annotation_2377610487;popup_text;,0,0,0,,{\an7\pos(476.006,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-yah-i;
+Dialogue: 0,00:00:45.40,00:00:49.56,Default,;annotation_355020819;popup_box;,0,0,0,,{\an7\pos(0.0,338.904)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:00:45.40,00:00:49.56,Default,;annotation_355020819;popup_text;,0,0,0,,{\an7\pos(19.2,349.704)\fs58.233\c&H000000&\bord0\shad0}ahih aru-yan, ah-ih-cyen-du fao-i\N　　　　　　　　　　　　　　　　　　　　　　　　【一心同體】\N（我融合　思念彼此）
+Dialogue: 0,00:00:45.41,00:00:49.56,Default,;annotation_3121472589;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 243.637 l 0 243.637 {\p0}
+Dialogue: 0,00:00:45.41,00:00:49.56,Default,;annotation_3121472589;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ahih \N　　　　　　　　　　　　　　　　　　　　　　　　【一心同體】\N（我融合　思念彼此）
+Dialogue: 0,00:00:45.76,00:00:49.56,Default,;annotation_1579668301;popup_box;,0,0,0,,{\an7\pos(112.454,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 557.722 0 l 557.722 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:45.76,00:00:49.56,Default,;annotation_1579668301;popup_text;,0,0,0,,{\an7\pos(131.654,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}aru
+Dialogue: 0,00:00:46.30,00:00:52.30,Default,;annotation_805298509;popup_box;,0,0,0,,{\an7\pos(1.402,593.438)\c&H999999&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1919.712 0 l 1919.712 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:00:46.30,00:00:52.30,Default,;annotation_805298509;popup_text;,0,0,0,,{\an7\pos(20.602,604.238)\fs58.233\c&H000000&\bord0\shad0}wa-fen nh iz, ahih rei-yah;\N\N（世界與大家　我傳心）
+Dialogue: 0,00:00:46.31,00:00:52.30,Default,;annotation_2241289781;popup_box;,0,0,0,,{\an7\pos(0.0,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:00:46.31,00:00:52.30,Default,;annotation_2241289781;popup_text;,0,0,0,,{\an7\pos(19.2,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}wa\N\N（世界與大家　我傳心）
+Dialogue: 0,00:00:46.33,00:00:49.56,Default,;annotation_953292689;popup_box;,0,0,0,,{\an7\pos(188.352,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 573.197 0 l 573.197 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:46.33,00:00:49.56,Default,;annotation_953292689;popup_text;,0,0,0,,{\an7\pos(207.552,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-yan,
+Dialogue: 0,00:00:46.80,00:00:49.56,Default,;annotation_2901491235;popup_box;,0,0,0,,{\an7\pos(317.664,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 508.531 0 l 508.531 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:00:46.80,00:00:49.56,Default,;annotation_2901491235;popup_text;,0,0,0,,{\an7\pos(336.864,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ah
+Dialogue: 0,00:00:47.00,00:00:49.56,Default,;annotation_4043537779;popup_box;,0,0,0,,{\an7\pos(376.685,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 546.49 0 l 546.49 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:47.00,00:00:49.56,Default,;annotation_4043537779;popup_text;,0,0,0,,{\an7\pos(395.885,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ih
+Dialogue: 0,00:00:47.20,00:00:52.30,Default,;annotation_3190330203;popup_box;,0,0,0,,{\an7\pos(67.469,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 640.646 0 l 640.646 88.949 l 0 88.949 {\p0}
+Dialogue: 0,00:00:47.20,00:00:52.30,Default,;annotation_3190330203;popup_text;,0,0,0,,{\an7\pos(86.669,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-fen
+Dialogue: 0,00:00:47.27,00:00:49.56,Default,;annotation_881835165;popup_box;,0,0,0,,{\an7\pos(434.323,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 595.68 0 l 595.68 84.726 l 0 84.726 {\p0}
+Dialogue: 0,00:00:47.27,00:00:49.56,Default,;annotation_881835165;popup_text;,0,0,0,,{\an7\pos(453.523,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-cyen
+Dialogue: 0,00:00:47.81,00:00:49.56,Default,;annotation_3496454361;popup_box;,0,0,0,,{\an7\pos(560.813,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 533.837 0 l 533.837 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:47.81,00:00:49.56,Default,;annotation_3496454361;popup_text;,0,0,0,,{\an7\pos(580.013,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:00:48.20,00:00:49.56,Default,;annotation_959941001;popup_box;,0,0,0,,{\an7\pos(650.784,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 584.429 0 l 584.429 93.161 l 0 93.161 {\p0}
+Dialogue: 0,00:00:48.20,00:00:49.56,Default,;annotation_959941001;popup_text;,0,0,0,,{\an7\pos(669.984,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}fao-i
+Dialogue: 0,00:00:48.30,00:00:52.30,Default,;annotation_3407413615;popup_box;,0,0,0,,{\an7\pos(171.418,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 564.806 0 l 564.806 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:00:48.30,00:00:52.30,Default,;annotation_3407413615;popup_text;,0,0,0,,{\an7\pos(190.618,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}nh
+Dialogue: 0,00:00:48.80,00:00:52.30,Default,;annotation_3145435109;popup_box;,0,0,0,,{\an7\pos(244.493,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 504.384 0 l 504.384 100.127 l 0 100.127 {\p0}
+Dialogue: 0,00:00:48.80,00:00:52.30,Default,;annotation_3145435109;popup_text;,0,0,0,,{\an7\pos(263.693,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}iz,
+Dialogue: 0,00:00:49.33,00:00:52.30,Default,;annotation_1277942947;popup_box;,0,0,0,,{\an7\pos(310.637,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 564.749 0 l 564.749 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:49.33,00:00:52.30,Default,;annotation_1277942947;popup_text;,0,0,0,,{\an7\pos(329.837,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}ahih
+Dialogue: 0,00:00:49.57,00:00:54.10,Default,;annotation_971035327;popup_box;,0,0,0,,{\an7\pos(0.0,338.904)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1919.712 0 l 1919.712 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:00:49.57,00:00:54.10,Default,;annotation_971035327;popup_text;,0,0,0,,{\an7\pos(19.2,349.704)\fs58.233\c&H000000&\bord0\shad0}yah, jen i-ten-ne koo-ja cyon-uii\N　　　　　　　　　　　　　　　　　　　　　　　　　【唯我】\N（來　讓我們成為一個存在）
+Dialogue: 0,00:00:49.58,00:00:54.10,Default,;annotation_1853892367;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 245.041 l 0 245.041 {\p0}
+Dialogue: 0,00:00:49.58,00:00:54.10,Default,;annotation_1853892367;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}yah, \N　　　　　　　　　　　　　　　　　　　　　　　　　【唯我】\N（來　讓我們成為一個存在）
+Dialogue: 0,00:00:49.77,00:00:54.10,Default,;annotation_2110164535;popup_box;,0,0,0,,{\an7\pos(112.454,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 529.613 0 l 529.613 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:49.77,00:00:54.10,Default,;annotation_2110164535;popup_text;,0,0,0,,{\an7\pos(131.654,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}jen
+Dialogue: 0,00:00:50.80,00:00:52.30,Default,;annotation_24295543;popup_box;,0,0,0,,{\an7\pos(422.995,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 542.342 0 l 542.342 94.565 l 0 94.565 {\p0}
+Dialogue: 0,00:00:50.80,00:00:52.30,Default,;annotation_24295543;popup_text;,0,0,0,,{\an7\pos(442.195,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}rei
+Dialogue: 0,00:00:50.80,00:00:54.10,Default,;annotation_4107448145;popup_box;,0,0,0,,{\an7\pos(196.781,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 583.027 0 l 583.027 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:50.80,00:00:54.10,Default,;annotation_4107448145;popup_text;,0,0,0,,{\an7\pos(215.981,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}i
+Dialogue: 0,00:00:51.00,00:00:54.10,Default,;annotation_1406326961;popup_box;,0,0,0,,{\an7\pos(208.032,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 508.531 0 l 508.531 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:00:51.00,00:00:54.10,Default,;annotation_1406326961;popup_text;,0,0,0,,{\an7\pos(227.232,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ten
+Dialogue: 0,00:00:51.20,00:00:54.10,Default,;annotation_1239525291;popup_box;,0,0,0,,{\an7\pos(299.386,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 580.224 0 l 580.224 90.353 l 0 90.353 {\p0}
+Dialogue: 0,00:00:51.20,00:00:54.10,Default,;annotation_1239525291;popup_text;,0,0,0,,{\an7\pos(318.586,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:00:51.30,00:00:52.30,Default,;annotation_2095382005;popup_box;,0,0,0,,{\an7\pos(480.71,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 556.32 0 l 556.32 90.277 l 0 90.277 {\p0}
+Dialogue: 0,00:00:51.30,00:00:52.30,Default,;annotation_2095382005;popup_text;,0,0,0,,{\an7\pos(499.91,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-yah;
+Dialogue: 0,00:00:51.53,00:00:54.10,Default,;annotation_3750837405;popup_box;,0,0,0,,{\an7\pos(389.338,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 597.082 0 l 597.082 93.161 l 0 93.161 {\p0}
+Dialogue: 0,00:00:51.53,00:00:54.10,Default,;annotation_3750837405;popup_text;,0,0,0,,{\an7\pos(408.538,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}koo
+Dialogue: 0,00:00:51.77,00:00:54.10,Default,;annotation_3129168887;popup_box;,0,0,0,,{\an7\pos(472.262,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 533.837 0 l 533.837 98.788 l 0 98.788 {\p0}
+Dialogue: 0,00:00:51.77,00:00:54.10,Default,;annotation_3129168887;popup_text;,0,0,0,,{\an7\pos(491.462,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ja
+Dialogue: 0,00:00:51.95,00:00:54.10,Default,;annotation_2172063657;popup_box;,0,0,0,,{\an7\pos(543.955,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 611.136 0 l 611.136 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:00:51.95,00:00:54.10,Default,;annotation_2172063657;popup_text;,0,0,0,,{\an7\pos(563.155,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}cyon
+Dialogue: 0,00:00:52.30,00:00:54.10,Default,;annotation_111295987;popup_box;,0,0,0,,{\an7\pos(654.989,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 626.592 0 l 626.592 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:00:52.30,00:00:54.10,Default,;annotation_111295987;popup_text;,0,0,0,,{\an7\pos(674.189,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-uii
+Dialogue: 0,00:01:10.80,00:01:24.50,Default,;annotation_1030253021;popup_box;,0,0,0,,{\an7\pos(0.0,593.438)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:01:10.80,00:01:24.50,Default,;annotation_1030253021;popup_text;,0,0,0,,{\an7\pos(19.2,604.238)\fs58.233\c&H000000&\bord0\shad0}dag, soh-ne pau-fao=zwee-tes ih-iz-du tu-dai-ir;\N\N（但是、那份心願卻會偶爾傷害到人們）
+Dialogue: 0,00:01:10.80,00:01:24.50,Default,;annotation_1697442125;popup_box;,0,0,0,,{\an7\pos(0.0,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 267.538 l 0 267.538 {\p0}
+Dialogue: 0,00:01:10.80,00:01:24.50,Default,;annotation_1697442125;popup_text;,0,0,0,,{\an7\pos(19.2,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}dag, \N\N（但是、那份心願卻會偶爾傷害到人們）
+Dialogue: 0,00:01:11.55,00:01:24.50,Default,;annotation_209436793;popup_box;,0,0,0,,{\an7\pos(115.258,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 564.749 0 l 564.749 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:11.55,00:01:24.50,Default,;annotation_209436793;popup_text;,0,0,0,,{\an7\pos(134.458,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}soh
+Dialogue: 0,00:01:12.40,00:01:24.50,Default,;annotation_4117532391;popup_box;,0,0,0,,{\an7\pos(199.584,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 574.598 0 l 574.598 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:12.40,00:01:24.50,Default,;annotation_4117532391;popup_text;,0,0,0,,{\an7\pos(218.784,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:01:12.50,00:01:24.50,Default,;annotation_3923878025;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1918.31 0 l 1918.31 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:01:12.50,00:01:24.50,Default,;annotation_3923878025;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&H000000&\bord0\shad0}koh-ne tyoi-ne ih-iz-ne aa-fao rei-du reth-i, soh-nh yal euz fao-iz pau-fao-ir;\N\N（我知道此地的人有着溫柔的心腸、我為了守護他們而祈求意念）
+Dialogue: 0,00:01:12.51,00:01:24.50,Default,;annotation_1934864563;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1918.31 0 l 1918.31 246.445 l 0 246.445 {\p0}
+Dialogue: 0,00:01:12.51,00:01:24.50,Default,;annotation_1934864563;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}koh\N\N（我知道此地的人有着溫柔的心腸、我為了守護他們而祈求意念）
+Dialogue: 0,00:01:12.90,00:01:24.50,Default,;annotation_276441049;popup_box;,0,0,0,,{\an7\pos(84.326,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 588.653 0 l 588.653 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:01:12.90,00:01:24.50,Default,;annotation_276441049;popup_text;,0,0,0,,{\an7\pos(103.526,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:01:13.50,00:01:24.50,Default,;annotation_59781817;popup_box;,0,0,0,,{\an7\pos(174.298,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 590.054 0 l 590.054 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:01:13.50,00:01:24.50,Default,;annotation_59781817;popup_text;,0,0,0,,{\an7\pos(193.498,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}tyoi
+Dialogue: 0,00:01:13.80,00:01:24.50,Default,;annotation_2445636641;popup_box;,0,0,0,,{\an7\pos(254.4,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 571.776 0 l 571.776 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:13.80,00:01:24.50,Default,;annotation_2445636641;popup_text;,0,0,0,,{\an7\pos(273.6,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:01:14.20,00:01:24.50,Default,;annotation_3787812945;popup_box;,0,0,0,,{\an7\pos(289.555,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 547.891 0 l 547.891 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:01:14.20,00:01:24.50,Default,;annotation_3787812945;popup_text;,0,0,0,,{\an7\pos(308.755,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}pau
+Dialogue: 0,00:01:14.25,00:01:24.50,Default,;annotation_2204335475;popup_box;,0,0,0,,{\an7\pos(344.371,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 590.054 0 l 590.054 115.668 l 0 115.668 {\p0}
+Dialogue: 0,00:01:14.25,00:01:24.50,Default,;annotation_2204335475;popup_text;,0,0,0,,{\an7\pos(363.571,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ih
+Dialogue: 0,00:01:14.80,00:01:24.50,Default,;annotation_153961055;popup_box;,0,0,0,,{\an7\pos(385.133,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 410.15 0 l 410.15 105.818 l 0 105.818 {\p0}
+Dialogue: 0,00:01:14.80,00:01:24.50,Default,;annotation_153961055;popup_text;,0,0,0,,{\an7\pos(404.333,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-iz
+Dialogue: 0,00:01:15.20,00:01:24.50,Default,;annotation_2623445711;popup_box;,0,0,0,,{\an7\pos(439.949,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 365.165 0 l 365.165 122.699 l 0 122.699 {\p0}
+Dialogue: 0,00:01:15.20,00:01:24.50,Default,;annotation_2623445711;popup_text;,0,0,0,,{\an7\pos(459.149,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:01:15.71,00:01:24.50,Default,;annotation_942160865;popup_box;,0,0,0,,{\an7\pos(376.627,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 556.378 0 l 556.378 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:01:15.71,00:01:24.50,Default,;annotation_942160865;popup_text;,0,0,0,,{\an7\pos(395.827,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-fao
+Dialogue: 0,00:01:15.80,00:01:24.50,Default,;annotation_2299532561;popup_box;,0,0,0,,{\an7\pos(529.901,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 249.907 0 l 249.907 160.661 l 0 160.661 {\p0}
+Dialogue: 0,00:01:15.80,00:01:24.50,Default,;annotation_2299532561;popup_text;,0,0,0,,{\an7\pos(549.101,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}aa
+Dialogue: 0,00:01:16.20,00:01:24.50,Default,;annotation_2439152995;popup_box;,0,0,0,,{\an7\pos(587.52,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 355.334 0 l 355.334 100.192 l 0 100.192 {\p0}
+Dialogue: 0,00:01:16.20,00:01:24.50,Default,;annotation_2439152995;popup_text;,0,0,0,,{\an7\pos(606.72,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-fao
+Dialogue: 0,00:01:16.50,00:01:24.50,Default,;annotation_4247297259;popup_box;,0,0,0,,{\an7\pos(691.469,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 234.509 0 l 234.509 104.414 l 0 104.414 {\p0}
+Dialogue: 0,00:01:16.50,00:01:24.50,Default,;annotation_4247297259;popup_text;,0,0,0,,{\an7\pos(710.669,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}rei
+Dialogue: 0,00:01:16.60,00:01:24.50,Default,;annotation_986579107;popup_box;,0,0,0,,{\an7\pos(466.656,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 484.646 0 l 484.646 108.637 l 0 108.637 {\p0}
+Dialogue: 0,00:01:16.60,00:01:24.50,Default,;annotation_986579107;popup_text;,0,0,0,,{\an7\pos(485.856,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}=zwee
+Dialogue: 0,00:01:16.74,00:01:24.50,Default,;annotation_1823998139;popup_box;,0,0,0,,{\an7\pos(749.165,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 303.322 0 l 303.322 114.253 l 0 114.253 {\p0}
+Dialogue: 0,00:01:16.74,00:01:24.50,Default,;annotation_1823998139;popup_text;,0,0,0,,{\an7\pos(768.365,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:01:17.00,00:01:24.50,Default,;annotation_4223186777;popup_box;,0,0,0,,{\an7\pos(839.059,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 188.122 0 l 188.122 129.73 l 0 129.73 {\p0}
+Dialogue: 0,00:01:17.00,00:01:24.50,Default,;annotation_4223186777;popup_text;,0,0,0,,{\an7\pos(858.259,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}reth
+Dialogue: 0,00:01:17.20,00:01:24.50,Default,;annotation_1818147695;popup_box;,0,0,0,,{\an7\pos(929.069,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 259.757 0 l 259.757 157.853 l 0 157.853 {\p0}
+Dialogue: 0,00:01:17.20,00:01:24.50,Default,;annotation_1818147695;popup_text;,0,0,0,,{\an7\pos(948.269,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-i,
+Dialogue: 0,00:01:17.30,00:01:24.50,Default,;annotation_1506723113;popup_box;,0,0,0,,{\an7\pos(618.451,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 573.197 0 l 573.197 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:01:17.30,00:01:24.50,Default,;annotation_1506723113;popup_text;,0,0,0,,{\an7\pos(637.651,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-tes
+Dialogue: 0,00:01:17.90,00:01:24.50,Default,;annotation_1605327377;popup_box;,0,0,0,,{\an7\pos(988.109,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 313.152 0 l 313.152 135.356 l 0 135.356 {\p0}
+Dialogue: 0,00:01:17.90,00:01:24.50,Default,;annotation_1605327377;popup_text;,0,0,0,,{\an7\pos(1007.309,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}soh
+Dialogue: 0,00:01:18.50,00:01:24.50,Default,;annotation_3804781753;popup_box;,0,0,0,,{\an7\pos(1071.034,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 334.234 0 l 334.234 126.911 l 0 126.911 {\p0}
+Dialogue: 0,00:01:18.50,00:01:24.50,Default,;annotation_3804781753;popup_text;,0,0,0,,{\an7\pos(1090.234,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-nh
+Dialogue: 0,00:01:20.14,00:01:24.50,Default,;annotation_3337187369;popup_box;,0,0,0,,{\an7\pos(719.654,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 518.4 0 l 518.4 104.339 l 0 104.339 {\p0}
+Dialogue: 0,00:01:20.14,00:01:24.50,Default,;annotation_3337187369;popup_text;,0,0,0,,{\an7\pos(738.854,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}ih
+Dialogue: 0,00:01:20.70,00:01:24.50,Default,;annotation_298035221;popup_box;,0,0,0,,{\an7\pos(1160.928,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 472.051 0 l 472.051 118.411 l 0 118.411 {\p0}
+Dialogue: 0,00:01:20.70,00:01:24.50,Default,;annotation_298035221;popup_text;,0,0,0,,{\an7\pos(1180.128,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}yal
+Dialogue: 0,00:01:21.00,00:01:24.50,Default,;annotation_1711324263;popup_box;,0,0,0,,{\an7\pos(1241.05,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 241.536 0 l 241.536 119.815 l 0 119.815 {\p0}
+Dialogue: 0,00:01:21.00,00:01:24.50,Default,;annotation_1711324263;popup_text;,0,0,0,,{\an7\pos(1260.25,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}euz
+Dialogue: 0,00:01:21.00,00:01:24.50,Default,;annotation_2175249337;popup_box;,0,0,0,,{\an7\pos(758.995,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 574.598 0 l 574.598 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:21.00,00:01:24.50,Default,;annotation_2175249337;popup_text;,0,0,0,,{\an7\pos(778.195,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-iz
+Dialogue: 0,00:01:21.50,00:01:24.50,Default,;annotation_1735133461;popup_box;,0,0,0,,{\an7\pos(813.754,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 518.438 0 l 518.438 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:21.50,00:01:24.50,Default,;annotation_1735133461;popup_text;,0,0,0,,{\an7\pos(832.954,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:01:21.53,00:01:24.50,Default,;annotation_1139818611;popup_box;,0,0,0,,{\an7\pos(1338.106,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 141.677 0 l 141.677 93.161 l 0 93.161 {\p0}
+Dialogue: 0,00:01:21.53,00:01:24.50,Default,;annotation_1139818611;popup_text;,0,0,0,,{\an7\pos(1357.306,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}fao
+Dialogue: 0,00:01:21.80,00:01:24.50,Default,;annotation_2792769399;popup_box;,0,0,0,,{\an7\pos(1411.181,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 283.642 0 l 283.642 105.818 l 0 105.818 {\p0}
+Dialogue: 0,00:01:21.80,00:01:24.50,Default,;annotation_2792769399;popup_text;,0,0,0,,{\an7\pos(1430.381,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-iz
+Dialogue: 0,00:01:22.00,00:01:24.50,Default,;annotation_2618680147;popup_box;,0,0,0,,{\an7\pos(902.381,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 519.782 0 l 519.782 98.788 l 0 98.788 {\p0}
+Dialogue: 0,00:01:22.00,00:01:24.50,Default,;annotation_2618680147;popup_text;,0,0,0,,{\an7\pos(921.581,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}tu
+Dialogue: 0,00:01:22.90,00:01:24.50,Default,;annotation_3422530977;popup_box;,0,0,0,,{\an7\pos(1481.395,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 337.114 0 l 337.114 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:01:22.90,00:01:24.50,Default,;annotation_3422530977;popup_text;,0,0,0,,{\an7\pos(1500.595,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}pau
+Dialogue: 0,00:01:22.96,00:01:24.50,Default,;annotation_3861160141;popup_box;,0,0,0,,{\an7\pos(948.749,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 561.946 0 l 561.946 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:22.96,00:01:24.50,Default,;annotation_3861160141;popup_text;,0,0,0,,{\an7\pos(967.949,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-dai
+Dialogue: 0,00:01:23.20,00:01:24.50,Default,;annotation_607572363;popup_box;,0,0,0,,{\an7\pos(1567.488,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 352.512 0 l 352.512 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:23.20,00:01:24.50,Default,;annotation_607572363;popup_text;,0,0,0,,{\an7\pos(1586.688,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-fao
+Dialogue: 0,00:01:23.50,00:01:24.50,Default,;annotation_1191693979;popup_box;,0,0,0,,{\an7\pos(1034.419,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 574.656 0 l 574.656 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:23.50,00:01:24.50,Default,;annotation_1191693979;popup_text;,0,0,0,,{\an7\pos(1053.619,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ir;
+Dialogue: 0,00:01:23.50,00:01:24.50,Default,;annotation_3872165509;popup_box;,0,0,0,,{\an7\pos(1655.962,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 264.038 0 l 264.038 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:01:23.50,00:01:24.50,Default,;annotation_3872165509;popup_text;,0,0,0,,{\an7\pos(1675.162,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ir;
+Dialogue: 0,00:01:26.00,00:01:33.83,Default,;annotation_2155489473;popup_box;,0,0,0,,{\an7\pos(0.288,593.438)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1919.712 0 l 1919.712 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:01:26.00,00:01:33.83,Default,;annotation_2155489473;popup_text;,0,0,0,,{\an7\pos(19.488,604.238)\fs58.233\c&H000000&\bord0\shad0}i-syen-ih-ne iyon-du yal euz, ih-du beg-ih dui=ryuu-agu nh tao-ir;\N\N（為了守護我重視的您們、即使要犠牲自己、我亦在所不辭）
+Dialogue: 0,00:01:26.00,00:01:44.10,Default,;annotation_249919843;popup_box;,0,0,0,,{\an7\pos(0.0,338.904)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:01:26.00,00:01:44.10,Default,;annotation_249919843;popup_text;,0,0,0,,{\an7\pos(19.2,349.704)\fs58.233\c&H000000&\bord0\shad0}ih-ne fao-du ih nh ih-rei-yah-iyon, soh-nh iz nh ih-rei-yah-iyon;\N\N（將我的意念與我自己、與大家分享吧）
+Dialogue: 0,00:01:26.00,00:01:33.83,Default,;annotation_1011187;popup_box;,0,0,0,,{\an7\pos(0.0,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 263.326 l 0 263.326 {\p0}
+Dialogue: 0,00:01:26.00,00:01:33.83,Default,;annotation_1011187;popup_text;,0,0,0,,{\an7\pos(19.2,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}i\N\N（為了守護我重視的您們、即使要犠牲自己、我亦在所不辭）
+Dialogue: 0,00:01:26.00,00:01:44.10,Default,;annotation_1348663985;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 261.911 l 0 261.911 {\p0}
+Dialogue: 0,00:01:26.00,00:01:44.10,Default,;annotation_1348663985;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ih\N\N（將我的意念與我自己、與大家分享吧）
+Dialogue: 0,00:01:26.20,00:01:33.83,Default,;annotation_2013203183;popup_box;,0,0,0,,{\an7\pos(11.251,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 598.483 0 l 598.483 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:01:26.20,00:01:33.83,Default,;annotation_2013203183;popup_text;,0,0,0,,{\an7\pos(30.451,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-syen
+Dialogue: 0,00:01:26.60,00:01:33.83,Default,;annotation_163000679;popup_box;,0,0,0,,{\an7\pos(139.142,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 585.83 0 l 585.83 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:26.60,00:01:33.83,Default,;annotation_163000679;popup_text;,0,0,0,,{\an7\pos(158.342,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ih
+Dialogue: 0,00:01:26.70,00:01:33.83,Default,;annotation_1698563983;popup_box;,0,0,0,,{\an7\pos(198.182,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 549.293 0 l 549.293 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:01:26.70,00:01:33.83,Default,;annotation_1698563983;popup_text;,0,0,0,,{\an7\pos(217.382,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:01:26.70,00:01:44.11,Default,;annotation_3250262275;popup_box;,0,0,0,,{\an7\pos(40.762,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 595.68 0 l 595.68 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:26.70,00:01:44.11,Default,;annotation_3250262275;popup_text;,0,0,0,,{\an7\pos(59.962,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:01:26.80,00:01:44.11,Default,;annotation_161366957;popup_box;,0,0,0,,{\an7\pos(131.482,337.694)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 620.986 0 l 620.986 100.213 l 0 100.213 {\p0}
+Dialogue: 0,00:01:26.80,00:01:44.11,Default,;annotation_161366957;popup_text;,0,0,0,,{\an7\pos(150.682,348.494)\fs58.233\c&HFFFFFF&\bord0\shad0}fao
+Dialogue: 0,00:01:26.85,00:01:33.83,Default,;annotation_2957006957;popup_box;,0,0,0,,{\an7\pos(288.134,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 684.23 0 l 684.23 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:26.85,00:01:33.83,Default,;annotation_2957006957;popup_text;,0,0,0,,{\an7\pos(307.334,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}iyon
+Dialogue: 0,00:01:27.19,00:01:33.83,Default,;annotation_2338720147;popup_box;,0,0,0,,{\an7\pos(380.909,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 571.776 0 l 571.776 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:27.19,00:01:33.83,Default,;annotation_2338720147;popup_text;,0,0,0,,{\an7\pos(400.109,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:01:27.37,00:01:44.11,Default,;annotation_3765510699;popup_box;,0,0,0,,{\an7\pos(203.386,337.694)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 570.394 0 l 570.394 96.001 l 0 96.001 {\p0}
+Dialogue: 0,00:01:27.37,00:01:44.11,Default,;annotation_3765510699;popup_text;,0,0,0,,{\an7\pos(222.586,348.494)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:01:27.49,00:01:33.83,Default,;annotation_1538607277;popup_box;,0,0,0,,{\an7\pos(472.262,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 588.653 0 l 588.653 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:27.49,00:01:33.83,Default,;annotation_1538607277;popup_text;,0,0,0,,{\an7\pos(491.462,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}yal
+Dialogue: 0,00:01:27.60,00:01:33.83,Default,;annotation_4160483051;popup_box;,0,0,0,,{\an7\pos(552.384,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 567.571 0 l 567.571 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:01:27.60,00:01:33.83,Default,;annotation_4160483051;popup_text;,0,0,0,,{\an7\pos(571.584,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}euz,
+Dialogue: 0,00:01:28.00,00:01:33.83,Default,;annotation_4127441251;popup_box;,0,0,0,,{\an7\pos(664.838,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 578.803 0 l 578.803 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:28.00,00:01:33.83,Default,;annotation_4127441251;popup_text;,0,0,0,,{\an7\pos(684.038,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}ih
+Dialogue: 0,00:01:28.17,00:01:44.11,Default,;annotation_876037483;popup_box;,0,0,0,,{\an7\pos(293.491,337.694)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 611.136 0 l 611.136 98.809 l 0 98.809 {\p0}
+Dialogue: 0,00:01:28.17,00:01:44.11,Default,;annotation_876037483;popup_text;,0,0,0,,{\an7\pos(312.691,348.494)\fs58.233\c&HFFFFFF&\bord0\shad0}ih
+Dialogue: 0,00:01:28.30,00:01:33.83,Default,;annotation_2369779223;popup_box;,0,0,0,,{\an7\pos(707.002,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 584.429 0 l 584.429 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:28.30,00:01:33.83,Default,;annotation_2369779223;popup_text;,0,0,0,,{\an7\pos(726.202,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:01:28.80,00:01:33.83,Default,;annotation_3737262253;popup_box;,0,0,0,,{\an7\pos(795.552,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 525.408 0 l 525.408 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:28.80,00:01:33.83,Default,;annotation_3737262253;popup_text;,0,0,0,,{\an7\pos(814.752,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}beg
+Dialogue: 0,00:01:29.00,00:01:33.80,Default,;annotation_504513123;popup_box;,0,0,0,,{\an7\pos(882.701,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 613.958 0 l 613.958 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:01:29.00,00:01:33.80,Default,;annotation_504513123;popup_text;,0,0,0,,{\an7\pos(901.901,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ih
+Dialogue: 0,00:01:29.10,00:01:44.10,Default,;annotation_1304205385;popup_box;,0,0,0,,{\an7\pos(349.978,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 576.0 0 l 576.0 96.001 l 0 96.001 {\p0}
+Dialogue: 0,00:01:29.10,00:01:44.10,Default,;annotation_1304205385;popup_text;,0,0,0,,{\an7\pos(369.178,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}nh
+Dialogue: 0,00:01:29.40,00:01:33.83,Default,;annotation_1783259331;popup_box;,0,0,0,,{\an7\pos(954.374,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 486.048 0 l 486.048 91.757 l 0 91.757 {\p0}
+Dialogue: 0,00:01:29.40,00:01:33.83,Default,;annotation_1783259331;popup_text;,0,0,0,,{\an7\pos(973.574,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}dui
+Dialogue: 0,00:01:30.00,00:01:33.83,Default,;annotation_4092081581;popup_box;,0,0,0,,{\an7\pos(1023.245,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 486.048 0 l 486.048 98.788 l 0 98.788 {\p0}
+Dialogue: 0,00:01:30.00,00:01:33.83,Default,;annotation_4092081581;popup_text;,0,0,0,,{\an7\pos(1042.445,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}=ryuu
+Dialogue: 0,00:01:30.14,00:01:44.10,Default,;annotation_2538429531;popup_box;,0,0,0,,{\an7\pos(420.269,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 608.333 0 l 608.333 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:30.14,00:01:44.10,Default,;annotation_2538429531;popup_text;,0,0,0,,{\an7\pos(439.469,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ih
+Dialogue: 0,00:01:30.50,00:01:33.83,Default,;annotation_3396270797;popup_box;,0,0,0,,{\an7\pos(1155.379,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 597.082 0 l 597.082 98.788 l 0 98.788 {\p0}
+Dialogue: 0,00:01:30.50,00:01:33.83,Default,;annotation_3396270797;popup_text;,0,0,0,,{\an7\pos(1174.579,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-agu
+Dialogue: 0,00:01:30.91,00:01:44.10,Default,;annotation_2550254711;popup_box;,0,0,0,,{\an7\pos(461.03,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 620.986 0 l 620.986 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:01:30.91,00:01:44.10,Default,;annotation_2550254711;popup_text;,0,0,0,,{\an7\pos(480.23,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-rei
+Dialogue: 0,00:01:31.28,00:01:33.83,Default,;annotation_46812865;popup_box;,0,0,0,,{\an7\pos(1273.44,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 512.813 0 l 512.813 101.585 l 0 101.585 {\p0}
+Dialogue: 0,00:01:31.28,00:01:33.83,Default,;annotation_46812865;popup_text;,0,0,0,,{\an7\pos(1292.64,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}nh
+Dialogue: 0,00:01:31.70,00:01:33.83,Default,;annotation_2268219059;popup_box;,0,0,0,,{\an7\pos(1346.534,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 486.048 0 l 486.048 93.161 l 0 93.161 {\p0}
+Dialogue: 0,00:01:31.70,00:01:33.83,Default,;annotation_2268219059;popup_text;,0,0,0,,{\an7\pos(1365.734,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}tao
+Dialogue: 0,00:01:31.81,00:01:44.10,Default,;annotation_1253999577;popup_box;,0,0,0,,{\an7\pos(535.526,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 493.075 0 l 493.075 101.606 l 0 101.606 {\p0}
+Dialogue: 0,00:01:31.81,00:01:44.10,Default,;annotation_1253999577;popup_text;,0,0,0,,{\an7\pos(554.726,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-yah
+Dialogue: 0,00:01:32.52,00:01:44.10,Default,;annotation_208886459;popup_box;,0,0,0,,{\an7\pos(636.73,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1112.928 0 l 1112.928 119.815 l 0 119.815 {\p0}
+Dialogue: 0,00:01:32.52,00:01:44.10,Default,;annotation_208886459;popup_text;,0,0,0,,{\an7\pos(655.93,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-iyon;
+Dialogue: 0,00:01:32.80,00:01:33.83,Default,;annotation_1935089969;popup_box;,0,0,0,,{\an7\pos(1418.496,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 501.504 0 l 501.504 91.757 l 0 91.757 {\p0}
+Dialogue: 0,00:01:32.80,00:01:33.83,Default,;annotation_1935089969;popup_text;,0,0,0,,{\an7\pos(1437.696,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ir;
+Dialogue: 0,00:01:33.83,00:01:44.10,Default,;annotation_1606395911;popup_box;,0,0,0,,{\an7\pos(0.0,593.438)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1919.712 0 l 1919.712 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:01:33.83,00:01:44.10,Default,;annotation_1606395911;popup_text;,0,0,0,,{\an7\pos(19.2,604.238)\fs58.233\c&H000000&\bord0\shad0}dag, ih-eq soh-du ri-yan-rey-iur doh-ef ze-tao, soh-ne vie-gee reth-ir;\N\N（但是、若然我如此行動、又會遭受到何等的痛苦呢、其後我得到解答了）
+Dialogue: 0,00:01:33.84,00:01:44.10,Default,;annotation_1117898175;popup_box;,0,0,0,,{\an7\pos(0.0,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 246.445 l 0 246.445 {\p0}
+Dialogue: 0,00:01:33.84,00:01:44.10,Default,;annotation_1117898175;popup_text;,0,0,0,,{\an7\pos(19.2,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}dag, \N\N（但是、若然我如此行動、又會遭受到何等的痛苦呢、其後我得到解答了）
+Dialogue: 0,00:01:33.85,00:01:44.10,Default,;annotation_1592749971;popup_box;,0,0,0,,{\an7\pos(778.618,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 524.064 0 l 524.064 98.723 l 0 98.723 {\p0}
+Dialogue: 0,00:01:33.85,00:01:44.10,Default,;annotation_1592749971;popup_text;,0,0,0,,{\an7\pos(797.818,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}soh
+Dialogue: 0,00:01:34.50,00:01:44.10,Default,;annotation_827968213;popup_box;,0,0,0,,{\an7\pos(116.659,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 613.958 0 l 613.958 94.554 l 0 94.554 {\p0}
+Dialogue: 0,00:01:34.50,00:01:44.10,Default,;annotation_827968213;popup_text;,0,0,0,,{\an7\pos(135.859,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}ih
+Dialogue: 0,00:01:34.80,00:01:44.10,Default,;annotation_2283426545;popup_box;,0,0,0,,{\an7\pos(156.019,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 609.734 0 l 609.734 91.757 l 0 91.757 {\p0}
+Dialogue: 0,00:01:34.80,00:01:44.10,Default,;annotation_2283426545;popup_text;,0,0,0,,{\an7\pos(175.219,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-eq
+Dialogue: 0,00:01:34.83,00:01:44.10,Default,;annotation_1754710499;popup_box;,0,0,0,,{\an7\pos(861.619,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 719.366 0 l 719.366 91.757 l 0 91.757 {\p0}
+Dialogue: 0,00:01:34.83,00:01:44.10,Default,;annotation_1754710499;popup_text;,0,0,0,,{\an7\pos(880.819,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-nh
+Dialogue: 0,00:01:35.57,00:01:44.10,Default,;annotation_687646739;popup_box;,0,0,0,,{\an7\pos(951.571,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 609.734 0 l 609.734 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:35.57,00:01:44.10,Default,;annotation_687646739;popup_text;,0,0,0,,{\an7\pos(970.771,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}iz
+Dialogue: 0,00:01:35.70,00:01:44.10,Default,;annotation_1063578203;popup_box;,0,0,0,,{\an7\pos(245.971,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 590.054 0 l 590.054 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:01:35.70,00:01:44.10,Default,;annotation_1063578203;popup_text;,0,0,0,,{\an7\pos(265.171,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}soh
+Dialogue: 0,00:01:36.21,00:01:44.10,Default,;annotation_679177687;popup_box;,0,0,0,,{\an7\pos(330.317,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 588.691 0 l 588.691 94.554 l 0 94.554 {\p0}
+Dialogue: 0,00:01:36.21,00:01:44.10,Default,;annotation_679177687;popup_text;,0,0,0,,{\an7\pos(349.517,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:01:36.79,00:01:44.10,Default,;annotation_1523704941;popup_box;,0,0,0,,{\an7\pos(418.867,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 473.395 0 l 473.395 100.192 l 0 100.192 {\p0}
+Dialogue: 0,00:01:36.79,00:01:44.10,Default,;annotation_1523704941;popup_text;,0,0,0,,{\an7\pos(438.067,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}ri
+Dialogue: 0,00:01:37.00,00:01:44.10,Default,;annotation_2048968587;popup_box;,0,0,0,,{\an7\pos(448.378,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 573.197 0 l 573.197 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:37.00,00:01:44.10,Default,;annotation_2048968587;popup_text;,0,0,0,,{\an7\pos(467.578,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-yan
+Dialogue: 0,00:01:37.30,00:01:44.10,Default,;annotation_1925467839;popup_box;,0,0,0,,{\an7\pos(549.581,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 628.013 0 l 628.013 91.757 l 0 91.757 {\p0}
+Dialogue: 0,00:01:37.30,00:01:44.10,Default,;annotation_1925467839;popup_text;,0,0,0,,{\an7\pos(568.781,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-rey
+Dialogue: 0,00:01:37.50,00:01:44.10,Default,;annotation_1429017851;popup_box;,0,0,0,,{\an7\pos(639.533,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 577.402 0 l 577.402 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:01:37.50,00:01:44.10,Default,;annotation_1429017851;popup_text;,0,0,0,,{\an7\pos(658.733,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-iur
+Dialogue: 0,00:01:37.80,00:01:44.10,Default,;annotation_1251694923;popup_box;,0,0,0,,{\an7\pos(1002.509,337.694)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 501.523 0 l 501.523 96.001 l 0 96.001 {\p0}
+Dialogue: 0,00:01:37.80,00:01:44.10,Default,;annotation_1251694923;popup_text;,0,0,0,,{\an7\pos(1021.709,348.494)\fs58.233\c&HFFFFFF&\bord0\shad0}nh
+Dialogue: 0,00:01:37.80,00:01:44.10,Default,;annotation_3656059681;popup_box;,0,0,0,,{\an7\pos(728.083,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 547.891 0 l 547.891 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:37.80,00:01:44.10,Default,;annotation_3656059681;popup_text;,0,0,0,,{\an7\pos(747.283,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}doh
+Dialogue: 0,00:01:38.60,00:01:44.10,Default,;annotation_3606848083;popup_box;,0,0,0,,{\an7\pos(1075.258,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 595.68 0 l 595.68 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:01:38.60,00:01:44.10,Default,;annotation_3606848083;popup_text;,0,0,0,,{\an7\pos(1094.458,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ih
+Dialogue: 0,00:01:38.60,00:01:44.10,Default,;annotation_690780449;popup_box;,0,0,0,,{\an7\pos(815.232,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 479.021 0 l 479.021 101.606 l 0 101.606 {\p0}
+Dialogue: 0,00:01:38.60,00:01:44.10,Default,;annotation_690780449;popup_text;,0,0,0,,{\an7\pos(834.432,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ef
+Dialogue: 0,00:01:38.82,00:01:44.10,Default,;annotation_1985395325;popup_box;,0,0,0,,{\an7\pos(891.13,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 566.17 0 l 566.17 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:38.82,00:01:44.10,Default,;annotation_1985395325;popup_text;,0,0,0,,{\an7\pos(910.33,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}ze
+Dialogue: 0,00:01:39.29,00:01:44.10,Default,;annotation_2867934683;popup_box;,0,0,0,,{\an7\pos(945.946,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 526.829 0 l 526.829 102.935 l 0 102.935 {\p0}
+Dialogue: 0,00:01:39.29,00:01:44.10,Default,;annotation_2867934683;popup_text;,0,0,0,,{\an7\pos(965.146,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-tao,
+Dialogue: 0,00:01:39.37,00:01:44.10,Default,;annotation_1698802237;popup_box;,0,0,0,,{\an7\pos(1117.421,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 578.803 0 l 578.803 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:39.37,00:01:44.10,Default,;annotation_1698802237;popup_text;,0,0,0,,{\an7\pos(1136.621,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-rei
+Dialogue: 0,00:01:39.78,00:01:44.10,Default,;annotation_3784789319;popup_box;,0,0,0,,{\an7\pos(1064.006,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 521.184 0 l 521.184 93.161 l 0 93.161 {\p0}
+Dialogue: 0,00:01:39.78,00:01:44.10,Default,;annotation_3784789319;popup_text;,0,0,0,,{\an7\pos(1083.206,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}soh
+Dialogue: 0,00:01:40.12,00:01:44.10,Default,;annotation_2751082179;popup_box;,0,0,0,,{\an7\pos(1191.84,337.694)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 546.49 0 l 546.49 101.617 l 0 101.617 {\p0}
+Dialogue: 0,00:01:40.12,00:01:44.10,Default,;annotation_2751082179;popup_text;,0,0,0,,{\an7\pos(1211.04,348.494)\fs58.233\c&HFFFFFF&\bord0\shad0}-yah
+Dialogue: 0,00:01:40.30,00:01:44.10,Default,;annotation_2094006715;popup_box;,0,0,0,,{\an7\pos(1148.352,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 587.251 0 l 587.251 98.788 l 0 98.788 {\p0}
+Dialogue: 0,00:01:40.30,00:01:44.10,Default,;annotation_2094006715;popup_text;,0,0,0,,{\an7\pos(1167.552,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:01:40.80,00:01:44.10,Default,;annotation_2644827167;popup_box;,0,0,0,,{\an7\pos(1238.304,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 560.544 0 l 560.544 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:40.80,00:01:44.10,Default,;annotation_2644827167;popup_text;,0,0,0,,{\an7\pos(1257.504,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}vie
+Dialogue: 0,00:01:41.17,00:01:44.10,Default,;annotation_3291000499;popup_box;,0,0,0,,{\an7\pos(1304.371,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 615.36 0 l 615.36 91.757 l 0 91.757 {\p0}
+Dialogue: 0,00:01:41.17,00:01:44.10,Default,;annotation_3291000499;popup_text;,0,0,0,,{\an7\pos(1323.571,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-gee
+Dialogue: 0,00:01:41.70,00:01:44.10,Default,;annotation_1692920073;popup_box;,0,0,0,,{\an7\pos(1422.72,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 497.28 0 l 497.28 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:41.70,00:01:44.10,Default,;annotation_1692920073;popup_text;,0,0,0,,{\an7\pos(1441.92,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}reth
+Dialogue: 0,00:01:41.94,00:01:44.10,Default,;annotation_2391673625;popup_box;,0,0,0,,{\an7\pos(1293.331,337.694)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 393.293 0 l 393.293 100.213 l 0 100.213 {\p0}
+Dialogue: 0,00:01:41.94,00:01:44.10,Default,;annotation_2391673625;popup_text;,0,0,0,,{\an7\pos(1312.531,348.494)\fs58.233\c&HFFFFFF&\bord0\shad0}-iyon;
+Dialogue: 0,00:01:42.80,00:01:44.10,Default,;annotation_3603723099;popup_box;,0,0,0,,{\an7\pos(1513.786,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 407.328 0 l 407.328 81.896 l 0 81.896 {\p0}
+Dialogue: 0,00:01:42.80,00:01:44.10,Default,;annotation_3603723099;popup_text;,0,0,0,,{\an7\pos(1532.986,604.238)\fs56.414\c&HFFFFFF&\bord0\shad0}-ir;
+Dialogue: 0,00:01:44.10,00:01:47.90,Default,;annotation_1821705515;popup_box;,0,0,0,,{\an7\pos(0.0,338.904)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1919.712 0 l 1919.712 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:01:44.10,00:01:47.90,Default,;annotation_1821705515;popup_text;,0,0,0,,{\an7\pos(19.2,349.704)\fs58.233\c&H000000&\bord0\shad0}soh-du reth-ir koh-yon, ih=pam-uia;\N\N（得悉那事、為此我必須要作出決擇）
+Dialogue: 0,00:01:44.11,00:01:47.90,Default,;annotation_3634639519;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:01:44.11,00:01:47.90,Default,;annotation_3634639519;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}soh\N\N（得悉那事、為此我必須要作出決擇）
+Dialogue: 0,00:01:44.40,00:01:47.90,Default,;annotation_2246730235;popup_box;,0,0,0,,{\an7\pos(84.326,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 592.858 0 l 592.858 90.353 l 0 90.353 {\p0}
+Dialogue: 0,00:01:44.40,00:01:47.90,Default,;annotation_2246730235;popup_text;,0,0,0,,{\an7\pos(103.526,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:01:44.70,00:01:47.90,Default,;annotation_3911318889;popup_box;,0,0,0,,{\an7\pos(172.877,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 580.224 0 l 580.224 93.161 l 0 93.161 {\p0}
+Dialogue: 0,00:01:44.70,00:01:47.90,Default,;annotation_3911318889;popup_text;,0,0,0,,{\an7\pos(192.077,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}reth
+Dialogue: 0,00:01:44.90,00:01:47.90,Default,;annotation_2250902981;popup_box;,0,0,0,,{\an7\pos(264.25,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 606.931 0 l 606.931 91.757 l 0 91.757 {\p0}
+Dialogue: 0,00:01:44.90,00:01:47.90,Default,;annotation_2250902981;popup_text;,0,0,0,,{\an7\pos(283.45,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ir
+Dialogue: 0,00:01:45.30,00:01:47.90,Default,;annotation_3852209733;popup_box;,0,0,0,,{\an7\pos(324.691,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 606.931 0 l 606.931 84.661 l 0 84.661 {\p0}
+Dialogue: 0,00:01:45.30,00:01:47.90,Default,;annotation_3852209733;popup_text;,0,0,0,,{\an7\pos(343.891,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}koh
+Dialogue: 0,00:01:45.50,00:01:47.90,Default,;annotation_3801649663;popup_box;,0,0,0,,{\an7\pos(407.616,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 656.122 0 l 656.122 108.637 l 0 108.637 {\p0}
+Dialogue: 0,00:01:45.50,00:01:47.90,Default,;annotation_3801649663;popup_text;,0,0,0,,{\an7\pos(426.816,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-yon
+Dialogue: 0,00:01:45.69,00:01:47.90,Default,;annotation_2784683663;popup_box;,0,0,0,,{\an7\pos(508.819,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 591.456 0 l 591.456 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:45.69,00:01:47.90,Default,;annotation_2784683663;popup_text;,0,0,0,,{\an7\pos(528.019,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}, ih
+Dialogue: 0,00:01:46.20,00:01:47.90,Default,;annotation_1490120647;popup_box;,0,0,0,,{\an7\pos(577.69,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 654.72 0 l 654.72 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:01:46.20,00:01:47.90,Default,;annotation_1490120647;popup_text;,0,0,0,,{\an7\pos(596.89,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}=pam
+Dialogue: 0,00:01:46.70,00:01:47.90,Default,;annotation_2318074273;popup_box;,0,0,0,,{\an7\pos(711.206,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 573.197 0 l 573.197 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:01:46.70,00:01:47.90,Default,;annotation_2318074273;popup_text;,0,0,0,,{\an7\pos(730.406,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-uia;
+Dialogue: 0,00:01:50.70,00:02:02.90,Default,;annotation_1077401655;popup_box;,0,0,0,,{\an7\pos(0.0,338.904)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1915.507 0 l 1915.507 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:01:50.70,00:02:02.90,Default,;annotation_1077401655;popup_text;,0,0,0,,{\an7\pos(19.2,349.704)\fs58.233\c&H000000&\bord0\shad0}soh-nh z-tes, ih-ne fuai-ro-fan-ne ih-du vari-wei-ir;\N\N（最後、我終於揭穿了自己的真面目）
+Dialogue: 0,00:01:50.71,00:02:02.90,Default,;annotation_4145451899;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 246.445 l 0 246.445 {\p0}
+Dialogue: 0,00:01:50.71,00:02:02.90,Default,;annotation_4145451899;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}soh\N\N（最後、我終於揭穿了自己的真面目）
+Dialogue: 0,00:01:51.11,00:02:02.90,Default,;annotation_2578498027;popup_box;,0,0,0,,{\an7\pos(84.326,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 594.278 0 l 594.278 89.996 l 0 89.996 {\p0}
+Dialogue: 0,00:01:51.11,00:02:02.90,Default,;annotation_2578498027;popup_text;,0,0,0,,{\an7\pos(103.526,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-nh
+Dialogue: 0,00:01:54.50,00:02:02.90,Default,;annotation_4046347793;popup_box;,0,0,0,,{\an7\pos(174.221,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 557.798 0 l 557.798 100.127 l 0 100.127 {\p0}
+Dialogue: 0,00:01:54.50,00:02:02.90,Default,;annotation_4046347793;popup_text;,0,0,0,,{\an7\pos(193.421,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}z
+Dialogue: 0,00:01:54.80,00:02:02.90,Default,;annotation_3267035773;popup_box;,0,0,0,,{\an7\pos(200.928,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 588.71 0 l 588.71 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:54.80,00:02:02.90,Default,;annotation_3267035773;popup_text;,0,0,0,,{\an7\pos(220.128,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-tes,
+Dialogue: 0,00:01:55.86,00:02:02.90,Default,;annotation_1734843815;popup_box;,0,0,0,,{\an7\pos(316.243,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 577.402 0 l 577.402 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:55.86,00:02:02.90,Default,;annotation_1734843815;popup_text;,0,0,0,,{\an7\pos(335.443,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ih
+Dialogue: 0,00:01:56.41,00:02:02.90,Default,;annotation_1731574665;popup_box;,0,0,0,,{\an7\pos(355.603,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 560.544 0 l 560.544 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:01:56.41,00:02:02.90,Default,;annotation_1731574665;popup_text;,0,0,0,,{\an7\pos(374.803,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:01:57.26,00:02:02.90,Default,;annotation_3826429747;popup_box;,0,0,0,,{\an7\pos(445.555,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 615.36 0 l 615.36 90.353 l 0 90.353 {\p0}
+Dialogue: 0,00:01:57.26,00:02:02.90,Default,;annotation_3826429747;popup_text;,0,0,0,,{\an7\pos(464.755,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}fuai
+Dialogue: 0,00:01:58.20,00:02:02.90,Default,;annotation_2934942153;popup_box;,0,0,0,,{\an7\pos(529.901,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 554.918 0 l 554.918 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:01:58.20,00:02:02.90,Default,;annotation_2934942153;popup_text;,0,0,0,,{\an7\pos(549.101,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ro
+Dialogue: 0,00:01:59.00,00:02:02.90,Default,;annotation_4151138961;popup_box;,0,0,0,,{\an7\pos(594.547,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 640.646 0 l 640.646 90.353 l 0 90.353 {\p0}
+Dialogue: 0,00:01:59.00,00:02:02.90,Default,;annotation_4151138961;popup_text;,0,0,0,,{\an7\pos(613.747,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-fan
+Dialogue: 0,00:01:59.29,00:02:02.90,Default,;annotation_3005546521;popup_box;,0,0,0,,{\an7\pos(683.098,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 604.128 0 l 604.128 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:01:59.29,00:02:02.90,Default,;annotation_3005546521;popup_text;,0,0,0,,{\an7\pos(702.298,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:01:59.90,00:02:02.90,Default,;annotation_1173490419;popup_box;,0,0,0,,{\an7\pos(771.59,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 571.853 0 l 571.853 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:01:59.90,00:02:02.90,Default,;annotation_1173490419;popup_text;,0,0,0,,{\an7\pos(790.79,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ih
+Dialogue: 0,00:02:00.30,00:02:02.90,Default,;annotation_1621382451;popup_box;,0,0,0,,{\an7\pos(812.41,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 573.197 0 l 573.197 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:00.30,00:02:02.90,Default,;annotation_1621382451;popup_text;,0,0,0,,{\an7\pos(831.61,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:02:00.86,00:02:02.90,Default,;annotation_311273233;popup_box;,0,0,0,,{\an7\pos(902.381,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 620.966 0 l 620.966 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:00.86,00:02:02.90,Default,;annotation_311273233;popup_text;,0,0,0,,{\an7\pos(921.581,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}vari
+Dialogue: 0,00:02:01.32,00:02:02.90,Default,;annotation_327672705;popup_box;,0,0,0,,{\an7\pos(985.306,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 469.171 0 l 469.171 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:01.32,00:02:02.90,Default,;annotation_327672705;popup_text;,0,0,0,,{\an7\pos(1004.506,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-wei
+Dialogue: 0,00:02:01.80,00:02:02.90,Default,;annotation_3954300825;popup_box;,0,0,0,,{\an7\pos(1083.686,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 608.333 0 l 608.333 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:02:01.80,00:02:02.90,Default,;annotation_3954300825;popup_text;,0,0,0,,{\an7\pos(1102.886,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ir;
+Dialogue: 0,00:02:03.90,00:02:20.20,Default,;annotation_3022411837;popup_box;,0,0,0,,{\an7\pos(0.0,593.438)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:02:03.90,00:02:20.20,Default,;annotation_3022411837;popup_text;,0,0,0,,{\an7\pos(19.2,604.238)\fs58.233\c&H000000&\bord0\shad0}ih=doh-ef, koh-ne wa-fen-ny-ren was-ten-ne koo-ja-iz;\N\N（我對這個世界而言、到底受是個有多異端的存在呢）
+Dialogue: 0,00:02:03.90,00:02:20.20,Default,;annotation_57342483;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 235.127 l 0 235.127 {\p0}
+Dialogue: 0,00:02:03.90,00:02:20.20,Default,;annotation_57342483;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&H000000&\bord0\shad0}ih=doh-ef, koh-ne noh-iar-ne iz-ny lym-fu-ir, dag beg-fao-ir;\N\N（我對這個行星的人而言、到底是有多讓人期待、多讓人恐懼呢）
+Dialogue: 0,00:02:03.92,00:02:20.20,Default,;annotation_2933363307;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 238.01 l 0 238.01 {\p0}
+Dialogue: 0,00:02:03.92,00:02:20.20,Default,;annotation_2933363307;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ih\N\N（我對這個行星的人而言、到底是有多讓人期待、多讓人恐懼呢）
+Dialogue: 0,00:02:03.92,00:02:20.20,Default,;annotation_3704805825;popup_box;,0,0,0,,{\an7\pos(0.0,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1919.712 0 l 1919.712 246.445 l 0 246.445 {\p0}
+Dialogue: 0,00:02:03.92,00:02:20.20,Default,;annotation_3704805825;popup_text;,0,0,0,,{\an7\pos(19.2,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}ih\N\N（我對這個世界而言、到底受是個有多異端的存在呢）
+Dialogue: 0,00:02:04.90,00:02:20.20,Default,;annotation_1673796621;popup_box;,0,0,0,,{\an7\pos(40.762,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 597.082 0 l 597.082 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:04.90,00:02:20.20,Default,;annotation_1673796621;popup_text;,0,0,0,,{\an7\pos(59.962,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}=doh
+Dialogue: 0,00:02:04.90,00:02:20.20,Default,;annotation_4062340383;popup_box;,0,0,0,,{\an7\pos(40.762,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 599.904 0 l 599.904 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:04.90,00:02:20.20,Default,;annotation_4062340383;popup_text;,0,0,0,,{\an7\pos(59.962,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}=doh
+Dialogue: 0,00:02:05.79,00:02:20.20,Default,;annotation_2704549;popup_box;,0,0,0,,{\an7\pos(157.421,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 619.565 0 l 619.565 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:05.79,00:02:20.20,Default,;annotation_2704549;popup_text;,0,0,0,,{\an7\pos(176.621,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ef,
+Dialogue: 0,00:02:05.79,00:02:20.20,Default,;annotation_3813790885;popup_box;,0,0,0,,{\an7\pos(157.421,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 547.891 0 l 547.891 98.788 l 0 98.788 {\p0}
+Dialogue: 0,00:02:05.79,00:02:20.20,Default,;annotation_3813790885;popup_text;,0,0,0,,{\an7\pos(176.621,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ef,
+Dialogue: 0,00:02:06.20,00:02:20.20,Default,;annotation_2637310353;popup_box;,0,0,0,,{\an7\pos(247.373,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 574.598 0 l 574.598 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:06.20,00:02:20.20,Default,;annotation_2637310353;popup_text;,0,0,0,,{\an7\pos(266.573,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}koh
+Dialogue: 0,00:02:06.20,00:02:20.20,Default,;annotation_3647129983;popup_box;,0,0,0,,{\an7\pos(247.373,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 601.306 0 l 601.306 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:02:06.20,00:02:20.20,Default,;annotation_3647129983;popup_text;,0,0,0,,{\an7\pos(266.573,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}koh
+Dialogue: 0,00:02:06.60,00:02:20.20,Default,;annotation_2512572425;popup_box;,0,0,0,,{\an7\pos(333.12,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 630.816 0 l 630.816 98.788 l 0 98.788 {\p0}
+Dialogue: 0,00:02:06.60,00:02:20.20,Default,;annotation_2512572425;popup_text;,0,0,0,,{\an7\pos(352.32,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:02:06.60,00:02:20.20,Default,;annotation_358667195;popup_box;,0,0,0,,{\an7\pos(331.718,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 542.266 0 l 542.266 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:02:06.60,00:02:20.20,Default,;annotation_358667195;popup_text;,0,0,0,,{\an7\pos(350.918,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:02:06.80,00:02:20.20,Default,;annotation_2913806281;popup_box;,0,0,0,,{\an7\pos(421.67,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 580.224 0 l 580.224 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:06.80,00:02:20.20,Default,;annotation_2913806281;popup_text;,0,0,0,,{\an7\pos(440.87,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}wa
+Dialogue: 0,00:02:06.80,00:02:20.20,Default,;annotation_300655135;popup_box;,0,0,0,,{\an7\pos(421.67,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 580.224 0 l 580.224 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:06.80,00:02:20.20,Default,;annotation_300655135;popup_text;,0,0,0,,{\an7\pos(440.87,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}noh
+Dialogue: 0,00:02:07.20,00:02:20.20,Default,;annotation_274184627;popup_box;,0,0,0,,{\an7\pos(487.738,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 594.278 0 l 594.278 98.788 l 0 98.788 {\p0}
+Dialogue: 0,00:02:07.20,00:02:20.20,Default,;annotation_274184627;popup_text;,0,0,0,,{\an7\pos(506.938,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-fen
+Dialogue: 0,00:02:07.20,00:02:20.20,Default,;annotation_2803672263;popup_box;,0,0,0,,{\an7\pos(508.819,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 577.402 0 l 577.402 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:07.20,00:02:20.20,Default,;annotation_2803672263;popup_text;,0,0,0,,{\an7\pos(528.019,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-iar
+Dialogue: 0,00:02:07.81,00:02:20.20,Default,;annotation_628046503;popup_box;,0,0,0,,{\an7\pos(583.315,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 578.803 0 l 578.803 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:07.81,00:02:20.20,Default,;annotation_628046503;popup_text;,0,0,0,,{\an7\pos(602.515,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:02:07.86,00:02:20.20,Default,;annotation_270748965;popup_box;,0,0,0,,{\an7\pos(577.69,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 640.723 0 l 640.723 93.096 l 0 93.096 {\p0}
+Dialogue: 0,00:02:07.86,00:02:20.20,Default,;annotation_270748965;popup_text;,0,0,0,,{\an7\pos(596.89,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ny
+Dialogue: 0,00:02:09.27,00:02:20.20,Default,;annotation_4250834113;popup_box;,0,0,0,,{\an7\pos(649.363,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 585.83 0 l 585.83 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:09.27,00:02:20.20,Default,;annotation_4250834113;popup_text;,0,0,0,,{\an7\pos(668.563,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ren
+Dialogue: 0,00:02:10.10,00:02:20.20,Default,;annotation_2465590339;popup_box;,0,0,0,,{\an7\pos(673.267,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 580.224 0 l 580.224 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:02:10.10,00:02:20.20,Default,;annotation_2465590339;popup_text;,0,0,0,,{\an7\pos(692.467,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}iz
+Dialogue: 0,00:02:11.31,00:02:20.20,Default,;annotation_1840620411;popup_box;,0,0,0,,{\an7\pos(711.206,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 619.565 0 l 619.565 98.788 l 0 98.788 {\p0}
+Dialogue: 0,00:02:11.31,00:02:20.20,Default,;annotation_1840620411;popup_text;,0,0,0,,{\an7\pos(730.406,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ny
+Dialogue: 0,00:02:11.90,00:02:20.20,Default,;annotation_1783987369;popup_box;,0,0,0,,{\an7\pos(795.552,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 553.517 0 l 553.517 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:02:11.90,00:02:20.20,Default,;annotation_1783987369;popup_text;,0,0,0,,{\an7\pos(814.752,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}lym
+Dialogue: 0,00:02:14.00,00:02:20.20,Default,;annotation_709737981;popup_box;,0,0,0,,{\an7\pos(878.477,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 573.197 0 l 573.197 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:14.00,00:02:20.20,Default,;annotation_709737981;popup_text;,0,0,0,,{\an7\pos(897.677,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-fu
+Dialogue: 0,00:02:14.02,00:02:20.20,Default,;annotation_2786318677;popup_box;,0,0,0,,{\an7\pos(754.79,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 561.946 0 l 561.946 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:02:14.02,00:02:20.20,Default,;annotation_2786318677;popup_text;,0,0,0,,{\an7\pos(773.99,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}was
+Dialogue: 0,00:02:15.30,00:02:20.20,Default,;annotation_2410785533;popup_box;,0,0,0,,{\an7\pos(938.918,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 580.224 0 l 580.224 110.041 l 0 110.041 {\p0}
+Dialogue: 0,00:02:15.30,00:02:20.20,Default,;annotation_2410785533;popup_text;,0,0,0,,{\an7\pos(958.118,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ir;
+Dialogue: 0,00:02:15.93,00:02:20.20,Default,;annotation_934012505;popup_box;,0,0,0,,{\an7\pos(848.966,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 567.571 0 l 567.571 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:15.93,00:02:20.20,Default,;annotation_934012505;popup_text;,0,0,0,,{\an7\pos(868.166,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ten
+Dialogue: 0,00:02:16.02,00:02:20.20,Default,;annotation_451637213;popup_box;,0,0,0,,{\an7\pos(1010.592,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 570.374 0 l 570.374 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:16.02,00:02:20.20,Default,;annotation_451637213;popup_text;,0,0,0,,{\an7\pos(1029.792,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}dag
+Dialogue: 0,00:02:16.40,00:02:20.20,Default,;annotation_411276845;popup_box;,0,0,0,,{\an7\pos(938.918,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 531.034 0 l 531.034 98.777 l 0 98.777 {\p0}
+Dialogue: 0,00:02:16.40,00:02:20.20,Default,;annotation_411276845;popup_text;,0,0,0,,{\an7\pos(958.118,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:02:17.20,00:02:20.20,Default,;annotation_39235511;popup_box;,0,0,0,,{\an7\pos(1111.795,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 472.013 0 l 472.013 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:17.20,00:02:20.20,Default,;annotation_39235511;popup_text;,0,0,0,,{\an7\pos(1130.995,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}beg
+Dialogue: 0,00:02:17.38,00:02:20.20,Default,;annotation_2261006551;popup_box;,0,0,0,,{\an7\pos(1028.87,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 563.347 0 l 563.347 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:17.38,00:02:20.20,Default,;annotation_2261006551;popup_text;,0,0,0,,{\an7\pos(1048.07,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}koo
+Dialogue: 0,00:02:18.10,00:02:20.20,Default,;annotation_3196695823;popup_box;,0,0,0,,{\an7\pos(1198.944,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 495.878 0 l 495.878 91.757 l 0 91.757 {\p0}
+Dialogue: 0,00:02:18.10,00:02:20.20,Default,;annotation_3196695823;popup_text;,0,0,0,,{\an7\pos(1218.144,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-fao
+Dialogue: 0,00:02:18.40,00:02:20.20,Default,;annotation_3405053483;popup_box;,0,0,0,,{\an7\pos(1113.139,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 569.03 0 l 569.03 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:18.40,00:02:20.20,Default,;annotation_3405053483;popup_text;,0,0,0,,{\an7\pos(1132.339,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-ja
+Dialogue: 0,00:02:18.86,00:02:20.20,Default,;annotation_4192404749;popup_box;,0,0,0,,{\an7\pos(1289.184,338.839)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 630.816 0 l 630.816 110.041 l 0 110.041 {\p0}
+Dialogue: 0,00:02:18.86,00:02:20.20,Default,;annotation_4192404749;popup_text;,0,0,0,,{\an7\pos(1308.384,349.639)\fs58.233\c&HFFFFFF&\bord0\shad0}-ir;
+Dialogue: 0,00:02:19.05,00:02:20.20,Default,;annotation_2304204163;popup_box;,0,0,0,,{\an7\pos(1170.835,593.438)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 583.027 0 l 583.027 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:19.05,00:02:20.20,Default,;annotation_2304204163;popup_text;,0,0,0,,{\an7\pos(1190.035,604.238)\fs58.233\c&HFFFFFF&\bord0\shad0}-iz;
+Dialogue: 0,00:02:20.20,00:02:35.20,Default,;annotation_3583427419;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&H999999&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:02:20.20,00:02:35.20,Default,;annotation_3583427419;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&H000000&\bord0\shad0}fam-ne xe sek　fa-re fa-nu　fa-re ih-du 　wei-miriu
+Dialogue: 0,00:02:20.22,00:02:35.20,Default,;annotation_1362348053;popup_box;,0,0,0,,{\an7\pos(0.0,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 576.0 0 l 576.0 96.001 l 0 96.001 {\p0}
+Dialogue: 0,00:02:20.22,00:02:35.20,Default,;annotation_1362348053;popup_text;,0,0,0,,{\an7\pos(19.2,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}fam
+Dialogue: 0,00:02:21.30,00:02:35.20,Default,;annotation_2975684327;popup_box;,0,0,0,,{\an7\pos(85.747,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 598.483 0 l 598.483 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:02:21.30,00:02:35.20,Default,;annotation_2975684327;popup_text;,0,0,0,,{\an7\pos(104.947,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:02:22.20,00:02:35.20,Default,;annotation_4153544699;popup_box;,0,0,0,,{\an7\pos(177.101,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 594.278 0 l 594.278 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:02:22.20,00:02:35.20,Default,;annotation_4153544699;popup_text;,0,0,0,,{\an7\pos(196.301,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}xe
+Dialogue: 0,00:02:23.27,00:02:35.20,Default,;annotation_3706177481;popup_box;,0,0,0,,{\an7\pos(245.971,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 585.83 0 l 585.83 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:02:23.27,00:02:35.20,Default,;annotation_3706177481;popup_text;,0,0,0,,{\an7\pos(265.171,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}sek
+Dialogue: 0,00:02:24.30,00:02:35.20,Default,;annotation_2938025353;popup_box;,0,0,0,,{\an7\pos(378.106,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 491.674 0 l 491.674 90.353 l 0 90.353 {\p0}
+Dialogue: 0,00:02:24.30,00:02:35.20,Default,;annotation_2938025353;popup_text;,0,0,0,,{\an7\pos(397.306,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}fa
+Dialogue: 0,00:02:25.30,00:02:35.20,Default,;annotation_1194730587;popup_box;,0,0,0,,{\an7\pos(423.072,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 452.506 0 l 452.506 118.476 l 0 118.476 {\p0}
+Dialogue: 0,00:02:25.30,00:02:35.20,Default,;annotation_1194730587;popup_text;,0,0,0,,{\an7\pos(442.272,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-re
+Dialogue: 0,00:02:26.30,00:02:35.20,Default,;annotation_2080781287;popup_box;,0,0,0,,{\an7\pos(500.371,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 585.83 0 l 585.83 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:26.30,00:02:35.20,Default,;annotation_2080781287;popup_text;,0,0,0,,{\an7\pos(519.571,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}fa
+Dialogue: 0,00:02:27.20,00:02:35.20,Default,;annotation_1686609585;popup_box;,0,0,0,,{\an7\pos(543.955,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 522.586 0 l 522.586 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:27.20,00:02:35.20,Default,;annotation_1686609585;popup_text;,0,0,0,,{\an7\pos(563.155,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-nu
+Dialogue: 0,00:02:28.30,00:02:35.20,Default,;annotation_4197503103;popup_box;,0,0,0,,{\an7\pos(671.789,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 564.826 0 l 564.826 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:28.30,00:02:35.20,Default,;annotation_4197503103;popup_text;,0,0,0,,{\an7\pos(690.989,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}fa
+Dialogue: 0,00:02:29.37,00:02:35.20,Default,;annotation_3248281941;popup_box;,0,0,0,,{\an7\pos(714.029,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 615.36 0 l 615.36 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:29.37,00:02:35.20,Default,;annotation_3248281941;popup_text;,0,0,0,,{\an7\pos(733.229,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-re
+Dialogue: 0,00:02:30.23,00:02:35.20,Default,;annotation_2390066803;popup_box;,0,0,0,,{\an7\pos(792.73,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 456.518 0 l 456.518 100.192 l 0 100.192 {\p0}
+Dialogue: 0,00:02:30.23,00:02:35.20,Default,;annotation_2390066803;popup_text;,0,0,0,,{\an7\pos(811.93,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}ih
+Dialogue: 0,00:02:31.20,00:02:35.20,Default,;annotation_1513110911;popup_box;,0,0,0,,{\an7\pos(833.434,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 719.443 0 l 719.443 100.192 l 0 100.192 {\p0}
+Dialogue: 0,00:02:31.20,00:02:35.20,Default,;annotation_1513110911;popup_text;,0,0,0,,{\an7\pos(852.634,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:02:32.30,00:02:35.20,Default,;annotation_858953037;popup_box;,0,0,0,,{\an7\pos(975.398,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 531.149 0 l 531.149 98.723 l 0 98.723 {\p0}
+Dialogue: 0,00:02:32.30,00:02:35.20,Default,;annotation_858953037;popup_text;,0,0,0,,{\an7\pos(994.598,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}wei
+Dialogue: 0,00:02:33.10,00:02:35.20,Default,;annotation_3902669793;popup_box;,0,0,0,,{\an7\pos(1052.774,337.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 727.834 0 l 727.834 101.574 l 0 101.574 {\p0}
+Dialogue: 0,00:02:33.10,00:02:35.20,Default,;annotation_3902669793;popup_text;,0,0,0,,{\an7\pos(1071.974,348.3)\fs58.233\c&HFFFFFF&\bord0\shad0}-miriu
+Dialogue: 0,00:02:35.20,00:02:52.35,Default,;annotation_1150607959;popup_box;,0,0,0,,{\an7\pos(0.0,419.062)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 236.531 l 0 236.531 {\p0}
+Dialogue: 0,00:02:35.20,00:02:52.35,Default,;annotation_1150607959;popup_text;,0,0,0,,{\an7\pos(19.2,429.862)\fs58.233\c&H000000&\bord0\shad0}zu-fao-tyoi-du dou-fie-i soh-nh, koh-ne wa-fen-ne ra-ciel-a u-ja-i ro-fan;\N\N（我要捨棄故鄉、成為這個世界的 Ra Ciela 皇帝嗎）
+Dialogue: 0,00:02:35.21,00:02:52.35,Default,;annotation_128029765;popup_box;,0,0,0,,{\an7\pos(0.0,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 236.606 l 0 236.606 {\p0}
+Dialogue: 0,00:02:35.21,00:02:52.35,Default,;annotation_128029765;popup_text;,0,0,0,,{\an7\pos(19.2,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}zu\N\N（我要捨棄故鄉、成為這個世界的 Ra Ciela 皇帝嗎）
+Dialogue: 0,00:02:35.78,00:02:52.35,Default,;annotation_4178850157;popup_box;,0,0,0,,{\an7\pos(0.0,663.746)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1920.0 0 l 1920.0 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:02:35.78,00:02:52.35,Default,;annotation_4178850157;popup_text;,0,0,0,,{\an7\pos(19.2,674.546)\fs58.233\c&H000000&\bord0\shad0}soh-za-chei, koh-ne wa-fen-du beg-ih-iz soh-nh, zu-fao-tyoi-ny andi-din-i ro-fan;\N\N（還是反過來、要犠牲這個世界、以使自己能返抵故鄉嗎）
+Dialogue: 0,00:02:35.80,00:02:52.35,Default,;annotation_1434063407;popup_box;,0,0,0,,{\an7\pos(0.346,174.377)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1919.654 0 l 1919.654 235.127 l 0 235.127 {\p0}
+Dialogue: 0,00:02:35.80,00:02:52.35,Default,;annotation_1434063407;popup_text;,0,0,0,,{\an7\pos(19.546,185.177)\fs58.233\c&H000000&\bord0\shad0}soh, on-oi ih-ne nay-du rei-ihzu oz, koh-ne wa-fen-ne iz-du refu-i ro-fan;\N\N（那是、即使我要奉獻出自已的性命、亦要拯救這個世界的人們嗎）
+Dialogue: 0,00:02:35.81,00:02:52.35,Default,;annotation_3009055989;popup_box;,0,0,0,,{\an7\pos(0.0,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1919.712 0 l 1919.712 235.192 l 0 235.192 {\p0}
+Dialogue: 0,00:02:35.81,00:02:52.35,Default,;annotation_3009055989;popup_text;,0,0,0,,{\an7\pos(19.2,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}soh\N\N（還是反過來、要犠牲這個世界、以使自己能返抵故鄉嗎）
+Dialogue: 0,00:02:35.81,00:02:52.35,Default,;annotation_609858225;popup_box;,0,0,0,,{\an7\pos(0.0,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1919.712 0 l 1919.712 236.606 l 0 236.606 {\p0}
+Dialogue: 0,00:02:35.81,00:02:52.35,Default,;annotation_609858225;popup_text;,0,0,0,,{\an7\pos(19.2,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}soh,\N\N（那是、即使我要奉獻出自已的性命、亦要拯救這個世界的人們嗎）
+Dialogue: 0,00:02:35.83,00:02:52.35,Default,;annotation_3191119313;popup_box;,0,0,0,,{\an7\pos(56.218,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 598.502 0 l 598.502 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:35.83,00:02:52.35,Default,;annotation_3191119313;popup_text;,0,0,0,,{\an7\pos(75.418,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}-fao
+Dialogue: 0,00:02:36.30,00:02:52.35,Default,;annotation_1632051409;popup_box;,0,0,0,,{\an7\pos(82.925,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 559.142 0 l 559.142 98.723 l 0 98.723 {\p0}
+Dialogue: 0,00:02:36.30,00:02:52.35,Default,;annotation_1632051409;popup_text;,0,0,0,,{\an7\pos(102.125,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}-za
+Dialogue: 0,00:02:36.40,00:02:52.35,Default,;annotation_1685811925;popup_box;,0,0,0,,{\an7\pos(113.856,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 584.429 0 l 584.429 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:02:36.40,00:02:52.35,Default,;annotation_1685811925;popup_text;,0,0,0,,{\an7\pos(133.056,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}on
+Dialogue: 0,00:02:36.64,00:02:52.35,Default,;annotation_4120365469;popup_box;,0,0,0,,{\an7\pos(146.17,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 616.762 0 l 616.762 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:36.64,00:02:52.35,Default,;annotation_4120365469;popup_text;,0,0,0,,{\an7\pos(165.37,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}-tyoi
+Dialogue: 0,00:02:36.86,00:02:52.35,Default,;annotation_818985961;popup_box;,0,0,0,,{\an7\pos(156.019,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 680.006 0 l 680.006 86.065 l 0 86.065 {\p0}
+Dialogue: 0,00:02:36.86,00:02:52.35,Default,;annotation_818985961;popup_text;,0,0,0,,{\an7\pos(175.219,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}-chei,
+Dialogue: 0,00:02:37.29,00:02:52.35,Default,;annotation_3765194937;popup_box;,0,0,0,,{\an7\pos(171.475,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 597.082 0 l 597.082 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:02:37.29,00:02:52.35,Default,;annotation_3765194937;popup_text;,0,0,0,,{\an7\pos(190.675,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}-oi
+Dialogue: 0,00:02:37.40,00:02:52.35,Default,;annotation_1132006053;popup_box;,0,0,0,,{\an7\pos(243.168,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 557.722 0 l 557.722 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:37.40,00:02:52.35,Default,;annotation_1132006053;popup_text;,0,0,0,,{\an7\pos(262.368,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:02:37.80,00:02:52.35,Default,;annotation_340620893;popup_box;,0,0,0,,{\an7\pos(332.832,418.144)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 480.499 0 l 480.499 110.041 l 0 110.041 {\p0}
+Dialogue: 0,00:02:37.80,00:02:52.35,Default,;annotation_340620893;popup_text;,0,0,0,,{\an7\pos(352.032,428.944)\fs58.233\c&HFFFFFF&\bord0\shad0}dou
+Dialogue: 0,00:02:37.90,00:02:52.35,Default,;annotation_2600083373;popup_box;,0,0,0,,{\an7\pos(299.386,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 522.586 0 l 522.586 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:37.90,00:02:52.35,Default,;annotation_2600083373;popup_text;,0,0,0,,{\an7\pos(318.586,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}koh
+Dialogue: 0,00:02:38.10,00:02:52.35,Default,;annotation_3851421809;popup_box;,0,0,0,,{\an7\pos(243.168,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 585.83 0 l 585.83 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:38.10,00:02:52.35,Default,;annotation_3851421809;popup_text;,0,0,0,,{\an7\pos(262.368,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}ih
+Dialogue: 0,00:02:38.20,00:02:52.35,Default,;annotation_967735611;popup_box;,0,0,0,,{\an7\pos(420.269,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 608.333 0 l 608.333 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:38.20,00:02:52.35,Default,;annotation_967735611;popup_text;,0,0,0,,{\an7\pos(439.469,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}-fie
+Dialogue: 0,00:02:38.50,00:02:52.35,Default,;annotation_302604623;popup_box;,0,0,0,,{\an7\pos(283.93,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 599.885 0 l 599.885 88.949 l 0 88.949 {\p0}
+Dialogue: 0,00:02:38.50,00:02:52.35,Default,;annotation_302604623;popup_text;,0,0,0,,{\an7\pos(303.13,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:02:38.75,00:02:52.35,Default,;annotation_2061875503;popup_box;,0,0,0,,{\an7\pos(380.909,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 507.13 0 l 507.13 100.192 l 0 100.192 {\p0}
+Dialogue: 0,00:02:38.75,00:02:52.35,Default,;annotation_2061875503;popup_text;,0,0,0,,{\an7\pos(400.109,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:02:38.80,00:02:52.35,Default,;annotation_2458118543;popup_box;,0,0,0,,{\an7\pos(493.344,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 386.246 0 l 386.246 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:02:38.80,00:02:52.35,Default,;annotation_2458118543;popup_text;,0,0,0,,{\an7\pos(512.544,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}-i
+Dialogue: 0,00:02:38.90,00:02:52.35,Default,;annotation_1060812883;popup_box;,0,0,0,,{\an7\pos(535.526,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 535.238 0 l 535.238 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:02:38.90,00:02:52.35,Default,;annotation_1060812883;popup_text;,0,0,0,,{\an7\pos(554.726,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}soh
+Dialogue: 0,00:02:38.95,00:02:52.35,Default,;annotation_538135715;popup_box;,0,0,0,,{\an7\pos(373.882,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 577.402 0 l 577.402 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:38.95,00:02:52.35,Default,;annotation_538135715;popup_text;,0,0,0,,{\an7\pos(393.082,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}nay
+Dialogue: 0,00:02:39.37,00:02:52.35,Default,;annotation_1210226783;popup_box;,0,0,0,,{\an7\pos(619.776,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 601.382 0 l 601.382 93.096 l 0 93.096 {\p0}
+Dialogue: 0,00:02:39.37,00:02:52.35,Default,;annotation_1210226783;popup_text;,0,0,0,,{\an7\pos(638.976,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}-nh,
+Dialogue: 0,00:02:39.62,00:02:52.35,Default,;annotation_1196031281;popup_box;,0,0,0,,{\an7\pos(456.806,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 410.15 0 l 410.15 101.606 l 0 101.606 {\p0}
+Dialogue: 0,00:02:39.62,00:02:52.35,Default,;annotation_1196031281;popup_text;,0,0,0,,{\an7\pos(476.006,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:02:39.70,00:02:52.35,Default,;annotation_1839351543;popup_box;,0,0,0,,{\an7\pos(470.861,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 480.422 0 l 480.422 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:02:39.70,00:02:52.35,Default,;annotation_1839351543;popup_text;,0,0,0,,{\an7\pos(490.061,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}wa
+Dialogue: 0,00:02:39.80,00:02:52.35,Default,;annotation_2427017865;popup_box;,0,0,0,,{\an7\pos(723.859,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 585.83 0 l 585.83 91.757 l 0 91.757 {\p0}
+Dialogue: 0,00:02:39.80,00:02:52.35,Default,;annotation_2427017865;popup_text;,0,0,0,,{\an7\pos(743.059,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}koh
+Dialogue: 0,00:02:40.20,00:02:52.35,Default,;annotation_4134475605;popup_box;,0,0,0,,{\an7\pos(806.784,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 628.013 0 l 628.013 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:02:40.20,00:02:52.35,Default,;annotation_4134475605;popup_text;,0,0,0,,{\an7\pos(825.984,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:02:40.20,00:02:52.35,Default,;annotation_480545269;popup_box;,0,0,0,,{\an7\pos(538.33,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 591.456 0 l 591.456 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:02:40.20,00:02:52.35,Default,;annotation_480545269;popup_text;,0,0,0,,{\an7\pos(557.53,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}-fen
+Dialogue: 0,00:02:40.62,00:02:52.35,Default,;annotation_1078635437;popup_box;,0,0,0,,{\an7\pos(626.88,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 463.546 0 l 463.546 100.192 l 0 100.192 {\p0}
+Dialogue: 0,00:02:40.62,00:02:52.35,Default,;annotation_1078635437;popup_text;,0,0,0,,{\an7\pos(646.08,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:02:40.81,00:02:52.35,Default,;annotation_1531775543;popup_box;,0,0,0,,{\an7\pos(546.758,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 585.85 0 l 585.85 143.856 l 0 143.856 {\p0}
+Dialogue: 0,00:02:40.81,00:02:52.35,Default,;annotation_1531775543;popup_text;,0,0,0,,{\an7\pos(565.958,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}rei
+Dialogue: 0,00:02:41.20,00:02:52.35,Default,;annotation_1590320613;popup_box;,0,0,0,,{\an7\pos(716.774,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 245.76 0 l 245.76 123.962 l 0 123.962 {\p0}
+Dialogue: 0,00:02:41.20,00:02:52.35,Default,;annotation_1590320613;popup_text;,0,0,0,,{\an7\pos(735.974,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}beg
+Dialogue: 0,00:02:41.44,00:02:52.35,Default,;annotation_3168679717;popup_box;,0,0,0,,{\an7\pos(605.798,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 587.251 0 l 587.251 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:41.44,00:02:52.35,Default,;annotation_3168679717;popup_text;,0,0,0,,{\an7\pos(624.998,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}-ihzu
+Dialogue: 0,00:02:41.80,00:02:52.35,Default,;annotation_1890378925;popup_box;,0,0,0,,{\an7\pos(896.755,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 592.858 0 l 592.858 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:41.80,00:02:52.35,Default,;annotation_1890378925;popup_text;,0,0,0,,{\an7\pos(915.955,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}wa
+Dialogue: 0,00:02:41.80,00:02:52.35,Default,;annotation_3686471553;popup_box;,0,0,0,,{\an7\pos(802.579,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 591.456 0 l 591.456 93.096 l 0 93.096 {\p0}
+Dialogue: 0,00:02:41.80,00:02:52.35,Default,;annotation_3686471553;popup_text;,0,0,0,,{\an7\pos(821.779,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}-ih
+Dialogue: 0,00:02:42.22,00:02:52.35,Default,;annotation_2496571077;popup_box;,0,0,0,,{\an7\pos(732.307,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 557.722 0 l 557.722 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:02:42.22,00:02:52.35,Default,;annotation_2496571077;popup_text;,0,0,0,,{\an7\pos(751.507,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}oz,
+Dialogue: 0,00:02:42.70,00:02:52.35,Default,;annotation_1538796617;popup_box;,0,0,0,,{\an7\pos(861.619,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 564.749 0 l 564.749 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:02:42.70,00:02:52.35,Default,;annotation_1538796617;popup_text;,0,0,0,,{\an7\pos(880.819,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}-iz
+Dialogue: 0,00:02:42.70,00:02:52.35,Default,;annotation_4001683555;popup_box;,0,0,0,,{\an7\pos(964.224,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 519.782 0 l 519.782 98.647 l 0 98.647 {\p0}
+Dialogue: 0,00:02:42.70,00:02:52.35,Default,;annotation_4001683555;popup_text;,0,0,0,,{\an7\pos(983.424,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}-fen
+Dialogue: 0,00:02:43.64,00:02:52.35,Default,;annotation_2097361817;popup_box;,0,0,0,,{\an7\pos(930.49,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 577.402 0 l 577.402 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:02:43.64,00:02:52.35,Default,;annotation_2097361817;popup_text;,0,0,0,,{\an7\pos(949.69,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}soh
+Dialogue: 0,00:02:43.80,00:02:52.35,Default,;annotation_769217737;popup_box;,0,0,0,,{\an7\pos(816.557,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 411.629 0 l 411.629 93.096 l 0 93.096 {\p0}
+Dialogue: 0,00:02:43.80,00:02:52.35,Default,;annotation_769217737;popup_text;,0,0,0,,{\an7\pos(835.757,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}koh
+Dialogue: 0,00:02:43.90,00:02:52.35,Default,;annotation_3958148915;popup_box;,0,0,0,,{\an7\pos(1054.099,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 584.506 0 l 584.506 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:43.90,00:02:52.35,Default,;annotation_3958148915;popup_text;,0,0,0,,{\an7\pos(1073.299,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:02:44.30,00:02:52.35,Default,;annotation_3310763693;popup_box;,0,0,0,,{\an7\pos(1014.816,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 491.674 0 l 491.674 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:44.30,00:02:52.35,Default,;annotation_3310763693;popup_text;,0,0,0,,{\an7\pos(1034.016,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}-nh,
+Dialogue: 0,00:02:44.30,00:02:52.35,Default,;annotation_609336759;popup_box;,0,0,0,,{\an7\pos(900.96,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 457.939 0 l 457.939 114.253 l 0 114.253 {\p0}
+Dialogue: 0,00:02:44.30,00:02:52.35,Default,;annotation_609336759;popup_text;,0,0,0,,{\an7\pos(920.16,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:02:44.70,00:02:52.35,Default,;annotation_2872135783;popup_box;,0,0,0,,{\an7\pos(1120.243,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 585.984 0 l 585.984 98.723 l 0 98.723 {\p0}
+Dialogue: 0,00:02:44.70,00:02:52.35,Default,;annotation_2872135783;popup_text;,0,0,0,,{\an7\pos(1139.443,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}zu
+Dialogue: 0,00:02:45.20,00:02:52.35,Default,;annotation_202975959;popup_box;,0,0,0,,{\an7\pos(1175.059,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 591.533 0 l 591.533 94.576 l 0 94.576 {\p0}
+Dialogue: 0,00:02:45.20,00:02:52.35,Default,;annotation_202975959;popup_text;,0,0,0,,{\an7\pos(1194.259,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}-fao
+Dialogue: 0,00:02:45.80,00:02:52.35,Default,;annotation_1048011625;popup_box;,0,0,0,,{\an7\pos(1142.726,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 486.048 0 l 486.048 98.788 l 0 98.788 {\p0}
+Dialogue: 0,00:02:45.80,00:02:52.35,Default,;annotation_1048011625;popup_text;,0,0,0,,{\an7\pos(1161.926,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}ra
+Dialogue: 0,00:02:45.83,00:02:52.35,Default,;annotation_4058846023;popup_box;,0,0,0,,{\an7\pos(1263.533,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 574.656 0 l 574.656 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:45.83,00:02:52.35,Default,;annotation_4058846023;popup_text;,0,0,0,,{\an7\pos(1282.733,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}-tyoi
+Dialogue: 0,00:02:45.90,00:02:52.35,Default,;annotation_3258249343;popup_box;,0,0,0,,{\an7\pos(1189.114,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 216.442 0 l 216.442 162.637 l 0 162.637 {\p0}
+Dialogue: 0,00:02:45.90,00:02:52.35,Default,;annotation_3258249343;popup_text;,0,0,0,,{\an7\pos(1208.314,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}-ciel
+Dialogue: 0,00:02:46.44,00:02:52.35,Default,;annotation_3616724061;popup_box;,0,0,0,,{\an7\pos(1361.99,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 557.722 0 l 557.722 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:46.44,00:02:52.35,Default,;annotation_3616724061;popup_text;,0,0,0,,{\an7\pos(1381.19,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}-ny
+Dialogue: 0,00:02:46.58,00:02:52.35,Default,;annotation_2204860467;popup_box;,0,0,0,,{\an7\pos(1284.96,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 635.04 0 l 635.04 94.565 l 0 94.565 {\p0}
+Dialogue: 0,00:02:46.58,00:02:52.35,Default,;annotation_2204860467;popup_text;,0,0,0,,{\an7\pos(1304.16,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}-a
+Dialogue: 0,00:02:46.63,00:02:52.35,Default,;annotation_3811538953;popup_box;,0,0,0,,{\an7\pos(989.51,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 848.755 0 l 848.755 104.414 l 0 104.414 {\p0}
+Dialogue: 0,00:02:46.63,00:02:52.35,Default,;annotation_3811538953;popup_text;,0,0,0,,{\an7\pos(1008.71,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}wa
+Dialogue: 0,00:02:46.90,00:02:52.35,Default,;annotation_2263293517;popup_box;,0,0,0,,{\an7\pos(1056.922,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 540.922 0 l 540.922 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:02:46.90,00:02:52.35,Default,;annotation_2263293517;popup_text;,0,0,0,,{\an7\pos(1076.122,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}-fen
+Dialogue: 0,00:02:47.20,00:02:52.35,Default,;annotation_3815507397;popup_box;,0,0,0,,{\an7\pos(1146.931,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 584.448 0 l 584.448 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:47.20,00:02:52.35,Default,;annotation_3815507397;popup_text;,0,0,0,,{\an7\pos(1166.131,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}-ne
+Dialogue: 0,00:02:47.40,00:02:52.35,Default,;annotation_3957941155;popup_box;,0,0,0,,{\an7\pos(1449.139,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 470.592 0 l 470.592 135.281 l 0 135.281 {\p0}
+Dialogue: 0,00:02:47.40,00:02:52.35,Default,;annotation_3957941155;popup_text;,0,0,0,,{\an7\pos(1468.339,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}andi
+Dialogue: 0,00:02:47.70,00:02:52.35,Default,;annotation_1230079887;popup_box;,0,0,0,,{\an7\pos(1235.482,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 629.414 0 l 629.414 91.757 l 0 91.757 {\p0}
+Dialogue: 0,00:02:47.70,00:02:52.35,Default,;annotation_1230079887;popup_text;,0,0,0,,{\an7\pos(1254.682,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}iz
+Dialogue: 0,00:02:47.70,00:02:52.35,Default,;annotation_707851009;popup_box;,0,0,0,,{\an7\pos(1345.402,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 574.598 0 l 574.598 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:47.70,00:02:52.35,Default,;annotation_707851009;popup_text;,0,0,0,,{\an7\pos(1364.602,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}u
+Dialogue: 0,00:02:47.90,00:02:52.35,Default,;annotation_1697891803;popup_box;,0,0,0,,{\an7\pos(1374.931,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 545.069 0 l 545.069 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:02:47.90,00:02:52.35,Default,;annotation_1697891803;popup_text;,0,0,0,,{\an7\pos(1394.131,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}-ja
+Dialogue: 0,00:02:48.23,00:02:52.35,Default,;annotation_328128745;popup_box;,0,0,0,,{\an7\pos(1272.25,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 647.75 0 l 647.75 77.695 l 0 77.695 {\p0}
+Dialogue: 0,00:02:48.23,00:02:52.35,Default,;annotation_328128745;popup_text;,0,0,0,,{\an7\pos(1291.45,185.177)\fs52.774\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:02:48.30,00:02:52.35,Default,;annotation_2527537657;popup_box;,0,0,0,,{\an7\pos(1546.118,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 373.594 0 l 373.594 118.476 l 0 118.476 {\p0}
+Dialogue: 0,00:02:48.30,00:02:52.35,Default,;annotation_2527537657;popup_text;,0,0,0,,{\an7\pos(1565.318,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}-din
+Dialogue: 0,00:02:48.40,00:02:52.35,Default,;annotation_698530071;popup_box;,0,0,0,,{\an7\pos(1431.149,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 488.851 0 l 488.851 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:02:48.40,00:02:52.35,Default,;annotation_698530071;popup_text;,0,0,0,,{\an7\pos(1450.349,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}-i
+Dialogue: 0,00:02:48.60,00:02:52.35,Default,;annotation_2424163067;popup_box;,0,0,0,,{\an7\pos(1363.392,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 556.32 0 l 556.32 93.161 l 0 93.161 {\p0}
+Dialogue: 0,00:02:48.60,00:02:52.35,Default,;annotation_2424163067;popup_text;,0,0,0,,{\an7\pos(1382.592,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}refu
+Dialogue: 0,00:02:48.70,00:02:52.35,Default,;annotation_3263069319;popup_box;,0,0,0,,{\an7\pos(1634.957,662.699)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 285.043 0 l 285.043 126.943 l 0 126.943 {\p0}
+Dialogue: 0,00:02:48.70,00:02:52.35,Default,;annotation_3263069319;popup_text;,0,0,0,,{\an7\pos(1654.157,673.499)\fs58.233\c&HFFFFFF&\bord0\shad0}-i
+Dialogue: 0,00:02:49.20,00:02:52.35,Default,;annotation_3959397429;popup_box;,0,0,0,,{\an7\pos(1452.23,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 467.77 0 l 467.77 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:49.20,00:02:52.35,Default,;annotation_3959397429;popup_text;,0,0,0,,{\an7\pos(1471.43,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}-i
+Dialogue: 0,00:02:49.30,00:02:52.35,Default,;annotation_1203694361;popup_box;,0,0,0,,{\an7\pos(1676.774,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 241.536 0 l 241.536 169.106 l 0 169.106 {\p0}
+Dialogue: 0,00:02:49.30,00:02:52.35,Default,;annotation_1203694361;popup_text;,0,0,0,,{\an7\pos(1695.974,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}ro
+Dialogue: 0,00:02:49.30,00:02:52.35,Default,;annotation_1917301041;popup_box;,0,0,0,,{\an7\pos(1494.317,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 425.683 0 l 425.683 100.127 l 0 100.127 {\p0}
+Dialogue: 0,00:02:49.30,00:02:52.35,Default,;annotation_1917301041;popup_text;,0,0,0,,{\an7\pos(1513.517,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}ro
+Dialogue: 0,00:02:49.30,00:02:52.35,Default,;annotation_4196390617;popup_box;,0,0,0,,{\an7\pos(1474.714,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 445.286 0 l 445.286 104.414 l 0 104.414 {\p0}
+Dialogue: 0,00:02:49.30,00:02:52.35,Default,;annotation_4196390617;popup_text;,0,0,0,,{\an7\pos(1493.914,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}ro
+Dialogue: 0,00:02:49.70,00:02:52.35,Default,;annotation_1320006951;popup_box;,0,0,0,,{\an7\pos(1542.048,174.377)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 377.952 0 l 377.952 91.757 l 0 91.757 {\p0}
+Dialogue: 0,00:02:49.70,00:02:52.35,Default,;annotation_1320006951;popup_text;,0,0,0,,{\an7\pos(1561.248,185.177)\fs58.233\c&HFFFFFF&\bord0\shad0}-fan;
+Dialogue: 0,00:02:49.70,00:02:52.35,Default,;annotation_277831837;popup_box;,0,0,0,,{\an7\pos(1521.024,417.658)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 398.976 0 l 398.976 97.384 l 0 97.384 {\p0}
+Dialogue: 0,00:02:49.70,00:02:52.35,Default,;annotation_277831837;popup_text;,0,0,0,,{\an7\pos(1540.224,428.458)\fs58.233\c&HFFFFFF&\bord0\shad0}-fan;
+Dialogue: 0,00:02:49.70,00:02:52.35,Default,;annotation_2891090073;popup_box;,0,0,0,,{\an7\pos(1723.219,662.342)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 195.091 0 l 195.091 95.98 l 0 95.98 {\p0}
+Dialogue: 0,00:02:49.70,00:02:52.35,Default,;annotation_2891090073;popup_text;,0,0,0,,{\an7\pos(1742.419,673.142)\fs58.233\c&HFFFFFF&\bord0\shad0}-fan;
+
