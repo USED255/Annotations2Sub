@@ -431,12 +431,12 @@ def Convert(
 
         def is_length_overflow() -> bool:
             line_count = _text.count("\n") + 1
-            return textSize * 1.2 * line_count > height - padding_y * 2
+            return textSize * 1.12 * line_count > height - padding_y * 2
 
         def is_width_overflow() -> bool:
             l = []
             for line in _text.split("\n"):
-                l.append(len(line) * (textSize / 4))
+                l.append(len(line) * (textSize * 1.12 / 4))
             return max(l) > width
 
         if is_length_overflow() or is_width_overflow():
@@ -454,7 +454,10 @@ def Convert(
                 else:
                     textSize = min(textSize + step, max_font_size)
 
-                length = int(width / (textSize / 4)) + 1
+                _width = width - padding_x * 2
+                if _width < 0:
+                    _width = width
+                length = int(_width / (textSize * 1.12 / 4)) + 1
                 _text = Warp(text, length)
 
         text = _text

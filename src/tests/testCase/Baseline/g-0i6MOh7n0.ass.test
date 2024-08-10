@@ -16,7 +16,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,00:00:00.00,00:00:26.97,Default,;annotation_2288677365;popup_box;,0,0,0,,{\an7\pos(0.0,926.76)\c&H000000&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1000.0 0 l 1000.0 71.83 l 0 71.83 {\p0}
 Dialogue: 0,00:00:00.00,00:00:26.97,Default,;annotation_2288677365;popup_text;,0,0,0,,{\an7\pos(10.0,936.76)\fs43.81\c&HFFFFFF&\bord0\shad0}　　　　　※ 動態字幕並不準確。　灰色字幕的歌詞不存在於歌詞本上。　劇透注意。
 Dialogue: 0,00:00:00.00,00:00:27.00,Default,;annotation_609034617;popup_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H000000&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1000.0 0 l 1000.0 66.41 l 0 66.41 {\p0}
-Dialogue: 0,00:00:00.00,00:00:27.00,Default,;annotation_609034617;popup_text;,0,0,0,,{\an7\pos(10.0,10.0)\fs42.441\c&HFFFFFF&\bord0\shad0}　※ この字幕は日本語に対応していません。別の言語（英語／繁体字）のYOUTUBEに切り替えをお願いします。
+Dialogue: 0,00:00:00.00,00:00:27.00,Default,;annotation_609034617;popup_text;,0,0,0,,{\an7\pos(10.0,10.0)\fs43.81\c&HFFFFFF&\bord0\shad0}　※ この字幕は日本語に対応していません。別の言語（英語／繁体字）のYOUTUBEに切り替えをお願いします。
 Dialogue: 0,00:00:08.70,00:00:17.80,Default,;annotation_3334890995;popup_box;,0,0,0,,{\an7\pos(0.0,312.5)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1000.0 0 l 1000.0 216.93 l 0 216.93 {\p0}
 Dialogue: 0,00:00:08.70,00:00:17.80,Default,;annotation_3334890995;popup_text;,0,0,0,,{\an7\pos(10.0,322.5)\fs53.92\c&H000000&\bord0\shad0}wa-fen, tes, ye-ra jec, aru-yan, gin-wa-fen;\N（空間、時間、可能性、融合、多元）
 Dialogue: 0,00:00:08.71,00:00:17.80,Default,;annotation_2137235727;popup_box;,0,0,0,,{\an7\pos(0.0,312.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1000.0 0 l 1000.0 217.77 l 0 217.77 {\p0}
@@ -71,8 +71,8 @@ Dialogue: 0,00:00:25.90,00:00:27.00,Default,;annotation_1856419645;popup_box;,0,
 Dialogue: 0,00:00:25.90,00:00:27.00,Default,;annotation_1856419645;popup_text;,0,0,0,,{\an7\pos(510.0,322.5)\fs53.92\c&HFFFFFF&\bord0\shad0}refu;
 Dialogue: 0,00:00:27.00,00:00:31.90,Default,;annotation_3446315093;popup_box;,0,0,0,,{\an7\pos(0.0,395.83)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1000.0 0 l 1000.0 254.26 l 0 254.26 {\p0}
 Dialogue: 0,00:00:27.00,00:00:31.90,Default,;annotation_3446315093;popup_text;,0,0,0,,{\an7\pos(10.0,405.83)\fs53.92\c&HFFFFFF&\bord0\shad0}
-Dialogue: 0,00:00:27.01,00:00:31.90,Default,;annotation_512144927;title;,0,0,0,,{\an5\pos(500.0,520.895)\fs62.555\c&H000000&\bord0\shad0\b1}hyu-me!\N謳え！\N謳歌吧！
-Dialogue: 0,00:00:27.03,00:00:31.90,Default,;annotation_1823552423;title;,0,0,0,,{\an5\pos(500.0,516.96)\fs62.555\c&HFFFFFF&\bord0\shad0\b1}hyu-me!\N謳え！\N謳歌吧！
+Dialogue: 0,00:00:27.01,00:00:31.90,Default,;annotation_512144927;title;,0,0,0,,{\an5\pos(500.0,520.895)\fs66.347\c&H000000&\bord0\shad0\b1}hyu-me!\N謳え！\N謳歌吧！
+Dialogue: 0,00:00:27.03,00:00:31.90,Default,;annotation_1823552423;title;,0,0,0,,{\an5\pos(500.0,516.96)\fs66.347\c&HFFFFFF&\bord0\shad0\b1}hyu-me!\N謳え！\N謳歌吧！
 Dialogue: 0,00:00:36.80,00:00:41.90,Default,;annotation_3947136823;popup_box;,0,0,0,,{\an7\pos(0.0,313.8)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 997.66 0 l 997.66 217.77 l 0 217.77 {\p0}
 Dialogue: 0,00:00:36.80,00:00:41.90,Default,;annotation_3947136823;popup_text;,0,0,0,,{\an7\pos(10.0,323.8)\fs53.92\c&H000000&\bord0\shad0}ahih yei chei, ah-ih-cyen-du kog var-i\N　　　　　　　　　　　　　　　　　　　　　　　　【初次共嗚】\N（我脫胎換骨　注視彼此）
 Dialogue: 0,00:00:36.81,00:00:41.90,Default,;annotation_1011893165;popup_box;,0,0,0,,{\an7\pos(0.0,312.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1000.0 0 l 1000.0 220.38 l 0 220.38 {\p0}
@@ -192,7 +192,7 @@ Dialogue: 0,00:01:11.55,00:01:24.50,Default,;annotation_209436793;popup_text;,0,
 Dialogue: 0,00:01:12.40,00:01:24.50,Default,;annotation_4117532391;popup_box;,0,0,0,,{\an7\pos(103.95,549.48)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 299.27 0 l 299.27 88.87 l 0 88.87 {\p0}
 Dialogue: 0,00:01:12.40,00:01:24.50,Default,;annotation_4117532391;popup_text;,0,0,0,,{\an7\pos(113.95,559.48)\fs53.92\c&HFFFFFF&\bord0\shad0}-ne
 Dialogue: 0,00:01:12.50,00:01:24.50,Default,;annotation_3923878025;popup_box;,0,0,0,,{\an7\pos(0.0,312.5)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 999.12 0 l 999.12 217.77 l 0 217.77 {\p0}
-Dialogue: 0,00:01:12.50,00:01:24.50,Default,;annotation_3923878025;popup_text;,0,0,0,,{\an7\pos(10.0,322.5)\fs53.92\c&H000000&\bord0\shad0}koh-ne tyoi-ne ih-iz-ne aa-fao rei-du reth-i, soh-nh yal euz fao-iz pau-fao-ir;\N\N（我知道此地的人有着溫柔的心腸、我為了守護他們而祈求意念）
+Dialogue: 0,00:01:12.50,00:01:24.50,Default,;annotation_3923878025;popup_text;,0,0,0,,{\an7\pos(10.0,322.5)\fs48.865\c&H000000&\bord0\shad0}koh-ne tyoi-ne ih-iz-ne aa-fao rei-du reth-i, soh-nh yal euz fao-iz pau-fao-ir;\N\N（我知道此地的人有着溫柔的心腸、我為了守護他們而祈求意念）
 Dialogue: 0,00:01:12.51,00:01:24.50,Default,;annotation_1934864563;popup_box;,0,0,0,,{\an7\pos(0.0,312.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 999.12 0 l 999.12 228.19 l 0 228.19 {\p0}
 Dialogue: 0,00:01:12.51,00:01:24.50,Default,;annotation_1934864563;popup_text;,0,0,0,,{\an7\pos(10.0,322.5)\fs53.92\c&HFFFFFF&\bord0\shad0}koh\N\N（我知道此地的人有着溫柔的心腸、我為了守護他們而祈求意念）
 Dialogue: 0,00:01:12.90,00:01:24.50,Default,;annotation_276441049;popup_box;,0,0,0,,{\an7\pos(43.92,312.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 306.59 0 l 306.59 87.57 l 0 87.57 {\p0}
@@ -372,7 +372,7 @@ Dialogue: 0,00:01:41.70,00:01:44.10,Default,;annotation_1692920073;popup_text;,0
 Dialogue: 0,00:01:41.94,00:01:44.10,Default,;annotation_2391673625;popup_box;,0,0,0,,{\an7\pos(673.61,312.68)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 204.84 0 l 204.84 92.79 l 0 92.79 {\p0}
 Dialogue: 0,00:01:41.94,00:01:44.10,Default,;annotation_2391673625;popup_text;,0,0,0,,{\an7\pos(683.61,322.68)\fs53.92\c&HFFFFFF&\bord0\shad0}-iyon;
 Dialogue: 0,00:01:42.80,00:01:44.10,Default,;annotation_3603723099;popup_box;,0,0,0,,{\an7\pos(788.43,549.48)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 212.15 0 l 212.15 75.83 l 0 75.83 {\p0}
-Dialogue: 0,00:01:42.80,00:01:44.10,Default,;annotation_3603723099;popup_text;,0,0,0,,{\an7\pos(798.43,559.48)\fs52.235\c&HFFFFFF&\bord0\shad0}-ir;
+Dialogue: 0,00:01:42.80,00:01:44.10,Default,;annotation_3603723099;popup_text;,0,0,0,,{\an7\pos(798.43,559.48)\fs53.92\c&HFFFFFF&\bord0\shad0}-ir;
 Dialogue: 0,00:01:44.10,00:01:47.90,Default,;annotation_1821705515;popup_box;,0,0,0,,{\an7\pos(0.0,313.8)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 999.85 0 l 999.85 217.77 l 0 217.77 {\p0}
 Dialogue: 0,00:01:44.10,00:01:47.90,Default,;annotation_1821705515;popup_text;,0,0,0,,{\an7\pos(10.0,323.8)\fs53.92\c&H000000&\bord0\shad0}soh-du reth-ir koh-yon, ih=pam-uia;\N\N（得悉那事、為此我必須要作出決擇）
 Dialogue: 0,00:01:44.11,00:01:47.90,Default,;annotation_3634639519;popup_box;,0,0,0,,{\an7\pos(0.0,312.5)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1000.0 0 l 1000.0 217.77 l 0 217.77 {\p0}
@@ -528,7 +528,7 @@ Dialogue: 0,00:02:35.20,00:02:52.35,Default,;annotation_1150607959;popup_text;,0
 Dialogue: 0,00:02:35.21,00:02:52.35,Default,;annotation_128029765;popup_box;,0,0,0,,{\an7\pos(0.0,386.72)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 1000.0 0 l 1000.0 219.08 l 0 219.08 {\p0}
 Dialogue: 0,00:02:35.21,00:02:52.35,Default,;annotation_128029765;popup_text;,0,0,0,,{\an7\pos(10.0,396.72)\fs53.92\c&HFFFFFF&\bord0\shad0}zu\N\N（我要捨棄故鄉、成為這個世界的 Ra Ciela 皇帝嗎）
 Dialogue: 0,00:02:35.78,00:02:52.35,Default,;annotation_4178850157;popup_box;,0,0,0,,{\an7\pos(0.0,614.58)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 1000.0 0 l 1000.0 217.77 l 0 217.77 {\p0}
-Dialogue: 0,00:02:35.78,00:02:52.35,Default,;annotation_4178850157;popup_text;,0,0,0,,{\an7\pos(10.0,624.58)\fs53.92\c&H000000&\bord0\shad0}soh-za-chei, koh-ne wa-fen-du beg-ih-iz soh-nh, zu-fao-tyoi-ny andi-din-i ro-fan;\N\N（還是反過來、要犠牲這個世界、以使自己能返抵故鄉嗎）
+Dialogue: 0,00:02:35.78,00:02:52.35,Default,;annotation_4178850157;popup_text;,0,0,0,,{\an7\pos(10.0,624.58)\fs48.865\c&H000000&\bord0\shad0}soh-za-chei, koh-ne wa-fen-du beg-ih-iz soh-nh, zu-fao-tyoi-ny andi-din-i ro-fan;\N\N（還是反過來、要犠牲這個世界、以使自己能返抵故鄉嗎）
 Dialogue: 0,00:02:35.80,00:02:52.35,Default,;annotation_1434063407;popup_box;,0,0,0,,{\an7\pos(0.18,161.46)\c&HBB5A61&\1a&H66&\bord0\shad0}{\p1}m 0 0 l 999.82 0 l 999.82 217.71 l 0 217.71 {\p0}
 Dialogue: 0,00:02:35.80,00:02:52.35,Default,;annotation_1434063407;popup_text;,0,0,0,,{\an7\pos(10.18,171.46)\fs53.92\c&H000000&\bord0\shad0}soh, on-oi ih-ne nay-du rei-ihzu oz, koh-ne wa-fen-ne iz-du refu-i ro-fan;\N\N（那是、即使我要奉獻出自已的性命、亦要拯救這個世界的人們嗎）
 Dialogue: 0,00:02:35.81,00:02:52.35,Default,;annotation_3009055989;popup_box;,0,0,0,,{\an7\pos(0.0,613.28)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 999.85 0 l 999.85 217.77 l 0 217.77 {\p0}
@@ -636,7 +636,7 @@ Dialogue: 0,00:02:47.70,00:02:52.35,Default,;annotation_707851009;popup_text;,0,
 Dialogue: 0,00:02:47.90,00:02:52.35,Default,;annotation_1697891803;popup_box;,0,0,0,,{\an7\pos(716.11,386.72)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 283.89 0 l 283.89 90.17 l 0 90.17 {\p0}
 Dialogue: 0,00:02:47.90,00:02:52.35,Default,;annotation_1697891803;popup_text;,0,0,0,,{\an7\pos(726.11,396.72)\fs53.92\c&HFFFFFF&\bord0\shad0}-ja
 Dialogue: 0,00:02:48.23,00:02:52.35,Default,;annotation_328128745;popup_box;,0,0,0,,{\an7\pos(662.63,161.46)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 337.37 0 l 337.37 71.94 l 0 71.94 {\p0}
-Dialogue: 0,00:02:48.23,00:02:52.35,Default,;annotation_328128745;popup_text;,0,0,0,,{\an7\pos(672.63,171.46)\fs48.865\c&HFFFFFF&\bord0\shad0}-du
+Dialogue: 0,00:02:48.23,00:02:52.35,Default,;annotation_328128745;popup_text;,0,0,0,,{\an7\pos(672.63,171.46)\fs52.235\c&HFFFFFF&\bord0\shad0}-du
 Dialogue: 0,00:02:48.30,00:02:52.35,Default,;annotation_2527537657;popup_box;,0,0,0,,{\an7\pos(805.27,613.28)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 194.58 0 l 194.58 109.7 l 0 109.7 {\p0}
 Dialogue: 0,00:02:48.30,00:02:52.35,Default,;annotation_2527537657;popup_text;,0,0,0,,{\an7\pos(815.27,623.28)\fs53.92\c&HFFFFFF&\bord0\shad0}-din
 Dialogue: 0,00:02:48.40,00:02:52.35,Default,;annotation_698530071;popup_box;,0,0,0,,{\an7\pos(745.39,386.72)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 254.61 0 l 254.61 90.17 l 0 90.17 {\p0}
