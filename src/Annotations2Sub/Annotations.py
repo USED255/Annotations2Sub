@@ -40,7 +40,18 @@ class Annotation:
     def __init__(self):
         self.id: str = ""
         # 这里仅列出需要的 type 和 style, 且 Literal 仅做提醒作用
-        self.type: Union[Literal["text", "highlight", "branding"], str] = "text"
+        self.type: Union[
+            Literal[
+                "text",
+                "highlight",
+                # branding
+                # card
+                # drawer
+                # promotion
+                # pause
+            ],
+            str,
+        ] = "text"
         self.style: Union[
             Literal[
                 "popup",
@@ -49,6 +60,7 @@ class Annotation:
                 "highlightText",
                 "anchored",
                 "label",
+                "",
                 # branding
                 # channel
                 # cta
@@ -57,6 +69,12 @@ class Annotation:
                 # video
                 # vote
                 # website
+                # simple
+                # poll
+                # collaboration
+                # donation
+                # movie
+                # episode
             ],
             str,
         ] = "popup"
@@ -84,9 +102,11 @@ class Annotation:
         # fgColor 是注释文本的颜色
         # 如果不是 Annotations, 我都不知道颜色值可以用十进制表达, 而且还是BGR, 视频出来效果不对才知道
         self.fgColor: Color = Color(red=0, green=0, blue=0)
-        # textSize 是 "文字占画布的百分比", 而在 title 样式中才是熟悉的 "字体大小"
+        # textSize 是 "文字占画布的百分比"
         self.textSize: float = 3.15
+        # fontWeight 是字重
         self.fontWeight: str = ""
+        # 一些注释会在触发后才显示
         self.ref: str = ""
         # SSA 不能实现交互,
         # 处理 action 没有意义

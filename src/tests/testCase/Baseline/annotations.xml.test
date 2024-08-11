@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
-    <annotations>
+    <annotations itct="">
 
-        <annotation id="test" type="text" style="popup">
+        <annotation author="" id="1" itct="" log_data="" logable="" mode="" style="popup" type="text">
             <TEXT/>
             <action trigger="" type="">
                 <annotation duration="" id=""/>
