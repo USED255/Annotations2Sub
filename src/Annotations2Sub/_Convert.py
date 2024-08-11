@@ -3,7 +3,6 @@
 """转换器"""
 
 import copy
-import math
 import textwrap
 from typing import Dict, List, Optional
 
@@ -171,6 +170,8 @@ def Convert(
             return event
 
         def Triangle(event: Event) -> Optional[Event]:
+            # 致谢: https://github.com/po5/assnotations
+
             # 气泡框的框和柄分开绘制
             # 这个函数绘制气泡柄
             padding = padding_y

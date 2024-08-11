@@ -223,7 +223,7 @@ def Parse(tree: Element) -> List[Annotation]:
         _type = each.get("type", "")
         if _type == "":
             return None
-        if _type not in ("text", "highlight", "branding"):
+        if _type not in ("text", "highlight"):
             Stderr(_('不支持 "{}" 类型 ({})').format(_type, _id))
             return None
 
