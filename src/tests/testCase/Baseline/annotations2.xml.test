@@ -40,8 +40,8 @@
         <annotation id="9" type="text" style="popup">
             <segment>
                 <movingRegion>
-                    <rectRegion t="" />
-                    <rectRegion t="undefined" />
+                    <rectRegion t=""/>
+                    <rectRegion t="undefined"/>
                 </movingRegion>
             </segment>
         </annotation>
@@ -49,8 +49,8 @@
         <annotation id="10" type="text" style="popup">
             <segment>
                 <movingRegion>
-                    <rectRegion t="&amp;:NaN.NaN" />
-                    <rectRegion t="4294967294:0.aN" />
+                    <rectRegion t="&amp;:NaN.NaN"/>
+                    <rectRegion t="4294967294:0.aN"/>
                 </movingRegion>
             </segment>
         </annotation>
@@ -58,8 +58,8 @@
         <annotation id="11" type="text" style="popup">
             <segment>
                 <movingRegion>
-                    <rectRegion t=":NaN" />
-                    <rectRegion t="#" />
+                    <rectRegion t=":NaN"/>
+                    <rectRegion t="#"/>
                 </movingRegion>
             </segment>
         </annotation>
