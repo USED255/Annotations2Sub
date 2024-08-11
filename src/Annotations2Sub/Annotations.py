@@ -40,7 +40,18 @@ class Annotation:
     def __init__(self):
         self.id: str = ""
         # 这里仅列出需要的 type 和 style, 且 Literal 仅做提醒作用
-        self.type: Union[Literal["text", "highlight", "branding"], str] = "text"
+        self.type: Union[
+            Literal[
+                "text",
+                "highlight",
+                # branding
+                # card
+                # drawer
+                # promotion
+                # pause
+            ],
+            str,
+        ] = "text"
         self.style: Union[
             Literal[
                 "popup",
@@ -49,6 +60,7 @@ class Annotation:
                 "highlightText",
                 "anchored",
                 "label",
+                "",
                 # branding
                 # channel
                 # cta
@@ -57,6 +69,12 @@ class Annotation:
                 # video
                 # vote
                 # website
+                # simple
+                # poll
+                # collaboration
+                # donation
+                # movie
+                # episode
             ],
             str,
         ] = "popup"
@@ -84,9 +102,11 @@ class Annotation:
         # fgColor 是注释文本的颜色
         # 如果不是 Annotations, 我都不知道颜色值可以用十进制表达, 而且还是BGR, 视频出来效果不对才知道
         self.fgColor: Color = Color(red=0, green=0, blue=0)
-        # textSize 是 "文字占画布的百分比", 而在 title 样式中才是熟悉的 "字体大小"
+        # textSize 是 "文字占画布的百分比"
         self.textSize: float = 3.15
+        # fontWeight 是字重
         self.fontWeight: str = ""
+        # 一些注释会在触发后才显示
         self.ref: str = ""
         # SSA 不能实现交互,
         # 处理 action 没有意义
@@ -97,7 +117,7 @@ class Annotation:
         # self.highlightId: str = ""
 
     def __str__(self) -> str:
-        """模仿 https://github.com/isaackd/annotations-converter"""
+        # 模仿 https://github.com/isaackd/annotations-converter
 
         def f(color: Color) -> int:
             return (color.blue << 16) | (color.green << 8) | color.red
@@ -117,7 +137,7 @@ class Annotation:
 
 
 def Parse(tree: Element) -> List[Annotation]:
-    """将 XML 树转换为 List[Annotation]"""
+    """解析 Annotations 树"""
 
     # Annotation 文件是一个 XML 文件
     # 详细结构可以看看 src/tests/testCase/annotation.xml.test
@@ -193,8 +213,6 @@ def Parse(tree: Element) -> List[Annotation]:
         return float(string)
 
     def ParseAnnotation(each: Element) -> Optional[Annotation]:
-        """解析 Annotation"""
-
         # 致谢: https://github.com/nirbheek/youtube-ass
         #    & https://github.com/isaackd/annotationlib
 
@@ -205,7 +223,7 @@ def Parse(tree: Element) -> List[Annotation]:
         _type = each.get("type", "")
         if _type == "":
             return None
-        if _type not in ("text", "highlight", "branding"):
+        if _type not in ("text", "highlight"):
             Stderr(_('不支持 "{}" 类型 ({})').format(_type, _id))
             return None
 

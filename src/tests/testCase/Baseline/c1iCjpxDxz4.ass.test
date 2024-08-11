@@ -1,0 +1,74 @@
+[Script Info]
+; 此脚本使用 Annotations2Sub 生成
+; https://github.com/USED255/Annotations2Sub
+ScriptType: v4.00+
+Title: c1iCjpxDxz4.xml.test
+PlayResX: 1000
+PlayResY: 1000
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Arial,20,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,2,2,2,10,10,10,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,00:00:00.00,00:00:01.63,Default,;annotation_3848232377;anchored_box;,0,0,0,,{\an7\pos(428.13,890.74)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 160.42 0 l 160.42 105.56 l 0 105.56 {\p0}
+Dialogue: 0,00:00:00.00,00:00:01.63,Default,;annotation_3848232377;anchored_text;,0,0,0,,{\an7\pos(438.13,900.74)\fs86.988\c&H1A1A1A&\bord0\shad0}GabeN!
+Dialogue: 0,00:00:01.63,00:00:04.13,Default,;annotation_4131635201;anchored_box;,0,0,0,,{\an7\pos(179.17,885.19)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 738.54 0 l 738.54 114.81 l 0 114.81 {\p0}
+Dialogue: 0,00:00:01.63,00:00:04.13,Default,;annotation_4131635201;anchored_text;,0,0,0,,{\an7\pos(189.17,895.19)\fs57.5\c&H1A1A1A&\bord0\shad0}I'm sorry, but can you hold my SteamMachine for a \Nsecond?
+Dialogue: 0,00:00:04.31,00:00:07.31,Default,;annotation_3028921701;anchored_box;,0,0,0,,{\an7\pos(437.5,890.74)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 166.67 0 l 166.67 105.56 l 0 105.56 {\p0}
+Dialogue: 0,00:00:04.31,00:00:07.31,Default,;annotation_3028921701;anchored_triangle;,0,0,0,,{\an7\pos(540.42,1016.3)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 38.916 -20.0 l 9.916 -20.0 {\p0}
+Dialogue: 0,00:00:04.31,00:00:07.31,Default,;annotation_3028921701;anchored_text;,0,0,0,,{\an7\pos(447.5,900.74)\fs72.244\c&H1A1A1A&\bord0\shad0}Eh? But...
+Dialogue: 0,00:00:09.51,00:00:14.15,Default,;annotation_3545746589;anchored_box;,0,0,0,,{\an7\pos(210.42,892.59)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 612.5 0 l 612.5 107.59 l 0 107.59 {\p0}
+Dialogue: 0,00:00:09.51,00:00:14.15,Default,;annotation_3545746589;anchored_text;,0,0,0,,{\an7\pos(220.42,902.59)\fs57.5\c&H1A1A1A&\bord0\shad0}Hey! Hey! You guys! Hey! I've had enough... \Nhey!
+Dialogue: 0,00:00:14.64,00:00:15.77,Default,;annotation_2979211715;anchored_box;,0,0,0,,{\an7\pos(408.33,885.19)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 224.95 0 l 224.95 111.3 l 0 111.3 {\p0}
+Dialogue: 0,00:00:14.64,00:00:15.77,Default,;annotation_2979211715;anchored_text;,0,0,0,,{\an7\pos(418.33,895.19)\fs89.937\c&H1A1A1A&\bord0\shad0}I'm scared!
+Dialogue: 0,00:00:15.77,00:00:17.57,Default,;annotation_547203191;anchored_box;,0,0,0,,{\an7\pos(281.25,881.3)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 510.41 0 l 510.41 118.7 l 0 118.7 {\p0}
+Dialogue: 0,00:00:15.77,00:00:17.57,Default,;annotation_547203191;anchored_text;,0,0,0,,{\an7\pos(291.25,891.3)\fs66.347\c&H1A1A1A&\bord0\shad0}They have so many good exclusives!
+Dialogue: 0,00:00:17.84,00:00:19.69,Default,;annotation_3018149379;anchored_box;,0,0,0,,{\an7\pos(447.92,894.44)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 126.04 0 l 126.04 103.8 l 0 103.8 {\p0}
+Dialogue: 0,00:00:17.84,00:00:19.69,Default,;annotation_3018149379;anchored_triangle;,0,0,0,,{\an7\pos(511.26,1018.24)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 43.92 -20.0 l 21.989 -20.0 {\p0}
+Dialogue: 0,00:00:17.84,00:00:19.69,Default,;annotation_3018149379;anchored_text;,0,0,0,,{\an7\pos(457.92,904.44)\fs84.039\c&H1A1A1A&\bord0\shad0}WAIT!
+Dialogue: 0,00:00:21.14,00:00:24.59,Default,;annotation_1035471065;anchored_box;,0,0,0,,{\an7\pos(209.38,879.63)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 580.2 0 l 580.2 120.37 l 0 120.37 {\p0}
+Dialogue: 0,00:00:21.14,00:00:24.59,Default,;annotation_1035471065;anchored_text;,0,0,0,,{\an7\pos(219.38,889.63)\fs60.449\c&H1A1A1A&\bord0\shad0}Those guys... could you please let them \Ngo?
+Dialogue: 0,00:00:24.97,00:00:25.97,Default,;annotation_2917602811;anchored_box;,0,0,0,,{\an7\pos(451.04,900.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 154.12 0 l 154.12 100.09 l 0 100.09 {\p0}
+Dialogue: 0,00:00:24.97,00:00:25.97,Default,;annotation_2917602811;anchored_text;,0,0,0,,{\an7\pos(461.04,910.0)\fs81.09\c&H1A1A1A&\bord0\shad0}GabeN!
+Dialogue: 0,00:00:25.82,00:00:27.40,Default,;annotation_26755567;anchored_box;,0,0,0,,{\an7\pos(313.54,885.19)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 396.88 0 l 396.88 109.35 l 0 109.35 {\p0}
+Dialogue: 0,00:00:25.82,00:00:27.40,Default,;annotation_26755567;anchored_text;,0,0,0,,{\an7\pos(323.54,895.19)\fs84.039\c&H1A1A1A&\bord0\shad0}Eh? What do you want?
+Dialogue: 0,00:00:27.67,00:00:28.79,Default,;annotation_2559191627;anchored_box;,0,0,0,,{\an7\pos(340.63,894.44)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 385.41 0 l 385.41 103.89 l 0 103.89 {\p0}
+Dialogue: 0,00:00:27.67,00:00:28.79,Default,;annotation_2559191627;anchored_text;,0,0,0,,{\an7\pos(350.63,904.44)\fs57.5\c&H1A1A1A&\bord0\shad0}This is none of your \Nbusiness!
+Dialogue: 0,00:00:28.81,00:00:31.92,Default,;annotation_1148249007;anchored_box;,0,0,0,,{\an7\pos(294.79,885.19)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 460.36 0 l 460.36 114.82 l 0 114.82 {\p0}
+Dialogue: 0,00:00:28.81,00:00:31.92,Default,;annotation_1148249007;anchored_text;,0,0,0,,{\an7\pos(304.79,895.19)\fs54.552\c&H1A1A1A&\bord0\shad0}They have an inferior online service!
+Dialogue: 0,00:00:32.16,00:00:34.11,Default,;annotation_952742605;anchored_box;,0,0,0,,{\an7\pos(276.04,881.48)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 478.12 0 l 478.12 118.52 l 0 118.52 {\p0}
+Dialogue: 0,00:00:32.16,00:00:34.11,Default,;annotation_952742605;anchored_text;,0,0,0,,{\an7\pos(286.04,891.48)\fs60.449\c&H1A1A1A&\bord0\shad0}What do you have to offer \Nanyways?!
+Dialogue: 0,00:00:34.36,00:00:37.73,Default,;annotation_2559352309;anchored_box;,0,0,0,,{\an7\pos(371.88,890.74)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 306.25 0 l 306.25 101.94 l 0 101.94 {\p0}
+Dialogue: 0,00:00:34.36,00:00:37.73,Default,;annotation_2559352309;anchored_text;,0,0,0,,{\an7\pos(381.88,900.74)\fs75.193\c&H1A1A1A&\bord0\shad0}My online service?
+Dialogue: 0,00:00:44.83,00:00:46.55,Default,;annotation_1243919209;anchored_box;,0,0,0,,{\an7\pos(437.5,887.04)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 298.96 0 l 298.96 109.44 l 0 109.44 {\p0}
+Dialogue: 0,00:00:44.83,00:00:46.55,Default,;annotation_1243919209;anchored_text;,0,0,0,,{\an7\pos(447.5,897.04)\fs72.244\c&H1A1A1A&\bord0\shad0}What do you think?
+Dialogue: 0,00:00:48.35,00:00:51.95,Default,;annotation_1441685467;anchored_box;,0,0,0,,{\an7\pos(223.96,890.74)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 595.83 0 l 595.83 109.35 l 0 109.35 {\p0}
+Dialogue: 0,00:00:48.35,00:00:51.95,Default,;annotation_1441685467;anchored_text;,0,0,0,,{\an7\pos(233.96,900.74)\fs54.552\c&H1A1A1A&\bord0\shad0}What? Is this still not enough, you greedy pair?
+Dialogue: 0,00:00:55.68,00:00:57.66,Default,;annotation_1028971653;anchored_box;,0,0,0,,{\an7\pos(306.25,887.04)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 427.08 0 l 427.08 113.15 l 0 113.15 {\p0}
+Dialogue: 0,00:00:55.68,00:00:57.66,Default,;annotation_1028971653;anchored_text;,0,0,0,,{\an7\pos(316.25,897.04)\fs66.347\c&H1A1A1A&\bord0\shad0}There you go, you greedy \Nboy.
+Dialogue: 0,00:00:57.89,00:01:02.54,Default,;annotation_3991418321;anchored_box;,0,0,0,,{\an7\pos(294.79,887.04)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 502.08 0 l 502.08 112.97 l 0 112.97 {\p0}
+Dialogue: 0,00:00:57.89,00:01:02.54,Default,;annotation_3991418321;anchored_text;,0,0,0,,{\an7\pos(304.79,897.04)\fs57.5\c&H1A1A1A&\bord0\shad0}What's that? It doesn't matter \Nanyways!
+Dialogue: 0,00:01:02.82,00:01:06.32,Default,;annotation_4245520727;anchored_box;,0,0,0,,{\an7\pos(278.13,890.74)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 515.63 0 l 515.63 107.5 l 0 107.5 {\p0}
+Dialogue: 0,00:01:02.82,00:01:06.32,Default,;annotation_4245520727;anchored_text;,0,0,0,,{\an7\pos(288.13,900.74)\fs54.552\c&H1A1A1A&\bord0\shad0}No, wait. Look at his resolution and FPS!
+Dialogue: 0,00:01:09.02,00:01:10.11,Default,;annotation_1925611677;anchored_box;,0,0,0,,{\an7\pos(484.38,903.7)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 127.03 0 l 127.03 96.3 l 0 96.3 {\p0}
+Dialogue: 0,00:01:09.02,00:01:10.11,Default,;annotation_1925611677;anchored_triangle;,0,0,0,,{\an7\pos(565.37,1020.02)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 27.113 -20.02 l 5.009 -20.02 {\p0}
+Dialogue: 0,00:01:09.02,00:01:10.11,Default,;annotation_1925611677;anchored_text;,0,0,0,,{\an7\pos(494.38,913.7)\fs75.193\c&H1A1A1A&\bord0\shad0}I know.
+Dialogue: 0,00:01:10.32,00:01:15.38,Default,;annotation_3524093631;anchored_box;,0,0,0,,{\an7\pos(204.17,885.19)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 642.66 0 l 642.66 114.81 l 0 114.81 {\p0}
+Dialogue: 0,00:01:10.32,00:01:15.38,Default,;annotation_3524093631;anchored_text;,0,0,0,,{\an7\pos(214.17,895.19)\fs57.5\c&H1A1A1A&\bord0\shad0}Deep down in your heart you would like to be a \NPC.
+Dialogue: 0,00:01:16.50,00:01:17.86,Default,;annotation_3484469471;anchored_box;,0,0,0,,{\an7\pos(339.58,900.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 358.33 0 l 358.33 100.09 l 0 100.09 {\p0}
+Dialogue: 0,00:01:16.50,00:01:17.86,Default,;annotation_3484469471;anchored_text;,0,0,0,,{\an7\pos(349.58,910.0)\fs57.5\c&H1A1A1A&\bord0\shad0}With Steam, free of charge.
+Dialogue: 0,00:01:20.37,00:01:25.89,Default,;annotation_1617823747;anchored_box;,0,0,0,,{\an7\pos(15.63,892.59)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 975.0 0 l 975.0 107.59 l 0 107.59 {\p0}
+Dialogue: 0,00:01:20.37,00:01:25.89,Default,;annotation_1617823747;anchored_text;,0,0,0,,{\an7\pos(25.63,902.59)\fs54.552\c&H1A1A1A&\bord0\shad0}Embrace my free online service with great deals! You won't get another chance!
+Dialogue: 0,00:01:27.56,00:01:29.27,Default,;annotation_2844253713;anchored_box;,0,0,0,,{\an7\pos(356.25,900.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 373.96 0 l 373.96 96.3 l 0 96.3 {\p0}
+Dialogue: 0,00:01:27.56,00:01:29.27,Default,;annotation_2844253713;anchored_text;,0,0,0,,{\an7\pos(366.25,910.0)\fs57.5\c&H1A1A1A&\bord0\shad0}Are you ready for Steam yet?
+Dialogue: 0,00:01:29.40,00:01:30.40,Default,;annotation_4236133073;anchored_box;,0,0,0,,{\an7\pos(430.21,905.46)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 223.96 0 l 223.96 94.54 l 0 94.54 {\p0}
+Dialogue: 0,00:01:29.40,00:01:30.40,Default,;annotation_4236133073;anchored_triangle;,0,0,0,,{\an7\pos(576.04,1020.0)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 44.76 -20.0 l 5.791 -20.0 {\p0}
+Dialogue: 0,00:01:29.40,00:01:30.40,Default,;annotation_4236133073;anchored_text;,0,0,0,,{\an7\pos(440.21,915.46)\fs69.295\c&H1A1A1A&\bord0\shad0}What? We too?!
+Dialogue: 0,00:01:43.41,00:01:48.04,Default,;annotation_3279651189;anchored_box;,0,0,0,,{\an7\pos(269.79,888.89)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 608.33 0 l 608.33 111.11 l 0 111.11 {\p0}
+Dialogue: 0,00:01:43.41,00:01:48.04,Default,;annotation_3279651189;anchored_text;,0,0,0,,{\an7\pos(279.79,898.89)\fs51.603\c&H1A1A1A&\bord0\shad0}I'll listen to your story. Where did your prices go?
+Dialogue: 0,00:01:48.06,00:01:49.97,Default,;annotation_907692417;anchored_box;,0,0,0,,{\an7\pos(344.79,901.76)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 364.58 0 l 364.58 98.24 l 0 98.24 {\p0}
+Dialogue: 0,00:01:48.06,00:01:49.97,Default,;annotation_907692417;anchored_text;,0,0,0,,{\an7\pos(354.79,911.76)\fs54.552\c&H1A1A1A&\bord0\shad0}Oh, I see, I see. Sales, huh?
+

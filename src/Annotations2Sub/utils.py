@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-"""工具类"""
-
-
 import sys
 import urllib.request
 

@@ -67,16 +67,14 @@ class Style:
         self.Encoding: int = 1
 
     def __str__(self) -> str:
-        def DumpAABBGGRR(rgba: Rgba) -> str:
-            """转换为 SSA 颜色字符串"""
-
+        def DumpABGR(rgba: Rgba) -> str:
             # "长整型 BGR（蓝绿红）值，还包含了 alpha 通道信息。"
             # "该值的十六进制字节顺序为 AABBGGRR。例如，&H00FFFFFF。"
             return "&H{:02X}{:02X}{:02X}{:02X}".format(
                 rgba.alpha, rgba.blue, rgba.green, rgba.red
             )
 
-        return f"Style: {{}},{self.Fontname},{self.Fontsize},{DumpAABBGGRR(self.PrimaryColour)},{DumpAABBGGRR(self.SecondaryColour)},{DumpAABBGGRR(self.OutlineColour)},{DumpAABBGGRR(self.BackColour)},{self.Bold},{self.Italic},{self.Underline},{self.StrikeOut},{self.ScaleX},{self.ScaleY},{self.Spacing},{self.Angle},{self.BorderStyle},{self.Outline},{self.Shadow},{self.Alignment},{self.MarginL},{self.MarginR},{self.MarginV},{self.Encoding}\n"
+        return f"Style: {{}},{self.Fontname},{self.Fontsize},{DumpABGR(self.PrimaryColour)},{DumpABGR(self.SecondaryColour)},{DumpABGR(self.OutlineColour)},{DumpABGR(self.BackColour)},{self.Bold},{self.Italic},{self.Underline},{self.StrikeOut},{self.ScaleX},{self.ScaleY},{self.Spacing},{self.Angle},{self.BorderStyle},{self.Outline},{self.Shadow},{self.Alignment},{self.MarginL},{self.MarginR},{self.MarginV},{self.Encoding}\n"
 
 
 class Event:
@@ -102,8 +100,6 @@ class Event:
 
     def __str__(self) -> str:
         def DumpTime(time: datetime) -> str:
-            """转换为 SSA 时间字符串"""
-
             # "格式为 0:00:00:00（小时:分:秒:毫秒）"
             return time.strftime("%H:%M:%S.%f")[:-4]
 
@@ -119,10 +115,11 @@ class Sub:
         self._events = self._Events()
 
         self.info = self._info.infos
-        """ 这个结构中会有一些脚本的配置 """
+        """ 脚本配置 """
 
+        # 通常脚本中会有一些注释写了谁生成了这个脚本
         self.comment = ""
-        """ 通常脚本中会有一些注释写了谁生成了这个脚本 """
+        """ 脚本注释 """
 
         self.styles = self._styles.styles
         self.events = self._events.events
@@ -146,10 +143,6 @@ class Sub:
 
     def __eq__(self, value: object) -> bool:
         return str(self) == str(value)
-
-    def Dump(self) -> str:
-        """转储为 SSA"""
-        return str(self)
 
     class _Info:
         """SSA 的信息(Info) 结构"""
@@ -226,19 +219,6 @@ class Draw(list):
         return string
 
 
-def DumpColor(color: Color) -> str:
-    """将 Color 转换为 SSA 的颜色表示"""
-    return "&H{:02X}{:02X}{:02X}&".format(color.red, color.green, color.blue)
-
-
-def DumpAlpha(alpha: Alpha) -> str:
-    """将 Alpha 转换为 SSA 的 Alpha 表示"""
-
-    # 据 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 所说
-    # SSA 的 Alpha 是透明度, 00 为不透明，FF 为全透明
-    return "&H{:02X}&".format(255 - alpha.alpha)
-
-
 class Tag(list):
     """样式复写代码, 样式复写标签, ASS 标签, 特效标签, Aegisub 特效标签, 标签"""
 
@@ -301,6 +281,11 @@ class Tag(list):
             self.colour = colour
 
         def __str__(self) -> str:
+            def DumpColor(color: Color) -> str:
+                return "&H{:02X}{:02X}{:02X}&".format(
+                    color.red, color.green, color.blue
+                )
+
             return rf"\c{DumpColor(self.colour)}"
 
     class PrimaryAlpha:
@@ -314,6 +299,11 @@ class Tag(list):
             self.alpha = alpha
 
         def __str__(self) -> str:
+            def DumpAlpha(alpha: Alpha) -> str:
+                # 据 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 所说
+                # SSA 的 Alpha 是透明度, 00 为不透明，FF 为全透明
+                return "&H{:02X}&".format(255 - alpha.alpha)
+
             return rf"\1a{DumpAlpha(self.alpha)}"
 
     class Bold:

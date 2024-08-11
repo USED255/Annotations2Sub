@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-from Annotations2Sub import version
+import Annotations2Sub
 
 
 def test_version():
-    assert version == "2.19.0"
+    assert Annotations2Sub.__version__ == "2.20.0"

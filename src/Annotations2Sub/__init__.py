@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-"""Annotations2Sub, 一个能把 Youtube 注释转换成 Advanced SubStation Alpha 字幕文件的脚本"""
+"""下载和转换 Youtube 注释"""
 
-__version__ = "2.19.0"
+__version__ = "2.20.0"
 
 """
                                              xml.
@@ -100,10 +100,9 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 本文件49至57行: 问题已解决, 但不是 CSS 的问题, 是字体的问题😅
 ---
 """
-version = __version__
 
 from Annotations2Sub._Convert import Convert
-from Annotations2Sub._Sub import Sub
+from Annotations2Sub._Sub import Event, Style, Sub
 from Annotations2Sub.Annotations import Annotation, NotAnnotationsDocumentError, Parse
 from Annotations2Sub.repl import (
     AnnotationsXmlFileToSubtitleFile,
@@ -115,7 +114,8 @@ __all__ = [
     "Annotation",
     "Convert",
     "Sub",
-    "version",
+    "Style",
+    "Event",
     "NotAnnotationsDocumentError",
     "AnnotationsXmlFileToSubtitleFile",
     "AnnotationsXmlStringToSubtitleString",

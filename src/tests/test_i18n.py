@@ -6,11 +6,11 @@ import sys
 
 import pytest
 
-from Annotations2Sub.i18n import Internationalization
+from Annotations2Sub.i18n import internationalization
 
 
 def test_internationalization():
-    assert Internationalization()
+    assert internationalization()
 
 
 def test_internationalization_FileNotFoundError():
@@ -20,7 +20,7 @@ def test_internationalization_FileNotFoundError():
     m = pytest.MonkeyPatch()
     m.setattr(gettext, "translation", f)
 
-    assert Internationalization()
+    assert internationalization()
 
     m.undo()
 
@@ -30,6 +30,6 @@ def test_internationalization_win32():
     m.setattr(sys, "platform", "win32")
     m.setattr(os, "getenv", lambda x: None)
 
-    assert Internationalization()
+    assert internationalization()
 
     m.undo()

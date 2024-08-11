@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <annotations>
+        <annotation></annotation>
+
+        <annotation id="1"></annotation>
+
+        <annotation id="2" type="test"></annotation>
+
+        <annotation id="3" type="text"></annotation>
+
+        <annotation id="4" type="text" style="popup"></annotation>
+
+        <annotation id="5" type="text" style="popup">
+            <segment></segment>
+        </annotation>
+
+        <annotation id="6" type="text" style="popup">
+            <segment>
+                <movingRegion></movingRegion>
+            </segment>
+        </annotation>
+
+        <annotation id="7" type="text" style="popup">
+            <segment>
+                <movingRegion>
+                    <rectRegion w="-1"/>
+                </movingRegion>
+            </segment>
+        </annotation>
+
+        <annotation id="8" type="text" style="popup">
+            <segment>
+                <movingRegion>
+                    <rectRegion w="nan"/>
+                </movingRegion>
+            </segment>
+        </annotation>
+
+        <annotation id="9" type="text" style="popup">
+            <segment>
+                <movingRegion>
+                    <rectRegion t=""/>
+                    <rectRegion t="undefined"/>
+                </movingRegion>
+            </segment>
+        </annotation>
+
+        <annotation id="10" type="text" style="popup">
+            <segment>
+                <movingRegion>
+                    <rectRegion t="&amp;:NaN.NaN"/>
+                    <rectRegion t="4294967294:0.aN"/>
+                </movingRegion>
+            </segment>
+        </annotation>
+
+        <annotation id="11" type="text" style="popup">
+            <segment>
+                <movingRegion>
+                    <rectRegion t=":NaN"/>
+                    <rectRegion t="#"/>
+                </movingRegion>
+            </segment>
+        </annotation>
+
+    </annotations>
+</document>
