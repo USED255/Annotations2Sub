@@ -19,17 +19,17 @@ baseline2_file = os.path.join(baselinePath, "e8kKeUuytqA.xml.test")
 
 empty_xml = os.path.join(testCasePath, "empty.xml.test")
 empty_annotations = os.path.join(testCasePath, "emptyAnnotations.xml.test")
-file_file = os.path.join(testCasePath, "file.ass.test")
+file1 = os.path.join(testCasePath, "file1.test")
 
 
 def test_cli_failed():
     """预期失败的命令"""
     commands = f"""-ND {baseline1_file}
-{baseline1_file} -O {file_file}
+{baseline1_file} -O {file1}
 {baseline1_file} {baseline2_file} -o 1.ass
 {baseline1_file} -O . -o 1.ass
 {empty_xml}
-{file_file}
+{file1}
 0
 -d 0"""
 
