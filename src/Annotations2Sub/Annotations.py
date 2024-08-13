@@ -139,8 +139,10 @@ class Annotation:
 def Parse(tree: Element) -> List[Annotation]:
     """解析 Annotations 树"""
 
+    # 本质上在提取和清理数据
+
     # Annotation 文件是一个 XML 文件
-    # 详细结构可以看看 src/tests/testCase/annotation.xml.test
+    # 详细结构可以看看 src/tests/testCase/Baseline/*.xml.test
 
     def ParseAnnotationAlpha(alphaString: str) -> Alpha:
         """
