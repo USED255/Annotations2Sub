@@ -7,7 +7,7 @@ from urllib.error import URLError
 
 import pytest
 
-from Annotations2Sub import cli, utils2
+from Annotations2Sub import cli, cli_utils
 from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import Stderr
 from tests import baselinePath, testCasePath
@@ -100,7 +100,7 @@ def test_cli_network_failed():
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "GetUrl", GetUrlMock)
-    m.setattr(utils2, "GetUrl", GetUrlMock)
+    m.setattr(cli_utils, "GetUrl", GetUrlMock)
     m.setattr(subprocess, "run", subprocessMock)
 
     for command in commands.splitlines():
@@ -179,7 +179,7 @@ def test_cli_network_success():
 
     m = pytest.MonkeyPatch()
     m.setattr(cli, "GetUrl", GetUrlMock)
-    m.setattr(utils2, "GetUrl", GetUrlMock)
+    m.setattr(cli_utils, "GetUrl", GetUrlMock)
     m.setattr(subprocess, "run", subprocessMock)
 
     for command in commands.splitlines():

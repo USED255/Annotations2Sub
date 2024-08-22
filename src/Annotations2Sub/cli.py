@@ -18,13 +18,13 @@ from xml.etree.ElementTree import ParseError
 from Annotations2Sub import __version__ as version
 from Annotations2Sub._flags import Flags
 from Annotations2Sub.Annotations import NotAnnotationsDocumentError
-from Annotations2Sub.i18n import _
-from Annotations2Sub.utils import Err, GetUrl, Info, Stderr, Warn, YellowText
-from Annotations2Sub.utils2 import (
-    AnnotationsXmlStringToSubtitleString,
+from Annotations2Sub.cli_utils import (
+    AnnotationsXmlStringToSub,
     GetAnnotationsUrl,
     GetMedia,
 )
+from Annotations2Sub.i18n import _
+from Annotations2Sub.utils import Err, GetUrl, Info, Stderr, Warn, YellowText
 
 
 def Dummy(*args, **kwargs):
@@ -255,12 +255,14 @@ def Run(argv=None):  # -> Literal[1, 0]:
             annotations_string = f.read()
 
         try:
-            subtitle_string = AnnotationsXmlStringToSubtitleString(
-                annotations_string,
-                transform_resolution_x,
-                transform_resolution_y,
-                font,
-                os.path.basename(annotations_file),
+            subtitle_string = str(
+                AnnotationsXmlStringToSub(
+                    annotations_string,
+                    transform_resolution_x,
+                    transform_resolution_y,
+                    font,
+                    os.path.basename(annotations_file),
+                )
             )
         except NotAnnotationsDocumentError:
             Err(_('"{}" 不是 Annotations 文件').format(annotations_file))
