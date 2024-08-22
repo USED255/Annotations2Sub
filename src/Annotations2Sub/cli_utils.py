@@ -63,13 +63,13 @@ def GetMedia(videoId: str, instanceDomain: str):  # -> tuple[str, str]:
     return video, audio
 
 
-def AnnotationsXmlStringToSubtitleString(
+def AnnotationsXmlStringToSub(
     annotations_string: str,
     transform_resolution_x: int = 100,
     transform_resolution_y: int = 100,
     font=_("Microsoft YaHei"),
     title=_("无标题"),
-) -> str:
+) -> Sub:
 
     if annotations_string == "":
         raise ValueError(_("annotations_string 不应为空字符串"))
@@ -99,4 +99,4 @@ def AnnotationsXmlStringToSubtitleString(
     subtitle.info["WrapStyle"] = "2"
     subtitle.styles["Default"].Fontname = font
     subtitle.events.extend(events)
-    return str(subtitle)
+    return subtitle
