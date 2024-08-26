@@ -130,9 +130,9 @@ def Run(args: List[str] | None = None) -> Literal[0, 1] :
     ...
 ```
 
-```Run``` 函数实现了命令行接口. 当在命令行运行程序时, 函数入参为 ```None```,
-argparse 会从 "argv" 中获取参数, 若传入 "List[str]", 则该 ```List``` 就是 "命令行参数".
-成功返回 ```0```, 失败返回 ```1```.
+`Run` 函数实现了命令行接口. 当在命令行运行程序时, 函数入参为 `None`,
+argparse 会从 "argv" 中获取参数, 若传入 "List[str]", 则该 `List` 就是 "命令行参数".
+成功返回 `0`, 失败返回 `1`.
 
 在编码中调用该函数主要用于测试.
 
@@ -149,21 +149,34 @@ def main() -> NoReturn:
 # src/tests/test_cli.py
 
 def test_cli_failed():
-    \"""预期失败的命令\"""
-    commands = f\"""-ND {baseline1_file}
-{baseline1_file} -O {file1}
-{baseline1_file} {baseline2_file} -o 1.ass
-{baseline1_file} -O . -o 1.ass
-{empty_xml}
-{file1}
-0
--d 0\"""
+    commands = f\"""0 0\"""
 
     for command in commands.splitlines():
-        Stderr(command)
         argv = command.split(" ")
         code = Run(argv)
         assert code == 1
+```
+
+"""
+)
+
+Parse.__doc__ = _(
+    """# Parse 函数
+
+```python
+def Parse(tree: Element) -> List[Annotation]:
+    ...
+```
+
+`Parse` 函数可以将 XML 树转换为 `Annotation` 列表.
+
+## 例子
+
+```python
+# src/Annotations2Sub/cli_utils.py
+
+tree = xml.etree.ElementTree.fromstring(annotations_string)
+annotations = Parse(tree)
 ```
 """
 )
