@@ -148,13 +148,13 @@ def main() -> NoReturn:
 ```python
 # src/tests/test_cli.py
 
-def test_cli_failed():
-    commands = f\"""0 0\"""
+def test_cli():
+    commands = f\"""annotations.xml\"""
 
     for command in commands.splitlines():
         argv = command.split(" ")
         code = Run(argv)
-        assert code == 1
+        assert code == 0
 ```
 
 """
@@ -177,6 +177,30 @@ def Parse(tree: Element) -> List[Annotation]:
 
 tree = xml.etree.ElementTree.fromstring(annotations_string)
 annotations = Parse(tree)
+```
+"""
+)
+
+Convert.__doc__ = _(
+    """# Convert 函数
+
+```python
+def Convert(
+    annotations: List[Annotation],
+    resolutionX: int = 100,
+    resolutionY: int = 100,
+) -> List[Event]:
+```
+
+`Convert` 函数可以将 `Annotation` 列表转换为 `Event` 列表.
+
+## 例子
+
+```python
+# src/Annotations2Sub/cli_utils.py
+
+annotations = Parse(tree)
+events = Convert(annotations)
 ```
 """
 )
