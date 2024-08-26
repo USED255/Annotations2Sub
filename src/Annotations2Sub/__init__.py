@@ -204,3 +204,20 @@ events = Convert(annotations)
 ```
 """
 )
+
+Annotation.__doc__ = _(
+    """# Annotation 类
+
+Annotation 类是一个数据类, 储存了必要的 Annotation 字段.
+你可以手动填写或者使用 `Parse` 函数从 XML 树中提取数据.
+这个类实现了 `__str__`, `__repr__` 和 `__eq__`, 所以你也可以直接使用.
+
+## 例子
+
+```python
+# src/Annotations2Sub/cli_utils.py
+
+annotations = Parse(tree)
+```
+"""
+)
