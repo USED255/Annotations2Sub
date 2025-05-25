@@ -1,4 +1,15 @@
 # -*- coding: utf-8 -*-
+"""Provides the command-line interface for the Annotations2Sub application.
+
+This module is responsible for parsing command-line arguments, interpreting user
+intent, and orchestrating the overall workflow. It handles tasks such as
+fetching annotation files (from local paths or online sources like Internet Archive),
+converting them to subtitle formats (primarily ASS), and managing options related
+to output (filenames, directories, stdout), video resolution, font selection,
+and integration with external tools like mpv for preview and FFmpeg for
+video generation with hardcoded subtitles. It also controls verbosity and
+error reporting to the user.
+"""
 
 
 import _thread
@@ -31,8 +42,51 @@ def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
-def Run(argv=None):  # -> Literal[1, 0]:
-    """跑起来🐎🐎🐎"""
+def Run(argv: Optional[List[str]] = None) -> int:
+    """Main function for the Annotations2Sub command-line interface.
+
+    This function orchestrates the entire process of the Annotations2Sub tool.
+    It parses command-line arguments, processes a queue of video IDs or local
+    XML file paths, downloads annotation files if requested, converts them to
+    ASS subtitle format, and handles various output options. It can also
+    initiate video preview with mpv or video generation with FFmpeg if specified.
+
+    The function iterates through each item in the input queue (video IDs or file paths).
+    For each item:
+    1. If downloading is enabled:
+        - It constructs the annotation URL (e.g., from Internet Archive).
+        - Downloads the annotation XML content.
+        - Saves it to a local file or outputs to stdout if requested.
+        - If only download is requested, it skips further processing for this item.
+    2. If not just downloading, or if a local file is provided:
+        - Reads the annotation XML from the file.
+        - Converts the XML content to an ASS subtitle string using
+          `AnnotationsXmlStringToSub` from `cli_utils`. This involves parsing
+          the XML, converting annotations to `Event` objects, and then to
+          a `Sub` object.
+        - Handles errors like invalid XML or non-annotation documents.
+    3. Manages output:
+        - Saves the resulting ASS subtitle string to a file (with a `.ass`
+          extension, in a specified directory, or with a specified name)
+          or prints to stdout.
+        - Handles options like not overwriting existing files.
+    4. If intermediate files are not to be kept, the original XML (if downloaded)
+       and the generated ASS file (if used for video generation/preview) are deleted.
+    5. If video preview (`-p`) or generation (`-g`) is enabled:
+        - Fetches video and audio stream URLs using `GetMedia` from `cli_utils`,
+          utilizing an Invidious instance.
+        - Constructs and runs the appropriate command for `mpv` (preview) or
+          `ffmpeg` (generation).
+
+    Args:
+        argv: A list of command-line arguments. If None, `sys.argv[1:]` is used.
+              This allows the function to be called programmatically with specific
+              arguments.
+
+    Returns:
+        An integer exit code: 0 for success, 1 for errors encountered during
+        processing.
+    """
 
     exit_code = 0
     parser = argparse.ArgumentParser(description=_("下载和转换 Youtube 注释"))

@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+"""Manages the parsing and representation of YouTube annotation data.
+
+This module defines the `Annotation` class, which encapsulates the properties of
+a single YouTube annotation (e.g., text, timing, position, style).
+It provides the `Parse` function to transform an XML element tree, typically
+from an `annotations.xml` file, into a list of `Annotation` objects.
+Error handling for invalid annotation documents is also included.
+"""
 
 """Annotations 相关"""
 
@@ -21,11 +29,46 @@ except ImportError:
 
 
 class NotAnnotationsDocumentError(ValueError):
+    """Custom exception raised when an XML document is not a valid YouTube annotations file.
+
+    This typically means the root 'document' element is missing, or the
+    'annotations' child element is not found, indicating that the input XML
+    does not conform to the expected structure for YouTube annotation data.
+    """
     pass
 
 
 class Annotation:
-    """Annotation 结构"""
+    """Represents a single YouTube video annotation.
+
+    This class stores all relevant information for a single annotation,
+    such as its type, text content, timing, position, styling attributes
+    (colors, font size), and associated author. It aims to capture the
+    essential properties of annotations as they were defined by YouTube.
+
+    Attributes:
+        id: The unique identifier of the annotation.
+        type: The type of annotation (e.g., "text", "highlight").
+        style: The visual style of the annotation (e.g., "popup", "title", "speech").
+        author: The author of the annotation (often the channel ID).
+        text: The textual content of the annotation.
+        timeStart: The start time of the annotation display, as a datetime object.
+        timeEnd: The end time of the annotation display, as a datetime object.
+        x: The x-coordinate of the annotation's top-left corner (percentage of video width).
+        y: The y-coordinate of the annotation's top-left corner (percentage of video height).
+        width: The width of the annotation (percentage of video width).
+        height: The height of the annotation (percentage of video height).
+        sx: The x-coordinate of the speech bubble's arrow/anchor (percentage of video width).
+            Applicable for speech bubble style annotations.
+        sy: The y-coordinate of the speech bubble's arrow/anchor (percentage of video height).
+            Applicable for speech bubble style annotations.
+        bgOpacity: The background opacity of the annotation, as an `Alpha` object.
+        bgColor: The background color of the annotation, as a `Color` object.
+        fgColor: The foreground (text) color of the annotation, as a `Color` object.
+        textSize: The font size, typically as a percentage relative to the video height.
+        fontWeight: The font weight (e.g., "bold").
+        ref: An identifier for a referenced annotation, used for trigger mechanisms.
+    """
 
     # 致谢 https://github.com/isaackd/annotationlib
     # 这是 annotationlib "简易结构" 的一个模仿
@@ -137,7 +180,30 @@ class Annotation:
 
 
 def Parse(tree: Element) -> List[Annotation]:
-    """解析 Annotations 树"""
+    """Parses an XML element tree and extracts YouTube annotation data.
+
+    This function navigates an XML structure, typically parsed from a YouTube
+    `annotations.xml` file, to find and interpret individual annotation elements.
+    It extracts various attributes like timing, text, position, and styling
+    for each annotation and populates a list of `Annotation` objects.
+    Internal helper functions are used to parse specific data types like
+    colors, time values, and floating-point numbers from their string
+    representations in the XML.
+
+    Args:
+        tree: The root `xml.etree.ElementTree.Element` of the parsed
+              annotations XML document.
+
+    Returns:
+        A list of `Annotation` objects, each representing a parsed annotation
+        from the input XML. If no valid annotations are found, an empty list
+        is returned.
+
+    Raises:
+        NotAnnotationsDocumentError: If the provided XML tree does not conform
+                                     to the expected YouTube annotations structure
+                                     (e.g., missing 'annotations' element).
+    """
 
     # 本质上在提取和清理数据
 

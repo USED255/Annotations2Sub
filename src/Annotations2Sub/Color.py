@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+"""Provides data classes for color and alpha channel representation.
+
+This module defines simple classes to handle RGB color (`Color`),
+alpha transparency (`Alpha`), and a combination of both (`Rgba`).
+It includes validation for the range of color and alpha values.
+"""
 
 """颜色数据类"""
 

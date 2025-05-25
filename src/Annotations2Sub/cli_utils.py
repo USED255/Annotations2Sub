@@ -1,4 +1,14 @@
 # -*- coding: utf-8 -*-
+"""Provides utility functions supporting the command-line interface.
+
+This module contains helper functions used by `cli.py` to perform specific
+tasks in the annotation-to-subtitle conversion process. These include
+constructing URLs for fetching annotation files from the Internet Archive
+(`GetAnnotationsUrl`), retrieving video and audio stream URLs from Invidious
+instances (`GetMedia`), and the main workflow function `AnnotationsXmlStringToSub`
+which parses an XML string, converts annotations to events, and assembles the
+final subtitle object.
+"""
 
 import json
 import os

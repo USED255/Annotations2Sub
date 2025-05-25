@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""Provides common utility functions for the Annotations2Sub application.
+
+This module contains various helper functions used across the application,
+including functions for colored terminal output (e.g., `YellowText`, `RedText`),
+standardized printing to stderr for errors, warnings, and informational messages
+(`Err`, `Warn`, `Info`), and a simple URL fetching utility (`GetUrl`).
+"""
 
 import sys
 import urllib.request

@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""Handles internationalization and localization for the application.
+
+This module sets up and provides the translation mechanism using the `gettext`
+library. It attempts to load translation files based on the system's locale
+and provides a simple `_()` function for translating strings throughout the
+Annotations2Sub application.
+"""
 
 """On n'habite pas un pays, on habite une langue. Une patrie, c'est cela et rien d'autre."""
 

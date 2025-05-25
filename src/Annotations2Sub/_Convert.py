@@ -1,4 +1,14 @@
 # -*- coding: utf-8 -*-
+"""Handles the conversion of Annotation objects to subtitle Events.
+
+This module contains the core logic for transforming a list of parsed
+`Annotation` objects into a list of `Event` objects suitable for subtitle
+generation (e.g., in ASS format). It manages different annotation styles
+(like popup, title, speech bubble), calculates text and box positioning
+and scaling based on video resolution, adapts text (wrapping, escaping),
+and generates drawing commands for shapes. It also processes annotation
+dependencies where one annotation might trigger another.
+"""
 
 """转换器"""
 

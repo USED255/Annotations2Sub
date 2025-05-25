@@ -1,4 +1,18 @@
 # -*- coding: utf-8 -*-
+"""Defines structures for representing SubStation Alpha (SSA/ASS) subtitle data.
+
+This module provides classes to model the different components of an ASS subtitle
+script:
+- `Style`: Defines a named style (font, colors, margins, etc.).
+- `Event`: Represents a single timed subtitle line (dialogue, comment) with
+           associated style, actor, and text content.
+- `Sub`: Encapsulates the entire subtitle file, including script information,
+         styles, and a list of events. It can generate the complete ASS file content.
+- `DrawCommand` and `Draw`: Used for creating vector drawing instructions within
+                           ASS events (e.g., for shapes).
+- `Tag`: A helper class for generating ASS override tags (e.g., `\\pos`, `\\c`, `\\fs`)
+         used within Event text to control appearance dynamically.
+"""
 
 """SSA 相关"""
 

@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+"""Initializes the Annotations2Sub package.
+
+This module imports key components from submodules to provide a simplified
+interface for the package. It also defines package-level metadata like
+the version.
+"""
 
 """下载和转换 Youtube 注释"""
 
