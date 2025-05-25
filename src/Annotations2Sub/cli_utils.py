@@ -3,6 +3,7 @@
 import json
 import os
 import re
+import subprocess
 import xml.etree.ElementTree
 
 from Annotations2Sub._Convert import Convert
@@ -41,26 +42,83 @@ def GetAnnotationsUrl(videoId: str) -> str:
     )
 
 
-def GetMedia(videoId: str, instanceDomain: str):  # -> tuple[str, str]:
-    url = f"https://{instanceDomain}/api/v1/videos/{videoId}"
-    Stderr(_('获取 "{}"').format(url))
-    data = json.loads(GetUrl(url))
-    videos = []
-    audios = []
-    for i in data.get("adaptiveFormats"):
-        if re.match("video", i.get("type")) != None:
-            videos.append(i)
-        if re.match("audio", i.get("type")) != None:
-            audios.append(i)
-    videos.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-    audios.sort(key=lambda x: int(x.get("bitrate")), reverse=True)
-    video = str(videos[0]["url"])
-    audio = str(audios[0]["url"])
-    if not video.startswith("http"):
-        raise ValueError(_("没有 Video"))
-    if not audio.startswith("http"):
-        raise ValueError(_("没有 Audio"))
-    return video, audio
+def GetMedia(videoId: str, instanceDomain: str = None):  # -> tuple[str, str]:
+    # instanceDomain is no longer used but kept for API compatibility for now.
+    # It might be removed in a future version.
+    if instanceDomain is not None:
+        Warn(_("instanceDomain argument in GetMedia is deprecated and will be ignored."))
+
+    command = ["yt-dlp", "-j", "--skip-download", videoId]
+    Stderr(_('Executing "{}"').format(" ".join(command)))
+
+    try:
+        process = subprocess.run(command, capture_output=True, text=True, check=True, encoding='utf-8')
+        data = json.loads(process.stdout)
+    except subprocess.CalledProcessError as e:
+        raise ValueError(
+            _('yt-dlp failed with error: {}. Output: {}').format(e.stderr, e.output)
+        ) from e
+    except json.JSONDecodeError as e:
+        raise ValueError(_("Failed to parse yt-dlp JSON output: {}").format(str(e))) from e
+
+    video_url = None
+    audio_url = None
+
+    # Try to find a format with both video and audio
+    combined_formats = [
+        f for f in data.get("formats", [])
+        if f.get("vcodec") != "none" and f.get("acodec") != "none" and f.get("url")
+    ]
+
+    if combined_formats:
+        # Sort by resolution (height) and then by bitrate
+        combined_formats.sort(key=lambda f: (f.get("height", 0), f.get("tbr", 0) or f.get("abr", 0) or f.get("br", 0) or 0), reverse=True)
+        best_format = combined_formats[0]
+        video_url = best_format.get("url")
+        audio_url = best_format.get("url") # Same URL for combined format
+    else:
+        # If no combined format, find best video-only and audio-only
+        video_formats = [
+            f for f in data.get("formats", [])
+            if f.get("vcodec") != "none" and f.get("acodec") == "none" and f.get("url")
+        ]
+        audio_formats = [
+            f for f in data.get("formats", [])
+            if f.get("acodec") != "none" and f.get("vcodec") == "none" and f.get("url")
+        ]
+
+        if video_formats:
+            video_formats.sort(key=lambda f: (f.get("height", 0), f.get("tbr", 0) or f.get("br", 0) or 0), reverse=True)
+            video_url = video_formats[0].get("url")
+
+        if audio_formats:
+            audio_formats.sort(key=lambda f: (f.get("abr", 0) or f.get("tbr", 0) or f.get("br", 0) or 0), reverse=True)
+            audio_url = audio_formats[0].get("url")
+
+    if not video_url:
+        # Fallback for cases where 'formats' might not be exhaustive or structured as expected
+        # This could happen with some extractors or older yt-dlp versions.
+        # We can try to get a generic URL from the top-level if available.
+        if data.get("url") and data.get("vcodec") != "none": # Check if top-level URL is a video
+             video_url = data.get("url")
+             if data.get("acodec") != "none": # And if it also has audio
+                 audio_url = data.get("url")
+
+
+    # If audio_url is still missing and video_url is present, check if video_url is a combined format
+    if video_url and not audio_url:
+        # This logic might be tricky as `data` itself might be a "format" like object
+        # For simplicity, if top-level `data` has `vcodec` and `acodec`, assume it's combined.
+        if data.get("vcodec") != "none" and data.get("acodec") != "none" and data.get("url") == video_url:
+            audio_url = video_url
+
+
+    if not video_url:
+        raise ValueError(_("没有 Video URL"))
+    if not audio_url:
+        raise ValueError(_("没有 Audio URL"))
+
+    return str(video_url), str(audio_url)
 
 
 def AnnotationsXmlStringToSub(

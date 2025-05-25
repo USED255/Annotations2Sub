@@ -22,8 +22,7 @@ pip install Annotations2Sub
 
 ```help
 usage: Annotations2Sub.py [-h] [-l] [-x 100] [-y 100] [-f Arial ] [-o Folder] [-d]
-                          [-i invidious.domain] [-p] [-g] [-s] [-n] [-k] [-u] [-v]
-                          [-V]
+                          [-p] [-g] [-s] [-n] [-k] [-u] [-v] [-V]
                           File or videoId [File or videoId ...]
 
 Download and convert Youtube Annotations
@@ -43,10 +42,10 @@ optional arguments:
                         Try to download the Annotations file from Internet Archive
   -D, --download-annotations-only
                         Download Annotations only
-  -p, --preview-video   Preview video, requires mpv(https://mpv.io/)
-  -g, --generate-video  Generate video, requires FFmpeg(https://ffmpeg.org/)
-  -i invidious-instances.domain, --invidious-instances invidious-instances.domain
-                        Specify invidious instances (https://redirect.invidious.io/)
+  -p, --preview-video   Preview video, requires mpv(https://mpv.io/) and yt-dlp (must be in PATH)
+  -g, --generate-video  Generate video, requires FFmpeg(https://ffmpeg.org/) and yt-dlp (must be in PATH)
+  # -i invidious-instances.domain, --invidious-instances invidious-instances.domain # Argument removed
+  #                       Specify invidious instances (https://redirect.invidious.io/) # Argument removed
   -n, --no-overwrite-files
                         Do not overwrite files
   -N, --no-keep-intermediate-files

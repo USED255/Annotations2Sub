@@ -3,16 +3,16 @@
 
 import _thread
 import argparse
-import json
+# import json # No longer used directly
 import os
 import re
 import subprocess
 import sys
 import traceback
-import urllib.request
-from http.client import IncompleteRead
+import urllib.request # Still used by CheckNetwork, though it imports locally
+# from http.client import IncompleteRead # No longer used directly
 from typing import List, Optional
-from urllib.error import URLError
+# from urllib.error import URLError # No longer used directly, CheckNetwork imports it locally
 from xml.etree.ElementTree import ParseError
 
 from Annotations2Sub import __version__ as version
@@ -24,7 +24,7 @@ from Annotations2Sub.cli_utils import (
     GetMedia,
 )
 from Annotations2Sub.i18n import _
-from Annotations2Sub.utils import Err, GetUrl, Info, Stderr, Warn, YellowText
+from Annotations2Sub.utils import Err, GetUrl, Info, Stderr, Warn, YellowText # GetUrl is still used for archive.org
 
 
 def Dummy(*args, **kwargs):
@@ -80,25 +80,25 @@ def Run(argv=None):  # -> Literal[1, 0]:
         action="store_true",
         help=_("仅下载注释"),
     )
-    parser.add_argument(
-        "-i",
-        "--invidious-instances",
-        type=str,
-        metavar="invidious.domain",
-        help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
-    )
+    # parser.add_argument(
+    #     "-i",
+    #     "--invidious-instances",
+    #     type=str,
+    #     metavar="invidious.domain",
+    #     help=_("指定 invidious 实例(https://redirect.invidious.io/)"),
+    # ) # Removed
     # 拼接参数运行 mpv
     parser.add_argument(
         "-p",
         "--preview-video",
         action="store_true",
-        help=_("预览视频, 需要 mpv(https://mpv.io/)"),
+        help=_("预览视频, 需要 mpv(https://mpv.io/) 和 yt-dlp (请确保其在 PATH 中)"),
     )
     parser.add_argument(
         "-g",
         "--generate-video",
         action="store_true",
-        help=_("生成视频, 需要 FFmpeg(https://ffmpeg.org/)"),
+        help=_("生成视频, 需要 FFmpeg(https://ffmpeg.org/) 和 yt-dlp (请确保其在 PATH 中)"),
     )
     parser.add_argument(
         "-n", "--no-overwrite-files", action="store_true", help=_("不覆盖文件")
@@ -145,7 +145,7 @@ def Run(argv=None):  # -> Literal[1, 0]:
     font: str = args.font
     enable_download_for_archive: bool = args.download_for_archive
     enable_download_annotations_only: bool = args.download_annotations_only
-    invidious_instances: Optional[str] = args.invidious_instances
+    # invidious_instances: Optional[str] = args.invidious_instances # Removed
     enable_preview_video: bool = args.preview_video
     enable_generate_video: bool = args.generate_video
     enable_no_overwrite_files: bool = args.no_overwrite_files
@@ -176,8 +176,8 @@ def Run(argv=None):  # -> Literal[1, 0]:
 
     if enable_preview_video or enable_generate_video:
         enable_download_for_archive = True
-        if invidious_instances == None:
-            invidious_instances = ""
+        # if invidious_instances == None: # Removed
+        #     invidious_instances = "" # Removed
 
     if enable_download_annotations_only:
         enable_download_for_archive = True
@@ -185,10 +185,13 @@ def Run(argv=None):  # -> Literal[1, 0]:
     if enable_download_for_archive:
         # 省的网不好不知道
         def CheckNetwork():
+            # Local imports are fine as per previous diff, but ensure top-level are cleaned
+            import urllib.request 
+            from urllib.error import URLError 
             try:
                 with urllib.request.urlopen(url="http://google.com", timeout=3) as r:
                     r.read().decode("utf-8")
-            except (URLError, TimeoutError):
+            except (URLError, TimeoutError): # TimeoutError is built-in
                 Warn(_("您好像无法访问 Google 🤔"))
 
         _thread.start_new_thread(CheckNetwork, ())
@@ -295,37 +298,33 @@ def Run(argv=None):  # -> Literal[1, 0]:
 
         video = audio = ""
         if enable_preview_video or enable_generate_video:
-            if invidious_instances == "":
-                instances = json.loads(
-                    GetUrl("https://api.invidious.io/instances.json")
-                )
-                for instance in instances:
-                    try:
-                        if not instance[1]["api"]:
-                            continue
-                    except IndexError:
-                        pass
-                    domain = instance[0]
-
-                    try:
-                        video, audio = GetMedia(video_id, domain)
-                    except (json.JSONDecodeError, URLError, IncompleteRead, ValueError):
-                        continue
-
-                if video == "" or audio == "":
-                    Err(_("无法获取视频"))
-                    exit_code = 1
-                    continue
-            else:
-                try:
-                    video, audio = GetMedia(video_id, str(invidious_instances))
-                except (json.JSONDecodeError, URLError, ValueError):
-                    Err(_("无法获取视频"))
+            try:
+                # Call GetMedia with None for instanceDomain, as it's handled by yt-dlp now.
+                # The second argument to GetMedia is instanceDomain, which is deprecated.
+                video, audio = GetMedia(video_id, None)
+            except ValueError as e:
+                Err(_("获取媒体失败 (yt-dlp): {}").format(e))
+                if Flags.verbose:
                     Stderr(traceback.format_exc())
-                    exit_code = 1
-                    continue
+                exit_code = 1
+                continue # Skip to next task in queue
+            # Ensure video and audio are not empty if GetMedia succeeded without specific URLs
+            # This check might be redundant if GetMedia guarantees non-empty strings or raises ValueError
+            if not video or not audio:
+                Err(_("获取媒体失败 (yt-dlp): 未找到有效的视频或音频 URL。"))
+                exit_code = 1
+                continue
+
 
         def run(commands: List[str]):
+            # Ensure video and audio are available before running commands that use them
+            if not video or not audio:
+                # This state should ideally be caught above, but as a safeguard:
+                Err(_("无法执行预览/生成，因为视频/音频 URL 未获取。"))
+                nonlocal exit_code # ensure we can modify the outer scope's exit_code
+                exit_code = 1
+                return # Do not proceed with run
+
             Info(" ".join(commands))
 
             _exit_code = subprocess.run(commands).returncode
@@ -335,29 +334,55 @@ def Run(argv=None):  # -> Literal[1, 0]:
                 exit_code = 1
 
             if enable_no_keep_intermediate_files:
-                Stderr(_('删除 "{}"').format(subtitle_file))
-                os.remove(subtitle_file)
+                # Only remove subtitle file if it exists
+                if os.path.exists(subtitle_file):
+                    Stderr(_('删除 "{}"').format(subtitle_file))
+                    os.remove(subtitle_file)
 
         if enable_preview_video:
-            commands = [
-                "mpv",
-                video,
-                f"--audio-file={audio}",
-                f"--sub-file={subtitle_file}",
-            ]
-            run(commands)
+            if video and audio: # Proceed only if video and audio URLs are available
+                commands = [
+                    "mpv",
+                    video,
+                    f"--audio-file={audio}",
+                    f"--sub-file={subtitle_file}",
+                ]
+                run(commands)
+            else:
+                # Error already printed, exit_code set, and loop continued by the GetMedia error handling.
+                # This path should ideally not be reached if GetMedia error handling is robust.
+                pass
+
 
         if enable_generate_video:
-            commands = [
-                "ffmpeg",
-                "-i",
-                video,
-                "-i",
-                audio,
-                "-vf",
-                f"ass={subtitle_file}",
-                f"{subtitle_file}.mp4",
-            ]
-            run(commands)
+            if video and audio: # Proceed only if video and audio URLs are available
+                video_output_filename = f"{subtitle_file}.mp4"
+                if output_directory and not output:
+                     base_name = os.path.basename(subtitle_file)
+                     video_output_filename = os.path.join(output_directory, f"{base_name}.mp4")
+                elif output and output != "-":
+                    video_output_filename = f"{output}.mp4"
+                elif output == "-":
+                    Err(_("使用 stdout 进行字幕输出时不支持视频生成。请指定输出文件。"))
+                    nonlocal exit_code
+                    exit_code = 1
+                    # We should not call run(commands) here
+                else: # Not stdout, proceed with determined filename
+                    commands = [
+                        "ffmpeg",
+                        "-i",
+                        video,
+                        "-i",
+                        audio,
+                        "-vf",
+                        f"ass={subtitle_file}",
+                        video_output_filename,
+                    ]
+                    run(commands)
+                    if not enable_no_keep_intermediate_files and not is_no_save :
+                        Stderr(_('视频保存于: "{}"').format(video_output_filename))
+            else:
+                # Error already printed, exit_code set, and loop continued by the GetMedia error handling.
+                pass
 
     return exit_code
