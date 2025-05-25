@@ -2,6 +2,8 @@
 
 import sys
 import urllib.request
+import ssl
+import certifi
 
 from Annotations2Sub._flags import Flags
 from Annotations2Sub.i18n import _
@@ -38,5 +40,8 @@ def Info(string: str):
 def GetUrl(url: str) -> str:
     if not url.startswith("http"):
         raise ValueError(_('"url" 必须是 http(s)'))
-    with urllib.request.urlopen(url) as r:
+    
+    context = ssl.create_default_context(cafile=certifi.where())
+    
+    with urllib.request.urlopen(url, context=context) as r:
         return r.read().decode("utf-8")
