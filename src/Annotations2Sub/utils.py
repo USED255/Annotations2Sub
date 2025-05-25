@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Provides common utility functions for the Annotations2Sub application.
+"""为 Annotations2Sub 应用程序提供通用实用功能。
 
-This module contains various helper functions used across the application,
-including functions for colored terminal output (e.g., `YellowText`, `RedText`),
-standardized printing to stderr for errors, warnings, and informational messages
-(`Err`, `Warn`, `Info`), and a simple URL fetching utility (`GetUrl`).
+此模块包含整个应用程序中使用的各种辅助函数，
+包括用于彩色终端输出的函数（例如 `YellowText`，`RedText`），
+用于错误、警告和信息消息的标准 stderr 打印函数（`Err`，`Warn`，`Info`），
+以及一个简单的 URL 获取实用程序（`GetUrl`）。
 """
 
 import sys

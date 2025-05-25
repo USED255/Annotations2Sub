@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Manages the parsing and representation of YouTube annotation data.
+"""管理 YouTube 注释数据的解析和表示。
 
-This module defines the `Annotation` class, which encapsulates the properties of
-a single YouTube annotation (e.g., text, timing, position, style).
-It provides the `Parse` function to transform an XML element tree, typically
-from an `annotations.xml` file, into a list of `Annotation` objects.
-Error handling for invalid annotation documents is also included.
+此模块定义了 `Annotation` 类，该类封装了单个 YouTube 注释的属性
+（例如文本、时间、位置、样式）。
+它提供了 `Parse` 函数，用于将 XML 元素树（通常来自 `annotations.xml` 文件）
+转换为 `Annotation` 对象列表。
+还包括对无效注释文档的错误处理。
 """
 
 """Annotations 相关"""
@@ -29,45 +29,43 @@ except ImportError:
 
 
 class NotAnnotationsDocumentError(ValueError):
-    """Custom exception raised when an XML document is not a valid YouTube annotations file.
+    """当 XML 文档不是有效的 YouTube 注释文件时引发的自定义异常。
 
-    This typically means the root 'document' element is missing, or the
-    'annotations' child element is not found, indicating that the input XML
-    does not conform to the expected structure for YouTube annotation data.
+    这通常意味着根“document”元素丢失，或者未找到“annotations”子元素，
+    表明输入 XML 不符合 YouTube 注释数据的预期结构。
     """
     pass
 
 
 class Annotation:
-    """Represents a single YouTube video annotation.
+    """代表单个 YouTube 视频注释。
 
-    This class stores all relevant information for a single annotation,
-    such as its type, text content, timing, position, styling attributes
-    (colors, font size), and associated author. It aims to capture the
-    essential properties of annotations as they were defined by YouTube.
+    此类存储单个注释的所有相关信息，例如其类型、文本内容、时间、
+    位置、样式属性（颜色、字体大小）以及关联的作者。
+    它旨在捕获 YouTube 定义的注释的基本属性。
 
-    Attributes:
-        id: The unique identifier of the annotation.
-        type: The type of annotation (e.g., "text", "highlight").
-        style: The visual style of the annotation (e.g., "popup", "title", "speech").
-        author: The author of the annotation (often the channel ID).
-        text: The textual content of the annotation.
-        timeStart: The start time of the annotation display, as a datetime object.
-        timeEnd: The end time of the annotation display, as a datetime object.
-        x: The x-coordinate of the annotation's top-left corner (percentage of video width).
-        y: The y-coordinate of the annotation's top-left corner (percentage of video height).
-        width: The width of the annotation (percentage of video width).
-        height: The height of the annotation (percentage of video height).
-        sx: The x-coordinate of the speech bubble's arrow/anchor (percentage of video width).
-            Applicable for speech bubble style annotations.
-        sy: The y-coordinate of the speech bubble's arrow/anchor (percentage of video height).
-            Applicable for speech bubble style annotations.
-        bgOpacity: The background opacity of the annotation, as an `Alpha` object.
-        bgColor: The background color of the annotation, as a `Color` object.
-        fgColor: The foreground (text) color of the annotation, as a `Color` object.
-        textSize: The font size, typically as a percentage relative to the video height.
-        fontWeight: The font weight (e.g., "bold").
-        ref: An identifier for a referenced annotation, used for trigger mechanisms.
+    属性:
+        id: 注释的唯一标识符。
+        type: 注释的类型 (例如 "text", "highlight")。
+        style: 注释的视觉样式 (例如 "popup", "title", "speech")。
+        author: 注释的作者 (通常是频道 ID)。
+        text: 注释的文本内容。
+        timeStart: 注释显示的开始时间，为 datetime 对象。
+        timeEnd: 注释显示的结束时间，为 datetime 对象。
+        x: 注释左上角的 x 坐标 (视频宽度的百分比)。
+        y: 注释左上角的 y 坐标 (视频高度的百分比)。
+        width: 注释的宽度 (视频宽度的百分比)。
+        height: 注释的高度 (视频高度的百分比)。
+        sx: 气泡注释箭头/锚点的 x 坐标 (视频宽度的百分比)。
+            适用于气泡样式的注释。
+        sy: 气泡注释箭头/锚点的 y 坐标 (视频高度的百分比)。
+            适用于气泡样式的注释。
+        bgOpacity: 注释的背景不透明度，为 `Alpha` 对象。
+        bgColor: 注释的背景颜色，为 `Color` 对象。
+        fgColor: 注释的前景 (文本) 颜色，为 `Color` 对象。
+        textSize: 字体大小，通常是相对于视频高度的百分比。
+        fontWeight: 字体粗细 (例如 "bold")。
+        ref: 用于触发机制的引用注释的标识符。
     """
 
     # 致谢 https://github.com/isaackd/annotationlib
@@ -180,29 +178,24 @@ class Annotation:
 
 
 def Parse(tree: Element) -> List[Annotation]:
-    """Parses an XML element tree and extracts YouTube annotation data.
+    """解析 XML 元素树并提取 YouTube 注释数据。
 
-    This function navigates an XML structure, typically parsed from a YouTube
-    `annotations.xml` file, to find and interpret individual annotation elements.
-    It extracts various attributes like timing, text, position, and styling
-    for each annotation and populates a list of `Annotation` objects.
-    Internal helper functions are used to parse specific data types like
-    colors, time values, and floating-point numbers from their string
-    representations in the XML.
+    此函数导航 XML 结构（通常从 YouTube `annotations.xml` 文件解析而来），
+    以查找和解释单个注释元素。它为每个注释提取各种属性，如时间、文本、
+    位置和样式，并填充 `Annotation` 对象列表。
+    内部辅助函数用于从 XML 中的字符串表示形式解析特定数据类型，
+    如颜色、时间值和浮点数。
 
-    Args:
-        tree: The root `xml.etree.ElementTree.Element` of the parsed
-              annotations XML document.
+    参数:
+        tree: 已解析注释 XML 文档的根 `xml.etree.ElementTree.Element`。
 
-    Returns:
-        A list of `Annotation` objects, each representing a parsed annotation
-        from the input XML. If no valid annotations are found, an empty list
-        is returned.
+    返回:
+        `Annotation` 对象列表，每个对象代表从输入 XML 解析的注释。
+        如果未找到有效注释，则返回空列表。
 
-    Raises:
-        NotAnnotationsDocumentError: If the provided XML tree does not conform
-                                     to the expected YouTube annotations structure
-                                     (e.g., missing 'annotations' element).
+    引发:
+        NotAnnotationsDocumentError: 如果提供的 XML 树不符合预期的 YouTube
+                                     注释结构（例如，缺少 'annotations' 元素）。
     """
 
     # 本质上在提取和清理数据

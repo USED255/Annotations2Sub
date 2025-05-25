@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Handles the conversion of Annotation objects to subtitle Events.
+"""处理 Annotation 对象到字幕 Event 对象的转换。
 
-This module contains the core logic for transforming a list of parsed
-`Annotation` objects into a list of `Event` objects suitable for subtitle
-generation (e.g., in ASS format). It manages different annotation styles
-(like popup, title, speech bubble), calculates text and box positioning
-and scaling based on video resolution, adapts text (wrapping, escaping),
-and generates drawing commands for shapes. It also processes annotation
-dependencies where one annotation might trigger another.
+此模块包含将已解析的 `Annotation` 对象列表转换为适用于字幕生成
+（例如 ASS 格式）的 `Event` 对象列表的核心逻辑。它管理不同的注释样式
+（如弹出窗口、标题、对话气泡），根据视频分辨率计算文本和框的定位与缩放，
+调整文本（换行、转义），并为形状生成绘图命令。它还处理注释依赖关系，
+其中一个注释可能会触发另一个注释。
 """
 
 """转换器"""

@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Initializes the Annotations2Sub package.
+"""初始化 Annotations2Sub 包。
 
-This module imports key components from submodules to provide a simplified
-interface for the package. It also defines package-level metadata like
-the version.
+此模块从子模块导入关键组件，为包提供简化的接口。
+它还定义了包级别的元数据，如版本号。
 """
 
 """下载和转换 Youtube 注释"""

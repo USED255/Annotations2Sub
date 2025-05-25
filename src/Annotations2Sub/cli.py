@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Provides the command-line interface for the Annotations2Sub application.
+"""为 Annotations2Sub 应用程序提供命令行界面。
 
-This module is responsible for parsing command-line arguments, interpreting user
-intent, and orchestrating the overall workflow. It handles tasks such as
-fetching annotation files (from local paths or online sources like Internet Archive),
-converting them to subtitle formats (primarily ASS), and managing options related
-to output (filenames, directories, stdout), video resolution, font selection,
-and integration with external tools like mpv for preview and FFmpeg for
-video generation with hardcoded subtitles. It also controls verbosity and
-error reporting to the user.
+此模块负责解析命令行参数、解释用户意图以及协调整个工作流程。
+它处理的任务包括：获取注释文件（从本地路径或在线来源，如互联网档案馆）、
+将其转换为字幕格式（主要是 ASS）、管理与输出相关的选项（文件名、目录、标准输出）、
+视频分辨率、字体选择，以及与外部工具（如用于预览的 mpv 和用于生成硬编码字幕视频的 FFmpeg）的集成。
+它还控制详细程度和向用户报告错误。
 """
 
 
@@ -43,49 +40,41 @@ def Dummy(*args, **kwargs):
 
 
 def Run(argv: Optional[List[str]] = None) -> int:
-    """Main function for the Annotations2Sub command-line interface.
+    """Annotations2Sub 命令行界面的主函数。
 
-    This function orchestrates the entire process of the Annotations2Sub tool.
-    It parses command-line arguments, processes a queue of video IDs or local
-    XML file paths, downloads annotation files if requested, converts them to
-    ASS subtitle format, and handles various output options. It can also
-    initiate video preview with mpv or video generation with FFmpeg if specified.
+    此函数协调 Annotations2Sub 工具的整个过程。
+    它解析命令行参数，处理视频 ID 或本地 XML 文件路径队列，
+    如果请求则下载注释文件，将其转换为 ASS 字幕格式，并处理各种输出选项。
+    如果指定，它还可以使用 mpv 启动视频预览或使用 FFmpeg 生成视频。
 
-    The function iterates through each item in the input queue (video IDs or file paths).
-    For each item:
-    1. If downloading is enabled:
-        - It constructs the annotation URL (e.g., from Internet Archive).
-        - Downloads the annotation XML content.
-        - Saves it to a local file or outputs to stdout if requested.
-        - If only download is requested, it skips further processing for this item.
-    2. If not just downloading, or if a local file is provided:
-        - Reads the annotation XML from the file.
-        - Converts the XML content to an ASS subtitle string using
-          `AnnotationsXmlStringToSub` from `cli_utils`. This involves parsing
-          the XML, converting annotations to `Event` objects, and then to
-          a `Sub` object.
-        - Handles errors like invalid XML or non-annotation documents.
-    3. Manages output:
-        - Saves the resulting ASS subtitle string to a file (with a `.ass`
-          extension, in a specified directory, or with a specified name)
-          or prints to stdout.
-        - Handles options like not overwriting existing files.
-    4. If intermediate files are not to be kept, the original XML (if downloaded)
-       and the generated ASS file (if used for video generation/preview) are deleted.
-    5. If video preview (`-p`) or generation (`-g`) is enabled:
-        - Fetches video and audio stream URLs using `GetMedia` from `cli_utils`,
-          utilizing an Invidious instance.
-        - Constructs and runs the appropriate command for `mpv` (preview) or
-          `ffmpeg` (generation).
+    该函数遍历输入队列中的每个项目（视频 ID 或文件路径）。
+    对于每个项目：
+    1. 如果启用了下载：
+        - 它会构建注释 URL（例如，从互联网档案馆）。
+        - 下载注释 XML 内容。
+        - 将其保存到本地文件，如果请求则输出到标准输出。
+        - 如果仅请求下载，则跳过此项目的进一步处理。
+    2. 如果不仅仅是下载，或者提供了本地文件：
+        - 从文件读取注释 XML。
+        - 使用 `cli_utils` 中的 `AnnotationsXmlStringToSub` 将 XML 内容转换为 ASS 字幕字符串。
+          这包括解析 XML，将注释转换为 `Event` 对象，然后再转换为 `Sub` 对象。
+        - 处理无效 XML 或非注释文档等错误。
+    3. 管理输出：
+        - 将生成的 ASS 字幕字符串保存到文件（扩展名为 `.ass`，
+          在指定目录中，或使用指定名称）或打印到标准输出。
+        - 处理不覆盖现有文件等选项。
+    4. 如果不保留中间文件，则删除原始 XML（如果已下载）和生成的 ASS 文件
+       （如果用于视频生成/预览）。
+    5. 如果启用了视频预览 (`-p`) 或生成 (`-g`)：
+        - 使用 `cli_utils` 中的 `GetMedia` 通过 Invidious 实例获取视频和音频流 URL。
+        - 构建并运行适用于 `mpv` (预览) 或 `ffmpeg` (生成) 的相应命令。
 
-    Args:
-        argv: A list of command-line arguments. If None, `sys.argv[1:]` is used.
-              This allows the function to be called programmatically with specific
-              arguments.
+    参数:
+        argv: 命令行参数列表。如果为 None，则使用 `sys.argv[1:]`。
+              这允许以编程方式使用特定参数调用该函数。
 
-    Returns:
-        An integer exit code: 0 for success, 1 for errors encountered during
-        processing.
+    返回:
+        一个整数退出代码：0 表示成功，1 表示处理过程中遇到错误。
     """
 
     exit_code = 0

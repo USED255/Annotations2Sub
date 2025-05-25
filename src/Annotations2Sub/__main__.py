@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Main execution entry point for the Annotations2Sub application.
+"""Annotations2Sub 应用程序的主要执行入口点。
 
-This module is invoked when `Annotations2Sub` is run as a script or
-using `python -m Annotations2Sub`. It sets up the necessary paths
-(if run directly) and then calls the main `Run` function from the
-`cli` module to start the application.
+当 `Annotations2Sub` 作为脚本运行或使用 `python -m Annotations2Sub` 调用时，
+会调用此模块。它会（在直接运行时）设置必要的路径，
+然后从 `cli` 模块调用主要的 `Run` 函数来启动应用程序。
 """
 
 """ 程序入口 """

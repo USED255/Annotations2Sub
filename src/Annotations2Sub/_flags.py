@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Provides a simple global flags manager for the application.
+"""为应用程序提供一个简单的全局标志管理器。
 
-This module defines a `flags` class and a global instance `Flags`
-that can be used to store and access global application settings or
-states, such as verbosity level.
+此模块定义了一个 `flags` 类和一个全局实例 `Flags`，
+可用于存储和访问全局应用程序设置或状态，例如详细级别。
 """
 
 

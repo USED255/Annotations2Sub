@@ -1,17 +1,13 @@
 # -*- coding: utf-8 -*-
-"""Defines structures for representing SubStation Alpha (SSA/ASS) subtitle data.
+"""定义用于表示 SubStation Alpha (SSA/ASS) 字幕数据的结构。
 
-This module provides classes to model the different components of an ASS subtitle
-script:
-- `Style`: Defines a named style (font, colors, margins, etc.).
-- `Event`: Represents a single timed subtitle line (dialogue, comment) with
-           associated style, actor, and text content.
-- `Sub`: Encapsulates the entire subtitle file, including script information,
-         styles, and a list of events. It can generate the complete ASS file content.
-- `DrawCommand` and `Draw`: Used for creating vector drawing instructions within
-                           ASS events (e.g., for shapes).
-- `Tag`: A helper class for generating ASS override tags (e.g., `\\pos`, `\\c`, `\\fs`)
-         used within Event text to control appearance dynamically.
+此模块提供用于建模 ASS 字幕脚本不同组件的类：
+- `Style`：定义命名样式（字体、颜色、边距等）。
+- `Event`：表示单个带时间的字幕行（对话、注释），包含关联的样式、角色和文本内容。
+- `Sub`：封装整个字幕文件，包括脚本信息、样式和事件列表。它可以生成完整的 ASS 文件内容。
+- `DrawCommand` 和 `Draw`：用于在 ASS 事件中创建矢量绘图指令（例如，用于形状）。
+- `Tag`：一个辅助类，用于生成 ASS 覆盖标签（例如 `\\pos`、`\\c`、`\\fs`），
+         在事件文本中使用以动态控制外观。
 """
 
 """SSA 相关"""

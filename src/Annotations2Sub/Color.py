@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Provides data classes for color and alpha channel representation.
+"""提供用于颜色和 Alpha 通道表示的数据类。
 
-This module defines simple classes to handle RGB color (`Color`),
-alpha transparency (`Alpha`), and a combination of both (`Rgba`).
-It includes validation for the range of color and alpha values.
+此模块定义了用于处理 RGB 颜色 (`Color`)、Alpha 透明度 (`Alpha`)
+以及两者组合 (`Rgba`) 的简单类。
+它包含了对颜色和 Alpha 值范围的验证。
 """
 
 """颜色数据类"""

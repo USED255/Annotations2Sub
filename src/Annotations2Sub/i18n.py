@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Handles internationalization and localization for the application.
+"""处理应用程序的国际化和本地化。
 
-This module sets up and provides the translation mechanism using the `gettext`
-library. It attempts to load translation files based on the system's locale
-and provides a simple `_()` function for translating strings throughout the
-Annotations2Sub application.
+此模块使用 `gettext` 库设置并提供翻译机制。
+它尝试根据系统的区域设置加载翻译文件，并提供一个简单的 `_()` 函数，
+用于在整个 Annotations2Sub 应用程序中翻译字符串。
 """
 
 """On n'habite pas un pays, on habite une langue. Une patrie, c'est cela et rien d'autre."""
