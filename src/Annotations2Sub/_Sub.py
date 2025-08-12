@@ -268,7 +268,7 @@ class Tag(list):
             self.size = _round(size)
 
         def __str__(self) -> str:
-            return rf"\fs{str(self.size)}"
+            return rf"\fs{self.size}"
 
     class PrimaryColour:
         r"""\<颜色序号>c[&][H]<BBGGRR>[&]"""
