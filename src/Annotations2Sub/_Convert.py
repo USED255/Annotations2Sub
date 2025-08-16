@@ -60,18 +60,16 @@ def Convert(
 
         def Text(event: Event) -> Event:
             # 文本与框保持一定距离
-            nonlocal x  # type: ignore
-            nonlocal y  # type: ignore
 
-            x = x + padding_x
-            y = y + padding_y
+            _x = x + padding_x
+            _y = y + padding_y
             #
 
             tags = Tag()
             tags.extend(
                 [
                     Tag.Align(7),
-                    Tag.Pos(x, y),
+                    Tag.Pos(_x, _y),
                     Tag.Fontsize(textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
@@ -88,11 +86,8 @@ def Convert(
             # 相比 Text, 文字会居中
 
             # 模拟居中
-            nonlocal x  # type: ignore
-            nonlocal y  # type: ignore
-
-            x = x + (width / 2)
-            y = y + (height / 2)
+            _x = x + (width / 2)
+            _y = y + (height / 2)
             #
 
             shadow = Tag.Shadow(0)
@@ -100,7 +95,7 @@ def Convert(
             tags.extend(
                 [
                     Tag.Align(5),
-                    Tag.Pos(x, y),
+                    Tag.Pos(_x, _y),
                     Tag.Fontsize(textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
