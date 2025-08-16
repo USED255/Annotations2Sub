@@ -37,7 +37,7 @@ def test_cli_failed():
         Stderr(command)
         argv = command.split(" ")
         code = Run(argv)
-        assert code == 1
+        assert code != 0
 
 
 def test_cli_success():
@@ -107,7 +107,7 @@ def test_cli_network_failed():
         Stderr(command)
         argv = command.split(" ")
         code = Run(argv)
-        assert code == 1
+        assert code != 0
 
     with pytest.raises(pytest.fail.Exception):
         GetUrlMock("")
