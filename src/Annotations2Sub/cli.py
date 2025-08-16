@@ -31,7 +31,7 @@ def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
-def Run(argv=None):
+def Run(argv=None) -> int:
     """跑起来🐎🐎🐎"""
 
     exit_code = 0
@@ -336,6 +336,8 @@ def Run(argv=None):
             if enable_no_keep_intermediate_files:
                 Stderr(_('删除 "{}"').format(subtitle_file))
                 os.remove(subtitle_file)
+
+            return 0
 
         if enable_preview_video:
             commands = [
