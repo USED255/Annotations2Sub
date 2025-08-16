@@ -43,7 +43,7 @@ def Convert(
         # 致谢: https://github.com/nirbheek/youtube-ass &
         #       https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 
-        def Warp(text: str, length: int) -> str:
+        def Wrap(text: str, length: int) -> str:
             def wrap(text: str) -> str:
                 return "\n".join(
                     textwrap.wrap(text, width=length, drop_whitespace=False)
@@ -479,7 +479,7 @@ def Convert(
                 if _width < 0:
                     _width = width
                 length = int(_width / (textSize / 4)) + 1
-                _text = Warp(text, length)
+                _text = Wrap(text, length)
 
         text = _text
         #
