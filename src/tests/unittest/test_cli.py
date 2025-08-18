@@ -6,7 +6,15 @@ from urllib.error import URLError
 import pytest
 
 from Annotations2Sub import cli
-from Annotations2Sub.cli import Run
+from Annotations2Sub.cli import Dummy,Run
+
+
+def test_Dummy():
+    Dummy()
+
+def test_Run():
+    with pytest.raises(SystemExit):
+        Run()
 
 
 def test_CheckNetwork():
