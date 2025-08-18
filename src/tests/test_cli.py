@@ -26,6 +26,7 @@ file1 = os.path.join(testCasePath, "file1.test")
 13: 不是文件
 14: 不是 Annotations 文件
 15: 无效的 XML 文档
+18: 多个错误
 """
 
 test_set = [
