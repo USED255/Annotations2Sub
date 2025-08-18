@@ -7,7 +7,7 @@ htmlcov
 dist
 Annotations2Sub.egg-info
 测试用例/
-src/tests/testCase/garbage/
+src/tests/garbage/
 *.mp4
 *.mkv
 *.webm
