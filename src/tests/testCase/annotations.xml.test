@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <annotations itct="">
+
+        <annotation author="" id="1" itct="" log_data="" logable="" mode="" style="popup" type="text">
+            <TEXT/>
+            <action trigger="" type="">
+                <annotation duration="" id=""/>
+                <duration value=""/>
+                <url link_class="" target="" trusted="" type="" value=""/>
+            </action>
+            <appearance bgAlpha="0" bgColor="0" borderAlpha="" borderColor="" borderWidth="" effects="" fgColor="0" fontWeight="" gloss="" highlightFontColor="" highlightWidth="" textSize="0">
+                <padding bottom="" left="" right="" top=""/>
+            </appearance>
+            <data/>
+            <html_blob/>
+            <segment spaceRelative="" timeRelative="">
+                <movingRegion type="">
+                <anchoredRegion d="" h="0" sx="" sy="" t="" w="0" x="0" y="0"/>
+                <rectRegion d="" h="0" t="" w="0" x="0" y="0"/>
+                <shapelessRegion d="" t=""/>
+                </movingRegion>
+            </segment>
+            <trigger>
+                <condition ref="" state=""/>
+            </trigger>
+        </annotation>
+
+    </annotations>
+</document>

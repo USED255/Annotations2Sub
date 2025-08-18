@@ -5,7 +5,7 @@ import pytest
 
 from Annotations2Sub import cli_utils
 from Annotations2Sub.cli_utils import AnnotationsXmlStringToSub, GetAnnotationsUrl
-from tests import baselinePath
+from tests import testCasePath
 
 
 def test_GetAnnotationsUrl():
@@ -37,7 +37,7 @@ def test_GetMedia():
 
 
 def test_AnnotationsXmlStringToSub():
-    file = os.path.join(baselinePath, "annotations.xml.test")
+    file = os.path.join(testCasePath, "annotations.xml.test")
     with open(file) as f:
         assert AnnotationsXmlStringToSub(f.read())
 
