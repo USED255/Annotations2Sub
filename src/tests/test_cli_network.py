@@ -18,7 +18,6 @@ baseline1_file = os.path.join(baselinePath, "29-q7YnyUmY.xml.test")
 
 
 def test_cli_network_failed():
-    """网络相关"""
     commands = f"""-g {baseline1_video_id} -i bad.instance
 -g {baseline1_video_id}
 -g {baseline1_video_id} -i malicious.instance
