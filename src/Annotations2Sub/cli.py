@@ -202,7 +202,7 @@ def Run(argv=None) -> int:
 
             if re.match(r"[a-zA-Z0-9_-]{11}", video_id) == None:
                 Err(_('"{}" 不是一个有效的视频 ID').format(video_id))
-                exit_code = 11
+                exit_code += 11
                 continue
 
             annotations_file = f"{video_id}.xml"
@@ -224,7 +224,7 @@ def Run(argv=None) -> int:
                 annotations_string = GetUrl(annotations_url)
                 if annotations_string == "":
                     Warn(_('"{}" 可能没有 Annotations').format(video_id))
-                    exit_code = 12
+                    exit_code += 12
                     continue
                 if output_to_stdout:
                     sys.stdout.write(annotations_string)
@@ -237,7 +237,7 @@ def Run(argv=None) -> int:
 
         if os.path.isfile(annotations_file) is False:
             Err(_('"{}" 不是一个文件').format(annotations_file))
-            exit_code = 13
+            exit_code += 13
             continue
 
         subtitle_file = annotations_file + ".ass"
@@ -264,12 +264,12 @@ def Run(argv=None) -> int:
             )
         except NotAnnotationsDocumentError:
             Err(_('"{}" 不是 Annotations 文件').format(annotations_file))
-            exit_code = 14
+            exit_code += 14
             continue
         except ParseError:
             Err(_('"{}" 不是一个有效的 XML 文件').format(annotations_file))
             Info(traceback.format_exc())
-            exit_code = 15
+            exit_code += 15
             continue
 
         is_no_save = False
@@ -314,7 +314,7 @@ def Run(argv=None) -> int:
 
                 if video == "" or audio == "":
                     Err(_("无法获取视频"))
-                    exit_code = 16
+                    exit_code += 16
                     continue
             else:
                 try:
@@ -322,7 +322,7 @@ def Run(argv=None) -> int:
                 except (json.JSONDecodeError, URLError, ValueError):
                     Err(_("无法获取视频"))
                     Stderr(traceback.format_exc())
-                    exit_code = 17
+                    exit_code += 17
                     continue
 
         def run(commands: List[str]):
@@ -346,7 +346,7 @@ def Run(argv=None) -> int:
                 f"--audio-file={audio}",
                 f"--sub-file={subtitle_file}",
             ]
-            exit_code = run(commands)
+            exit_code += run(commands)
 
         if enable_generate_video:
             commands = [
@@ -359,6 +359,10 @@ def Run(argv=None) -> int:
                 f"ass={subtitle_file}",
                 f"{subtitle_file}.mp4",
             ]
-            exit_code = run(commands)
+            exit_code += run(commands)
+
+    if exit_code > 17:
+        Warn(_("处理过程中出现多个错误"))
+        exit_code = 18
 
     return exit_code
