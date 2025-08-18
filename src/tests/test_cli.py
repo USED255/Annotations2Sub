@@ -9,6 +9,9 @@ from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import Stderr
 from tests import baselinePath, testCasePath
 
+Argument = str
+ExitCode = int
+
 baseline1_file = os.path.join(baselinePath, "29-q7YnyUmY.xml.test")
 baseline2_file = os.path.join(baselinePath, "e8kKeUuytqA.xml.test")
 
@@ -37,7 +40,7 @@ test_set = [
 
 
 @pytest.mark.parametrize("testSet", test_set)
-def test_cli(testSet: Tuple[str, int]):
+def test_cli(testSet: Tuple[Argument, ExitCode]):
     argument = testSet[0]
     expect_code = testSet[1]
 
