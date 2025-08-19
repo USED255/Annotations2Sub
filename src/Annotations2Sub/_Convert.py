@@ -413,6 +413,9 @@ def Convert(
             line_count = text.count(r"\N") + 1
             _height = textSize * line_count
 
+            # 需要修改之后的值以便模拟其效果,
+            # Text 和 Box 也被其他函数使用因此不能用新变量,
+            # 函数返回后没有其他过程, 因此不会有污染.
             nonlocal y  # type: ignore
             nonlocal height  # type: ignore
 
