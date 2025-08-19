@@ -546,6 +546,7 @@ def Convert(
             Stderr(_('不支持 "{}" 样式 ({})').format(each.style, each.id))
             return []
 
+    #      Dict[Ref:str, Dict[timeStart:datetime, timeEnd:datetime]]
     patch: Dict[str, Dict] = {}
     events = []
 
