@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import os
-from typing import Tuple
 
 import pytest
 
 from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import Stderr
 from tests import baselinePath, testCasePath
-
-Argument = str
-ExitCode = int
 
 baseline1_file = os.path.join(baselinePath, "29-q7YnyUmY.xml.test")
 baseline2_file = os.path.join(baselinePath, "e8kKeUuytqA.xml.test")
@@ -52,12 +48,9 @@ test_set = [
 ]
 
 
-@pytest.mark.parametrize("testSet", test_set)
-def test_cli(testSet: Tuple[Argument, ExitCode]):
-    argument = testSet[0]
-    expect_code = testSet[1]
-
-    Stderr(argument)
-    argv = argument.split(" ")
+@pytest.mark.parametrize("Argument, ExitCode", test_set)
+def test_cli(Argument: str, ExitCode: int):
+    Stderr(Argument)
+    argv = Argument.split(" ")
     code = Run(argv)
-    assert expect_code == code
+    assert ExitCode == code
