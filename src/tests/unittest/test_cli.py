@@ -15,7 +15,7 @@ def test_Dummy():
 
 def test_Run():
     with pytest.raises(SystemExit):
-        Run()
+        Run([])
 
 
 def test_CheckNetwork():
