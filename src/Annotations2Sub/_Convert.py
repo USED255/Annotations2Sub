@@ -137,24 +137,24 @@ def Convert(
             return event
 
         def HollowBox(event: Event) -> Event:
-            nonlocal padding_x  # type: ignore
-            nonlocal padding_y  # type: ignore
+            _padding_x = padding_x
+            _padding_y = padding_y
 
             if resolutionX > resolutionY:
                 ratio = resolutionX / resolutionY
-                padding_y = padding_y * ratio
+                _padding_y = _padding_y * ratio
 
             if resolutionY > resolutionX:
                 ratio = resolutionY / resolutionX
-                padding_x = padding_x * ratio
+                _padding_x = _padding_x * ratio
 
-            padding_x = padding_x * 0.3
-            padding_y = padding_y * 0.3
+            _padding_x = _padding_x * 0.3
+            _padding_y = _padding_y * 0.3
 
-            x1 = x + padding_x
-            y1 = y + padding_y
-            x2 = x + width - padding_x
-            y2 = y + height - padding_y
+            x1 = x + _padding_x
+            y1 = y + _padding_y
+            x2 = x + width - _padding_x
+            y2 = y + height - _padding_y
 
             tags = Tag()
             tags.extend(
