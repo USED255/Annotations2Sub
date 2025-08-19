@@ -7,8 +7,8 @@ from typing import Dict, List
 
 from Annotations2Sub.Color import Alpha, Color, Rgba
 
-# 兼容 Python3.6, 3.7
-# Python3.6, 3.7 的 typing 没有 Literal
+# 兼容 Python 3.7
+# Python 3.7 的 typing 没有 Literal
 try:
     from typing import Literal
 except ImportError:
