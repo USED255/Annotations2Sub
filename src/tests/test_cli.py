@@ -51,6 +51,6 @@ test_set = [
 @pytest.mark.parametrize("Argument, ExitCode", test_set)
 def test_cli(Argument: str, ExitCode: int):
     Stderr(Argument)
-    argv = Argument.split(" ")
-    code = Run(argv)
+    args = Argument.split(" ")
+    code = Run(args)
     assert ExitCode == code

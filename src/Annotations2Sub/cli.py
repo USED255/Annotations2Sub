@@ -31,7 +31,7 @@ def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
-def Run(argv=None) -> int:
+def Run(args=None) -> int:
     """跑起来🐎🐎🐎"""
 
     exit_code = 0
@@ -137,7 +137,7 @@ def Run(argv=None) -> int:
         help=_("显示更多消息"),
     )
 
-    args = parser.parse_args(argv)
+    args = parser.parse_args(args)
     queue = list(map(str, args.queue))
 
     transform_resolution_x: int = args.transform_resolution_x

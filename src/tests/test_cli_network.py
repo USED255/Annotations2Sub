@@ -66,8 +66,8 @@ def test_cli_network_failed():
 
     for command in commands.splitlines():
         Stderr(command)
-        argv = command.split(" ")
-        code = Run(argv)
+        args = command.split(" ")
+        code = Run(args)
         assert code != 0
 
     with pytest.raises(pytest.fail.Exception):
@@ -145,8 +145,8 @@ def test_cli_network_success():
 
     for command in commands.splitlines():
         Stderr(command)
-        argv = command.split(" ")
-        code = Run(argv)
+        args = command.split(" ")
+        code = Run(args)
         assert code == 0
 
     with pytest.raises(pytest.fail.Exception):
