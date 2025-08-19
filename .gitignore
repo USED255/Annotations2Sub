@@ -18,4 +18,5 @@ src/tests/garbage/*
 *.ps1
 *.pyz
 *.dot
+*.prof
 mypy.ini
