@@ -33,7 +33,7 @@ def test_Info():
 
 
 def test_GetUrl():
-    def f(x):
+    def f(*args, **kwargs):
         class mock:
             def __enter__(self):
                 return self
