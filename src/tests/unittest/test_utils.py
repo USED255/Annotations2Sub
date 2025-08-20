@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
+import sys
 import urllib.request
 
 import pytest
@@ -48,6 +49,29 @@ def test_GetUrl():
 
     m = pytest.MonkeyPatch()
     m.setattr(urllib.request, "urlopen", f)
+
+    GetUrl("https://example.com/")
+
+    m.undo()
+
+
+def test_GetUrl_no_certifi():
+    def f(*args, **kwargs):
+        class mock:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                pass
+
+            def read(self):
+                return b""
+
+        return mock()
+
+    m = pytest.MonkeyPatch()
+    m.setattr(urllib.request, "urlopen", f)
+    m.setitem(sys.modules, "certifi", None)
 
     GetUrl("https://example.com/")
 
