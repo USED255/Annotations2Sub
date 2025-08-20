@@ -448,17 +448,17 @@ def Convert(
         if textSize == 0:
             textSize = 0.5
 
-        def is_length_overflow() -> bool:
+        def length_overflows() -> bool:
             line_count = _text.count("\n") + 1
             return textSize * 1.12 * line_count > height - padding_y * 2
 
-        def is_width_overflow() -> bool:
+        def width_overflows() -> bool:
             l = []
             for line in _text.split("\n"):
                 l.append(len(line) * (textSize / 4))
             return max(l) > width
 
-        if is_length_overflow() or is_width_overflow():
+        if length_overflows() or width_overflows():
             min_font_size = 0.5
             max_font_size = textSize
             step = textSize
@@ -468,7 +468,7 @@ def Convert(
                 if step < 0.1:
                     break
 
-                if is_length_overflow():
+                if length_overflows():
                     textSize = max(textSize - step, min_font_size)
                 else:
                     textSize = min(textSize + step, max_font_size)
