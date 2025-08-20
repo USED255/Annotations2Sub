@@ -10,12 +10,18 @@ from Annotations2Sub.utils import RedText, Stderr
 from tests import baselinePath, testCasePath
 
 baselines = [
+    # 这个文件包含全部可能的结构和字段
     "annotations",
+    # 这个文件有混乱数据案例
     "annotations2",
     "annotations3",
+    # 这个视频是此项目的动机
     "e8kKeUuytqA",
+    # 这个视频有复杂的气泡框
     "29-q7YnyUmY",
+    # 这个视频是一个演示, 有大部分样式和需要换行的文本
     "M2ryDEyyrXE",
+    # 这个视频有复杂的定位
     "g-0i6MOh7n0",
     "c1iCjpxDxz4",
 ]

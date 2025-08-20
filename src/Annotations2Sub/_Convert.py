@@ -43,7 +43,7 @@ def Convert(
         # 致谢: https://github.com/nirbheek/youtube-ass &
         #       https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 
-        def Warp(text: str, length: int) -> str:
+        def Wrap(text: str, length: int) -> str:
             def wrap(text: str) -> str:
                 return "\n".join(
                     textwrap.wrap(text, width=length, drop_whitespace=False)
@@ -60,18 +60,16 @@ def Convert(
 
         def Text(event: Event) -> Event:
             # 文本与框保持一定距离
-            nonlocal x  # type: ignore
-            nonlocal y  # type: ignore
 
-            x = x + padding_x
-            y = y + padding_y
+            _x = x + padding_x
+            _y = y + padding_y
             #
 
             tags = Tag()
             tags.extend(
                 [
                     Tag.Align(7),
-                    Tag.Pos(x, y),
+                    Tag.Pos(_x, _y),
                     Tag.Fontsize(textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
@@ -88,11 +86,8 @@ def Convert(
             # 相比 Text, 文字会居中
 
             # 模拟居中
-            nonlocal x  # type: ignore
-            nonlocal y  # type: ignore
-
-            x = x + (width / 2)
-            y = y + (height / 2)
+            _x = x + (width / 2)
+            _y = y + (height / 2)
             #
 
             shadow = Tag.Shadow(0)
@@ -100,7 +95,7 @@ def Convert(
             tags.extend(
                 [
                     Tag.Align(5),
-                    Tag.Pos(x, y),
+                    Tag.Pos(_x, _y),
                     Tag.Fontsize(textSize),
                     Tag.PrimaryColour(each.fgColor),
                     Tag.Bord(0),
@@ -142,24 +137,24 @@ def Convert(
             return event
 
         def HollowBox(event: Event) -> Event:
-            nonlocal padding_x  # type: ignore
-            nonlocal padding_y  # type: ignore
+            _padding_x = padding_x
+            _padding_y = padding_y
 
             if resolutionX > resolutionY:
                 ratio = resolutionX / resolutionY
-                padding_y = padding_y * ratio
+                _padding_y = _padding_y * ratio
 
             if resolutionY > resolutionX:
                 ratio = resolutionY / resolutionX
-                padding_x = padding_x * ratio
+                _padding_x = _padding_x * ratio
 
-            padding_x = padding_x * 0.3
-            padding_y = padding_y * 0.3
+            _padding_x = _padding_x * 0.3
+            _padding_y = _padding_y * 0.3
 
-            x1 = x + padding_x
-            y1 = y + padding_y
-            x2 = x + width - padding_x
-            y2 = y + height - padding_y
+            x1 = x + _padding_x
+            y1 = y + _padding_y
+            x2 = x + width - _padding_x
+            y2 = y + height - _padding_y
 
             tags = Tag()
             tags.extend(
@@ -418,6 +413,9 @@ def Convert(
             line_count = text.count(r"\N") + 1
             _height = textSize * line_count
 
+            # 需要修改之后的值以便模拟其效果,
+            # Text 和 Box 也被其他函数使用因此不能用新变量,
+            # 函数返回后没有其他过程, 因此不会有污染.
             nonlocal y  # type: ignore
             nonlocal height  # type: ignore
 
@@ -450,17 +448,17 @@ def Convert(
         if textSize == 0:
             textSize = 0.5
 
-        def is_length_overflow() -> bool:
+        def length_overflows() -> bool:
             line_count = _text.count("\n") + 1
             return textSize * 1.12 * line_count > height - padding_y * 2
 
-        def is_width_overflow() -> bool:
+        def width_overflows() -> bool:
             l = []
             for line in _text.split("\n"):
                 l.append(len(line) * (textSize / 4))
             return max(l) > width
 
-        if is_length_overflow() or is_width_overflow():
+        if length_overflows() or width_overflows():
             min_font_size = 0.5
             max_font_size = textSize
             step = textSize
@@ -470,7 +468,7 @@ def Convert(
                 if step < 0.1:
                     break
 
-                if is_length_overflow():
+                if length_overflows():
                     textSize = max(textSize - step, min_font_size)
                 else:
                     textSize = min(textSize + step, max_font_size)
@@ -479,7 +477,7 @@ def Convert(
                 if _width < 0:
                     _width = width
                 length = int(_width / (textSize / 4)) + 1
-                _text = Warp(text, length)
+                _text = Wrap(text, length)
 
         text = _text
         #
@@ -551,6 +549,7 @@ def Convert(
             Stderr(_('不支持 "{}" 样式 ({})').format(each.style, each.id))
             return []
 
+    #      Dict[Ref:str, Dict[timeStart:datetime, timeEnd:datetime]]
     patch: Dict[str, Dict] = {}
     events = []
 
