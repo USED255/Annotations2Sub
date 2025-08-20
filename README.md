@@ -1,8 +1,6 @@
 # Annotations2Sub
 
-下载和转换 Youtube 注释
-
-Download and convert Youtube Annotations
+Convert Youtube Annotations to subtitles.
 
 [![License GPLv3](https://img.shields.io/pypi/l/Annotations2Sub?color=1)](https://pypi.org/project/Annotations2Sub/)
 [![Test](https://github.com/USED255/Annotations2Sub/actions/workflows/test.yml/badge.svg)](https://github.com/USED255/Annotations2Sub/actions/workflows/test.yml)
@@ -12,75 +10,20 @@ Download and convert Youtube Annotations
 
 ---
 
-**因为字幕滤镜的行为和怪癖不断变动, 以及 Web 技术和字幕技术上的巨大差异, 本项目无法正确还原注释的行为**
-
-**Because of the ever-changing behavior and quirks of subtitle filters, and the vast differences between web and subtitle technologies, this project was unable to correctly restore the behavior of annotations.**
+Installation:
 
 ```bash
 pip install Annotations2Sub
 ```
 
-```help
-usage: Annotations2Sub.py [-h] [-l] [-x 100] [-y 100] [-f Arial ] [-o Folder] [-d]
-                          [-i invidious.domain] [-p] [-g] [-s] [-n] [-k] [-u] [-v]
-                          [-V]
-                          File or videoId [File or videoId ...]
+Convert Annotations:
 
-Download and convert Youtube Annotations
-
-positional arguments:
-  File or videoId       File path or video ID of multiple files to be convert
-
-optional arguments:
-  -h, --help            Show this help message and exit
-  -x 100, --transform-resolution-x 100
-                        Transform resolution X
-  -y 100, --transform-resolution-y 100
-                        Transform resolution Y
-  -f Arial, --font Arial
-                        Specify font
-  -d, --download-for-archive
-                        Try to download the Annotations file from Internet Archive
-  -D, --download-annotations-only
-                        Download Annotations only
-  -p, --preview-video   Preview video, requires mpv(https://mpv.io/)
-  -g, --generate-video  Generate video, requires FFmpeg(https://ffmpeg.org/)
-  -i invidious-instances.domain, --invidious-instances invidious-instances.domain
-                        Specify invidious instances (https://redirect.invidious.io/)
-  -n, --no-overwrite-files
-                        Do not overwrite files
-  -N, --no-keep-intermediate-files
-                        Do not keep intermediate files
-  -O directory, --output-directory directory
-                        Specify the output directory for the converted file
-  -o File, --output File
-                        Save to this file, if "-" then output to standard output
-  -v, --version         Show version
-  -V, --verbose         Show more messages
+```bash
+Annotations2Sub XXXXXXXXXXX.xml
 ```
 
 ---
 
-转换注释文件
+YouTube Annotations was a feature launched by YouTube in 2008 that allowed video creators to add text, links, and interactive elements to their videos in order to enhance the viewing experience. YouTube removed this feature in 2019.
 
-Convert Annotations
-
-```bash
-Annotations2Sub 29-q7YnyUmY.xml
-```
-
-下载并转换注释文件
-
-Download and convert Annotations
-
-```bash
-Annotations2Sub -d 29-q7YnyUmY
-```
-
-生成视频
-
-Generate video
-
-```bash
-Annotations2Sub -g 29-q7YnyUmY
-```
+TODO
