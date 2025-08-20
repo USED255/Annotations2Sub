@@ -40,8 +40,8 @@ def Info(string: str):
 def GetUrl(url: str) -> str:
     if not url.startswith("http"):
         raise ValueError(_('"url" 必须是 http(s)'))
-    
+
     context = ssl.create_default_context(cafile=certifi.where())
-    
+
     with urllib.request.urlopen(url, context=context) as r:
         return r.read().decode("utf-8")
