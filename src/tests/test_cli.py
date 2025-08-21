@@ -14,6 +14,7 @@ baseline2_file = os.path.join(baselinePath, "e8kKeUuytqA.xml.test")
 empty_xml = os.path.join(testCasePath, "empty.xml.test")
 empty_annotations = os.path.join(testCasePath, "emptyAnnotations.xml.test")
 file1 = os.path.join(testCasePath, "file1.test")
+empty_file = os.path.join(testCasePath, "empty.test")
 
 """
 0: 成功
@@ -23,6 +24,7 @@ file1 = os.path.join(testCasePath, "file1.test")
 14: 不是 Annotations 文件
 15: 无效的 XML 文档
 18: 多个错误
+20: 空文件
 """
 
 test_set = [
@@ -45,6 +47,7 @@ test_set = [
     ("0", 13),
     ("-d 0", 11),
     ("0 0", 18),
+    (f"{empty_file}", 20),
 ]
 
 

@@ -19,6 +19,7 @@ from Annotations2Sub import __version__ as version
 from Annotations2Sub._flags import Flags
 from Annotations2Sub.Annotations import NotAnnotationsDocumentError
 from Annotations2Sub.cli_utils import (
+    AnnotationsStringIsEmptyError,
     AnnotationsXmlStringToSub,
     GetAnnotationsUrl,
     GetMedia,
@@ -271,6 +272,10 @@ def Run(args=None) -> int:
             Info(traceback.format_exc())
             exit_code += 15
             continue
+        except AnnotationsStringIsEmptyError:
+            Err(_('"{}" 是空文件').format(annotations_file))
+            exit_code += 20
+            continue
 
         is_no_save = False
         if output_to_stdout:
@@ -309,7 +314,7 @@ def Run(args=None) -> int:
 
                     try:
                         video, audio = GetMedia(video_id, domain)
-                    except (json.JSONDecodeError, URLError, IncompleteRead, ValueError):
+                    except (json.JSONDecodeError, URLError, IncompleteRead, Exception):
                         continue
 
                 if video == "" or audio == "":
@@ -319,7 +324,7 @@ def Run(args=None) -> int:
             else:
                 try:
                     video, audio = GetMedia(video_id, invidious_instances)
-                except (json.JSONDecodeError, URLError, ValueError):
+                except (json.JSONDecodeError, URLError, Exception):
                     Err(_("无法获取视频"))
                     Stderr(traceback.format_exc())
                     exit_code += 17
@@ -361,7 +366,7 @@ def Run(args=None) -> int:
             ]
             exit_code += run(commands)
 
-    if exit_code > 17:
+    if exit_code > 21:
         Warn(_("处理过程中出现多个错误"))
         exit_code = 18
 

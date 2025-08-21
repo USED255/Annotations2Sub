@@ -12,6 +12,10 @@ from Annotations2Sub.i18n import _
 from Annotations2Sub.utils import GetUrl, Stderr, Warn
 
 
+class AnnotationsStringIsEmptyError(ValueError):
+    pass
+
+
 def GetAnnotationsUrl(videoId: str) -> str:
     """返回注释在互联网档案馆的存档网址"""
     # 移植自 https://github.com/omarroth/invidious/blob/ea0d52c0b85c0207c1766e1dc5d1bd0778485cad/src/invidious.cr#L2835
@@ -57,9 +61,9 @@ def GetMedia(videoId: str, instanceDomain: str):  # -> tuple[str, str]:
     video = str(videos[0]["url"])
     audio = str(audios[0]["url"])
     if not video.startswith("http"):
-        raise ValueError(_("没有 Video"))
+        raise Exception(_("没有 Video"))
     if not audio.startswith("http"):
-        raise ValueError(_("没有 Audio"))
+        raise Exception(_("没有 Audio"))
     return video, audio
 
 
@@ -72,7 +76,7 @@ def AnnotationsXmlStringToSub(
 ) -> Sub:
 
     if annotations_string == "":
-        raise ValueError(_("annotations_string 不应为空字符串"))
+        raise AnnotationsStringIsEmptyError(_("annotations_string 不应为空字符串"))
 
     tree = xml.etree.ElementTree.fromstring(annotations_string)
     annotations = Parse(tree)

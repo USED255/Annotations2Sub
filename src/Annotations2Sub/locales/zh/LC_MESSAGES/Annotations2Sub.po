@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2025-08-20 21:14+0800\n"
-"PO-Revision-Date: 2025-08-20 21:15+0800\n"
+"POT-Creation-Date: 2025-08-21 19:57+0800\n"
+"PO-Revision-Date: 2025-08-21 19:58+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh\n"
@@ -54,7 +54,7 @@ msgstr "\"blue\" 必须在 0-255 之间"
 msgid "\"alpha\" 必须在 0-255 之间"
 msgstr "\"alpha\" 必须在 0-255 之间"
 
-#: _Convert.py:552
+#: _Convert.py:549
 msgid "不支持 \"{}\" 样式 ({})"
 msgstr "不支持 \"{}\" 样式 ({})"
 
@@ -444,198 +444,214 @@ msgstr ""
 "居帷中，而召始入，使伏床下。始积怒，永建五年，遂拔刃杀主。帝大怒，腰斩"
 "始，同产皆弃巿。超少子勇。 "
 
-#: cli.py:38
+#: __main__.py:32
+msgid "出现未知错误"
+msgstr "出现未知错误"
+
+#: cli.py:39
 msgid "下载和转换 Youtube 注释"
 msgstr "下载和转换 Youtube 注释"
 
-#: cli.py:43
+#: cli.py:44
 msgid "文件 或 videoId"
 msgstr "文件 或 videoId"
 
-#: cli.py:44
+#: cli.py:45
 msgid "多个需要转换的文件的文件路径或视频ID"
 msgstr "多个需要转换的文件的文件路径或视频ID"
 
-#: cli.py:52
+#: cli.py:53
 msgid "变换分辨率X"
 msgstr "变换分辨率X"
 
-#: cli.py:60
+#: cli.py:61
 msgid "变换分辨率Y"
 msgstr "变换分辨率Y"
 
-#: cli.py:66 cli.py:68 cli_utils.py:70
+#: cli.py:67 cli.py:69 cli_utils.py:74
 msgid "Microsoft YaHei"
 msgstr "Microsoft YaHei"
 
-#: cli.py:69
+#: cli.py:70
 msgid "指定字体"
 msgstr "指定字体"
 
-#: cli.py:75
+#: cli.py:76
 msgid "尝试从 Internet Archive 下载注释文件"
 msgstr "尝试从 Internet Archive 下载注释文件"
 
-#: cli.py:81
+#: cli.py:82
 msgid "仅下载注释"
 msgstr "仅下载注释"
 
-#: cli.py:88
+#: cli.py:89
 msgid "指定 invidious 实例(https://redirect.invidious.io/)"
 msgstr "指定 invidious 实例(https://redirect.invidious.io/)"
 
-#: cli.py:95
+#: cli.py:96
 msgid "预览视频, 需要 mpv(https://mpv.io/)"
 msgstr "预览视频, 需要 mpv(https://mpv.io/)"
 
-#: cli.py:101
+#: cli.py:102
 msgid "生成视频, 需要 FFmpeg(https://ffmpeg.org/)"
 msgstr "生成视频, 需要 FFmpeg(https://ffmpeg.org/)"
 
-#: cli.py:104
+#: cli.py:105
 msgid "不覆盖文件"
 msgstr "不覆盖文件"
 
-#: cli.py:110
+#: cli.py:111
 msgid "不保留中间文件"
 msgstr "不保留中间文件"
 
-#: cli.py:116
+#: cli.py:117
 msgid "文件"
 msgstr "文件"
 
-#: cli.py:117
+#: cli.py:118
 msgid "保存到此文件, 如果为 \"-\" 则输出到标准输出"
 msgstr "保存到此文件, 如果为 \"-\" 则输出到标准输出"
 
-#: cli.py:123
+#: cli.py:124
 msgid "目录"
 msgstr "目录"
 
-#: cli.py:124
+#: cli.py:125
 msgid "指定转换后文件的输出目录"
 msgstr "指定转换后文件的输出目录"
 
-#: cli.py:130
+#: cli.py:131
 msgid "显示版本号"
 msgstr "显示版本号"
 
-#: cli.py:131
+#: cli.py:132
 #, python-brace-format
 msgid "Annotations2Sub v{version}"
 msgstr "Annotations2Sub v{version}"
 
-#: cli.py:137
+#: cli.py:138
 msgid "显示更多消息"
 msgstr "显示更多消息"
 
-#: cli.py:164
+#: cli.py:165
 msgid "--output 不能与 --output--directory 选项同时使用"
 msgstr "--output 不能与 --output--directory 选项同时使用"
 
-#: cli.py:167
+#: cli.py:168
 msgid "--output 只能处理一个文件"
 msgstr "--output 只能处理一个文件"
 
-#: cli.py:174
+#: cli.py:175
 msgid "转换后文件输出目录应该指定一个文件夹"
 msgstr "转换后文件输出目录应该指定一个文件夹"
 
-#: cli.py:190
+#: cli.py:191
 msgid "您好像无法访问 Google 🤔"
 msgstr "您好像无法访问 Google 🤔"
 
-#: cli.py:204
+#: cli.py:205
 msgid "\"{}\" 不是一个有效的视频 ID"
 msgstr "\"{}\" 不是一个有效的视频 ID"
 
-#: cli.py:218
+#: cli.py:219
 msgid "文件已存在, 跳过下载 ({})"
 msgstr "文件已存在, 跳过下载 ({})"
 
-#: cli.py:223
+#: cli.py:224
 msgid "下载 \"{}\""
 msgstr "下载 \"{}\""
 
-#: cli.py:226
+#: cli.py:227
 msgid "\"{}\" 可能没有 Annotations"
 msgstr "\"{}\" 可能没有 Annotations"
 
-#: cli.py:239
+#: cli.py:240
 msgid "\"{}\" 不是一个文件"
 msgstr "\"{}\" 不是一个文件"
 
-#: cli.py:266
+#: cli.py:267
 msgid "\"{}\" 不是 Annotations 文件"
 msgstr "\"{}\" 不是 Annotations 文件"
 
-#: cli.py:270
+#: cli.py:271
 msgid "\"{}\" 不是一个有效的 XML 文件"
 msgstr "\"{}\" 不是一个有效的 XML 文件"
 
-#: cli.py:282
+#: cli.py:276
+msgid "\"{}\" 是空文件"
+msgstr "\"{}\" 是空文件"
+
+#: cli.py:287
 msgid "文件已存在, 跳过输出 ({})"
 msgstr "文件已存在, 跳过输出 ({})"
 
-#: cli.py:286 cli.py:337
+#: cli.py:291 cli.py:342
 msgid "删除 \"{}\""
 msgstr "删除 \"{}\""
 
-#: cli.py:292
+#: cli.py:297
 msgid "保存于: \"{}\""
 msgstr "保存于: \"{}\""
 
-#: cli.py:316 cli.py:323
+#: cli.py:321 cli.py:328
 msgid "无法获取视频"
 msgstr "无法获取视频"
 
-#: cli.py:365
+#: cli.py:370
 msgid "处理过程中出现多个错误"
 msgstr "处理过程中出现多个错误"
 
-#: cli_utils.py:27
+#: cli_utils.py:31
 msgid "无效的 videoId"
 msgstr "无效的 videoId"
 
-#: cli_utils.py:46
+#: cli_utils.py:50
 msgid "获取 \"{}\""
 msgstr "获取 \"{}\""
 
-#: cli_utils.py:60
+#: cli_utils.py:64
 msgid "没有 Video"
 msgstr "没有 Video"
 
-#: cli_utils.py:62
+#: cli_utils.py:66
 msgid "没有 Audio"
 msgstr "没有 Audio"
 
-#: cli_utils.py:71
+#: cli_utils.py:75
 msgid "无标题"
 msgstr "无标题"
 
-#: cli_utils.py:75
+#: cli_utils.py:79
 msgid "annotations_string 不应为空字符串"
 msgstr "annotations_string 不应为空字符串"
 
-#: cli_utils.py:87
+#: cli_utils.py:91
 msgid "\"{}\" 没有注释被转换"
 msgstr "\"{}\" 没有注释被转换"
 
-#: cli_utils.py:94
+#: cli_utils.py:98
 msgid "此脚本使用 Annotations2Sub 生成"
 msgstr "此脚本使用 Annotations2Sub 生成"
 
-#: utils.py:26
+#: utils.py:27
 msgid "错误: "
 msgstr "错误: "
 
-#: utils.py:30
+#: utils.py:31
 msgid "警告: "
 msgstr "警告: "
 
-#: utils.py:40
+#: utils.py:41
 msgid "\"url\" 必须是 http(s)"
 msgstr "\"url\" 必须是 http(s)"
+
+#: windows.py:19
+msgid "这是一个命令行工具，请在命令提示符下运行。"
+msgstr "这是一个命令行工具，请在命令提示符下运行。"
+
+#: windows.py:20
+msgid "提示"
+msgstr "提示"
 
 #~ msgid "\"alpha\" 不应为 None"
 #~ msgstr "\"alpha\" 不应为 None"

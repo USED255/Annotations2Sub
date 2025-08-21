@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
+import ssl
 import sys
 import urllib.request
-import ssl
 
 from Annotations2Sub._flags import Flags
 from Annotations2Sub.i18n import _
