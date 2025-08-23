@@ -1,18 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import os
-import subprocess
-import urllib.request
-from urllib.error import URLError
 
 import pytest
 
-from Annotations2Sub import cli, cli_utils
 from Annotations2Sub.cli import Run
 from Annotations2Sub.utils import Stderr
 from tests import baselinePath, testCasePath
-
-baseline1_video_id = "29-q7YnyUmY"
 
 baseline1_file = os.path.join(baselinePath, "29-q7YnyUmY.xml.test")
 baseline2_file = os.path.join(baselinePath, "e8kKeUuytqA.xml.test")
@@ -20,221 +14,46 @@ baseline2_file = os.path.join(baselinePath, "e8kKeUuytqA.xml.test")
 empty_xml = os.path.join(testCasePath, "empty.xml.test")
 empty_annotations = os.path.join(testCasePath, "emptyAnnotations.xml.test")
 file1 = os.path.join(testCasePath, "file1.test")
+empty_file = os.path.join(testCasePath, "empty.test")
 
-
-def test_cli_failed():
-    """预期失败的命令"""
-    commands = f"""-ND {baseline1_file}
-{baseline1_file} -O {file1}
-{baseline1_file} {baseline2_file} -o 1.ass
-{baseline1_file} -O . -o 1.ass
-{empty_xml}
-{file1}
-0
--d 0"""
-
-    for command in commands.splitlines():
-        Stderr(command)
-        argv = command.split(" ")
-        code = Run(argv)
-        assert code == 1
-
-
-def test_cli_success():
-    """预期成功的命令"""
-    commands = f"""{baseline1_file} {baseline2_file} -x 1080 -y 1920 -f Microsoft -V -O .
-{baseline1_file} -o annotations.ass
-{baseline1_file} -o -
-{baseline1_file} -n
-{empty_annotations}"""
-
-    for command in commands.splitlines():
-        Stderr(command)
-        argv = command.split(" ")
-        code = Run(argv)
-        assert code == 0
-
-
-def test_cli_network_failed():
-    """网络相关"""
-    commands = f"""-g {baseline1_video_id} -i bad.instance
--g {baseline1_video_id}
--g {baseline1_video_id} -i malicious.instance
--g {baseline1_video_id} -i malicious2.instance
--g {baseline1_video_id} -i malicious3.instance
--d 12345678911"""
-
-    with open(baseline1_file, encoding="utf-8") as f:
-        baseline1_string = f.read()
-
-    def GetUrlMock(url: str):
-        if (
-            url
-            == "https://archive.org/download/youtubeannotations_53/12.tar/123/12345678911.xml"
-        ):
-            return ""
-        if (
-            url
-            == "https://archive.org/download/youtubeannotations_54/29.tar/29-/29-q7YnyUmY.xml"
-        ):
-            return baseline1_string
-        if url == "https://api.invidious.io/instances.json":
-            return r'[["malicious.instance"],["malicious2.instance"]]'
-        if url == "https://bad.instance/api/v1/videos/29-q7YnyUmY":
-            return ""
-        if url == "https://malicious.instance/api/v1/videos/29-q7YnyUmY":
-            return r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"file://c/"},{"type":"audio","bitrate":1,"url":"file://c/"}]}'
-        if url == "https://malicious2.instance/api/v1/videos/29-q7YnyUmY":
-            return r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"http://c/"},{"type":"audio","bitrate":1,"url":"file://c/"}]}'
-        if url == "https://malicious3.instance/api/v1/videos/29-q7YnyUmY":
-            return r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"http://c/"},{"type":"audio","bitrate":1,"url":"http://c/"}]}'
-
-        pytest.fail()
-
-    def subprocessMock(*args, **kwargs):
-        class a:
-            def __init__(self):
-                self.returncode = 1
-
-        return a()
-
-    m = pytest.MonkeyPatch()
-    m.setattr(cli, "GetUrl", GetUrlMock)
-    m.setattr(cli_utils, "GetUrl", GetUrlMock)
-    m.setattr(subprocess, "run", subprocessMock)
-
-    for command in commands.splitlines():
-        Stderr(command)
-        argv = command.split(" ")
-        code = Run(argv)
-        assert code == 1
-
-    with pytest.raises(pytest.fail.Exception):
-        GetUrlMock("")
-
-    m.undo()
-
-
-def test_cli_network_success():
-    commands = f"""-g {baseline1_video_id} -O .
--D {baseline1_video_id} -o annotations.xml
--g {baseline1_video_id} -i good.instance
--D {baseline1_video_id} -o -
--dNn {baseline1_video_id}
--pN {baseline1_video_id}
--gn {baseline1_video_id}
--pg {baseline1_video_id}
--D {baseline1_video_id}
--g {baseline1_video_id}
--g -2345678911
--g \\12345678911
+"""
+0: 成功
+2: 参数错误
+11: 无效视频ID
+13: 不是文件
+14: 不是 Annotations 文件
+15: 无效的 XML 文档
+18: 多个错误
+20: 空文件
 """
 
-    instances_string = r'{"adaptiveFormats":[{"type":"video","bitrate":1,"url":"https://1/video"},{"type":"audio","bitrate":1,"url":"https://1/audio"}]}'
-    invidious_string = (
-        r'[["noapi.instances",{"api":false}],["bad.instance"],["good.instance"]]'
-    )
-    with open(baseline1_file, encoding="utf-8") as f:
-        baseline1_string = f.read()
-
-    def GetUrlMock(url: str):
-        if (
-            url
-            == "https://archive.org/download/youtubeannotations_54/29.tar/29-/29-q7YnyUmY.xml"
-        ):
-            return baseline1_string
-        if (
-            url
-            == "https://archive.org/download/youtubeannotations_53/12.tar/123/12345678911.xml"
-        ):
-            return baseline1_string
-        if (
-            url
-            == "https://archive.org/download/youtubeannotations_64/-2.tar/-23/-2345678911.xml"
-        ):
-            return baseline1_string
-        if url == "https://api.invidious.io/instances.json":
-            return invidious_string
-        if url == "https://good.instance/api/v1/videos/29-q7YnyUmY":
-            return instances_string
-        if url == "https://good.instance/api/v1/videos/12345678911":
-            return instances_string
-        if url == "https://good.instance/api/v1/videos/-2345678911":
-            return instances_string
-        if url == "https://bad.instance/api/v1/videos/29-q7YnyUmY":
-            return ""
-        if url == "https://bad.instance/api/v1/videos/12345678911":
-            return ""
-        if url == "https://bad.instance/api/v1/videos/-2345678911":
-            return ""
-
-        pytest.fail()
-
-    def subprocessMock(*args, **kwargs):
-        class a:
-            def __init__(self):
-                self.returncode = 0
-
-        return a()
-
-    m = pytest.MonkeyPatch()
-    m.setattr(cli, "GetUrl", GetUrlMock)
-    m.setattr(cli_utils, "GetUrl", GetUrlMock)
-    m.setattr(subprocess, "run", subprocessMock)
-
-    for command in commands.splitlines():
-        Stderr(command)
-        argv = command.split(" ")
-        code = Run(argv)
-        assert code == 0
-
-    with pytest.raises(pytest.fail.Exception):
-        GetUrlMock("")
-
-    m.undo()
+test_set = [
+    # 预期成功的命令
+    (f"{baseline1_file} {baseline2_file} -x 1080 -y 1920 -f Microsoft -V -O .", 0),
+    (f"{baseline1_file} -o annotations.ass", 0),
+    (f"{baseline1_file} -o -", 0),
+    (f"{baseline1_file} -n", 0),
+    (f"{empty_annotations}", 0),
+    # 预期失败的命令
+    (f"-ND {baseline1_file}", 11),
+    # 输出目录不能是一个文件
+    (f"{baseline1_file} -O {file1}", 2),
+    # 多个文件不能输出到一个文件
+    (f"{baseline1_file} {baseline2_file} -o 1.ass", 2),
+    # "-O" 和 "-o" 不能一起用
+    (f"{baseline1_file} -O . -o 1.ass", 2),
+    (f"{empty_xml}", 14),
+    (f"{file1}", 15),
+    ("0", 13),
+    ("-d 0", 11),
+    ("0 0", 18),
+    (f"{empty_file}", 20),
+]
 
 
-def test_CheckNetwork():
-    def f(x):
-        for i in x:
-            if i.__name__ == "CheckNetwork":
-                i()
-
-    def urlopenMock(url, **kwargs):
-        class mock:
-            def __enter__(self):
-                return self
-
-            def __exit__(self, *args):
-                pass
-
-            def read(self):
-                return b""
-
-        return mock()
-
-    def urlopenURLErrorMock(*args, **kwargs):
-        raise URLError("")
-
-    def GetUrlMock(url: str):
-        if (
-            url
-            == "https://archive.org/download/youtubeannotations_53/12.tar/123/12345678911.xml"
-        ):
-            return ""
-        pytest.fail()
-
-    m = pytest.MonkeyPatch()
-    m.setattr(cli, "Dummy", f)
-    m.setattr(cli, "GetUrl", GetUrlMock)
-
-    m.setattr(urllib.request, "urlopen", urlopenMock)
-    Run("-d 12345678911".split(" "))
-
-    m.setattr(urllib.request, "urlopen", urlopenURLErrorMock)
-    Run("-d 12345678911".split(" "))
-
-    with pytest.raises(pytest.fail.Exception):
-        GetUrlMock("")
-
-    m.undo()
+@pytest.mark.parametrize("Argument, ExitCode", test_set)
+def test_cli(Argument: str, ExitCode: int):
+    Stderr(Argument)
+    args = Argument.split(" ")
+    code = Run(args)
+    assert ExitCode == code

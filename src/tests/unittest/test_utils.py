@@ -1,11 +1,24 @@
 # -*- coding: utf-8 -*-
 
 
+import sys
 import urllib.request
 
 import pytest
 
-from Annotations2Sub.utils import Err, GetUrl, Info, RedText, Stderr, Warn, YellowText
+from Annotations2Sub.utils import (
+    Err,
+    Err1,
+    Err2,
+    GetUrl,
+    Info,
+    RedText,
+    Stderr,
+    Warn,
+    Warn1,
+    Warn2,
+    YellowText,
+)
 
 
 def test_YellowText():
@@ -32,8 +45,24 @@ def test_Info():
     Info("Test")
 
 
+def test_Err1():
+    Err1("Test")
+
+
+def test_Warn1():
+    Warn1("Test")
+
+
+def test_Err2():
+    Err2("Test")
+
+
+def test_Warn2():
+    Warn2("Test")
+
+
 def test_GetUrl():
-    def f(x):
+    def f(*args, **kwargs):
         class mock:
             def __enter__(self):
                 return self
@@ -48,6 +77,29 @@ def test_GetUrl():
 
     m = pytest.MonkeyPatch()
     m.setattr(urllib.request, "urlopen", f)
+
+    GetUrl("https://example.com/")
+
+    m.undo()
+
+
+def test_GetUrl_no_certifi():
+    def f(*args, **kwargs):
+        class mock:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                pass
+
+            def read(self):
+                return b""
+
+        return mock()
+
+    m = pytest.MonkeyPatch()
+    m.setattr(urllib.request, "urlopen", f)
+    m.setitem(sys.modules, "certifi", None)
 
     GetUrl("https://example.com/")
 

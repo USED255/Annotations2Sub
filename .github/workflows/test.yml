@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install pytest pytest-cov
+          python -m pip install pytest pytest-cov certifi
 
       - name: Test with pytest
         run: |
@@ -52,18 +52,23 @@ jobs:
     needs: fast-test
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12","3.13"]
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12","3.13","pypy3.11","3.13t","graalpy-24.0"]
         exclude:
           - os: macos-latest
             python-version: "3.11"
           - os: macos-latest
             python-version: "3.7"
+          - os: ubuntu-latest
+            python-version: "3.7"
+          - os: windows-latest
+            python-version: "graalpy-24.0"
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -75,8 +80,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install pytest
+          python -m pip install pytest certifi
 
       - name: Test with pytest
         run: |
-          pytest .
+          pytest

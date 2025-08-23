@@ -19,19 +19,20 @@ from Annotations2Sub import __version__ as version
 from Annotations2Sub._flags import Flags
 from Annotations2Sub.Annotations import NotAnnotationsDocumentError
 from Annotations2Sub.cli_utils import (
+    AnnotationsStringIsEmptyError,
     AnnotationsXmlStringToSub,
     GetAnnotationsUrl,
     GetMedia,
 )
 from Annotations2Sub.i18n import _
-from Annotations2Sub.utils import Err, GetUrl, Info, Stderr, Warn, YellowText
+from Annotations2Sub.utils import Err, GetUrl, Info, Stderr, Warn
 
 
 def Dummy(*args, **kwargs):
     """用于 MonkeyPatch"""
 
 
-def Run(argv=None):  # -> Literal[1, 0]:
+def Run(args=None) -> int:
     """跑起来🐎🐎🐎"""
 
     exit_code = 0
@@ -137,7 +138,7 @@ def Run(argv=None):  # -> Literal[1, 0]:
         help=_("显示更多消息"),
     )
 
-    args = parser.parse_args(argv)
+    args = parser.parse_args(args)
     queue = list(map(str, args.queue))
 
     transform_resolution_x: int = args.transform_resolution_x
@@ -162,22 +163,20 @@ def Run(argv=None):  # -> Literal[1, 0]:
     if output != None:
         if output_directory != None:
             Err(_("--output 不能与 --output--directory 选项同时使用"))
-            return 1
+            return 2
         if len(queue) > 1:
             Err(_("--output 只能处理一个文件"))
-            return 1
+            return 2
         if args.output == "-":
             output_to_stdout = True
 
     if output_directory is not None:
         if os.path.isdir(output_directory) is False:
             Err(_("转换后文件输出目录应该指定一个文件夹"))
-            return 1
+            return 2
 
     if enable_preview_video or enable_generate_video:
         enable_download_for_archive = True
-        if invidious_instances == None:
-            invidious_instances = ""
 
     if enable_download_annotations_only:
         enable_download_for_archive = True
@@ -204,7 +203,7 @@ def Run(argv=None):  # -> Literal[1, 0]:
 
             if re.match(r"[a-zA-Z0-9_-]{11}", video_id) == None:
                 Err(_('"{}" 不是一个有效的视频 ID').format(video_id))
-                exit_code = 1
+                exit_code += 11
                 continue
 
             annotations_file = f"{video_id}.xml"
@@ -217,7 +216,7 @@ def Run(argv=None):  # -> Literal[1, 0]:
             is_skip_download = False
             if enable_no_overwrite_files and os.path.exists(annotations_file):
                 if os.path.exists(annotations_file):
-                    Stderr(YellowText(_("文件已存在, 跳过下载 ({})").format(video_id)))
+                    Warn(_("文件已存在, 跳过下载 ({})").format(video_id))
                     is_skip_download = True
 
             if not is_skip_download:
@@ -226,7 +225,7 @@ def Run(argv=None):  # -> Literal[1, 0]:
                 annotations_string = GetUrl(annotations_url)
                 if annotations_string == "":
                     Warn(_('"{}" 可能没有 Annotations').format(video_id))
-                    exit_code = 1
+                    exit_code += 12
                     continue
                 if output_to_stdout:
                     sys.stdout.write(annotations_string)
@@ -239,7 +238,7 @@ def Run(argv=None):  # -> Literal[1, 0]:
 
         if os.path.isfile(annotations_file) is False:
             Err(_('"{}" 不是一个文件').format(annotations_file))
-            exit_code = 1
+            exit_code += 13
             continue
 
         subtitle_file = annotations_file + ".ass"
@@ -266,12 +265,16 @@ def Run(argv=None):  # -> Literal[1, 0]:
             )
         except NotAnnotationsDocumentError:
             Err(_('"{}" 不是 Annotations 文件').format(annotations_file))
-            exit_code = 1
+            exit_code += 14
             continue
         except ParseError:
             Err(_('"{}" 不是一个有效的 XML 文件').format(annotations_file))
             Info(traceback.format_exc())
-            exit_code = 1
+            exit_code += 15
+            continue
+        except AnnotationsStringIsEmptyError:
+            Err(_('"{}" 是空文件').format(annotations_file))
+            exit_code += 20
             continue
 
         is_no_save = False
@@ -281,7 +284,7 @@ def Run(argv=None):  # -> Literal[1, 0]:
 
         if enable_no_overwrite_files:
             if os.path.exists(subtitle_file):
-                Stderr(YellowText(_("文件已存在, 跳过输出 ({})").format(subtitle_file)))
+                Warn(_("文件已存在, 跳过输出 ({})").format(subtitle_file))
                 is_no_save = True
 
         if enable_no_keep_intermediate_files:
@@ -295,6 +298,8 @@ def Run(argv=None):  # -> Literal[1, 0]:
 
         video = audio = ""
         if enable_preview_video or enable_generate_video:
+            if invidious_instances == None:
+                invidious_instances = ""
             if invidious_instances == "":
                 instances = json.loads(
                     GetUrl("https://api.invidious.io/instances.json")
@@ -309,20 +314,20 @@ def Run(argv=None):  # -> Literal[1, 0]:
 
                     try:
                         video, audio = GetMedia(video_id, domain)
-                    except (json.JSONDecodeError, URLError, IncompleteRead, ValueError):
+                    except (json.JSONDecodeError, URLError, IncompleteRead, Exception):
                         continue
 
                 if video == "" or audio == "":
                     Err(_("无法获取视频"))
-                    exit_code = 1
+                    exit_code += 16
                     continue
             else:
                 try:
-                    video, audio = GetMedia(video_id, str(invidious_instances))
-                except (json.JSONDecodeError, URLError, ValueError):
+                    video, audio = GetMedia(video_id, invidious_instances)
+                except (json.JSONDecodeError, URLError, Exception):
                     Err(_("无法获取视频"))
                     Stderr(traceback.format_exc())
-                    exit_code = 1
+                    exit_code += 17
                     continue
 
         def run(commands: List[str]):
@@ -330,13 +335,14 @@ def Run(argv=None):  # -> Literal[1, 0]:
 
             _exit_code = subprocess.run(commands).returncode
             if _exit_code != 0:
-                Stderr(YellowText('exit with "{}"'.format(_exit_code)))
-                nonlocal exit_code
-                exit_code = 1
+                Warn('exit with "{}"'.format(_exit_code))
+                return _exit_code
 
             if enable_no_keep_intermediate_files:
                 Stderr(_('删除 "{}"').format(subtitle_file))
                 os.remove(subtitle_file)
+
+            return 0
 
         if enable_preview_video:
             commands = [
@@ -345,7 +351,7 @@ def Run(argv=None):  # -> Literal[1, 0]:
                 f"--audio-file={audio}",
                 f"--sub-file={subtitle_file}",
             ]
-            run(commands)
+            exit_code += run(commands)
 
         if enable_generate_video:
             commands = [
@@ -358,6 +364,10 @@ def Run(argv=None):  # -> Literal[1, 0]:
                 f"ass={subtitle_file}",
                 f"{subtitle_file}.mp4",
             ]
-            run(commands)
+            exit_code += run(commands)
+
+    if exit_code > 21:
+        Warn(_("处理过程中出现多个错误"))
+        exit_code = 18
 
     return exit_code

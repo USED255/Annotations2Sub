@@ -103,7 +103,7 @@ Dialogue: 0,00:00:02.90,00:00:07.90,Default,TheAwesomeTrout;annotation_7012;spee
 Dialogue: 0,00:00:02.90,00:00:07.90,Default,TheAwesomeTrout;annotation_7012;speech_triangle;,0,0,0,,{\an7\pos(922.92,161.11)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 26.524 727.78 l -22.776 727.78 {\p0}
 Dialogue: 0,00:00:02.90,00:00:07.90,Default,TheAwesomeTrout;annotation_7012;speech_text;,0,0,0,,{\an7\pos(718.33,898.89)\fs35.28\c&H000000&\bord0\shad0}DIIIIIIIIIIIIIICKSSSS
 Dialogue: 0,00:00:03.00,00:00:08.00,Default,;annotation_344840;highlight_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(378.0,364.11,622.0,635.89)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:00:03.00,00:00:08.00,Default,;annotation_344840;highlight_text;,0,0,0,,{\an7\pos(378.0,364.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:03.00,00:00:08.00,Default,;annotation_344840;highlight_text;,0,0,0,,{\an7\pos(385.0,371.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:03.00,00:00:08.00,Default,;annotation_464187;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 250.0 0 l 250.0 52.78 l 0 52.78 {\p0}
 Dialogue: 0,00:00:03.00,00:00:08.00,Default,;annotation_464187;highlightText_text;,0,0,0,,{\an5\pos(125.0,323.61)\fs31.594\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:03.00,00:10:27.60,Default,;annotation_426353;popup_box;,0,0,0,,{\an7\pos(264.06,260.42)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 585.94 0 l 585.94 183.33 l 0 183.33 {\p0}
@@ -119,12 +119,12 @@ Dialogue: 0,00:00:03.60,00:00:08.60,Default,;annotation_792694;popup_text;,0,0,0
 Dialogue: 0,00:00:03.60,00:00:08.60,Default,;annotation_52686;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 458.33 0 l 458.33 55.56 l 0 55.56 {\p0}
 Dialogue: 0,00:00:03.60,00:00:08.60,Default,;annotation_52686;highlightText_text;,0,0,0,,{\an5\pos(229.165,325.0)\fs36.649\c&H000000&\bord0\shad0}dick dick dick dick
 Dialogue: 0,00:00:03.60,00:00:08.60,Default,;annotation_614752;highlight_box;,0,0,0,,{\an7\pos(125.0,241.67)\c&H0000CC&\1a&H33&\bord0\shad0\iclip(128.0,244.67,886.58,922.0)}{\p1}m 0 0 l 764.58 0 l 764.58 683.33 l 0 683.33 {\p0}
-Dialogue: 0,00:00:03.60,00:00:08.60,Default,;annotation_614752;highlight_text;,0,0,0,,{\an7\pos(128.0,244.67)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:03.60,00:00:08.60,Default,;annotation_614752;highlight_text;,0,0,0,,{\an7\pos(135.0,251.67)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:03.70,00:04:03.60,Default,IdoloOcelot;annotation_608658;speech_box;,0,0,0,,{\an7\pos(220.83,761.11)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 88.89 l 0 88.89 {\p0}
 Dialogue: 0,00:00:03.70,00:04:03.60,Default,IdoloOcelot;annotation_608658;speech_triangle;,0,0,0,,{\an7\pos(987.5,94.44)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l -525.556 666.67 l -574.856 666.67 {\p0}
 Dialogue: 0,00:00:03.70,00:04:03.60,Default,IdoloOcelot;annotation_608658;speech_text;,0,0,0,,{\an7\pos(230.83,771.11)\fs35.28\c&HFFFFFF&\bord0\shad0}IM HELPING!
 Dialogue: 0,00:00:03.70,00:00:08.70,Default,;annotation_560628;highlight_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(378.0,364.11,622.0,635.89)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:00:03.70,00:00:08.70,Default,;annotation_560628;highlight_text;,0,0,0,,{\an7\pos(378.0,364.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:03.70,00:00:08.70,Default,;annotation_560628;highlight_text;,0,0,0,,{\an7\pos(385.0,371.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:03.70,00:00:08.70,Default,;annotation_581177;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 250.0 0 l 250.0 55.56 l 0 55.56 {\p0}
 Dialogue: 0,00:00:03.70,00:00:08.70,Default,;annotation_581177;highlightText_text;,0,0,0,,{\an5\pos(125.0,325.0)\fs36.649\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:03.70,00:00:08.70,Default,;annotation_435166;popup_box;,0,0,0,,{\an7\pos(15.63,912.5)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 495.31 0 l 495.31 64.58 l 0 64.58 {\p0}
@@ -143,7 +143,7 @@ Dialogue: 0,00:00:03.90,00:00:08.90,Default,nucularwastelandsss;annotation_10364
 Dialogue: 0,00:00:04.30,00:00:09.30,Default,;annotation_890414;popup_box;,0,0,0,,{\an7\pos(56.25,63.89)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 779.17 0 l 779.17 116.67 l 0 116.67 {\p0}
 Dialogue: 0,00:00:04.30,00:00:09.30,Default,;annotation_890414;popup_text;,0,0,0,,{\an7\pos(66.25,73.89)\fs31.594\c&HFFFFFF&\bord0\shad0}MOI OLEN PAKKKE OLEN TYKKÄÄN GFUFKKURETA\N\N
 Dialogue: 0,00:00:04.50,00:00:09.50,Default,;annotation_164918;highlight_box;,0,0,0,,{\an7\pos(397.24,384.79)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(400.24,387.79,601.49,612.2)}{\p1}m 0 0 l 207.25 0 l 207.25 230.41 l 0 230.41 {\p0}
-Dialogue: 0,00:00:04.50,00:00:09.50,Default,;annotation_164918;highlight_text;,0,0,0,,{\an7\pos(400.24,387.79)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:04.50,00:00:09.50,Default,;annotation_164918;highlight_text;,0,0,0,,{\an7\pos(407.24,394.79)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:04.50,00:00:09.50,Default,;annotation_458575;highlightText_box;,0,0,0,,{\an7\pos(0.0,246.54)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 207.25 0 l 207.25 50.69 l 0 50.69 {\p0}
 Dialogue: 0,00:00:04.50,00:00:09.50,Default,;annotation_458575;highlightText_text;,0,0,0,,{\an5\pos(103.625,271.885)\fs31.594\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:04.50,00:00:09.50,Default,pepethefarmer1;annotation_547467;speech_box;,0,0,0,,{\an7\pos(35.42,127.78)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 755.56 l 0 755.56 {\p0}
@@ -155,7 +155,7 @@ Dialogue: 0,00:00:04.70,00:00:09.70,Default,Linerux;annotation_272945;speech_tex
 Dialogue: 0,00:00:04.70,00:00:09.70,Default,;annotation_307864;highlightText_box;,0,0,0,,{\an7\pos(-85.42,-122.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 987.5 0 l 987.5 988.89 l 0 988.89 {\p0}
 Dialogue: 0,00:00:04.70,00:00:09.70,Default,;annotation_307864;highlightText_text;,0,0,0,,{\an5\pos(408.33,372.225)\fs40.44\c&H000000&\bord0\shad0}MY ROFL COPTER GOES SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI \NSOI SOI SOI SOI SOISOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI \NSOI SOI SOI SOI SOISOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI \NSOI SOI SOI SOI SOISOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI \NSOI SOI SOI SOI SOISOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI \NSOI SOI SOI SOI SOISOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI \NSOI SOI SOI SOI SOISOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI \NSOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOISOI SOI SOI SOI SOI \NSOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOISOI SOI SOI SOI SOI \NSOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOISOI SOI SOI SOI SOI \NSOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI \NSOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOISOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI \NSOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOISOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI \NSOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOISOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI \NSOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI SOI!
 Dialogue: 0,00:00:04.70,00:00:09.70,Default,;annotation_708977;highlight_box;,0,0,0,,{\an7\pos(95.83,133.33)\c&H000000&\1a&H33&\bord0\shad0\iclip(98.83,136.33,622.0,635.89)}{\p1}m 0 0 l 529.17 0 l 529.17 505.56 l 0 505.56 {\p0}
-Dialogue: 0,00:00:04.70,00:00:09.70,Default,;annotation_708977;highlight_text;,0,0,0,,{\an7\pos(98.83,136.33)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:04.70,00:00:09.70,Default,;annotation_708977;highlight_text;,0,0,0,,{\an7\pos(105.83,143.33)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:04.70,00:10:27.60,Default,killerpieman499;annotation_410000;speech_box;,0,0,0,,{\an7\pos(0.0,172.22)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 954.17 0 l 954.17 422.22 l 0 422.22 {\p0}
 Dialogue: 0,00:00:04.70,00:10:27.60,Default,killerpieman499;annotation_410000;speech_text;,0,0,0,,{\an7\pos(10.0,182.22)\fs35.28\c&H000000&\bord0\shad0}BLLLAARRGGHH!!!
 Dialogue: 0,00:00:04.80,00:00:09.80,Default,djtomux;annotation_213581;speech_box;,0,0,0,,{\an7\pos(50.28,138.96)\c&H28952E&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 897.58 0 l 897.58 550.87 l 0 550.87 {\p0}
@@ -163,7 +163,7 @@ Dialogue: 0,00:00:04.80,00:00:09.80,Default,djtomux;annotation_213581;speech_tex
 Dialogue: 0,00:00:04.80,00:00:09.80,Default,nucularwastelandsss;annotation_650589;speech_box;,0,0,0,,{\an7\pos(67.19,156.25)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 221.88 0 l 221.88 516.67 l 0 516.67 {\p0}
 Dialogue: 0,00:00:04.80,00:00:09.80,Default,nucularwastelandsss;annotation_650589;speech_text;,0,0,0,,{\an7\pos(77.19,166.25)\fs35.28\c&H000000&\bord0\shad0}PENISPENISPENISPENISPENISP\NENISPENISPENISPENISPENISPE\NNISPENISPENISPENISPENISPEN\NISPENISPENISPENISPENISPENI\NSPENISPENISPENISPENISPENIS
 Dialogue: 0,00:00:04.90,00:00:09.90,Default,;annotation_503001;highlight_box;,0,0,0,,{\an7\pos(197.39,347.39)\c&H943806&\1a&H33&\bord0\shad0\iclip(200.39,350.39,611.52,676.9)}{\p1}m 0 0 l 417.13 0 l 417.13 332.51 l 0 332.51 {\p0}
-Dialogue: 0,00:00:04.90,00:00:09.90,Default,;annotation_503001;highlight_text;,0,0,0,,{\an7\pos(200.39,350.39)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:04.90,00:00:09.90,Default,;annotation_503001;highlight_text;,0,0,0,,{\an7\pos(207.39,357.39)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:04.90,00:00:09.90,Default,;annotation_578991;highlightText_box;,0,0,0,,{\an7\pos(0.0,265.51)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 223.46 0 l 223.46 52.11 l 0 52.11 {\p0}
 Dialogue: 0,00:00:04.90,00:00:09.90,Default,;annotation_578991;highlightText_text;,0,0,0,,{\an5\pos(111.73,291.565)\fs31.594\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:04.90,00:00:09.90,Default,mewzakuro100;annotation_723134;speech_box;,0,0,0,,{\an7\pos(35.42,127.78)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 133.33 l 0 133.33 {\p0}
@@ -187,7 +187,7 @@ Dialogue: 0,00:00:05.40,00:06:12.90,Default,Otaku12Music;annotation_556759;speec
 Dialogue: 0,00:00:05.50,00:03:33.60,Default,;annotation_508814;popup_box;,0,0,0,,{\an7\pos(254.17,313.89)\c&H943806&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 543.75 0 l 543.75 325.0 l 0 325.0 {\p0}
 Dialogue: 0,00:00:05.50,00:03:33.60,Default,;annotation_508814;popup_text;,0,0,0,,{\an7\pos(264.17,323.89)\fs40.44\c&HFFFFFF&\bord0\shad0}I LOVE JAPAN EVEN THOUGH I'VE NEVER BEEN THE FUCKING COUNTRY\N\N
 Dialogue: 0,00:00:05.60,00:00:10.60,Default,;annotation_461544;highlight_box;,0,0,0,,{\an7\pos(389.2,377.17)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(392.2,380.17,609.66,622.31)}{\p1}m 0 0 l 223.46 0 l 223.46 248.14 l 0 248.14 {\p0}
-Dialogue: 0,00:00:05.60,00:00:10.60,Default,;annotation_461544;highlight_text;,0,0,0,,{\an7\pos(392.2,380.17)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:05.60,00:00:10.60,Default,;annotation_461544;highlight_text;,0,0,0,,{\an7\pos(399.2,387.17)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:05.60,00:00:10.60,Default,;annotation_968899;popup_box;,0,0,0,,{\an7\pos(56.8,65.76)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 299.81 0 l 299.81 67.0 l 0 67.0 {\p0}
 Dialogue: 0,00:00:05.60,00:00:10.60,Default,;annotation_968899;popup_text;,0,0,0,,{\an7\pos(66.8,75.76)\fs40.44\c&HFFFFFF&\bord0\shad0}
 Dialogue: 0,00:00:05.60,00:00:10.60,Default,;annotation_999307;highlightText_box;,0,0,0,,{\an7\pos(0.0,265.51)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 223.46 0 l 223.46 52.11 l 0 52.11 {\p0}
@@ -195,7 +195,7 @@ Dialogue: 0,00:00:05.60,00:00:10.60,Default,;annotation_999307;highlightText_tex
 Dialogue: 0,00:00:05.80,00:00:10.80,Default,;annotation_264052;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 858.33 0 l 858.33 633.33 l 0 633.33 {\p0}
 Dialogue: 0,00:00:05.80,00:00:10.80,Default,;annotation_264052;highlightText_text;,0,0,0,,{\an5\pos(429.165,613.885)\fs40.44\c&H000000&\bord0\shad0}SAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGES\NAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESA\NGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAG\NESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGE\NSAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGES\NAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESA\NGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGESAGE
 Dialogue: 0,00:00:05.80,00:00:10.80,Default,;annotation_901765;highlight_box;,0,0,0,,{\an7\pos(66.67,50.0)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(69.67,53.0,951.17,930.33)}{\p1}m 0 0 l 887.5 0 l 887.5 883.33 l 0 883.33 {\p0}
-Dialogue: 0,00:00:05.80,00:00:10.80,Default,;annotation_901765;highlight_text;,0,0,0,,{\an7\pos(69.67,53.0)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:05.80,00:00:10.80,Default,;annotation_901765;highlight_text;,0,0,0,,{\an7\pos(76.67,60.0)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:05.80,00:00:10.80,Default,SmileTouch;annotation_522001;speech_box;,0,0,0,,{\an7\pos(62.5,308.33)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 843.75 0 l 843.75 555.56 l 0 555.56 {\p0}
 Dialogue: 0,00:00:05.80,00:00:10.80,Default,SmileTouch;annotation_522001;speech_text;,0,0,0,,{\an7\pos(72.5,318.33)\fs35.28\c&HFFFFFF&\bord0\shad0}Itsudemo I love you~ :DD
 Dialogue: 0,00:00:05.80,00:00:10.80,Default,;annotation_811576;popup_box;,0,0,0,,{\an7\pos(56.25,63.89)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 910.42 0 l 910.42 916.67 l 0 916.67 {\p0}
@@ -218,7 +218,7 @@ Dialogue: 0,00:00:06.30,00:06:46.70,Default,Otaku12Music;annotation_195513;speec
 Dialogue: 0,00:00:06.30,00:00:11.30,Default,;annotation_876831;popup_box;,0,0,0,,{\an7\pos(56.25,63.89)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 300.0 0 l 300.0 161.11 l 0 161.11 {\p0}
 Dialogue: 0,00:00:06.30,00:00:11.30,Default,;annotation_876831;popup_text;,0,0,0,,{\an7\pos(66.25,73.89)\fs40.44\c&HFFFFFF&\bord0\shad0}GREATNESS TO THE MAX\N\N
 Dialogue: 0,00:00:06.40,00:00:11.40,Default,;annotation_758965;highlight_box;,0,0,0,,{\an7\pos(285.42,344.44)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(288.42,347.44,532.42,619.22)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:00:06.40,00:00:11.40,Default,;annotation_758965;highlight_text;,0,0,0,,{\an7\pos(288.42,347.44)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:06.40,00:00:11.40,Default,;annotation_758965;highlight_text;,0,0,0,,{\an7\pos(295.42,354.44)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:06.40,00:00:11.40,Default,;annotation_995616;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 295.83 0 l 295.83 100.0 l 0 100.0 {\p0}
 Dialogue: 0,00:00:06.40,00:00:11.40,Default,;annotation_995616;highlightText_text;,0,0,0,,{\an5\pos(147.915,347.22)\fs26.539\c&H000000&\bord0\shad0}STOP SPAMMM\N\N
 Dialogue: 0,00:00:06.70,00:00:11.70,Default,LineTrapKitten;annotation_452629;speech_box;,0,0,0,,{\an7\pos(56.99,147.47)\c&H943806&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 810.02 0 l 810.02 580.65 l 0 580.65 {\p0}
@@ -251,7 +251,7 @@ Dialogue: 0,00:00:08.10,00:00:13.10,Default,;annotation_893221;popup_text;,0,0,0
 Dialogue: 0,00:00:08.20,00:00:13.20,Default,;annotation_799580;popup_box;,0,0,0,,{\an7\pos(56.25,80.56)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 752.08 0 l 752.08 294.44 l 0 294.44 {\p0}
 Dialogue: 0,00:00:08.20,00:00:13.20,Default,;annotation_799580;popup_text;,0,0,0,,{\an7\pos(66.25,90.56)\fs40.44\c&HFFFFFF&\bord0\shad0}DERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDE\NRPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERPDERP\NDERPDERPDERPDERPDERPDERPDERP
 Dialogue: 0,00:00:08.20,00:00:13.20,Default,;annotation_384832;highlight_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(378.0,364.11,622.0,635.89)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:00:08.20,00:00:13.20,Default,;annotation_384832;highlight_text;,0,0,0,,{\an7\pos(378.0,364.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:08.20,00:00:13.20,Default,;annotation_384832;highlight_text;,0,0,0,,{\an7\pos(385.0,371.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:08.20,00:00:13.20,Default,;annotation_813454;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 250.0 0 l 250.0 55.56 l 0 55.56 {\p0}
 Dialogue: 0,00:00:08.20,00:00:13.20,Default,;annotation_813454;highlightText_text;,0,0,0,,{\an5\pos(125.0,325.0)\fs36.649\c&H000000&\bord0\shad0}NO
 Dialogue: 0,00:00:08.20,00:00:13.20,Default,;annotation_834085;popup_box;,0,0,0,,{\an7\pos(47.92,63.89)\c&H943806&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 912.5 0 l 912.5 72.22 l 0 72.22 {\p0}
@@ -265,7 +265,7 @@ Dialogue: 0,00:00:08.40,00:00:13.40,Default,;annotation_230569;highlightText_tex
 Dialogue: 0,00:00:08.40,00:00:13.40,Default,Mike2894;annotation_767307;speech_box;,0,0,0,,{\an7\pos(35.42,127.78)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 88.89 l 0 88.89 {\p0}
 Dialogue: 0,00:00:08.40,00:00:13.40,Default,Mike2894;annotation_767307;speech_text;,0,0,0,,{\an7\pos(45.42,137.78)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:08.40,00:00:13.40,Default,;annotation_961621;highlight_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(378.0,364.11,622.0,635.89)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:00:08.40,00:00:13.40,Default,;annotation_961621;highlight_text;,0,0,0,,{\an7\pos(378.0,364.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:08.40,00:00:13.40,Default,;annotation_961621;highlight_text;,0,0,0,,{\an7\pos(385.0,371.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:08.40,00:00:13.40,Default,XTheAnimefreakX;annotation_769165;speech_box;,0,0,0,,{\an7\pos(39.58,13.89)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 379.17 0 l 379.17 205.56 l 0 205.56 {\p0}
 Dialogue: 0,00:00:08.40,00:00:13.40,Default,XTheAnimefreakX;annotation_769165;speech_text;,0,0,0,,{\an7\pos(49.58,23.89)\fs35.28\c&HFFFFFF&\bord0\shad0}fuck you all :D
 Dialogue: 0,00:00:08.40,00:00:13.40,Default,;annotation_631478;popup_box;,0,0,0,,{\an7\pos(433.33,388.89)\c&H000000&\1a&H80&\bord0\shad0}{\p1}m 0 0 l 112.5 0 l 112.5 72.22 l 0 72.22 {\p0}
@@ -284,7 +284,7 @@ Dialogue: 0,00:00:09.10,00:00:14.10,Default,;annotation_898169;popup_text;,0,0,0
 Dialogue: 0,00:00:09.20,00:00:14.20,Default,;annotation_923075;popup_box;,0,0,0,,{\an7\pos(20.31,18.75)\c&H943806&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 945.31 0 l 945.31 975.0 l 0 975.0 {\p0}
 Dialogue: 0,00:00:09.20,00:00:14.20,Default,;annotation_923075;popup_text;,0,0,0,,{\an7\pos(30.31,28.75)\fs21.484\c&HFFFFFF&\bord0\shad0}Contributing.\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N\N
 Dialogue: 0,00:00:09.20,00:00:14.20,Default,;annotation_311129;highlight_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(378.0,364.11,622.0,635.89)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:00:09.20,00:00:14.20,Default,;annotation_311129;highlight_text;,0,0,0,,{\an7\pos(378.0,364.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:09.20,00:00:14.20,Default,;annotation_311129;highlight_text;,0,0,0,,{\an7\pos(385.0,371.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:09.20,00:00:14.20,Default,;annotation_380480;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 250.0 0 l 250.0 55.56 l 0 55.56 {\p0}
 Dialogue: 0,00:00:09.20,00:00:14.20,Default,;annotation_380480;highlightText_text;,0,0,0,,{\an5\pos(125.0,325.0)\fs36.649\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:09.50,00:00:14.50,Default,azniceboy123;annotation_617025;speech_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 250.0 0 l 250.0 222.22 l 0 222.22 {\p0}
@@ -296,7 +296,7 @@ Dialogue: 0,00:00:09.50,00:00:14.50,Default,banana1planet;annotation_125758;spee
 Dialogue: 0,00:00:09.50,00:00:58.40,Default,;annotation_449828;highlightText_box;,0,0,0,,{\an7\pos(0.0,222.92)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 187.5 0 l 187.5 47.92 l 0 47.92 {\p0}
 Dialogue: 0,00:00:09.50,00:00:58.40,Default,;annotation_449828;highlightText_text;,0,0,0,,{\an5\pos(93.75,246.88)\fs29.066\c&H000000&\bord0\shad0}COOOL video!!!
 Dialogue: 0,00:00:09.50,00:00:58.40,Default,;annotation_889219;highlight_box;,0,0,0,,{\an7\pos(328.13,518.75)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(331.13,521.75,512.63,724.08)}{\p1}m 0 0 l 187.5 0 l 187.5 208.33 l 0 208.33 {\p0}
-Dialogue: 0,00:00:09.50,00:00:58.40,Default,;annotation_889219;highlight_text;,0,0,0,,{\an7\pos(331.13,521.75)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:09.50,00:00:58.40,Default,;annotation_889219;highlight_text;,0,0,0,,{\an7\pos(338.13,528.75)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:09.50,00:00:14.50,Default,;annotation_179342;popup_box;,0,0,0,,{\an7\pos(56.25,63.89)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 300.0 0 l 300.0 72.22 l 0 72.22 {\p0}
 Dialogue: 0,00:00:09.50,00:00:14.50,Default,;annotation_179342;popup_text;,0,0,0,,{\an7\pos(66.25,73.89)\fs40.44\c&HFFFFFF&\bord0\shad0}
 Dialogue: 0,00:00:09.50,00:00:14.50,Default,;annotation_648672;popup_box;,0,0,0,,{\an7\pos(233.33,769.44)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 191.67 0 l 191.67 72.22 l 0 72.22 {\p0}
@@ -322,7 +322,7 @@ Dialogue: 0,00:00:10.40,00:00:15.40,Default,;annotation_696995;popup_text;,0,0,0
 Dialogue: 0,00:00:10.40,00:00:15.40,Default,;annotation_865727;popup_box;,0,0,0,,{\an7\pos(8.33,2.78)\c&H000000&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 991.67 0 l 991.67 916.67 l 0 916.67 {\p0}
 Dialogue: 0,00:00:10.40,00:00:15.40,Default,;annotation_865727;popup_text;,0,0,0,,{\an7\pos(18.33,12.78)\fs40.44\c&HFFFFFF&\bord0\shad0}TETOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 Dialogue: 0,00:00:10.40,00:00:15.40,Default,;annotation_117545;highlight_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(378.0,364.11,622.0,635.89)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:00:10.40,00:00:15.40,Default,;annotation_117545;highlight_text;,0,0,0,,{\an7\pos(378.0,364.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:10.40,00:00:15.40,Default,;annotation_117545;highlight_text;,0,0,0,,{\an7\pos(385.0,371.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:10.40,00:00:15.40,Default,;annotation_493976;highlightText_box;,0,0,0,,{\an7\pos(-308.33,522.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 822.92 0 l 822.92 116.67 l 0 116.67 {\p0}
 Dialogue: 0,00:00:10.40,00:00:15.40,Default,;annotation_493976;highlightText_text;,0,0,0,,{\an5\pos(103.13,580.555)\fs40.44\c&H000000&\bord0\shad0}.........................no..............
 Dialogue: 0,00:00:10.60,00:00:15.60,Default,SolKy;annotation_830359;speech_box;,0,0,0,,{\an7\pos(84.38,587.5)\c&H000000&\1a&H80&\bord0\shad0}{\p1}m 0 0 l 221.88 0 l 221.88 81.25 l 0 81.25 {\p0}
@@ -330,7 +330,7 @@ Dialogue: 0,00:00:10.60,00:00:15.60,Default,SolKy;annotation_830359;speech_text;
 Dialogue: 0,00:00:10.70,00:00:15.70,Default,;annotation_160428;highlightText_box;,0,0,0,,{\an7\pos(0.0,322.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 929.17 0 l 929.17 72.22 l 0 72.22 {\p0}
 Dialogue: 0,00:00:10.70,00:00:15.70,Default,;annotation_160428;highlightText_text;,0,0,0,,{\an5\pos(464.585,358.33)\fs40.44\c&H000000&\bord0\shad0}OH SNAP YOU DUN GOOFED
 Dialogue: 0,00:00:10.70,00:00:15.70,Default,;annotation_80592;highlight_box;,0,0,0,,{\an7\pos(66.67,36.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(69.67,39.11,988.67,869.22)}{\p1}m 0 0 l 925.0 0 l 925.0 836.11 l 0 836.11 {\p0}
-Dialogue: 0,00:00:10.70,00:00:15.70,Default,;annotation_80592;highlight_text;,0,0,0,,{\an7\pos(69.67,39.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:10.70,00:00:15.70,Default,;annotation_80592;highlight_text;,0,0,0,,{\an7\pos(76.67,46.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:10.70,00:00:15.70,Default,;annotation_105525;popup_box;,0,0,0,,{\an7\pos(56.25,63.89)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 300.0 0 l 300.0 72.22 l 0 72.22 {\p0}
 Dialogue: 0,00:00:10.70,00:00:15.70,Default,;annotation_105525;popup_text;,0,0,0,,{\an7\pos(66.25,73.89)\fs40.44\c&HFFFFFF&\bord0\shad0}
 Dialogue: 0,00:00:10.70,00:00:15.70,Default,xNyanNyan;annotation_801075;speech_box;,0,0,0,,{\an7\pos(666.67,72.22)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 133.33 l 0 133.33 {\p0}
@@ -348,7 +348,7 @@ Dialogue: 0,00:00:11.20,00:00:15.00,Default,;annotation_5054;popup_text;,0,0,0,,
 Dialogue: 0,00:00:11.20,00:00:16.20,Default,;annotation_476390;highlightText_box;,0,0,0,,{\an7\pos(0.0,265.51)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 223.46 0 l 223.46 52.11 l 0 52.11 {\p0}
 Dialogue: 0,00:00:11.20,00:00:16.20,Default,;annotation_476390;highlightText_text;,0,0,0,,{\an5\pos(111.73,291.565)\fs31.594\c&H000000&\bord0\shad0}hi
 Dialogue: 0,00:00:11.20,00:00:16.20,Default,;annotation_97465;highlight_box;,0,0,0,,{\an7\pos(389.2,377.17)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(392.2,380.17,609.66,622.31)}{\p1}m 0 0 l 223.46 0 l 223.46 248.14 l 0 248.14 {\p0}
-Dialogue: 0,00:00:11.20,00:00:16.20,Default,;annotation_97465;highlight_text;,0,0,0,,{\an7\pos(392.2,380.17)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:11.20,00:00:16.20,Default,;annotation_97465;highlight_text;,0,0,0,,{\an7\pos(399.2,387.17)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:11.20,00:00:33.70,Default,jepajei;annotation_954428;speech_box;,0,0,0,,{\an7\pos(397.92,561.11)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 568.75 0 l 568.75 325.0 l 0 325.0 {\p0}
 Dialogue: 0,00:00:11.20,00:00:33.70,Default,jepajei;annotation_954428;speech_triangle;,0,0,0,,{\an7\pos(825.0,969.44)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 56.926 -83.33 l -42.036 -83.33 {\p0}
 Dialogue: 0,00:00:11.20,00:00:33.70,Default,jepajei;annotation_954428;speech_text;,0,0,0,,{\an7\pos(407.92,571.11)\fs35.28\c&H000000&\bord0\shad0}Sup guys this is a mess.
@@ -357,7 +357,7 @@ Dialogue: 0,00:00:11.40,00:00:16.40,Default,Nielkun16;annotation_184757;speech_t
 Dialogue: 0,00:00:11.40,00:00:16.40,Default,;annotation_248958;highlightText_box;,0,0,0,,{\an7\pos(-327.08,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 927.08 0 l 927.08 100.0 l 0 100.0 {\p0}
 Dialogue: 0,00:00:11.40,00:00:16.40,Default,;annotation_248958;highlightText_text;,0,0,0,,{\an5\pos(136.46,347.22)\fs26.539\c&H000000&\bord0\shad0}Im Otaku And You dont care\N\N
 Dialogue: 0,00:00:11.40,00:00:16.40,Default,;annotation_950067;highlight_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(378.0,364.11,622.0,635.89)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:00:11.40,00:00:16.40,Default,;annotation_950067;highlight_text;,0,0,0,,{\an7\pos(378.0,364.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:11.40,00:00:16.40,Default,;annotation_950067;highlight_text;,0,0,0,,{\an7\pos(385.0,371.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:11.80,00:05:33.60,Default,;annotation_472063;popup_box;,0,0,0,,{\an7\pos(52.08,116.67)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 825.0 0 l 825.0 827.78 l 0 827.78 {\p0}
 Dialogue: 0,00:00:11.80,00:05:33.60,Default,;annotation_472063;popup_text;,0,0,0,,{\an7\pos(62.08,126.67)\fs40.44\c&HFFFFFF&\bord0\shad0}THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE \NTHE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE \NTHE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE \NTHE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE \NTHE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE \NTHE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE \NTHE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE \NTHE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE \NTHE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE THE POWER OF RAZE 
 Dialogue: 0,00:00:12.10,00:00:17.10,Default,banana1planet;annotation_93109;speech_box;,0,0,0,,{\an7\pos(260.42,155.56)\c&H28952E&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 527.08 0 l 527.08 597.22 l 0 597.22 {\p0}
@@ -372,7 +372,7 @@ Dialogue: 0,00:00:12.70,00:00:17.70,Default,Onyxforce;annotation_611016;speech_b
 Dialogue: 0,00:00:12.70,00:00:17.70,Default,Onyxforce;annotation_611016;speech_triangle;,0,0,0,,{\an7\pos(2.08,788.89)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 89.59 -577.997 l 89.59 -439.664 {\p0}
 Dialogue: 0,00:00:12.70,00:00:17.70,Default,Onyxforce;annotation_611016;speech_text;,0,0,0,,{\an7\pos(101.67,165.56)\fs35.28\c&H000000&\bord0\shad0}THIS IS THE PART YOU TURN ANNOTATIONS OFF.
 Dialogue: 0,00:00:13.80,00:00:18.80,Default,;annotation_379419;highlight_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(378.0,364.11,622.0,635.89)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:00:13.80,00:00:18.80,Default,;annotation_379419;highlight_text;,0,0,0,,{\an7\pos(378.0,364.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:13.80,00:00:18.80,Default,;annotation_379419;highlight_text;,0,0,0,,{\an7\pos(385.0,371.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:13.80,00:00:18.80,Default,;annotation_871820;highlightText_box;,0,0,0,,{\an7\pos(-27.08,411.11)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 250.0 0 l 250.0 55.56 l 0 55.56 {\p0}
 Dialogue: 0,00:00:13.80,00:00:18.80,Default,;annotation_871820;highlightText_text;,0,0,0,,{\an5\pos(97.92,438.89)\fs36.649\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:13.90,00:00:18.90,Default,ShadowNGPF;annotation_147981;speech_box;,0,0,0,,{\an7\pos(35.42,127.78)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 88.89 l 0 88.89 {\p0}
@@ -385,7 +385,7 @@ Dialogue: 0,00:00:15.00,00:00:20.00,Default,;annotation_397258;popup_text;,0,0,0
 Dialogue: 0,00:00:15.00,00:10:27.60,Default,;annotation_556799;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 250.0 0 l 250.0 55.56 l 0 55.56 {\p0}
 Dialogue: 0,00:00:15.00,00:10:27.60,Default,;annotation_556799;highlightText_text;,0,0,0,,{\an5\pos(125.0,325.0)\fs36.649\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:15.00,00:10:27.60,Default,;annotation_618945;highlight_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(378.0,364.11,622.0,635.89)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:00:15.00,00:10:27.60,Default,;annotation_618945;highlight_text;,0,0,0,,{\an7\pos(378.0,364.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:15.00,00:10:27.60,Default,;annotation_618945;highlight_text;,0,0,0,,{\an7\pos(385.0,371.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:15.20,00:00:20.20,Default,KLTrolo;annotation_926087;speech_box;,0,0,0,,{\an7\pos(39.58,105.56)\c&H28952E&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 885.42 0 l 885.42 800.0 l 0 800.0 {\p0}
 Dialogue: 0,00:00:15.20,00:00:20.20,Default,KLTrolo;annotation_926087;speech_text;,0,0,0,,{\an7\pos(49.58,115.56)\fs35.28\c&HFFFFFF&\bord0\shad0}WHAT THE HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
 Dialogue: 0,00:00:15.30,00:00:20.30,Default,smain0razer;annotation_859217;speech_box;,0,0,0,,{\an7\pos(0.0,0.0)\c&H28952E&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 991.67 0 l 991.67 888.89 l 0 888.89 {\p0}
@@ -399,7 +399,7 @@ Dialogue: 0,00:00:16.10,00:00:21.10,Default,Zujfsn;annotation_702601;speech_text
 Dialogue: 0,00:00:16.10,00:00:21.10,Default,veisht;annotation_545640;speech_box;,0,0,0,,{\an7\pos(35.42,127.78)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 133.33 l 0 133.33 {\p0}
 Dialogue: 0,00:00:16.10,00:00:21.10,Default,veisht;annotation_545640;speech_text;,0,0,0,,{\an7\pos(45.42,137.78)\fs35.28\c&HFFFFFF&\bord0\shad0}ITSUDEMO I LOVE YOU
 Dialogue: 0,00:00:16.20,00:00:21.20,Default,;annotation_747810;highlight_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(378.0,364.11,622.0,635.89)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:00:16.20,00:00:21.20,Default,;annotation_747810;highlight_text;,0,0,0,,{\an7\pos(378.0,364.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:16.20,00:00:21.20,Default,;annotation_747810;highlight_text;,0,0,0,,{\an7\pos(385.0,371.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:16.20,00:00:21.20,Default,;annotation_772299;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 250.0 0 l 250.0 52.78 l 0 52.78 {\p0}
 Dialogue: 0,00:00:16.20,00:00:21.20,Default,;annotation_772299;highlightText_text;,0,0,0,,{\an5\pos(125.0,323.61)\fs31.594\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:16.20,00:00:21.20,Default,spongycrabcakes;annotation_85660;speech_box;,0,0,0,,{\an7\pos(556.25,402.78)\c&HDFC8B4&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 222.22 l 0 222.22 {\p0}
@@ -426,7 +426,7 @@ Dialogue: 0,00:00:17.40,00:00:22.40,Default,sadpandachan;annotation_212189;speec
 Dialogue: 0,00:00:18.20,00:00:23.20,Default,;annotation_27480;popup_box;,0,0,0,,{\an7\pos(56.25,72.22)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 183.33 0 l 183.33 94.44 l 0 94.44 {\p0}
 Dialogue: 0,00:00:18.20,00:00:23.20,Default,;annotation_27480;popup_text;,0,0,0,,{\an7\pos(66.25,82.22)\fs40.44\c&HFFFFFF&\bord0\shad0}hello
 Dialogue: 0,00:00:18.20,00:00:23.20,Default,;annotation_454884;highlight_box;,0,0,0,,{\an7\pos(35.42,211.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(38.42,214.11,967.84,935.89)}{\p1}m 0 0 l 935.42 0 l 935.42 727.78 l 0 727.78 {\p0}
-Dialogue: 0,00:00:18.20,00:00:23.20,Default,;annotation_454884;highlight_text;,0,0,0,,{\an7\pos(38.42,214.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:18.20,00:00:23.20,Default,;annotation_454884;highlight_text;,0,0,0,,{\an7\pos(45.42,221.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:18.20,00:00:23.20,Default,;annotation_656160;highlightText_box;,0,0,0,,{\an7\pos(0.0,-8.33)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 947.92 0 l 947.92 494.44 l 0 494.44 {\p0}
 Dialogue: 0,00:00:18.20,00:00:23.20,Default,;annotation_656160;highlightText_text;,0,0,0,,{\an5\pos(473.96,238.89)\fs40.44\c&H000000&\bord0\shad0}FUCK YEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH
 Dialogue: 0,00:00:19.00,00:00:24.00,Default,;annotation_367200;popup_box;,0,0,0,,{\an7\pos(104.17,341.67)\c&H943806&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 287.5 0 l 287.5 141.67 l 0 141.67 {\p0}
@@ -436,15 +436,15 @@ Dialogue: 0,00:00:19.10,00:00:24.10,Default,OhGodNo666;annotation_717309;speech_
 Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_12598;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 250.0 0 l 250.0 52.78 l 0 52.78 {\p0}
 Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_12598;highlightText_text;,0,0,0,,{\an5\pos(125.0,323.61)\fs31.594\c&H000000&\bord0\shad0}pie cookies
 Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_95018;highlight_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(378.0,364.11,622.0,635.89)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_95018;highlight_text;,0,0,0,,{\an7\pos(378.0,364.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_95018;highlight_text;,0,0,0,,{\an7\pos(385.0,371.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_128320;highlight_box;,0,0,0,,{\an7\pos(252.08,0.0)\c&H0000CC&\1a&H33&\bord0\shad0\iclip(255.08,3.0,674.08,538.67)}{\p1}m 0 0 l 425.0 0 l 425.0 541.67 l 0 541.67 {\p0}
-Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_128320;highlight_text;,0,0,0,,{\an7\pos(255.08,3.0)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_128320;highlight_text;,0,0,0,,{\an7\pos(262.08,10.0)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_478168;highlightText_box;,0,0,0,,{\an7\pos(-225.0,186.11)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 920.83 0 l 920.83 677.78 l 0 677.78 {\p0}
 Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_478168;highlightText_text;,0,0,0,,{\an5\pos(235.415,525.0)\fs40.44\c&H000000&\bord0\shad0}YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA \NYEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA \NYEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA \NYEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA \NYEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA \NYEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA \NYEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA \NYEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA 
 Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_64582;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 250.0 0 l 250.0 55.56 l 0 55.56 {\p0}
 Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_64582;highlightText_text;,0,0,0,,{\an5\pos(125.0,325.0)\fs36.649\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_836982;highlight_box;,0,0,0,,{\an7\pos(106.25,158.33)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(109.25,161.33,622.0,635.89)}{\p1}m 0 0 l 518.75 0 l 518.75 480.56 l 0 480.56 {\p0}
-Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_836982;highlight_text;,0,0,0,,{\an7\pos(109.25,161.33)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:19.10,00:00:24.10,Default,;annotation_836982;highlight_text;,0,0,0,,{\an7\pos(116.25,168.33)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:19.90,00:00:24.90,Default,Aidsisserious;annotation_655424;speech_box;,0,0,0,,{\an7\pos(35.42,127.78)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 88.89 l 0 88.89 {\p0}
 Dialogue: 0,00:00:19.90,00:00:24.90,Default,Aidsisserious;annotation_655424;speech_text;,0,0,0,,{\an7\pos(45.42,137.78)\fs35.28\c&H000000&\bord0\shad0}WAT
 Dialogue: 0,00:00:19.90,00:00:24.90,Default,;annotation_490915;popup_box;,0,0,0,,{\an7\pos(691.67,2.78)\c&H28952E&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 300.0 0 l 300.0 116.67 l 0 116.67 {\p0}
@@ -457,7 +457,7 @@ Dialogue: 0,00:00:20.60,00:00:45.00,Default,;annotation_798592;popup_text;,0,0,0
 Dialogue: 0,00:00:20.60,00:00:25.60,Default,;annotation_130193;highlightText_box;,0,0,0,,{\an7\pos(0.0,222.92)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 187.5 0 l 187.5 47.92 l 0 47.92 {\p0}
 Dialogue: 0,00:00:20.60,00:00:25.60,Default,;annotation_130193;highlightText_text;,0,0,0,,{\an5\pos(93.75,246.88)\fs29.066\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:20.60,00:00:25.60,Default,;annotation_758195;highlight_box;,0,0,0,,{\an7\pos(406.25,395.83)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(409.25,398.83,590.75,601.16)}{\p1}m 0 0 l 187.5 0 l 187.5 208.33 l 0 208.33 {\p0}
-Dialogue: 0,00:00:20.60,00:00:25.60,Default,;annotation_758195;highlight_text;,0,0,0,,{\an7\pos(409.25,398.83)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:20.60,00:00:25.60,Default,;annotation_758195;highlight_text;,0,0,0,,{\an7\pos(416.25,405.83)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:20.60,00:00:25.60,Default,quinty777;annotation_802250;speech_box;,0,0,0,,{\an7\pos(67.19,156.25)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 221.88 0 l 221.88 81.25 l 0 81.25 {\p0}
 Dialogue: 0,00:00:20.60,00:00:25.60,Default,quinty777;annotation_802250;speech_text;,0,0,0,,{\an7\pos(77.19,166.25)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:21.10,00:00:26.10,Default,;annotation_181192;popup_box;,0,0,0,,{\an7\pos(54.28,61.28)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 943.63 0 l 943.63 919.22 l 0 919.22 {\p0}
@@ -545,7 +545,7 @@ Dialogue: 0,00:00:44.00,00:00:49.00,Default,xNyanNyan;annotation_684486;speech_t
 Dialogue: 0,00:00:44.90,00:00:49.90,Default,TikalChao;annotation_942706;speech_box;,0,0,0,,{\an7\pos(35.42,127.78)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 266.67 l 0 266.67 {\p0}
 Dialogue: 0,00:00:44.90,00:00:49.90,Default,TikalChao;annotation_942706;speech_text;,0,0,0,,{\an7\pos(45.42,137.78)\fs35.28\c&H000000&\bord0\shad0}WAI HALLO DAR. AH'M SORREH, BUT I \NCAN'T BLINK. MIZOMIZOMIZO.
 Dialogue: 0,00:00:47.70,00:00:52.70,Default,;annotation_162576;highlight_box;,0,0,0,,{\an7\pos(406.25,395.83)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(409.25,398.83,590.75,601.16)}{\p1}m 0 0 l 187.5 0 l 187.5 208.33 l 0 208.33 {\p0}
-Dialogue: 0,00:00:47.70,00:00:52.70,Default,;annotation_162576;highlight_text;,0,0,0,,{\an7\pos(409.25,398.83)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:47.70,00:00:52.70,Default,;annotation_162576;highlight_text;,0,0,0,,{\an7\pos(416.25,405.83)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:47.70,00:00:52.70,Default,;annotation_386672;highlightText_box;,0,0,0,,{\an7\pos(0.0,222.92)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 187.5 0 l 187.5 50.0 l 0 50.0 {\p0}
 Dialogue: 0,00:00:47.70,00:00:52.70,Default,;annotation_386672;highlightText_text;,0,0,0,,{\an5\pos(93.75,247.92)\fs29.066\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:47.70,00:00:52.70,Default,;annotation_59682;popup_box;,0,0,0,,{\an7\pos(56.25,66.67)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 300.0 0 l 300.0 66.67 l 0 66.67 {\p0}
@@ -558,7 +558,7 @@ Dialogue: 0,00:00:51.40,00:00:56.40,Default,;annotation_883769;popup_text;,0,0,0
 Dialogue: 0,00:00:52.10,00:00:57.10,Default,AcidPoweredChainsaw;annotation_976390;speech_box;,0,0,0,,{\an7\pos(35.42,127.78)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 133.33 l 0 133.33 {\p0}
 Dialogue: 0,00:00:52.10,00:00:57.10,Default,AcidPoweredChainsaw;annotation_976390;speech_text;,0,0,0,,{\an7\pos(45.42,137.78)\fs35.28\c&H000000&\bord0\shad0}DUUUUUUPAAAAAA!!!!!
 Dialogue: 0,00:00:59.20,00:01:04.20,Default,;annotation_644375;highlight_box;,0,0,0,,{\an7\pos(0.0,345.83)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(3.0,348.83,184.5,551.16)}{\p1}m 0 0 l 187.5 0 l 187.5 208.33 l 0 208.33 {\p0}
-Dialogue: 0,00:00:59.20,00:01:04.20,Default,;annotation_644375;highlight_text;,0,0,0,,{\an7\pos(3.0,348.83)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:00:59.20,00:01:04.20,Default,;annotation_644375;highlight_text;,0,0,0,,{\an7\pos(10.0,355.83)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:00:59.20,00:01:04.20,Default,;annotation_911620;highlightText_box;,0,0,0,,{\an7\pos(0.0,222.92)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 187.5 0 l 187.5 87.5 l 0 87.5 {\p0}
 Dialogue: 0,00:00:59.20,00:01:04.20,Default,;annotation_911620;highlightText_text;,0,0,0,,{\an5\pos(93.75,266.67)\fs40.44\c&H000000&\bord0\shad0}SO RONERY ;_;
 Dialogue: 0,00:00:59.30,00:01:04.30,Default,;annotation_111496;popup_box;,0,0,0,,{\an7\pos(583.33,41.67)\c&H28952E&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 383.33 0 l 383.33 927.78 l 0 927.78 {\p0}
@@ -570,7 +570,7 @@ Dialogue: 0,00:00:59.30,00:01:04.30,Default,;annotation_702935;popup_text;,0,0,0
 Dialogue: 0,00:01:00.40,00:01:05.40,Default,TikalChao;annotation_272170;speech_box;,0,0,0,,{\an7\pos(277.08,52.78)\c&H000000&\1a&H80&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 177.78 l 0 177.78 {\p0}
 Dialogue: 0,00:01:00.40,00:01:05.40,Default,TikalChao;annotation_272170;speech_text;,0,0,0,,{\an7\pos(287.08,62.78)\fs40.44\c&HFFFFFF&\bord0\shad0}SHOULD I STAY OR SHOULD I GO? \ND:
 Dialogue: 0,00:01:02.90,00:01:07.90,Default,;annotation_298304;highlight_box;,0,0,0,,{\an7\pos(27.08,88.89)\c&H0000CC&\1a&H33&\bord0\shad0\iclip(30.08,91.89,757.41,466.45)}{\p1}m 0 0 l 733.33 0 l 733.33 380.56 l 0 380.56 {\p0}
-Dialogue: 0,00:01:02.90,00:01:07.90,Default,;annotation_298304;highlight_text;,0,0,0,,{\an7\pos(30.08,91.89)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:01:02.90,00:01:07.90,Default,;annotation_298304;highlight_text;,0,0,0,,{\an7\pos(37.08,98.89)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:01:02.90,00:01:07.90,Default,;annotation_467052;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 972.92 0 l 972.92 144.44 l 0 144.44 {\p0}
 Dialogue: 0,00:01:02.90,00:01:07.90,Default,;annotation_467052;highlightText_text;,0,0,0,,{\an5\pos(486.46,369.44)\fs40.44\c&H000000&\bord0\shad0}THIS IS AN ANNOTATION!1111111!!!!!! 1 SUKI ANOTASHUNS D3SU TH3Y R SO KAWII N DA ANOTAHUNS R SO SUGOI \NFUNN3H D3SU. I RABU PINKU D3SOO!!!!!!!!!!!!!!!!!!!!!!!!!1 X33333333333333333
 Dialogue: 0,00:01:05.80,00:02:37.90,Default,LegendofZelda8;annotation_420943;speech_box;,0,0,0,,{\an7\pos(562.5,600.0)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 294.44 l 0 294.44 {\p0}
@@ -593,7 +593,7 @@ Dialogue: 0,00:01:14.90,00:01:19.90,Default,TikalChao;annotation_755130;speech_b
 Dialogue: 0,00:01:14.90,00:01:19.90,Default,TikalChao;annotation_755130;speech_triangle;,0,0,0,,{\an7\pos(106.25,94.44)\c&H0000CC&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 47.92 317.45 l 47.92 437.45 {\p0}
 Dialogue: 0,00:01:14.90,00:01:19.90,Default,TikalChao;annotation_755130;speech_text;,0,0,0,,{\an7\pos(164.17,373.89)\fs40.44\c&HFFFFFF&\bord0\shad0}SOOOON, HOW MANY TIMES HAVE I \NTOLD YOU TO STOP WATCHING \NTHESE PERVERTED ANIMU VIDEOS? \ND:<
 Dialogue: 0,00:01:15.70,00:01:20.70,Default,;annotation_120797;highlight_box;,0,0,0,,{\an7\pos(550.0,419.44)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(553.0,422.44,797.0,694.22)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:01:15.70,00:01:20.70,Default,;annotation_120797;highlight_text;,0,0,0,,{\an7\pos(553.0,422.44)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:01:15.70,00:01:20.70,Default,;annotation_120797;highlight_text;,0,0,0,,{\an7\pos(560.0,429.44)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:01:15.70,00:01:20.70,Default,;annotation_372251;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 250.0 0 l 250.0 55.56 l 0 55.56 {\p0}
 Dialogue: 0,00:01:15.70,00:01:20.70,Default,;annotation_372251;highlightText_text;,0,0,0,,{\an5\pos(125.0,325.0)\fs36.649\c&H000000&\bord0\shad0}
 Dialogue: 0,00:01:15.70,00:01:20.70,Default,refusist;annotation_392622;speech_box;,0,0,0,,{\an7\pos(35.42,127.78)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 88.89 l 0 88.89 {\p0}
@@ -670,7 +670,7 @@ Dialogue: 0,00:02:59.50,00:06:16.70,Default,;annotation_487437;popup_text;,0,0,0
 Dialogue: 0,00:03:35.50,00:03:40.50,Default,;annotation_348709;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 250.0 0 l 250.0 100.0 l 0 100.0 {\p0}
 Dialogue: 0,00:03:35.50,00:03:40.50,Default,;annotation_348709;highlightText_text;,0,0,0,,{\an5\pos(125.0,347.22)\fs26.539\c&H000000&\bord0\shad0}ckjdxlfsjsldkfjds\N\N
 Dialogue: 0,00:03:35.50,00:03:40.50,Default,;annotation_631807;highlight_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(378.0,364.11,622.0,635.89)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:03:35.50,00:03:40.50,Default,;annotation_631807;highlight_text;,0,0,0,,{\an7\pos(378.0,364.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:03:35.50,00:03:40.50,Default,;annotation_631807;highlight_text;,0,0,0,,{\an7\pos(385.0,371.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:03:40.10,00:03:45.10,Default,nucularwastelandsss;annotation_278861;speech_box;,0,0,0,,{\an7\pos(67.19,156.25)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 221.88 0 l 221.88 516.67 l 0 516.67 {\p0}
 Dialogue: 0,00:03:40.10,00:03:45.10,Default,nucularwastelandsss;annotation_278861;speech_text;,0,0,0,,{\an7\pos(77.19,166.25)\fs35.28\c&H000000&\bord0\shad0}PENISPENISPENISPENISPENISP\NENISPENISPENISPENISPENISPE\NNISPENISPENISPENISPENISPEN\NISPENISPENISPENISPENISPENI\NSPENISPENISPENISPENISPENIS
 Dialogue: 0,00:03:59.00,00:04:04.00,Default,Mizzfrizzx3;annotation_357674;speech_box;,0,0,0,,{\an7\pos(10.42,2.78)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 958.33 0 l 958.33 755.56 l 0 755.56 {\p0}
@@ -684,7 +684,7 @@ Dialogue: 0,00:04:34.90,00:04:39.90,Default,;annotation_118329;popup_text;,0,0,0
 Dialogue: 0,00:04:57.70,00:05:02.70,Default,;annotation_547688;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 250.0 0 l 250.0 55.56 l 0 55.56 {\p0}
 Dialogue: 0,00:04:57.70,00:05:02.70,Default,;annotation_547688;highlightText_text;,0,0,0,,{\an5\pos(125.0,325.0)\fs36.649\c&H000000&\bord0\shad0}
 Dialogue: 0,00:04:57.70,00:05:02.70,Default,;annotation_581050;highlight_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(378.0,364.11,622.0,635.89)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:04:57.70,00:05:02.70,Default,;annotation_581050;highlight_text;,0,0,0,,{\an7\pos(378.0,364.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:04:57.70,00:05:02.70,Default,;annotation_581050;highlight_text;,0,0,0,,{\an7\pos(385.0,371.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:05:26.40,00:05:31.40,Default,andehhhhhhh;annotation_814194;speech_box;,0,0,0,,{\an7\pos(35.42,127.78)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 914.58 0 l 914.58 755.56 l 0 755.56 {\p0}
 Dialogue: 0,00:05:26.40,00:05:31.40,Default,andehhhhhhh;annotation_814194;speech_text;,0,0,0,,{\an7\pos(45.42,137.78)\fs35.28\c&H000000&\bord0\shad0}YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA \NYEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA \NYEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA \NYEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA \NYEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA \NYEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA \NYEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA YEA \NYEA YEA 
 Dialogue: 0,00:05:47.40,00:05:52.40,Default,ohhmanitscam;annotation_574515;speech_box;,0,0,0,,{\an7\pos(35.42,127.78)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 622.22 l 0 622.22 {\p0}
@@ -706,7 +706,7 @@ Dialogue: 0,00:06:20.60,00:06:25.60,Default,jhalajhala;annotation_414769;speech_
 Dialogue: 0,00:06:44.80,00:10:27.60,Default,;annotation_808214;popup_box;,0,0,0,,{\an7\pos(360.42,927.78)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 639.58 0 l 639.58 72.22 l 0 72.22 {\p0}
 Dialogue: 0,00:06:44.80,00:10:27.60,Default,;annotation_808214;popup_text;,0,0,0,,{\an7\pos(370.42,937.78)\fs40.44\c&HFFFFFF&\bord0\shad0}Fukkireta proved the internet is a very evil place!
 Dialogue: 0,00:07:08.70,00:07:13.70,Default,;annotation_713208;highlight_box;,0,0,0,,{\an7\pos(35.42,127.78)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(38.42,130.78,315.75,213.67)}{\p1}m 0 0 l 283.33 0 l 283.33 88.89 l 0 88.89 {\p0}
-Dialogue: 0,00:07:08.70,00:07:13.70,Default,;annotation_713208;highlight_text;,0,0,0,,{\an7\pos(38.42,130.78)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:07:08.70,00:07:13.70,Default,;annotation_713208;highlight_text;,0,0,0,,{\an7\pos(45.42,137.78)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:07:08.70,00:07:13.70,Default,;annotation_718554;highlightText_box;,0,0,0,,{\an7\pos(0.0,108.33)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 55.56 l 0 55.56 {\p0}
 Dialogue: 0,00:07:08.70,00:07:13.70,Default,;annotation_718554;highlightText_text;,0,0,0,,{\an5\pos(141.665,136.11)\fs36.649\c&H000000&\bord0\shad0}
 Dialogue: 0,00:07:14.90,00:07:19.90,Default,MrsAnnHero;annotation_151481;speech_box;,0,0,0,,{\an7\pos(35.42,127.78)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 283.33 0 l 283.33 311.11 l 0 311.11 {\p0}
@@ -716,7 +716,7 @@ Dialogue: 0,00:07:35.80,00:07:40.80,Default,azniceboy123;annotation_543488;speec
 Dialogue: 0,00:08:14.10,00:08:29.90,Default,;annotation_240752;highlightText_box;,0,0,0,,{\an7\pos(0.0,222.92)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 187.5 0 l 187.5 127.08 l 0 127.08 {\p0}
 Dialogue: 0,00:08:14.10,00:08:29.90,Default,;annotation_240752;highlightText_text;,0,0,0,,{\an5\pos(93.75,286.46)\fs40.44\c&H000000&\bord0\shad0}I want Junk to have\N sex with me.  :V
 Dialogue: 0,00:08:14.10,00:08:29.90,Default,;annotation_401073;highlight_box;,0,0,0,,{\an7\pos(789.06,541.67)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(792.06,544.67,973.56,747.0)}{\p1}m 0 0 l 187.5 0 l 187.5 208.33 l 0 208.33 {\p0}
-Dialogue: 0,00:08:14.10,00:08:29.90,Default,;annotation_401073;highlight_text;,0,0,0,,{\an7\pos(792.06,544.67)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:08:14.10,00:08:29.90,Default,;annotation_401073;highlight_text;,0,0,0,,{\an7\pos(799.06,551.67)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:08:24.50,00:08:29.50,Default,;annotation_823784;popup_box;,0,0,0,,{\an7\pos(127.08,413.89)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 679.17 0 l 679.17 205.56 l 0 205.56 {\p0}
 Dialogue: 0,00:08:24.50,00:08:29.50,Default,;annotation_823784;popup_text;,0,0,0,,{\an7\pos(137.08,423.89)\fs26.539\c&H1A1A1A&\bord0\shad0}8========D~~~~ \N\N\N\N\N\NLol that is a penis
 Dialogue: 0,00:08:48.00,00:08:53.00,Default,;annotation_497865;popup_box;,0,0,0,,{\an7\pos(182.5,384.62)\c&H943806&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 540.04 0 l 540.04 67.0 l 0 67.0 {\p0}
@@ -730,7 +730,7 @@ Dialogue: 0,00:09:03.80,00:09:08.80,Default,nammedijus;annotation_531579;speech_
 Dialogue: 0,00:09:04.30,00:09:09.30,Default,;annotation_775322;highlightText_box;,0,0,0,,{\an7\pos(0.0,297.22)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 250.0 0 l 250.0 55.56 l 0 55.56 {\p0}
 Dialogue: 0,00:09:04.30,00:09:09.30,Default,;annotation_775322;highlightText_text;,0,0,0,,{\an5\pos(125.0,325.0)\fs36.649\c&H000000&\bord0\shad0}
 Dialogue: 0,00:09:04.30,00:09:09.30,Default,;annotation_809006;highlight_box;,0,0,0,,{\an7\pos(375.0,361.11)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(378.0,364.11,622.0,635.89)}{\p1}m 0 0 l 250.0 0 l 250.0 277.78 l 0 277.78 {\p0}
-Dialogue: 0,00:09:04.30,00:09:09.30,Default,;annotation_809006;highlight_text;,0,0,0,,{\an7\pos(378.0,364.11)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:09:04.30,00:09:09.30,Default,;annotation_809006;highlight_text;,0,0,0,,{\an7\pos(385.0,371.11)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:09:08.20,00:09:13.20,Default,mishael999;annotation_414906;speech_box;,0,0,0,,{\an7\pos(6.25,80.56)\c&H943806&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 916.67 0 l 916.67 800.0 l 0 800.0 {\p0}
 Dialogue: 0,00:09:08.20,00:09:13.20,Default,mishael999;annotation_414906;speech_text;,0,0,0,,{\an7\pos(16.25,90.56)\fs35.28\c&HFFFFFF&\bord0\shad0}UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ\N UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ \NUNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ\N UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ \NUNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ\N UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ \NUNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ\N UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ \NUNTZ UNTZ UNTZ UNTZ UNTZ UNTZ UNTZ 
 Dialogue: 0,00:09:23.80,00:09:28.80,Default,nucularwastelandsss;annotation_761164;speech_box;,0,0,0,,{\an7\pos(67.19,156.25)\c&HFFFFFF&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 221.88 0 l 221.88 556.25 l 0 556.25 {\p0}
@@ -760,7 +760,7 @@ Dialogue: 0,00:09:59.70,00:10:04.70,Default,;annotation_25658;popup_text;,0,0,0,
 Dialogue: 0,00:09:59.70,00:10:27.60,Default,;annotation_510591;highlightText_box;,0,0,0,,{\an7\pos(-6.25,50.0)\c&HFFFFFF&\1a&HFF&\bord0\shad0}{\p1}m 0 0 l 883.33 0 l 883.33 55.56 l 0 55.56 {\p0}
 Dialogue: 0,00:09:59.70,00:10:27.60,Default,;annotation_510591;highlightText_text;,0,0,0,,{\an5\pos(435.415,77.78)\fs36.649\c&H000000&\bord0\shad0}PIPIIIIIIIIIIIIIIIIIssssss
 Dialogue: 0,00:09:59.70,00:10:27.60,Default,;annotation_589277;highlight_box;,0,0,0,,{\an7\pos(45.83,94.44)\c&HFFFFFF&\1a&H33&\bord0\shad0\iclip(48.83,97.44,907.41,738.66)}{\p1}m 0 0 l 864.58 0 l 864.58 647.22 l 0 647.22 {\p0}
-Dialogue: 0,00:09:59.70,00:10:27.60,Default,;annotation_589277;highlight_text;,0,0,0,,{\an7\pos(48.83,97.44)\fs35.28\c&H000000&\bord0\shad0}
+Dialogue: 0,00:09:59.70,00:10:27.60,Default,;annotation_589277;highlight_text;,0,0,0,,{\an7\pos(55.83,104.44)\fs35.28\c&H000000&\bord0\shad0}
 Dialogue: 0,00:10:04.60,00:10:27.60,Default,;annotation_836527;popup_box;,0,0,0,,{\an7\pos(4.17,36.11)\c&H000000&\1a&HC0&\bord0\shad0}{\p1}m 0 0 l 979.17 0 l 979.17 72.22 l 0 72.22 {\p0}
 Dialogue: 0,00:10:04.60,00:10:27.60,Default,;annotation_836527;popup_text;,0,0,0,,{\an7\pos(14.17,46.11)\fs40.44\c&HFFFFFF&\bord0\shad0}FIRST FIRST FIRST FIRST FIRST
 Dialogue: 0,00:10:04.70,00:10:09.70,Default,;annotation_312518;popup_box;,0,0,0,,{\an7\pos(675.0,555.56)\c&H943806&\1a&H33&\bord0\shad0}{\p1}m 0 0 l 300.0 0 l 300.0 72.22 l 0 72.22 {\p0}

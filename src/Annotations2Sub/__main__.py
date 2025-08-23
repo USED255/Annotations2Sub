@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-""" 程序入口 """
 
 if not __package__:
     import os
@@ -12,15 +11,7 @@ if not __package__:
     path = os.path.abspath(os.path.join(path, os.pardir))
     sys.path.append(path)
 
-import sys
-from typing import NoReturn
-
-from Annotations2Sub.cli import Run
-
-
-def main() -> NoReturn:
-    sys.exit(Run())
-
+from Annotations2Sub._main import main
 
 if __name__ == "__main__":
     main()
