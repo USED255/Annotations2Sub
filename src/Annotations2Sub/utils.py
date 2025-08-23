@@ -7,6 +7,7 @@ import urllib.request
 from Annotations2Sub._flags import Flags
 from Annotations2Sub.i18n import _
 
+isatty = sys.stdout.isatty()
 
 def YellowText(string: str) -> str:
     """返回黄色文本"""
@@ -24,11 +25,17 @@ def Stderr(string: str):
 
 
 def Err(string: str):
-    Stderr(RedText(_("错误: ") + string))
+    v1 = ""
+    if not isatty:
+        v1 = _("错误: ")
+    Stderr(RedText(v1 + string))
 
 
 def Warn(string: str):
-    Stderr(YellowText(_("警告: ") + string))
+    v1 = ""
+    if not isatty:
+        v1 = _("警告: ")
+    Stderr(YellowText(v1 + string))
 
 
 def Info(string: str):

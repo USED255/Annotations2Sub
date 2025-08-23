@@ -25,7 +25,7 @@ from Annotations2Sub.cli_utils import (
     GetMedia,
 )
 from Annotations2Sub.i18n import _
-from Annotations2Sub.utils import Err, GetUrl, Info, Stderr, Warn, YellowText
+from Annotations2Sub.utils import Err, GetUrl, Info, Stderr, Warn
 
 
 def Dummy(*args, **kwargs):
@@ -216,7 +216,7 @@ def Run(args=None) -> int:
             is_skip_download = False
             if enable_no_overwrite_files and os.path.exists(annotations_file):
                 if os.path.exists(annotations_file):
-                    Stderr(YellowText(_("文件已存在, 跳过下载 ({})").format(video_id)))
+                    Warn(_("文件已存在, 跳过下载 ({})").format(video_id))
                     is_skip_download = True
 
             if not is_skip_download:
@@ -284,7 +284,7 @@ def Run(args=None) -> int:
 
         if enable_no_overwrite_files:
             if os.path.exists(subtitle_file):
-                Stderr(YellowText(_("文件已存在, 跳过输出 ({})").format(subtitle_file)))
+                Warn(_("文件已存在, 跳过输出 ({})").format(subtitle_file))
                 is_no_save = True
 
         if enable_no_keep_intermediate_files:
@@ -335,7 +335,7 @@ def Run(args=None) -> int:
 
             _exit_code = subprocess.run(commands).returncode
             if _exit_code != 0:
-                Stderr(YellowText('exit with "{}"'.format(_exit_code)))
+                Warn('exit with "{}"'.format(_exit_code))
                 return _exit_code
 
             if enable_no_keep_intermediate_files:

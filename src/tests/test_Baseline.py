@@ -6,7 +6,7 @@ import os
 import pytest
 
 from Annotations2Sub.cli import Run
-from Annotations2Sub.utils import RedText, Stderr
+from Annotations2Sub.utils import Err, Stderr
 from tests import baselinePath, testCasePath
 
 baselines = [
@@ -33,8 +33,8 @@ def equal(file1: str, file2: str) -> bool:
     with open(file2, "r", encoding="utf-8") as f:
         b = f.readlines()
     if a != b:
-        Stderr(RedText(file1))
-        Stderr(RedText(file2))
+        Err(file1)
+        Err(file2)
         differ = difflib.Differ()
         diffs = list(differ.compare(a, b))
         for diff in diffs:
@@ -44,7 +44,7 @@ def equal(file1: str, file2: str) -> bool:
                 Stderr("\n\n")
             if diff.startswith("?"):
                 diff = diff.rstrip("\n")
-                Stderr(RedText(diff))
+                Err(diff)
                 continue
             diff = diff.rstrip("\n")
             Stderr(diff)
