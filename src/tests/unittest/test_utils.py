@@ -6,7 +6,19 @@ import urllib.request
 
 import pytest
 
-from Annotations2Sub.utils import Err, GetUrl, Info, RedText, Stderr, Warn, YellowText
+from Annotations2Sub.utils import (
+    Err,
+    Err1,
+    Err2,
+    GetUrl,
+    Info,
+    RedText,
+    Stderr,
+    Warn,
+    Warn1,
+    Warn2,
+    YellowText,
+)
 
 
 def test_YellowText():
@@ -31,6 +43,22 @@ def test_Warn():
 
 def test_Info():
     Info("Test")
+
+
+def test_Err1():
+    Err1("Test")
+
+
+def test_Warn1():
+    Warn1("Test")
+
+
+def test_Err2():
+    Err2("Test")
+
+
+def test_Warn2():
+    Warn2("Test")
 
 
 def test_GetUrl():
