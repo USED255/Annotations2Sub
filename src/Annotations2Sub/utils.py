@@ -9,6 +9,7 @@ from Annotations2Sub.i18n import _
 
 isatty = sys.stdout.isatty()
 
+
 def YellowText(string: str) -> str:
     """返回黄色文本"""
     return f"\033[33m{string}\033[0m"
