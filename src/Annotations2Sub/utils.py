@@ -46,7 +46,8 @@ def GetUrl(url: str) -> str:
 
         context = ssl.create_default_context(cafile=certifi.where())
     except ImportError:
-        pass
+        if sys.platform == "win32":
+            Warn(_("没有 certifi，可能会 SSL 验证失败"))
 
     with urllib.request.urlopen(url, context=context) as r:
         return r.read().decode("utf-8")
