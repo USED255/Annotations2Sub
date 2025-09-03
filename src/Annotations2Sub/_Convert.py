@@ -305,12 +305,6 @@ def Convert(
 
             return Box(_event)
 
-        def title() -> Event:
-            _event = copy.copy(event)
-            _event.Name += "title;"
-
-            return CenterText(_event)
-
         def highlightText_text() -> Event:
             _event = copy.copy(event)
             _event.Name += "highlightText_text;"
@@ -384,6 +378,12 @@ def Convert(
 
         def popup() -> List[Event]:
             return [popup_box(), popup_text()]
+
+        def title() -> List[Event]:
+            _event = copy.copy(event)
+            _event.Name += "title;"
+
+            return [CenterText(_event)]
 
         def highlightText() -> List[Event]:
             return [highlightText_box(), highlightText_text()]
@@ -534,7 +534,7 @@ def Convert(
         if each.style == "popup":
             return popup()
         elif each.style == "title":
-            return [title()]
+            return title()
         elif each.style == "highlightText":
             return highlightText()
         elif each.style == "speech":
