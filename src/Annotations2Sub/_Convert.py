@@ -198,7 +198,7 @@ def Convert(
             x_right = x_left + width
             y_bottom = y_top + height
 
-            def draw(x1, y1, x2, y2):
+            def draw(x1, y1, x2, y2) -> Event:
 
                 tags = Tag()
                 tags.extend(
@@ -225,7 +225,7 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
-            def up_down():
+            def up_down() -> Optional[Event]:
                 x_start_multiplier = 0.174
                 x_end_multiplier = 0.149
 
@@ -258,7 +258,7 @@ def Convert(
                 if None not in (x1, y1, x2, y2):
                     return draw(x1, y1, x2, y2)
 
-            def left_right():
+            def left_right() -> Optional[Event]:
                 y_start_multiplier = 0.12
                 y_end_multiplier = 0.3
 

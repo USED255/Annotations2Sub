@@ -330,7 +330,7 @@ def Run(args=None) -> int:
                     exit_code += 17
                     continue
 
-        def run(commands: List[str]):
+        def run(commands: List[str]) -> int:
             Info(" ".join(commands))
 
             _exit_code = subprocess.run(commands).returncode
