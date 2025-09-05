@@ -8,31 +8,32 @@ version = "2.22.0"
 description = "Download and convert Youtube Annotations"
 readme = "README.md"
 authors = [
-	{ name = "我如天翼", email = "wrtyis@outlook.com" }
+    { name = "我如天翼", email = "wrtyis@outlook.com" }
 ]
 license-files = ["LICENSE"]
 requires-python = ">=3.7"
 dependencies = ["certifi"]
 keywords = []
 classifiers = [
-	"Programming Language :: Python :: 3 :: Only",
-	"Programming Language :: Python :: 3.7",
-	"Programming Language :: Python :: 3.8",
-	"Programming Language :: Python :: 3.9",
-	"Programming Language :: Python :: 3.10",
-	"Programming Language :: Python :: 3.11",
-	"Programming Language :: Python :: 3.12",
-	"Programming Language :: Python :: 3.13",
-	"Programming Language :: Python :: Implementation :: PyPy",
-	"Programming Language :: Python :: Implementation :: CPython",
-	"License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-	"Operating System :: OS Independent",
-	"Development Status :: 5 - Production/Stable",
-	"Environment :: Console",
-	"Natural Language :: Chinese (Simplified)",
-	"Natural Language :: English",
-	"Typing :: Typed"
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Natural Language :: Chinese (Simplified)",
+    "Natural Language :: English",
+    "Typing :: Typed"
 ]
+
 [project.urls]
 Homepage = "https://github.com/USED255/Annotations2Sub"
 "Bug Tracker" = "https://github.com/USED255/Annotations2Sub/issues"
@@ -49,6 +50,26 @@ exclude = ["tests*"]
 
 [tool.setuptools.package-data]
 "Annotations2Sub" = [
-	"locales/zh/LC_MESSAGES/Annotations2Sub.mo",
-	"locales/en/LC_MESSAGES/Annotations2Sub.mo"
+    "locales/zh/LC_MESSAGES/Annotations2Sub.mo",
+    "locales/en/LC_MESSAGES/Annotations2Sub.mo"
+]
+
+[tool.pytest.ini_options]
+addopts = "--cov=./ --cov-report=html --junitxml=junit.xml"
+testpaths = ["tests"]
+
+[tool.mypy]
+check_untyped_defs = true
+show_traceback = true
+
+[tool.isort]
+profile = "black"
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "mypy",
+    "isort",
+    "black",
 ]
