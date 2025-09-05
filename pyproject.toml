@@ -54,10 +54,6 @@ exclude = ["tests*"]
     "locales/en/LC_MESSAGES/Annotations2Sub.mo"
 ]
 
-[tool.pytest.ini_options]
-addopts = "--cov=./ --cov-report=html --junitxml=junit.xml"
-testpaths = ["tests"]
-
 [tool.mypy]
 check_untyped_defs = true
 show_traceback = true
