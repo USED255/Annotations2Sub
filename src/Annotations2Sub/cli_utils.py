@@ -6,7 +6,7 @@ import re
 import xml.etree.ElementTree
 
 from Annotations2Sub._Convert import Convert
-from Annotations2Sub._Sub import Sub
+from Annotations2Sub._Subtitles import Subtitles
 from Annotations2Sub.Annotations import Parse
 from Annotations2Sub.i18n import _
 from Annotations2Sub.utils import GetUrl, Stderr, Warn
@@ -73,7 +73,7 @@ def AnnotationsXmlStringToSub(
     transform_resolution_y: int = 100,
     font=_("Microsoft YaHei"),
     title=_("无标题"),
-) -> Sub:
+) -> Subtitles:
 
     if annotations_string == "":
         raise AnnotationsStringIsEmptyError(_("annotations_string 不应为空字符串"))
@@ -94,13 +94,13 @@ def AnnotationsXmlStringToSub(
     # 按时间重新排列字幕事件, 是为了人类可读
     events.sort(key=lambda event: event.Start)
 
-    subtitle = Sub()
-    subtitle.comment += _("此脚本使用 Annotations2Sub 生成") + "\n"
-    subtitle.comment += "https://github.com/USED255/Annotations2Sub"
-    subtitle.info["Title"] = os.path.basename(title)
-    subtitle.info["PlayResX"] = str(transform_resolution_x)
-    subtitle.info["PlayResY"] = str(transform_resolution_y)
-    subtitle.info["WrapStyle"] = "2"
-    subtitle.styles["Default"].Fontname = font
-    subtitle.events.extend(events)
-    return subtitle
+    subtitles = Subtitles()
+    subtitles.comment += _("此脚本使用 Annotations2Sub 生成") + "\n"
+    subtitles.comment += "https://github.com/USED255/Annotations2Sub"
+    subtitles.info["Title"] = os.path.basename(title)
+    subtitles.info["PlayResX"] = str(transform_resolution_x)
+    subtitles.info["PlayResY"] = str(transform_resolution_y)
+    subtitles.info["WrapStyle"] = "2"
+    subtitles.styles["Default"].Fontname = font
+    subtitles.events.extend(events)
+    return subtitles

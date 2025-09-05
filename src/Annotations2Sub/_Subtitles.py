@@ -81,8 +81,8 @@ class Event:
     """SSA 事件(Event) 结构"""
 
     def __init__(self):
-        # 有 Dialogue, Comment, Picture, Sound, Movie, Command 事件
-        # 只用到了 Dialogue
+        # 有 Dialogue, Comment, Picture, Sound, Movie, Command 事件,
+        # 只用到了 Dialogue.
         # "这是一个对话事件，即显示一些文本。"
         self.Type: Literal["Dialogue"] = "Dialogue"
         # Aegisub 没有 Marked, 所以我们也没有
@@ -106,7 +106,7 @@ class Event:
         return f"{self.Type}: {self.Layer},{DumpTime(self.Start)},{DumpTime(self.End)},{self.Style},{self.Name},{self.MarginL},{self.MarginR},{self.MarginV},{self.Effect},{self.Text}\n"
 
 
-class Sub:
+class Subtitles:
     """SSA 类"""
 
     def __init__(self):
