@@ -8,7 +8,7 @@ from datetime import datetime
 from typing import List, Optional, Union
 from xml.etree.ElementTree import Element
 
-from Annotations2Sub.Color import Alpha, Color
+from Annotations2Sub.color import Alpha, Color
 from Annotations2Sub.i18n import _
 from Annotations2Sub.utils import Info, Stderr
 

@@ -5,7 +5,7 @@
 from datetime import datetime
 from typing import Dict, List
 
-from Annotations2Sub.Color import Alpha, Color, Rgba
+from Annotations2Sub.color import Alpha, Color, Rgba
 
 # 兼容 Python 3.7
 # Python 3.7 的 typing 没有 Literal

@@ -3,7 +3,7 @@
 
 import pytest
 
-from Annotations2Sub.Color import Alpha, Color, Rgba
+from Annotations2Sub.color import Alpha, Color, Rgba
 
 
 def test_Color():
