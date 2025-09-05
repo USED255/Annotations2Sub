@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from Annotations2Sub import Subtitles
-from Annotations2Sub._Subtitles import Draw, DrawCommand, Event, Style
+from Annotations2Sub.subtitles import Draw, DrawCommand, Event, Style
 
 
 def test_Style():

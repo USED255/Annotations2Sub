@@ -6,7 +6,7 @@ import re
 import xml.etree.ElementTree
 
 from Annotations2Sub.convert import Convert
-from Annotations2Sub._Subtitles import Subtitles
+from Annotations2Sub.subtitles import Subtitles
 from Annotations2Sub.Annotations import Parse
 from Annotations2Sub.i18n import _
 from Annotations2Sub.utils import GetUrl, Stderr, Warn

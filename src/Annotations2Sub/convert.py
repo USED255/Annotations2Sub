@@ -6,7 +6,7 @@ import copy
 import textwrap
 from typing import Dict, List, Optional
 
-from Annotations2Sub._Subtitles import Draw, DrawCommand, Event, Tag
+from Annotations2Sub.subtitles import Draw, DrawCommand, Event, Tag
 from Annotations2Sub.Annotations import Annotation
 from Annotations2Sub.utils import Stderr, _
 
