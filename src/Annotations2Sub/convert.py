@@ -65,7 +65,7 @@ def Convert(
             _y = y + padding_y
             #
 
-            tags = tag.Tag()
+            tags = tag.Tags()
             tags.extend(
                 [
                     tag.Align(7),
@@ -91,7 +91,7 @@ def Convert(
             #
 
             shadow = tag.Shadow(0)
-            tags = tag.Tag()
+            tags = tag.Tags()
             tags.extend(
                 [
                     tag.Align(5),
@@ -109,7 +109,7 @@ def Convert(
             return event
 
         def Box(event: Event) -> Event:
-            tags = tag.Tag()
+            tags = tag.Tags()
             tags.extend(
                 [
                     tag.Align(7),
@@ -156,7 +156,7 @@ def Convert(
             x2 = x + width - _padding_x
             y2 = y + height - _padding_y
 
-            tags = tag.Tag()
+            tags = tag.Tags()
             tags.extend(
                 [
                     tag.Align(7),
@@ -200,7 +200,7 @@ def Convert(
 
             def draw(x1, y1, x2, y2) -> Event:
 
-                tags = tag.Tag()
+                tags = tag.Tags()
                 tags.extend(
                     [
                         tag.Align(7),

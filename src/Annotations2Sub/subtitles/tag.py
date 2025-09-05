@@ -2,7 +2,7 @@ from Annotations2Sub.color import Alpha, Color
 from Annotations2Sub.subtitles.utils import Literal, _round
 
 
-class Tag(list):
+class Tags(list):
     """样式复写代码, 样式复写标签, ASS 标签, 特效标签, Aegisub 特效标签, 标签"""
 
     def __str__(self) -> str:
