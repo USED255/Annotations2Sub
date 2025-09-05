@@ -4,7 +4,7 @@ import ssl
 import sys
 import urllib.request
 
-from Annotations2Sub._flags import Flags
+from Annotations2Sub.flags import Flags
 from Annotations2Sub.i18n import _
 
 

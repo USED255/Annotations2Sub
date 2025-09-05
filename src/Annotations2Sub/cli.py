@@ -16,7 +16,7 @@ from urllib.error import URLError
 from xml.etree.ElementTree import ParseError
 
 from Annotations2Sub import __version__ as version
-from Annotations2Sub._flags import Flags
+from Annotations2Sub.flags import Flags
 from Annotations2Sub.Annotations import NotAnnotationsDocumentError
 from Annotations2Sub.cli_utils import (
     AnnotationsStringIsEmptyError,
