@@ -7,7 +7,7 @@ import textwrap
 from typing import Dict, List, Optional
 
 from Annotations2Sub.Annotations import Annotation
-from Annotations2Sub.subtitles import Draw, DrawCommand, Event, Tag
+from Annotations2Sub.subtitles import Draw, DrawCommand, Event, tag
 from Annotations2Sub.utils import Stderr, _
 
 
@@ -65,19 +65,19 @@ def Convert(
             _y = y + padding_y
             #
 
-            tags = Tag()
+            tags = tag.Tag()
             tags.extend(
                 [
-                    Tag.Align(7),
-                    Tag.Pos(_x, _y),
-                    Tag.Fontsize(textSize),
-                    Tag.PrimaryColour(each.fgColor),
-                    Tag.Bord(0),
-                    Tag.Shadow(0),
+                    tag.Align(7),
+                    tag.Pos(_x, _y),
+                    tag.Fontsize(textSize),
+                    tag.PrimaryColour(each.fgColor),
+                    tag.Bord(0),
+                    tag.Shadow(0),
                 ]
             )
             if each.fontWeight == "bold":
-                tags.append(Tag.Bold(1))
+                tags.append(tag.Bold(1))
 
             event.Text = str(tags) + text
             return event
@@ -90,34 +90,34 @@ def Convert(
             _y = y + (height / 2)
             #
 
-            shadow = Tag.Shadow(0)
-            tags = Tag()
+            shadow = tag.Shadow(0)
+            tags = tag.Tag()
             tags.extend(
                 [
-                    Tag.Align(5),
-                    Tag.Pos(_x, _y),
-                    Tag.Fontsize(textSize),
-                    Tag.PrimaryColour(each.fgColor),
-                    Tag.Bord(0),
+                    tag.Align(5),
+                    tag.Pos(_x, _y),
+                    tag.Fontsize(textSize),
+                    tag.PrimaryColour(each.fgColor),
+                    tag.Bord(0),
                     shadow,
                 ]
             )
             if each.fontWeight == "bold":
-                tags.append(Tag.Bold(1))
+                tags.append(tag.Bold(1))
 
             event.Text = str(tags) + text
             return event
 
         def Box(event: Event) -> Event:
-            tags = Tag()
+            tags = tag.Tag()
             tags.extend(
                 [
-                    Tag.Align(7),
-                    Tag.Pos(x, y),
-                    Tag.PrimaryColour(each.bgColor),
-                    Tag.PrimaryAlpha(each.bgOpacity),
-                    Tag.Bord(0),
-                    Tag.Shadow(0),
+                    tag.Align(7),
+                    tag.Pos(x, y),
+                    tag.PrimaryColour(each.bgColor),
+                    tag.PrimaryAlpha(each.bgOpacity),
+                    tag.Bord(0),
+                    tag.Shadow(0),
                 ]
             )
 
@@ -156,17 +156,17 @@ def Convert(
             x2 = x + width - _padding_x
             y2 = y + height - _padding_y
 
-            tags = Tag()
+            tags = tag.Tag()
             tags.extend(
                 [
-                    Tag.Align(7),
-                    Tag.Pos(x, y),
-                    Tag.PrimaryColour(each.bgColor),
-                    Tag.PrimaryAlpha(each.bgOpacity),
-                    Tag.Bord(0),
-                    Tag.Shadow(0),
+                    tag.Align(7),
+                    tag.Pos(x, y),
+                    tag.PrimaryColour(each.bgColor),
+                    tag.PrimaryAlpha(each.bgOpacity),
+                    tag.Bord(0),
+                    tag.Shadow(0),
                     # 将一个框挖空模拟其效果
-                    Tag.iClip(x1, y1, x2, y2),
+                    tag.iClip(x1, y1, x2, y2),
                 ]
             )
 
@@ -200,15 +200,15 @@ def Convert(
 
             def draw(x1, y1, x2, y2) -> Event:
 
-                tags = Tag()
+                tags = tag.Tag()
                 tags.extend(
                     [
-                        Tag.Align(7),
-                        Tag.Pos(sx, sy),
-                        Tag.PrimaryColour(each.bgColor),
-                        Tag.PrimaryAlpha(each.bgOpacity),
-                        Tag.Bord(0),
-                        Tag.Shadow(0),
+                        tag.Align(7),
+                        tag.Pos(sx, sy),
+                        tag.PrimaryColour(each.bgColor),
+                        tag.PrimaryAlpha(each.bgOpacity),
+                        tag.Bord(0),
+                        tag.Shadow(0),
                     ]
                 )
 
