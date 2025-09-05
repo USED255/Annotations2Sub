@@ -258,6 +258,8 @@ def Convert(
                 if None not in (x1, y1, x2, y2):
                     return draw(x1, y1, x2, y2)
 
+                return None
+
             def left_right() -> Optional[Event]:
                 y_start_multiplier = 0.12
                 y_end_multiplier = 0.3
@@ -282,6 +284,8 @@ def Convert(
 
                 if None not in (x1, y1, x2, y2):
                     return draw(x1, y1, x2, y2)
+
+                return None
 
             _event = up_down()
             if _event != None:
