@@ -101,7 +101,7 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 ---
 """
 
-from Annotations2Sub._Convert import Convert
+from Annotations2Sub.convert import Convert
 from Annotations2Sub._Subtitles import Event, Style, Subtitles
 from Annotations2Sub.Annotations import Annotation, NotAnnotationsDocumentError, Parse
 from Annotations2Sub.cli import Run
