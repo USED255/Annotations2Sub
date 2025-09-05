@@ -20,3 +20,4 @@ src/tests/garbage/*
 *.dot
 *.prof
 mypy.ini
+uv.lock
