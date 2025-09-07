@@ -4,7 +4,7 @@
 
 from typing import Dict, List
 
-from Annotations2Sub.subtitles.constant import _Events_string, _Styles_string
+from Annotations2Sub.subtitles.CONSTANT import EventsHEAD, StylesHEAD
 from Annotations2Sub.subtitles.event import Event
 from Annotations2Sub.subtitles.style import Style
 
@@ -74,7 +74,7 @@ class Subtitles:
 
         def __str__(self) -> str:
             string = ""
-            string += _Styles_string
+            string += StylesHEAD
 
             for Name, Styles in self.styles.items():
                 string += str(Styles).format(Name)
@@ -87,7 +87,7 @@ class Subtitles:
 
         def __str__(self) -> str:
             string = ""
-            string += _Events_string
+            string += EventsHEAD
             string += "".join(map(str, self.events))
             string += "\n"
 
