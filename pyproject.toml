@@ -7,14 +7,11 @@ name = "Annotations2Sub"
 version = "2.22.0"
 description = "Download and convert Youtube Annotations"
 readme = "README.md"
-authors = [
-    { name = "我如天翼", email = "wrtyis@outlook.com" }
-]
+authors = [{ name = "我如天翼", email = "wrtyis@outlook.com" }]
 license = "GPL-3.0-or-later"
 license-files = ["LICENSE"]
 requires-python = ">=3.7"
-dependencies = ["certifi"]
-keywords = ["Youtube", "Annotations", "Subtitles", "Captions", "Downloader", "Converter"]
+keywords = ["Youtube", "Annotations", "Subtitles", "Converter"]
 classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.7",
@@ -31,7 +28,7 @@ classifiers = [
     "Environment :: Console",
     "Natural Language :: Chinese (Simplified)",
     "Natural Language :: English",
-    "Typing :: Typed"
+    "Typing :: Typed",
 ]
 
 [project.urls]
@@ -42,7 +39,7 @@ Homepage = "https://github.com/USED255/Annotations2Sub"
 Annotations2Sub = "Annotations2Sub._main:main"
 
 [tool.setuptools]
-package-dir = {"" = "src"}
+package-dir = { "" = "src" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -51,7 +48,7 @@ exclude = ["tests*"]
 [tool.setuptools.package-data]
 "Annotations2Sub" = [
     "locales/zh/LC_MESSAGES/Annotations2Sub.mo",
-    "locales/en/LC_MESSAGES/Annotations2Sub.mo"
+    "locales/en/LC_MESSAGES/Annotations2Sub.mo",
 ]
 
 [tool.mypy]
@@ -62,10 +59,7 @@ show_traceback = true
 profile = "black"
 
 [dependency-groups]
-dev = [
-    "pytest",
-    "pytest-cov",
-    "mypy",
-    "isort",
-    "black",
-]
+dev = ["pytest", "pytest-cov", "mypy", "isort", "black", "build", "ipython"]
+
+[project.optional-dependencies]
+full = ["certifi"]
