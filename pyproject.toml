@@ -59,7 +59,7 @@ show_traceback = true
 profile = "black"
 
 [dependency-groups]
-dev = ["pytest", "pytest-cov", "mypy", "isort", "black", "build", "ipython"]
+dev = ["pytest", "pytest-cov", "mypy", "isort", "black", "build", "ipython","certifi"]
 
 [project.optional-dependencies]
 full = ["certifi"]
