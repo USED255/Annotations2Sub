@@ -4,7 +4,7 @@
 
 from typing import Dict, List
 
-from Annotations2Sub.subtitles.CONSTANT import EventsHEAD, StylesHEAD
+from Annotations2Sub.subtitles.CONSTANT import EventsHEAD, InfoHEAD, StylesHEAD
 from Annotations2Sub.subtitles.event import Event
 from Annotations2Sub.subtitles.style import Style
 
@@ -57,38 +57,40 @@ class Subtitles:
             self.infos: Dict[str, str] = {"ScriptType": "v4.00+"}
 
         def __str__(self) -> str:
-            # 只是暴力拼接字符串而已
-            string = ""
-            string += "[Script Info]\n"
-            if self.comment != "":
-                for line in self.comment.split("\n"):
-                    string += f"; {line}\n"
-            for k, v in self.infos.items():
-                string += f"{k}: {v}\n"
-            string += "\n"
-            return string
+            def f1(line: str) -> str:
+                if line == "":
+                    return ""
+                return f"; {line}\n"
+
+            def f2(item: tuple[str, str]) -> str:
+                k, v = item
+                return f"{k}: {v}\n"
+
+            comment_lines = self.comment.split("\n")
+            comment_string = "".join(map(f1, comment_lines))
+            info_string = "".join(map(f2, self.infos.items())) + "\n"
+
+            return InfoHEAD + comment_string + info_string
 
     class _Styles:
         def __init__(self):
             self.styles: Dict[str, Style] = {}
 
         def __str__(self) -> str:
-            string = ""
-            string += StylesHEAD
+            def f(item: tuple[str, Style]) -> str:
+                Name = item[0]
+                StyleString = str(item[1])
 
-            for Name, Styles in self.styles.items():
-                string += str(Styles).format(Name)
-            string += "\n"
-            return string
+                return StyleString.format(Name)
+
+            string = "\n".join(map(f, self.styles.items())) + "\n"
+
+            return StylesHEAD + string
 
     class _Events:
         def __init__(self):
             self.events: List[Event] = []
 
         def __str__(self) -> str:
-            string = ""
-            string += EventsHEAD
-            string += "".join(map(str, self.events))
-            string += "\n"
-
-            return string
+            string = "".join(map(str, self.events)) + "\n"
+            return EventsHEAD + string
