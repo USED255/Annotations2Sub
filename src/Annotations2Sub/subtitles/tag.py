@@ -6,9 +6,7 @@ class Tags(list):
     """样式复写代码, 样式复写标签, ASS 标签, 特效标签, Aegisub 特效标签, 标签"""
 
     def __str__(self) -> str:
-        tag_string = ""
-        for tag in self:
-            tag_string += str(tag)
+        tag_string = "".join(map(str, self))
         tag_string = r"{" + tag_string + r"}"
         return tag_string
 

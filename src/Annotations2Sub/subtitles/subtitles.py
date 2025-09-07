@@ -88,8 +88,7 @@ class Subtitles:
         def __str__(self) -> str:
             string = ""
             string += _Events_string
-
-            for event in self.events:
-                string += str(event)
+            string += "".join(map(str, self.events))
             string += "\n"
+
             return string

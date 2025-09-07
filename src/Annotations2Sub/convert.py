@@ -49,14 +49,11 @@ def Convert(
                     textwrap.wrap(text, width=length, drop_whitespace=False)
                 )
 
-            _text = ""
             lines = text.split("\n")
+            wrapped_lines = [wrap(line) for line in lines]
+            wrapped_text = "\n".join(wrapped_lines)
 
-            for line in lines[:-1]:
-                _text += wrap(line) + "\n"
-            _text += wrap(lines[-1])
-
-            return _text
+            return wrapped_text
 
         def Text(event: Event) -> Event:
             # 文本与框保持一定距离
@@ -414,8 +411,8 @@ def Convert(
             events: List[Event] = []
             events.append(label_hollow_box())
 
-            line_count = text.count(r"\N") + 1
-            _height = textSize * line_count
+            lines_count = text.count(r"\N") + 1
+            _height = textSize * lines_count
 
             # 需要修改之后的值以便模拟其效果,
             # Text 和 Box 也被其他函数使用因此不能用新变量,
@@ -453,14 +450,16 @@ def Convert(
             textSize = 0.5
 
         def length_overflows() -> bool:
-            line_count = _text.count("\n") + 1
-            return textSize * 1.12 * line_count > height - padding_y * 2
+            lines_count = _text.count("\n") + 1
+            return textSize * 1.12 * lines_count > height - padding_y * 2
 
         def width_overflows() -> bool:
-            l = []
-            for line in _text.split("\n"):
-                l.append(len(line) * (textSize / 4))
-            return max(l) > width
+            def f(line: str) -> float:
+                return len(line) * (textSize / 4)
+
+            lines = _text.split("\n")
+
+            return max(map(f, lines)) > width
 
         if length_overflows() or width_overflows():
             min_font_size = 0.5

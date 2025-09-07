@@ -20,7 +20,4 @@ class Draw(list):
         # "所有绘图都应由 m <x> <y> 命令开头"
         # "所有没闭合的图形会被自动地在起点和终点之间添加直线来闭合。"
         # "如果一个对话行中的多个图形有重叠，重叠部分会进行异或运算。"
-        string = ""
-        for draw in self:
-            string += str(draw)
-        return string
+        return "".join(map(str, self))
