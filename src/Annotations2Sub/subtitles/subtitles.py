@@ -62,7 +62,7 @@ class Subtitles:
                     return ""
                 return f"; {line}\n"
 
-            def f2(item: tuple[str, str]) -> str:
+            def f2(item) -> str:
                 k, v = item
                 return f"{k}: {v}\n"
 
@@ -77,7 +77,8 @@ class Subtitles:
             self.styles: Dict[str, Style] = {}
 
         def __str__(self) -> str:
-            def f(item: tuple[str, Style]) -> str:
+            # def f(item: tuple[str, Style]) -> str:
+            def f(item) -> str:
                 Name = item[0]
                 StyleString = str(item[1])
 
