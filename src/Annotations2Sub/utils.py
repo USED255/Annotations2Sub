@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import ssl
 import sys
-import urllib.request
 
 from Annotations2Sub.flags import Flags
 from Annotations2Sub.i18n import _
@@ -42,23 +40,6 @@ def Warn2(string: str):
 def Info(string: str):
     if Flags.verbose:
         Stderr(string)
-
-
-def GetUrl(url: str) -> str:
-    if not url.startswith("http"):
-        raise ValueError(_('"url" 必须是 http(s)'))
-
-    context = ssl.create_default_context()
-    try:
-        import certifi
-
-        context = ssl.create_default_context(cafile=certifi.where())
-    except ImportError:
-        if sys.platform == "win32":
-            Warn(_("没有 certifi，可能会 SSL 验证失败"))
-
-    with urllib.request.urlopen(url, context=context) as r:
-        return r.read().decode("utf-8")
 
 
 Err = Err1

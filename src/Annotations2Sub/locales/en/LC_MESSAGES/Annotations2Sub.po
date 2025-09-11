@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2025-08-21 19:58+0800\n"
-"PO-Revision-Date: 2025-08-21 19:58+0800\n"
+"POT-Creation-Date: 2025-09-11 22:55+0800\n"
+"PO-Revision-Date: 2025-09-11 22:55+0800\n"
 "Last-Translator: 我如天翼 <wrtyis@outlook.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -37,26 +37,6 @@ msgstr "\"{}\" No time, skip"
 #: Annotations.py:330
 msgid "不是 Annotations 文档"
 msgstr "Not an Annotations document"
-
-#: Color.py:16
-msgid "\"red\" 必须在 0-255 之间"
-msgstr "\"red\" must be between 0-255"
-
-#: Color.py:18
-msgid "\"green\" 必须在 0-255 之间"
-msgstr "\"green\" must be between 0-255"
-
-#: Color.py:20
-msgid "\"blue\" 必须在 0-255 之间"
-msgstr "\"blue\" must be between 0-255"
-
-#: Color.py:29
-msgid "\"alpha\" 必须在 0-255 之间"
-msgstr "\"alpha\" must be between 0-255"
-
-#: _Convert.py:549
-msgid "不支持 \"{}\" 样式 ({})"
-msgstr "The \"{}\" style is not supported ({})."
 
 #: __dummy__.py:6
 msgid ""
@@ -661,206 +641,150 @@ msgstr ""
 "and all of his children abandoned the city. The youngest son of Chao was "
 "Yong. "
 
-#: __main__.py:32
+#: _main.py:23
 msgid "出现未知错误"
-msgstr ""
+msgstr "an unknown error occurs"
 
-#: cli.py:39
-msgid "下载和转换 Youtube 注释"
-msgstr "Download and convert Youtube Annotation"
+#: cli.py:26
+msgid "转换 Youtube 注释"
+msgstr "Convert Youtube Annotation"
 
-#: cli.py:44
-msgid "文件 或 videoId"
-msgstr "File or videoId"
-
-#: cli.py:45
-msgid "多个需要转换的文件的文件路径或视频ID"
-msgstr "File path or video ID of multiple files to be convert"
-
-#: cli.py:53
-msgid "变换分辨率X"
-msgstr "Transform resolution X"
-
-#: cli.py:61
-msgid "变换分辨率Y"
-msgstr "Transform resolution Y"
-
-#: cli.py:67 cli.py:69 cli_utils.py:74
-msgid "Microsoft YaHei"
-msgstr "Arial"
-
-#: cli.py:70
-msgid "指定字体"
-msgstr "Specify font"
-
-#: cli.py:76
-msgid "尝试从 Internet Archive 下载注释文件"
-msgstr "Try to download the Annotation file from the Internet Archive"
-
-#: cli.py:82
-msgid "仅下载注释"
-msgstr "Download annotation only"
-
-#: cli.py:89
-msgid "指定 invidious 实例(https://redirect.invidious.io/)"
-msgstr "Specify invidious instances (https://redirect.invidious.io/)"
-
-#: cli.py:96
-msgid "预览视频, 需要 mpv(https://mpv.io/)"
-msgstr "Preview video, requires mpv(https://mpv.io/)"
-
-#: cli.py:102
-msgid "生成视频, 需要 FFmpeg(https://ffmpeg.org/)"
-msgstr "Generate video, requires FFmpeg(https://ffmpeg.org/)"
-
-#: cli.py:105
-msgid "不覆盖文件"
-msgstr "Do not overwrite files"
-
-#: cli.py:111
-msgid "不保留中间文件"
-msgstr "Do not keep intermediate files"
-
-#: cli.py:117
+#: cli.py:31 cli.py:66
 msgid "文件"
 msgstr "File"
 
-#: cli.py:118
+#: cli.py:32
+msgid "多个需要转换的文件的文件路径"
+msgstr "File paths of multiple files to be converted"
+
+#: cli.py:40
+msgid "变换分辨率X"
+msgstr "Transform resolution X"
+
+#: cli.py:48
+msgid "变换分辨率Y"
+msgstr "Transform resolution Y"
+
+#: cli.py:54 cli.py:56 cli_utils.py:23
+msgid "Microsoft YaHei"
+msgstr "Arial"
+
+#: cli.py:57
+msgid "指定字体"
+msgstr "Specify font"
+
+#: cli.py:60
+msgid "不覆盖文件"
+msgstr "Do not overwrite files"
+
+#: cli.py:67
 msgid "保存到此文件, 如果为 \"-\" 则输出到标准输出"
 msgstr "Save to this file, if \"-\" then output to standard output"
 
-#: cli.py:124
+#: cli.py:73
 msgid "目录"
 msgstr "directory"
 
-#: cli.py:125
+#: cli.py:74
 msgid "指定转换后文件的输出目录"
 msgstr "Specify the output directory for the converted file"
 
-#: cli.py:131
+#: cli.py:80
 msgid "显示版本号"
 msgstr "Show Version"
 
-#: cli.py:132
+#: cli.py:81
 #, python-brace-format
 msgid "Annotations2Sub v{version}"
 msgstr "Annotations2Sub v{version}"
 
-#: cli.py:138
+#: cli.py:87
 msgid "显示更多消息"
 msgstr "Show more messages"
 
-#: cli.py:165
+#: cli.py:108
 msgid "--output 不能与 --output--directory 选项同时使用"
 msgstr "--output cannot be used with the --output-directory options"
 
-#: cli.py:168
+#: cli.py:111
 msgid "--output 只能处理一个文件"
 msgstr "--output can only process one file"
 
-#: cli.py:175
+#: cli.py:118
 msgid "转换后文件输出目录应该指定一个文件夹"
 msgstr "The output directory of the converted file should specify a folder"
 
-#: cli.py:191
-msgid "您好像无法访问 Google 🤔"
-msgstr "You can't seem to access Google 🤔"
-
-#: cli.py:205
-msgid "\"{}\" 不是一个有效的视频 ID"
-msgstr "\"{}\" is not a valid video ID"
-
-#: cli.py:219
-msgid "文件已存在, 跳过下载 ({})"
-msgstr "File already exists, skip download ({})"
-
-#: cli.py:224
-msgid "下载 \"{}\""
-msgstr "Download \"{}\""
-
-#: cli.py:227
-msgid "\"{}\" 可能没有 Annotations"
-msgstr "\"{}\" May not have Annotations"
-
-#: cli.py:240
+#: cli.py:125
 msgid "\"{}\" 不是一个文件"
 msgstr "\"{}\" is not a file"
 
-#: cli.py:267
+#: cli.py:152
 msgid "\"{}\" 不是 Annotations 文件"
 msgstr "\"{}\" is not an Annotations file"
 
-#: cli.py:271
+#: cli.py:156
 msgid "\"{}\" 不是一个有效的 XML 文件"
 msgstr "\"{}\" is not a valid XML file"
 
-#: cli.py:276
+#: cli.py:161
 msgid "\"{}\" 是空文件"
 msgstr "\"{}\" is an empty file"
 
-#: cli.py:287
+#: cli.py:172
 msgid "文件已存在, 跳过输出 ({})"
 msgstr "File already exists, skip output ({})"
 
-#: cli.py:291 cli.py:342
-msgid "删除 \"{}\""
-msgstr "Delete \"{}\""
+#: cli.py:178
+msgid "保存于 \"{}\""
+msgstr "Saved in \"{}\""
 
-#: cli.py:297
-msgid "保存于: \"{}\""
-msgstr "Saved in: \"{}\""
-
-#: cli.py:321 cli.py:328
-msgid "无法获取视频"
-msgstr "Unable to get video"
-
-#: cli.py:370
+#: cli.py:181
 msgid "处理过程中出现多个错误"
 msgstr "Multiple errors during processing"
 
-#: cli_utils.py:31
-msgid "无效的 videoId"
-msgstr "Invalid videoId"
-
-#: cli_utils.py:50
-msgid "获取 \"{}\""
-msgstr "Get \"{}\""
-
-#: cli_utils.py:64
-msgid "没有 Video"
-msgstr "No Video"
-
-#: cli_utils.py:66
-msgid "没有 Audio"
-msgstr "No Audio"
-
-#: cli_utils.py:75
+#: cli_utils.py:24
 msgid "无标题"
 msgstr "Untitled"
 
-#: cli_utils.py:79
+#: cli_utils.py:28
 msgid "annotations_string 不应为空字符串"
 msgstr "annotations_string should not be an empty string"
 
-#: cli_utils.py:91
+#: cli_utils.py:40
 msgid "\"{}\" 没有注释被转换"
 msgstr "\"{}\" No Annotation are converted"
 
-#: cli_utils.py:98
+#: cli_utils.py:47
 msgid "此脚本使用 Annotations2Sub 生成"
 msgstr "Script generated by Annotations2Sub"
 
-#: utils.py:27
+#: color.py:16
+msgid "\"red\" 必须在 0-255 之间"
+msgstr "\"red\" must be between 0-255"
+
+#: color.py:18
+msgid "\"green\" 必须在 0-255 之间"
+msgstr "\"green\" must be between 0-255"
+
+#: color.py:20
+msgid "\"blue\" 必须在 0-255 之间"
+msgstr "\"blue\" must be between 0-255"
+
+#: color.py:29
+msgid "\"alpha\" 必须在 0-255 之间"
+msgstr "\"alpha\" must be between 0-255"
+
+#: convert.py:552
+msgid "不支持 \"{}\" 样式 ({})"
+msgstr "The \"{}\" style is not supported ({})."
+
+#: utils.py:33
 msgid "错误: "
 msgstr "ERROR: "
 
-#: utils.py:31
+#: utils.py:37
 msgid "警告: "
 msgstr "Warning: "
-
-#: utils.py:41
-msgid "\"url\" 必须是 http(s)"
-msgstr "\"url\" must be http(s)"
 
 #: windows.py:19
 msgid "这是一个命令行工具，请在命令提示符下运行。"
@@ -869,6 +793,63 @@ msgstr "This is a command line tool, please run it from a command prompt."
 #: windows.py:20
 msgid "提示"
 msgstr "Tips"
+
+#~ msgid "文件 或 videoId"
+#~ msgstr "File or videoId"
+
+#~ msgid "尝试从 Internet Archive 下载注释文件"
+#~ msgstr "Try to download the Annotation file from the Internet Archive"
+
+#~ msgid "仅下载注释"
+#~ msgstr "Download annotation only"
+
+#~ msgid "指定 invidious 实例(https://redirect.invidious.io/)"
+#~ msgstr "Specify invidious instances (https://redirect.invidious.io/)"
+
+#~ msgid "预览视频, 需要 mpv(https://mpv.io/)"
+#~ msgstr "Preview video, requires mpv(https://mpv.io/)"
+
+#~ msgid "生成视频, 需要 FFmpeg(https://ffmpeg.org/)"
+#~ msgstr "Generate video, requires FFmpeg(https://ffmpeg.org/)"
+
+#~ msgid "不保留中间文件"
+#~ msgstr "Do not keep intermediate files"
+
+#~ msgid "您好像无法访问 Google 🤔"
+#~ msgstr "You can't seem to access Google 🤔"
+
+#~ msgid "\"{}\" 不是一个有效的视频 ID"
+#~ msgstr "\"{}\" is not a valid video ID"
+
+#~ msgid "文件已存在, 跳过下载 ({})"
+#~ msgstr "File already exists, skip download ({})"
+
+#~ msgid "下载 \"{}\""
+#~ msgstr "Download \"{}\""
+
+#~ msgid "\"{}\" 可能没有 Annotations"
+#~ msgstr "\"{}\" May not have Annotations"
+
+#~ msgid "删除 \"{}\""
+#~ msgstr "Delete \"{}\""
+
+#~ msgid "无法获取视频"
+#~ msgstr "Unable to get video"
+
+#~ msgid "无效的 videoId"
+#~ msgstr "Invalid videoId"
+
+#~ msgid "获取 \"{}\""
+#~ msgstr "Get \"{}\""
+
+#~ msgid "没有 Video"
+#~ msgstr "No Video"
+
+#~ msgid "没有 Audio"
+#~ msgstr "No Audio"
+
+#~ msgid "\"url\" 必须是 http(s)"
+#~ msgstr "\"url\" must be http(s)"
 
 #~ msgid "\"alpha\" 不应为 None"
 #~ msgstr "\"alpha\" should not be None"

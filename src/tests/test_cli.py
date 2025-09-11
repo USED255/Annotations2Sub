@@ -19,7 +19,6 @@ empty_file = os.path.join(testCasePath, "empty.test")
 """
 0: 成功
 2: 参数错误
-11: 无效视频ID
 13: 不是文件
 14: 不是 Annotations 文件
 15: 无效的 XML 文档
@@ -35,7 +34,6 @@ test_set = [
     (f"{baseline1_file} -n", 0),
     (f"{empty_annotations}", 0),
     # 预期失败的命令
-    (f"-ND {baseline1_file}", 11),
     # 输出目录不能是一个文件
     (f"{baseline1_file} -O {file1}", 2),
     # 多个文件不能输出到一个文件
@@ -45,7 +43,6 @@ test_set = [
     (f"{empty_xml}", 14),
     (f"{file1}", 15),
     ("0", 13),
-    ("-d 0", 11),
     ("0 0", 18),
     (f"{empty_file}", 20),
 ]

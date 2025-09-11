@@ -2,7 +2,7 @@
 
 """下载和转换 Youtube 注释"""
 
-__version__ = "2.22.0"
+__version__ = "2.23.0"
 
 """
                                              xml.
@@ -86,24 +86,28 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 
 ---
 
-失业闲的没事干我把 https://archive.omar.yt/youtubeannotations.tar.zstd 下载了下来并处理成了一个SQLite数据库
+失业闲的没事干我把 https://archive.omar.yt/youtubeannotations.tar.zstd 下载了下来并处理成了一个 SQLite 数据库,
 把程序过了一遍, 现在更具有健壮性.
+
+---
+
+随着时间流逝, 本项目所依赖的外部服务已逐渐变得不可用, 现已移除相关功能. 感谢 Invidious 和 Internet Archive 所提供的帮助.
 
 ---
 - 注释(Annotations): YouTube 的功能
 - SSA(Sub Station Alpha): 字幕格式
 - ASS(Advanced SubStation Alpha): 字幕格式
-- invidious(https://invidious.io/): 开源 YouTube 前端
+- Invidious(https://invidious.io/): 开源 YouTube 前端
 - Internet Archive(https://archive.org/): 互联网档案馆
 ---
-本文件第47行: 随着 Youtube 的改版 invidious 已经逐渐变得不可用
+本文件第47行: 随着 Youtube 的改版 Invidious 已经逐渐变得不可用
 本文件49至57行: 问题已解决, 但不是 CSS 的问题, 是字体的问题😅
 ---
 """
 
 from Annotations2Sub.Annotations import Annotation, NotAnnotationsDocumentError, Parse
 from Annotations2Sub.cli import Run
-from Annotations2Sub.cli_utils import AnnotationsXmlStringToSub, GetAnnotationsUrl
+from Annotations2Sub.cli_utils import AnnotationsXmlStringToSub
 from Annotations2Sub.convert import Convert
 from Annotations2Sub.subtitles import Event, Style, Subtitles
 
@@ -116,6 +120,5 @@ __all__ = [
     "Style",
     "Event",
     "NotAnnotationsDocumentError",
-    "GetAnnotationsUrl",
     "AnnotationsXmlStringToSub",
 ]
