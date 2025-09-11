@@ -1,4 +1,7 @@
+from typing import Dict
+
 from Annotations2Sub.color import Alpha, Color, Rgba
+from Annotations2Sub.subtitles.CONSTANT import StylesHEAD
 from Annotations2Sub.subtitles.utils import Literal
 
 
@@ -51,3 +54,20 @@ class Style:
             )
 
         return f"Style: {{}},{self.Fontname},{self.Fontsize},{DumpABGR(self.PrimaryColour)},{DumpABGR(self.SecondaryColour)},{DumpABGR(self.OutlineColour)},{DumpABGR(self.BackColour)},{self.Bold},{self.Italic},{self.Underline},{self.StrikeOut},{self.ScaleX},{self.ScaleY},{self.Spacing},{self.Angle},{self.BorderStyle},{self.Outline},{self.Shadow},{self.Alignment},{self.MarginL},{self.MarginR},{self.MarginV},{self.Encoding}\n"
+
+
+class Styles:
+    def __init__(self):
+        self.styles: Dict[str, Style] = {}
+
+    def __str__(self) -> str:
+        # def f(item: tuple[str, Style]) -> str:
+        def f(item) -> str:
+            Name = item[0]
+            StyleString = str(item[1])
+
+            return StyleString.format(Name)
+
+        string = "\n".join(map(f, self.styles.items())) + "\n"
+
+        return StylesHEAD + string
