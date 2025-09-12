@@ -4,7 +4,7 @@
 
 from Annotations2Sub.subtitles.event import Events
 from Annotations2Sub.subtitles.info import Info
-from Annotations2Sub.subtitles.style import Style, Styles
+from Annotations2Sub.subtitles.style import Styles
 
 
 class Subtitles:

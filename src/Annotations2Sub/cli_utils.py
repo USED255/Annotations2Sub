@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import json
 import os
-import re
 import xml.etree.ElementTree
 
 from Annotations2Sub.Annotations import Parse
