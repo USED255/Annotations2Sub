@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import List
 
 from Annotations2Sub.subtitles.CONSTANT import EventsHEAD
 from Annotations2Sub.subtitles.utils import Literal
@@ -34,10 +33,8 @@ class Event:
         return f"{self.Type}: {self.Layer},{DumpTime(self.Start)},{DumpTime(self.End)},{self.Style},{self.Name},{self.MarginL},{self.MarginR},{self.MarginV},{self.Effect},{self.Text}\n"
 
 
-class Events:
-    def __init__(self):
-        self.events: List[Event] = []
-
+# class Events(list[Event]):
+class Events(list):
     def __str__(self) -> str:
-        string = "".join(map(str, self.events)) + "\n"
+        string = "".join(map(str, self)) + "\n"
         return EventsHEAD + string
