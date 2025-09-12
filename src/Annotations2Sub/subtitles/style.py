@@ -54,7 +54,8 @@ class Style:
         return f"Style: {{}},{self.Fontname},{self.Fontsize},{DumpABGR(self.PrimaryColour)},{DumpABGR(self.SecondaryColour)},{DumpABGR(self.OutlineColour)},{DumpABGR(self.BackColour)},{self.Bold},{self.Italic},{self.Underline},{self.StrikeOut},{self.ScaleX},{self.ScaleY},{self.Spacing},{self.Angle},{self.BorderStyle},{self.Outline},{self.Shadow},{self.Alignment},{self.MarginL},{self.MarginR},{self.MarginV},{self.Encoding}\n"
 
 
-class Styles(dict[str, Style]):
+# class Styles(dict[str, Style]):
+class Styles(dict):
     def __init__(self):
         self["Default"] = Style()
 
