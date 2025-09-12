@@ -1,8 +1,7 @@
 from Annotations2Sub.subtitles.CONSTANT import InfoHEAD
 
 
-# class Info(dict[str, str]):
-class Info(dict):
+class Info(dict[str,str]):
     """SSA 的信息(Info) 结构"""
 
     def __init__(self):

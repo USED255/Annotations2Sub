@@ -15,7 +15,7 @@ class DrawCommand:
         return f"{self.command} {self.x} {self.y} "
 
 
-class Draw(list):
+class Draw(list[DrawCommand]):
     def __str__(self) -> str:
         # "所有绘图都应由 m <x> <y> 命令开头"
         # "所有没闭合的图形会被自动地在起点和终点之间添加直线来闭合。"
