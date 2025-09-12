@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install pytest pytest-cov certifi
+          python -m pip install pytest pytest-cov
 
       - name: Test with pytest
         run: |
@@ -80,7 +80,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install pytest certifi
+          python -m pip install pytest
 
       - name: Test with pytest
         run: |
