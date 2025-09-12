@@ -6,8 +6,8 @@ import copy
 import textwrap
 from typing import Dict, List, Optional
 
-from Annotations2Sub._Sub import Draw, DrawCommand, Event, Tag
 from Annotations2Sub.Annotations import Annotation
+from Annotations2Sub.subtitles import Draw, DrawCommand, Event, tag
 from Annotations2Sub.utils import Stderr, _
 
 
@@ -49,14 +49,11 @@ def Convert(
                     textwrap.wrap(text, width=length, drop_whitespace=False)
                 )
 
-            _text = ""
             lines = text.split("\n")
+            wrapped_lines = [wrap(line) for line in lines]
+            wrapped_text = "\n".join(wrapped_lines)
 
-            for line in lines[:-1]:
-                _text += wrap(line) + "\n"
-            _text += wrap(lines[-1])
-
-            return _text
+            return wrapped_text
 
         def Text(event: Event) -> Event:
             # 文本与框保持一定距离
@@ -65,19 +62,19 @@ def Convert(
             _y = y + padding_y
             #
 
-            tags = Tag()
+            tags = tag.Tags()
             tags.extend(
                 [
-                    Tag.Align(7),
-                    Tag.Pos(_x, _y),
-                    Tag.Fontsize(textSize),
-                    Tag.PrimaryColour(each.fgColor),
-                    Tag.Bord(0),
-                    Tag.Shadow(0),
+                    tag.Align(7),
+                    tag.Pos(_x, _y),
+                    tag.Fontsize(textSize),
+                    tag.PrimaryColour(each.fgColor),
+                    tag.Bord(0),
+                    tag.Shadow(0),
                 ]
             )
             if each.fontWeight == "bold":
-                tags.append(Tag.Bold(1))
+                tags.append(tag.Bold(1))
 
             event.Text = str(tags) + text
             return event
@@ -90,34 +87,34 @@ def Convert(
             _y = y + (height / 2)
             #
 
-            shadow = Tag.Shadow(0)
-            tags = Tag()
+            shadow = tag.Shadow(0)
+            tags = tag.Tags()
             tags.extend(
                 [
-                    Tag.Align(5),
-                    Tag.Pos(_x, _y),
-                    Tag.Fontsize(textSize),
-                    Tag.PrimaryColour(each.fgColor),
-                    Tag.Bord(0),
+                    tag.Align(5),
+                    tag.Pos(_x, _y),
+                    tag.Fontsize(textSize),
+                    tag.PrimaryColour(each.fgColor),
+                    tag.Bord(0),
                     shadow,
                 ]
             )
             if each.fontWeight == "bold":
-                tags.append(Tag.Bold(1))
+                tags.append(tag.Bold(1))
 
             event.Text = str(tags) + text
             return event
 
         def Box(event: Event) -> Event:
-            tags = Tag()
+            tags = tag.Tags()
             tags.extend(
                 [
-                    Tag.Align(7),
-                    Tag.Pos(x, y),
-                    Tag.PrimaryColour(each.bgColor),
-                    Tag.PrimaryAlpha(each.bgOpacity),
-                    Tag.Bord(0),
-                    Tag.Shadow(0),
+                    tag.Align(7),
+                    tag.Pos(x, y),
+                    tag.PrimaryColour(each.bgColor),
+                    tag.PrimaryAlpha(each.bgOpacity),
+                    tag.Bord(0),
+                    tag.Shadow(0),
                 ]
             )
 
@@ -156,17 +153,17 @@ def Convert(
             x2 = x + width - _padding_x
             y2 = y + height - _padding_y
 
-            tags = Tag()
+            tags = tag.Tags()
             tags.extend(
                 [
-                    Tag.Align(7),
-                    Tag.Pos(x, y),
-                    Tag.PrimaryColour(each.bgColor),
-                    Tag.PrimaryAlpha(each.bgOpacity),
-                    Tag.Bord(0),
-                    Tag.Shadow(0),
+                    tag.Align(7),
+                    tag.Pos(x, y),
+                    tag.PrimaryColour(each.bgColor),
+                    tag.PrimaryAlpha(each.bgOpacity),
+                    tag.Bord(0),
+                    tag.Shadow(0),
                     # 将一个框挖空模拟其效果
-                    Tag.iClip(x1, y1, x2, y2),
+                    tag.iClip(x1, y1, x2, y2),
                 ]
             )
 
@@ -198,17 +195,17 @@ def Convert(
             x_right = x_left + width
             y_bottom = y_top + height
 
-            def draw(x1, y1, x2, y2):
+            def draw(x1, y1, x2, y2) -> Event:
 
-                tags = Tag()
+                tags = tag.Tags()
                 tags.extend(
                     [
-                        Tag.Align(7),
-                        Tag.Pos(sx, sy),
-                        Tag.PrimaryColour(each.bgColor),
-                        Tag.PrimaryAlpha(each.bgOpacity),
-                        Tag.Bord(0),
-                        Tag.Shadow(0),
+                        tag.Align(7),
+                        tag.Pos(sx, sy),
+                        tag.PrimaryColour(each.bgColor),
+                        tag.PrimaryAlpha(each.bgOpacity),
+                        tag.Bord(0),
+                        tag.Shadow(0),
                     ]
                 )
 
@@ -225,7 +222,7 @@ def Convert(
                 event.Text = str(tags) + box_tag
                 return event
 
-            def up_down():
+            def up_down() -> Optional[Event]:
                 x_start_multiplier = 0.174
                 x_end_multiplier = 0.149
 
@@ -258,7 +255,9 @@ def Convert(
                 if None not in (x1, y1, x2, y2):
                     return draw(x1, y1, x2, y2)
 
-            def left_right():
+                return None
+
+            def left_right() -> Optional[Event]:
                 y_start_multiplier = 0.12
                 y_end_multiplier = 0.3
 
@@ -283,6 +282,8 @@ def Convert(
                 if None not in (x1, y1, x2, y2):
                     return draw(x1, y1, x2, y2)
 
+                return None
+
             _event = up_down()
             if _event != None:
                 return _event
@@ -304,12 +305,6 @@ def Convert(
             _event.Name = event.Name + "popup_box;"
 
             return Box(_event)
-
-        def title() -> Event:
-            _event = copy.copy(event)
-            _event.Name += "title;"
-
-            return CenterText(_event)
 
         def highlightText_text() -> Event:
             _event = copy.copy(event)
@@ -385,6 +380,12 @@ def Convert(
         def popup() -> List[Event]:
             return [popup_box(), popup_text()]
 
+        def title() -> List[Event]:
+            _event = copy.copy(event)
+            _event.Name += "title;"
+
+            return [CenterText(_event)]
+
         def highlightText() -> List[Event]:
             return [highlightText_box(), highlightText_text()]
 
@@ -410,8 +411,8 @@ def Convert(
             events: List[Event] = []
             events.append(label_hollow_box())
 
-            line_count = text.count(r"\N") + 1
-            _height = textSize * line_count
+            lines_count = text.count(r"\N") + 1
+            _height = textSize * lines_count
 
             # 需要修改之后的值以便模拟其效果,
             # Text 和 Box 也被其他函数使用因此不能用新变量,
@@ -449,14 +450,16 @@ def Convert(
             textSize = 0.5
 
         def length_overflows() -> bool:
-            line_count = _text.count("\n") + 1
-            return textSize * 1.12 * line_count > height - padding_y * 2
+            lines_count = _text.count("\n") + 1
+            return textSize * 1.12 * lines_count > height - padding_y * 2
 
         def width_overflows() -> bool:
-            l = []
-            for line in _text.split("\n"):
-                l.append(len(line) * (textSize / 4))
-            return max(l) > width
+            def f(line: str) -> float:
+                return len(line) * (textSize / 4)
+
+            lines = _text.split("\n")
+
+            return max(map(f, lines)) > width
 
         if length_overflows() or width_overflows():
             min_font_size = 0.5
@@ -534,7 +537,7 @@ def Convert(
         if each.style == "popup":
             return popup()
         elif each.style == "title":
-            return [title()]
+            return title()
         elif each.style == "highlightText":
             return highlightText()
         elif each.style == "speech":

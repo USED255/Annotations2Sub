@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from Annotations2Sub import Sub
-from Annotations2Sub._Sub import Draw, DrawCommand, Event, Style
+from Annotations2Sub import Subtitles
+from Annotations2Sub.subtitles import Draw, DrawCommand, Event, Style
 
 
 def test_Style():
@@ -24,12 +24,12 @@ def test_str_Event():
 
 
 def test_Sub():
-    assert Sub()
+    assert Subtitles()
 
 
 def test_str_Sub():
     assert (
-        str(Sub())
+        str(Subtitles())
         == """[Script Info]
 ScriptType: v4.00+
 Title: Default File
@@ -46,11 +46,11 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
 
 def test_repr_Sub():
-    assert repr(Sub()) == str(Sub())
+    assert repr(Subtitles()) == str(Subtitles())
 
 
 def test_eq_Sub():
-    assert Sub() == Sub()
+    assert Subtitles() == Subtitles()
 
 
 def test_DrawCommand():

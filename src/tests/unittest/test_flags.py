@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from Annotations2Sub._flags import Flags
+from Annotations2Sub.flags import Flags
 
 
 def test_flags():

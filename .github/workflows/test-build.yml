@@ -7,12 +7,10 @@ on:
       - "master"
     paths:
       - "pyproject.toml"
-      - "setup.cfg"
       - ".github/workflows/test-build.yml"
   pull_request:
     paths:
       - "pyproject.toml"
-      - "setup.cfg"
       - ".github/workflows/test-build.yml"
 
 jobs:
@@ -29,7 +27,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.x"
 

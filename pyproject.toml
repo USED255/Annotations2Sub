@@ -1,3 +1,63 @@
 [build-system]
-requires = ["setuptools>=42"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "Annotations2Sub"
+version = "2.23.0"
+description = "Convert Youtube Annotations to subtitles."
+readme = "README.md"
+authors = [{ name = "我如天翼", email = "wrtyis@outlook.com" }]
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+requires-python = ">=3.7"
+keywords = ["Youtube", "Annotations", "Subtitles", "Converter"]
+classifiers = [
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Operating System :: OS Independent",
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Natural Language :: Chinese (Simplified)",
+    "Natural Language :: English",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/USED255/Annotations2Sub"
+"Bug Tracker" = "https://github.com/USED255/Annotations2Sub/issues"
+
+[project.scripts]
+Annotations2Sub = "Annotations2Sub._main:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+"Annotations2Sub" = [
+    "locales/zh/LC_MESSAGES/Annotations2Sub.mo",
+    "locales/en/LC_MESSAGES/Annotations2Sub.mo",
+]
+
+[tool.mypy]
+check_untyped_defs = true
+show_traceback = true
+
+[tool.isort]
+profile = "black"
+
+[dependency-groups]
+dev = ["pytest", "pytest-cov", "mypy", "isort", "black", "build", "ipython"]
+
