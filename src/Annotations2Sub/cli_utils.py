@@ -14,13 +14,13 @@ class AnnotationsStringIsEmptyError(ValueError):
     pass
 
 
-def AnnotationsXmlStringToSub(
+def AnnotationsXmlStringToSubtitlesString(
     annotations_string: str,
     transform_resolution_x: int = 100,
     transform_resolution_y: int = 100,
     font=_("Microsoft YaHei"),
     title=_("无标题"),
-) -> Subtitles:
+) -> str:
 
     if annotations_string == "":
         raise AnnotationsStringIsEmptyError(_("annotations_string 不应为空字符串"))
@@ -50,4 +50,5 @@ def AnnotationsXmlStringToSub(
     subtitles.info["WrapStyle"] = "2"
     subtitles.styles["Default"].Fontname = font
     subtitles.events.extend(events)
-    return subtitles
+
+    return str(subtitles)

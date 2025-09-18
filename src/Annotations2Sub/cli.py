@@ -12,7 +12,7 @@ from Annotations2Sub import __version__ as version
 from Annotations2Sub.Annotations import NotAnnotationsDocumentError
 from Annotations2Sub.cli_utils import (
     AnnotationsStringIsEmptyError,
-    AnnotationsXmlStringToSub,
+    AnnotationsXmlStringToSubtitlesString,
 )
 from Annotations2Sub.flags import Flags
 from Annotations2Sub.i18n import _
@@ -139,15 +139,14 @@ def Run(args=None) -> int:
             annotations_string = f.read()
 
         try:
-            subtitle_string = str(
-                AnnotationsXmlStringToSub(
-                    annotations_string,
-                    transform_resolution_x,
-                    transform_resolution_y,
-                    font,
-                    os.path.basename(annotations_file),
-                )
+            subtitle_string = AnnotationsXmlStringToSubtitlesString(
+                annotations_string,
+                transform_resolution_x,
+                transform_resolution_y,
+                font,
+                os.path.basename(annotations_file),
             )
+
         except NotAnnotationsDocumentError:
             Err(_('"{}" 不是 Annotations 文件').format(annotations_file))
             exit_code += 14
