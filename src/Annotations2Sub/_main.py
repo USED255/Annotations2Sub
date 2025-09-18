@@ -10,7 +10,6 @@ from typing import NoReturn
 from Annotations2Sub.cli import Run
 from Annotations2Sub.i18n import _
 from Annotations2Sub.utils import Err, Stderr
-from Annotations2Sub.windows import tips_double_clicked_on_windows
 
 
 def main() -> NoReturn:
@@ -23,5 +22,4 @@ def main() -> NoReturn:
         Err(_("出现未知错误"))
         code = 19
 
-    tips_double_clicked_on_windows()
     sys.exit(code)
