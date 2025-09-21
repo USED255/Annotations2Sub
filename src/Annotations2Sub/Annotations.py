@@ -237,17 +237,17 @@ def Parse(tree: Element) -> List[Annotation]:
 
         text = ""
         text_element = each.find("TEXT")
-        if text_element is not None:
+        if text_element != None:
             if isinstance(text_element.text, str):
                 text = text_element.text
 
         _Segment = each.find("segment")
-        if _Segment is None:
+        if _Segment == None:
             Info(_('"{}" 没有 segment, 跳过').format(_id))
             return None
 
         MovingRegion = _Segment.find("movingRegion")
-        if MovingRegion is None:
+        if MovingRegion == None:
             Info(_('"{}" 没有 movingRegion, 跳过').format(_id))
             return None
 
@@ -301,7 +301,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
         Appearance = each.find("appearance")
 
-        if Appearance is not None:
+        if Appearance != None:
             bgAlpha = Appearance.get("bgAlpha", "0.8")
             bgColor = Appearance.get("bgColor", "16777215")
             fgColor = Appearance.get("fgColor", "0")
@@ -316,9 +316,9 @@ def Parse(tree: Element) -> List[Annotation]:
 
         ref = ""
         Trigger = each.find("trigger")
-        if Trigger is not None:
+        if Trigger != None:
             Condition = Trigger.find("condition")
-            if Condition is not None:
+            if Condition != None:
                 ref = Condition.get("ref", "")
 
         annotation.ref = ref
@@ -326,13 +326,13 @@ def Parse(tree: Element) -> List[Annotation]:
         return annotation
 
     annotations_tree = tree.find("annotations")
-    if annotations_tree is None:
+    if annotations_tree == None:
         raise NotAnnotationsDocumentError(_("不是 Annotations 文档"))
 
     annotations: List[Annotation] = []
     for each in annotations_tree.findall("annotation"):
         annotation = ParseAnnotation(each)
-        if annotation is not None:
+        if annotation != None:
             annotations.append(annotation)
 
     return annotations
