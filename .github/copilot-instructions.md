@@ -1,71 +1,58 @@
-### Quick context
+### 快速背景
 
-This repository converts old YouTube annotation XML files into subtitle formats (ASS/SSA/SRT). The package entry point is the console script `Annotations2Sub` (defined in `pyproject.toml` -> `project.scripts`). Primary code lives under `src/Annotations2Sub/` and tests under `src/tests/`.
+本仓库用于将旧版 YouTube 注释 XML 文件转换为字幕格式（ASS/SSA）。包的入口点是控制台脚本 `Annotations2Sub`（在 `pyproject.toml` -> `project.scripts` 中定义）。主要代码位于 `src/Annotations2Sub/`，测试代码位于 `src/tests/`。
 
-### Big picture
+### 总览
 
-- Purpose: read YouTube annotation XML and emit subtitle files (ASS/SRT). See `README.md` for user-facing usage: `Annotations2Sub <file.xml>`.
-- Core modules:
-  - `src/Annotations2Sub/convert.py` — main conversion logic and transformations.
-  - `src/Annotations2Sub/Annotations.py` — XML parsing and annotation data structures.
-  - `src/Annotations2Sub/subtitles/` — subtitle formats, styles, events and drawing helpers.
-  - `src/Annotations2Sub/_main.py` / `src/Annotations2Sub/__main__.py` — CLI wiring and entry point.
+- 目的：读取 YouTube 注释 XML 并生成字幕文件（ASS/SSA）。用户用法见 `README.md`：`Annotations2Sub <file.xml>`。
+- 核心模块：
+  - `src/Annotations2Sub/convert.py` —— 主要的转换逻辑和数据变换。
+  - `src/Annotations2Sub/Annotations.py` —— XML 解析和注释数据结构。
+  - `src/Annotations2Sub/subtitles/` —— 字幕格式、样式、事件和绘图辅助。
+  - `src/Annotations2Sub/_main.py` / `src/Annotations2Sub/__main__.py` —— CLI 入口和主程序。
 
-### Why things are organized this way
+### 结构设计原因
 
-- Separation of concerns: parsing (`Annotations.py`) vs transformation (`convert.py`) vs output formatting (`subtitles/*`). Tests exercise conversion against baseline `.test` files in `src/tests/testCase/Baseline/`.
+- 关注点分离：解析（`Annotations.py`）、转换（`convert.py`）、输出格式化（`subtitles/*`）。测试通过 `src/tests/testCase/Baseline/` 下的基线 `.test` 文件进行。
 
-### How to run, test and lint (developer workflows)
+### 如何运行、测试和代码检查（开发者工作流）
 
-- Install locally for quick manual runs:
+- 本地安装，便于手动运行：
 
   python -m pip install -e .
 
-- Run the CLI on a sample file:
+- 用示例文件运行 CLI：
 
   Annotations2Sub src/tests/testCase/Baseline/annotations.xml.test
 
-- Run unit tests (pytest is used in CI):
+- 运行单元测试（CI 使用 pytest）：
 
   python -m pip install -e .[dev]
   pytest
 
-- CI notes: GitHub Actions workflows live in `.github/workflows/` and use `pytest --cov` and mypy/black checks. Keep test fixtures in `src/tests/testCase/` and binary locale files under `src/Annotations2Sub/locales/`.
+- CI 说明：GitHub Actions 工作流位于 `.github/workflows/`，使用 `pytest --cov` 和 mypy/black 检查。测试用例放在 `src/tests/testCase/`，二进制本地化文件在 `src/Annotations2Sub/locales/`。
 
-### Project-specific patterns and conventions
+### 项目特有的模式和约定
 
-- Tests use `.test` files under `src/tests/testCase/` as input fixtures and also contain expected output files with suffixes like `.ass.test` and `.transform.ass.test` — prefer adding new fixtures there when adding conversion tests.
-- The package exposes typed stubs via `py.typed` (see `src/Annotations2Sub/py.typed`) — prefer adding type hints and keeping mypy happy (CI runs mypy).
-- Localization: gettext `.po`/`.mo` files are in `src/Annotations2Sub/locales/`. When changing user-facing strings update `.po` files and regenerate `.mo`.
-- Avoid changing public CLI signature in `_main.py` without updating `pyproject.toml` `project.scripts` mapping.
+- 测试用例使用 `src/tests/testCase/` 下的 `.test` 文件作为输入，同时包含以 `.ass.test`、`.transform.ass.test` 等后缀的期望输出文件——添加转换测试时优先在此处添加新用例。
+- 包通过 `py.typed`（见 `src/Annotations2Sub/py.typed`）暴露类型存根——建议添加类型注解并保持 mypy 检查通过（CI 会运行 mypy）。
+- 本地化：gettext `.po`/`.mo` 文件在 `src/Annotations2Sub/locales/`。如有用户可见字符串变更，请更新 `.po` 文件并重新生成 `.mo`。
 
-### Common code locations to inspect when making changes
+### 常见代码位置（便于修改时查阅）
 
-- CLI & entry: `src/Annotations2Sub/_main.py`, `src/Annotations2Sub/__main__.py`
-- Parsing: `src/Annotations2Sub/Annotations.py`
-- Conversion workflows: `src/Annotations2Sub/convert.py`
-- Subtitle format implementation: `src/Annotations2Sub/subtitles/*.py`
-- Utilities: `src/Annotations2Sub/utils.py`, `cli_utils.py`
-- Tests & fixtures: `src/tests/`, especially `src/tests/testCase/Baseline/`
+- CLI 入口：`src/Annotations2Sub/_main.py`、`src/Annotations2Sub/__main__.py`
+- 解析：`src/Annotations2Sub/Annotations.py`
+- 转换流程：`src/Annotations2Sub/convert.py`
+- 字幕格式实现：`src/Annotations2Sub/subtitles/*.py`
+- 工具类：`src/Annotations2Sub/utils.py`、`cli_utils.py`
+- 测试与用例：`src/tests/`，尤其是 `src/tests/testCase/Baseline/`
 
-### Examples for common edits
+### 集成点与外部依赖
 
-- To add a new subtitle format, implement formatter under `subtitles/` and add a test fixture in `src/tests/testCase/` comparing expected `.ass.test` or `.srt.test`.
-- To change parsing of a new annotation type, update `Annotations.py` and add a unit test in `src/tests/unittest/`.
+- 无外部依赖
+- 构建/打包使用 setuptools（见 `pyproject.toml`）。
+- CI 会上传覆盖率到 Codecov；CI 测试会安装 pytest 并在 `test.yml` 运行覆盖率。
 
-### Integration points & external deps
+### 问题咨询
 
-- No external network calls; core behavior is file-based conversion.
-- Build/packaging uses setuptools (see `pyproject.toml`). Release CI workflow exists at `.github/workflows/release.yml`.
-- CI uploads coverage to Codecov; tests in CI install pytest and run coverage in `test.yml`.
-
-### Safety for automated edits
-
-- Small, self-contained changes are safe: updating docstrings, small refactors in `utils.py`, adding tests/fixtures.
-- Avoid broad imports reorganization or changing public CLI without updating `pyproject.toml` and tests.
-
-### Where to ask questions
-
-- Open issues on GitHub at https://github.com/USED255/Annotations2Sub/issues. For design/context questions reference specific test fixtures in `src/tests/testCase/Baseline/`.
-
-Please review and tell me if you want additional examples or to preserve/merge content from an existing copilot instructions file.
+- 在 GitHub 提 issue：https://github.com/USED255/Annotations2Sub/issues。
