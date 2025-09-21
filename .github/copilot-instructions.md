@@ -15,11 +15,13 @@
 
 - 关注点分离：解析（`Annotations.py`）、转换（`convert.py`）、输出格式化（`subtitles/*`）。测试通过 `src/tests/testCase/Baseline/` 下的基线 `.test` 文件进行。
 
+
 ### 如何运行、测试和代码检查（开发者工作流）
 
-- 本地安装，便于手动运行：
+- 推荐使用 [uv](https://github.com/astral-sh/uv) 进行依赖管理和运行：
 
-  python -m pip install -e .
+  uv venv
+  uv sync
 
 - 用示例文件运行 CLI：
 
@@ -27,10 +29,14 @@
 
 - 运行单元测试（CI 使用 pytest）：
 
-  python -m pip install -e .[dev]
   pytest
 
-- CI 说明：GitHub Actions 工作流位于 `.github/workflows/`，使用 `pytest --cov` 和 mypy/black 检查。测试用例放在 `src/tests/testCase/`，二进制本地化文件在 `src/Annotations2Sub/locales/`。
+- 代码检查与格式化：
+
+  mypy .
+  black
+
+- CI 说明：GitHub Actions 工作流位于 `.github/workflows/`，使用 `pytest --cov`, mypy 和 black 检查。测试用例放在 `src/tests/`。
 
 ### 项目特有的模式和约定
 
