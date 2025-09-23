@@ -21,3 +21,4 @@ src/tests/garbage/*
 *.prof
 mypy.ini
 uv.lock
+.python-version

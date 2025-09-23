@@ -21,9 +21,9 @@
 
 - 推荐使用 [uv](https://github.com/astral-sh/uv) 进行依赖管理和运行.
 
-  `uv venv`
-
   `uv sync`
+
+- 之后激活你的虚拟环境.
 
 - 用示例文件运行 CLI.
 
