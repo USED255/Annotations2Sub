@@ -67,3 +67,9 @@
 ## 问题咨询
 
 - 在 GitHub 提 [issue](https://github.com/USED255/Annotations2Sub/issues).
+
+## 您也可以看看
+
+- https://www.reddit.com/r/DataHoarder/comments/al7exa/youtube_annotation_archive_update_and_preview/
+- https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
+- https://github.com/USED255/youtube_annotations_hack
