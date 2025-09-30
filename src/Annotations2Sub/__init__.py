@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""下载和转换 Youtube 注释"""
+"""转换 Youtube 注释"""
 
 __version__ = "2.23.0"
 

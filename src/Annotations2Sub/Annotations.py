@@ -31,24 +31,26 @@ class Annotation:
     # 这是 annotationlib "简易结构" 的一个模仿
     # 将 Annotation 抽成简单的结构让事情变得简单起来
 
-    # 随着 Google 关闭 Annotations,
-    # Annotations 已成黑盒
-    # 你应当了解
-    # 本项目对 Annotations 的猜测并不准确
-    # 更何况我没有写过 CSS :-)
+    # 如果您需要详细了解 Annotation, 请参阅 https://github.com/USED255/youtube_annotations_hack
 
     def __init__(self):
         self.id: str = ""
-        # 这里仅列出需要的 type 和 style, 且 Literal 仅做提醒作用
+        # 这里仅列出需要的 type 和 style
         self.type: Union[
             Literal[
                 "text",
                 "highlight",
-                # branding
-                # card
-                # drawer
-                # promotion
-                # pause
+                # 字幕滤镜无法实现暂停
+                # "pause",
+                #
+                # 以下是 Youtube Card 和 End screens 的类型, 
+                # Youtube Card 可以看做现代化的 Annotations,
+                # 与 Annotations 共用代码库, 所以会出现在 Annotations 文件中.
+                # 但是 Card 不是 Annotations, 处理其没有意义.
+                # "branding",
+                # "card",
+                # "drawer",
+                # "promotion",
             ],
             str,
         ] = "text"
@@ -60,6 +62,7 @@ class Annotation:
                 "highlightText",
                 "anchored",
                 "label",
+                # "highlight" 类型没有 style
                 "",
                 # branding
                 # channel
