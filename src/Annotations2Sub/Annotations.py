@@ -43,7 +43,7 @@ class Annotation:
                 # 字幕滤镜无法实现暂停
                 # "pause",
                 #
-                # 以下是 Youtube Card 和 End screens 的类型, 
+                # 以下是 Youtube Card 和 End screens 的类型,
                 # Youtube Card 可以看做现代化的 Annotations,
                 # 与 Annotations 共用代码库, 所以会出现在 Annotations 文件中.
                 # 但是 Card 不是 Annotations, 处理其没有意义.
