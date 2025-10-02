@@ -31,24 +31,26 @@ class Annotation:
     # 这是 annotationlib "简易结构" 的一个模仿
     # 将 Annotation 抽成简单的结构让事情变得简单起来
 
-    # 随着 Google 关闭 Annotations,
-    # Annotations 已成黑盒
-    # 你应当了解
-    # 本项目对 Annotations 的猜测并不准确
-    # 更何况我没有写过 CSS :-)
+    # 如果您需要详细了解 Annotation, 请参阅 https://github.com/USED255/youtube_annotations_hack
 
     def __init__(self):
         self.id: str = ""
-        # 这里仅列出需要的 type 和 style, 且 Literal 仅做提醒作用
+        # 这里仅列出需要的 type 和 style
         self.type: Union[
             Literal[
                 "text",
                 "highlight",
-                # branding
-                # card
-                # drawer
-                # promotion
-                # pause
+                # 字幕滤镜无法实现暂停
+                # "pause",
+                #
+                # 以下是 Youtube Card 和 End screens 的类型,
+                # Youtube Card 可以看做现代化的 Annotations,
+                # 与 Annotations 共用代码库, 所以会出现在 Annotations 文件中.
+                # 但是 Card 不是 Annotations, 处理其没有意义.
+                # "branding",
+                # "card",
+                # "drawer",
+                # "promotion",
             ],
             str,
         ] = "text"
@@ -60,6 +62,7 @@ class Annotation:
                 "highlightText",
                 "anchored",
                 "label",
+                # "highlight" 类型没有 style
                 "",
                 # branding
                 # channel
@@ -237,17 +240,17 @@ def Parse(tree: Element) -> List[Annotation]:
 
         text = ""
         text_element = each.find("TEXT")
-        if text_element is not None:
+        if text_element != None:
             if isinstance(text_element.text, str):
                 text = text_element.text
 
         _Segment = each.find("segment")
-        if _Segment is None:
+        if _Segment == None:
             Info(_('"{}" 没有 segment, 跳过').format(_id))
             return None
 
         MovingRegion = _Segment.find("movingRegion")
-        if MovingRegion is None:
+        if MovingRegion == None:
             Info(_('"{}" 没有 movingRegion, 跳过').format(_id))
             return None
 
@@ -301,7 +304,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
         Appearance = each.find("appearance")
 
-        if Appearance is not None:
+        if Appearance != None:
             bgAlpha = Appearance.get("bgAlpha", "0.8")
             bgColor = Appearance.get("bgColor", "16777215")
             fgColor = Appearance.get("fgColor", "0")
@@ -316,9 +319,9 @@ def Parse(tree: Element) -> List[Annotation]:
 
         ref = ""
         Trigger = each.find("trigger")
-        if Trigger is not None:
+        if Trigger != None:
             Condition = Trigger.find("condition")
-            if Condition is not None:
+            if Condition != None:
                 ref = Condition.get("ref", "")
 
         annotation.ref = ref
@@ -326,13 +329,13 @@ def Parse(tree: Element) -> List[Annotation]:
         return annotation
 
     annotations_tree = tree.find("annotations")
-    if annotations_tree is None:
+    if annotations_tree == None:
         raise NotAnnotationsDocumentError(_("不是 Annotations 文档"))
 
     annotations: List[Annotation] = []
     for each in annotations_tree.findall("annotation"):
         annotation = ParseAnnotation(each)
-        if annotation is not None:
+        if annotation != None:
             annotations.append(annotation)
 
     return annotations

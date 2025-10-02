@@ -1,6 +1,6 @@
 # Annotations2Sub
 
-Convert Youtube Annotations to subtitles.
+将 YouTube 注释转换为字幕.
 
 [![License GPLv3](https://img.shields.io/pypi/l/Annotations2Sub?color=1)](https://pypi.org/project/Annotations2Sub/)
 [![Test](https://github.com/USED255/Annotations2Sub/actions/workflows/test.yml/badge.svg)](https://github.com/USED255/Annotations2Sub/actions/workflows/test.yml)
@@ -10,13 +10,13 @@ Convert Youtube Annotations to subtitles.
 
 ---
 
-Installation:
+安装:
 
 ```bash
 pip install Annotations2Sub
 ```
 
-Convert Annotations:
+转换注释:
 
 ```bash
 Annotations2Sub XXXXXXXXXXX.xml
@@ -24,13 +24,13 @@ Annotations2Sub XXXXXXXXXXX.xml
 
 ---
 
-YouTube Annotations was a feature launched by YouTube in 2008 that allowed video creators to add text, links, and interactive elements to their videos in order to enhance the viewing experience. YouTube removed this feature in 2019.
+YouTube 注释是 YouTube 于 2008 年推出的一项功能, 允许视频创作者在视频中添加文本、链接和互动元素, 以增强观看体验. YouTube 于 2019 年移除了此功能.
 
-ASS subtitles are a common external subtitle format, short for Advanced SubStation Alpha. They not only display timing and text like ordinary subtitles, but also allow specifying fonts, colors, and positions, and even adding animations and effects, enabling precise control over how subtitles appear on screen and providing a richer viewing experience.
+ASS 字幕是一种常见的外挂字幕格式, 全称 Advanced SubStation Alpha. 它不仅能像普通字幕一样显示时间和文字, 还能设置字体、颜色、位置, 甚至添加动画和特效, 允许精确控制字幕在屏幕上的显示方式, 提供丰富的观看体验.
 
-This tool can help you convert YouTube annotations into ASS subtitle files, which you can then play or add to your videos. If you do not need this feature, it is recommended to use [AnnotationsRestored](https://github.com/isaackd/AnnotationsRestored).
+此工具可以帮助您将 YouTube 注释转换为 ASS 字幕文件, 您可以播放或添加到视频中. 如果您不需要此功能, 建议使用 [AnnotationsRestored](https://github.com/isaackd/AnnotationsRestored).
 
-Acknowledgments:
+致谢:
 [omarroth](https://archive.org/details/youtubeannotations),
 [Nirbheek Chauhan](https://github.com/nirbheek/youtube-ass),
 [Zhenye Wei](https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范),

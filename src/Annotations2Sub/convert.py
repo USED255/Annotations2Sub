@@ -393,7 +393,7 @@ def Convert(
             events: List[Event] = []
             events.append(speech_box())
             _event = speech_triangle()
-            if _event is not None:
+            if _event != None:
                 events.append(_event)
             events.append(speech_text())
             return events
@@ -402,7 +402,7 @@ def Convert(
             events: List[Event] = []
             events.append(anchored_box())
             _event = anchored_triangle()
-            if _event is not None:
+            if _event != None:
                 events.append(_event)
             events.append(anchored_text())
             return events

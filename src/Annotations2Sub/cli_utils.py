@@ -14,13 +14,21 @@ class AnnotationsStringIsEmptyError(ValueError):
     pass
 
 
-def AnnotationsXmlStringToSub(
+def AnnotationsXmlStringToSubtitlesString(
     annotations_string: str,
     transform_resolution_x: int = 100,
     transform_resolution_y: int = 100,
     font=_("Microsoft YaHei"),
     title=_("无标题"),
-) -> Subtitles:
+) -> str:
+
+    def insert_line(text: str, insert_text: str, line_number: int) -> str:
+        lines = text.splitlines()
+        lines.insert(line_number, insert_text)
+        return "\n".join(lines) + "\n"
+
+    COMMENT = f"""; {_("此脚本使用 Annotations2Sub 生成")}
+; https://github.com/USED255/Annotations2Sub"""
 
     if annotations_string == "":
         raise AnnotationsStringIsEmptyError(_("annotations_string 不应为空字符串"))
@@ -42,12 +50,14 @@ def AnnotationsXmlStringToSub(
     events.sort(key=lambda event: event.Start)
 
     subtitles = Subtitles()
-    subtitles.comment += _("此脚本使用 Annotations2Sub 生成") + "\n"
-    subtitles.comment += "https://github.com/USED255/Annotations2Sub"
     subtitles.info["Title"] = os.path.basename(title)
     subtitles.info["PlayResX"] = str(transform_resolution_x)
     subtitles.info["PlayResY"] = str(transform_resolution_y)
     subtitles.info["WrapStyle"] = "2"
     subtitles.styles["Default"].Fontname = font
     subtitles.events.extend(events)
-    return subtitles
+    subtitles_string = str(subtitles)
+
+    subtitles_string = insert_line(subtitles_string, COMMENT, 1)
+
+    return subtitles_string

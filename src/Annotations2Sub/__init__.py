@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""下载和转换 Youtube 注释"""
+"""转换 Youtube 注释"""
 
 __version__ = "2.23.0"
 
@@ -107,7 +107,7 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 
 from Annotations2Sub.Annotations import Annotation, NotAnnotationsDocumentError, Parse
 from Annotations2Sub.cli import Run
-from Annotations2Sub.cli_utils import AnnotationsXmlStringToSub
+from Annotations2Sub.cli_utils import AnnotationsXmlStringToSubtitlesString
 from Annotations2Sub.convert import Convert
 from Annotations2Sub.subtitles import Event, Style, Subtitles
 
@@ -120,5 +120,5 @@ __all__ = [
     "Style",
     "Event",
     "NotAnnotationsDocumentError",
-    "AnnotationsXmlStringToSub",
+    "AnnotationsXmlStringToSubtitlesString",
 ]

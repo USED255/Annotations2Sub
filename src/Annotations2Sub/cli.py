@@ -12,7 +12,7 @@ from Annotations2Sub import __version__ as version
 from Annotations2Sub.Annotations import NotAnnotationsDocumentError
 from Annotations2Sub.cli_utils import (
     AnnotationsStringIsEmptyError,
-    AnnotationsXmlStringToSub,
+    AnnotationsXmlStringToSubtitlesString,
 )
 from Annotations2Sub.flags import Flags
 from Annotations2Sub.i18n import _
@@ -113,41 +113,40 @@ def Run(args=None) -> int:
         if args.output == "-":
             output_to_stdout = True
 
-    if output_directory is not None:
-        if os.path.isdir(output_directory) is False:
+    if output_directory != None:
+        if os.path.isdir(output_directory) == False:
             Err(_("转换后文件输出目录应该指定一个文件夹"))
             return 2
 
     for Task in queue:
         annotations_file = Task
 
-        if os.path.isfile(annotations_file) is False:
+        if os.path.isfile(annotations_file) == False:
             Err(_('"{}" 不是一个文件').format(annotations_file))
             exit_code += 13
             continue
 
         subtitle_file = annotations_file + ".ass"
-        if output_directory is not None:
+        if output_directory != None:
             file_name = os.path.basename(annotations_file)
             file_name = file_name + ".ass"
             subtitle_file = os.path.join(output_directory, file_name)
 
-        if output is not None:
+        if output != None:
             subtitle_file = output
 
         with open(annotations_file, "r", encoding="utf-8") as f:
             annotations_string = f.read()
 
         try:
-            subtitle_string = str(
-                AnnotationsXmlStringToSub(
-                    annotations_string,
-                    transform_resolution_x,
-                    transform_resolution_y,
-                    font,
-                    os.path.basename(annotations_file),
-                )
+            subtitle_string = AnnotationsXmlStringToSubtitlesString(
+                annotations_string,
+                transform_resolution_x,
+                transform_resolution_y,
+                font,
+                os.path.basename(annotations_file),
             )
+
         except NotAnnotationsDocumentError:
             Err(_('"{}" 不是 Annotations 文件').format(annotations_file))
             exit_code += 14
