@@ -109,7 +109,7 @@ class Annotation:
         self.textSize: float = 3.15
         # fontWeight 是字重
         self.fontWeight: str = ""
-        # effects 是一些 SVG 滤镜
+        # 我没有观察到 effects 的效果, 暂不实现.
         # self.effects: str = ""
         # 一些注释会在触发后才显示
         self.ref: str = ""
