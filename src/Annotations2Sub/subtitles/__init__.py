@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from Annotations2Sub.subtitles import tag
 from Annotations2Sub.subtitles.draw import Draw, DrawCommand
 from Annotations2Sub.subtitles.event import Event

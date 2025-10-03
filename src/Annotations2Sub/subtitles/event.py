@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from datetime import datetime
 
 from Annotations2Sub.subtitles.CONSTANT import EventsHEAD

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from Annotations2Sub.color import Alpha, Color
 from Annotations2Sub.subtitles.utils import Literal, _round
 

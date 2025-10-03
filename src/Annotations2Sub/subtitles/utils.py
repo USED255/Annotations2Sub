@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # 兼容 Python 3.7
 # Python 3.7 的 typing 没有 Literal
 try:

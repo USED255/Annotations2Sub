@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from Annotations2Sub.color import Alpha, Color, Rgba
 from Annotations2Sub.subtitles.CONSTANT import StylesHEAD
 from Annotations2Sub.subtitles.utils import Literal
