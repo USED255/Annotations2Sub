@@ -10,6 +10,8 @@ Convert Youtube Annotations to subtitles.
 
 ---
 
+Before you begin, please make sure you have Python, the YouTube annotations XML file, a video player, the corresponding video file, and any necessary background knowledge ready.
+
 Installation:
 
 ```bash
@@ -22,11 +24,13 @@ Convert Annotations:
 Annotations2Sub XXXXXXXXXXX.xml
 ```
 
+Then use a video player to play the video with the output subtitle file.
+
 ---
 
 YouTube Annotations was a feature launched by YouTube in 2008 that allowed video creators to add text, links, and interactive elements to their videos in order to enhance the viewing experience. YouTube removed this feature in 2019.
 
-ASS subtitles are a common external subtitle format, short for Advanced SubStation Alpha. They not only display timing and text like ordinary subtitles, but also allow specifying fonts, colors, and positions, and even adding animations and effects, enabling precise control over how subtitles appear on screen and providing a richer viewing experience.
+ASS (Advanced SubStation Alpha) is a common external subtitle format. Compared to other subtitle formats, it can set fonts, colors, positions, and even add images and effects to enhance your viewing experience.
 
 This tool can help you convert YouTube annotations into ASS subtitle files, which you can then play or add to your videos. If you do not need this feature, it is recommended to use [AnnotationsRestored](https://github.com/isaackd/AnnotationsRestored).
 

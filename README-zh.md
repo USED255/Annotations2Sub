@@ -10,6 +10,8 @@
 
 ---
 
+在开始之前, 请准备好 Python, YouTube 注释的 XML 文件, 视频播放器, 视频文件, 以及其相关背景知识.
+
 安装:
 
 ```bash
@@ -22,13 +24,17 @@ pip install Annotations2Sub
 Annotations2Sub XXXXXXXXXXX.xml
 ```
 
+之后使用视频播放器播放视频并挂载输出的字幕文件.
+
 ---
 
 YouTube 注释是 YouTube 于 2008 年推出的一项功能, 允许视频创作者在视频中添加文本、链接和互动元素, 以增强观看体验. YouTube 于 2019 年移除了此功能.
 
-ASS 字幕是一种常见的外挂字幕格式, 全称 Advanced SubStation Alpha. 它不仅能像普通字幕一样显示时间和文字, 还能设置字体、颜色、位置, 甚至添加动画和特效, 允许精确控制字幕在屏幕上的显示方式, 提供丰富的观看体验.
+ASS 字幕是一种常见的外挂字幕格式, 全称 Advanced SubStation Alpha. 与其他字幕格式相比, 他能够设置字体、颜色、位置, 甚至添加图像和特效, 增强您的观看体验.
 
 此工具可以帮助您将 YouTube 注释转换为 ASS 字幕文件, 您可以播放或添加到视频中. 如果您不需要此功能, 建议使用 [AnnotationsRestored](https://github.com/isaackd/AnnotationsRestored).
+
+---
 
 致谢:
 [omarroth](https://archive.org/details/youtubeannotations),
