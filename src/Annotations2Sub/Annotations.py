@@ -109,6 +109,8 @@ class Annotation:
         self.textSize: float = 3.15
         # fontWeight 是字重
         self.fontWeight: str = ""
+        # effects 是一些 SVG 滤镜
+        # self.effects: str = ""
         # 一些注释会在触发后才显示
         self.ref: str = ""
         # SSA 不能实现交互,
@@ -147,79 +149,79 @@ def Parse(tree: Element) -> List[Annotation]:
     # Annotation 文件是一个 XML 文件
     # 详细结构可以看看 src/tests/testCase/Baseline/*.xml.test
 
-    def ParseAnnotationAlpha(alphaString: str) -> Alpha:
-        """
-        解析 Annotation 的透明度
-        "0.600000023842" -> Alpha(alpha=102)
-        """
-        alpha = int(float(alphaString) * 255) & 255
-        return Alpha(alpha=alpha)
-
-    def ParseAnnotationColor(colorString: str) -> Color:
-        """
-        解析 Annotation 的颜色值
-        "4210330" -> Color(red=154, green=62, blue=64)
-        """
-        integer = int(colorString)
-        r = integer & 255
-        g = (integer >> 8) & 255
-        b = integer >> 16 & 255
-        return Color(red=r, green=g, blue=b)
-
-    def ParseTime(timeString: str) -> datetime:
-        def parseFloat(string: str) -> float:
-            def cleanInt(string: str) -> str:
-                string = string.replace("s", "")
-                string = string.replace("-", "")
-                string = string.replace("%", "")
-
-                if string == "NaN":
-                    return "0"
-                if string == "aN":
-                    return "0"
-                if "#" in string:
-                    return "0"
-                return string
-
-            if string == "":
-                return 0
-            if string == "4294967294":
-                return 0
-            if string == "&":
-                return 0
-            if string == "NaN":
-                return 0
-
-            part = string.split(".")
-            part = list(map(cleanInt, part))
-            string = part[0]
-            if len(part) > 1:
-                string = string + "." + part[1]
-            return float(string)
-
-        if timeString == "":
-            return datetime.strptime("0", "%S")
-        if timeString == "never":
-            return datetime.strptime("0", "%S")
-        if timeString == "undefined":
-            return datetime.strptime("0", "%S")
-
-        parts = timeString.split(":")
-        seconds = 0.0
-
-        for part in parts:
-            time = parseFloat(part)
-            seconds = 60 * seconds + abs(time)
-
-        return datetime.fromtimestamp(seconds, dt.timezone.utc).replace(tzinfo=None)
-
-    def ParseFloat(string: str) -> float:
-        string = string.replace(",", ".")
-        return float(string)
-
     def ParseAnnotation(each: Element) -> Optional[Annotation]:
         # 致谢: https://github.com/nirbheek/youtube-ass
         #    & https://github.com/isaackd/annotationlib
+
+        def ParseAnnotationAlpha(alphaString: str) -> Alpha:
+            """
+            解析 Annotation 的透明度
+            "0.600000023842" -> Alpha(alpha=102)
+            """
+            alpha = int(float(alphaString) * 255) & 255
+            return Alpha(alpha=alpha)
+
+        def ParseAnnotationColor(colorString: str) -> Color:
+            """
+            解析 Annotation 的颜色值
+            "4210330" -> Color(red=154, green=62, blue=64)
+            """
+            integer = int(colorString)
+            r = integer & 255
+            g = (integer >> 8) & 255
+            b = integer >> 16 & 255
+            return Color(red=r, green=g, blue=b)
+
+        def ParseTime(timeString: str) -> datetime:
+            def parseFloat(string: str) -> float:
+                def cleanInt(string: str) -> str:
+                    string = string.replace("s", "")
+                    string = string.replace("-", "")
+                    string = string.replace("%", "")
+
+                    if string == "NaN":
+                        return "0"
+                    if string == "aN":
+                        return "0"
+                    if "#" in string:
+                        return "0"
+                    return string
+
+                if string == "":
+                    return 0
+                if string == "4294967294":
+                    return 0
+                if string == "&":
+                    return 0
+                if string == "NaN":
+                    return 0
+
+                part = string.split(".")
+                part = list(map(cleanInt, part))
+                string = part[0]
+                if len(part) > 1:
+                    string = string + "." + part[1]
+                return float(string)
+
+            if timeString == "":
+                return datetime.strptime("0", "%S")
+            if timeString == "never":
+                return datetime.strptime("0", "%S")
+            if timeString == "undefined":
+                return datetime.strptime("0", "%S")
+
+            parts = timeString.split(":")
+            seconds = 0.0
+
+            for part in parts:
+                time = parseFloat(part)
+                seconds = 60 * seconds + abs(time)
+
+            return datetime.fromtimestamp(seconds, dt.timezone.utc).replace(tzinfo=None)
+
+        def ParseFloat(string: str) -> float:
+            string = string.replace(",", ".")
+            return float(string)
 
         _id = each.get("id", "")
         if _id == "":
@@ -279,12 +281,12 @@ def Parse(tree: Element) -> List[Annotation]:
         sx = ParseFloat(Segment[0].get("sx", "0"))
         sy = ParseFloat(Segment[0].get("sy", "0"))
 
-        author = each.get("author", "")
-
         if w < 0:
             w = 0
         if math.isnan(w):
             w = 0
+
+        author = each.get("author", "")
 
         annotation = Annotation()
 
@@ -317,14 +319,12 @@ def Parse(tree: Element) -> List[Annotation]:
             annotation.textSize = ParseFloat(textSize)
             annotation.fontWeight = fontWeight
 
-        ref = ""
         Trigger = each.find("trigger")
         if Trigger != None:
             Condition = Trigger.find("condition")
             if Condition != None:
                 ref = Condition.get("ref", "")
-
-        annotation.ref = ref
+                annotation.ref = ref
 
         return annotation
 
