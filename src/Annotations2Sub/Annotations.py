@@ -64,20 +64,20 @@ class Annotation:
                 "label",
                 # "highlight" 类型没有 style
                 "",
-                # branding
-                # channel
-                # cta
-                # playlist
-                # subscribe
-                # video
-                # vote
-                # website
-                # simple
-                # poll
-                # collaboration
-                # donation
-                # movie
-                # episode
+                # "branding",
+                # "channel",
+                # "cta",
+                # "playlist",
+                # "subscribe",
+                # "video",
+                # "vote",
+                # "website",
+                # "simple",
+                # "poll",
+                # "collaboration",
+                # "donation",
+                # "movie",
+                # "episode",
             ],
             str,
         ] = "popup"
