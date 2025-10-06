@@ -39,11 +39,14 @@ def Convert(
     """
 
     def ConvertAnnotation(each: Annotation) -> List[Event]:
-
-        # 致谢: https://github.com/nirbheek/youtube-ass &
-        #       https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
+        # 致谢: https://github.com/nirbheek/youtube-ass
+        # 他是本项目的原型.
+        # 和: https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
+        # 关于 SSA 的部分大量参考了这个文档.
 
         def Wrap(text: str, length: int) -> str:
+            # 模拟换行, 假定每个字符等宽, 效果并不好, 但是也不能太复杂.
+
             def wrap(text: str) -> str:
                 return "\n".join(
                     textwrap.wrap(text, width=length, drop_whitespace=False)
@@ -56,11 +59,10 @@ def Convert(
             return wrapped_text
 
         def Text(event: Event) -> Event:
-            # 文本与框保持一定距离
 
+            # 文本与框保持一定距离
             _x = x + padding_x
             _y = y + padding_y
-            #
 
             tags = tag.Tags()
             tags.extend(
@@ -85,7 +87,6 @@ def Convert(
             # 模拟居中
             _x = x + (width / 2)
             _y = y + (height / 2)
-            #
 
             shadow = tag.Shadow(0)
             tags = tag.Tags()
@@ -183,20 +184,12 @@ def Convert(
 
         def Triangle(event: Event) -> Optional[Event]:
             # 致谢: https://github.com/po5/assnotations
-
-            # 气泡框的框和柄分开绘制
+            # 参考了部分代码.
+            #
+            # 思考一下, 气泡可以是一个框和一个柄
             # 这个函数绘制气泡柄
-            padding = padding_y
-
-            # 坐标原点
-            x_left = x - sx
-            y_top = y - sy
-
-            x_right = x_left + width
-            y_bottom = y_top + height
 
             def draw(x1, y1, x2, y2) -> Event:
-
                 tags = tag.Tags()
                 tags.extend(
                     [
@@ -221,6 +214,22 @@ def Convert(
 
                 event.Text = str(tags) + box_tag
                 return event
+
+            # 变换坐标系
+            # 以三角其中一个顶点为原点
+            _x = x - sx
+            _y = y - sy
+
+            # ---
+            # 闭包所需的变量
+            padding = max(padding_x, padding_y)
+
+            x_left = _x
+            y_top = _y
+
+            x_right = x_left + width
+            y_bottom = y_top + height
+            # ---
 
             def up_down() -> Optional[Event]:
                 x_start_multiplier = 0.174
@@ -333,6 +342,7 @@ def Convert(
         def speech_triangle() -> Optional[Event]:
             _event = copy.copy(event)
             _event.Name += "speech_triangle;"
+
             return Triangle(_event)
 
         def anchored_text() -> Event:
@@ -350,31 +360,37 @@ def Convert(
         def anchored_triangle() -> Optional[Event]:
             _event = copy.copy(event)
             _event.Name += "anchored_triangle;"
+
             return Triangle(_event)
 
         def label_text() -> Event:
             _event = copy.copy(event)
             _event.Name += "label_text;"
+
             return Text(_event)
 
         def label_box() -> Event:
             _event = copy.copy(event)
             _event.Name += "label_box;"
+
             return Box(_event)
 
         def label_hollow_box() -> Event:
             _event = copy.copy(event)
             _event.Name += "label_hollow_box;"
+
             return HollowBox(_event)
 
         def highlight_text() -> Event:
             _event = copy.copy(event)
             _event.Name += "highlight_text;"
+
             return Text(_event)
 
         def highlight_box() -> Event:
             _event = copy.copy(event)
             _event.Name += "highlight_box;"
+
             return HollowBox(_event)
 
         def popup() -> List[Event]:
@@ -396,6 +412,7 @@ def Convert(
             if _event != None:
                 events.append(_event)
             events.append(speech_text())
+
             return events
 
         def anchored() -> List[Event]:
@@ -405,6 +422,7 @@ def Convert(
             if _event != None:
                 events.append(_event)
             events.append(anchored_text())
+
             return events
 
         def label() -> List[Event]:
@@ -414,7 +432,8 @@ def Convert(
             lines_count = text.count(r"\N") + 1
             _height = textSize * lines_count
 
-            # 需要修改之后的值以便模拟其效果,
+            # 注意! 这里用了 nonlocal,
+            # 因为需要修改之后的值以便模拟其效果,
             # Text 和 Box 也被其他函数使用因此不能用新变量,
             # 函数返回后没有其他过程, 因此不会有污染.
             nonlocal y  # type: ignore
@@ -425,6 +444,7 @@ def Convert(
 
             events.append(label_box())
             events.append(label_text())
+
             return events
 
         def highlight() -> List[Event]:
@@ -443,7 +463,9 @@ def Convert(
         padding_x = 1.0
         padding_y = 1.0
 
+        # ---
         # 自适应文本
+        # 调整文本断行和字体大小来适应框的大小.
         # 参考 https://github.com/USED255/youtube_annotations_hack/blob/50db2b95133ddb0283ce6adb2ccadc11510caf27/web/yts/jsbin/player-vflpusdz-/en_US/annotations_module.js#L2509
         _text = text
         if textSize == 0:
@@ -483,8 +505,9 @@ def Convert(
                 _text = Wrap(text, length)
 
         text = _text
-        #
+        # ---
 
+        # SSA 中, 前导空格会被忽略
         # 让前导空格生效
         if text.startswith(" "):
             text = "\u200b" + text
@@ -492,14 +515,16 @@ def Convert(
         # SSA 用 "\N" 换行
         text = text.replace("\n", r"\N")
 
-        # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示
-        # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意
-        # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖
+        # 如果文本里包含大括号, 而且封闭, 会被识别为 "样式复写代码", 大括号内的文字不会显示,
+        # 而且仅 libass 支持大括号转义, xy-vsfilter 没有那玩意,
+        # 可以说, 本脚本(项目) 依赖于字幕滤镜(xy-vsfilter, libass)的怪癖.
         text = text.replace("{", r"\{")
         text = text.replace("}", r"\}")
 
+        # 浏览器中的字体大小和字幕滤镜的行为不一样.
         textSize = textSize * 1.12
 
+        # 我觉得字幕滤镜应该能正常处理小数, 把字幕平铺到视频中, 但现实中不行, 可能我错了?
         if resolutionX != 100:
             transform_coefficient_x = resolutionX / 100
 
@@ -528,8 +553,8 @@ def Convert(
         event.Start = each.timeStart
         event.End = each.timeEnd
 
-        # Name 在 Aegisub 里是 "说话人"
-        # 这里用于调试
+        # Name 在 Aegisub 里是 "说话人",
+        # 这里记录些信息用于调试.
         # author;id;function;alternative
         event.Name += each.author + ";"
         event.Name += each.id + ";"
@@ -556,6 +581,10 @@ def Convert(
     patch: Dict[str, Dict] = {}
     events = []
 
+    # ---
+    # 一些注释被另一个注释引用,
+    # 在互动后会展现这些注释,
+    # 考试再三, 我打算把这些注释的时间处理一下, 让他立即展现出来.
     for each in annotations:
         if each.ref != "":
             patch[each.ref] = {}
@@ -570,6 +599,7 @@ def Convert(
                 continue
             each.timeStart = patch[each.ref]["timeStart"]
             each.timeEnd = patch[each.ref]["timeEnd"]
+    # ---
 
     for each in annotations:
         events.extend(ConvertAnnotation(each))

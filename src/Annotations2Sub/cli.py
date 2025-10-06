@@ -31,6 +31,7 @@ def Run(args=None) -> int:
         metavar=_("文件"),
         help=_("多个需要转换的文件的文件路径"),
     )
+    # 大部分情况不需要这个选项, 但是效果奇怪的时候把这个选项改成视频分辨率可能会有所改善
     parser.add_argument(
         "-x",
         "--transform-resolution-x",
@@ -80,6 +81,7 @@ def Run(args=None) -> int:
         help=_("显示版本号"),
         version=_("Annotations2Sub v{version}").format(version=version),
     )
+    # 用来调试
     parser.add_argument(
         "-V",
         "--verbose",

@@ -9,10 +9,10 @@ class Style:
     """SSA 样式(Style) 结构"""
 
     def __init__(self):
-        # 带引号的是从 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 粘过来的
         # Name 不在这里, 它会这样出现 Dict[Name:str, Style:Style]
 
         # "Style 行中的所有设定，除了阴影和边框的类型和深度，都可以被字幕文本中的控制代码所覆写。"
+
         # "使用的字体名称，区分大小写。"
         self.Fontname: str = "Arial"
 
