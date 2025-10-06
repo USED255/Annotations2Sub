@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-"""SSA 相关"""
-
 from Annotations2Sub.subtitles.event import Events
 from Annotations2Sub.subtitles.info import Info
 from Annotations2Sub.subtitles.style import Styles

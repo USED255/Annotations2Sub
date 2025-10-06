@@ -7,17 +7,14 @@ from Annotations2Sub.i18n import _
 
 
 def YellowText(string: str) -> str:
-    """返回黄色文本"""
     return f"\033[33m{string}\033[0m"
 
 
 def RedText(string: str) -> str:
-    """返回红色文本"""
     return f"\033[31m{string}\033[0m"
 
 
 def Stderr(string: str):
-    """打印到标准错误"""
     print(string, file=sys.stderr)
 
 

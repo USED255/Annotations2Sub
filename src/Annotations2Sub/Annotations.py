@@ -225,10 +225,12 @@ def Parse(tree: Element) -> List[Annotation]:
 
         _id = each.get("id", "")
         if _id == "":
+            Info(_('"{}" 没有 id, 跳过').format(_id))
             return None
 
         _type = each.get("type", "")
         if _type == "":
+            Info(_('"{}" 没有 type, 跳过').format(_id))
             return None
         if _type not in ("text", "highlight"):
             Stderr(_('不支持 "{}" 类型 ({})').format(_type, _id))
@@ -243,7 +245,7 @@ def Parse(tree: Element) -> List[Annotation]:
         text = ""
         text_element = each.find("TEXT")
         if text_element != None:
-            if isinstance(text_element.text, str):
+            if text_element.text != None:
                 text = text_element.text
 
         _Segment = each.find("segment")

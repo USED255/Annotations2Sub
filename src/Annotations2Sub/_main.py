@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-"""程序入口"""
-
 import sys
 import traceback
 from typing import NoReturn
@@ -12,6 +10,7 @@ from Annotations2Sub.utils import Err, Stderr
 
 
 def main() -> NoReturn:
+    """程序入口"""
     try:
         code = Run()
     except SystemExit:
