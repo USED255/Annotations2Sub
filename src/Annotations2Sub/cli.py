@@ -20,7 +20,11 @@ from Annotations2Sub.utils import Err, Info, Stderr, Warn
 
 
 def Run(args=None) -> int:
-    """跑起来🐎🐎🐎"""
+    """命令行应用的实现
+    参数应当是 list(str),
+    当参数为 None 时 argparse 会从 sys.argv 解析参数.
+    返回值是退出码.
+    """
 
     exit_code = 0
     parser = argparse.ArgumentParser(description=_("转换 Youtube 注释"))
@@ -31,6 +35,7 @@ def Run(args=None) -> int:
         metavar=_("文件"),
         help=_("多个需要转换的文件的文件路径"),
     )
+    # 大部分情况不需要这个选项, 但是效果奇怪的时候把这个选项改成视频分辨率可能会有所改善
     parser.add_argument(
         "-x",
         "--transform-resolution-x",
@@ -80,6 +85,7 @@ def Run(args=None) -> int:
         help=_("显示版本号"),
         version=_("Annotations2Sub v{version}").format(version=version),
     )
+    # 用来调试
     parser.add_argument(
         "-V",
         "--verbose",
@@ -88,6 +94,7 @@ def Run(args=None) -> int:
     )
 
     args = parser.parse_args(args)
+
     queue = list(map(str, args.queue))
 
     transform_resolution_x: int = args.transform_resolution_x

@@ -29,7 +29,7 @@ def test_eq_Annotation():
     assert Annotation() == Annotation()
 
 
-def test_Pares():
+def test_Parse():
     filePath = os.path.join(testCasePath, "annotations.xml.test")
     with open(filePath, "r", encoding="utf-8") as f:
         string = f.read()

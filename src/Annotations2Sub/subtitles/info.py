@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from Annotations2Sub.subtitles.CONSTANT import InfoHEAD
 
 

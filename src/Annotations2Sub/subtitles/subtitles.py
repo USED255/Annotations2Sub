@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-"""SSA 相关"""
-
 from Annotations2Sub.subtitles.event import Events
 from Annotations2Sub.subtitles.info import Info
 from Annotations2Sub.subtitles.style import Styles
@@ -25,4 +23,5 @@ class Subtitles:
         return str(self)
 
     def __eq__(self, value: object) -> bool:
+        # 没有用到这个功能
         return str(self) == str(value)

@@ -1,9 +1,9 @@
+# -*- coding: utf-8 -*-
+
 from Annotations2Sub.subtitles.utils import Literal, _round
 
 
 class DrawCommand:
-    """绘图指令结构"""
-
     def __init__(self, x: float = 0, y: float = 0, command: Literal["m", "l"] = "m"):
         self.x: float = _round(x)
         self.y: float = _round(y)
