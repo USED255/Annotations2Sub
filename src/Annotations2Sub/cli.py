@@ -20,7 +20,11 @@ from Annotations2Sub.utils import Err, Info, Stderr, Warn
 
 
 def Run(args=None) -> int:
-    """跑起来🐎🐎🐎"""
+    """命令行应用的实现
+    参数应当是 list(str),
+    当参数为 None 时 argparse 会从 sys.argv 解析参数.
+    返回值是退出码.
+    """
 
     exit_code = 0
     parser = argparse.ArgumentParser(description=_("转换 Youtube 注释"))
