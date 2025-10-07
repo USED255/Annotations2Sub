@@ -37,11 +37,14 @@ ASS 字幕是一种常见的外挂字幕格式, 全称 Advanced SubStation Alpha
 ---
 
 致谢:
-[omarroth](https://archive.org/details/youtubeannotations),
+[omarroth](https://www.reddit.com/r/DataHoarder/comments/al7exa/youtube_annotation_archive_update_and_preview/),
 [Nirbheek Chauhan](https://github.com/nirbheek/youtube-ass),
 [Zhenye Wei](https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范),
 [Invidious](https://invidious.io/),
 [Isaac](https://github.com/isaackd/annotationlib),
 [Eva](https://github.com/po5/assnotations),
 [Internet Archive](https://archive.org/),
-[Gemini 1.5 Pro](https://deepmind.google/models/gemini/pro/).
+[Gemini 1.5 Pro](https://deepmind.google/models/gemini/pro/),
+[Rain Shimotsuki](https://www.youtube.com/@rain_shimotsuki),
+[KeksusGSPB](https://www.youtube.com/watch?v=c1iCjpxDxz4),
+[XNX.ROmania](https://web.archive.org/web/20230227230532/https://www.youtube.com/watch?v=M2ryDEyyrXE).
