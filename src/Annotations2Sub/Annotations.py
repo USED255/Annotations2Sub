@@ -20,6 +20,7 @@ except ImportError:
 
 class NotAnnotationsDocumentError(ValueError):
     """不是 Annotations 文档"""
+
     pass
 
 
