@@ -133,9 +133,11 @@ class Annotation:
         return f"bgc={bgc},bgo={bgo},fgc={fgc},txsz={self.textSize},tp={self.type},x={self.x},y={self.y},w={self.width},h={self.height},ts={ts},te={te},s={self.style},t={self.text}"
 
     def __repr__(self) -> str:
+        # 方便调试
         return str(self)
 
     def __eq__(self, value: object) -> bool:
+        # 没有用到这个功能
         return str(self) == str(value)
 
 

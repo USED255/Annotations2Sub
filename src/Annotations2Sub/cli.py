@@ -90,6 +90,7 @@ def Run(args=None) -> int:
     )
 
     args = parser.parse_args(args)
+
     queue = list(map(str, args.queue))
 
     transform_resolution_x: int = args.transform_resolution_x

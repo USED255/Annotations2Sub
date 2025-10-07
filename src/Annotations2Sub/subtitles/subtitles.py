@@ -23,4 +23,5 @@ class Subtitles:
         return str(self)
 
     def __eq__(self, value: object) -> bool:
+        # 没有用到这个功能
         return str(self) == str(value)
