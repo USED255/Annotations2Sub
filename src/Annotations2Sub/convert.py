@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-"""转换器"""
-
 import copy
 import textwrap
 from typing import Dict, List, Optional

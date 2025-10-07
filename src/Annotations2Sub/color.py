@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-"""颜色数据类"""
-
 from Annotations2Sub.i18n import _
 
 

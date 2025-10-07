@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-"""Annotations 相关"""
-
 import datetime as dt
 import math
 from datetime import datetime
