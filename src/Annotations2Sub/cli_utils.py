@@ -21,6 +21,7 @@ def AnnotationsXmlStringToSubtitlesString(
     font=_("Microsoft YaHei"),
     title=_("无标题"),
 ) -> str:
+    """把 Annotations XML 字符串转换成 SSA 字符串"""
 
     def insert_line(text: str, insert_text: str, line_number: int) -> str:
         lines = text.splitlines()

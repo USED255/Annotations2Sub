@@ -19,6 +19,7 @@ except ImportError:
 
 
 class NotAnnotationsDocumentError(ValueError):
+    """不是 Annotations 文档"""
     pass
 
 
@@ -332,7 +333,7 @@ def Parse(tree: Element) -> List[Annotation]:
 
     annotations_tree = tree.find("annotations")
     if annotations_tree == None:
-        raise NotAnnotationsDocumentError(_("不是 Annotations 文档"))
+        raise NotAnnotationsDocumentError(_("传入的树中没有 Annotations"))
 
     annotations: List[Annotation] = []
     for each in annotations_tree.findall("annotation"):
