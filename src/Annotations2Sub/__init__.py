@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
 """转换 Youtube 注释"""
-
-__version__ = "2.24.0"
-
 """
                                              xml.
                                              etree.
@@ -100,11 +97,12 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 - Invidious(https://invidious.io/): 开源 YouTube 前端
 - Internet Archive(https://archive.org/): 互联网档案馆
 ---
-本文件第47行: 随着 Youtube 的改版 Invidious 已经逐渐变得不可用
-本文件49至57行: 问题已解决, 但不是 CSS 的问题, 是字体的问题😅
+本文件第44行: 随着 Youtube 的改版 Invidious 已经逐渐变得不可用
+本文件46至54行: 问题已解决, 但不是 CSS 的问题, 是字体的问题😅
 ---
 """
 
+from Annotations2Sub.__version__ import version
 from Annotations2Sub.Annotations import Annotation, NotAnnotationsDocumentError, Parse
 from Annotations2Sub.cli import Run
 from Annotations2Sub.cli_utils import AnnotationsXmlStringToSubtitlesString
@@ -112,6 +110,7 @@ from Annotations2Sub.convert import Convert
 from Annotations2Sub.subtitles import Event, Style, Subtitles
 
 __all__ = [
+    "version",
     "Run",
     "Parse",
     "Convert",

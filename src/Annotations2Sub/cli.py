@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 import argparse
 import os
 import sys
@@ -8,7 +7,7 @@ import traceback
 from typing import Optional
 from xml.etree.ElementTree import ParseError
 
-from Annotations2Sub import __version__ as version
+from Annotations2Sub.__version__ import version
 from Annotations2Sub.Annotations import NotAnnotationsDocumentError
 from Annotations2Sub.cli_utils import (
     AnnotationsStringIsEmptyError,
