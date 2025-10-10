@@ -2,7 +2,7 @@
 
 """转换 Youtube 注释"""
 
-__version__ = "2.23.0"
+__version__ = "2.24.0"
 
 """
                                              xml.

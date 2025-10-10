@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Annotations2Sub"
-version = "2.23.0"
+version = "2.24.0"
 description = "Convert Youtube Annotations to subtitles."
 readme = "README.md"
 authors = [{ name = "我如天翼", email = "wrtyis@outlook.com" }]
@@ -21,6 +21,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: Implementation :: PyPy",
     "Programming Language :: Python :: Implementation :: CPython",
     "Operating System :: OS Independent",
