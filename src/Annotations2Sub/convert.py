@@ -11,10 +11,13 @@ from Annotations2Sub.utils import Stderr, _
 
 def Convert(
     annotations: List[Annotation],
-    resolutionX: int = 100,
-    resolutionY: int = 100,
+    transform_resolution_x: int = 100,
+    transform_resolution_y: int = 100,
 ) -> List[Event]:
-    """转换 Annotations"""
+    """将 `Annotations` 转换为字幕事件
+
+    当使用 `transform_resolution_{x, y}` 参数变换坐标系时, 同时要注意 `Info` 的 `PlayRes{X, Y}` 的数值.
+    """
     """
 ┌────────────────┐   ┌───────┐                           
 │List[Annotation]│ ┌►│popup()│                           
@@ -136,12 +139,12 @@ def Convert(
             _padding_x = padding_x
             _padding_y = padding_y
 
-            if resolutionX > resolutionY:
-                ratio = resolutionX / resolutionY
+            if transform_resolution_x > transform_resolution_y:
+                ratio = transform_resolution_x / transform_resolution_y
                 _padding_y = _padding_y * ratio
 
-            if resolutionY > resolutionX:
-                ratio = resolutionY / resolutionX
+            if transform_resolution_y > transform_resolution_x:
+                ratio = transform_resolution_y / transform_resolution_x
                 _padding_x = _padding_x * ratio
 
             _padding_x = _padding_x * 0.3
@@ -523,8 +526,8 @@ def Convert(
         textSize = textSize * 1.12
 
         # 我觉得字幕滤镜应该能正常处理小数, 把字幕平铺到视频中, 但现实中不行, 可能我错了?
-        if resolutionX != 100:
-            transform_coefficient_x = resolutionX / 100
+        if transform_resolution_x != 100:
+            transform_coefficient_x = transform_resolution_x / 100
 
             def TransformX(x: float) -> float:
                 return x * transform_coefficient_x
@@ -534,8 +537,8 @@ def Convert(
             sx = TransformX(sx)
             padding_x = TransformX(padding_x)
 
-        if resolutionY != 100:
-            transform_coefficient_y = resolutionY / 100
+        if transform_resolution_y != 100:
+            transform_coefficient_y = transform_resolution_y / 100
 
             def TransformY(y: float) -> float:
                 return y * transform_coefficient_y

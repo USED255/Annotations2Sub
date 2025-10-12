@@ -25,7 +25,10 @@ class NotAnnotationsDocumentError(ValueError):
 
 
 class Annotation:
-    """Annotation 结构"""
+    """数据类, 储存了必要的 `Annotation` 字段.
+
+    这个类实现了 `__str__`, `__repr__` 和 `__eq__`, 也可以直接使用.
+    """
 
     # 致谢 https://github.com/isaackd/annotationlib
     # 这是 annotationlib "简易结构" 的一个模仿
@@ -144,7 +147,11 @@ class Annotation:
 
 
 def Parse(tree: Element) -> List[Annotation]:
-    """解析 Annotations 树"""
+    """`Parse` 函数用于清洗数据, 可以将 XML 树转换为 `Annotation` 列表.
+
+    入参应该是一个 XML 文档的根. 如果找不到 "annotations" 节点,
+    则会抛出 `NotAnnotationsDocumentError` 异常.
+    """
 
     # 本质上在提取和清理数据
 
