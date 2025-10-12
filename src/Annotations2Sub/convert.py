@@ -525,7 +525,7 @@ def Convert(
         # 浏览器中的字体大小和字幕滤镜的行为不一样.
         textSize = textSize * 1.12
 
-        # 我觉得字幕滤镜应该能正常处理小数, 把字幕平铺到视频中, 但现实中不行, 可能我错了?
+        # 我觉得字幕滤镜应该能正常处理小数, 把字幕平铺到视频中, 但现实中不行, 可能我想多了?
         if transform_resolution_x != 100:
             transform_coefficient_x = transform_resolution_x / 100
 
@@ -555,7 +555,8 @@ def Convert(
         event.End = each.timeEnd
 
         # Name 在 Aegisub 里是 "说话人",
-        # 这里记录些信息用于调试.
+        # 用于编辑字幕时参考, 不会展示给用户.
+        # 这里除了记录 author 之外, 还会记录些信息用于调试.
         # author;id;function;alternative
         event.Name += each.author + ";"
         event.Name += each.id + ";"
