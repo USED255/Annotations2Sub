@@ -16,7 +16,7 @@ def Convert(
 ) -> List[Event]:
     """将 `Annotations` 转换为字幕事件
 
-    当使用 `transform_resolution_{x, y}` 参数变换坐标系时, 同时要注意 `Info` 的 `PlayRes{X, Y}` 的数值.
+    注意, 字幕脚本的 `Info` 需要添加 `PlayRes{X, Y}` 字段, 且数值要与 `transform_resolution_{x, y}` 参数保持一直.
     """
     """
 ┌────────────────┐   ┌───────┐                           

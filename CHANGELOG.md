@@ -44,7 +44,7 @@
 
 ### 改进
 
-- 实现 label, anchored 样式,实现 highlight 类型.
+- 实现 label, anchored 样式, 实现 highlight 类型.
 
 ## v2.18.0 (2024年8月1日)
 
