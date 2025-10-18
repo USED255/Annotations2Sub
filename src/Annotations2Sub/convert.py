@@ -16,7 +16,7 @@ def Convert(
 ) -> List[Event]:
     """将 `Annotations` 转换为字幕事件
 
-    注意, 字幕脚本的 `Info` 需要添加 `PlayRes{X, Y}` 字段, 且数值要与 `transform_resolution_{x, y}` 参数保持一直.
+    注意, 字幕脚本的 `Info` 需要添加 `PlayRes{X, Y}` 字段, 且数值要与 `transform_resolution_{x, y}` 参数保持一致.
     """
     """
 ┌────────────────┐   ┌───────┐                           

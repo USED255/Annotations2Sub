@@ -19,7 +19,10 @@ except ImportError:
 
 
 class NotAnnotationsDocumentError(ValueError):
-    """不是 Annotations 文档"""
+    """不是 Annotations 文档
+
+    当传入的 XML 树中找不到 `annotations` 节点时抛出, 通常由 `Parse()` 在入口验证失败时触发.
+    """
 
     pass
 
@@ -154,7 +157,7 @@ class Annotation:
 
 
 def Parse(tree: Element) -> List[Annotation]:
-    """`Parse` 函数用于清洗数据, 可以将 XML 树转换为 `Annotation` 列表.
+    """`Parse` 函数用于清洗数据, 将 XML 树转换为 `Annotation` 列表.
 
     入参应该是一个 XML 文档的根. 如果找不到 "annotations" 节点,
     则会抛出 `NotAnnotationsDocumentError` 异常.
