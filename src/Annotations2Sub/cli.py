@@ -21,7 +21,7 @@ from Annotations2Sub.utils import Err, Info, Stderr, Warn
 def Run(args=None) -> int:
     """命令行应用的实现
 
-    参数应当是 `List(str)`,
+    参数应当是 `list(str)`,
     当参数为 `None` 时 `argparse` 会从 `sys.argv` 解析参数.
 
     返回值是退出码, 根据错误不同, 返回的退出码会有所不同.

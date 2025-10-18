@@ -6,9 +6,9 @@ from Annotations2Sub.subtitles.style import Styles
 
 
 class Subtitles:
-    """字幕脚本容器
-    
-    info 继承自 dict[str, str], styles 继承自 dict[str, Style], events 继承自 list[Event].
+    """SSA 字幕脚本容器
+
+    `info` 继承自 `dict[str, str]`, `styles` 继承自 `dict[str, Style]`, `events` 继承自 `list[Event]`.
     """
 
     def __init__(self):

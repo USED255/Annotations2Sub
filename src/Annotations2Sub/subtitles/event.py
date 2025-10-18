@@ -7,7 +7,7 @@ from Annotations2Sub.subtitles.utils import Literal
 
 
 class Event:
-    """SSA 事件(Event) 结构"""
+    """SSA 事件 (Event) 结构"""
 
     def __init__(self):
         # 有 Dialogue, Comment, Picture, Sound, Movie, Command 事件,
