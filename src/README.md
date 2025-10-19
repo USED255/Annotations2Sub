@@ -1,19 +1,18 @@
-#
+# README for Code
 
 ## 快速背景
 
-本仓库用于将旧版 YouTube 注释 XML 文件转换为字幕格式(ASS/SSA). 包的入口点是控制台脚本 `Annotations2Sub`(在 `pyproject.toml` -> `project.scripts` 中定义). 主要代码位于 `src/Annotations2Sub/`, 测试代码位于 `src/tests/`.
+本仓库是一个用于将旧版 YouTube Annotations 的 XML 文件转换为 ASS 字幕文件的命令行工具. 包的入口点是控制台脚本 `Annotations2Sub`(在 `pyproject.toml` -> `project.scripts` 中定义). 主要代码位于 `src/Annotations2Sub/`, 测试代码位于 `src/tests/`.
 
 ## 组织结构
 
-- 目的: 读取 YouTube 注释 XML 并生成字幕文件(ASS/SSA). 用户用法见 `README.md`: `Annotations2Sub <file.xml>`.
+- 目的: 读取 YouTube Annotations XML 文件并生成 ASS 字幕文件. 用户用法见 `README.md`: `Annotations2Sub <file.xml>`.
 - 流程: 解析(`Annotations.py`)、转换(`convert.py`)、输出(`subtitles/*`).
-- 测试通过 `src/tests/testCase/Baseline/` 下的基线 `.test` 文件进行.
 - 核心模块:
+  - `src/Annotations2Sub/_main.py` 或 `src/Annotations2Sub/__main__.py` —— CLI 入口和主程序
+  - `src/Annotations2Sub/Annotations.py` —— XML 解析和Annotations数据结构.
   - `src/Annotations2Sub/convert.py` —— 主要的转换逻辑和数据变换.
-  - `src/Annotations2Sub/Annotations.py` —— XML 解析和注释数据结构.
   - `src/Annotations2Sub/subtitles/` —— 字幕格式、样式、事件和绘图辅助.
-  - `src/Annotations2Sub/_main.py` / `src/Annotations2Sub/__main__.py` —— CLI 入口和主程序
 
 ## 如何运行、测试和代码检查
 
@@ -43,7 +42,7 @@
 
 ## 项目特有的模式和约定
 
-- 测试用例使用 `src/tests/testCase/` 下的 `.test` 文件作为输入, 同时包含以 `.ass.test`、`.transform.ass.test` 等后缀的期望输出文件
+- 测试用例是 Youtube Annotations, 使用 `src/tests/testCase/` 下的 `.test` 文件作为输入, 同时包含以 `.ass.test`、`.transform.ass.test` 等后缀的期望输出文件.
 - 建议添加类型注解并保持 mypy 检查通过(CI 会运行 mypy).
 - 本地化: gettext `.po`/`.mo` 文件在 `src/Annotations2Sub/locales/`. 如有用户可见字符串变更, 请更新 `.po` 文件并重新生成 `.mo`.
 
@@ -51,7 +50,7 @@
 
 - 无外部依赖.
 - 构建/打包使用 setuptools(见 `pyproject.toml`).
-- CI 会上传覆盖率到 Codecov；CI 测试会安装 pytest 并运行覆盖率, 尽可能覆盖所有代码.
+- CI 会上传覆盖率到 Codecov.
 
 ## 问题咨询
 
@@ -60,5 +59,13 @@
 ## 您也可以看看
 
 - https://www.reddit.com/r/DataHoarder/comments/al7exa/youtube_annotation_archive_update_and_preview/
+
+  可能是目前仅存的 Youtube Annotations.
+
 - https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
+
+  整理过的关于 ASS 字幕文件的格式以及渲染行为的文档.
+
 - https://github.com/USED255/youtube_annotations_hack
+
+  衍生项目, 从 archive.org 拿到了旧版 Youtube 网页经过修改后可以在本地运行, 之后用 LLM 反混淆. 可以正确的重现 Youtube Annotations, 同时进行调试.

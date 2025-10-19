@@ -6,7 +6,10 @@ from Annotations2Sub.subtitles.utils import Literal
 
 
 class Style:
-    """SSA 样式(Style) 结构"""
+    """SSA 样式(Style) 结构
+
+    名称(`Name`)不在本对象中保存，而是作为 `dict[Name, Style]` 的键.
+    """
 
     def __init__(self):
         # Name 不在这里, 它会这样出现 Dict[Name:str, Style:Style]

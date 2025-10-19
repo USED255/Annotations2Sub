@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 import argparse
 import os
 import sys
@@ -8,7 +7,7 @@ import traceback
 from typing import Optional
 from xml.etree.ElementTree import ParseError
 
-from Annotations2Sub import __version__ as version
+from Annotations2Sub.__version__ import version
 from Annotations2Sub.Annotations import NotAnnotationsDocumentError
 from Annotations2Sub.cli_utils import (
     AnnotationsStringIsEmptyError,
@@ -21,9 +20,11 @@ from Annotations2Sub.utils import Err, Info, Stderr, Warn
 
 def Run(args=None) -> int:
     """命令行应用的实现
-    参数应当是 list(str),
-    当参数为 None 时 argparse 会从 sys.argv 解析参数.
-    返回值是退出码.
+
+    参数应当是 `list(str)`,
+    当参数为 `None` 时 `argparse` 会从 `sys.argv` 解析参数.
+
+    返回值是退出码, 根据错误不同, 返回的退出码会有所不同.
     """
 
     exit_code = 0

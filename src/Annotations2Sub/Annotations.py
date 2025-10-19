@@ -19,17 +19,23 @@ except ImportError:
 
 
 class NotAnnotationsDocumentError(ValueError):
-    """不是 Annotations 文档"""
+    """不是 Annotations 文档
+
+    当传入的 XML 树中找不到 `annotations` 节点时抛出, 通常由 `Parse()` 在入口验证失败时触发.
+    """
 
     pass
 
 
 class Annotation:
-    """Annotation 结构"""
+    """数据类, 储存了必要的 `Annotation` 字段.
+
+    这个类实现了 `__str__`, `__repr__` 和 `__eq__`, 也可以直接使用.
+    """
 
     # 致谢 https://github.com/isaackd/annotationlib
-    # 这是 annotationlib "简易结构" 的一个模仿
-    # 将 Annotation 抽成简单的结构让事情变得简单起来
+    # 这是 annotationlib "简易结构" 的一个模仿,
+    # 将 Annotation 抽成简单的结构让事情变得简单起来.
 
     # 如果您需要详细了解 Annotation, 请参阅 https://github.com/USED255/youtube_annotations_hack
 
@@ -39,8 +45,9 @@ class Annotation:
         self.type: Union[
             Literal[
                 "text",
+                # 一个镂空的长方形用来标注视频中的精彩内容, 鼠标移动上去可能展示其他注释.
                 "highlight",
-                # 字幕滤镜无法实现暂停
+                # 字幕滤镜无法实现暂停.
                 # "pause",
                 #
                 # 以下是 Youtube Card 和 End screens 的类型,
@@ -56,13 +63,19 @@ class Annotation:
         ] = "text"
         self.style: Union[
             Literal[
+                # 一些文本, 和一个长方形作为背景.
                 "popup",
+                # 居中的文本.
                 "title",
+                # 一个对话气泡, 可以看做是一个 popup 和一个三角形的气泡柄组成.
                 "speech",
+                # 和 popup 类似, 但是文本居中.
                 "highlightText",
+                # 和 speech 类似.
                 "anchored",
+                # 一个镂空的长方形, 鼠标移上去底部会出现一个标签.
                 "label",
-                # "highlight" 类型没有 style
+                # "highlight" 类型没有 style.
                 "",
                 # "branding",
                 # "channel",
@@ -144,7 +157,11 @@ class Annotation:
 
 
 def Parse(tree: Element) -> List[Annotation]:
-    """解析 Annotations 树"""
+    """`Parse` 函数用于清洗数据, 将 XML 树转换为 `Annotation` 列表.
+
+    入参应该是一个 XML 文档的根. 如果找不到 "annotations" 节点,
+    则会抛出 `NotAnnotationsDocumentError` 异常.
+    """
 
     # 本质上在提取和清理数据
 

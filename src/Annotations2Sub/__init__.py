@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 
-"""转换 Youtube 注释"""
+"""转换 Youtube 注释
 
-__version__ = "2.23.0"
+YouTube 注释是 YouTube 于 2008 年推出的一项功能, 允许视频创作者在视频中添加文本、链接和互动元素, 以增强观看体验. YouTube 于 2019 年移除了此功能.
 
+ASS 字幕是一种常见的外挂字幕格式, 全称 Advanced SubStation Alpha. 与其他字幕格式相比, 他能够设置字体、颜色、位置, 甚至添加图像和特效, 增强您的观看体验.
+
+此工具可以帮助您将 YouTube 注释转换为 ASS 字幕文件, 您可以播放或添加到视频中.
+"""
 """
                                              xml.
                                              etree.
@@ -44,9 +48,9 @@ https://www.youtube.com/channel/UCe4QujtMby3h6dge1eYaPig
 参照 https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范 实现了一个简单的 Advanced SubStation Alpha 生成器
 使用 "样式覆写代码" 实现了定位和颜色
 之后(a649956 庆祝一下), 使用 "绘图模式" 实现了 "popup" 样式
-在 https://invidious.io/ 和 FFmpeg 的帮助下, 实现了简单的视频预览
+在 https://invidious.io/ 和 FFmpeg 的帮助下, 实现了简单的视频预览 [1]
 之后, 脚本逐步完善, 完成了 https://www.bilibili.com/video/BV1Ff4y1t7Dj
-但是还是有些遗憾
+但是还是有些遗憾 [2]
 ---以下是有类似问题的视频，以制表符分隔---
 videoId	title
 g-0i6MOh7n0	志方あきこ - ラ・シェール 中文字幕(Chinese Translation)
@@ -100,11 +104,12 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 - Invidious(https://invidious.io/): 开源 YouTube 前端
 - Internet Archive(https://archive.org/): 互联网档案馆
 ---
-本文件第47行: 随着 Youtube 的改版 Invidious 已经逐渐变得不可用
-本文件49至57行: 问题已解决, 但不是 CSS 的问题, 是字体的问题😅
+[1] 本文件第51行: 随着 Youtube 的改版 Invidious 已经逐渐变得不可用
+[2] 本文件53至61行: 问题已解决, 但不是 CSS 的问题, 是字体的问题😅
 ---
 """
 
+from Annotations2Sub.__version__ import version
 from Annotations2Sub.Annotations import Annotation, NotAnnotationsDocumentError, Parse
 from Annotations2Sub.cli import Run
 from Annotations2Sub.cli_utils import AnnotationsXmlStringToSubtitlesString
@@ -112,10 +117,11 @@ from Annotations2Sub.convert import Convert
 from Annotations2Sub.subtitles import Event, Style, Subtitles
 
 __all__ = [
+    "version",
     "Run",
     "Parse",
-    "Convert",
     "Annotation",
+    "Convert",
     "Subtitles",
     "Style",
     "Event",

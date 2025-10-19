@@ -11,10 +11,13 @@ from Annotations2Sub.utils import Stderr, _
 
 def Convert(
     annotations: List[Annotation],
-    resolutionX: int = 100,
-    resolutionY: int = 100,
+    transform_resolution_x: int = 100,
+    transform_resolution_y: int = 100,
 ) -> List[Event]:
-    """转换 Annotations"""
+    """将 Annotations 转换为字幕事件 (Event)
+
+    注意, 字幕脚本的 `Info` 需要添加 `PlayRes{X, Y}` 字段, 且数值要与 `transform_resolution_{x, y}` 参数保持一致.
+    """
     """
 ┌────────────────┐   ┌───────┐                           
 │List[Annotation]│ ┌►│popup()│                           
@@ -136,12 +139,12 @@ def Convert(
             _padding_x = padding_x
             _padding_y = padding_y
 
-            if resolutionX > resolutionY:
-                ratio = resolutionX / resolutionY
+            if transform_resolution_x > transform_resolution_y:
+                ratio = transform_resolution_x / transform_resolution_y
                 _padding_y = _padding_y * ratio
 
-            if resolutionY > resolutionX:
-                ratio = resolutionY / resolutionX
+            if transform_resolution_y > transform_resolution_x:
+                ratio = transform_resolution_y / transform_resolution_x
                 _padding_x = _padding_x * ratio
 
             _padding_x = _padding_x * 0.3
@@ -522,9 +525,9 @@ def Convert(
         # 浏览器中的字体大小和字幕滤镜的行为不一样.
         textSize = textSize * 1.12
 
-        # 我觉得字幕滤镜应该能正常处理小数, 把字幕平铺到视频中, 但现实中不行, 可能我错了?
-        if resolutionX != 100:
-            transform_coefficient_x = resolutionX / 100
+        # 我觉得字幕滤镜应该能正常处理小数, 把字幕平铺到视频中, 但现实中不行, 可能我想多了?
+        if transform_resolution_x != 100:
+            transform_coefficient_x = transform_resolution_x / 100
 
             def TransformX(x: float) -> float:
                 return x * transform_coefficient_x
@@ -534,8 +537,8 @@ def Convert(
             sx = TransformX(sx)
             padding_x = TransformX(padding_x)
 
-        if resolutionY != 100:
-            transform_coefficient_y = resolutionY / 100
+        if transform_resolution_y != 100:
+            transform_coefficient_y = transform_resolution_y / 100
 
             def TransformY(y: float) -> float:
                 return y * transform_coefficient_y
@@ -552,7 +555,8 @@ def Convert(
         event.End = each.timeEnd
 
         # Name 在 Aegisub 里是 "说话人",
-        # 这里记录些信息用于调试.
+        # 用于编辑字幕时参考, 不会展示给用户.
+        # 这里除了记录 author 之外, 还会记录些信息用于调试.
         # author;id;function;alternative
         event.Name += each.author + ";"
         event.Name += each.id + ";"

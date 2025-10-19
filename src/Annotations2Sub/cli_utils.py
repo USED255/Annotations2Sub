@@ -21,7 +21,12 @@ def AnnotationsXmlStringToSubtitlesString(
     font=_("Microsoft YaHei"),
     title=_("无标题"),
 ) -> str:
-    """把 Annotations XML 字符串转换成 SSA 字符串"""
+    """把 Annotations XML 文档字符串转换成 SSA 字幕脚本字符串。
+
+    异常:
+    - `AnnotationsStringIsEmptyError`: 当 `annotations_string` 为空字符串时抛出。
+    - `xml.etree.ElementTree.ParseError`: 当 XML 解析失败时抛出。
+    """
 
     def insert_line(text: str, insert_text: str, line_number: int) -> str:
         lines = text.splitlines()

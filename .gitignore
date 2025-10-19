@@ -9,6 +9,7 @@ Annotations2Sub.egg-info
 测试用例/
 src/tests/garbage/*
 !src/tests/garbage/stub
+report
 *.mp4
 *.mkv
 *.webm

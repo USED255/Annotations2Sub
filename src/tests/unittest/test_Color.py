@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 import pytest
 
 from Annotations2Sub.color import Alpha, Color, Rgba
