@@ -34,6 +34,12 @@ class Event:
 
         return f"{self.Type}: {self.Layer},{DumpTime(self.Start)},{DumpTime(self.End)},{self.Style},{self.Name},{self.MarginL},{self.MarginR},{self.MarginV},{self.Effect},{self.Text}\n"
 
+    def __repr__(self) -> str:
+        return str(self)
+
+    def __eq__(self, value: object) -> bool:
+        return str(self) == str(value)
+
 
 # class Events(list[Event]):
 class Events(list):
