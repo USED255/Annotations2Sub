@@ -1,4 +1,4 @@
-# README for Code
+# Annotations2Sub Source Code
 
 ## 快速背景
 
@@ -9,7 +9,7 @@
 - 目的: 读取 YouTube Annotations XML 文件并生成 ASS 字幕文件. 用户用法见 `README.md`: `Annotations2Sub <file.xml>`.
 - 流程: 解析(`Annotations.py`)、转换(`convert.py`)、输出(`subtitles/*`).
 - 核心模块:
-  - `src/Annotations2Sub/_main.py` 或 `src/Annotations2Sub/__main__.py` —— CLI 入口和主程序
+  - `src/Annotations2Sub/_main.py` 或 `src/Annotations2Sub/__main__.py` —— 程序入口.
   - `src/Annotations2Sub/Annotations.py` —— XML 解析和Annotations数据结构.
   - `src/Annotations2Sub/convert.py` —— 主要的转换逻辑和数据变换.
   - `src/Annotations2Sub/subtitles/` —— 字幕格式、样式、事件和绘图辅助.
@@ -22,11 +22,11 @@
 
 - 之后激活你的虚拟环境.
 
-- 用示例文件运行 CLI.
+- 用示例文件运行 CLI:
 
   `Annotations2Sub src/tests/testCase/Baseline/annotations.xml.test`
 
-- 运行单元测试(CI 使用 pytest).
+- 运行测试:
 
   `pytest --cov=./ --cov-report=html`
 
@@ -38,19 +38,26 @@
 
   `black .`
 
-- CI 说明: GitHub Actions 工作流位于 `.github/workflows/`.
-
 ## 项目特有的模式和约定
 
 - 测试用例是 Youtube Annotations, 使用 `src/tests/testCase/` 下的 `.test` 文件作为输入, 同时包含以 `.ass.test`、`.transform.ass.test` 等后缀的期望输出文件.
-- 建议添加类型注解并保持 mypy 检查通过(CI 会运行 mypy).
+- 添加类型注解并保持 mypy 检查通过.
+- 使用 isort 和 black 进行代码格式化.
 - 本地化: gettext `.po`/`.mo` 文件在 `src/Annotations2Sub/locales/`. 如有用户可见字符串变更, 请更新 `.po` 文件并重新生成 `.mo`.
 
 ## 集成点与外部依赖
 
 - 无外部依赖.
-- 构建/打包使用 setuptools(见 `pyproject.toml`).
+- 构建/打包使用 setuptools.
 - CI 会上传覆盖率到 Codecov.
+
+## 调试注释行为
+
+使用[youtube_annotations_hack](https://github.com/USED255/youtube_annotations_hack)来预览正确的注释行为.
+
+## 工作流
+
+项目协作使用 [GitHub 流程](https://docs.github.com/zh/get-started/using-github/github-flow).
 
 ## 问题咨询
 
