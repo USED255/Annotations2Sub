@@ -33,3 +33,8 @@ def test_internationalization_win32():
     assert internationalization()
 
     m.undo()
+
+
+def test_gettext():
+    _ = internationalization()
+    assert _("警告: ") == "警告: "
