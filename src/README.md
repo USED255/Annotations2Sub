@@ -51,13 +51,13 @@
 - 构建/打包使用 setuptools.
 - CI 会上传覆盖率到 Codecov.
 
-## [TODO]
+## 调试注释行为
 
-使用[youtube_annotations_hack](https://github.com/USED255/youtube_annotations_hack)来预览正确的注释行为[TODO]
+使用[youtube_annotations_hack](https://github.com/USED255/youtube_annotations_hack)来预览正确的注释行为.
 
-## 工作流[TODO]
+## 工作流
 
-[TODO]
+项目协作使用 [GitHub 流程](https://docs.github.com/zh/get-started/using-github/github-flow).
 
 ## 问题咨询
 
