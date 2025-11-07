@@ -494,3 +494,7 @@ Extracted text from 1.3 billion annotation archives.
 [Youtube Annotations video metadata](https://archive.org/details/youtube_annotations_video_metadata)
 
 Metadata database of videos with annotations.
+
+[Annotations2Sub-Lite](https://a2s.liutao.page/)
+
+A web version made by AI.
