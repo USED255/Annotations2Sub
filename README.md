@@ -46,5 +46,6 @@ Acknowledgments:
 [Internet Archive](https://archive.org/),
 [Gemini 1.5 Pro](https://deepmind.google/models/gemini/pro/),
 [Rain Shimotsuki](https://www.youtube.com/@rain_shimotsuki),
+[tripflag](https://www.youtube.com/watch?v=29-q7YnyUmY),
 [KeksusGSPB](https://www.youtube.com/watch?v=c1iCjpxDxz4),
 [XNX.ROmania](https://web.archive.org/web/20230227230532/https://www.youtube.com/watch?v=M2ryDEyyrXE).
