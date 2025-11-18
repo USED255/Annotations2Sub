@@ -409,6 +409,10 @@ Used its 1M context capability to help reverse engineer annotation-related files
 
 Their videos and annotations were the initial motivation for this project.
 
+[tripflag](https://www.youtube.com/watch?v=29-q7YnyUmY)
+
+Used their annotations as a regression baseline.
+
 [KeksusGSPB](https://www.youtube.com/watch?v=c1iCjpxDxz4)
 
 Used their annotations as a regression baseline.
