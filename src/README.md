@@ -18,7 +18,16 @@ Annotations2Sub 是一个将旧版 YouTube Annotations 的 XML 文件转换为 A
   - `src/Annotations2Sub/Annotations.py` : XML 解析和Annotations数据结构.
   - `src/Annotations2Sub/convert.py` : 主要转换逻辑.
   - `src/Annotations2Sub/subtitles/` : 字幕格式、样式、事件和绘图辅助.
-- 测试: `src/tests/`
+  - `src/Annotations2Sub/cli.py` : 用户界面.
+- 测试:
+  - `src/tests/test_Baseline.py` : 回归测试.
+  - `src/tests/test_cli.py` : 集成测试.
+  - `src/tests/unittest/` : 其他测试.
+
+## 项目特有的模式
+
+- 测试用例是 Youtube Annotations, 使用 `src/tests/testCase/` 下的 `.test` 文件作为输入, 同时包含以 `.ass.test`、`.transform.ass.test` 等后缀的期望输出文件.
+- gettext `.po`/`.mo` 文件在 `src/Annotations2Sub/locales/`. 如有用户可见字符串变更, 请更新 `.po` 文件并重新生成 `.mo`.
 
 ## 如何运行、测试和代码检查
 
@@ -43,11 +52,6 @@ Annotations2Sub 是一个将旧版 YouTube Annotations 的 XML 文件转换为 A
   `isort .`
 
   `black .`
-
-## 项目特有的模式
-
-- 测试用例是 Youtube Annotations, 使用 `src/tests/testCase/` 下的 `.test` 文件作为输入, 同时包含以 `.ass.test`、`.transform.ass.test` 等后缀的期望输出文件.
-- 本地化: gettext `.po`/`.mo` 文件在 `src/Annotations2Sub/locales/`. 如有用户可见字符串变更, 请更新 `.po` 文件并重新生成 `.mo`.
 
 ## 调试 Annotations 行为
 

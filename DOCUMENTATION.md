@@ -461,7 +461,6 @@ subtitles_string = AnnotationsXmlStringToSubtitlesString(xml_string)
 with open('output.ass', 'w', encoding='utf-8') as f:
     f.write(subtitles_string)
 
-# If you're concerned about licensing issues, you can contact me for an alternative license.
 ```
 
 ### Comparison with Similar Software
