@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+# Baseline 和 cli 测试未覆盖的部分
+
 import gettext
 import os
 import sys

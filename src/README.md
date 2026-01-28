@@ -10,7 +10,7 @@ Annotations2Sub 是一个将旧版 YouTube Annotations 的 XML 文件转换为 A
 - 无外部依赖
 - 使用 [uv](https://github.com/astral-sh/uv) 管理工具链, 使用 setuptools 打包, pytest 测试, mypy 类型检查, isort 和 black 进行代码格式化.
 
-## 架构
+## 组织结构
 
 - 流程: 解析(`Annotations.py`)、转换(`convert.py`)和输出(`subtitles/*`).
 - 入口: `src/Annotations2Sub/_main.py` 或 `src/Annotations2Sub/__main__.py`.
@@ -22,6 +22,7 @@ Annotations2Sub 是一个将旧版 YouTube Annotations 的 XML 文件转换为 A
 - 测试:
   - `src/tests/test_Baseline.py` : 回归测试.
   - `src/tests/test_cli.py` : 集成测试.
+  - `src/tests/test_addendum.py` : 以上两个测试未覆盖的测试.
   - `src/tests/unittest/` : 其他测试.
 
 ## 项目特有的模式
