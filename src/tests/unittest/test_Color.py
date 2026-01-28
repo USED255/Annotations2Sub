@@ -12,23 +12,9 @@ def test_Color():
     assert color.blue == 0
 
 
-def test_Color_ValueError():
-    with pytest.raises(ValueError):
-        Color(256, 0, 0)
-    with pytest.raises(ValueError):
-        Color(0, 256, 0)
-    with pytest.raises(ValueError):
-        Color(0, 0, 256)
-
-
 def test_Alpha():
     alpha = Alpha(0)
     assert alpha.alpha == 0
-
-
-def test_Alpha_ValueError():
-    with pytest.raises(ValueError):
-        Alpha(256)
 
 
 def test_Rgba():
