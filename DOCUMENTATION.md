@@ -501,3 +501,7 @@ Metadata database of videos with annotations.
 [Annotations2Sub-Lite](https://a2s.liutao.page/)
 
 A web version made by AI.
+
+[Ar tonelico 系列 中文字幕 (Rain Shimotsuki 注释字幕还原) 合集](https://www.bilibili.com/video/BV1Ff4y1t7Dj)
+
+This project is a derivative of this project.
