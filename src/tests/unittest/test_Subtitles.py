@@ -28,9 +28,7 @@ def test_Sub():
 
 
 def test_str_Sub():
-    assert (
-        str(Subtitles())
-        == """[Script Info]
+    assert str(Subtitles()) == """[Script Info]
 ScriptType: v4.00+
 Title: Default File
 
@@ -42,7 +40,6 @@ Style: Default,Arial,20,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
 """
-    )
 
 
 def test_DrawCommand():
