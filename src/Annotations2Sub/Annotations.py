@@ -193,29 +193,36 @@ def Parse(tree: Element) -> List[Annotation]:
             return Color(red=r, green=g, blue=b)
 
         def ParseTime(timeString: str) -> datetime:
+            parts = timeString.split(":")
+            seconds = 0.0
+
+            for part in parts:
+                time = ParseFloat(part)
+                seconds = 60 * seconds + abs(time)
+
+            return datetime.fromtimestamp(seconds, dt.timezone.utc).replace(tzinfo=None)
+
+        def ParseFloat(string: str) -> float:
             def parseFloat(string: str) -> float:
                 match = re.match(
                     r"[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?", string.lstrip()
                 )
                 if match != None:
                     number = float(match.group(0))
-                    if number > 2147483647:
-                        return 0.0
                     return number
                 return 0.0
 
-            parts = timeString.split(":")
-            seconds = 0.0
+            try:
+                number = float(string)
+            except ValueError:
+                number = parseFloat(string)
 
-            for part in parts:
-                time = parseFloat(part)
-                seconds = 60 * seconds + abs(time)
+            if math.isnan(number):
+                return 0.0
+            if number > 2147483647:
+                return 0.0
 
-            return datetime.fromtimestamp(seconds, dt.timezone.utc).replace(tzinfo=None)
-
-        def ParseFloat(string: str) -> float:
-            string = string.replace(",", ".")
-            return float(string)
+            return number
 
         _id = each.get("id", "")
         if _id == "":
