@@ -8,6 +8,7 @@ import sys
 
 import pytest
 
+import Annotations2Sub.__main__
 from Annotations2Sub import Annotation, Subtitles
 from Annotations2Sub.i18n import internationalization
 from Annotations2Sub.subtitles import Event, Style
@@ -74,3 +75,8 @@ def test_Err1():
 
 def test_Warn1():
     Warn1("Test")
+
+
+def test_main():
+    with pytest.raises(SystemExit):
+        Annotations2Sub.__main__.main()

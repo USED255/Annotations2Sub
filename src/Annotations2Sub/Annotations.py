@@ -286,8 +286,6 @@ def Parse(tree: Element) -> List[Annotation]:
 
         if w < 0:
             w = 0
-        if math.isnan(w):
-            w = 0
 
         author = each.get("author", "")
 
