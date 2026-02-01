@@ -1,22 +1,38 @@
 # Annotations2Sub Source Code
 
-## 快速背景
+## 概述
 
-本仓库是一个用于将旧版 YouTube Annotations 的 XML 文件转换为 ASS 字幕文件的命令行工具. 包的入口点是控制台脚本 `Annotations2Sub`(在 `pyproject.toml` -> `project.scripts` 中定义). 主要代码位于 `src/Annotations2Sub/`, 测试代码位于 `src/tests/`.
+Annotations2Sub 是一个将旧版 YouTube Annotations 的 XML 文件转换为 ASS 字幕文件的命令行工具. 入口点是控制台脚本 `Annotations2Sub`. 主要代码位于 `src/Annotations2Sub/`, 测试代码位于 `src/tests/`.
+
+## 技术栈
+
+- Python 3.7+
+- 无外部依赖
+- 使用 [uv](https://github.com/astral-sh/uv) 管理工具链, 使用 setuptools 打包, pytest 测试, mypy 类型检查, isort 和 black 进行代码格式化.
 
 ## 组织结构
 
-- 目的: 读取 YouTube Annotations XML 文件并生成 ASS 字幕文件. 用户用法见 `README.md`: `Annotations2Sub <file.xml>`.
-- 流程: 解析(`Annotations.py`)、转换(`convert.py`)、输出(`subtitles/*`).
+- 流程: 解析(`Annotations.py`)、转换(`convert.py`)和输出(`subtitles/*`).
+- 入口: `src/Annotations2Sub/_main.py` 或 `src/Annotations2Sub/__main__.py`.
 - 核心模块:
-  - `src/Annotations2Sub/_main.py` 或 `src/Annotations2Sub/__main__.py` —— 程序入口.
-  - `src/Annotations2Sub/Annotations.py` —— XML 解析和Annotations数据结构.
-  - `src/Annotations2Sub/convert.py` —— 主要的转换逻辑和数据变换.
-  - `src/Annotations2Sub/subtitles/` —— 字幕格式、样式、事件和绘图辅助.
+  - `src/Annotations2Sub/Annotations.py` : XML 解析和Annotations数据结构.
+  - `src/Annotations2Sub/convert.py` : 主要转换逻辑.
+  - `src/Annotations2Sub/subtitles/` : 字幕格式、样式、事件和绘图辅助.
+  - `src/Annotations2Sub/cli.py` : 用户界面.
+- 测试:
+  - `src/tests/test_Baseline.py` : 回归测试.
+  - `src/tests/test_cli.py` : 集成测试.
+  - `src/tests/test_addendum.py` : 以上两个测试未覆盖的测试.
+  - `src/tests/unittest/` : 其他测试.
+
+## 项目特有的模式
+
+- 测试用例是 Youtube Annotations, 使用 `src/tests/testCase/` 下的 `.test` 文件作为输入, 同时包含以 `.ass.test`、`.transform.ass.test` 等后缀的期望输出文件.
+- gettext `.po`/`.mo` 文件在 `src/Annotations2Sub/locales/`. 如有用户可见字符串变更, 请更新 `.po` 文件并重新生成 `.mo`.
 
 ## 如何运行、测试和代码检查
 
-- 推荐使用 [uv](https://github.com/astral-sh/uv) 进行依赖管理和运行.
+- 使用 [uv](https://github.com/astral-sh/uv) 进行依赖管理.
 
   `uv sync`
 
@@ -38,20 +54,7 @@
 
   `black .`
 
-## 项目特有的模式和约定
-
-- 测试用例是 Youtube Annotations, 使用 `src/tests/testCase/` 下的 `.test` 文件作为输入, 同时包含以 `.ass.test`、`.transform.ass.test` 等后缀的期望输出文件.
-- 添加类型注解并保持 mypy 检查通过.
-- 使用 isort 和 black 进行代码格式化.
-- 本地化: gettext `.po`/`.mo` 文件在 `src/Annotations2Sub/locales/`. 如有用户可见字符串变更, 请更新 `.po` 文件并重新生成 `.mo`.
-
-## 集成点与外部依赖
-
-- 无外部依赖.
-- 构建/打包使用 setuptools.
-- CI 会上传覆盖率到 Codecov.
-
-## 调试注释行为
+## 调试 Annotations 行为
 
 使用[youtube_annotations_hack](https://github.com/USED255/youtube_annotations_hack)来预览正确的注释行为.
 
@@ -61,7 +64,7 @@
 
 ## 问题咨询
 
-- 在 GitHub 提 [issue](https://github.com/USED255/Annotations2Sub/issues).
+请在 GitHub 提 [issue](https://github.com/USED255/Annotations2Sub/issues).
 
 ## 您也可以看看
 
@@ -71,7 +74,7 @@
 
 - https://github.com/weizhenye/ASS/wiki/ASS-字幕格式规范
 
-  整理过的关于 ASS 字幕文件的格式以及渲染行为的文档.
+  整理好的关于 ASS 字幕文件的格式以及渲染行为的文档.
 
 - https://github.com/USED255/youtube_annotations_hack
 

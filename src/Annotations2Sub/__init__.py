@@ -8,6 +8,7 @@ ASS 字幕是一种常见的外挂字幕格式, 全称 Advanced SubStation Alpha
 
 此工具可以帮助您将 YouTube 注释转换为 ASS 字幕文件, 您可以播放或添加到视频中.
 """
+
 """
                                              xml.
                                              etree.
@@ -96,6 +97,10 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 ---
 
 随着时间流逝, 本项目所依赖的外部服务已逐渐变得不可用, 现已移除相关功能. 感谢 Invidious 和 Internet Archive 所提供的帮助.
+
+---
+
+又是时光流逝 Vibe Code 已成现实, Agents 已成长的他妈都不认识.
 
 ---
 - 注释(Annotations): YouTube 的功能

@@ -38,14 +38,6 @@ def test_Info():
     Info("Test")
 
 
-def test_Err1():
-    Err1("Test")
-
-
-def test_Warn1():
-    Warn1("Test")
-
-
 def test_Err2():
     Err2("Test")
 

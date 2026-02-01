@@ -2,6 +2,7 @@
 
 import datetime as dt
 import math
+import re
 from datetime import datetime
 from typing import List, Optional, Union
 from xml.etree.ElementTree import Element
@@ -192,55 +193,36 @@ def Parse(tree: Element) -> List[Annotation]:
             return Color(red=r, green=g, blue=b)
 
         def ParseTime(timeString: str) -> datetime:
-            def parseFloat(string: str) -> float:
-                def cleanInt(string: str) -> str:
-                    string = string.replace("s", "")
-                    string = string.replace("-", "")
-                    string = string.replace("%", "")
-
-                    if string == "NaN":
-                        return "0"
-                    if string == "aN":
-                        return "0"
-                    if "#" in string:
-                        return "0"
-                    return string
-
-                if string == "":
-                    return 0
-                if string == "4294967294":
-                    return 0
-                if string == "&":
-                    return 0
-                if string == "NaN":
-                    return 0
-
-                part = string.split(".")
-                part = list(map(cleanInt, part))
-                string = part[0]
-                if len(part) > 1:
-                    string = string + "." + part[1]
-                return float(string)
-
-            if timeString == "":
-                return datetime.strptime("0", "%S")
-            if timeString == "never":
-                return datetime.strptime("0", "%S")
-            if timeString == "undefined":
-                return datetime.strptime("0", "%S")
-
             parts = timeString.split(":")
             seconds = 0.0
 
             for part in parts:
-                time = parseFloat(part)
+                time = ParseFloat(part)
                 seconds = 60 * seconds + abs(time)
 
             return datetime.fromtimestamp(seconds, dt.timezone.utc).replace(tzinfo=None)
 
         def ParseFloat(string: str) -> float:
-            string = string.replace(",", ".")
-            return float(string)
+            def parseFloat(string: str) -> float:
+                match = re.match(
+                    r"[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?", string.lstrip()
+                )
+                if match != None:
+                    number = float(match.group(0))
+                    return number
+                return 0.0
+
+            try:
+                number = float(string)
+            except ValueError:
+                number = parseFloat(string)
+
+            if math.isnan(number):
+                return 0.0
+            if number > 2147483647:
+                return 0.0
+
+            return number
 
         _id = each.get("id", "")
         if _id == "":
@@ -303,8 +285,6 @@ def Parse(tree: Element) -> List[Annotation]:
         sy = ParseFloat(Segment[0].get("sy", "0"))
 
         if w < 0:
-            w = 0
-        if math.isnan(w):
             w = 0
 
         author = each.get("author", "")

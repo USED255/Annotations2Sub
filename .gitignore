@@ -1,25 +1,37 @@
+# Python 和工具缓存
 __pycache__
 .pytest_cache
 .mypy_cache
 .coverage
+
+# 虚拟环境
 .venv
-htmlcov
+
+# 构建输出
 dist
 Annotations2Sub.egg-info
+
+# 覆盖率报告
+htmlcov
+
+# 杂项
 测试用例/
-src/tests/garbage/*
-!src/tests/garbage/stub
-report
 *.mp4
 *.mkv
 *.webm
 *.xml
 *.ass
+
+src/tests/garbage/*
+!src/tests/garbage/stub
+
+report
 *.lnk
 *.ps1
 *.pyz
 *.dot
 *.prof
+
 mypy.ini
 uv.lock
 .python-version

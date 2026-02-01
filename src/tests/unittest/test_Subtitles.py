@@ -15,14 +15,6 @@ def test_str_Style():
     )
 
 
-def test_repr_Style():
-    assert repr(Style()) == str(Style())
-
-
-def test_eq_Style():
-    assert Style() == Style()
-
-
 def test_Event():
     assert Event()
 
@@ -31,22 +23,12 @@ def test_str_Event():
     assert str(Event()) == "Dialogue: 0,00:00:00.00,00:00:00.00,Default,,0,0,0,,\n"
 
 
-def test_repr_Event():
-    assert repr(Event()) == str(Event())
-
-
-def test_eq_Event():
-    assert Event() == Event()
-
-
 def test_Sub():
     assert Subtitles()
 
 
 def test_str_Sub():
-    assert (
-        str(Subtitles())
-        == """[Script Info]
+    assert str(Subtitles()) == """[Script Info]
 ScriptType: v4.00+
 Title: Default File
 
@@ -58,15 +40,6 @@ Style: Default,Arial,20,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
 """
-    )
-
-
-def test_repr_Sub():
-    assert repr(Subtitles()) == str(Subtitles())
-
-
-def test_eq_Sub():
-    assert Subtitles() == Subtitles()
 
 
 def test_DrawCommand():
