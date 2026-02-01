@@ -19,7 +19,7 @@ from Annotations2Sub.utils import Err, Info, Stderr, Warn
 
 
 def Run(args=None) -> int:
-    """命令行应用的实现
+    """命令行界面的实现
 
     参数应当是 `list(str)`,
     当参数为 `None` 时 `argparse` 会从 `sys.argv` 解析参数.
