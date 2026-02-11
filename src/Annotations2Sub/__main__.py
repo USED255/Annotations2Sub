@@ -11,7 +11,7 @@ if not __package__:
     path = os.path.abspath(os.path.join(path, os.pardir))
     sys.path.append(path)
 
-from Annotations2Sub._main import main
+from Annotations2Sub.cli import cli_entry
 
 if __name__ == "__main__":
-    main()
+    cli_entry()

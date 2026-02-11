@@ -13,7 +13,7 @@ Annotations2Sub 是一个将旧版 YouTube Annotations 的 XML 文件转换为 A
 ## 组织结构
 
 - 流程: 解析(`Annotations.py`)、转换(`convert.py`)和输出(`subtitles/*`).
-- 入口: `src/Annotations2Sub/_main.py` 或 `src/Annotations2Sub/__main__.py`.
+- 入口: `src/Annotations2Sub/cli.py:cli_entry` 或 `src/Annotations2Sub/__main__.py`.
 - 核心模块:
   - `src/Annotations2Sub/Annotations.py` : XML 解析和Annotations数据结构.
   - `src/Annotations2Sub/convert.py` : 主要转换逻辑.

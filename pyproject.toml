@@ -37,7 +37,7 @@ Homepage = "https://github.com/USED255/Annotations2Sub"
 "Bug Tracker" = "https://github.com/USED255/Annotations2Sub/issues"
 
 [project.scripts]
-Annotations2Sub = "Annotations2Sub._main:main"
+Annotations2Sub = "Annotations2Sub.cli:cli_entry"
 
 [tool.setuptools]
 package-dir = { "" = "src" }

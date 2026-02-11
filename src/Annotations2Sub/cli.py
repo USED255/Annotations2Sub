@@ -4,7 +4,7 @@ import argparse
 import os
 import sys
 import traceback
-from typing import Optional
+from typing import NoReturn, Optional
 from xml.etree.ElementTree import ParseError
 
 from Annotations2Sub.__version__ import version
@@ -189,3 +189,16 @@ def Run(args=None) -> int:
         exit_code = 18
 
     return exit_code
+
+
+def cli_entry(args=None) -> NoReturn:
+    try:
+        code = Run(args)
+    except SystemExit:
+        code = 2
+    except:
+        Stderr(traceback.format_exc())
+        Err(_("出现未知错误"))
+        code = 19
+
+    sys.exit(code)
