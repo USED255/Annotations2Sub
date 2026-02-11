@@ -323,7 +323,7 @@ Annotations2Sub -v
 Output:
 
 ```text
-Annotations2Sub v2.24.0
+Annotations2Sub v2.25.0
 ```
 
 #### Verbose Output

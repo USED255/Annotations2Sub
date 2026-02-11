@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Annotations2Sub"
-version = "2.24.0"
+version = "2.25.0"
 description = "Convert Youtube Annotations to subtitles."
 readme = "README.md"
 authors = [{ name = "我如天翼", email = "wrtyis@outlook.com" }]
