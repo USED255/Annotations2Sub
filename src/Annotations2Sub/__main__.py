@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # 你也可以 python __main__.py 来使用本工具.
+
 if not __package__:
     import os
     import sys
