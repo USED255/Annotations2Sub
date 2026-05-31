@@ -34,6 +34,7 @@ def test_internationalization_win32():
 
     m.undo()
 
+
 def test_Err1():
     Err1("Test")
 

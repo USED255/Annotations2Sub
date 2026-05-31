@@ -20,11 +20,18 @@ def internationalization():
                 if lang != None:
                     os.environ["LANG"] = lang
 
+        en = gettext.translation(
+            "Annotations2Sub",
+            locales,
+            languages=["en"],
+        )
         translate = gettext.translation(
             "Annotations2Sub",
             locales,
         )
+        translate.add_fallback(en)
         return translate.gettext
+
     except FileNotFoundError:
         print("\033[31m翻译文件加载失败\033[0m", file=sys.stderr)
         return gettext.gettext
