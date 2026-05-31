@@ -123,7 +123,6 @@ from Annotations2Sub.Annotations import Annotation, NotAnnotationsDocumentError,
 from Annotations2Sub.cli import Run, cli_entry
 from Annotations2Sub.cli_utils import AnnotationsXmlStringToSubtitlesString
 from Annotations2Sub.convert import Convert
-from Annotations2Sub.gui import RunGUI
 from Annotations2Sub.subtitles import Event, Style, Subtitles
 
 __all__ = [
@@ -138,5 +137,4 @@ __all__ = [
     "NotAnnotationsDocumentError",
     "AnnotationsXmlStringToSubtitlesString",
     "cli_entry",
-    "RunGUI",
 ]

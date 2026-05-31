@@ -38,7 +38,7 @@ Homepage = "https://github.com/USED255/Annotations2Sub"
 
 [project.scripts]
 Annotations2Sub = "Annotations2Sub:cli_entry"
-Annotations2Sub-gui = "Annotations2Sub:RunGUI"
+Annotations2Sub-GUI = "Annotations2Sub_GUI:RunGUI"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
