@@ -9,27 +9,9 @@ import sys
 
 
 def internationalization():
-    def f():
-        def get_locales_path():
-            def f1():
-                from importlib import resources
-
-                package = __package__ or "Annotations2Sub"
-                locales = str(resources.files(package) / "locales")
-                return locales
-
-            def f2():
-                locales = os.path.join(
-                    os.path.split(os.path.realpath(__file__))[0], "locales"
-                )
-                return locales
-
-            try:
-                return f1()
-            except (ImportError, FileNotFoundError):
-                return f2()
-
-        locales = get_locales_path()
+    try:
+        # 配合 __main__.py
+        locales = os.path.join(os.path.split(os.path.realpath(__file__))[0], "locales")
 
         # https://stackoverflow.com/a/8377533
         if sys.platform == "win32":
@@ -50,8 +32,6 @@ def internationalization():
         translate.add_fallback(en)
         return translate.gettext
 
-    try:
-        return f()
     except FileNotFoundError:
         print("\033[31m翻译文件加载失败\033[0m", file=sys.stderr)
         return gettext.gettext
