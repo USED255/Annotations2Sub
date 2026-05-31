@@ -29,6 +29,7 @@ report
 *.lnk
 *.ps1
 *.pyz
+*.pyzw
 *.dot
 *.prof
 

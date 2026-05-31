@@ -120,9 +120,10 @@ R4CqsDTnT60	志方あきこ - Ec Tisia ～Tarifa～ 中文字幕(Chinese Transla
 
 from Annotations2Sub.__version__ import version
 from Annotations2Sub.Annotations import Annotation, NotAnnotationsDocumentError, Parse
-from Annotations2Sub.cli import Run
+from Annotations2Sub.cli import Run, cli_entry
 from Annotations2Sub.cli_utils import AnnotationsXmlStringToSubtitlesString
 from Annotations2Sub.convert import Convert
+from Annotations2Sub.gui import RunGUI
 from Annotations2Sub.subtitles import Event, Style, Subtitles
 
 __all__ = [
@@ -136,4 +137,6 @@ __all__ = [
     "Event",
     "NotAnnotationsDocumentError",
     "AnnotationsXmlStringToSubtitlesString",
+    "cli_entry",
+    "RunGUI",
 ]

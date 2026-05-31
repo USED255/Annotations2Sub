@@ -13,12 +13,15 @@ def internationalization():
         def get_locales_path():
             def f1():
                 from importlib import resources
-                package = __package__ or 'Annotations2Sub'
+
+                package = __package__ or "Annotations2Sub"
                 locales = str(resources.files(package) / "locales")
                 return locales
 
             def f2():
-                locales = os.path.join(os.path.split(os.path.realpath(__file__))[0], "locales")
+                locales = os.path.join(
+                    os.path.split(os.path.realpath(__file__))[0], "locales"
+                )
                 return locales
 
             try:
