@@ -38,7 +38,6 @@ Homepage = "https://github.com/USED255/Annotations2Sub"
 
 [project.scripts]
 Annotations2Sub = "Annotations2Sub:cli_entry"
-Annotations2Sub-GUI = "Annotations2Sub_GUI:RunGUI"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
@@ -62,4 +61,3 @@ profile = "black"
 
 [dependency-groups]
 dev = ["pytest", "pytest-cov", "mypy", "isort", "black", "build", "ipython","ipykernel"]
-
