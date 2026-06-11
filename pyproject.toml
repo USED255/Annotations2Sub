@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Annotations2Sub"
-version = "2.24.0"
+version = "2.25.0"
 description = "Convert Youtube Annotations to subtitles."
 readme = "README.md"
 authors = [{ name = "我如天翼", email = "wrtyis@outlook.com" }]
@@ -37,7 +37,7 @@ Homepage = "https://github.com/USED255/Annotations2Sub"
 "Bug Tracker" = "https://github.com/USED255/Annotations2Sub/issues"
 
 [project.scripts]
-Annotations2Sub = "Annotations2Sub._main:main"
+Annotations2Sub = "Annotations2Sub:cli_entry"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
@@ -61,4 +61,3 @@ profile = "black"
 
 [dependency-groups]
 dev = ["pytest", "pytest-cov", "mypy", "isort", "black", "build", "ipython","ipykernel"]
-

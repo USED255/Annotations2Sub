@@ -2,13 +2,11 @@
 
 from Annotations2Sub.utils import (
     Err,
-    Err1,
     Err2,
     Info,
     RedText,
     Stderr,
     Warn,
-    Warn1,
     Warn2,
     YellowText,
 )

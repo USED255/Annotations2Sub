@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # 你也可以 python __main__.py 来使用本工具.
+
 if not __package__:
     import os
     import sys
@@ -11,7 +12,7 @@ if not __package__:
     path = os.path.abspath(os.path.join(path, os.pardir))
     sys.path.append(path)
 
-from Annotations2Sub._main import main
+from Annotations2Sub.cli import cli_entry
 
 if __name__ == "__main__":
-    main()
+    cli_entry()

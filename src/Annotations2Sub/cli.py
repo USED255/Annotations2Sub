@@ -4,7 +4,7 @@ import argparse
 import os
 import sys
 import traceback
-from typing import Optional
+from typing import NoReturn, Optional
 from xml.etree.ElementTree import ParseError
 
 from Annotations2Sub.__version__ import version
@@ -24,7 +24,17 @@ def Run(args=None) -> int:
     参数应当是 `list(str)`,
     当参数为 `None` 时 `argparse` 会从 `sys.argv` 解析参数.
 
-    返回值是退出码, 根据错误不同, 返回的退出码会有所不同.
+    返回值是退出码, 参考如下:
+
+    - 0: 成功
+    - 2: 参数错误
+    - 13: 不是文件
+    - 14: 不是 Annotations 文件
+    - 15: 无效的 XML 文档
+    - 18: 多个错误
+    - 19: 未知错误
+    - 20: 空文件
+
     """
 
     exit_code = 0
@@ -189,3 +199,16 @@ def Run(args=None) -> int:
         exit_code = 18
 
     return exit_code
+
+
+def cli_entry(args=None) -> NoReturn:
+    try:
+        code = Run(args)
+    except SystemExit:
+        code = 2
+    except:
+        Stderr(traceback.format_exc())
+        Err(_("出现未知错误"))
+        code = 19
+
+    sys.exit(code)
