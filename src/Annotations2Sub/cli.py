@@ -206,7 +206,7 @@ def cli_entry(args=None) -> NoReturn:
         code = Run(args)
     except SystemExit:
         code = 2
-    except:
+    except Exception:
         Stderr(traceback.format_exc())
         Err(_("出现未知错误"))
         code = 19
