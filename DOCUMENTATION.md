@@ -57,6 +57,10 @@ This tool can help you convert YouTube annotations into ASS subtitle files that 
 
 ## Getting Started
 
+### Shortcuts
+
+[Click here to ask ChatGPT](https://chatgpt.com/?q=Please%20help%20me%20use%20https://github.com/USED255/Annotations2Sub).
+
 ### Prerequisites
 
 Before you begin, you need to prepare Python, video files, YouTube annotation XML files, a video player, and related background knowledge.

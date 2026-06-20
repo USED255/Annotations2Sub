@@ -12,7 +12,7 @@ Convert Youtube Annotations to subtitles.
 
 ---
 
-Before you begin, please make sure you have Python, the YouTube annotations XML file, a video player, the corresponding video file, and any necessary background knowledge ready.
+Before you begin, please make sure you have Python, the YouTube annotations XML file, a video player, the corresponding video file, and any necessary background knowledge ready. OR [Click here to ask ChatGPT](https://chatgpt.com/?q=Please%20help%20me%20use%20https://github.com/USED255/Annotations2Sub).
 
 Installation:
 
