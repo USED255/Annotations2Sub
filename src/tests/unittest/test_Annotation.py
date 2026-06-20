@@ -17,7 +17,7 @@ def test_Annotation():
 def test_str_Annotation():
     assert (
         str(Annotation())
-        == "bgc=16777215,bgo=0.8,fgc=16777215,txsz=3.15,tp=text,x=0.0,y=0.0,w=0.0,h=0.0,ts=00,te=00,s=popup,t="
+        == "bgc=16777215,bgo=0.8,fgc=0,txsz=3.15,tp=text,x=0.0,y=0.0,w=0.0,h=0.0,ts=00,te=00,s=popup,t="
     )
 
 

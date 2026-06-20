@@ -143,9 +143,9 @@ class Annotation:
 
         bgc = f(self.bgColor)
         bgo = self.bgOpacity.alpha / 255
-        fgc = f(self.bgColor)
+        fgc = f(self.fgColor)
         ts = datetime.strftime(self.timeStart, "%S")
-        te = datetime.strftime(self.timeStart, "%S")
+        te = datetime.strftime(self.timeEnd, "%S")
         return f"bgc={bgc},bgo={bgo},fgc={fgc},txsz={self.textSize},tp={self.type},x={self.x},y={self.y},w={self.width},h={self.height},ts={ts},te={te},s={self.style},t={self.text}"
 
     def __repr__(self) -> str:
