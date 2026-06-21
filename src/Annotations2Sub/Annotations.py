@@ -143,9 +143,9 @@ class Annotation:
 
         bgc = f(self.bgColor)
         bgo = self.bgOpacity.alpha / 255
-        fgc = f(self.bgColor)
+        fgc = f(self.fgColor)
         ts = datetime.strftime(self.timeStart, "%S")
-        te = datetime.strftime(self.timeStart, "%S")
+        te = datetime.strftime(self.timeEnd, "%S")
         return f"bgc={bgc},bgo={bgo},fgc={fgc},txsz={self.textSize},tp={self.type},x={self.x},y={self.y},w={self.width},h={self.height},ts={ts},te={te},s={self.style},t={self.text}"
 
     def __repr__(self) -> str:
@@ -193,6 +193,7 @@ def Parse(tree: Element) -> List[Annotation]:
             return Color(red=r, green=g, blue=b)
 
         def ParseTime(timeString: str) -> datetime:
+            # 参考 https://github.com/USED255/youtube_annotations_hack/blob/50db2b95133ddb0283ce6adb2ccadc11510caf27/web/yts/jsbin/player-vflpusdz-/en_US/annotations_module.js#L1388
             parts = timeString.split(":")
             seconds = 0.0
 
@@ -203,6 +204,7 @@ def Parse(tree: Element) -> List[Annotation]:
             return datetime.fromtimestamp(seconds, dt.timezone.utc).replace(tzinfo=None)
 
         def ParseFloat(string: str) -> float:
+            # 模拟 JS 的行为
             def parseFloat(string: str) -> float:
                 match = re.match(
                     r"[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?", string.lstrip()

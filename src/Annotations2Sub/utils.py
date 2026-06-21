@@ -42,6 +42,6 @@ def Info(string: str):
 Err = Err1
 Warn = Warn1
 
-if not sys.stdout.isatty():
+if not sys.stderr.isatty():
     Err = Err2
     Warn = Warn2
