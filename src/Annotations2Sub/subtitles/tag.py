@@ -22,8 +22,8 @@ class Align:
     # 用 \an7 指定在左上角.
     # fmt: off
     def __init__(self, align: Literal[7,8,9,
-                                        4,5,6,
-                                        1,2,3] ):
+                                      4,5,6,
+                                      1,2,3] ):
     # fmt: on
         self.align = align
 

@@ -59,21 +59,24 @@ def test_not_equal():
     )
 
 
-@pytest.mark.parametrize("Baseline", baselines)
-def test_baseline(Baseline: str):
+def run_baseline(Baseline: str, extra_args, suffix: str = ".ass.test") -> None:
     baseline_file = os.path.join(baselinePath, Baseline + ".xml.test")
-    baseline_result = os.path.join(baselinePath, Baseline + ".ass.test")
+    baseline_result = os.path.join(baselinePath, Baseline + suffix)
     result = baseline_file + ".ass"
 
-    Run(["-f", "Arial", baseline_file])
-    assert equal(baseline_result, result)
+    Run(extra_args + ["-o", str(result), baseline_file])
+    assert equal(baseline_result, str(result))
+
+
+@pytest.mark.parametrize("Baseline", baselines)
+def test_baseline(Baseline: str):
+    run_baseline(Baseline, ["-f", "Arial"])
 
 
 @pytest.mark.parametrize("Baseline", baselines)
 def test_baseline_transform(Baseline: str):
-    baseline_file = os.path.join(baselinePath, Baseline + ".xml.test")
-    baseline_result = os.path.join(baselinePath, Baseline + ".transform.ass.test")
-    result = baseline_file + ".ass"
-
-    Run(["-f", "Arial", "-x", "1920", "-y", "1080", baseline_file])
-    assert equal(baseline_result, result)
+    run_baseline(
+        Baseline,
+        ["-f", "Arial", "-x", "1920", "-y", "1080"],
+        ".transform.ass.test",
+    )
