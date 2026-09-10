@@ -579,14 +579,17 @@ def Convert(
             Stderr(_('不支持 "{}" 样式 ({})').format(each.style, each.id))
             return []
 
-    #      Dict[Ref:str, Dict[timeStart:datetime, timeEnd:datetime]]
-    patch: Dict[str, Dict] = {}
+    annotations = copy.copy(annotations)
     events = []
 
     # ---
     # 一些注释被另一个注释引用,
     # 在互动后会展现这些注释,
     # 考试再三, 我打算把这些注释的时间处理一下, 让他立即展现出来.
+
+    #      Dict[Ref:str, Dict[timeStart:datetime, timeEnd:datetime]]
+    patch: Dict[str, Dict] = {}
+
     for each in annotations:
         if each.ref != "":
             patch[each.ref] = {}
