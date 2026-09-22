@@ -204,37 +204,37 @@ Annotations2Sub -h
 Output:
 
 ```shell
-usage: Annotations2Sub [-h] [-x 1920] [-y 1080] [-f Microsoft YaHei]
-                   [-n] [-o file] [-O directory] [-v] [-V]
-                   file [file]
+usage: Annotations2Sub [-h] [-x 1920] [-y 1080] [-f Arial] [-n] [-o File]
+                       [-O directory] [-v] [-V]
+                       File [File ...]
 
-Download and convert Youtube annotations
+Convert Youtube Annotation
 
 positional arguments:
-  file or videoId       Multiple file paths or video IDs to convert
+  File                  File paths of multiple files to be converted
 
 options:
   -h, --help            show this help message and exit
-  -x 1920, --transform-resolution-x 1920
+  -x, --transform-resolution-x 1920
                         Transform resolution X
-  -y 1080, --transform-resolution-y 1080
+  -y, --transform-resolution-y 1080
                         Transform resolution Y
-  -f Microsoft YaHei, --font Microsoft YaHei
-                        Specify font
+  -f, --font Arial      Specify font
   -n, --no-overwrite-files
-                        Don't overwrite files
-  -o file, --output file    Save to this file, if "-" output to stdout
-  -O directory, --output-directory directory
-                        Specify output directory for converted files
-  -v, --version         Show version number
+                        Do not overwrite files
+  -o, --output File     Save to this file, if "-" then output to standard
+                        output
+  -O, --output-directory directory
+                        Specify the output directory for the converted file
+  -v, --version         Show Version
   -V, --verbose         Show more messages
 ```
 
 #### Transform Resolution
 
-`-x 1920, --transform-resolution-x 1920 Transform resolution X`
+`-x, --transform-resolution-x 1920 Transform resolution X`
 
-`-y 1080, --transform-resolution-y 1080 Transform resolution Y`
+`-y, --transform-resolution-y 1080 Transform resolution Y`
 
 Resolution information is only truly needed when drawing "boxes" for highlight-type annotations or label-style annotations, so this parameter is optional.
 
@@ -327,7 +327,7 @@ Annotations2Sub -v
 Output:
 
 ```text
-Annotations2Sub v2.25.0
+Annotations2Sub v2.26.0
 ```
 
 #### Verbose Output

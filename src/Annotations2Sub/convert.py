@@ -558,7 +558,10 @@ def Convert(
         # 用于编辑字幕时参考, 不会展示给用户.
         # 这里除了记录 author 之外, 还会记录些信息用于调试.
         # author;id;function;alternative
-        event.Name += each.author + ";"
+        #
+        # 逗号是 Dialogue 行的字段分隔符, author 里若有逗号会让后面的字段错位,
+        # 所以替换成空格.
+        event.Name += each.author.replace(",", " ") + ";"
         event.Name += each.id + ";"
 
         if each.style == "popup":
@@ -579,7 +582,7 @@ def Convert(
             Stderr(_('不支持 "{}" 样式 ({})').format(each.style, each.id))
             return []
 
-    annotations = copy.copy(annotations)
+    annotations = copy.deepcopy(annotations)
     events = []
 
     # ---

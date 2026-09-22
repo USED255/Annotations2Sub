@@ -70,7 +70,8 @@ class PrimaryColour:
 
     def __str__(self) -> str:
         def DumpColor(color: Color) -> str:
-            return "&H{:02X}{:02X}{:02X}&".format(color.red, color.green, color.blue)
+            # Color 是 RRGGBB, ASS 要求 BBGGRR, 所以这里反着写
+            return "&H{:02X}{:02X}{:02X}&".format(color.blue, color.green, color.red)
 
         return rf"\c{DumpColor(self.colour)}"
 

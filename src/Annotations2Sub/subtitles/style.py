@@ -9,6 +9,7 @@ class Style:
     """SSA 样式(Style) 结构
 
     名称(`Name`)不在本对象中保存，而是作为 `dict[Name, Style]` 的键.
+    str() 返回的字符串中会有一个格式化占位符 `{}` 用于填充名称.
     """
 
     def __init__(self):

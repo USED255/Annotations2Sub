@@ -35,6 +35,8 @@ def Run(args=None) -> int:
     - 19: 未知错误
     - 20: 空文件
 
+    `-h`/`--help` 和 `-v`/`--version` 也是 0, `argparse` 的 `SystemExit` 会在这里被翻译成退出码.
+
     """
 
     exit_code = 0
@@ -104,7 +106,17 @@ def Run(args=None) -> int:
         help=_("显示更多消息"),
     )
 
-    args = parser.parse_args(args)
+    # `argparse` 在 `--help`/`--version` 时以 `SystemExit(0)` 退出, 参数错误时以 `SystemExit(2)` 退出.
+    # 这里把 `SystemExit` 翻译成退出码, 使 `Run()` 的返回值始终是退出码.
+    try:
+        args = parser.parse_args(args)
+    except SystemExit as error:
+        if error.code == None:
+            return 0
+        if isinstance(error.code, int):
+            return error.code
+        Stderr(str(error.code))
+        return 2
 
     queue = list(map(str, args.queue))
 
@@ -204,8 +216,6 @@ def Run(args=None) -> int:
 def cli_entry(args=None) -> NoReturn:
     try:
         code = Run(args)
-    except SystemExit:
-        code = 2
     except Exception:
         Stderr(traceback.format_exc())
         Err(_("出现未知错误"))

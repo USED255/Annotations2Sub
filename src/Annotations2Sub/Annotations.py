@@ -139,7 +139,7 @@ class Annotation:
         # 模仿 https://github.com/isaackd/annotations-converter
 
         def f(color: Color) -> int:
-            return (color.blue << 16) | (color.green << 8) | color.red
+            return (color.red << 16) | (color.green << 8) | color.blue
 
         bgc = f(self.bgColor)
         bgo = self.bgOpacity.alpha / 255
@@ -184,12 +184,12 @@ def Parse(tree: Element) -> List[Annotation]:
         def ParseAnnotationColor(colorString: str) -> Color:
             """
             解析 Annotation 的颜色值
-            "4210330" -> Color(red=154, green=62, blue=64)
+            "4210330" -> Color(red=64, green=62, blue=154)
             """
             integer = int(colorString)
-            r = integer & 255
+            r = integer >> 16 & 255
             g = (integer >> 8) & 255
-            b = integer >> 16 & 255
+            b = integer & 255
             return Color(red=r, green=g, blue=b)
 
         def ParseTime(timeString: str) -> datetime:
@@ -204,8 +204,8 @@ def Parse(tree: Element) -> List[Annotation]:
             return datetime.fromtimestamp(seconds, dt.timezone.utc).replace(tzinfo=None)
 
         def ParseFloat(string: str) -> float:
-            # 模拟 JS 的行为
-            def parseFloat(string: str) -> float:
+            # 模拟 JS 的 parseFloat()
+            def JsParseFloat(string: str) -> float:
                 match = re.match(
                     r"[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?", string.lstrip()
                 )
@@ -217,7 +217,7 @@ def Parse(tree: Element) -> List[Annotation]:
             try:
                 number = float(string)
             except ValueError:
-                number = parseFloat(string)
+                number = JsParseFloat(string)
 
             if math.isnan(number):
                 return 0.0
