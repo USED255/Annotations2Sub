@@ -305,6 +305,11 @@ msgstr "ERROR: "
 msgid "警告: "
 msgstr "Warning: "
 
+#: cli.py:147
+msgid "--no-overwrite-files 不能与输出到标准输出同时使用"
+msgstr ""
+"--no-overwrite-files cannot be used together with writing to standard output"
+
 #~ msgid "这是一个命令行工具，请在命令提示符下运行。"
 #~ msgstr "This is a command line tool, please run it from a command prompt."
 

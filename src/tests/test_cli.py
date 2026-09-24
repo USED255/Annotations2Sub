@@ -24,7 +24,11 @@ empty_file = os.path.join(testCasePath, "empty.test")
 15: 无效的 XML 文档
 18: 多个错误
 20: 空文件
+
+退出码规则: 只有一个错误时返回该错误对应的码, 有多个错误时返回 18.
 """
+
+not_a_directory = os.path.join(testCasePath, "annotations.xml.test")
 
 test_set = [
     # 预期成功的命令
@@ -33,18 +37,27 @@ test_set = [
     (f"{baseline1_file} -o -", 0),
     (f"{baseline1_file} -n", 0),
     (f"{empty_annotations}", 0),
-    # 预期失败的命令
+    #预期失败的命令
+    # 单个错误
+    (f"{file1}", 15),
+    (f"{empty_xml}", 14),
+    (f"{empty_file}", 20),
+    ("0", 13),
+    # 多个错误
+    ("0 0", 18),
+    (f"0 {file1}", 18),
+    (f"{empty_xml} {file1}", 18),
+    # 参数错误
     # 输出目录不能是一个文件
-    (f"{baseline1_file} -O {file1}", 2),
+    (f"{baseline1_file} -O {not_a_directory}", 2),
+    # 输出目录不存在
+    (f"{baseline1_file} -O {os.path.join(testCasePath, 'no_such_dir')}", 2),
     # 多个文件不能输出到一个文件
     (f"{baseline1_file} {baseline2_file} -o 1.ass", 2),
     # "-O" 和 "-o" 不能一起用
     (f"{baseline1_file} -O . -o 1.ass", 2),
-    (f"{empty_xml}", 14),
-    (f"{file1}", 15),
-    ("0", 13),
-    ("0 0", 18),
-    (f"{empty_file}", 20),
+    # 输出到标准输出时 "-n" 没有意义
+    (f"{baseline1_file} -o - -n", 2),
 ]
 
 
@@ -54,3 +67,17 @@ def test_cli(Argument: str, ExitCode: int):
     args = Argument.split(" ")
     code = Run(args)
     assert ExitCode == code
+
+
+def test_output_to_stdout_writes_stdout(capsys):
+    code = Run([baseline1_file, "-o", "-"])
+    assert code == 0
+    captured = capsys.readouterr()
+    assert "[Script Info]" in captured.out
+    assert "[Events]" in captured.out
+
+
+def test_output_to_stdout_does_not_write_a_file():
+    # "-" 只是标准输出的记号, 不应该真的写一个名为 "-" 的文件
+    Run([baseline1_file, "-o", "-"])
+    assert not os.path.exists("-")

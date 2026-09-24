@@ -355,6 +355,8 @@ Effect: Will print the reasons why certain annotations were not converted, as we
 - 19: Unknown error
 - 20: Empty file
 
+If only one file fails, the code of that failure is returned. If more than one error occurs, 18 is returned.
+
 ## Limitations
 
 - Cannot interact with annotations, including but not limited to closing annotations, opening links, expanding details, jumping to other videos, pausing, etc.
