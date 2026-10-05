@@ -46,3 +46,21 @@ def test_Warn1():
 def test_main():
     with pytest.raises(SystemExit):
         cli_entry()
+
+
+def test_main_unknown_error(monkeypatch, capsys):
+    # cli_entry 的兜底: 未预料到的异常应该被翻译成退出码 19
+    import Annotations2Sub.cli as cli
+
+    def boom(args=None):
+        raise RuntimeError("boom")
+
+    monkeypatch.setattr(cli, "Run", boom)
+
+    with pytest.raises(SystemExit) as error:
+        cli.cli_entry([])
+
+    assert error.value.code == 19
+    stderr = capsys.readouterr().err
+    assert "RuntimeError" in stderr
+    assert cli._("出现未知错误") in stderr

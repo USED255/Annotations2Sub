@@ -2,8 +2,6 @@
 
 from dataclasses import dataclass
 
-from Annotations2Sub.i18n import _
-
 
 @dataclass
 class Color:

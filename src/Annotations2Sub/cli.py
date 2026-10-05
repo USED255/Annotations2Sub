@@ -4,7 +4,7 @@ import argparse
 import os
 import sys
 import traceback
-from typing import NoReturn, Optional
+from typing import List, NoReturn, Optional
 from xml.etree.ElementTree import ParseError
 
 from Annotations2Sub.__version__ import version
@@ -35,9 +35,9 @@ def Run(args=None) -> int:
     - 19: 未知错误
     - 20: 空文件
 
-    """
+    `-h`/`--help` 和 `-v`/`--version` 也是 0, `argparse` 的 `SystemExit` 会在这里被翻译成退出码.
 
-    exit_code = 0
+    """
     parser = argparse.ArgumentParser(description=_("转换 Youtube 注释"))
     parser.add_argument(
         "queue",
@@ -104,7 +104,17 @@ def Run(args=None) -> int:
         help=_("显示更多消息"),
     )
 
-    args = parser.parse_args(args)
+    # `argparse` 在 `--help`/`--version` 时以 `SystemExit(0)` 退出, 参数错误时以 `SystemExit(2)` 退出.
+    # 这里把 `SystemExit` 翻译成退出码, 使 `Run()` 的返回值始终是退出码.
+    try:
+        args = parser.parse_args(args)
+    except SystemExit as error:
+        if error.code == None:
+            return 0
+        if isinstance(error.code, int):
+            return error.code
+        Stderr(str(error.code))
+        return 2
 
     queue = list(map(str, args.queue))
 
@@ -128,20 +138,28 @@ def Run(args=None) -> int:
         if len(queue) > 1:
             Err(_("--output 只能处理一个文件"))
             return 2
-        if args.output == "-":
+        if output == "-":
             output_to_stdout = True
+            if enable_no_overwrite_files:
+                Err(_("--no-overwrite-files 不能与输出到标准输出同时使用"))
+                return 2
+    else:
+        if output_directory != None:
+            if os.path.isdir(output_directory) == False:
+                Err(_("转换后文件输出目录应该指定一个文件夹"))
+                return 2
 
-    if output_directory != None:
-        if os.path.isdir(output_directory) == False:
-            Err(_("转换后文件输出目录应该指定一个文件夹"))
-            return 2
+    # 记录出错的次数与出现过的退出码:
+    # 只有一个错误时返回该错误对应的退出码, 有多个错误时返回 18.
+    # (不要再用退出码相加的结果来判断, 那样 13 + 14 与 13 + 13 会走到不同分支.)
+    error_codes: List[int] = []
 
     for Task in queue:
         annotations_file = Task
 
         if os.path.isfile(annotations_file) == False:
             Err(_('"{}" 不是一个文件').format(annotations_file))
-            exit_code += 13
+            error_codes.append(13)
             continue
 
         subtitle_file = annotations_file + ".ass"
@@ -167,16 +185,16 @@ def Run(args=None) -> int:
 
         except NotAnnotationsDocumentError:
             Err(_('"{}" 不是 Annotations 文件').format(annotations_file))
-            exit_code += 14
+            error_codes.append(14)
             continue
         except ParseError:
             Err(_('"{}" 不是一个有效的 XML 文件').format(annotations_file))
             Info(traceback.format_exc())
-            exit_code += 15
+            error_codes.append(15)
             continue
         except AnnotationsStringIsEmptyError:
             Err(_('"{}" 是空文件').format(annotations_file))
-            exit_code += 20
+            error_codes.append(20)
             continue
 
         is_no_save = False
@@ -194,18 +212,19 @@ def Run(args=None) -> int:
                 f.write(subtitle_string)
             Stderr(_('保存于 "{}"').format(subtitle_file))
 
-    if exit_code > 21:
-        Warn(_("处理过程中出现多个错误"))
-        exit_code = 18
+    if not error_codes:
+        return 0
 
-    return exit_code
+    if len(error_codes) > 1:
+        Warn(_("处理过程中出现多个错误"))
+        return 18
+
+    return error_codes[0]
 
 
 def cli_entry(args=None) -> NoReturn:
     try:
         code = Run(args)
-    except SystemExit:
-        code = 2
     except Exception:
         Stderr(traceback.format_exc())
         Err(_("出现未知错误"))

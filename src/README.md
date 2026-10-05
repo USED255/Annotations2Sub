@@ -30,6 +30,11 @@ Annotations2Sub 是一个将旧版 YouTube Annotations 的 XML 文件转换为 A
 - 测试用例是 Youtube Annotations, 使用 `src/tests/testCase/` 下的 `.test` 文件作为输入, 同时包含以 `.ass.test`、`.transform.ass.test` 等后缀的期望输出文件.
 - gettext `.po`/`.mo` 文件在 `src/Annotations2Sub/locales/`. 如有用户可见字符串变更, 请更新 `.po` 文件并重新生成 `.mo`.
 
+```shell
+# 注：如果你是 Agent, 可以参考以下代码生成 `.mo` 文件:
+uv run --no-project --with polib -- python -c "import polib, pathlib; [polib.pofile(str(p)).save_as_mofile(str(p.with_suffix('.mo'))) for p in pathlib.Path('src/Annotations2Sub/locales').glob('*/LC_MESSAGES/*.po')]"
+```
+
 ## 如何运行、测试和代码检查
 
 - 使用 [uv](https://github.com/astral-sh/uv) 进行依赖管理.

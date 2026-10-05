@@ -4,4 +4,4 @@ from Annotations2Sub.__version__ import version
 
 
 def test_version():
-    assert version == "2.25.0"
+    assert version == "2.26.0"

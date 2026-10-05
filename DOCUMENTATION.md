@@ -204,14 +204,14 @@ Annotations2Sub -h
 Output:
 
 ```shell
-usage: Annotations2Sub [-h] [-x 1920] [-y 1080] [-f Microsoft YaHei]
-                   [-n] [-o file] [-O directory] [-v] [-V]
-                   file [file]
+usage: Annotations2Sub [-h] [-x 1920] [-y 1080] [-f Arial] [-n] [-o File]
+                       [-O directory] [-v] [-V]
+                       File [File ...]
 
-Download and convert Youtube annotations
+Convert Youtube Annotation
 
 positional arguments:
-  file or videoId       Multiple file paths or video IDs to convert
+  File                  File paths of multiple files to be converted
 
 options:
   -h, --help            show this help message and exit
@@ -219,14 +219,14 @@ options:
                         Transform resolution X
   -y 1080, --transform-resolution-y 1080
                         Transform resolution Y
-  -f Microsoft YaHei, --font Microsoft YaHei
-                        Specify font
+  -f Arial, --font Arial      Specify font
   -n, --no-overwrite-files
-                        Don't overwrite files
-  -o file, --output file    Save to this file, if "-" output to stdout
+                        Do not overwrite files
+  -o File, --output File     Save to this file, if "-" then output to standard
+                        output
   -O directory, --output-directory directory
-                        Specify output directory for converted files
-  -v, --version         Show version number
+                        Specify the output directory for the converted file
+  -v, --version         Show Version
   -V, --verbose         Show more messages
 ```
 
@@ -327,7 +327,7 @@ Annotations2Sub -v
 Output:
 
 ```text
-Annotations2Sub v2.25.0
+Annotations2Sub v2.26.0
 ```
 
 #### Verbose Output
@@ -354,6 +354,8 @@ Effect: Will print the reasons why certain annotations were not converted, as we
 - 18: Multiple errors
 - 19: Unknown error
 - 20: Empty file
+
+If only one file fails, the code of that failure is returned. If more than one error occurs, 18 is returned.
 
 ## Limitations
 
