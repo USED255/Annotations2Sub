@@ -215,16 +215,16 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-  -x, --transform-resolution-x 1920
+  -x 1920, --transform-resolution-x 1920
                         Transform resolution X
-  -y, --transform-resolution-y 1080
+  -y 1080, --transform-resolution-y 1080
                         Transform resolution Y
-  -f, --font Arial      Specify font
+  -f Arial, --font Arial      Specify font
   -n, --no-overwrite-files
                         Do not overwrite files
-  -o, --output File     Save to this file, if "-" then output to standard
+  -o File, --output File     Save to this file, if "-" then output to standard
                         output
-  -O, --output-directory directory
+  -O directory, --output-directory directory
                         Specify the output directory for the converted file
   -v, --version         Show Version
   -V, --verbose         Show more messages
@@ -232,9 +232,9 @@ options:
 
 #### Transform Resolution
 
-`-x, --transform-resolution-x 1920 Transform resolution X`
+`-x 1920, --transform-resolution-x 1920 Transform resolution X`
 
-`-y, --transform-resolution-y 1080 Transform resolution Y`
+`-y 1080, --transform-resolution-y 1080 Transform resolution Y`
 
 Resolution information is only truly needed when drawing "boxes" for highlight-type annotations or label-style annotations, so this parameter is optional.
 
