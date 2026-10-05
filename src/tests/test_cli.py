@@ -37,7 +37,7 @@ test_set = [
     (f"{baseline1_file} -o -", 0),
     (f"{baseline1_file} -n", 0),
     (f"{empty_annotations}", 0),
-    #预期失败的命令
+    # 预期失败的命令
     # 单个错误
     (f"{file1}", 15),
     (f"{empty_xml}", 14),
